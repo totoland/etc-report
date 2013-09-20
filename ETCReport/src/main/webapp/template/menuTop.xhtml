@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <head>
+    </head>
+    <body>
+        <ui:composition>
+            <style type="text/css">
+                .menubar{
+                    position: relative;
+                    display: block;
+                    height: 27px;
+                    text-decoration: none;
+                    color: #3F5469;
+                    padding: 0 10px;
+                    line-height: 27px;
+                    text-align: center;
+                }
+            </style>
+                <p:menubar>  
+                    <p:submenu label="หน้าหลัก" icon="ui-icon-document">  
+                        <p:submenu label="New" icon="ui-icon-contact">  
+                            <p:menuitem value="Project" url="#" />  
+                            <p:menuitem value="Other" url="#" />  
+                        </p:submenu>  
+                        <p:menuitem value="Open" url="#" />  
+                        <p:separator />  
+                        <p:menuitem value="Quit" url="#" />  
+                    </p:submenu>  
+
+                    <p:submenu label="การบันทึกข้อมูล/พิมพ์รายงาน" icon="ui-icon-pencil">  
+                        <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />  
+                        <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />  
+                    </p:submenu>  
+
+                    <p:submenu label="เกี่ยวกับ" icon="ui-icon-comment">  
+                        <p:menuitem value="Contents" url="#" />  
+                        <p:submenu label="Search" icon="ui-icon-search">  
+                            <p:submenu label="Text">  
+                                <p:menuitem value="Workspace" url="#" />  
+                            </p:submenu>  
+                            <p:menuitem value="File" url="#" />  
+                        </p:submenu>  
+                    </p:submenu>
+                    
+                    <p:submenu label="ติดต่อเรา" icon="ui-icon-person">  
+                        <p:menuitem value="Contents" url="#" />  
+                        <p:submenu label="Search" icon="ui-icon-search">  
+                            <p:submenu label="Text">  
+                                <p:menuitem value="Workspace" url="#" />  
+                            </p:submenu>  
+                            <p:menuitem value="File" url="#" />  
+                        </p:submenu>  
+                    </p:submenu>
+                </p:menubar>
+        </ui:composition>
+    </body>
+</html>
