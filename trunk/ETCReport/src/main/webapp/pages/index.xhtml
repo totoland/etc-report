@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head></h:head>
+    <h:body>
+        <ui:composition template="../template/etcTemplateGreen.xhtml">
+            <ui:define name="content">
+                <blockquote style="display: none">
+                    $(function(){
+                    calendarTH(false,".dateInput");
+                    });
+                    <br></br>ใส่ className ชื่อ dateInput
+                    <br></br>
+                    โปรดใช้ dropdown เป็น  h : select... แทน  p : select... นะครับ 
+                    <div>
+                        <pre>
+                                วิธีการเรียกใช้ DropDown
+                                CommonService service = new CommonServiceImpl()
+                                DropDownList ddl = new DropDownList()
+                                ddl.setTableName("CON_FAMILY")//ชื่อ Table
+                                ddl.setName("FAMILY_NAME")//Text
+                                ddl.setValue("FAMILY_ID")//Value
+                                ListDropDownList = service.getListDropDown(ddl)
+                                
+                        </pre>
+                    </div>
+                </blockquote>
+
+                <p:panel header="Masks">  
+                    <h:panelGrid columns="2" cellpadding="5">  
+                        <h:outputText value="Date: " />  
+                        <p:inputMask mask="99/99/9999"/>  
+
+
+                        <p:commandButton value="Submit" oncomplete="dialog.show()"/>  
+                        <p:commandButton value="Reset" type="reset" />
+
+                    </h:panelGrid>  
+                </p:panel>  
+
+                
+        <p:dock>  
+            <p:menuitem value="Facebook" icon="resources/images/facebook.png" url="#"/>  
+            <p:menuitem value="Twitter" icon="resources/images/footertwittericon.png" url="#"/>
+            <p:menuitem value="Email" icon="resources/images/email.png" url="#"/>  
+            <p:menuitem value="RSS" icon="resources/images/footerrssicon.png" url="#"/>  
+        </p:dock>  
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
