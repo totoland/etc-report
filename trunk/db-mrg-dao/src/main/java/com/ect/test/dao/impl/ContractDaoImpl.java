@@ -5,7 +5,7 @@
 package com.ect.test.dao.impl;
 
 import com.ect.test.dao.ContractDao;
-import com.ect.test.dao.utils.CustomHibernateDaoSupport;
+import com.ect.test.dao.utils.BaseDao;
 import com.ect.test.entity.Contract;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,7 +14,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -22,7 +21,7 @@ import org.springframework.stereotype.Repository;
  * @author Totoland
  */
 @Repository("contractDao")
-public class ContractDaoImpl extends CustomHibernateDaoSupport implements ContractDao {
+public class ContractDaoImpl extends BaseDao implements ContractDao {
 
     private static Logger logger = Logger.getLogger(ContractDaoImpl.class);
 
