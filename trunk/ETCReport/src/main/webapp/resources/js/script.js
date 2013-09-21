@@ -663,183 +663,183 @@ jQuery(function ($) {
 
 })(jQuery);
 
+//
+//var ThemeLightbox = (function ($) {
+//    'use strict';
+//    return (function () {
+//        var current;
+//        var images = $(".art-lightbox");
+//
+//        this.init = function (ctrl) {
+//            $(".art-lightbox").live("click", { _ctrl: ctrl }, function (e) {
+//
+//                if (e.data._ctrl === true && !e.ctrlKey) {
+//                    return;
+//                }
+//                
+//                reload();
+//                current = images.index(this);
+//                show(this);
+//            });
+//
+//            $(".art-lightbox-wrapper .arrow.left:not(.disabled)").live("click", function () {
+//                move(current - 1);
+//            });
+//
+//            $(".art-lightbox-wrapper .arrow.right:not(.disabled)").live("click", function () {
+//                move(current + 1);
+//            });
+//
+//            $(".art-lightbox-wrapper .active").live("click", function () {
+//                move(current + 1);
+//            });
+//
+//            $(".art-lightbox-wrapper .close").live("click", function () {
+//                close();
+//            });
+//        };
+//
+//        function show(src) {
+//            var closeBtn = $('<div class="close"><div class="cw"> </div><div class="ccw"> </div><div class="close-alt">&#10007;</div></div>')
+//                .click(close);
+//
+//            var imgContainer = $('.art-lightbox-wrapper');
+//            if (imgContainer.length === 0) {
+//                imgContainer = $('<div class="art-lightbox-wrapper">').css('line-height', $(window).height() + "px")
+//                    .appendTo($("body"));
+//            }
+//            
+//            var img = $('<img class="art-lightbox-image active" src="' + getFullImgSrc($(src).attr("src")) + '">');
+//            img.appendTo(imgContainer);
+//
+//            showArrows();
+//            closeBtn.appendTo(imgContainer);
+//            showLoader(true);
+//
+//            img.load(function () {
+//                showLoader(false);
+//            });
+//
+//            img.error(function () {
+//                showLoader(false);
+//                img.attr("src", $(src).attr("src"));
+//            });
+//
+//            bindMouse($(".art-lightbox-wrapper .arrow").add(img).add(imgContainer));
+//        }
+//
+//        function reload() {
+//            images = $(".art-lightbox");
+//        }
+//
+//        function move(index) {
+//            if (index < 0 || index >= images.length) {
+//                return;
+//            }
+//
+//            showError(false);
+//
+//            current = index;
+//
+//            $(".art-lightbox-wrapper .art-lightbox-image:not(.active)").remove();
+//
+//            var active = $(".art-lightbox-wrapper .active");
+//            var target = $('<img class="art-lightbox-image" alt="" src="' + getFullImgSrc($(images[current]).attr("src")) + '" />');
+//
+//            active.after(target);
+//
+//            showArrows();
+//            showLoader(true);
+//
+//            bindMouse($(".art-lightbox-wrapper").add(target));
+//
+//            target.load(function () {
+//                showLoader(false);
+//
+//                active.removeClass("active");
+//                target.addClass("active");
+//            });
+//
+//            target.error(function () {
+//                showLoader(false);
+//                active.removeClass("active");
+//                target.addClass("active");
+//                target.attr("src", $(images[current]).attr("src"));
+//            });
+//        }
+//
+//        function showArrows() {
+//            if ($(".art-lightbox-wrapper .arrow").length === 0) {
+//                $(".art-lightbox-wrapper").append($('<div class="arrow left"><div class="arrow-t ccw"> </div><div class="arrow-b cw"> </div><div class="arrow-left-alt">&#8592;</div></div>').css("top", $(window).height() / 2 - 40));
+//                $(".art-lightbox-wrapper").append($('<div class="arrow right"><div class="arrow-t cw"> </div><div class="arrow-b ccw"> </div><div class="arrow-right-alt">&#8594;</div></div>').css("top", $(window).height() / 2 - 40));
+//            }
+//
+//            if (current === 0) {
+//                $(".art-lightbox-wrapper .arrow.left").addClass("disabled");
+//            } else {
+//                $(".art-lightbox-wrapper .arrow.left").removeClass("disabled");
+//            }
+//
+//            if (current === images.length - 1) {
+//                $(".art-lightbox-wrapper .arrow.right").addClass("disabled");
+//            } else {
+//                $(".art-lightbox-wrapper .arrow.right").removeClass("disabled");
+//            }
+//        }
+//
+//        function showError(enable) {
+//            if (enable) {
+//                $(".art-lightbox-wrapper").append($('<div class="lightbox-error">The requested content cannot be loaded.<br/>Please try again later.</div>')
+//                        .css({ "top": $(window).height() / 2 - 60, "left": $(window).width() / 2 - 170 }));
+//            } else {
+//                $(".art-lightbox-wrapper .lightbox-error").remove();
+//            }
+//        }
+//
+//        function showLoader(enable) {
+//            if (!enable) {
+//                $(".art-lightbox-wrapper .loading").remove();
+//            }
+//            else {
+//                $('<div class="loading"> </div>').css({ "top": $(window).height() / 2 - 16, "left": $(window).width() / 2 - 16 }).appendTo($(".art-lightbox-wrapper"));
+//            }
+//        }
+//
+//        var close = function () {
+//            $(".art-lightbox-wrapper").remove();
+//        };
+//
+//        function bindMouse(img) {
+//            img.unbind("wheel").mousewheel(function (event, delta) {
+//                delta = delta > 0 ? 1 : -1;
+//                move(current + delta);
+//                event.preventDefault();
+//            });
+//
+//            img.mousedown(function (e) {
+//                // close on middle button click
+//                if (e.which === 2) {
+//                    close();
+//                }
+//                e.preventDefault();
+//            });
+//        }
+//
+//        function getFullImgSrc(src) {
+//            var fileName = src.substring(0, src.lastIndexOf('.'));
+//            var ext = src.substring(src.lastIndexOf('.'));
+//            src = fileName + "-large" + ext;
+//
+//            return src;
+//        }
+//
+//    });
+//})(jQuery);
 
-var ThemeLightbox = (function ($) {
-    'use strict';
-    return (function () {
-        var current;
-        var images = $(".art-lightbox");
-
-        this.init = function (ctrl) {
-            $(".art-lightbox").live("click", { _ctrl: ctrl }, function (e) {
-
-                if (e.data._ctrl === true && !e.ctrlKey) {
-                    return;
-                }
-                
-                reload();
-                current = images.index(this);
-                show(this);
-            });
-
-            $(".art-lightbox-wrapper .arrow.left:not(.disabled)").live("click", function () {
-                move(current - 1);
-            });
-
-            $(".art-lightbox-wrapper .arrow.right:not(.disabled)").live("click", function () {
-                move(current + 1);
-            });
-
-            $(".art-lightbox-wrapper .active").live("click", function () {
-                move(current + 1);
-            });
-
-            $(".art-lightbox-wrapper .close").live("click", function () {
-                close();
-            });
-        };
-
-        function show(src) {
-            var closeBtn = $('<div class="close"><div class="cw"> </div><div class="ccw"> </div><div class="close-alt">&#10007;</div></div>')
-                .click(close);
-
-            var imgContainer = $('.art-lightbox-wrapper');
-            if (imgContainer.length === 0) {
-                imgContainer = $('<div class="art-lightbox-wrapper">').css('line-height', $(window).height() + "px")
-                    .appendTo($("body"));
-            }
-            
-            var img = $('<img class="art-lightbox-image active" src="' + getFullImgSrc($(src).attr("src")) + '">');
-            img.appendTo(imgContainer);
-
-            showArrows();
-            closeBtn.appendTo(imgContainer);
-            showLoader(true);
-
-            img.load(function () {
-                showLoader(false);
-            });
-
-            img.error(function () {
-                showLoader(false);
-                img.attr("src", $(src).attr("src"));
-            });
-
-            bindMouse($(".art-lightbox-wrapper .arrow").add(img).add(imgContainer));
-        }
-
-        function reload() {
-            images = $(".art-lightbox");
-        }
-
-        function move(index) {
-            if (index < 0 || index >= images.length) {
-                return;
-            }
-
-            showError(false);
-
-            current = index;
-
-            $(".art-lightbox-wrapper .art-lightbox-image:not(.active)").remove();
-
-            var active = $(".art-lightbox-wrapper .active");
-            var target = $('<img class="art-lightbox-image" alt="" src="' + getFullImgSrc($(images[current]).attr("src")) + '" />');
-
-            active.after(target);
-
-            showArrows();
-            showLoader(true);
-
-            bindMouse($(".art-lightbox-wrapper").add(target));
-
-            target.load(function () {
-                showLoader(false);
-
-                active.removeClass("active");
-                target.addClass("active");
-            });
-
-            target.error(function () {
-                showLoader(false);
-                active.removeClass("active");
-                target.addClass("active");
-                target.attr("src", $(images[current]).attr("src"));
-            });
-        }
-
-        function showArrows() {
-            if ($(".art-lightbox-wrapper .arrow").length === 0) {
-                $(".art-lightbox-wrapper").append($('<div class="arrow left"><div class="arrow-t ccw"> </div><div class="arrow-b cw"> </div><div class="arrow-left-alt">&#8592;</div></div>').css("top", $(window).height() / 2 - 40));
-                $(".art-lightbox-wrapper").append($('<div class="arrow right"><div class="arrow-t cw"> </div><div class="arrow-b ccw"> </div><div class="arrow-right-alt">&#8594;</div></div>').css("top", $(window).height() / 2 - 40));
-            }
-
-            if (current === 0) {
-                $(".art-lightbox-wrapper .arrow.left").addClass("disabled");
-            } else {
-                $(".art-lightbox-wrapper .arrow.left").removeClass("disabled");
-            }
-
-            if (current === images.length - 1) {
-                $(".art-lightbox-wrapper .arrow.right").addClass("disabled");
-            } else {
-                $(".art-lightbox-wrapper .arrow.right").removeClass("disabled");
-            }
-        }
-
-        function showError(enable) {
-            if (enable) {
-                $(".art-lightbox-wrapper").append($('<div class="lightbox-error">The requested content cannot be loaded.<br/>Please try again later.</div>')
-                        .css({ "top": $(window).height() / 2 - 60, "left": $(window).width() / 2 - 170 }));
-            } else {
-                $(".art-lightbox-wrapper .lightbox-error").remove();
-            }
-        }
-
-        function showLoader(enable) {
-            if (!enable) {
-                $(".art-lightbox-wrapper .loading").remove();
-            }
-            else {
-                $('<div class="loading"> </div>').css({ "top": $(window).height() / 2 - 16, "left": $(window).width() / 2 - 16 }).appendTo($(".art-lightbox-wrapper"));
-            }
-        }
-
-        var close = function () {
-            $(".art-lightbox-wrapper").remove();
-        };
-
-        function bindMouse(img) {
-            img.unbind("wheel").mousewheel(function (event, delta) {
-                delta = delta > 0 ? 1 : -1;
-                move(current + delta);
-                event.preventDefault();
-            });
-
-            img.mousedown(function (e) {
-                // close on middle button click
-                if (e.which === 2) {
-                    close();
-                }
-                e.preventDefault();
-            });
-        }
-
-        function getFullImgSrc(src) {
-            var fileName = src.substring(0, src.lastIndexOf('.'));
-            var ext = src.substring(src.lastIndexOf('.'));
-            src = fileName + "-large" + ext;
-
-            return src;
-        }
-
-    });
-})(jQuery);
-
-jQuery(function () {
-    'use strict';
-    new ThemeLightbox().init();
-});
+//jQuery(function () {
+//    'use strict';
+//    new ThemeLightbox().init();
+//});
 
 (function($) {
     'use strict';
