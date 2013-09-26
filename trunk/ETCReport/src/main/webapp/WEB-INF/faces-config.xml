@@ -12,7 +12,7 @@
 			<var>msg</var>
 		</resource-bundle>
                 <resource-bundle>
-			<base-name>com.etc.web.resources.conf</base-name>
+			<base-name>conf</base-name>
 			<var>config</var>
 		</resource-bundle>
                 <locale-config>  

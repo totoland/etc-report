@@ -3,6 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
     <head>
@@ -21,42 +22,34 @@
                     text-align: center;
                 }
             </style>
-                <p:menubar>  
-                    <p:submenu label="หน้าหลัก" icon="ui-icon-document">  
-                        <p:submenu label="New" icon="ui-icon-contact">  
-                            <p:menuitem value="Project" url="#" />  
-                            <p:menuitem value="Other" url="#" />  
+            <p:menubar>  
+                <p:menuitem value="หน้าหลัก" url="#" icon="ui-icon-contact"/>
+                <p:menuitem value="การบันทึกข้อมูล/พิมพ์รายงาน" url="/pages/report/formSavePrintReport.xhtml" icon="ui-icon-pencil"/>
+                
+                <p:submenu label="เกี่ยวกับ" icon="ui-icon-comment">  
+                    <p:menuitem value="Contents" url="#" />  
+                    <p:submenu label="Search" icon="ui-icon-search">  
+                        <p:submenu label="Text">  
+                            <p:menuitem value="Workspace" url="#" />  
                         </p:submenu>  
-                        <p:menuitem value="Open" url="#" />  
-                        <p:separator />  
-                        <p:menuitem value="Quit" url="#" />  
+                        <p:menuitem value="File" url="#" />  
                     </p:submenu>  
+                </p:submenu>
 
-                    <p:submenu label="การบันทึกข้อมูล/พิมพ์รายงาน" icon="ui-icon-pencil">  
-                        <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />  
-                        <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />  
+                <p:submenu label="ติดต่อเรา" icon="ui-icon-person">  
+                    <p:menuitem value="Contents" url="#" />  
+                    <p:submenu label="Search" icon="ui-icon-search">  
+                        <p:submenu label="Text">  
+                            <p:menuitem value="Workspace" url="#" />  
+                        </p:submenu>  
+                        <p:menuitem value="File" url="#" />  
                     </p:submenu>  
+                </p:submenu>
 
-                    <p:submenu label="เกี่ยวกับ" icon="ui-icon-comment">  
-                        <p:menuitem value="Contents" url="#" />  
-                        <p:submenu label="Search" icon="ui-icon-search">  
-                            <p:submenu label="Text">  
-                                <p:menuitem value="Workspace" url="#" />  
-                            </p:submenu>  
-                            <p:menuitem value="File" url="#" />  
-                        </p:submenu>  
-                    </p:submenu>
-                    
-                    <p:submenu label="ติดต่อเรา" icon="ui-icon-person">  
-                        <p:menuitem value="Contents" url="#" />  
-                        <p:submenu label="Search" icon="ui-icon-search">  
-                            <p:submenu label="Text">  
-                                <p:menuitem value="Workspace" url="#" />  
-                            </p:submenu>  
-                            <p:menuitem value="File" url="#" />  
-                        </p:submenu>  
-                    </p:submenu>
-                </p:menubar>
+                <f:facet name="options">  
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />  
+                </f:facet>
+            </p:menubar>
         </ui:composition>
     </body>
 </html>
