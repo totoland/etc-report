@@ -44,28 +44,30 @@
             <url>http://download.java.net/maven/2/</url>
         </repository>
         <repository>
-            <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/activiti-thirdparty</url>
+            <id>alfresco</id>
+        </repository>
+        <repository>
             <id>eclipselink</id>
-            <layout>default</layout>
-            <name>Repository for library EclipseLink (JPA 2.0)</name>
+            <url>http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo/</url>
         </repository>
     </repositories>
     <dependencies>
         <!-- Junit -->
-	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>4.11</version>
-		<scope>test</scope>
-	</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
  
-	<!-- Testng -->
-<!--	<dependency>
-		<groupId>org.testng</groupId>
-		<artifactId>testng</artifactId>
-		<version>6.8.5</version>
-		<scope>test</scope>
-	</dependency>-->
+        <!-- Testng -->
+        <!--	<dependency>
+              		<groupId>org.testng</groupId>
+              		<artifactId>testng</artifactId>
+              		<version>6.8.5</version>
+              		<scope>test</scope>
+       	</dependency>-->
         <!--
             Core utilities used by other modules.
             Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*)
