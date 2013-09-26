@@ -18,6 +18,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
         <property name="annotatedClasses">
             <list>
                 <value>com.ect.test.entity.Contract</value>
+				<value>com.ect.db.common.entity.DropDownList</value>
             </list>
         </property>
     </bean>

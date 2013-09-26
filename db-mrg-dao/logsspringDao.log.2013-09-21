@@ -1,0 +1,39 @@
+[SpringDao][INFO] 2013-09-21 21:14:35.951 main [com.ect.test.app.Test:20]Test!!
+[ectDao][INFO] 2013-09-21 21:17:59.876 main [com.ect.test.app.Test:23]Test!!
+[ectDao][INFO] 2013-09-21 21:18:54.883 main [com.ect.test.app.Test:23]Test!!
+[ectDao][INFO] 2013-09-21 21:19:55.441 main [com.ect.test.app.Test:23]Test!!
+[ectDao][DEBUG] 2013-09-21 21:19:56.741 main [com.ect.test.app.Test:26]session is {0}
+[ectDao][INFO] 2013-09-21 21:20:25.675 main [com.ect.test.app.Test:23]Test!!
+[ectDao][DEBUG] 2013-09-21 21:20:26.925 main [com.ect.test.app.Test:26]session is 
+[ectDao][INFO] 2013-09-21 21:20:32.916 main [com.ect.test.app.Test:23]Test!!
+[ectDao][DEBUG] 2013-09-21 21:20:34.156 main [com.ect.test.app.Test:26]SessionImpl(PersistenceContext[entityKeys=[],collectionKeys=[]];ActionQueue[insertions=[] updates=[] deletions=[] collectionCreations=[] collectionRemovals=[] collectionUpdates=[]])
+[ectDao][INFO] 2013-09-21 21:24:56.470 main [com.ect.test.app.Test:24]Test!!
+[ectDao][WARN] 2013-09-21 21:24:57.920 main [org.hibernate.util.JDBCExceptionReporter:77]SQL Error: 102, SQLState: S0001
+[ectDao][ERROR] 2013-09-21 21:24:57.920 main [org.hibernate.util.JDBCExceptionReporter:78]Incorrect syntax near ')'.
+[ectDao][INFO] 2013-09-21 21:25:43.690 main [com.ect.test.app.Test:24]Test!!
+[ectDao][DEBUG] 2013-09-21 21:25:45.051 main [com.ect.test.app.Test:29]list size : 
+[ectDao][INFO] 2013-09-21 21:25:54.102 main [com.ect.test.app.Test:24]Test!!
+[ectDao][DEBUG] 2013-09-21 21:25:55.447 main [com.ect.test.app.Test:29]list size : {0}
+[ectDao][INFO] 2013-09-21 21:26:08.298 main [com.ect.test.app.Test:24]Test!!
+[ectDao][DEBUG] 2013-09-21 21:26:09.662 main [com.ect.test.app.Test:29]list size : 2
+[ectDao][INFO] 2013-09-21 21:27:45.183 main [com.ect.test.app.Test:23]Test!!
+[ectDao][DEBUG] 2013-09-21 21:27:46.533 main [com.ect.test.app.Test:28]list size : 2
+[ectDao][DEBUG] 2013-09-21 21:27:46.533 main [com.ect.test.app.Test:32]com.ect.test.entity.Contract[ contractID=3 ]
+[ectDao][DEBUG] 2013-09-21 21:27:46.533 main [com.ect.test.app.Test:32]com.ect.test.entity.Contract[ contractID=4 ]
+[ectDao][INFO] 2013-09-21 21:48:09.963 main [com.ect.test.app.Test:26]Test!!
+[ectDao][DEBUG] 2013-09-21 21:48:11.351 main [com.ect.test.app.Test:31]list size : 2
+[ectDao][DEBUG] 2013-09-21 21:48:11.351 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=3 ]
+[ectDao][DEBUG] 2013-09-21 21:48:11.351 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=4 ]
+[ectDao][INFO] 2013-09-21 21:49:17.915 main [com.ect.test.app.Test:26]Test!!
+[ectDao][DEBUG] 2013-09-21 21:49:19.277 main [com.ect.test.app.Test:31]list size : 2
+[ectDao][DEBUG] 2013-09-21 21:49:19.277 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=3 ]
+[ectDao][DEBUG] 2013-09-21 21:49:19.277 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=4 ]
+[ectDao][INFO] 2013-09-21 21:50:12.648 main [com.ect.test.app.Test:26]Test!!
+[ectDao][DEBUG] 2013-09-21 21:50:14.045 main [com.ect.test.app.Test:31]list size : 2
+[ectDao][DEBUG] 2013-09-21 21:50:14.045 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=3 ]
+[ectDao][DEBUG] 2013-09-21 21:50:14.045 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=4 ]
+[ectDao][INFO] 2013-09-21 21:53:29.052 main [com.ect.test.app.Test:26]Test!!
+[ectDao][DEBUG] 2013-09-21 21:53:30.403 main [com.ect.test.app.Test:31]list size : 2
+[ectDao][DEBUG] 2013-09-21 21:53:30.403 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=3 ]
+[ectDao][DEBUG] 2013-09-21 21:53:30.403 main [com.ect.test.app.Test:35]com.ect.test.entity.Contract[ contractID=4 ]
+[ectDao][INFO] 2013-09-21 21:54:34.618 main [com.ect.test.app.Test:26]Test!!
