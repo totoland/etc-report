@@ -53,7 +53,7 @@
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>pages/index.xhtml</welcome-file>
+        <welcome-file>pages/login/login.xhtml</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>401</error-code>

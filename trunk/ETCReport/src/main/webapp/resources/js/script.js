@@ -1251,3 +1251,13 @@ var processHeaderMultipleBg = (function ($) {
         header.css('background-position', "center top");
     });
 })(jQuery);
+
+LOG_ACTIVE = false;
+
+function logger(msg){
+    if(LOG_ACTIVE){
+        try{
+            console.log(msg);
+        }catch(err){}
+    }
+}
