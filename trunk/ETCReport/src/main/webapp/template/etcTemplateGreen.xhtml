@@ -40,9 +40,11 @@
                                 </ui:insert>
                             </div>
                             <div class="art-layout-cell art-content"><article class="art-post art-article">
-                                    <ui:insert name="content" id="content">
+                                    <h:panelGroup id="contentBody">
+                                        <ui:insert name="content">
 
-                                    </ui:insert>
+                                        </ui:insert>
+                                    </h:panelGroup>
                                 </article>
                             </div>
                         </div>
@@ -59,7 +61,7 @@
         </div>
         <ui:insert name="modalDialog">
         </ui:insert>
-        <p:blockUI  block="content" widgetVar="blogui">
+        <p:blockUI  block="contentBody" widgetVar="blogui">
             LOADING<br />
         </p:blockUI>
         <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show()" oncomplete="blogui.hide()">

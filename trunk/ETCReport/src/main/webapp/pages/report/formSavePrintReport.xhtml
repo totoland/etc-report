@@ -13,16 +13,18 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="../../template/etcTemplateGreen.xhtml">
             <ui:define name="content">
-                <blockquote>
-                    <div>
-                        การบันทึกข้อมูล/พิมพ์รายงาน
-                    </div>
-                </blockquote>
+                <h:form id="form1">
+                    <blockquote>
+                        <div>
+                            การบันทึกข้อมูล/พิมพ์รายงาน
+                        </div>
+                    </blockquote>
 
-                <p:selectOneMenu value="#{formSavePrintReportController.listDropDownValue}">  
-                    <f:selectItem itemLabel="-กรุณาเลือก-" itemValue="" />  
-                    <f:selectItems value="#{formSavePrintReportController.listDropDown}" var="p" itemLabel="#{p.name}" itemValue="#{p.value}" />
-                </p:selectOneMenu>
+                    <p:selectOneMenu value="#{formSavePrintReportController.listDropDownValue}">  
+                        <f:selectItem itemLabel="-กรุณาเลือก-" itemValue="" />  
+                        <f:selectItems value="#{formSavePrintReportController.listDropDown}" var="p" itemLabel="#{p.name}" itemValue="#{p.value}" />
+                    </p:selectOneMenu>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
