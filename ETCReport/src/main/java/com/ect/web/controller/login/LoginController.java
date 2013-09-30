@@ -9,8 +9,6 @@ import com.ect.web.utils.MessageUtils;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +22,7 @@ public class LoginController extends BaseController {
 
     private static final long serialVersionUID = 3291979904925054393L;
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
-    private String userName;
+    private String userName = "admin";
     private String passWord;
     
     @PostConstruct
