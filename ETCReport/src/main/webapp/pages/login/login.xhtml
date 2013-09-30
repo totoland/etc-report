@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="../../template/loginTemplate.xhtml">
+        <ui:define name="content">
+            <h:form id="form">
+                <div style="margin: 0 auto;width: 400px">
+                    <p:messages id="messages" closable="true" escape="true"/>
+                </div>
+                    <p:panel id="pnl" header="Login" style="margin: 0 auto;width: 400px">
+                        <h:panelGrid columns="2">  
+                            <h:outputLabel for="username" value="#{msg.username}:" />  
+                            <p:inputText value="#{loginController.userName}"   
+                                         id="username" required="true" label="username" />  
+
+                            <h:outputLabel for="password" value="#{msg.password}:" />  
+                            <h:inputSecret value="#{loginController.passWord}"   
+                                           id="password" required="true" label="password" />  
+
+                        </h:panelGrid>  
+                        <p:commandButton id="loginButton" value="#{msg.login}" update="messages" icon="ui-icon-key"  
+                                         actionListener="#{loginController.loginProcess()}"/>
+                    </p:panel>
+                <p:blockUI  trigger="loginButton" block="pnl"/> 
+            </h:form>  
+        </ui:define>
+    </ui:composition>
+</html>

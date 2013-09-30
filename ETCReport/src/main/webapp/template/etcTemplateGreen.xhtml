@@ -36,12 +36,12 @@
                         <div class="art-content-layout-row">
                             <div class="art-layout-cell art-sidebar1" style="display: none">
                                 <ui:insert name="leftMenu">
-                                    
+
                                 </ui:insert>
                             </div>
                             <div class="art-layout-cell art-content"><article class="art-post art-article">
-                                    <ui:insert name="content" >
-                                        
+                                    <ui:insert name="content" id="content">
+
                                     </ui:insert>
                                 </article>
                             </div>
@@ -59,6 +59,11 @@
         </div>
         <ui:insert name="modalDialog">
         </ui:insert>
+        <p:blockUI  block="content" widgetVar="blogui">
+            LOADING<br />
+        </p:blockUI>
+        <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show()" oncomplete="blogui.hide()">
+        </p:ajaxStatus>
     </h:body>
 
 </html>
