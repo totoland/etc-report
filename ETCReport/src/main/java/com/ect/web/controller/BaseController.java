@@ -41,4 +41,6 @@ public abstract class BaseController implements Serializable{
     public void consoleLog(String log){
         executeJavaScript("logger('"+log+"');");
     }
+    
+    public abstract void resetForm();
 }
