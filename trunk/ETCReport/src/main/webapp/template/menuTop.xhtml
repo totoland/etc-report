@@ -25,7 +25,15 @@
             <p:menubar>  
                 <p:menuitem value="หน้าหลัก" url="#" icon="ui-icon-contact"/>
                 <p:menuitem value="การบันทึกข้อมูล/พิมพ์รายงาน" url="/pages/report/formSavePrintReport.xhtml" icon="ui-icon-pencil"/>
-                
+                <p:submenu label="ผู้ดูแลระบบ" icon="ui-icon-comment">  
+                    <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/permission/permission.xhtml" />  
+                    <p:submenu label="Search" icon="ui-icon-search">  
+                        <p:submenu label="Text">  
+                            <p:menuitem value="Workspace" url="#" />  
+                        </p:submenu>  
+                        <p:menuitem value="File" url="#" />  
+                    </p:submenu>  
+                </p:submenu>
                 <p:submenu label="เกี่ยวกับ" icon="ui-icon-comment">  
                     <p:menuitem value="Contents" url="#" />  
                     <p:submenu label="Search" icon="ui-icon-search">  

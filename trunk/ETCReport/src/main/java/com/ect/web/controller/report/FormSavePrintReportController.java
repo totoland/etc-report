@@ -87,4 +87,9 @@ public class FormSavePrintReportController extends BaseController{
         this.listDropDownValue = listDropDownValue;
     }
 
+    @Override
+    public void resetForm() {
+        
+    }
+
 }

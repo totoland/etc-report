@@ -5,6 +5,7 @@
 package com.ect.web.controller.theme;
 
 import com.ect.web.controller.BaseController;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -16,7 +17,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ThemeSwitcherController extends BaseController{
+public class ThemeSwitcherController implements Serializable{
     private static final long serialVersionUID = -1841823368626728400L;
     private Map<String, String> themes; 
     private String theme;
