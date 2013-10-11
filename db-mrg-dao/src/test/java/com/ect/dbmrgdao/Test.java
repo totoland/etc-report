@@ -38,9 +38,9 @@ public class Test {
 
     @org.junit.Test
     public void main() {
-        logger.info("Test!!");
+        System.out.println("Test!!");
 
-        logger.info("spring hibernate!!");
+        System.out.println("spring hibernate!!");
         
         DropDownList ddls = new DropDownList();
         ddls.setSchema("SYS");
