@@ -38,7 +38,13 @@ public class FormSavePrintReportController extends BaseController{
     public void init(){
         logger.info("initPage");
         
-        listDropDown = commonService.getDropdownList(new DropDownList());
+        DropDownList ddls = new DropDownList();
+        ddls.setSchema("SYS");
+        ddls.setTableName("SYSTABLES");
+        ddls.setName("TABLENAME");
+        ddls.setValue("TABLEID");
+        
+        listDropDown = commonService.getDropdownList(ddls);
         
         for(DropDownList dll : getListDropDown()){
             logger.debug(dll.toString());
