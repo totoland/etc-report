@@ -31,8 +31,16 @@ public class CommonDaoImpl extends BaseDao implements CommonDao {
     @Override
     public List<DropDownList> getDropdownList(DropDownList dropDownList) {
         logger.info("getDropdownList");
-
-        final String sql = "SELECT 'name' AS name , 'value' AS value , 'tableName' AS tableName from Stock";
+        
+        String orderBy = dropDownList.getOrderByField()==null?dropDownList.getName():dropDownList.getOrderByField();
+        String sortBy = dropDownList.getSortName()==null?"ASC":dropDownList.getSortName();
+        String schemaName = dropDownList.getSchema()==null?"":dropDownList.getSchema();
+        String tableName = schemaName!=null?schemaName+"."+dropDownList.getTableName():dropDownList.getTableName();
+        
+        final String sql = "SELECT "+dropDownList.getName()+" AS feild_name , "+dropDownList.getValue()+" AS feild_value , '"+dropDownList.getTableName()+"'  AS table_name"
+                + ", '"+orderBy+"' AS order_by ,'"+sortBy+"' AS sort_by "
+                + ",'"+schemaName+"' AS schema_name " 
+                + "from "+tableName +" order by "+orderBy + " "+sortBy;
 
         List<DropDownList> result;
 
@@ -40,17 +48,9 @@ public class CommonDaoImpl extends BaseDao implements CommonDao {
             @Override
             public Object doInHibernate(final Session session) throws HibernateException, SQLException {
                 SQLQuery sq = session.createSQLQuery(sql);
-                //sq.addEntity(DropDownList.class);
-                List<DropDownList> dropDownLists = new ArrayList<DropDownList>();
-                List list = sq.list();
-                for (int i = 0; i <list.size(); i++) {
-                    DropDownList ddl = new DropDownList();
-                    ddl.setName(((Object[])list.get(i))[0].toString());
-                    ddl.setValue(((Object[])list.get(i))[1].toString());
-                    ddl.setTableName(((Object[])list.get(i))[2].toString());
-                    dropDownLists.add(ddl);
-                }
-
+                sq.addEntity(DropDownList.class);
+                List<DropDownList> dropDownLists = sq.list();
+                
                 return dropDownLists;
             }
         });

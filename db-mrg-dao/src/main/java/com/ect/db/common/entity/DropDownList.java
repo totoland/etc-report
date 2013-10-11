@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  *
@@ -16,17 +17,22 @@ import javax.persistence.Id;
 @Entity
 public class DropDownList implements Serializable{
     private static final long serialVersionUID = 296386523126655771L;
-    @Column(name="name")
+    @Column(name="feild_name")
     @Id
     private String name;
-    @Column(name="value")
+    @Column(name="feild_value")
     private String value;
-    @Column(name="tableName")
+    @Column(name="table_name")
     private String tableName;
+    
+    @Column(name="schema_name")
     private String schema;
+    @Transient
     private String condition;
     
+    @Column(name="order_by")
     private String orderByField;
+    @Column(name="sort_by")
     private String sortName = "asc";
     /**
      * @return the name

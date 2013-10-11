@@ -6,13 +6,10 @@ package com.ect.dbmrgdao;
 
 import com.ect.db.common.dao.CommonDao;
 import com.ect.db.common.entity.DropDownList;
-import com.ect.test.dao.ContractDao;
-import com.ect.test.entity.Contract;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,7 +19,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *
  * @author Totoland
  */
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
     "classpath:spring/config/BeanLocations.xml"
@@ -30,8 +26,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class Test {
 
     private static Logger logger = Logger.getLogger(Test.class);
-    @Autowired
-    ContractDao contractDao;
     @Autowired
     CommonDao commonDao;
     
@@ -47,13 +41,14 @@ public class Test {
         logger.info("Test!!");
 
         logger.info("spring hibernate!!");
-        List<Contract> listContract = contractDao.getAllListContract();
-
-        for (Contract contract : listContract) {
-            System.out.println(contract.toString());
-        }
         
-        List<DropDownList>dropDownLists = commonDao.getDropdownList(new DropDownList());
+        DropDownList ddls = new DropDownList();
+        ddls.setSchema("SYS");
+        ddls.setTableName("SYSTABLES");
+        ddls.setName("TABLENAME");
+        ddls.setValue("TABLEID");
+        
+        List<DropDownList>dropDownLists = commonDao.getDropdownList(ddls);
         
         for(DropDownList ddl : dropDownLists){
             System.out.println(ddl.toString());
