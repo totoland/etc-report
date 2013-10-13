@@ -6,7 +6,6 @@ package com.ect.web.controller.user;
 
 import com.ect.web.controller.BaseController;
 import com.ect.web.controller.model.ReportVO;
-import com.ect.web.controller.report.FormSavePrintReportController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -86,14 +85,14 @@ public class FormRoleUserController extends BaseController {
         rptList = new ArrayList<ReportVO>();
         for (int i = 0; i < 9; i++) {
             ReportVO rpt = new ReportVO();
-            rpt.setNo("110"+(i+1));
+            rpt.setNo("110" + (i + 1));
             rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 1");
             rpt.setRpt_type("ยุทธศาสตร์");
-            rpt.setCreate_date((i+2)+"/04/2556");
+            rpt.setCreate_date((i + 2) + "/04/2556");
             rpt.setCreate_user("สมศักดิ์ รักไทย");
             rpt.setStatus("อนุมัติเรียบร้อย");
             rpt.setMod_user("สมชาย แซ่ตั้ง");
-            rpt.setMod_date((i+4)+"/04/2556");
+            rpt.setMod_date((i + 4) + "/04/2556");
             rptList.add(rpt);
         }
     }
