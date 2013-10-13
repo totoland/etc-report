@@ -2577,7 +2577,9 @@ pre
     bottom: 0;
 }
 
-.art-postcontent ul>li:before,  .art-post ul>li:before,  .art-textblock ul>li:before
+/*.art-postcontent ul>li:before,  .art-post ul>li:before,  .art-textblock ul>li:before*/
+/* fix conflict prime ui*/
+.art-postcontent ul> art-postcontent li:before,  .art-post ul> art-postcontenti:before,  .art-textblock ul> art-postcontentli:before
 {
     content:url('../images/postbullets.png');
     margin-right:6px;
