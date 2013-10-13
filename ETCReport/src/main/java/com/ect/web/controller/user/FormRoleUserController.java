@@ -27,10 +27,10 @@ public class FormRoleUserController extends BaseController {
     private List<ReportVO> rptPreSendList;
     private List<ReportVO> rptWaitStatusList;
     private List<ReportVO> rptCompleteList;
-    private boolean isCreate = false;
+    private List<ReportVO> rptList;
 
     @PostConstruct
-    public void init() {       
+    public void init() {
         mockData();
     }
 
@@ -45,7 +45,7 @@ public class FormRoleUserController extends BaseController {
         rpt.setCreate_user("สมศักดิ์ รักไทย");
         rpt.setStatus("รอส่งพิจารณา");
         rptPreSendList.add(rpt);
-        
+
         rptWaitStatusList = new ArrayList<ReportVO>();
         rpt = new ReportVO();
         rpt.setNo("1003");
@@ -55,7 +55,7 @@ public class FormRoleUserController extends BaseController {
         rpt.setCreate_user("สมศักดิ์ รักไทย");
         rpt.setStatus("รออนุมัติ");
         rptWaitStatusList.add(rpt);
-        
+
         rpt = new ReportVO();
         rpt.setNo("1002");
         rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 2");
@@ -82,8 +82,20 @@ public class FormRoleUserController extends BaseController {
         rptCompleteList.add(rpt);
     }
 
-    public void createRpt() {
-        isCreate = true;
+    public void genRpt() {
+        rptList = new ArrayList<ReportVO>();
+        for (int i = 0; i < 9; i++) {
+            ReportVO rpt = new ReportVO();
+            rpt.setNo("110"+(i+1));
+            rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 1");
+            rpt.setRpt_type("ยุทธศาสตร์");
+            rpt.setCreate_date((i+2)+"/04/2556");
+            rpt.setCreate_user("สมศักดิ์ รักไทย");
+            rpt.setStatus("อนุมัติเรียบร้อย");
+            rpt.setMod_user("สมชาย แซ่ตั้ง");
+            rpt.setMod_date((i+4)+"/04/2556");
+            rptList.add(rpt);
+        }
     }
 
     @Override
@@ -115,11 +127,11 @@ public class FormRoleUserController extends BaseController {
         this.rptCompleteList = rptCompleteList;
     }
 
-    public boolean isIsCreate() {
-        return isCreate;
+    public List<ReportVO> getRptList() {
+        return rptList;
     }
 
-    public void setIsCreate(boolean isCreate) {
-        this.isCreate = isCreate;
+    public void setRptList(List<ReportVO> rptList) {
+        this.rptList = rptList;
     }
 }
