@@ -81,18 +81,10 @@ and open the template in the editor.
                             <f:selectItem itemLabel="อนุมัติ" itemValue="-" />
                         </p:selectOneMenu>    
                         <f:facet name="footer">
-                            <div align="center"><p:commandButton id="btnShowRpt" value="แสดงรายงาน"/></div>
+                            <div align="center"><p:commandButton id="btnShowRpt" action="#{roleUser.genRpt()}" update="dataRpt" value="แสดงรายงาน"/></div>
                         </f:facet>
-                    </p:panelGrid><br/>     
-                    <script type="text/javascript">
-                        $(function(){
-                            $('#dataRpt').hide();
-                            $('#btnShowRpt').click(function(){
-                                $('#dataRpt').show();
-                            });
-                        });
-                    </script>
-                    <p:dataTable id="dataRpt" var="rpt" value="#{roleUser.rptCompleteList}"
+                    </p:panelGrid><br/>                        
+                    <p:dataTable id="dataRpt" var="rpt" value="#{roleUser.rptList}"
                                  paginator="true" rows="5" style="width: 900px;" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">       
