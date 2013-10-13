@@ -30,10 +30,7 @@ public class FormRoleUserController extends BaseController {
     private boolean isCreate = false;
 
     @PostConstruct
-    public void init() {
-        String value = System.getProperties().getProperty("user.name");
-        String value2 = System.getProperties().getProperty("os.name");
-        System.out.println("username : " + value + "/ os name : " + value2);
+    public void init() {       
         mockData();
     }
 
@@ -41,7 +38,7 @@ public class FormRoleUserController extends BaseController {
         ReportVO rpt = null;
         rptPreSendList = new ArrayList<ReportVO>();
         rpt = new ReportVO();
-        rpt.setNo("1");
+        rpt.setNo("1004");
         rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 4");
         rpt.setRpt_type("ยุทธศาสตร์");
         rpt.setCreate_date("10/07/2556");
@@ -51,7 +48,7 @@ public class FormRoleUserController extends BaseController {
         
         rptWaitStatusList = new ArrayList<ReportVO>();
         rpt = new ReportVO();
-        rpt.setNo("1");
+        rpt.setNo("1003");
         rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 3");
         rpt.setRpt_type("ยุทธศาสตร์");
         rpt.setCreate_date("21/06/2556");
@@ -60,7 +57,7 @@ public class FormRoleUserController extends BaseController {
         rptWaitStatusList.add(rpt);
         
         rpt = new ReportVO();
-        rpt.setNo("2");
+        rpt.setNo("1002");
         rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 2");
         rpt.setRpt_type("ยุทธศาสตร์");
         rpt.setCreate_date("15/05/2556");
@@ -74,7 +71,7 @@ public class FormRoleUserController extends BaseController {
         // complete
         rptCompleteList = new ArrayList<ReportVO>();
         rpt = new ReportVO();
-        rpt.setNo("1");
+        rpt.setNo("1001");
         rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 1");
         rpt.setRpt_type("ยุทธศาสตร์");
         rpt.setCreate_date("13/04/2556");

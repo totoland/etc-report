@@ -26,7 +26,7 @@ and open the template in the editor.
 
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="No." />
+                                            <h:outputText value="เลขที่เอกสาร" />
                                         </f:facet>
                                         <h:outputText value="#{rpt.no}" />
                                     </p:column>
@@ -70,19 +70,22 @@ and open the template in the editor.
                                         </f:facet>
                                         <h:outputText value="#{rpt.create_user}" />
                                     </p:column>
+                                    <p:column>
+                                        <p:button value="ส่งพิจารณา" icon="ui-icon-check"/>                                        
+                                    </p:column>
                                 </p:dataTable>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab id="tab2" title="รายงานรอผลพิจารณา">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <p:dataTable id="rptWaitStatusList" var="rpt" value="#{roleUser.rptWaitStatusList}"
-                                             paginator="true" rows="5" 
+                                             paginator="true" rows="5"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                              rowsPerPageTemplate="5,10,15">
 
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="No." />
+                                            <h:outputText value="เลขที่เอกสาร" />
                                         </f:facet>
                                         <h:outputText value="#{rpt.no}" />
                                     </p:column>
@@ -91,7 +94,7 @@ and open the template in the editor.
                                         <f:facet name="header">
                                             <h:outputText value="Action" />
                                         </f:facet>
-                                        <p:graphicImage library="images" name="Edit.png" style="margin: 1px;border: 1px #CED1B8 groove;cursor: pointer" rendered="#{rpt.no!='1'}"/> 
+                                        <p:graphicImage library="images" name="Edit.png" style="margin: 1px;border: 1px #CED1B8 groove;cursor: pointer" rendered="#{rpt.status !='รออนุมัติ'}"/> 
                                     </p:column>
 
                                     <p:column>
@@ -99,14 +102,7 @@ and open the template in the editor.
                                             <h:outputText value="ชื่อรายงาน" />
                                         </f:facet>
                                         <h:outputText value="#{rpt.rpt_name}" />
-                                    </p:column>
-
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ประเภทรายงาน" />
-                                        </f:facet>
-                                        <h:outputText value="#{rpt.rpt_type}" />
-                                    </p:column>                                    
+                                    </p:column>         
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="วันที่สร้าง" />
@@ -154,7 +150,7 @@ and open the template in the editor.
                                              rowsPerPageTemplate="5,10,15">
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="No." />
+                                            <h:outputText value="เลขที่เอกสาร" />
                                         </f:facet>
                                         <h:outputText value="#{rpt.no}" />
                                     </p:column>
@@ -274,37 +270,41 @@ and open the template in the editor.
                             .frmDetail.ui-panelgrid tbody td:nth-child(odd)  {
                                 width: 300px!important;
                                 text-align: right;
-                            }                            
+                            }         
+
                         </style>
                         <script type="text/javascript">
-                            $(function(){
-                               $('#pnlFrm,#pnlCmd').hide();
-                               $('#btnfrm').click(function(){
-                                   $('#pnlFrm,#pnlCmd').show();
-                               });
-                               $('#btnCancel').click(function(){
-                                   dlg1.hide();
-                               });
-                            });
+                                    $(function() {
+                                        $('#pnlFrm,#pnlCmd').hide();
+                                        $('#btnfrm').click(function() {
+                                            $('#pnlFrm,#pnlCmd').show();
+                                        });
+                                        $('#btnCancel').click(function() {
+                                            dlg1.hide();
+                                        });
+                                    });
                         </script>
                         <p:panelGrid columns="2" style="width: 880px;" styleClass="frmDetail" id="pnlFrm">
                             <f:facet name="header"  class="txtLeft">
                                 กรอกข้อมูล
-                            </f:facet>
-                            <p:outputLabel value="รายละเอียดการดำเนินงาน : "/>
+                            </f:facet>                            
+                            <p:outputLabel value="วันเดือนปีดำเนินการ : "/>
+                            <p:calendar/>
+                            <p:outputLabel value="กิจกรรมหลัก : "/>
                             <p:inputText/>
-                            <p:outputLabel value="ผลการปฎิบัติงานเชิงปริมาณเป้าหมาย : "/>
+                            <p:outputLabel value="ผลการปฏิบัติงาน เป้าหมาย : "/>
                             <p:inputText/>
-                            <p:outputLabel value="ผลการปฎิบัติงานเชิงปริมาณผลการปฏิบัติงานจริง : "/>
-                            <p:inputText/>
-                            <p:outputLabel value="ผลการปฏิบัติงานเชิงคุณภาพเป้าหมาย : "/>
-                            <p:inputText/>
-                            <p:outputLabel value="ผลการปฏิบัติงานเชิงคุณภาพผลลัพธ์ : "/>
+                            <p:outputLabel value="ผลการปฏิบัติงาน ผลการปฏิบัติการจริง : "/>
+                            <p:inputText/> 
+                            <p:outputLabel value="ค่าใช้จ่าย ตั้งไว้ : "/>
+                            <p:inputText/> 
+                            <p:outputLabel value="ค่าใช้จ่าย จ่ายจริง : "/>
                             <p:inputText/>                            
                         </p:panelGrid>
                         <div id="pnlCmd" align="center">
                             <p:commandButton value="บันทีก" id="btnSave"/>
                             <p:commandButton value="ยกเลิก" id="btnCancel"/>
+                            <p:commandButton value="พิมพ์" icon="ui-icon-print"/>
                         </div>
                     </p:dialog> 
                 </h:form>
