@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>               
+    </h:head>
+    <h:body>
+        <ui:composition template="../../template/etcTemplateGreen.xhtml">
+            <ui:define name="content">
+                <h:form id="form1" prependId="false">
+                    <p:tabView id="tabView">
+                        <p:tab id="tab1" title="รายงานที่ยังไม่ได้ส่งพิจารณา">
+                            <h:panelGrid columns="1" cellpadding="10">
+                                <p:dataTable id="rptPreSendList" var="rpt" value="#{roleUser.rptPreSendList}"
+                                             paginator="true" rows="5" 
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="5,10,15">
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="เลขที่เอกสาร" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.no}" />
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Action" />
+                                        </f:facet>
+                                        <p:graphicImage library="images" name="Edit.png" style="margin: 1px;border: 1px #CED1B8 groove;cursor: pointer" /> 
+                                        <p:graphicImage library="images" name="Delete.png" style="margin: 1px;border: 1px #CED1B8 groove;cursor: pointer" /> 
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อรายงาน" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.rpt_name}" />
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ประเภทรายงาน" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.rpt_type}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="สถานะ" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.status}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="วันที่สร้าง" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.create_date}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อผู้สร้าง" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.create_user}" />
+                                    </p:column>
+                                    <p:column>
+                                        <p:button value="ส่งพิจารณา" icon="ui-icon-check"/>                                        
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab id="tab2" title="รายงานรอผลพิจารณา">
+                            <h:panelGrid columns="1" cellpadding="10">
+                                <p:dataTable id="rptWaitStatusList" var="rpt" value="#{roleUser.rptWaitStatusList}"
+                                             paginator="true" rows="5"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="5,10,15">
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="เลขที่เอกสาร" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.no}" />
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Action" />
+                                        </f:facet>
+                                        <p:graphicImage library="images" name="Edit.png" style="margin: 1px;border: 1px #CED1B8 groove;cursor: pointer" rendered="#{rpt.status !='รออนุมัติ'}"/> 
+                                    </p:column>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อรายงาน" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.rpt_name}" />
+                                    </p:column>         
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="วันที่สร้าง" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.create_date}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อผู้สร้าง" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.create_user}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="สถานะ" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.status}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="เหตุผล" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.reject_reason}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="วันที่อนุมัติ" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.mod_date}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อผู้อนุมัติ" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.mod_user}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab id="tab3" title="รายงานที่อนุมัติแล้ว">
+                            <h:panelGrid columns="1" cellpadding="10">
+                                <p:dataTable id="rptCompleteList" var="rpt" value="#{roleUser.rptCompleteList}"
+                                             paginator="true" rows="5" 
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="5,10,15">
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="เลขที่เอกสาร" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.no}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อรายงาน" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.rpt_name}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ประเภทรายงาน" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.rpt_type}" />
+                                    </p:column>                                    
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="วันที่สร้าง" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.create_date}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อผู้สร้าง" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.create_user}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="สถานะ" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.status}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="วันที่อนุมัติ" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.mod_date}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ชื่อผู้อนุมัติ" />
+                                        </f:facet>
+                                        <h:outputText value="#{rpt.mod_user}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:tabView>                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -24,28 +24,38 @@ public class LoginController extends BaseController {
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
     private String userName = "admin";
     private String passWord;
-    
+
     @PostConstruct
     public void init() {
         logger.info("init");
     }
-    
+
     public void loginProcess() {
         logger.info("loginProcess!!");
-        
-        if(!validateLongin()){
+
+        if (!validateLongin()) {
             addError("loggin fial!!");
             return;
         }
-        
+
         addInfo(MessageUtils.getResourceBundleString("login.loginprocess"));
-        
+
         //executeJavaScript("setTimeout(function(){window.location='pages/report/formSavePrintReport.xhtml';},1000);");
-        
-        // call หน้าเจ้าหน้าที่บันทึกข้อมูลรีพอต
-        executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleUser.xhtml';},1000);");
-        
-        
+
+
+        // call หน้าเจ้าหน้าที่บันทึกข้อมูลรีพอต 
+        if ("leader".equals(passWord)) {
+            //ไปหน้า หัวหน้าจังหวด
+            executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleLeader.xhtml';},1000);");
+        } else if ("header".equals(passWord)) {
+            //ไปหน้า หัวหน้าส่วนกลาง
+            executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleHeader.xhtml';},1000);");
+        } else {
+            //ไปหน้า เจ้าหน้าที่บันทึกข้อมูล
+            executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleUser.xhtml';},1000);");
+        }
+
+
         consoleLog("loggin success!!");
     }
 
@@ -86,6 +96,5 @@ public class LoginController extends BaseController {
 
     @Override
     public void resetForm() {
-        
     }
 }
