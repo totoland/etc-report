@@ -40,7 +40,11 @@ public class LoginController extends BaseController {
         
         addInfo(MessageUtils.getResourceBundleString("login.loginprocess"));
         
-        executeJavaScript("setTimeout(function(){window.location='pages/report/formSavePrintReport.xhtml';},1000);");
+        //executeJavaScript("setTimeout(function(){window.location='pages/report/formSavePrintReport.xhtml';},1000);");
+        
+        // call หน้าเจ้าหน้าที่บันทึกข้อมูลรีพอต
+        executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleUser.xhtml';},1000);");
+        
         
         consoleLog("loggin success!!");
     }
