@@ -4,12 +4,12 @@
  */
 package com.ect.dbmrgdao;
 
-import com.ect.db.common.dao.CommonDao;
-import com.ect.db.common.entity.DropDownList;
-import java.util.List;
+import com.ect.db.common.dao.GennericDao;
+import com.ect.db.entity.EctProvince;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,9 +25,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
     })
 public class Test {
 
-    private static Logger logger = Logger.getLogger(Test.class);
     @Autowired
-    CommonDao commonDao;
+    GennericDao<EctProvince>gennericDao;
     
     @Before
     public void init() throws Exception {
@@ -38,20 +37,8 @@ public class Test {
 
     @org.junit.Test
     public void main() {
-        System.out.println("Test!!");
-
-        System.out.println("spring hibernate!!");
         
-        DropDownList ddls = new DropDownList();
-        ddls.setSchema("SYS");
-        ddls.setTableName("SYSTABLES");
-        ddls.setName("TABLENAME");
-        ddls.setValue("TABLEID");
+        System.out.println("gennericDao : "+gennericDao.findAll(EctProvince.class));
         
-        List<DropDownList>dropDownLists = commonDao.getDropdownList(ddls);
-        
-        for(DropDownList ddl : dropDownLists){
-            System.out.println(ddl.toString());
-        }
     }
 }

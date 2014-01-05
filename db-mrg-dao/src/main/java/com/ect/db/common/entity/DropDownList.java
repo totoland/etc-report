@@ -34,6 +34,16 @@ public class DropDownList implements Serializable{
     private String orderByField;
     @Column(name="sort_by")
     private String sortName = "asc";
+    
+    public DropDownList(){
+    
+    }
+    
+    public DropDownList(String name,String value){
+        this.name = name;
+        this.value = value;
+    }
+    
     /**
      * @return the name
      */
