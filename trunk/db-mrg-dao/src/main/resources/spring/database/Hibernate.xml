@@ -19,8 +19,8 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <!--                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>-->
-                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+<!--                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>-->
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
@@ -33,9 +33,9 @@
     </bean>
     
     <bean id="transactionManager" 
-      class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	  <property name="dataSource" ref="dataSource" />
+	  <property name="sessionFactory" ref="sessionFactory" />
+    </bean>	
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>    
