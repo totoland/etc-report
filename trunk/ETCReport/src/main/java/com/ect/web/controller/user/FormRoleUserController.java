@@ -4,13 +4,21 @@
  */
 package com.ect.web.controller.user;
 
+import com.ect.db.entity.Report001Detail;
 import com.ect.web.controller.BaseController;
 import com.ect.web.controller.model.ReportVO;
+import com.ect.web.factory.DropdownFactory;
+import com.ect.web.utils.JsfUtil;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
+import org.primefaces.event.RowEditEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,85 +31,75 @@ import org.slf4j.LoggerFactory;
 public class FormRoleUserController extends BaseController {
 
     private static Logger logger = LoggerFactory.getLogger(FormRoleUserController.class);
+    private static final long serialVersionUID = 7863151922951862688L;
+    
     private List<ReportVO> rptPreSendList;
     private List<ReportVO> rptWaitStatusList;
     private List<ReportVO> rptCompleteList;
     private List<ReportVO> rptList;
+    
+    @ManagedProperty(value="#{dropdownFactory}")
+    private DropdownFactory dropdownFactory;
 
+    private String curYear;
+    
+    private List<Report001Detail> report001Details;
+    private Report001Detail inputReport001Detail = new Report001Detail();
+    
     @PostConstruct
     public void init() {
-        mockData();
-    }
-
-    public void mockData() {
-        ReportVO rpt = null;
-        rptPreSendList = new ArrayList<ReportVO>();
-        rpt = new ReportVO();
-        rpt.setNo("1004");
-        rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 4");
-        rpt.setRpt_type("ยุทธศาสตร์");
-        rpt.setCreate_date("10/07/2556");
-        rpt.setCreate_user("สมศักดิ์ รักไทย");
-        rpt.setStatus("รอส่งพิจารณา");
-        rptPreSendList.add(rpt);
-
-        rptWaitStatusList = new ArrayList<ReportVO>();
-        rpt = new ReportVO();
-        rpt.setNo("1003");
-        rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 3");
-        rpt.setRpt_type("ยุทธศาสตร์");
-        rpt.setCreate_date("21/06/2556");
-        rpt.setCreate_user("สมศักดิ์ รักไทย");
-        rpt.setStatus("รออนุมัติ");
-        rptWaitStatusList.add(rpt);
-
-        rpt = new ReportVO();
-        rpt.setNo("1002");
-        rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 2");
-        rpt.setRpt_type("ยุทธศาสตร์");
-        rpt.setCreate_date("15/05/2556");
-        rpt.setCreate_user("สมศักดิ์ รักไทย");
-        rpt.setStatus("ไม่อนุมัติ");
-        rpt.setReject_reason("บันทึกรายงานไม่ครบ");
-        rpt.setMod_user("สมชาย แซ่ตั้ง");
-        rpt.setMod_date("17/05/2556");
-        rptWaitStatusList.add(rpt);
-
-        // complete
-        rptCompleteList = new ArrayList<ReportVO>();
-        rpt = new ReportVO();
-        rpt.setNo("1001");
-        rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 1");
-        rpt.setRpt_type("ยุทธศาสตร์");
-        rpt.setCreate_date("13/04/2556");
-        rpt.setCreate_user("สมศักดิ์ รักไทย");
-        rpt.setStatus("อนุมัติเรียบร้อย");
-        rpt.setMod_user("สมชาย แซ่ตั้ง");
-        rpt.setMod_date("15/04/2556");
-        rptCompleteList.add(rpt);
-    }
-
-    public void genRpt() {
-        rptList = new ArrayList<ReportVO>();
-        for (int i = 0; i < 9; i++) {
-            ReportVO rpt = new ReportVO();
-            rpt.setNo("110" + (i + 1));
-            rpt.setRpt_name("ผลงานประจำงวดเดือนที่ 1");
-            rpt.setRpt_type("ยุทธศาสตร์");
-            rpt.setCreate_date((i + 2) + "/04/2556");
-            rpt.setCreate_user("สมศักดิ์ รักไทย");
-            rpt.setStatus("อนุมัติเรียบร้อย");
-            rpt.setMod_user("สมชาย แซ่ตั้ง");
-            rpt.setMod_date((i + 4) + "/04/2556");
-            rptList.add(rpt);
-        }
+        
     }
 
     @Override
     public void resetForm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
-
+    /***
+     * init before loadPopup
+     */
+    public void initReportDetail(){
+    
+        logger.debug("initReportDetail...");
+        
+        inputReport001Detail =  new Report001Detail();
+    }
+    
+    /***
+     * AddReportDetail to Grid
+     */
+    public void addReportDetail(ActionEvent  actionEvent) throws Exception{
+    
+        logger.debug("addReportDetail... {}",inputReport001Detail);
+        
+        if(report001Details==null || report001Details.isEmpty()){
+            
+            report001Details = new ArrayList<>();
+            inputReport001Detail.setReportDetailId(1);
+            
+        }else{
+            
+            inputReport001Detail.setReportDetailId(report001Details.get(report001Details.size()-1).getReportDetailId()+1);
+            
+        }
+        
+        report001Details.add(inputReport001Detail);
+        
+        JsfUtil.hidePopup("dlgAddReportDetail");
+    }
+    
+    public void onEdit(RowEditEvent event) {  
+        
+        JsfUtil.addSuccessMessage("แก้ใขข้อมูลสำเร็จ!!");
+        
+    }  
+      
+    public void onCancel(RowEditEvent event) {  
+        
+        JsfUtil.addSuccessMessage("ยกเลิก!!");
+        
+    }
+    
     public List<ReportVO> getRptPreSendList() {
         return rptPreSendList;
     }
@@ -132,5 +130,57 @@ public class FormRoleUserController extends BaseController {
 
     public void setRptList(List<ReportVO> rptList) {
         this.rptList = rptList;
+    }
+    
+    /**
+     * @return the dropdownFactory
+     */
+    public DropdownFactory getDropdownFactory() {
+        return dropdownFactory;
+    }
+
+    /**
+     * @param dropdownFactory the dropdownFactory to set
+     */
+    public void setDropdownFactory(DropdownFactory dropdownFactory) {
+        this.dropdownFactory = dropdownFactory;
+    }
+
+    /**
+     * @return the curYear
+     */
+    public String getCurYear() {
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+        return dateFormat.format(new Date()).toString();
+        
+    }
+
+    /**
+     * @return the report001Details
+     */
+    public List<Report001Detail> getReport001Details() {
+        return report001Details;
+    }
+
+    /**
+     * @param report001Details the report001Details to set
+     */
+    public void setReport001Details(List<Report001Detail> report001Details) {
+        this.report001Details = report001Details;
+    }
+
+    /**
+     * @return the inputReport001Detail
+     */
+    public Report001Detail getInputReport001Detail() {
+        return inputReport001Detail;
+    }
+
+    /**
+     * @param inputReport001Detail the inputReport001Detail to set
+     */
+    public void setInputReport001Detail(Report001Detail inputReport001Detail) {
+        this.inputReport001Detail = inputReport001Detail;
     }
 }
