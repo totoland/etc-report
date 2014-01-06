@@ -96,5 +96,6 @@ public class LoginController extends BaseController {
 
     @Override
     public void resetForm() {
+        
     }
 }
