@@ -27,7 +27,7 @@ public class DateTimeUtils {
             instance = new DateTimeUtils();
         }
         return instance;
-    }    
+    }
     private Logger log = Logger.getLogger(DateTimeUtils.class);
     private Locale locale = Locale.US;
     private Locale locale_th = new Locale ( "th", "TH" );

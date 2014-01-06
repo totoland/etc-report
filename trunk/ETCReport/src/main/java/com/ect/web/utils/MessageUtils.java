@@ -27,6 +27,11 @@ public class MessageUtils {
             return "";
         }
     }
+    
+    public static String getString(String key){
+        return getResourceBundleString(WebConstant.MESSAGES_PROP,key);
+    }
+    
     public static String getString(String key,String... values){
         MessageFormat messageFormat = new MessageFormat(key);
         return messageFormat.format(values);
