@@ -23,7 +23,7 @@ public class ThemeSwitcherController implements Serializable{
     private String theme;
     
     public ThemeSwitcherController() {
-        this.theme = "south-street";
+        this.theme = "flick";
         themes = new HashMap<String, String>();  
         themes.put("Aristo", "aristo");  
         themes.put("Black-Tie", "black-tie");  
