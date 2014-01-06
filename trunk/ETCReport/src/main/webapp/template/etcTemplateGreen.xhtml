@@ -10,8 +10,10 @@
             <ui:include src="scriptHeader.xhtml"/>
         </ui:insert>
         <ui:insert name="javascript">
-
+            
         </ui:insert>
+        
+            
     </h:head>
 
     <h:body>
@@ -67,6 +69,8 @@
         </p:blockUI>
         <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show()" oncomplete="blogui.hide()">
         </p:ajaxStatus>
+        
+        <h:outputScript library="js" name="i18N.js" target="head" />
     </h:body>
 
 </html>
