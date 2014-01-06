@@ -44,8 +44,8 @@ public class Report001Detail extends DomainEntity implements Serializable {
     private Integer depId;
     @Column(name = "DEP_NAME")
     private String depName;
-    @Column(name = "ACTIVITY_ID")
-    private Integer activityId;
+    @Column(name = "ACTIVITY_NAME")
+    private String activityName;
     @Column(name = "ACTIVITY_TYPE", length = 2147483647)
     private String activityType;
     @Column(name = "ACTIVITY_AMOUNT")
@@ -91,12 +91,12 @@ public class Report001Detail extends DomainEntity implements Serializable {
         this.depId = depId;
     }
 
-    public Integer getActivityId() {
-        return activityId;
+    public String getActivityName() {
+        return activityName;
     }
 
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 
     public String getActivityType() {
