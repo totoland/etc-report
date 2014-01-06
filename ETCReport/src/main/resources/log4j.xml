@@ -4,27 +4,23 @@
 
 <!--for print out to log file-->
     <appender name="LOGFILE" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="db-mrg-dao.log"/>
-        <param name="Append" value="true"/>
-
-        <param name="encoding" value="UTF-8" />
+        <param name="File" value="${catalina.base}/logs/web/ectReport.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[ectDao][%p] %d{yyyy-MM-dd HH:mm:ss.SSS} %t [%c:%L]%m%n"/>
+            <param name="ConversionPattern" value="%d | %p | %l | reqId: %X{reqId} | %m%n" />
         </layout>
     </appender>
 
 <!--for print out to console-->
     <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
-        <param name="target" value="System.out"/>
+        <errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler"/>
+        <param name="Target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[ectDao][%p] %d{dd MMM hh:mm:ss.SSS} %t [%c:%L]%m%n"/>
+            <param name="ConversionPattern" value="%d | %p | %l | reqId: %X{reqId} | %m%n"/>
         </layout>
     </appender>
     <logger name="com.ect">
-        <level value="info"/>
-        <level value="debug"/>
-        <level value="warn"/>
-        <level value="error"/>
+        <level value="trace"/>
     </logger>
    <logger name="org.springframework.orm">
         <level value="debug"/>
