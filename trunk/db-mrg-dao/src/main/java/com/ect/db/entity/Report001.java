@@ -1,27 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.ect.db.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Transient;
 
 /**
  *
@@ -29,22 +29,23 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "REPORT_001")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Report001.findAll", query = "SELECT r FROM Report001 r")})
 public class Report001 extends DomainEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "REPORT_ID", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "REPORT_ID",nullable = true)
     private Integer reportId;
+    @Column(name = "REPORT_CODE")
+    private String reportCode;
     @Lob
-    @Column(name = "REPORT_DESC", length = 2147483647)
+    @Column(name = "REPORT_DESC")
     private String reportDesc;
-    @Column(name = "CREATED_DATE")
+    @Column(name = "CREATED_DATE",updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Column(name = "CREATED_USER")
+    @Column(name = "CREATED_USER",updatable = false)
     private Integer createdUser;
     @Column(name = "UPDATED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,13 +61,12 @@ public class Report001 extends DomainEntity implements Serializable {
     @Column(name = "PROJECT_ID")
     private Integer projectId;
     @Lob
-    @Column(name = "REMARK", length = 2147483647)
+    @Column(name = "REMARK")
     private String remark;
     @Column(name = "APPROVED_USER")
     private Integer approvedUser;
-    @JoinColumn(name = "REPORT_CODE", referencedColumnName = "REPORT_CODE")
-    @ManyToOne
-    private Report001Detail reportCode;
+    @OneToMany(mappedBy = "reportId",cascade={CascadeType.ALL},targetEntity = Report001Detail.class)
+    private List<Report001Detail> report001DetailList;
 
     public Report001() {
     }
@@ -81,6 +81,14 @@ public class Report001 extends DomainEntity implements Serializable {
 
     public void setReportId(Integer reportId) {
         this.reportId = reportId;
+    }
+
+    public String getReportCode() {
+        return reportCode;
+    }
+
+    public void setReportCode(String reportCode) {
+        this.reportCode = reportCode;
     }
 
     public String getReportDesc() {
@@ -171,12 +179,12 @@ public class Report001 extends DomainEntity implements Serializable {
         this.approvedUser = approvedUser;
     }
 
-    public Report001Detail getReportCode() {
-        return reportCode;
+    public List<Report001Detail> getReport001DetailList() {
+        return report001DetailList;
     }
 
-    public void setReportCode(Report001Detail reportCode) {
-        this.reportCode = reportCode;
+    public void setReport001DetailList(List<Report001Detail> report001DetailList) {
+        this.report001DetailList = report001DetailList;
     }
 
     @Override
@@ -197,6 +205,11 @@ public class Report001 extends DomainEntity implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.ect.db.entity.Report001[ reportId=" + reportId + " ]";
     }
     
 }

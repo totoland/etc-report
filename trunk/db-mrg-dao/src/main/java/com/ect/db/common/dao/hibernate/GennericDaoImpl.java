@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -24,8 +25,9 @@ public class GennericDaoImpl<T> extends BaseDao implements GennericDao<T>,Serial
     private static final long serialVersionUID = 5620842485855893208L;
     
     @Override
+    @Transactional
     public void create(T entity) {
-        getHibernateTemplate().persist(entity);
+        getHibernateTemplate().save(entity);
     }
 
     @Override

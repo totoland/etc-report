@@ -1,64 +1,60 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.ect.db.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author totoland
  */
 @Entity
-@Table(name = "REPORT_001_DETAIL", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"REPORT_CODE"})})
-@XmlRootElement
+@Table(name = "REPORT_001_DETAIL")
 @NamedQueries({
     @NamedQuery(name = "Report001Detail.findAll", query = "SELECT r FROM Report001Detail r")})
 public class Report001Detail extends DomainEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "REPORT_DETAIL_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "REPORT_DETAIL_ID",nullable = true)
     private Integer reportDetailId;
-    @Column(name = "REPORT_CODE", length = 50)
-    private String reportCode;
     @Column(name = "DEP_ID")
     private Integer depId;
     @Column(name = "DEP_NAME")
     private String depName;
     @Column(name = "ACTIVITY_NAME")
     private String activityName;
-    @Column(name = "ACTIVITY_TYPE", length = 2147483647)
+    @Column(name = "ACTIVITY_TYPE")
     private String activityType;
     @Column(name = "ACTIVITY_AMOUNT")
     private Integer activityAmount;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "BUDGET_SET", precision = 18, scale = 2)
+    @Column(name = "BUDGET_SET")
     private BigDecimal budgetSet;
-    @Column(name = "BUDGET_REAL", precision = 18, scale = 2)
+    @Column(name = "BUDGET_REAL")
     private BigDecimal budgetReal;
     @Column(name = "IS_PASS")
     private Boolean isPass;
-    @OneToMany(mappedBy = "reportCode")
-    private List<Report001> report001List;
+    @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
+    @ManyToOne(targetEntity=Report001.class)
+    private Report001 reportId;
 
     public Report001Detail() {
     }
@@ -75,20 +71,20 @@ public class Report001Detail extends DomainEntity implements Serializable {
         this.reportDetailId = reportDetailId;
     }
 
-    public String getReportCode() {
-        return reportCode;
-    }
-
-    public void setReportCode(String reportCode) {
-        this.reportCode = reportCode;
-    }
-
     public Integer getDepId() {
         return depId;
     }
 
     public void setDepId(Integer depId) {
         this.depId = depId;
+    }
+
+    public String getDepName() {
+        return depName;
+    }
+
+    public void setDepName(String depName) {
+        this.depName = depName;
     }
 
     public String getActivityName() {
@@ -139,13 +135,12 @@ public class Report001Detail extends DomainEntity implements Serializable {
         this.isPass = isPass;
     }
 
-    @XmlTransient
-    public List<Report001> getReport001List() {
-        return report001List;
+    public Report001 getReportId() {
+        return reportId;
     }
 
-    public void setReport001List(List<Report001> report001List) {
-        this.report001List = report001List;
+    public void setReportId(Report001 reportId) {
+        this.reportId = reportId;
     }
 
     @Override
@@ -168,18 +163,8 @@ public class Report001Detail extends DomainEntity implements Serializable {
         return true;
     }
 
-    /**
-     * @return the depName
-     */
-    public String getDepName() {
-        return depName;
+    @Override
+    public String toString() {
+        return "com.ect.db.entity.Report001Detail[ reportDetailId=" + reportDetailId + " ]";
     }
-
-    /**
-     * @param depName the depName to set
-     */
-    public void setDepName(String depName) {
-        this.depName = depName;
-    }
-    
 }
