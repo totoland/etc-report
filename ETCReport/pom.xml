@@ -13,10 +13,11 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <primeface.version>3.5</primeface.version>
-        <primeface.theme.version>1.0.6</primeface.theme.version>
+        <primeface.theme.version>1.0.10</primeface.theme.version>
         <spring-security.version>3.1.0.RELEASE</spring-security.version>
         <org.springframework.version>3.2.4.RELEASE</org.springframework.version>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+        <db-mrg-dao>1.1-SNAPSHOT</db-mrg-dao>
     </properties>
 
     <repositories>
@@ -34,9 +35,23 @@
     </repositories>
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>3.2.4.RELEASE</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>db-mrg-dao</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -99,6 +114,11 @@
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>south-street</artifactId>
+            <version>${primeface.theme.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>flick</artifactId>
             <version>${primeface.theme.version}</version>
         </dependency>
         <dependency>
@@ -168,8 +188,8 @@
                 <version>2.3.2</version>
                 <configuration>
                     <proc>none</proc>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>

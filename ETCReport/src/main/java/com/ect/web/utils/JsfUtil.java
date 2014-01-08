@@ -91,5 +91,9 @@ public class JsfUtil {
     public static void executeJavaScript(String function){
         RequestContext.getCurrentInstance().execute(function);
     }
+    
+    public static void alertJavaScript(String function){
+        RequestContext.getCurrentInstance().execute("alert('"+function+"');");
+    }
 
 }
