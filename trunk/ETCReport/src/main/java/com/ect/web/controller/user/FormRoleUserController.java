@@ -92,7 +92,7 @@ public class FormRoleUserController extends BaseController {
 
             logger.debug("Save Success !! ");
 
-            JsfUtil.addSuccessMessage("บันทึกข้อมูล!!");
+            JsfUtil.alertJavaScript("บันทึกข้อมูล!!");
 
         } catch (Exception ex) {
 
