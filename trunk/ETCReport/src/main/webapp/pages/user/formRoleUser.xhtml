@@ -9,12 +9,14 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <h:head>               
+    <h:head>
     </h:head>
     <h:body>
         <ui:composition template="../../template/etcTemplateGreen.xhtml">
+
             <ui:define name="content">
-                <h:form id="form1" prependId="false">
+
+                <h:form id="formRoleUser">
                     <p:tabView id="tabView">
                         <p:tab id="tab1" title="รายงานที่ยังไม่ได้ส่งพิจารณา">
                             <h:panelGrid columns="1" cellpadding="10">
@@ -200,113 +202,218 @@ and open the template in the editor.
                             </h:panelGrid>
                         </p:tab>
                     </p:tabView>
-                    <p:dialog id="basicDialog" header="สร้างรายงาน" widgetVar="dlg1" modal="true" width="900" height="520">                         
-                        <p:panelGrid columns="4" style="width: 880px;" styleClass="frmSelect">
-                            <p:outputLabel value="เลือกปีงบประมาณ : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="2557" itemValue="2557" />  
-                                <f:selectItem itemLabel="2556" itemValue="2556" />  
-                                <f:selectItem itemLabel="2555" itemValue="2555" />  
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกเดือน : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="มกราคม" itemValue="มกราคม" />  
-                                <f:selectItem itemLabel="กุมภาพันธ์" itemValue="กุมภาพันธ์" />  
-                                <f:selectItem itemLabel="มีนาคม" itemValue="มีนาคม" />  
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="สำนักงาน กกต." itemValue="1" />  
-                                <f:selectItem itemLabel="สำนักงาน กกต. จังหวัด" itemValue="2" />  
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกแบบรายงาน : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="รายงานสนผ 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="รายงานสนผ 1.2" itemValue="2" />  
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.2" itemValue="2" />  
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกลยุทธ์ : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="กลยุทธ์ 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="กลยุทธ์ 1.2" itemValue="2" />  
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกแผนงาน : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="แผนงาน 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="แผนงาน 1.2" itemValue="2" />  
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกโครงการ : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="โครงการ 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="โครงการ 1.2" itemValue="2" />  
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกิจกรรม : "/>
-                            <p:selectOneMenu>  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="กิจกรรม 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="กิจกรรม 1.2" itemValue="2" />  
-                            </p:selectOneMenu>
-                            <p:outputLabel value=""/>
-                            <p:outputLabel value=""/>                            
-                        </p:panelGrid>
-                        <div align="center"><p:commandButton value="กรอกข้อมูล" id="btnfrm"/></div>
-                        <style type="text/css">
-                            .frmSelect.ui-panelgrid tbody td:nth-child(odd){    
-                                width: 250px!important;
-                                text-align: right;
-                            }
-                            .frmDetail.ui-panelgrid tbody td:nth-child(odd)  {
-                                width: 300px!important;
-                                text-align: right;
-                            }         
+                    <p:dialog id="basicDialog" header="#{msg.report_001_header}" widgetVar="dlg1" modal="true">                         
+                        <p:panel header="#{msg.report_001_header_title} #{roleUser.curYear}" style="width: 100%;">
+                            <p:messages id="msgFrmDetails"></p:messages>
+                            <p:panelGrid columns="4" styleClass="frmSelect">
+                                <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
+                                <p:selectOneMenu style="width: 180px;" rendered="false">
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                                </p:selectOneMenu>  
+                                <p:outputLabel value="เลือกเดือน : " rendered="false"/>
+                                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlMonth()}"></f:selectItems>
+                                </p:selectOneMenu>  
+                                <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
+                                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                                </p:selectOneMenu>  
+                                <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
+                                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                                </p:selectOneMenu>  
+                                <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
+                                <p:selectOneMenu style="width: 180px;" id="strategicId">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="#{roleUser.report001.strategicId}" />
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlStrategic()}"></f:selectItems>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="เลือกกลยุทธ์ : " id="subStrategicId"/>
+                                <p:selectOneMenu style="width: 180px;">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="#{roleUser.report001.subStrategicId}" />  
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
+                                </p:selectOneMenu>
+                                <p:outputLabel value="เลือกแผนงาน : "/>
+                                <p:selectOneMenu style="width: 180px;" id="planId">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="#{roleUser.report001.planId}" />  
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlPlan()}"></f:selectItems>  
+                                </p:selectOneMenu>
+                                <p:outputLabel value="เลือกโครงการ : "/>
+                                <p:selectOneMenu style="width: 180px;" id="projectId">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="#{roleUser.report001.projectId}" />  
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlProject()}"></f:selectItems> 
+                                </p:selectOneMenu>
+                                <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
+                                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlActivity()}"></f:selectItems> 
+                                </p:selectOneMenu>
+                                <p:outputLabel value=""/>
+                                <p:outputLabel value=""/>                            
+                            </p:panelGrid>
 
-                        </style>
-                        <script type="text/javascript">
-                                    $(function() {
-                                        $('#pnlFrm,#pnlCmd').hide();
-                                        $('#btnfrm').click(function() {
-                                            $('#pnlFrm,#pnlCmd').show();
-                                        });
-                                        $('#btnCancel').click(function() {
-                                            dlg1.hide();
-                                        });
-                                    });
-                        </script>
-                        <p:panelGrid columns="2" style="width: 880px;" styleClass="frmDetail" id="pnlFrm">
-                            <f:facet name="header"  class="txtLeft">
-                                กรอกข้อมูล
-                            </f:facet>                            
-                            <p:outputLabel value="วันเดือนปีดำเนินการ : "/>
-                            <p:calendar/>
-                            <p:outputLabel value="กิจกรรมหลัก : "/>
-                            <p:inputText/>
-                            <p:outputLabel value="ผลการปฏิบัติงาน เป้าหมาย : "/>
-                            <p:inputText/>
-                            <p:outputLabel value="ผลการปฏิบัติงาน ผลการปฏิบัติการจริง : "/>
-                            <p:inputText/> 
-                            <p:outputLabel value="ค่าใช้จ่าย ตั้งไว้ : "/>
-                            <p:inputText/> 
-                            <p:outputLabel value="ค่าใช้จ่าย จ่ายจริง : "/>
-                            <p:inputText/>                            
-                        </p:panelGrid>
+                            <p:panelGrid columns="2" style="width: 880px;" styleClass="frmDetail" id="pnlFrm">
+                                <f:facet name="header"  class="txtLeft">
+                                    <p:commandButton value="เพิ่มข้อมูล" oncomplete="dlgAddReportDetail.show()" update="pn_addReportDetail" actionListener="#{roleUser.initReportDetail()}"/>
+                                </f:facet>       
+
+                                <p:dataTable var="item" value="#{roleUser.report001Details}" id="carList" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                             rowsPerPageTemplate="5,10,15">  
+
+                                    <p:ajax event="rowEdit" listener="#{roleUser.onEdit}"/>  
+                                    <p:ajax event="rowEditCancel" listener="#{roleUser.onCancel}"/>
+
+                                    <p:column headerText="ลำดับ" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.reportDetailId}" />  
+                                            </f:facet>
+                                            <f:facet name="input">  
+                                                <p:inputText value="#{item.reportDetailId}" />  
+                                            </f:facet> 
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="สำนัก/ส่วนงาน/สนง.กกต.จว" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.depName}" />  
+                                            </f:facet>
+                                            <f:facet name="input">  
+                                                <p:inputText value="#{item.depName}" />  
+                                            </f:facet>  
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="ชื่อกิจกรรม" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.activityName}" />  
+                                            </f:facet>
+                                            <f:facet name="input">  
+                                                <p:inputText value="#{item.activityName}" />  
+                                            </f:facet>  
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="ประเภท" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.activityType}" />  
+                                            </f:facet>
+                                            <f:facet name="input">  
+                                                <p:inputText value="#{item.activityType}" />  
+                                            </f:facet>  
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="จำนวน" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.activityAmount}" />  
+                                            </f:facet>
+                                            <f:facet name="input">  
+                                                <p:inputText value="#{item.activityAmount}" />  
+                                            </f:facet>  
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="งบประมาณที่ตั้งไว้" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.budgetSet}" />  
+                                            </f:facet>
+                                            <f:facet name="input">  
+                                                <p:inputText value="#{item.budgetSet}" />  
+                                            </f:facet>  
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="เบิกจ่าย" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.budgetReal}" />  
+                                            </f:facet>
+                                            <f:facet name="input">  
+                                                <p:inputText value="#{item.budgetReal}" />  
+                                            </f:facet>  
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="การบรรลุชี้วัด" style="width:30%">  
+                                        <p:cellEditor>  
+                                            <f:facet name="output">  
+                                                <h:outputText value="#{item.isPass?'ผ่าน':'ไม่ผ่าน'}" />  
+                                            </f:facet>
+                                            <f:facet name="input">
+                                                <h:selectOneRadio value="#{item.isPass}" style="border-style:none">  
+                                                    <f:selectItem itemLabel="ผ่าน" itemValue="true" />  
+                                                    <f:selectItem itemLabel="ไม่ผ่าน" itemValue="false" /> 
+                                                </h:selectOneRadio>
+                                            </f:facet>  
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column style="width:6%">  
+                                        <p:rowEditor />  
+                                    </p:column>  
+
+                                </p:dataTable>
+
+                            </p:panelGrid>
+                        </p:panel>
                         <div id="pnlCmd" align="center">
-                            <p:commandButton value="บันทีก" id="btnSave"/>
-                            <p:commandButton value="ยกเลิก" id="btnCancel"/>
-                            <p:commandButton value="พิมพ์" icon="ui-icon-print"/>
+                            <p:commandButton value="#{msg.btn_save}" onsuccess="dlg1.hide()" actionListener="#{roleUser.save()}" id="btnSave"/>
+                            <p:commandButton value="#{msg.btn_cancel}" id="btnCancel"/>
                         </div>
-                    </p:dialog> 
+                    </p:dialog>
+
+                    <p:dialog id="dlgAddReportDetail" header="เพิ่มข้อมูล" widgetVar="dlgAddReportDetail" modal="true" draggable="true">
+                        <p:messages id="msgAddReportDetail" closable="true"></p:messages>
+                        <p:panelGrid columns="2" id="pn_addReportDetail">
+
+                            <h:outputLabel for="lb1" value="สำนัก/ส่วนงาน/สนง.กกต.จว *" />  
+                            <p:inputText id="lb1" value="#{roleUser.inputReport001Detail.depName}" required="true" requiredMessage="กรุณาระบุสำนัก/ส่วนงาน/สนง.กกต.จว" label="lb1"/>  
+
+                            <h:outputLabel for="lb2" value="ชื่อกิจกรรม *" />  
+                            <p:inputText id="lb2" value="#{roleUser.inputReport001Detail.activityName}" requiredMessage="กรุณาระบุชื่อกิจกรรม" required="true" label="lb2"/> 
+
+                            <h:outputLabel for="lb3" value="ประเภท *" />  
+                            <p:inputText id="lb3" value="#{roleUser.inputReport001Detail.activityType}" requiredMessage="กรุณาระบุประเภท" required="true" label="lb3"/> 
+
+                            <h:outputLabel for="lb4" value="จำนวน *" />  
+                            <p:inputMask mask="9?9999999" id="lb4" value="#{roleUser.inputReport001Detail.activityAmount}" requiredMessage="กรุณาระบุจำนวน" required="true" label="lb4"/> 
+
+                            <h:outputLabel for="lb5" value="งบประมาณตั้งไว้ *" />  
+                            <p:inputMask mask="9?9999999" id="lb5" value="#{roleUser.inputReport001Detail.budgetSet}" requiredMessage="กรุณาระบุงบประมาณตั้งไว้" required="true" label="lb5"/>
+
+                            <h:outputLabel for="lb6" value="เบิกจ่าย *" />  
+                            <p:inputMask mask="9?9999999" id="lb6" value="#{roleUser.inputReport001Detail.budgetReal}" requiredMessage="กรุณาระบุงบประมาณเบิกจ่าย" required="true" label="lb6"/>
+
+                            <h:outputLabel for="lb7" value="การบรรลุตัวชี้วัด *" /> 
+                            <p:selectOneRadio id="lb7" value="#{roleUser.inputReport001Detail.isPass}" requiredMessage="กรุณาระบุการบรรลุตัวชี้วัด" required="true" style="border-style:none">  
+                                <f:selectItem itemLabel="ผ่าน" itemValue="true" />  
+                                <f:selectItem itemLabel="ไม่ผ่าน" itemValue="false" /> 
+                            </p:selectOneRadio>
+
+                            <f:facet name="footer">  
+                                <p:commandButton value="เพิ่ม" actionListener="#{roleUser.addReportDetail(actionEvent)}" update="msgAddReportDetail,carList" icon="ui-icon-check" style="margin:0"/>  
+                            </f:facet>
+                        </p:panelGrid>
+
+                        <style>
+                            .ui-panelgrid td {
+                                border-color: inherit;
+                                border-style: inherit;
+                                border-width: 1px;
+                                padding: 4px 10px;
+                            }
+                        </style>
+                    </p:dialog>
                 </h:form>
             </ui:define>
         </ui:composition>
