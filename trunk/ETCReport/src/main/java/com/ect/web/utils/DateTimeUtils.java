@@ -216,7 +216,7 @@ public class DateTimeUtils {
 
         String dateStr = null;
 
-        if (StringUtils.getInstance().isBlank(d)) {
+        if (StringUtils.isBlank(d)) {
             return null;
         }
 
@@ -224,7 +224,7 @@ public class DateTimeUtils {
 
             if (ERA_THAI.equals(this.eraType)) {
 
-                String[] x = StringUtils.getInstance().split(d, "/");
+                String[] x = StringUtils.split(d, "/");
 
                 int dd = Integer.parseInt(x[0]);
                 int mm = Integer.parseInt(x[1]);
@@ -340,7 +340,7 @@ public class DateTimeUtils {
         }
         Date d = null;
 
-        if (StringUtils.getInstance().isBlank(date)) {
+        if (StringUtils.isBlank(date)) {
             return null;
         }
 

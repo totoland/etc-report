@@ -178,4 +178,36 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
+    
+    /***
+     * ระบบรายงานผลการปฏิบัติงาน สนง.กกต.
+     * @return All Activity 
+     */
+    public List<DropDownList> ddlDepEct() {
+
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("REPORT_NAME");
+        criteria.setOrderByField("REPORT_CODE");
+        criteria.setName("REPORT_NAME");
+        criteria.setValue("REPORT_CODE");
+        criteria.setCondition("REPORT_TYPE = 1");
+
+        return commonService.getDropdownList(criteria);
+    }
+    
+    /***
+     * ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง
+     * @return All Activity 
+     */
+    public List<DropDownList> ddlDepEctCenter() {
+
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("REPORT_NAME");
+        criteria.setOrderByField("REPORT_CODE");
+        criteria.setName("REPORT_NAME");
+        criteria.setValue("REPORT_CODE");
+        criteria.setCondition("REPORT_TYPE = 2");
+
+        return commonService.getDropdownList(criteria);
+    }
 }

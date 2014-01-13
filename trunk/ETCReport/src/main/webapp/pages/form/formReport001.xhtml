@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <p:panel id="REPORT_001" rendered="#{formSelectReport.reportCode=='REPORT_001'}">
+ 
+    <p:dialog id="REPORT_001basicDialog" header="รายงานผลการปฏิบัติงานกรณีไม่ได้จัดทำเป็นโครงการ" widgetVar="dlg1" modal="true">                         
+        <p:panel header="#{msg.report_001_header_title} #{formReport001Controller.curYear}" style="width: 100%;">
+            <p:messages id="REPORT_001msgFrmDetails"></p:messages>
+            <p:panelGrid columns="4" styleClass="frmSelect">
+                <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
+                <p:selectOneMenu style="width: 180px;" rendered="false">
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                </p:selectOneMenu>  
+                <p:outputLabel value="เลือกเดือน : " rendered="false"/>
+                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlMonth()}"></f:selectItems>
+                </p:selectOneMenu>  
+                <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
+                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                </p:selectOneMenu>  
+                <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
+                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                </p:selectOneMenu>  
+                <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
+                <p:selectOneMenu style="width: 180px;" id="REPORT_001strategicId" value="#{formReport001Controller.report001.strategicId}">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlStrategic()}"></f:selectItems>
+                </p:selectOneMenu>
+                <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId"/>
+                <p:selectOneMenu style="width: 180px;" value="#{formReport001Controller.report001.subStrategicId}">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
+                </p:selectOneMenu>
+                <p:outputLabel value="เลือกแผนงาน : "/>
+                <p:selectOneMenu style="width: 180px;" id="REPORT_001planId" value="#{formReport001Controller.report001.planId}">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlPlan()}"></f:selectItems>  
+                </p:selectOneMenu>
+                <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
+                <p:selectOneMenu style="width: 180px;" id="REPORT_001projectId" rendered="false" value="#{formReport001Controller.report001.projectId}">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlProject()}"></f:selectItems> 
+                </p:selectOneMenu>
+                <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
+                <p:selectOneMenu style="width: 180px;" rendered="false">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                    <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlActivity()}"></f:selectItems> 
+                </p:selectOneMenu>
+                <p:outputLabel value=""/>
+                <p:outputLabel value=""/>                            
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" style="width: 880px;" styleClass="frmDetail" id="REPORT_001pnlFrm">
+                <f:facet name="header"  class="txtLeft">
+                    <p:commandButton value="เพิ่มข้อมูล" oncomplete="dlgAddReportDetail.show()" update="REPORT_001pn_addReportDetail" actionListener="#{formReport001Controller.initReportDetail()}"/>
+                </f:facet>       
+
+                <p:dataTable var="item" value="#{formReport001Controller.report001Details}" id="REPORT_001carList" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="5,10,15">  
+
+                    <p:ajax event="rowEdit" listener="#{formReport001Controller.onEdit}"/>  
+                    <p:ajax event="rowEditCancel" listener="#{formReport001Controller.onCancel}"/>
+
+                    <p:column headerText="ลำดับ" style="width:30%">  
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{item.key}" />  
+                            </f:facet>
+                            <f:facet name="input">  
+                                <p:inputText value="#{item.key}" />  
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="รายละเอียดการดำเนินงาน" style="width:30%">  
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{item.depName}" />  
+                            </f:facet>
+                            <f:facet name="input">  
+                                <p:inputText value="#{item.depName}" />  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="วัตถุประสงค์" style="width:30%">  
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{item.activityName}" />  
+                            </f:facet>
+                            <f:facet name="input">  
+                                <p:inputText value="#{item.activityName}" />  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="เป้าหมาย (จำนวน)" style="width:30%">  
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{item.activityAmount}" />  
+                            </f:facet>
+                            <f:facet name="input">  
+                                <p:inputText value="#{item.activityAmount}" />  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="ผลการดำเนินงาน" style="width:30%">  
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{item.activityType}" />  
+                            </f:facet>
+                            <f:facet name="input">  
+                                <p:inputText value="#{item.activityType}" />  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="งบประมาณที่ตั้งไว้" style="width:30%">  
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{item.budgetSet}" />  
+                            </f:facet>
+                            <f:facet name="input">  
+                                <p:inputText value="#{item.budgetSet}" />  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:6%">  
+                        <p:rowEditor />  
+                    </p:column>  
+
+                </p:dataTable>
+
+            </p:panelGrid>
+        </p:panel>
+        <div id="REPORT_001pnlCmd" align="center">
+            <p:commandButton value="#{msg.btn_save}" oncomplete="dlg1.hide()" actionListener="#{formReport001Controller.save()}" id="REPORT_001btnSave"/>
+            <p:commandButton value="#{msg.btn_cancel}" id="REPORT_001btnCancel"/>
+        </div>
+    </p:dialog>
+
+    <p:dialog id="REPORT_001dlgAddReportDetail" header="เพิ่มข้อมูล" widgetVar="dlgAddReportDetail" modal="true" draggable="true">
+        <p:messages id="REPORT_001msgAddReportDetail" escape="false" closable="true"></p:messages>
+        <p:panelGrid columns="2" id="REPORT_001pn_addReportDetail">
+
+            <h:outputLabel for="lb1" value="รายละเอียดการดำเนินงาน *" />  
+            <p:inputText id="REPORT_001lb1" value="#{formReport001Controller.inputReport001Detail.depName}"  label="lb1"/>  
+
+            <h:outputLabel for="lb9" value="วัตถุประสงค์ *" />  
+            <p:inputText id="REPORT_001lb9" value="#{formReport001Controller.inputReport001Detail.activityName}" label="lb1"/>  
+
+            <h:outputLabel for="lb8" value="ผลการดำเนินงาน *" />  
+            <p:inputText id="REPORT_001lb8" value="#{formReport001Controller.inputReport001Detail.activityType}"  label="lb1"/>  
+            
+            <h:outputLabel for="lb4" value="เป้าหมาย (จำนวน) *" />  
+            <p:inputMask mask="9?9999999" id="REPORT_001lb4" value="#{formReport001Controller.inputReport001Detail.activityAmount}" label="lb4"/> 
+
+            <h:outputLabel for="lb5" value="งบประมาณตั้งไว้ *" />  
+            <p:inputMask mask="9?9999999" id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.budgetSet}" label="lb5"/>
+
+
+            <f:facet name="footer">  
+                <p:commandButton value="เพิ่ม" actionListener="#{formReport001Controller.addReportDetail(actionEvent)}" update="REPORT_001msgAddReportDetail,REPORT_001carList" icon="ui-icon-check" style="margin:0"/>  
+            </f:facet>
+        </p:panelGrid>
+
+        <style>
+            .ui-panelgrid td {
+                border-color: inherit;
+                border-style: inherit;
+                border-width: 1px;
+                padding: 4px 10px;
+            }
+        </style>
+    </p:dialog>
+    </p:panel>
+</html>

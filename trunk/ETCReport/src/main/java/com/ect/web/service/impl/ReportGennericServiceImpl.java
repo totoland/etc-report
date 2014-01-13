@@ -54,4 +54,9 @@ public class ReportGennericServiceImpl<T> implements ReportGennericService<T> {
     public int count(Class<T> entityClass) {
         return gennericDao.count(entityClass);
     }
+
+    @Override
+    public List<T> findByStatusId(Integer status,Class<T> entityClass) {
+        return gennericDao.findByStatus(status, entityClass);
+    }
 }

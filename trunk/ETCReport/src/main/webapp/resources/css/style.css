@@ -4,7 +4,7 @@
 {
     background: #FFFFFF;
     margin:0 auto;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: normal;
     font-style: normal;
@@ -18,7 +18,7 @@
 }
 table, ul.art-hmenu
 {
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: normal;
     font-style: normal;
@@ -658,7 +658,7 @@ ul.art-hmenu>li>a
 .art-hmenu a.active, 
 .art-hmenu a:hover
 {
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: normal;
     font-style: normal;
@@ -737,7 +737,7 @@ ul.art-hmenu li li ul>li:last-child
     text-align: left;
     line-height: 25px;
     color: #2D3413;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     text-decoration: none;
     margin:0;
@@ -751,7 +751,7 @@ ul.art-hmenu li li ul>li:last-child
     text-align: left;
     line-height: 25px;
     color: #2D3413;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     text-decoration: none;
     margin:0;
@@ -1184,7 +1184,7 @@ ul.art-hmenu>li.ext>.ext-off
 
 .art-layout-cell
 {
-    display: table-cell;
+    /*display: table-cell;*/
     vertical-align: top;
 }
 
@@ -1282,7 +1282,7 @@ ul.art-vmenu a
     display: block;
     cursor: pointer;
     z-index: 1;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: bold;
     font-style: normal;
@@ -1388,7 +1388,7 @@ ul.art-vmenu ul a
     z-index: 0;
     line-height: 32px;
     color: #959A65;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: bold;
     font-style: normal;
@@ -1401,7 +1401,7 @@ ul.art-vmenu ul a:visited, ul.art-vmenu ul a.active:hover, ul.art-vmenu ul a:hov
 {
     line-height: 32px;
     color: #959A65;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: bold;
     font-style: normal;
@@ -1558,7 +1558,7 @@ div.art-block img
     padding:5px;
     margin:0 auto;
     color: #181910;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
 }
 .art-blockcontent table,
@@ -1569,7 +1569,7 @@ div.art-block img
 .art-blockcontent a:hover
 {
     color: #181910;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
 }
 
@@ -1624,7 +1624,7 @@ div.art-block img
 
 .art-block li
 {
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     line-height: 125%;
     color: #303120;
@@ -1810,7 +1810,7 @@ form.art-search input[type="text"]
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     color: #181910 !important;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: normal;
     font-style: normal;
@@ -1885,7 +1885,7 @@ label.art-checkbox:before
 label.art-checkbox
 {
     cursor: pointer;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: normal;
     font-style: normal;
@@ -1969,7 +1969,7 @@ label.art-radiobutton:before
 label.art-radiobutton
 {
     cursor: pointer;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: normal;
     font-style: normal;
@@ -2730,7 +2730,7 @@ blockquote p,
     margin:10px auto 0;
     position: relative;
     color: #45472E;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     text-align: center;
     padding: 0;
@@ -2745,7 +2745,7 @@ blockquote p,
 .art-footer caption
 {
     color: #45472E;
-    font-size: 13px;
+    font-size: 11px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
 }
 

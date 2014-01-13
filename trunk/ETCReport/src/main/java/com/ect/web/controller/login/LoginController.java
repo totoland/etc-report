@@ -4,11 +4,16 @@
  */
 package com.ect.web.controller.login;
 
+import com.ect.db.authen.dao.AuthenDao;
+import com.ect.db.entity.EctUser;
 import com.ect.web.controller.BaseController;
+import com.ect.web.utils.ECTUtils;
+import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,13 +22,17 @@ import org.slf4j.LoggerFactory;
  * @author Totoland
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class LoginController extends BaseController {
 
     private static final long serialVersionUID = 3291979904925054393L;
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
-    private String userName = "admin";
+    private String userName;
     private String passWord;
+    @ManagedProperty(value = "#{authenDao}")
+    private AuthenDao authenDao;
+    
+    protected EctUser ectUser;
 
     @PostConstruct
     public void init() {
@@ -33,30 +42,50 @@ public class LoginController extends BaseController {
     public void loginProcess() {
         logger.info("loginProcess!!");
 
+        logger.trace("userName : {} , passWord : {}", userName,passWord);
+
         if (!validateLongin()) {
             addError("loggin fial!!");
             return;
         }
 
-        addInfo(MessageUtils.getResourceBundleString("login.loginprocess"));
+        /**
+         * *
+         * Authen Login
+         */
+        
+        try {
 
-        //executeJavaScript("setTimeout(function(){window.location='pages/report/formSavePrintReport.xhtml';},1000);");
+            String nPassWord = ECTUtils.encrypt(passWord);
+            
+            ectUser = getAuthenDao().loginUser(userName, nPassWord);
+            
+            super.getRequest().getSession().setAttribute("userAuthen", ectUser);
 
-
-        // call หน้าเจ้าหน้าที่บันทึกข้อมูลรีพอต 
-        if ("leader".equals(passWord)) {
-            //ไปหน้า หัวหน้าจังหวด
-            executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleLeader.xhtml';},1000);");
-        } else if ("header".equals(passWord)) {
-            //ไปหน้า หัวหน้าส่วนกลาง
-            executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleHeader.xhtml';},1000);");
-        } else {
-            //ไปหน้า เจ้าหน้าที่บันทึกข้อมูล
-            executeJavaScript("setTimeout(function(){window.location='pages/user/formRoleUser.xhtml';},1000);");
+        } catch (Exception ex) {
+        
+            logger.error("Cannot Authen : ",ex);
+            return;
         }
 
+        if (ectUser == null) {
 
-        consoleLog("loggin success!!");
+            addError(MessageUtils.getResourceBundleString("login.authen.fail"));
+
+            logger.warn("Login {} fail!!", ectUser);
+
+            return;
+
+        }
+
+        addInfo(MessageUtils.getResourceBundleString("login.loginprocess"));
+
+        String path = JsfUtil.getContextPath();
+
+        logger.trace("path : {}", path);
+
+        executeJavaScript("setTimeout(function(){window.location='"+path+"/pages/form/index.xhtml';},1000);");
+
     }
 
     /**
@@ -88,14 +117,44 @@ public class LoginController extends BaseController {
     }
 
     private boolean validateLongin() {
-        if (userName.equals("admin") && passWord != null) {
-            return true;
+
+        if (userName.isEmpty() || passWord.isEmpty()) {
+            return false;
         }
-        return false;
+
+        return true;
+
     }
 
     @Override
     public void resetForm() {
-        
+    }
+
+    /**
+     * @return the authenDao
+     */
+    public AuthenDao getAuthenDao() {
+        return authenDao;
+    }
+
+    /**
+     * @param authenDao the authenDao to set
+     */
+    public void setAuthenDao(AuthenDao authenDao) {
+        this.authenDao = authenDao;
+    }
+
+    /**
+     * @return the ectUser
+     */
+    public EctUser getEctUser() {
+        return ectUser;
+    }
+
+    /**
+     * @param ectUser the ectUser to set
+     */
+    public void setEctUser(EctUser ectUser) {
+        this.ectUser = ectUser;
     }
 }

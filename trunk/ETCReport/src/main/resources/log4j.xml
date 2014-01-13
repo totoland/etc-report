@@ -23,10 +23,10 @@
         <level value="trace"/>
     </logger>
    <logger name="org.springframework.orm">
-        <level value="debug"/>
+        <level value="error"/>
     </logger>
     <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <level value="debug"/>
+        <level value="error"/>
     </logger>
 <!--    <logger name="org.apache.struts.actions.DispatchAction">
         <level value="debug"/>

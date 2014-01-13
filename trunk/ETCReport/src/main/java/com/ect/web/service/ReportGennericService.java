@@ -26,4 +26,5 @@ public interface ReportGennericService<T> {
 
     public int count(Class<T> entityClass);
     
+    public List<T> findByStatusId(Integer status,Class<T> entityClass);
 }
