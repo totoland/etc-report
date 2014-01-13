@@ -4,19 +4,25 @@
  */
 package com.ect.dbmrgdao;
 
+import com.ect.db.authen.dao.AuthenDao;
+import com.ect.db.common.dao.EctConfDao;
 import com.ect.db.common.dao.GennericDao;
+import com.ect.db.common.dao.hibernate.EctConfManager;
+import com.ect.db.entity.EctFlowStatus.FlowStatus;
 import com.ect.db.entity.Report001;
 import com.ect.db.entity.Report001Detail;
+import com.ect.db.report.dao.Report001Dao;
+import com.ect.db.report.dao.ViewReportByStatusDao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Propagation;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -24,31 +30,64 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Totoland
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-    "classpath:spring/config/BeanLocations.xml"
-})
+@ContextConfiguration(locations = "classpath:spring/config/BeanLocations.xml")
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
 public class Test {
 
     @Autowired
     GennericDao<Report001> gennericDao;
 
+    @Autowired
+    AuthenDao authenDao;
+    
+    @Autowired
+    Report001Dao report001Dao;
+    
+    @Autowired
+    EctConfDao ectConfDao;
+    
+    @Autowired
+    EctConfManager ectConfManager;
+    
+    @Autowired
+    ViewReportByStatusDao viewReportByStatusDao;
+    
 //    @Autowired
 //    GennericDao<EctProvince>gennericDao;
     @Before
     public void init() throws Exception {
         // Log4J junit configuration.
         System.out.println("init");
-        PropertyConfigurator.configure("src/main/resources/log4j.xml");
+        //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
 
-//    @Ignore
-//    @org.junit.Test
-//    public void main() {
-//        
-//        System.out.println("gennericDao : "+gennericDao.findAll(EctProvince.class));
-//        
-//    }
+    @org.junit.Test
+    public void testEctConfManager(){
+        
+        System.out.println("##########################");
+        
+        //viewReportByStatusDao.updateReportStatus("REPORT_001", 20, FlowStatus.STEP_2.getStatus());
+        
+        System.out.println(viewReportByStatusDao.findReportByStatus(FlowStatus.STEP_1.getStatus()));
+    }
+    
+    @Ignore
+    @org.junit.Test
+    public void testFindStatus(){
+        System.out.println("testFindStatus!!");
+       
+        System.out.print(ectConfDao.getAllConf());
+        
+    }
+    
+    @Ignore
+    @org.junit.Test
+    public void testLogin(){
+        System.out.println(authenDao.loginUser("operator", "operator"));
+    }
+    
+    @Ignore
     @org.junit.Test
     @Transactional
     public void save() {
