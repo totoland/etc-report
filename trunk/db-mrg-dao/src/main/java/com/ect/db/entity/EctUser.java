@@ -147,10 +147,5 @@ public class EctUser extends DomainEntity implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "com.ect.db.entity.EctUser[ userId=" + userId + " ]";
-    }
     
 }

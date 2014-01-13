@@ -6,7 +6,7 @@ package com.ect.db.common.dao.hibernate;
 
 import com.ect.db.common.dao.CommonDao;
 import com.ect.db.common.entity.DropDownList;
-import com.ect.db.domain.entity.BaseDao;
+import com.ect.db.dao.BaseDao;
 import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.HibernateException;

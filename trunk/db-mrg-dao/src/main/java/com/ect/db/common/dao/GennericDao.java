@@ -27,4 +27,6 @@ public interface GennericDao<T> {
     public List<T> findRange(int[] range);
 
     public int count(Class<T> entityClass);
+    
+    public List<T> findByStatus(Integer status,Class<T> entityClass);
 }

@@ -2,24 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ect.db.entity;
+package com.ect.db.report.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,11 +21,9 @@ import javax.persistence.TemporalType;
  * @author totoland
  */
 @Entity
-@Table(name = "REPORT_001")
-@NamedQueries({
-    @NamedQuery(name = "Report001.findAll", query = "SELECT r FROM Report001 r")})
-public class Report001 extends DomainEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class ViewReport001 extends DomainEntity implements Serializable{
+    private static final long serialVersionUID = 5310115700864566904L;
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "REPORT_ID",nullable = true)
@@ -52,9 +43,6 @@ public class Report001 extends DomainEntity implements Serializable {
     private Date updatedDate;
     @Column(name = "UPDATED_USER")
     private Integer updatedUser;
-    @Column(name = "APPROVED_DATE")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date approvedDate;
     @Column(name = "STRATEGIC_ID")
     private Integer strategicId;
     @Column(name = "SUB_STRATEGIC_ID")
@@ -70,16 +58,6 @@ public class Report001 extends DomainEntity implements Serializable {
     private Integer approvedUser;
     @Column(name = "FLOW_STATUS_ID")
     private Integer flowStatusId;
-    
-    @OneToMany(mappedBy = "reportId",cascade={CascadeType.ALL},targetEntity = Report001Detail.class,fetch = FetchType.EAGER)
-    private List<Report001Detail> report001DetailList;
-
-    public Report001() {
-    }
-
-    public Report001(Integer reportId) {
-        this.reportId = reportId;
-    }
 
     public Integer getReportId() {
         return reportId;
@@ -185,66 +163,16 @@ public class Report001 extends DomainEntity implements Serializable {
         this.approvedUser = approvedUser;
     }
 
-    public List<Report001Detail> getReport001DetailList() {
-        return report001DetailList;
-    }
-
-    public void setReport001DetailList(List<Report001Detail> report001DetailList) {
-        this.report001DetailList = report001DetailList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (reportId != null ? reportId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Report001)) {
-            return false;
-        }
-        Report001 other = (Report001) object;
-        if ((this.reportId == null && other.reportId != null) || (this.reportId != null && !this.reportId.equals(other.reportId))) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @return the flowStatusId
-     */
     public Integer getFlowStatusId() {
         return flowStatusId;
     }
 
-    /**
-     * @param flowStatusId the flowStatusId to set
-     */
     public void setFlowStatusId(Integer flowStatusId) {
         this.flowStatusId = flowStatusId;
     }
-
+    
     @Override
     public String toString() {
-        return "Report001{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", report001DetailList=" + report001DetailList + '}';
+        return "ViewReport001{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + '}';
     }
-
-    /**
-     * @return the approvedDate
-     */
-    public Date getApprovedDate() {
-        return approvedDate;
-    }
-
-    /**
-     * @param approvedDate the approvedDate to set
-     */
-    public void setApprovedDate(Date approvedDate) {
-        this.approvedDate = approvedDate;
-    }
-    
-    
 }
