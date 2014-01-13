@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.ect.db.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
@@ -28,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "EctFlowStatus.findAll", query = "SELECT e FROM EctFlowStatus e")})
 public class EctFlowStatus extends DomainEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -94,5 +94,44 @@ public class EctFlowStatus extends DomainEntity implements Serializable {
     public String toString() {
         return super.toJson();
     }
-    
+
+    public static enum FlowStatus {
+
+        DRAFF(0,"DRAFF"),STEP_1(101,"STEP_1"),STEP_2(102,"STEP_2"),STEP_3(103,"STEP_3"), APPROVED(200,"APPROVED"), REJECT(-1,"REJECT");
+        private int status = 0;
+        protected String name = "";
+        
+        FlowStatus(int status,String name) {
+            this.status = status;
+            this.name = name;
+        }
+
+        /**
+         * @return the status
+         */
+        public int getStatus() {
+            return status;
+        }
+
+        /**
+         * @param status the status to set
+         */
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        /**
+         * @return the name
+         */
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * @param name the name to set
+         */
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 }
