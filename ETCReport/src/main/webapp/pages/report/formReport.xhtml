@@ -15,136 +15,147 @@ and open the template in the editor.
         <ui:composition template="../../template/etcTemplateGreen.xhtml">
             <ui:define name="content">
                 <h:form id="form1" prependId="false">
-                    <p:panelGrid columns="4" style="width: 900px;" styleClass="frmSelect">
-                        <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
-                        <p:outputLabel value="เลือกปีงบประมาณ : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="2557" itemValue="2557" />  
-                            <f:selectItem itemLabel="2556" itemValue="2556" />  
-                            <f:selectItem itemLabel="2555" itemValue="2555" />  
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกเดือน : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="มกราคม" itemValue="มกราคม" />  
-                            <f:selectItem itemLabel="กุมภาพันธ์" itemValue="กุมภาพันธ์" />  
-                            <f:selectItem itemLabel="มีนาคม" itemValue="มีนาคม" />  
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="สำนักงาน กกต." itemValue="1" />  
-                            <f:selectItem itemLabel="สำนักงาน กกต. จังหวัด" itemValue="2" />  
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกแบบรายงาน : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="รายงานสนผ 1.1" itemValue="1" />  
-                            <f:selectItem itemLabel="รายงานสนผ 1.2" itemValue="2" />  
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.1" itemValue="1" />  
-                            <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.2" itemValue="2" />  
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกกลยุทธ์ : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="กลยุทธ์ 1.1" itemValue="1" />  
-                            <f:selectItem itemLabel="กลยุทธ์ 1.2" itemValue="2" />  
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกแผนงาน : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="แผนงาน 1.1" itemValue="1" />  
-                            <f:selectItem itemLabel="แผนงาน 1.2" itemValue="2" />  
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกโครงการ : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="โครงการ 1.1" itemValue="1" />  
-                            <f:selectItem itemLabel="โครงการ 1.2" itemValue="2" />  
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกกิจกรรม : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="กิจกรรม 1.1" itemValue="1" />  
-                            <f:selectItem itemLabel="กิจกรรม 1.2" itemValue="2" />  
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกสถานะ : "/>
-                        <p:selectOneMenu>  
-                            <f:selectItem itemLabel="เลือก" itemValue="" />  
-                            <f:selectItem itemLabel="รอพิจารณา" itemValue="1" />  
-                            <f:selectItem itemLabel="ไม่อนุมัติ" itemValue="2" />  
-                            <f:selectItem itemLabel="อนุมัติ" itemValue="-" />
-                        </p:selectOneMenu>    
-                        <f:facet name="footer">
-                            <div align="center"><p:commandButton id="btnShowRpt" action="#{roleUser.genRpt()}" update="dataRpt" value="แสดงรายงาน"/></div>
-                        </f:facet>
-                    </p:panelGrid><br/>                        
-                    <p:dataTable id="dataRpt" var="rpt" value="#{roleUser.rptList}"
-                                 paginator="true" rows="5" style="width: 900px;" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15">       
-                        <f:facet name="header">
-                            แสดงรายงานตามที่ค้นหา
-                        </f:facet>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="เลขที่เอกสาร" />
+                    <p:panel header="หน้าออกรายงาน">
+                        <p:panelGrid columns="4" style="width: 900px;" styleClass="frmSelect">
+                            <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
+                            <p:outputLabel value="เลือกปีงบประมาณ : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="2557" itemValue="2557" />  
+                                <f:selectItem itemLabel="2556" itemValue="2556" />  
+                                <f:selectItem itemLabel="2555" itemValue="2555" />  
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกเดือน : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="มกราคม" itemValue="มกราคม" />  
+                                <f:selectItem itemLabel="กุมภาพันธ์" itemValue="กุมภาพันธ์" />  
+                                <f:selectItem itemLabel="มีนาคม" itemValue="มีนาคม" />  
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="สำนักงาน กกต." itemValue="1" />  
+                                <f:selectItem itemLabel="สำนักงาน กกต. จังหวัด" itemValue="2" />  
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกแบบรายงาน : "/>
+                            <p:selectOneMenu id="ectDll" label="lb1" style="width: 180px">  
+                                <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
+                                <p:ajax listener="#{welcomeController.redirect}" /> 
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.1" itemValue="1" />  
+                                <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.2" itemValue="2" />  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกกลยุทธ์ : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="กลยุทธ์ 1.1" itemValue="1" />  
+                                <f:selectItem itemLabel="กลยุทธ์ 1.2" itemValue="2" />  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกแผนงาน : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="แผนงาน 1.1" itemValue="1" />  
+                                <f:selectItem itemLabel="แผนงาน 1.2" itemValue="2" />  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกโครงการ : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="โครงการ 1.1" itemValue="1" />  
+                                <f:selectItem itemLabel="โครงการ 1.2" itemValue="2" />  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกกิจกรรม : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="กิจกรรม 1.1" itemValue="1" />  
+                                <f:selectItem itemLabel="กิจกรรม 1.2" itemValue="2" />  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกสถานะ : "/>
+                            <p:selectOneMenu style="width: 180px">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItem itemLabel="รอพิจารณา" itemValue="1" />  
+                                <f:selectItem itemLabel="ไม่อนุมัติ" itemValue="2" />  
+                                <f:selectItem itemLabel="อนุมัติ" itemValue="-" />
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" for="lb2" rendered="#{param.user==null}"/>
+                            <p:selectOneMenu  id="ectDll2" label="lb2" style="width: 180px" rendered="#{param.user==null}">  
+                                <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEctCenter()}"/>  
+                            </p:selectOneMenu>
+                            <f:facet name="footer">
+                                <div align="center"><p:commandButton id="btnShowRpt" action="#{roleUser.loadReportAllState()}" update="rptPreSendList2" value="แสดงรายงาน"/></div>
                             </f:facet>
-                            <h:outputText value="#{rpt.no}" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ชื่อรายงาน" />
+                        </p:panelGrid><br/>                        
+                        <p:dataTable id="rptPreSendList2" var="item" value="#{roleUser.listReportStatusWait}"
+                                     paginator="true" rows="5" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="เลขที่เอกสาร" />
+                                </f:facet>
+                                <h:outputText value="#{item.reportId}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ชื่อรายงาน" />
+                                </f:facet>
+                                <h:outputText value="#{item.reportDesc}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="สถานะ" />
+                                </f:facet>
+                                <h:outputText value="#{roleUser.statusConvertor(item.flowStatusId)}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="วันที่สร้าง" />
+                                </f:facet>
+                                <h:outputText value="#{item.createdDate}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ชื่อผู้สร้าง" />
+                                </f:facet>
+                                <h:outputText value="oper" />
+                            </p:column>
+                            <f:facet name="footer">
+
+                                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+                                    <p:graphicImage value="/design/ajaxloadingbar.gif" />  
+                                </p:dialog>  
+
+                                <h:form id="form">  
+
+                                    <p:commandButton id="downloadLink" value="Export as Excel" ajax="false" actionListener="#{roleUser.fileXLSDownload()}" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                                                     icon="ui-icon-arrowthichk-s">  
+                                        <p:fileDownload value="#{roleUser.file}" />  
+                                    </p:commandButton>  
+
+                                </h:form>  
+
+                                <script type="text/javascript">
+                                        function start() {
+                                            PF('statusDialog').show();
+                                        }
+
+                                        function stop() {
+                                            PF('statusDialog').hide();
+                                        }
+                                </script>  
+                                <p:commandButton value="พิมพ์" icon="ui-icon-print" rendered="false"/>
                             </f:facet>
-                            <h:outputText value="#{rpt.rpt_name}" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ประเภทรายงาน" />
-                            </f:facet>
-                            <h:outputText value="#{rpt.rpt_type}" />
-                        </p:column>                                    
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="วันที่สร้าง" />
-                            </f:facet>
-                            <h:outputText value="#{rpt.create_date}" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ชื่อผู้สร้าง" />
-                            </f:facet>
-                            <h:outputText value="#{rpt.create_user}" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="สถานะ" />
-                            </f:facet>
-                            <h:outputText value="#{rpt.status}" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="วันที่อนุมัติ" />
-                            </f:facet>
-                            <h:outputText value="#{rpt.mod_date}" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ชื่อผู้อนุมัติ" />
-                            </f:facet>
-                            <h:outputText value="#{rpt.mod_user}" />
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton value="Export as Excel"/>
-                            <p:commandButton value="Export as PDF"/>
-                            <p:commandButton value="พิมพ์" icon="ui-icon-print"/>
-                        </f:facet>
-                    </p:dataTable>
+                        </p:dataTable>
+                    </p:panel>
                 </h:form>
             </ui:define>
         </ui:composition>

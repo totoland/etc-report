@@ -12,8 +12,8 @@ and open the template in the editor.
     <h:head></h:head>
     <h:body>
         <ui:composition template="../../template/etcTemplateGreen.xhtml">
-            <ui:define name="leftMenu">
-                <p:menu>   
+            <ui:define name="leftMenu" rendered="false">
+                <p:menu rendered="false">   
                     <p:submenu label="จัดการสิทธ์">  
                         <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/permission/permission.xhtml" icon="ui-icon-comment"/>
                         <p:menuitem value="จัดการกลุ่มผู้ใช้งาน" url="/pages/permission/permission.xhtml" icon="ui-icon-comment"/>
@@ -26,6 +26,7 @@ and open the template in the editor.
             </ui:define>
             <ui:define name="content">
                 <h:form id="form1">
+                    <p:panel header="ผู้ดูแลระบบ">
                     <h:panelGroup>
                         <p:panel header="จัดการสิทธิ์ผู้ใช้งาน">
                             <h:panelGrid id="panelGrid1" columns="2">
@@ -46,6 +47,7 @@ and open the template in the editor.
                             </h:panelGrid>
                         </p:panel>
                     </h:panelGroup>
+                    </p:panel>
                 </h:form>
             </ui:define>
         </ui:composition>

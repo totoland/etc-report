@@ -46,9 +46,10 @@ public class MessageUtils {
         ResourceBundle bundle = fc.getApplication().getResourceBundle(fc,"msg");
         return bundle.getString(resourceBundleKey);
     }
-    public static String getResourceBundleString(String resourceBundleName,String resourceBundleKey)throws MissingResourceException {
-        ResourceBundle bundle = ResourceBundle.getBundle(resourceBundleName);
-        return bundle.getString(resourceBundleKey);
+    public static String getResourceBundleString(String resourceBundleKey,String values)throws MissingResourceException {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ResourceBundle bundle = fc.getApplication().getResourceBundle(fc,"msg");
+        return getString(bundle.getString(resourceBundleKey),values);
     }
 
 }

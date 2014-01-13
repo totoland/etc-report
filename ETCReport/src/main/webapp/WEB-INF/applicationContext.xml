@@ -12,4 +12,13 @@
     <import resource="DataSource.xml"/>
     <import resource="Hibernate.xml"/>
     
+    <bean id="ectConfManager" class="com.ect.db.common.dao.hibernate.EctConfManager">
+        <property name="ectConfs">
+            <bean factory-bean="ectConfDao" factory-method="getAllConf"></bean>
+        </property>
+        <property name="reportNames">
+            <bean factory-bean="reportNameDao" factory-method="getAllReportName"></bean>
+        </property>
+    </bean>
+    
 </beans>

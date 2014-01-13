@@ -7,6 +7,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.UISelectItem;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
 
 public class JsfUtil {
@@ -87,13 +88,24 @@ public class JsfUtil {
     public static void hidePopup(String dlgAddReportDetail) {
         executeJavaScript(dlgAddReportDetail.concat(".").concat("hide();"));
     }
-    
-    public static void executeJavaScript(String function){
+
+    public static void executeJavaScript(String function) {
         RequestContext.getCurrentInstance().execute(function);
     }
-    
-    public static void alertJavaScript(String function){
-        RequestContext.getCurrentInstance().execute("alert('"+function+"');");
+
+    public static void alertJavaScript(String function) {
+        RequestContext.getCurrentInstance().execute("alert('" + function + "');");
     }
 
+    public static String getContextPath() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        HttpServletRequest servletRequest = (HttpServletRequest) ctx.getExternalContext().getRequest();
+        return servletRequest.getContextPath();
+    }
+    
+    public static String getContextURI() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        HttpServletRequest servletRequest = (HttpServletRequest) ctx.getExternalContext().getRequest();
+        return servletRequest.getRequestURI();
+    }
 }
