@@ -8,10 +8,16 @@ import com.ect.db.entity.EctUser;
 import com.ect.web.utils.MessageUtils;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import org.primefaces.component.dialog.Dialog;
+import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,9 +64,11 @@ public abstract class BaseController implements Serializable {
         RequestContext.getCurrentInstance().addCallbackParam(key, value);
     }
 
-    /***
+    /**
+     * *
      * Close Popup
-     * @param dialogId 
+     *
+     * @param dialogId
      */
     public void closeDialog(String dialogId) {
         executeJavaScript(dialogId + ".hide()");
@@ -107,5 +115,44 @@ public abstract class BaseController implements Serializable {
 
     public void updateCliend(String updateId) {
         context.update(updateId);
+    }
+
+    public void disablePopup(String id) {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        Dialog panel = (Dialog) ctx.getViewRoot().findComponent(id);
+        
+        if(panel==null){
+            return;
+        }
+        
+        disableAll(panel.getChildren());
+    }
+
+    public void disableAll(List<UIComponent> components) {
+
+        for (UIComponent component : components) {
+
+            if (component instanceof HtmlInputText) {
+                ((HtmlInputText) component).setDisabled(true);
+            }
+            if (component instanceof InputText) {
+                ((InputText) component).setDisabled(true);
+            }
+            if (component instanceof SelectOneMenu) {
+                ((SelectOneMenu) component).setDisabled(true);
+            }
+
+            disableAll(component.getChildren());
+        }
+    }
+    
+    public void openIframe(String url){
+        
+        if(url.indexOf("?")==-1){
+            url +="?q=q";
+        }
+        
+        executeJavaScript("dialogEdit.show();");
+        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='"+url+"&random=\" + Math.random() + \"'  scrolling='no' style='border: none;width: 100%;height:500px'></iframe>\");");
     }
 }

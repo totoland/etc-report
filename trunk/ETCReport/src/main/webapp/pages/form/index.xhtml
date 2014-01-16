@@ -21,7 +21,7 @@ and open the template in the editor.
                 <h:form id="form1">
                     <p:messages id="msgFormMain" closable="true"/>
                     <p:panel header="หน้าหลัก">
-                        <p:tabView id="tabView" dynamic="true" cache="false" style="height: 330px">
+                        <p:tabView id="tabView" dynamic="true" cache="false">
 
                             <p:ajax event="tabChange" listener="#{roleUser.onTabChange}"/> 
 
@@ -203,7 +203,7 @@ and open the template in the editor.
                                 </p:dataTable>
                             </p:tab>
                             <p:tab id="tab_APPROVED" title="รายงานที่อนุมัติแล้ว">
-                                <p:dataTable id="rptCompleteList5" var="item" value="#{roleUser.listReportStatusReject}"
+                                <p:dataTable id="rptCompleteList5" var="item" value="#{roleUser.listReportStatusApprove}"
                                              paginator="true" rows="5" 
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                              rowsPerPageTemplate="5,10,15">
@@ -247,6 +247,10 @@ and open the template in the editor.
                                         </f:facet>
                                         <h:outputText value="#{item.approvedUserName}" />
                                     </p:column>
+                                    <p:column>
+                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include">
+                                        </p:commandButton>
+                                    </p:column>
                                 </p:dataTable>
                             </p:tab>
                             <p:tab id="tab_REJECT" title="รายงานที่ไม่ผ่านพิจารณา">
@@ -259,7 +263,7 @@ and open the template in the editor.
                                         <f:facet name="header">
                                             <h:outputText value="เลขที่เอกสาร" />
                                         </f:facet>
-                                        <h:outputText value="#{item.reportId}" />
+                                        <h:outputText value="#{item.documentNo}" />
                                     </p:column>
 
                                     <p:column>
@@ -313,6 +317,8 @@ and open the template in the editor.
                         </p:tabView>
 
                     </p:panel>
+                    
+                    <!-- Dialog Reason -->
                     <p:dialog id="dialogRemark" header="เหตุผลไม่ผ่านการพิจรณา" widgetVar="dialogRemark" resizable="false" modal="true">  
                         <p:messages id="remarkMsg"/>
                         <p:panelGrid columns="2">  
@@ -326,12 +332,21 @@ and open the template in the editor.
                         </p:panelGrid>
                     </p:dialog>
                     
-                        <h:panelGroup id="include">
+                    <!-- Include Report Create-->
+                    <h:panelGroup id="include">
 
-                            <ui:include src="formReport001.xhtml" />
-                            <ui:include src="formReport002.xhtml" />
+                        <ui:include src="formReport001.xhtml" />
+                        <ui:include src="formReport002.xhtml" />
 
-                        </h:panelGroup>
+                    </h:panelGroup>
+                    
+                    <!-- Include Report Edit-->
+                    <h:panelGroup id="includeEdit">
+                        <p:dialog id="dialogEdit" header="แสดงข้อมูล" widgetVar="dialogEdit" resizable="true" height="500" width="1100" modal="true">
+                            <div id="divFrmEdit" style="height: 100%">
+                            </div>    
+                        </p:dialog>
+                    </h:panelGroup>
                 </h:form>
 
 

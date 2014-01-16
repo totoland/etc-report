@@ -32,6 +32,11 @@ public abstract class BaseFormReportController extends BaseController{
     @ManagedProperty(value = "#{ectConfManager}")
     protected EctConfManager ectConfManager;
     
+    protected static final String REPORT_001 = "REPORT_001";
+    protected static final String REPORT_MODE_EDIT = "edit";
+    protected static final String REPORT_MODE_VIEW = "view";
+    protected static final String REPORT_MODE_CREATE = "create";
+    
     @Override
     public void resetForm() {
         

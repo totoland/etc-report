@@ -11,21 +11,8 @@ import java.math.BigDecimal;
  * @author Totoland
  */
 public class NumberUtils {
-    private static NumberUtils instance;
-
-    /**
-     * @return the instance
-     */
-    public static NumberUtils getInstance() {
-        if(instance==null){
-            instance = new NumberUtils();
-        }
-        return instance;
-    }
-//    public static void main(String args[]){
-//        System.out.println(new NumberUtils().toLong(15));
-//    }
-    public Long toLong(Object object){
+    
+    public static Long toLong(Object object){
         try{
             if(object!=null){
                 return Long.parseLong(object.toString().trim());
@@ -34,13 +21,22 @@ public class NumberUtils {
         }
         return null;
     }
-    public Long bigDecimalToLong(BigDecimal b){
+    public static Integer toInteger(Object object){
+        try{
+            if(object!=null){
+                return Integer.parseInt(object.toString().trim());
+            }
+        }catch(Exception ex){
+        }
+        return null;
+    }
+    public static Long bigDecimalToLong(BigDecimal b){
         if(b!=null){
             return new Long(b.longValue());
         }
         return null;
     }
-    public boolean isNumber(Object object){
+    public static boolean isNumber(Object object){
         try{
             Integer.parseInt(object.toString());
             return true;
@@ -48,7 +44,7 @@ public class NumberUtils {
             return false;
         }
     }
-    public BigDecimal toBigDecimal(Object object){
+    public static BigDecimal toBigDecimal(Object object){
         try{
             if(object!=null){
                 return new BigDecimal(object.toString());
