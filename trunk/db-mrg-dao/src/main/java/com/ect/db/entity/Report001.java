@@ -33,6 +33,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Report001.findAll", query = "SELECT r FROM Report001 r")})
 public class Report001 extends DomainEntity implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "REPORT_ID",nullable = true)
@@ -70,6 +71,13 @@ public class Report001 extends DomainEntity implements Serializable {
     private Integer approvedUser;
     @Column(name = "FLOW_STATUS_ID")
     private Integer flowStatusId;
+    @Column(name = "ACTIVITY_ID")
+    private Integer activityId;
+    @Column(name = "REJECTED_USER")
+    private Integer rejectedUser;
+    @Column(name = "REJECTED_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date rejectedDate;
     
     @OneToMany(mappedBy = "reportId",cascade={CascadeType.ALL},targetEntity = Report001Detail.class,fetch = FetchType.EAGER)
     private List<Report001Detail> report001DetailList;
@@ -244,6 +252,30 @@ public class Report001 extends DomainEntity implements Serializable {
      */
     public void setApprovedDate(Date approvedDate) {
         this.approvedDate = approvedDate;
+    }
+
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
+
+    public Integer getRejectedUser() {
+        return rejectedUser;
+    }
+
+    public void setRejectedUser(Integer rejectedUser) {
+        this.rejectedUser = rejectedUser;
+    }
+
+    public Date getRejectedDate() {
+        return rejectedDate;
+    }
+
+    public void setRejectedDate(Date rejectedDate) {
+        this.rejectedDate = rejectedDate;
     }
     
     

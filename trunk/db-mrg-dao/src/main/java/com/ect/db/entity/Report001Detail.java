@@ -7,6 +7,7 @@ package com.ect.db.entity;
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,8 +28,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Report001Detail.findAll", query = "SELECT r FROM Report001Detail r")})
 public class Report001Detail extends DomainEntity implements Serializable {
-
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REPORT_DETAIL_ID",nullable = true)
@@ -37,17 +38,26 @@ public class Report001Detail extends DomainEntity implements Serializable {
     private Integer depId;
     @Column(name = "DEP_NAME")
     private String depName;
-    @Column(name = "ACTIVITY_NAME")
-    private String activityName;
-    @Column(name = "ACTIVITY_TYPE")
-    private String activityType;
-    @Column(name = "ACTIVITY_AMOUNT")
-    private Integer activityAmount;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "BUDGET_SET")
     private BigDecimal budgetSet;
     @Column(name = "BUDGET_REAL")
     private BigDecimal budgetReal;
+    @Column(name = "ACTIVITY_TYPE")
+    private String activityType;
+    @Column(name = "ACTIVITY_AMOUNT")
+    private Integer activityAmount;
+    @Column(name = "WORK_DETAIL")
+    private String workDetail;
+    @Column(name = "GOAL_TYPE")
+    private String goalType;
+    @Basic(optional = false)
+    @Column(name = "GOAL_AMOUNT")
+    private Integer goalAmount;
+    @Column(name = "RESULT_TYPE")
+    private String resultType;
+    @Column(name = "RESULT_AMOUNT")
+    private Integer resultAmount;
     @Column(name = "IS_PASS")
     private Boolean isPass;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
@@ -83,14 +93,6 @@ public class Report001Detail extends DomainEntity implements Serializable {
 
     public void setDepName(String depName) {
         this.depName = depName;
-    }
-
-    public String getActivityName() {
-        return activityName;
-    }
-
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
     }
 
     public String getActivityType() {
@@ -159,5 +161,45 @@ public class Report001Detail extends DomainEntity implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public String getWorkDetail() {
+        return workDetail;
+    }
+
+    public void setWorkDetail(String workDetail) {
+        this.workDetail = workDetail;
+    }
+
+    public String getGoalType() {
+        return goalType;
+    }
+
+    public void setGoalType(String goalType) {
+        this.goalType = goalType;
+    }
+
+    public Integer getGoalAmount() {
+        return goalAmount;
+    }
+
+    public void setGoalAmount(Integer goalAmount) {
+        this.goalAmount = goalAmount;
+    }
+
+    public String getResultType() {
+        return resultType;
+    }
+
+    public void setResultType(String resultType) {
+        this.resultType = resultType;
+    }
+
+    public Integer getResultAmount() {
+        return resultAmount;
+    }
+
+    public void setResultAmount(Integer resultAmount) {
+        this.resultAmount = resultAmount;
     }
 }
