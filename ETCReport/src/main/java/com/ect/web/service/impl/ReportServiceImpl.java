@@ -4,7 +4,9 @@
  */
 package com.ect.web.service.impl;
 
+import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
+import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
 import java.util.List;
@@ -21,6 +23,9 @@ public class ReportServiceImpl implements ReportService{
     @Autowired
     ViewReportByStatusDao viewReportByStatusDao;
     
+    @Autowired
+    Report001Dao report001Dao;
+    
     @Override
     public List<ViewReportStatus>findReportByStatus(Integer flowStatusId){
         return viewReportByStatusDao.findReportByStatus(flowStatusId);
@@ -36,4 +41,13 @@ public class ReportServiceImpl implements ReportService{
          return viewReportByStatusDao.updateReportStatusReject(reportName, reportId, flowStatusId,approvedUser,remark);
     }
     
+    @Override
+    public List<ViewReport001> findByStatus(Integer status) {
+        return report001Dao.findByStatus(status);
+    }
+
+    @Override
+    public ViewReport001 findByReportId(Integer reportId) {
+        return report001Dao.findByReportId(reportId);
+    }
 }

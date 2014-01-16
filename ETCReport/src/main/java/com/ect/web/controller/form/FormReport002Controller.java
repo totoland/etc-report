@@ -4,7 +4,7 @@
  */
 package com.ect.web.controller.form;
 
-import com.ect.db.entity.EctFlowStatus.FlowStatus;
+import com.ect.db.entity.EctFlowStatus;
 import com.ect.db.entity.Report001;
 import com.ect.db.entity.Report001Detail;
 import com.ect.db.report.entity.ViewReport001;
@@ -12,7 +12,6 @@ import com.ect.web.controller.model.ReportVO;
 import com.ect.web.service.Report001Service;
 import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
-import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import com.google.gson.Gson;
 import java.io.InputStream;
@@ -36,14 +35,14 @@ import org.slf4j.MDC;
 
 /**
  *
- * @author Totoland
+ * @author totoland
  */
 @ViewScoped
 @ManagedBean
-public class FormReport001Controller extends BaseFormReportController {
+public class FormReport002Controller extends BaseFormReportController{
+    private static Logger logger = LoggerFactory.getLogger(FormReport002Controller.class);
+    private static final long serialVersionUID = 1764749403349238850L;
 
-    private static Logger logger = LoggerFactory.getLogger(FormReport001Controller.class);
-    private static final long serialVersionUID = 7863151922951862688L;
     /**
      * *
      * Service
@@ -85,7 +84,7 @@ public class FormReport001Controller extends BaseFormReportController {
         logger.debug("UserAuthen : {}", super.getUserAuthen());
 
         loadReportAllState();
-        
+
     }
 
     @Override
@@ -98,15 +97,17 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setReport001DetailList(report001Details);
         report001.setCreatedDate(new Date());
         report001.setCreatedUser(super.getUserAuthen().getUserId());
-        report001.setFlowStatusId(FlowStatus.STEP_1.getStatus());
+        report001.setFlowStatusId(EctFlowStatus.FlowStatus.STEP_1.getStatus());
         report001.setReportDesc(ectConfManager.getReportName("REPORT_001"));
-        report001.setReportCode(REPORT_001);
-        
+
+
+        logger.debug("Save... {} ", report001);
+
         try {
 
             getReportGennericService().create(report001);
-            
-            logger.trace("Save Success !! ");
+
+            logger.debug("Save Success !! ");
 
             JsfUtil.alertJavaScript("บันทึกข้อมูล!!");
 
@@ -116,13 +117,26 @@ public class FormReport001Controller extends BaseFormReportController {
 
             logger.error("Cannot Save Data : ", ex);
 
-        }finally{
-            
-            logger.trace("Save... {} ", report001);
-            
         }
     }
-    
+
+    public String statusConvertor(Integer status) {
+
+        if (status == null) {
+            return "รอดำเนินการ";
+        }
+        if (status == 1) {
+            return "รอดำเนินการ";
+        }
+        if (status == 2) {
+            return "อนุมัติ";
+        }
+        if (status == 3) {
+            return "ยกเลิก";
+        }
+
+        return "ไม่ระบุ";
+    }
     private List<ViewReport001> listReportStatusWait = new ArrayList<ViewReport001>();
     private List<Report001> listReportStatusReject = new ArrayList<Report001>();
     private List<Report001> listReportStatusApprove = new ArrayList<Report001>();
@@ -154,7 +168,6 @@ public class FormReport001Controller extends BaseFormReportController {
         clearAllMessage();
         
         inputReport001Detail = new Report001Detail();
-        inputReport001Detail.setIsPass(Boolean.FALSE);
     }
 
     /**
@@ -185,7 +198,7 @@ public class FormReport001Controller extends BaseFormReportController {
 
         report001Details.add(inputReport001Detail);
 
-        JsfUtil.hidePopup("REPORT_001dlgAddReportDetail");
+        JsfUtil.hidePopup("dlgAddReportDetail");
     }
     private StreamedContent file;
 
@@ -207,7 +220,6 @@ public class FormReport001Controller extends BaseFormReportController {
      *
      * @param event
      */
-    @Override
     public void onEdit(RowEditEvent event) {
 
         Report001Detail editRow = ((Report001Detail) event.getObject());
@@ -383,19 +395,19 @@ public class FormReport001Controller extends BaseFormReportController {
         
         String msg = "";
 
-        if (StringUtils.isBlank(inputReport001Detail.getWorkDetail())) {
+        if (StringUtils.isBlank(inputReport001Detail.getDepName())) {
             msg += "กรุณาระบุรายละเอียดการดำเนินงาน<br/>";
         }
-        if (StringUtils.isBlank(inputReport001Detail.getGoalType())) {
-            msg += "กรุณาระบุเป้าหมายประเภท<br/>";
+//        if (StringUtils.isBlank(inputReport001Detail.getActivityName())) {
+//            msg += "กรุณาระบุวัตถุประสงค์<br/>";
+//        }
+        if (inputReport001Detail.getActivityType()== null) {
+            msg += "กรุณาระบุผลการดำเนินงาน<br/>";
         }
-        if (inputReport001Detail.getGoalAmount().intValue()==0) {
-            msg += "กรุณาระบุจำนวน<br/>";
+        if (inputReport001Detail.getActivityAmount() == null || inputReport001Detail.getActivityAmount().intValue()==0) {
+            msg += "กรุณาระบุเป้าหมาย<br/>";
         }
-        if (StringUtils.isBlank(inputReport001Detail.getResultType())) {
-            msg += "กรุณาระบุผลการปฏิบัติงานประเภท<br/>";
-        }
-        if (inputReport001Detail.getBudgetSet().intValue()== 0) {
+        if (inputReport001Detail.getBudgetSet() == null || inputReport001Detail.getBudgetSet().intValue()==0) {
             msg += "กรุณาระบุงบประมาณตั้งไว้<br/>";
         }
 

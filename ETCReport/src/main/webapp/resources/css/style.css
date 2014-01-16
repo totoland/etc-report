@@ -1,16 +1,20 @@
 /* Created by Artisteer v4.1.0.59861 */
+body
+{
+    font-size: 10px;
+}
 
 #art-main
 {
     background: #FFFFFF;
     margin:0 auto;
-    font-size: 11px;
+    font-size: 10px;
     font-family: Tahoma, Arial, Helvetica, Sans-Serif;
     font-weight: normal;
     font-style: normal;
     position: relative;
-    width: 90%;
-    min-height: 100%;
+    /*width: 90%;*/
+    /*min-height: 100%;*/
     left: 0;
     top: 0;
     cursor:default;
