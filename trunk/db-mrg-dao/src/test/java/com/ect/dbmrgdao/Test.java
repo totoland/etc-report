@@ -63,6 +63,14 @@ public class Test {
     }
 
     @org.junit.Test
+    public void testReport001(){
+    
+        System.out.println(report001Dao.findByReportId(33));
+        
+    }
+    
+    @Ignore
+    @org.junit.Test
     public void testEctConfManager(){
         
         System.out.println("##########################");
@@ -98,8 +106,7 @@ public class Test {
         //report001.setReportId(1);
 
         Report001Detail report001Detail = new Report001Detail();
-        report001Detail.setActivityAmount(Integer.MIN_VALUE);
-        report001Detail.setActivityName("2342");
+        report001Detail.setActivityAmount(Integer.MIN_VALUE);;
         report001Detail.setActivityType("2342");
         report001Detail.setBudgetReal(BigDecimal.ZERO);
         report001Detail.setBudgetSet(BigDecimal.ZERO);
