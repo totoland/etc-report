@@ -12,7 +12,8 @@ import java.util.List;
  * @author totoland
  */
 public interface Report001Dao {
-    
+
     List<ViewReport001> findByStatus(Integer status);
-    
+
+    ViewReport001 findByReportId(Integer reportId);
 }
