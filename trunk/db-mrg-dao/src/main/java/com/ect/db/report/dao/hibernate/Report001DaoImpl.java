@@ -26,9 +26,9 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao{
     }
     
     @Override
-    public ViewReport001 findByReportId(Integer reportId) {
+    public Report001 findByReportId(Integer reportId) {
     
-        return (ViewReport001) findUniqNativeQuery("SELECT * FROM REPORT_001 WHERE REPORT_ID = ? ", ViewReport001.class, reportId);
+        return (Report001) findUniqNativeQuery("SELECT * FROM REPORT_001 WHERE REPORT_ID = ? ", Report001.class, reportId);
         
     }
     
