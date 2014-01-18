@@ -61,11 +61,12 @@ public class Test {
         System.out.println("init");
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
-
+    
+//    @Ignore
     @org.junit.Test
     public void testReport001(){
     
-        System.out.println(report001Dao.findByReportId(33));
+        System.out.println(((Report001)gennericDao.find(33, Report001.class)));
         
     }
     
@@ -92,7 +93,7 @@ public class Test {
     @Ignore
     @org.junit.Test
     public void testLogin(){
-        System.out.println(authenDao.loginUser("operator", "operator"));
+        System.out.println(authenDao.loginUser("operator", "NpVJEPbt5HfDHM8PkFkVuQ=="));
     }
     
     @Ignore
