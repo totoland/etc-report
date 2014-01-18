@@ -42,7 +42,14 @@ public class GennericDaoImpl<T> extends BaseDao implements GennericDao<T>, Seria
     }
 
     @Override
+    @Transactional
     public T find(Long id, Class<T> entityClass) {
+        return getHibernateTemplate().load(entityClass, id);
+    }
+    
+    @Override
+    @Transactional
+    public T find(Integer id, Class<T> entityClass) {
         return getHibernateTemplate().load(entityClass, id);
     }
 

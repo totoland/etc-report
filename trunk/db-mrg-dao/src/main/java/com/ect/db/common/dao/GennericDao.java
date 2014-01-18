@@ -21,6 +21,8 @@ public interface GennericDao<T> {
     public void remove(T entity);
 
     public T find(Long id,Class<T> entityClass);
+    
+    public T find(Integer id, Class<T> entityClass);
 
     public List<T> findAll(Class<T> entityClass);
 

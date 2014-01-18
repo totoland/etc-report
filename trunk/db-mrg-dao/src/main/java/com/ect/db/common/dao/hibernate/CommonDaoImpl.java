@@ -28,7 +28,7 @@ public class CommonDaoImpl extends BaseDao implements CommonDao {
 
     @Override
     public List<DropDownList> getDropdownList(DropDownList dropDownList) {
-        logger.info("getDropdownList");
+//        logger.info("getDropdownList");
         
         String orderBy = dropDownList.getOrderByField()==null?dropDownList.getName():dropDownList.getOrderByField();
         String sortBy = dropDownList.getSortName()==null?"ASC":dropDownList.getSortName();
