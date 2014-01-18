@@ -4,7 +4,7 @@
  */
 package com.ect.db.authen.dao;
 
-import com.ect.db.entity.EctUser;
+import com.ect.db.entity.ViewUser;
 
 /**
  *
@@ -12,6 +12,6 @@ import com.ect.db.entity.EctUser;
  */
 public interface AuthenDao {
     
-    EctUser loginUser(String userName,String passWord);
+    ViewUser loginUser(String userName,String passWord);
     
 }
