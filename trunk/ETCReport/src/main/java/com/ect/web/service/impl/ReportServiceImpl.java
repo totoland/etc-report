@@ -4,6 +4,7 @@
  */
 package com.ect.web.service.impl;
 
+import com.ect.db.entity.Report001;
 import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.ViewReport001;
@@ -47,7 +48,7 @@ public class ReportServiceImpl implements ReportService{
     }
 
     @Override
-    public ViewReport001 findByReportId(Integer reportId) {
+    public Report001 findByReport001ById(Integer reportId) {
         return report001Dao.findByReportId(reportId);
     }
 }

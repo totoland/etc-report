@@ -39,7 +39,12 @@ public class ReportGennericServiceImpl<T> implements ReportGennericService<T> {
     public T find(Long id, Class<T> entityClass) {
         return gennericDao.find(id, entityClass);
     }
-
+    
+    @Override
+    public T find(Integer id, Class<T> entityClass) {
+        return gennericDao.find(id, entityClass);
+    }
+    
     @Override
     public List<T> findAll(Class<T> entityClass) {
         return gennericDao.findAll(entityClass);
@@ -59,4 +64,5 @@ public class ReportGennericServiceImpl<T> implements ReportGennericService<T> {
     public List<T> findByStatusId(Integer status,Class<T> entityClass) {
         return gennericDao.findByStatus(status, entityClass);
     }
+
 }

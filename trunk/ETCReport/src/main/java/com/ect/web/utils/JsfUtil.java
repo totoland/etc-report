@@ -1,17 +1,29 @@
 package com.ect.web.utils;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.UISelectItem;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import org.primefaces.component.dialog.Dialog;
+import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JsfUtil {
 
+    private static final Logger logger = LoggerFactory.getLogger(JsfUtil.class);
+
+    private RequestContext context = RequestContext.getCurrentInstance();
+    
     public static void addErrorMessage(Exception ex, String defaultMsg) {
         String msg = ex.getLocalizedMessage();
         if (msg != null && msg.length() > 0) {
@@ -88,13 +100,17 @@ public class JsfUtil {
     public static void hidePopup(String dlgAddReportDetail) {
         executeJavaScript(dlgAddReportDetail.concat(".").concat("hide();"));
     }
+    
+    public static void hidePopupIframe(String report_MainDialog) {
+        executeJavaScript("parent."+report_MainDialog.concat(".").concat("hide();"));
+    }
 
     public static void executeJavaScript(String function) {
         RequestContext.getCurrentInstance().execute(function);
     }
 
     public static void alertJavaScript(String function) {
-        RequestContext.getCurrentInstance().execute("alert('" + function + "');");
+        RequestContext.getCurrentInstance().execute("alert(\"" + function + "\");");
     }
 
     public static String getContextPath() {
@@ -107,5 +123,83 @@ public class JsfUtil {
         FacesContext ctx = FacesContext.getCurrentInstance();
         HttpServletRequest servletRequest = (HttpServletRequest) ctx.getExternalContext().getRequest();
         return servletRequest.getRequestURI();
+    }
+    
+    /**
+     * *
+     * Close Popup
+     *
+     * @param dialogId
+     */
+    public void closeDialog(String dialogId) {
+        executeJavaScript(dialogId + ".hide()");
+    }
+
+    public void openDialog(String dialogId) {
+        executeJavaScript(dialogId + ".show()");
+    }
+
+    public void consoleLog(String log) {
+        executeJavaScript("logger('" + log + "');");
+    }
+
+    public void redirectPage(String url) {
+        ExternalContext _context = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            _context.redirect(_context.getRequestContextPath() + url);
+        } catch (IOException ex) {
+            logger.error("Cannot Redirect page : {} ", url, ex);
+        }
+    }
+
+    public void clearAllMessage() {
+
+        if (FacesContext.getCurrentInstance().getMessages().hasNext()) {
+            FacesContext.getCurrentInstance().getMessages().remove();
+        }
+
+    }
+
+    public void updateCliend(String updateId) {
+        context.update(updateId);
+    }
+
+    public void disablePopup(String id) {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        Dialog panel = (Dialog) ctx.getViewRoot().findComponent(id);
+        
+        if(panel==null){
+            return;
+        }
+        
+        disableAll(panel.getChildren());
+    }
+
+    public void disableAll(List<UIComponent> components) {
+
+        for (UIComponent component : components) {
+
+            if (component instanceof HtmlInputText) {
+                ((HtmlInputText) component).setDisabled(true);
+            }
+            if (component instanceof InputText) {
+                ((InputText) component).setDisabled(true);
+            }
+            if (component instanceof SelectOneMenu) {
+                ((SelectOneMenu) component).setDisabled(true);
+            }
+
+            disableAll(component.getChildren());
+        }
+    }
+    
+    public void openIframe(String url){
+        
+        if(url.indexOf("?")==-1){
+            url +="?q=q";
+        }
+        
+        executeJavaScript("dialogEdit.show();");
+        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='"+url+"&random=\" + Math.random() + \"'  scrolling='no' style='border: none;width: 100%;height:500px'></iframe>\");");
     }
 }

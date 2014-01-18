@@ -5,10 +5,9 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.common.dao.hibernate.EctConfManager;
-import com.ect.db.entity.Report001;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
-import com.ect.web.service.ReportGennericService;
+import com.ect.web.service.ReportService;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
@@ -26,11 +25,12 @@ public abstract class BaseFormReportController extends BaseController{
      */
     @ManagedProperty(value = "#{dropdownFactory}")
     protected DropdownFactory dropdownFactory;
-    @ManagedProperty(value = "#{reportGennericService}")
-    protected ReportGennericService<Report001> reportGennericService;
     
     @ManagedProperty(value = "#{ectConfManager}")
     protected EctConfManager ectConfManager;
+    
+    @ManagedProperty(value = "#{reportService}")
+    protected ReportService reportService;
     
     protected static final String REPORT_001 = "REPORT_001";
     protected static final String REPORT_MODE_EDIT = "edit";
@@ -43,6 +43,8 @@ public abstract class BaseFormReportController extends BaseController{
     }
     
     public abstract void save();
+    
+    public abstract void edit();
     
     /**
      * *
@@ -92,20 +94,6 @@ public abstract class BaseFormReportController extends BaseController{
     }
 
     /**
-     * @return the reportGennericService
-     */
-    public ReportGennericService<Report001> getReportGennericService() {
-        return reportGennericService;
-    }
-
-    /**
-     * @param reportGennericService the reportGennericService to set
-     */
-    public void setReportGennericService(ReportGennericService<Report001> reportGennericService) {
-        this.reportGennericService = reportGennericService;
-    }
-
-    /**
      * @return the dropdownFactory
      */
     public DropdownFactory getDropdownFactory() {
@@ -117,5 +105,19 @@ public abstract class BaseFormReportController extends BaseController{
      */
     public void setDropdownFactory(DropdownFactory dropdownFactory) {
         this.dropdownFactory = dropdownFactory;
+    }
+
+    /**
+     * @return the reportService
+     */
+    public ReportService getReportService() {
+        return reportService;
+    }
+
+    /**
+     * @param reportService the reportService to set
+     */
+    public void setReportService(ReportService reportService) {
+        this.reportService = reportService;
     }
 }

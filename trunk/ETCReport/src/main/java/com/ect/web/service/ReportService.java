@@ -4,6 +4,7 @@
  */
 package com.ect.web.service;
 
+import com.ect.db.entity.Report001;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
 import java.util.List;
@@ -22,5 +23,5 @@ public interface ReportService {
     
     List<ViewReport001> findByStatus(Integer status);
 
-    ViewReport001 findByReportId(Integer reportId);
+    Report001 findByReport001ById(Integer reportId);
 }

@@ -30,7 +30,7 @@ and open the template in the editor.
                         <p:commandButton id="loginButton" value="#{msg.login}" update="messages" icon="ui-icon-key"  
                                          actionListener="#{loginController.loginProcess()}"/>
                     </p:panel>
-                <p:blockUI  trigger="loginButton" block="pnl"/> 
+                <p:blockUI widgetVar="blockUI"  trigger="loginButton" block="pnl"/> 
             </h:form>  
         </ui:define>
     </ui:composition>

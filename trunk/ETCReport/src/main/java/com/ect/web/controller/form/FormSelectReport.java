@@ -10,12 +10,12 @@ import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -33,8 +33,8 @@ public class FormSelectReport extends BaseFormReportController {
     protected boolean selectedReport = true;
     protected String reportMode;
     
-    @Autowired
-    ReportService reportService;
+    @ManagedProperty(value = "#{reportService}")
+    protected ReportService reportService;
     
     @PostConstruct
     public void init() {
@@ -66,7 +66,7 @@ public class FormSelectReport extends BaseFormReportController {
      */
     public void initViewEditReport(String reportCode,Integer reportId){
         
-        logger.trace("Select report by view mode : {} reportId : {}", reportCode);
+        logger.trace("Select report by view mode : {} reportId : {}", reportCode,reportId);
         
         this.reportCode = reportCode;
         
@@ -74,15 +74,11 @@ public class FormSelectReport extends BaseFormReportController {
         
         String url = ectConfManager.getReportObj(reportCode).getReportUrl();
         
+        url = "edit/"+url+"?mode="+reportMode+"&reportId="+reportId+"&reportCode="+reportCode;
+        
         logger.trace("Open iframe URL : {}",url);
         
-        openIframe("edit/"+url);
-        
-        if(REPORT_001.equalsIgnoreCase(reportCode)){
-            
-            reportService.findByReportId(reportId);
-            
-        }
+        openIframe(url);
     }
     
     public void validateSelectReport() {
@@ -180,5 +176,24 @@ public class FormSelectReport extends BaseFormReportController {
      */
     public void setReportMode(String reportMode) {
         this.reportMode = reportMode;
+    }
+
+    /**
+     * @return the reportService
+     */
+    public ReportService getReportService() {
+        return reportService;
+    }
+
+    /**
+     * @param reportService the reportService to set
+     */
+    public void setReportService(ReportService reportService) {
+        this.reportService = reportService;
+    }
+
+    @Override
+    public void edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

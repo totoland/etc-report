@@ -58,7 +58,7 @@ and open the template in the editor.
                         <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlProject()}"></f:selectItems> 
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกกิจกรรม : " />
-                    <p:selectOneMenu style="width: 180px;" >  
+                    <p:selectOneMenu style="width: 180px;" value="#{formReport001Controller.report001.activityId}">  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
                         <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlActivity()}"></f:selectItems> 
                     </p:selectOneMenu>
@@ -190,7 +190,7 @@ and open the template in the editor.
 
                 <h:panelGroup id="REPORT_001pnlCmd">
                     <div align="center">
-                        <p:commandButton value="#{msg.btn_save}" oncomplete="REPORT_MainDialog.hide()" actionListener="#{formReport001Controller.save()}" id="REPORT_001btnSave"/>
+                        <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport001Controller.save()}" id="REPORT_001btnSave"/>
                         <p:commandButton value="#{msg.btn_cancel}" id="REPORT_001btnCancel"/>
                     </div>
                 </h:panelGroup>

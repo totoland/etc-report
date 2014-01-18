@@ -15,7 +15,6 @@ import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.Report001Service;
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.service.ReportService;
-import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
@@ -26,21 +25,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 /**
  *
@@ -97,8 +93,6 @@ public class FormReportMainController extends BaseController {
 
     @PostConstruct
     public void init() {
-
-        MDC.put("reqId", ECTUtils.generateToken());
 
     }
 
