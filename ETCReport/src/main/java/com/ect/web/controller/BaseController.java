@@ -4,15 +4,14 @@
  */
 package com.ect.web.controller;
 
-import com.ect.db.entity.EctUser;
+import com.ect.db.entity.EctFlowStatus.FlowStatus;
+import com.ect.db.entity.ViewUser;
 import com.ect.web.utils.MessageUtils;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import org.primefaces.component.dialog.Dialog;
@@ -92,17 +91,12 @@ public abstract class BaseController implements Serializable {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     }
 
-    public EctUser getUserAuthen() {
-        return (EctUser) getSessionBean("userAuthen");
+    public ViewUser getUserAuthen() {
+        return (ViewUser) getSessionBean("userAuthen");
     }
 
     public void redirectPage(String url) {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        try {
-            context.redirect(context.getRequestContextPath() + url);
-        } catch (IOException ex) {
-            logger.error("Cannot Redirect page : {} ", url, ex);
-        }
+        executeJavaScript("window.location='" + url + "'");
     }
 
     public void clearAllMessage() {
@@ -120,11 +114,11 @@ public abstract class BaseController implements Serializable {
     public void disablePopup(String id) {
         FacesContext ctx = FacesContext.getCurrentInstance();
         Dialog panel = (Dialog) ctx.getViewRoot().findComponent(id);
-        
-        if(panel==null){
+
+        if (panel == null) {
             return;
         }
-        
+
         disableAll(panel.getChildren());
     }
 
@@ -145,14 +139,103 @@ public abstract class BaseController implements Serializable {
             disableAll(component.getChildren());
         }
     }
-    
-    public void openIframe(String url){
-        
-        if(url.indexOf("?")==-1){
-            url +="?q=q";
+
+    public void openIframe(String url) {
+
+        if (url.indexOf("?") == -1) {
+            url += "?q=q";
         }
-        
+
         executeJavaScript("dialogEdit.show();");
-        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='"+url+"&random=\" + Math.random() + \"'  scrolling='no' style='border: none;width: 100%;height:500px'></iframe>\");");
+        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='" + url + "&random=\" + Math.random() + \"'  scrolling='no' style='border: none;width: 100%;height:500px'></iframe>\");");
+    }
+
+    public String getParameter(String param) {
+        return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(param);
+    }
+
+    public boolean canApprove(Integer flowStatusId) {
+
+        ViewUser user = getUserAuthen();
+
+        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
+
+        if (FlowStatus.STEP_1.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 4;
+
+        } else if (FlowStatus.STEP_2.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 3;
+
+        } else if (FlowStatus.STEP_3.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 2;
+
+        } else if (FlowStatus.APPROVED.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 0;
+
+        } else if (FlowStatus.REJECT.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() != 4;
+
+        } else if (FlowStatus.DRAFF.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 4;
+
+        }
+
+        return false;
+
+    }
+
+    public boolean canReject(Integer flowStatusId) {
+
+        ViewUser user = getUserAuthen();
+
+        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
+
+        if (FlowStatus.STEP_1.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 4;
+
+        } else if (FlowStatus.STEP_2.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 3;
+
+        } else if (FlowStatus.STEP_3.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 2;
+
+        } else if (FlowStatus.APPROVED.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 0;
+
+        } else if (FlowStatus.REJECT.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() != 4;
+
+        } else if (FlowStatus.DRAFF.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 4;
+
+        }
+
+        return false;
+
+    }
+
+    public boolean canEdit(Integer createdUserGroup) {
+
+        ViewUser user = getUserAuthen();
+
+        logger.trace("Login UserGroup {} Created UserGroup {}",user.getUserGroupId(),createdUserGroup);
+        
+        if (user.getUserGroupId() != null && createdUserGroup.intValue() == user.getUserGroupId().intValue()) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -31,7 +31,7 @@ and open the template in the editor.
 
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." for="lb1" style="width: 350px"/>
-                                        <p:selectOneMenu id="ectDll" label="lb1" style="width: 450px" value="#{formSelectReport.reportCode}">  
+                                        <p:selectOneMenu id="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
                                             <p:ajax listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
@@ -66,13 +66,6 @@ and open the template in the editor.
                                         </f:facet>
                                         <h:outputText value="#{item.reportDesc}" />
                                     </p:column>
-
-                                    <!--                                        <p:column>
-                                                                                <f:facet name="header">
-                                                                                    <h:outputText value="สถานะ" />
-                                                                                </f:facet>
-                                                                                <h:outputText value="#{item.flowStatusName}" />
-                                                                            </p:column>-->
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="วันที่สร้าง" />
@@ -88,9 +81,9 @@ and open the template in the editor.
                                         <h:outputText value="#{item.createdUserName}" />
                                     </p:column>
                                     <p:column>
-                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search"/>
-                                        <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{roleUser.approve(item.reportCode, item.reportId, 102)}" icon="ui-icon-check"/>
-                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick"/>
+                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
+                                        <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{roleUser.approve(item.reportCode, item.reportId, 102)}" icon="ui-icon-check" rendered="#{roleUser.canApprove(item.flowStatusId)}"/>
+                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{roleUser.canReject(item.flowStatusId)}"/>
                                     </p:column>
                                 </p:dataTable>
                             </p:tab>
@@ -125,12 +118,6 @@ and open the template in the editor.
                                         </f:facet>
                                         <h:outputText value="#{item.createdUserName}" />
                                     </p:column>
-                                    <!--                                        <p:column>
-                                                                                <f:facet name="header">
-                                                                                    <h:outputText value="สถานะ" />
-                                                                                </f:facet>
-                                                                                <h:outputText value="#{item.flowStatusName}" />
-                                                                            </p:column>-->
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="วันที่ส่งพิจรณา" />
@@ -146,8 +133,9 @@ and open the template in the editor.
                                         <h:outputText value="#{item.approvedUserName}" />
                                     </p:column>
                                     <p:column>
-                                        <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" actionListener="#{roleUser.approve(item.reportCode, item.reportId, 103)}" update=":form1:msgFormMain" icon="ui-icon-check"/>                                        
-                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick"/>
+                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
+                                        <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" actionListener="#{roleUser.approve(item.reportCode, item.reportId, 103)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{roleUser.canApprove(item.flowStatusId)}"/>                                        
+                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{roleUser.canReject(item.flowStatusId)}"/>
                                     </p:column>
                                 </p:dataTable>
                             </p:tab>
@@ -197,8 +185,9 @@ and open the template in the editor.
                                         <h:outputText value="#{item.approvedUserName}" />
                                     </p:column>
                                     <p:column>
-                                        <p:commandButton value="#{msg.btn_approve}" onclick="return confirm('#{msg.confirmation_message_approve}')" actionListener="#{roleUser.approve(item.reportCode, item.reportId, 200)}" update=":form1:msgFormMain" icon="ui-icon-check"/>                                        
-                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick"/>
+                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
+                                        <p:commandButton value="#{msg.btn_approve}" onclick="return confirm('#{msg.confirmation_message_approve}')" actionListener="#{roleUser.approve(item.reportCode, item.reportId, 200)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{roleUser.canApprove(item.flowStatusId)}"/>                                        
+                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{roleUser.canReject(item.flowStatusId)}"/>
                                     </p:column>
                                 </p:dataTable>
                             </p:tab>

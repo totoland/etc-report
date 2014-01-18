@@ -9,7 +9,7 @@ import com.ect.db.entity.Report001;
 import com.ect.db.entity.Report001Detail;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.web.controller.model.ReportVO;
-import com.ect.web.service.Report001Service;
+import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.StringUtils;
@@ -47,8 +47,8 @@ public class FormReport002Controller extends BaseFormReportController{
      * *
      * Service
      */
-    @ManagedProperty(value = "#{report001Service}")
-    private Report001Service report001Service;
+    @ManagedProperty(value = "#{reportGennericService}")
+    private ReportGennericService<Report001> reportGennericService;
     /**
      * *
      * For Insert Report001
@@ -143,7 +143,7 @@ public class FormReport002Controller extends BaseFormReportController{
 
     public void loadReportAllState() {
 
-        listReportStatusWait = (List<ViewReport001>) report001Service.findByStatus(1);
+        listReportStatusWait = (List<ViewReport001>) reportService.findByStatus(1);
 
         if (listReportStatusWait == null || listReportStatusWait.isEmpty()) {
 
@@ -348,20 +348,6 @@ public class FormReport002Controller extends BaseFormReportController{
     }
 
     /**
-     * @return the report001Service
-     */
-    public Report001Service getReport001Service() {
-        return report001Service;
-    }
-
-    /**
-     * @param report001Service the report001Service to set
-     */
-    public void setReport001Service(Report001Service report001Service) {
-        this.report001Service = report001Service;
-    }
-
-    /**
      * @return the listReportStatusReject
      */
     public List<Report001> getListReportStatusReject() {
@@ -417,5 +403,24 @@ public class FormReport002Controller extends BaseFormReportController{
         }
 
         return true;
+    }
+
+    /**
+     * @return the reportGennericService
+     */
+    public ReportGennericService<Report001> getReportGennericService() {
+        return reportGennericService;
+    }
+
+    /**
+     * @param reportGennericService the reportGennericService to set
+     */
+    public void setReportGennericService(ReportGennericService<Report001> reportGennericService) {
+        this.reportGennericService = reportGennericService;
+    }
+
+    @Override
+    public void edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -67,10 +67,26 @@
         <p:blockUI  block="contentBody" widgetVar="blogui">
             LOADING<br />
         </p:blockUI>
-        <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show()" oncomplete="blogui.hide()">
+        <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show();checkAuthen();" oncomplete="blogui.hide()">
         </p:ajaxStatus>
         
         <h:outputScript library="js" name="i18N.js" target="head" />
+        
+        <script>
+            function checkAuthen(){
+                console.log("checkAuthen");
+                var user = '${formSelectReport.userAuthen.toJson()}';
+
+                if(user==null || user==''){
+                    alert("Session ของคุณหมดอายุโปรดทำการ Login อีกครั้ง");
+                    window.location = '${request.contextPath}/pages/login/login.xhtml';
+                }
+            }
+            $(function(){
+                checkAuthen();
+            });
+        </script>
+        
     </h:body>
 
 </html>

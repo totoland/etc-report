@@ -6,6 +6,7 @@ package com.ect.web.controller.login;
 
 import com.ect.db.authen.dao.AuthenDao;
 import com.ect.db.entity.EctUser;
+import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
@@ -32,14 +33,18 @@ public class LoginController extends BaseController {
     @ManagedProperty(value = "#{authenDao}")
     private AuthenDao authenDao;
     
-    protected EctUser ectUser;
+    private ViewUser loginUser;
 
     @PostConstruct
     public void init() {
+        
         logger.info("init");
     }
 
     public void loginProcess() {
+        
+        //MDC.put("reqId", ECTUtils.generateToken());
+        
         logger.info("loginProcess!!");
 
         logger.trace("userName : {} , passWord : {}", userName,passWord);
@@ -58,9 +63,9 @@ public class LoginController extends BaseController {
 
             String nPassWord = ECTUtils.encrypt(passWord);
             
-            ectUser = getAuthenDao().loginUser(userName, nPassWord);
+            loginUser = getAuthenDao().loginUser(userName, nPassWord);
             
-            super.getRequest().getSession().setAttribute("userAuthen", ectUser);
+            super.getRequest().getSession().setAttribute("userAuthen", loginUser);
 
         } catch (Exception ex) {
         
@@ -68,11 +73,11 @@ public class LoginController extends BaseController {
             return;
         }
 
-        if (ectUser == null) {
+        if (loginUser == null) {
 
             addError(MessageUtils.getResourceBundleString("login.authen.fail"));
 
-            logger.warn("Login {} fail!!", ectUser);
+            logger.warn("Login {} fail!!", loginUser);
 
             return;
 
@@ -84,7 +89,7 @@ public class LoginController extends BaseController {
 
         logger.trace("path : {}", path);
 
-        executeJavaScript("setTimeout(function(){window.location='"+path+"/pages/form/index.xhtml';},1000);");
+        executeJavaScript("blockUI.show();setTimeout(function(){window.location='"+path+"/pages/form/index.xhtml';},1000);");
 
     }
 
@@ -145,16 +150,17 @@ public class LoginController extends BaseController {
     }
 
     /**
-     * @return the ectUser
+     * @return the loginUser
      */
-    public EctUser getEctUser() {
-        return ectUser;
+    public ViewUser getLoginUser() {
+        return loginUser;
     }
 
     /**
-     * @param ectUser the ectUser to set
+     * @param loginUser the loginUser to set
      */
-    public void setEctUser(EctUser ectUser) {
-        this.ectUser = ectUser;
+    public void setLoginUser(ViewUser loginUser) {
+        this.loginUser = loginUser;
     }
+    
 }

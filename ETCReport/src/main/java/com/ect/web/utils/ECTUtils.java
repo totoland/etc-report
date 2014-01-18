@@ -62,4 +62,10 @@ public class ECTUtils {
         Key key = new SecretKeySpec(keyValue, ALGO);
         return key;
     }
+    
+    public static String lineDisplayTraceLog(String logger){
+        
+        return "*********************************"+logger+"*********************************";
+        
+    }
 }

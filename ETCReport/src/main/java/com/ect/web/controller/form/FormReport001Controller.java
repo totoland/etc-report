@@ -8,10 +8,13 @@ import com.ect.db.entity.EctFlowStatus.FlowStatus;
 import com.ect.db.entity.Report001;
 import com.ect.db.entity.Report001Detail;
 import com.ect.db.report.entity.ViewReport001;
-import com.ect.web.controller.model.ReportVO;
-import com.ect.web.service.Report001Service;
-import com.ect.web.utils.ECTUtils;
+import static com.ect.web.controller.form.BaseFormReportController.REPORT_001;
+import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_CREATE;
+import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_EDIT;
+import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
+import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.JsfUtil;
+import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import com.google.gson.Gson;
@@ -32,7 +35,6 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 /**
  *
@@ -42,14 +44,14 @@ import org.slf4j.MDC;
 @ManagedBean
 public class FormReport001Controller extends BaseFormReportController {
 
-    private static Logger logger = LoggerFactory.getLogger(FormReport001Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(FormReport001Controller.class);
     private static final long serialVersionUID = 7863151922951862688L;
     /**
      * *
      * Service
      */
-    @ManagedProperty(value = "#{report001Service}")
-    private Report001Service report001Service;
+    @ManagedProperty(value = "#{reportGennericService}")
+    private ReportGennericService<Report001> reportGennericService;
     /**
      * *
      * For Insert Report001
@@ -67,78 +69,135 @@ public class FormReport001Controller extends BaseFormReportController {
     private Report001Detail inputReport001Detail = new Report001Detail();
     /**
      * *
-     * Dummy Data Object
+     * For display in grid by status
      */
-    private List<ReportVO> rptWaitStatusList;
-    private List<ReportVO> rptCompleteList;
-    private List<ReportVO> rptList;
+    private List<ViewReport001> listReportStatusWait = new ArrayList<>();
+    private List<Report001> listReportStatusReject = new ArrayList<>();
+    private List<Report001> listReportStatusApprove = new ArrayList<>();
+    private String paramReportCode;
+    private Integer paramReportId;
+    private String paramMode;
 
     @PostConstruct
     public void init() {
 
-        MDC.put("reqId", ECTUtils.generateToken());
-
+        initParam();
         /**
          * *
-         * Set Dummy Login
+         * Check Mode
          */
-        logger.debug("UserAuthen : {}", super.getUserAuthen());
+        if (StringUtils.isBlank(paramMode)) {
 
-        loadReportAllState();
-        
+            //loadReportAllState();
+
+        } else if (paramMode.equals(REPORT_MODE_VIEW)) {
+
+            initViewMode();
+
+        } else if (paramMode.equals(REPORT_MODE_EDIT)) {
+            
+            initEditMode();
+            
+        }
+
     }
 
     @Override
     public void resetForm() {
+        
     }
 
     @Override
     public void save() {
 
+        logger.trace(MessageUtils.PRINT_LINE_STAR() + "Save Report : {}", REPORT_001 + MessageUtils.PRINT_LINE_STAR());
+
         report001.setReport001DetailList(report001Details);
         report001.setCreatedDate(new Date());
         report001.setCreatedUser(super.getUserAuthen().getUserId());
         report001.setFlowStatusId(FlowStatus.STEP_1.getStatus());
-        report001.setReportDesc(ectConfManager.getReportName("REPORT_001"));
+        report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
-        
+
+        if (!validateBeforeSave()) {
+            return;
+        }
+
         try {
 
             getReportGennericService().create(report001);
-            
+
             logger.trace("Save Success !! ");
 
-            JsfUtil.alertJavaScript("บันทึกข้อมูล!!");
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
+
+            JsfUtil.hidePopup("REPORT_MainDialog");
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage("ไม่สามารถบันทึกข้อมูล!!");
+            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
 
-        }finally{
-            
+        } finally {
+
             logger.trace("Save... {} ", report001);
-            
+
         }
     }
     
-    private List<ViewReport001> listReportStatusWait = new ArrayList<ViewReport001>();
-    private List<Report001> listReportStatusReject = new ArrayList<Report001>();
-    private List<Report001> listReportStatusApprove = new ArrayList<Report001>();
+    @Override
+    public void edit(){
+    
+        logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_001 + MessageUtils.PRINT_LINE_STAR());
+
+        report001.setReport001DetailList(report001Details);
+        report001.setUpdatedDate(new Date());
+        report001.setUpdatedUser(super.getUserAuthen().getUserId());
+        report001.setFlowStatusId(FlowStatus.STEP_1.getStatus());
+        report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
+        report001.setReportCode(REPORT_001);
+
+        if (!validateBeforeSave()) {
+            return;
+        }
+
+        try {
+
+            getReportGennericService().edit(report001);
+
+            logger.trace("Edit Success !! ");
+
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
+
+            JsfUtil.hidePopupIframe("dialogEdit");
+
+        } catch (Exception ex) {
+
+            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+
+            logger.error("Cannot Edit Data : ", ex);
+
+        } finally {
+
+            logger.trace("Edit... {} ", report001);
+
+        }
+        
+    }
 
     public void loadReportAllState() {
 
-        listReportStatusWait = (List<ViewReport001>) report001Service.findByStatus(1);
+        listReportStatusWait = (List<ViewReport001>) getReportService().findByStatus(1);
 
         if (listReportStatusWait == null || listReportStatusWait.isEmpty()) {
 
-            logger.debug("listReportStatusWait is null!!");
+            logger.trace("listReportStatusWait is null!!");
             return;
 
         }
 
-        logger.debug("listReportStatusWait : {}", new Gson().toJson(listReportStatusWait));
+        logger.trace("listReportStatusWait : {}", new Gson().toJson(listReportStatusWait));
 
     }
 
@@ -149,10 +208,10 @@ public class FormReport001Controller extends BaseFormReportController {
     @Override
     public void initReportDetail() {
 
-        logger.debug("initReportDetail...");
+        logger.trace("initReportDetail...");
 
         clearAllMessage();
-        
+
         inputReport001Detail = new Report001Detail();
         inputReport001Detail.setIsPass(Boolean.FALSE);
     }
@@ -164,7 +223,7 @@ public class FormReport001Controller extends BaseFormReportController {
     @Override
     public void addReportDetail(ActionEvent actionEvent) {
 
-        logger.debug("addReportDetail... {}", inputReport001Detail);
+        logger.trace("addReportDetail... {}", inputReport001Detail);
 
         if (!validateReportDetail()) {
             return;
@@ -212,7 +271,7 @@ public class FormReport001Controller extends BaseFormReportController {
 
         Report001Detail editRow = ((Report001Detail) event.getObject());
 
-        logger.debug("Edit Row : {}", editRow);
+        logger.trace("Edit Row : {}", editRow);
 
         for (int i = 0; i < report001Details.size(); i++) {
 
@@ -221,7 +280,7 @@ public class FormReport001Controller extends BaseFormReportController {
                 report001Details.remove(i);
                 report001Details.add(i, editRow);
 
-                logger.debug("After Edit Row : {}", editRow);
+                logger.trace("After Edit Row : {}", editRow);
             }
 
             break;
@@ -243,30 +302,6 @@ public class FormReport001Controller extends BaseFormReportController {
 
         JsfUtil.addSuccessMessage("ยกเลิก!!");
 
-    }
-
-    public List<ReportVO> getRptWaitStatusList() {
-        return rptWaitStatusList;
-    }
-
-    public void setRptWaitStatusList(List<ReportVO> rptWaitStatusList) {
-        this.rptWaitStatusList = rptWaitStatusList;
-    }
-
-    public List<ReportVO> getRptCompleteList() {
-        return rptCompleteList;
-    }
-
-    public void setRptCompleteList(List<ReportVO> rptCompleteList) {
-        this.rptCompleteList = rptCompleteList;
-    }
-
-    public List<ReportVO> getRptList() {
-        return rptList;
-    }
-
-    public void setRptList(List<ReportVO> rptList) {
-        this.rptList = rptList;
     }
 
     /**
@@ -336,20 +371,6 @@ public class FormReport001Controller extends BaseFormReportController {
     }
 
     /**
-     * @return the report001Service
-     */
-    public Report001Service getReport001Service() {
-        return report001Service;
-    }
-
-    /**
-     * @param report001Service the report001Service to set
-     */
-    public void setReport001Service(Report001Service report001Service) {
-        this.report001Service = report001Service;
-    }
-
-    /**
      * @return the listReportStatusReject
      */
     public List<Report001> getListReportStatusReject() {
@@ -379,8 +400,8 @@ public class FormReport001Controller extends BaseFormReportController {
 
     private boolean validateReportDetail() {
 
-        logger.trace("validateReportDetail : {}",inputReport001Detail);
-        
+        logger.trace("validateReportDetail : {}", inputReport001Detail);
+
         String msg = "";
 
         if (StringUtils.isBlank(inputReport001Detail.getWorkDetail())) {
@@ -389,13 +410,13 @@ public class FormReport001Controller extends BaseFormReportController {
         if (StringUtils.isBlank(inputReport001Detail.getGoalType())) {
             msg += "กรุณาระบุเป้าหมายประเภท<br/>";
         }
-        if (inputReport001Detail.getGoalAmount().intValue()==0) {
+        if (inputReport001Detail.getGoalAmount().intValue() == 0) {
             msg += "กรุณาระบุจำนวน<br/>";
         }
         if (StringUtils.isBlank(inputReport001Detail.getResultType())) {
             msg += "กรุณาระบุผลการปฏิบัติงานประเภท<br/>";
         }
-        if (inputReport001Detail.getBudgetSet().intValue()== 0) {
+        if (inputReport001Detail.getBudgetSet().intValue() == 0) {
             msg += "กรุณาระบุงบประมาณตั้งไว้<br/>";
         }
 
@@ -405,5 +426,147 @@ public class FormReport001Controller extends BaseFormReportController {
         }
 
         return true;
+    }
+
+    private boolean validateBeforeSave() {
+
+        String msg = "";
+
+        if (report001.getStrategicId().intValue() == -1) {
+            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
+        }
+        if (report001.getSubStrategicId().intValue() == -1) {
+            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
+        }
+        if (report001.getPlanId().intValue() == -1) {
+            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
+        }
+        if (report001.getProjectId().intValue() == -1) {
+            msg += (MessageUtils.REQUIRE_SELECT_PROJECT()) + ("\\n");
+        }
+        if (report001.getActivityId().intValue() == -1) {
+            msg += (MessageUtils.REQUIRE_SELECT_ACTIVITY()) + ("\\n");
+        }
+        if (report001.getReport001DetailList() == null || report001.getReport001DetailList().isEmpty()) {
+            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
+        }
+
+        if (!StringUtils.isBlank(msg.toString())) {
+            JsfUtil.alertJavaScript(msg.toString().trim());
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return the paramReportCode
+     */
+    public String getParamReportCode() {
+        return paramReportCode;
+    }
+
+    /**
+     * @param paramReportCode the paramReportCode to set
+     */
+    public void setParamReportCode(String paramReportCode) {
+        this.paramReportCode = paramReportCode;
+    }
+
+    /**
+     * @return the paramReportId
+     */
+    public Integer getParamReportId() {
+        return paramReportId;
+    }
+
+    /**
+     * @param paramReportId the paramReportId to set
+     */
+    public void setParamReportId(Integer paramReportId) {
+        this.paramReportId = paramReportId;
+    }
+
+    /**
+     * @return the paramMode
+     */
+    public String getParamMode() {
+        return paramMode;
+    }
+
+    /**
+     * @param paramMode the paramMode to set
+     */
+    public void setParamMode(String paramMode) {
+        this.paramMode = paramMode;
+    }
+
+    private void initViewMode() {
+
+        logger.trace("initViewMode...");
+
+        if (REPORT_001.equalsIgnoreCase(paramReportCode)) {
+
+            report001 = reportService.findByReport001ById(paramReportId);
+            
+            logger.trace("report001 : {}", report001);
+            
+            /*** Set ReportDetail ***/
+            report001Details = new ArrayList<>();
+            report001Details.addAll(report001.getReport001DetailList());
+            
+            for(int i=0;i<report001Details.size();i++){
+                
+                report001Details.get(i).setKey(i);
+                
+            }
+
+        }
+
+    }
+
+    private void initEditMode() {
+        initViewMode();
+    }
+    
+    public void goToEdit(){
+        String url =  "?mode="+REPORT_MODE_EDIT+"&reportId="+paramReportId+"&reportCode="+paramReportCode;
+        redirectPage(url);
+    }
+    
+    public void goToClose(){
+        JsfUtil.hidePopupIframe("dialogEdit");
+    }
+    
+    public void goToCancel(){
+        
+        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_001 + MessageUtils.PRINT_LINE_STAR());
+        String url =  "?mode="+REPORT_MODE_VIEW+"&reportId="+paramReportId+"&reportCode="+paramReportCode;
+        redirectPage(url);
+        
+    }
+
+    private void initParam() {
+        paramMode = getParameter("mode");
+        paramReportCode = getParameter("reportCode");
+        paramReportId = NumberUtils.toInteger(getParameter("reportId"));
+        
+        logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
+        logger.trace("paramReportCode : {}",paramReportCode);
+        logger.trace("paramReportId : {}",paramReportId);
+    }
+
+    /**
+     * @return the reportGennericService
+     */
+    public ReportGennericService<Report001> getReportGennericService() {
+        return reportGennericService;
+    }
+
+    /**
+     * @param reportGennericService the reportGennericService to set
+     */
+    public void setReportGennericService(ReportGennericService<Report001> reportGennericService) {
+        this.reportGennericService = reportGennericService;
     }
 }
