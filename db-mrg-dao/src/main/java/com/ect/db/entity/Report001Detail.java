@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Report001Detail.findAll", query = "SELECT r FROM Report001Detail r")})
 public class Report001Detail extends DomainEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3520311716879656962L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +62,7 @@ public class Report001Detail extends DomainEntity implements Serializable {
     @Column(name = "IS_PASS")
     private Boolean isPass;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
-    @ManyToOne(targetEntity=Report001.class)
+    @ManyToOne(targetEntity=Report001.class,fetch = FetchType.EAGER)
     private Report001 reportId;
 
     public Report001Detail() {
@@ -202,4 +203,10 @@ public class Report001Detail extends DomainEntity implements Serializable {
     public void setResultAmount(Integer resultAmount) {
         this.resultAmount = resultAmount;
     }
+
+    @Override
+    public String toString() {
+        return "Report001Detail{" + "reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", isPass=" + isPass + ", reportId=" + (reportId!=null?reportId.getReportId():null) + '}';
+    }
+    
 }

@@ -32,8 +32,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Report001.findAll", query = "SELECT r FROM Report001 r")})
 public class Report001 extends DomainEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
+    private static final long serialVersionUID = -4203970495584892627L;
+     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "REPORT_ID",nullable = true)
@@ -48,6 +48,8 @@ public class Report001 extends DomainEntity implements Serializable {
     private Date createdDate;
     @Column(name = "CREATED_USER",updatable = false)
     private Integer createdUser;
+    @Column(name = "CREATED_USER_GROUP")
+    private Integer createdUserGroup;
     @Column(name = "UPDATED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDate;
@@ -235,11 +237,6 @@ public class Report001 extends DomainEntity implements Serializable {
         this.flowStatusId = flowStatusId;
     }
 
-    @Override
-    public String toString() {
-        return "Report001{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", report001DetailList=" + report001DetailList + '}';
-    }
-
     /**
      * @return the approvedDate
      */
@@ -278,5 +275,23 @@ public class Report001 extends DomainEntity implements Serializable {
         this.rejectedDate = rejectedDate;
     }
     
+    /**
+     * @return the createdUserGroup
+     */
+    public Integer getCreatedUserGroup() {
+        return createdUserGroup;
+    }
+
+    /**
+     * @param createdUserGroup the createdUserGroup to set
+     */
+    public void setCreatedUserGroup(Integer createdUserGroup) {
+        this.createdUserGroup = createdUserGroup;
+    }
+
+    @Override
+    public String toString() {
+        return "Report001{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", approvedDate=" + approvedDate + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", activityId=" + activityId + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", report001DetailList=" + report001DetailList + '}';
+    }
     
 }
