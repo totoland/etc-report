@@ -33,6 +33,7 @@ public abstract class BaseFormReportController extends BaseController{
     protected ReportService reportService;
     
     protected static final String REPORT_001 = "REPORT_001";
+    protected static final String REPORT_002 = "REPORT_002";
     protected static final String REPORT_MODE_EDIT = "edit";
     protected static final String REPORT_MODE_VIEW = "view";
     protected static final String REPORT_MODE_CREATE = "create";

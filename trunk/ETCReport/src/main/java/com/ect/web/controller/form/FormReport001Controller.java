@@ -13,6 +13,7 @@ import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_C
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_EDIT;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
+import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
@@ -78,6 +79,8 @@ public class FormReport001Controller extends BaseFormReportController {
     private Integer paramReportId;
     private String paramMode;
 
+    private String reportTitle;
+    
     @PostConstruct
     public void init() {
 
@@ -99,6 +102,8 @@ public class FormReport001Controller extends BaseFormReportController {
             initEditMode();
             
         }
+        
+        initForm();
 
     }
 
@@ -118,7 +123,8 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setFlowStatusId(FlowStatus.STEP_1.getStatus());
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
-
+        report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
+        
         if (!validateBeforeSave()) {
             return;
         }
@@ -157,6 +163,7 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setFlowStatusId(FlowStatus.STEP_1.getStatus());
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
+        report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
 
         if (!validateBeforeSave()) {
             return;
@@ -568,5 +575,27 @@ public class FormReport001Controller extends BaseFormReportController {
      */
     public void setReportGennericService(ReportGennericService<Report001> reportGennericService) {
         this.reportGennericService = reportGennericService;
+    }
+
+    /**
+     * @return the reportTitle
+     */
+    public String getReportTitle() {
+        return reportTitle;
+    }
+
+    /**
+     * @param reportTitle the reportTitle to set
+     */
+    public void setReportTitle(String reportTitle) {
+        this.reportTitle = reportTitle;
+    }
+
+    private void initForm() {
+        
+        Date curDate = new Date();
+        
+        reportTitle = MessageUtils.getResourceBundleString("report_header_title", DateTimeUtils.getInstance().thDate(curDate,"MMMM"),DateTimeUtils.getInstance().thDate(curDate,"yyyy"),getUserAuthen().getProvinceName());
+        
     }
 }
