@@ -18,61 +18,50 @@ and open the template in the editor.
                     <p:panel header="หน้าออกรายงาน">
                         <p:panelGrid columns="4" style="width: 900px;" styleClass="frmSelect">
                             <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
-                            <p:outputLabel value="เลือกปีงบประมาณ : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="2557" itemValue="2557" />  
-                                <f:selectItem itemLabel="2556" itemValue="2556" />  
-                                <f:selectItem itemLabel="2555" itemValue="2555" />  
+                            <p:outputLabel value="#{msg.label_fiscal_year} :" />
+                            <p:selectOneMenu style="width: 180px;"  >
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
                             </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกเดือน : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="มกราคม" itemValue="มกราคม" />  
-                                <f:selectItem itemLabel="กุมภาพันธ์" itemValue="กุมภาพันธ์" />  
-                                <f:selectItem itemLabel="มีนาคม" itemValue="มีนาคม" />  
+                            <p:outputLabel value="เลือกเดือน : " />
+                            <p:selectOneMenu style="width: 180px;"  >  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlMonth()}"></f:selectItems>
                             </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="สำนักงาน กกต." itemValue="1" />  
-                                <f:selectItem itemLabel="สำนักงาน กกต. จังหวัด" itemValue="2" />  
+                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " />
+                            <p:selectOneMenu style="width: 180px;"  >  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
                             </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกแบบรายงาน : "/>
-                            <p:selectOneMenu id="ectDll" label="lb1" style="width: 180px">  
-                                <f:selectItem itemLabel="-เลือก-" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
-                                <p:ajax listener="#{welcomeController.redirect}" /> 
+                            <p:outputLabel value="เลือกแบบรายงาน : " />
+                            <p:selectOneMenu style="width: 180px;"  >  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="ยุทธศาสตร์ที่ 1.2" itemValue="2" />  
+                            <p:selectOneMenu style="width: 180px;" id="REPORT_001strategicId" value="#{formReport001Controller.report001.strategicId}" >  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlStrategic()}"></f:selectItems>
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกลยุทธ์ : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="กลยุทธ์ 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="กลยุทธ์ 1.2" itemValue="2" />  
+                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId"/>
+                            <p:selectOneMenu style="width: 180px;" value="#{formReport001Controller.report001.subStrategicId}" >  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกแผนงาน : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="แผนงาน 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="แผนงาน 1.2" itemValue="2" />  
+                            <p:selectOneMenu style="width: 180px;" id="REPORT_001planId" value="#{formReport001Controller.report001.planId}" >  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlPlan()}"></f:selectItems>  
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกโครงการ : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="โครงการ 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="โครงการ 1.2" itemValue="2" />  
+                            <p:outputLabel value="เลือกโครงการ : " />
+                            <p:selectOneMenu style="width: 180px;" id="REPORT_001projectId"  value="#{formReport001Controller.report001.projectId}" >  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlProject()}"></f:selectItems> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกิจกรรม : "/>
-                            <p:selectOneMenu style="width: 180px">  
-                                <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="กิจกรรม 1.1" itemValue="1" />  
-                                <f:selectItem itemLabel="กิจกรรม 1.2" itemValue="2" />  
+                            <p:outputLabel value="เลือกกิจกรรม : " />
+                            <p:selectOneMenu style="width: 180px;" value="#{formReport001Controller.report001.activityId}">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlActivity()}"></f:selectItems> 
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกสถานะ : "/>
                             <p:selectOneMenu style="width: 180px">  
@@ -83,24 +72,24 @@ and open the template in the editor.
                             </p:selectOneMenu>
 
                             <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" for="lb2" rendered="#{param.user==null}"/>
-                            <p:selectOneMenu  id="ectDll2" label="lb2" style="width: 180px" rendered="#{param.user==null}">  
+                            <p:selectOneMenu  id="ectDll2" style="width: 180px" rendered="#{param.user==null}">  
                                 <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEctCenter()}"/>  
                             </p:selectOneMenu>
                             <f:facet name="footer">
-                                <div align="center"><p:commandButton id="btnShowRpt" action="#{roleUser.loadReportAllState()}" update="rptPreSendList2" value="แสดงรายงาน"/></div>
+                                <div align="center"><p:commandButton id="btnShowRpt" action="#{allReportController.search()}" update="rptPreSendList2" value="แสดงรายงาน"/></div>
                             </f:facet>
                         </p:panelGrid><br/>                        
-                        <p:dataTable id="rptPreSendList2" var="item" value="#{roleUser.listReportStatusWait}"
-                                     paginator="true" rows="5" 
+                        <p:dataTable id="rptPreSendList2" var="item" value="#{allReportController.viewReportResult}"
+                                     paginator="true" rows="10" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="5,10,15">
+                                     rowsPerPageTemplate="10,15,20">
 
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="เลขที่เอกสาร" />
                                 </f:facet>
-                                <h:outputText value="#{item.reportId}" />
+                                <h:outputText value="#{item.documentNo}" />
                             </p:column>
 
                             <p:column>
@@ -114,7 +103,7 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     <h:outputText value="สถานะ" />
                                 </f:facet>
-                                <h:outputText value="#{roleUser.statusConvertor(item.flowStatusId)}" />
+                                <h:outputText value="#{item.flowStatusName}" />
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
@@ -128,31 +117,17 @@ and open the template in the editor.
                                 </f:facet>
                                 <h:outputText value="oper" />
                             </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ส่งออก Excel" />
+                                </f:facet>
+                                <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" actionListener="#{allReportController.fileXLSDownload()}" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                                                 icon="ui-icon-arrowthichk-s">   
+                                    <p:fileDownload value="#{allReportController.file}" />  
+                                </p:commandButton>
+                            </p:column>
                             <f:facet name="footer">
-
-                                <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
-                                    <p:graphicImage value="/design/ajaxloadingbar.gif" />  
-                                </p:dialog>  
-
-                                <h:form id="form">  
-
-                                    <p:commandButton id="downloadLink" value="Export as Excel" ajax="false" actionListener="#{roleUser.fileXLSDownload()}" onclick="PrimeFaces.monitorDownload(start, stop)"   
-                                                     icon="ui-icon-arrowthichk-s">  
-                                        <p:fileDownload value="#{roleUser.file}" />  
-                                    </p:commandButton>  
-
-                                </h:form>  
-
-                                <script type="text/javascript">
-                                        function start() {
-                                            PF('statusDialog').show();
-                                        }
-
-                                        function stop() {
-                                            PF('statusDialog').hide();
-                                        }
-                                </script>  
-                                <p:commandButton value="พิมพ์" icon="ui-icon-print" rendered="false"/>
+                                
                             </f:facet>
                         </p:dataTable>
                     </p:panel>

@@ -95,7 +95,7 @@ public class FormSelectReport extends BaseFormReportController {
         logger.trace("clearAllMessage!!");
         
         clearAllMessage();
-        openDialog("REPORT_MainDialog");
+        openDialog("REPORT_MainDialog_"+reportCode);
     }
 
     @Override

@@ -4,8 +4,11 @@
  */
 package com.ect.web.service.impl;
 
+import com.ect.db.bean.ReportCriteria;
 import com.ect.db.entity.Report001;
+import com.ect.db.entity.Report002;
 import com.ect.db.report.dao.Report001Dao;
+import com.ect.db.report.dao.Report002Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
@@ -26,6 +29,9 @@ public class ReportServiceImpl implements ReportService{
     
     @Autowired
     Report001Dao report001Dao;
+    
+    @Autowired
+    Report002Dao report002Dao;
     
     @Override
     public List<ViewReportStatus>findReportByStatus(Integer flowStatusId){
@@ -51,4 +57,15 @@ public class ReportServiceImpl implements ReportService{
     public Report001 findByReport001ById(Integer reportId) {
         return report001Dao.findByReportId(reportId);
     }
+    
+    @Override
+    public List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria){
+        return viewReportByStatusDao.findByCriteria(reportCriteria);
+    }
+
+    @Override
+    public Report002 findByReport002ById(Integer paramReportId) {
+        return report002Dao.findByReportId(paramReportId);
+    }
+    
 }
