@@ -4,7 +4,7 @@
  */
 package com.ect.db.domain.entity;
 
-import com.ect.db.hibernate.utils.HibernateProxyTypeAdapter;
+import com.ect.db.utils.HibernateProxyTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.Serializable;
