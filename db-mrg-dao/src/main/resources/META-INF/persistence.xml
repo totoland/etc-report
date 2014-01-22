@@ -22,6 +22,13 @@
     <class>com.ect.db.entity.ReportName</class>
     <class>com.ect.db.entity.EctConf</class>
     <class>com.ect.db.entity.EctGroupLvl</class>
+    <class>com.ect.db.entity.EctStrategic</class>
+    <class>com.ect.db.entity.EctActivity</class>
+    <class>com.ect.db.entity.EctSubStrategic</class>
+    <class>com.ect.db.entity.EctPlan</class>
+    <class>com.ect.db.entity.EctProject</class>
+    <class>com.ect.db.entity.Report002</class>
+    <class>com.ect.db.entity.Report002Detail</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost\MSSQLSERVER:1433;databaseName=thaihua"/>
       <property name="javax.persistence.jdbc.password" value="1951465"/>

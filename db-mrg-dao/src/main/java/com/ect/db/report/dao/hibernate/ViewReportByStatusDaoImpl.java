@@ -4,6 +4,7 @@
  */
 package com.ect.db.report.dao.hibernate;
 
+import com.ect.db.bean.ReportCriteria;
 import com.ect.db.dao.BaseDao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.ViewReportStatus;
@@ -21,22 +22,12 @@ import org.springframework.stereotype.Repository;
 public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportByStatusDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
-    private static String SQL_REPORT_001 = "SELECT   ROW_NUMBER() OVER(ORDER BY REPORT_ID) AS ROW_NO ,   REPORT_001.REPORT_ID, REPORT_001.REPORT_CODE, REPORT_001.REPORT_DESC, REPORT_001.CREATED_DATE, REPORT_001.CREATED_USER,  "
-            + "                      REPORT_001.UPDATED_DATE, REPORT_001.UPDATED_USER, REPORT_001.REMARK, REPORT_001.APPROVED_USER, REPORT_001.FLOW_STATUS_ID,  "
-            + "                      ECT_USER.USERNAME AS CREATED_USER_NAME, ECT_FLOW_STATUS.FLOW_STATUS_NAME, ECT_USER_1.USERNAME AS UPDATED_USER_NAME,  "
-            + "                      ECT_USER_2.USERNAME AS APPROVED_USER_NAME, REPORT_001.APPROVED_DATE, ECT_USER_3.USERNAME AS REJECTED_USER_NAME, REPORT_001.REJECTED_USER,  "
-            + "                      REPORT_001.REJECTED_DATE "
-            + "   FROM         REPORT_001 INNER JOIN "
-            + "                      ECT_USER ON REPORT_001.CREATED_USER = ECT_USER.USER_ID INNER JOIN "
-            + "                      ECT_FLOW_STATUS ON REPORT_001.FLOW_STATUS_ID = ECT_FLOW_STATUS.FLOW_STATUS_ID LEFT OUTER JOIN "
-            + "                      ECT_USER AS ECT_USER_3 ON REPORT_001.REJECTED_USER = ECT_USER_3.USER_ID LEFT OUTER JOIN "
-            + "                      ECT_USER AS ECT_USER_2 ON REPORT_001.APPROVED_USER = ECT_USER_2.USER_ID LEFT OUTER JOIN "
-            + "                      ECT_USER AS ECT_USER_1 ON REPORT_001.UPDATED_USER = ECT_USER_1.USER_ID";
+    private static String SQL_REPORT_001 = "SELECT * FROM VIEW_REPORT_STATUS";
 
     @Override
     public List<ViewReportStatus> findReportByStatus(Integer flowStatus) {
 
-        String sql = SQL_REPORT_001 + " WHERE ECT_FLOW_STATUS.FLOW_STATUS_ID = ?";
+        String sql = SQL_REPORT_001 + " WHERE FLOW_STATUS_ID = ?";
 
         return super.findNativeQuery(sql, ViewReportStatus.class, flowStatus);
     }
@@ -52,6 +43,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
     }
     
+    @Override
     public Integer updateReportStatusReject(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser, String remark) {
 
         String sql = "UPDATE " + reportName + " SET FLOW_STATUS_ID = ?, REJECTED_DATE = ? , REJECTED_USER = ? ,REMARK = ? WHERE REPORT_ID = ? ";
@@ -60,5 +52,14 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         return updateNativeQuery(sql, flowStatusId, new Date(), approvedUser, remark, reportId);
 
+    }
+    
+    @Override
+    public List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria){
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append(SQL_REPORT_001);
+        
+        return super.findNativeQuery(sql.toString(), ViewReportStatus.class);
     }
 }

@@ -24,10 +24,12 @@ public class AuthenDaoImpl extends BaseDao implements AuthenDao, Serializable {
     public ViewUser loginUser(String userName, String passWord) {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT     ECT_USER.USER_ID, ECT_USER.USERNAME, ECT_USER.PASSWORD, ECT_USER.IS_ACTIVE, ECT_USER.FNAME, ECT_USER.LNAME, ECT_USER.SEX,  ");
-        sql.append("                      ECT_USER.PROVINCE_ID, ECT_USER.USER_GROUP_ID, ECT_USER_GROUP.USER_GROUP_NAME, ECT_USER_GROUP.USER_GROUP_LVL ");
+        sql.append("                      ECT_USER.PROVINCE_ID, ECT_USER.USER_GROUP_ID, ECT_USER_GROUP.USER_GROUP_NAME, ECT_USER_GROUP.USER_GROUP_LVL,  ");
+        sql.append("                      ECT_PROVINCE.PROVINCE_NAME ");
         sql.append("FROM         ECT_USER INNER JOIN ");
-        sql.append("                      ECT_USER_GROUP ON ECT_USER.USER_GROUP_ID = ECT_USER_GROUP.USER_GROUP_ID ");
-        sql.append("                      WHERE ECT_USER.USERNAME = ? AND ECT_USER.PASSWORD = ?");
+        sql.append("                      ECT_USER_GROUP ON ECT_USER.USER_GROUP_ID = ECT_USER_GROUP.USER_GROUP_ID LEFT OUTER JOIN ");
+        sql.append("                      ECT_PROVINCE ON ECT_USER.PROVINCE_ID = ECT_PROVINCE.PROVINCE_ID ");
+        sql.append("                              WHERE ECT_USER.USERNAME = ? AND ECT_USER.PASSWORD = ?");
 
         return (ViewUser) findUniqNativeQuery(sql.toString(), ViewUser.class, userName, passWord);
 

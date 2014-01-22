@@ -38,11 +38,13 @@ public class ViewUser extends DomainEntity{
     private Integer userGroupId;
     @Column(name = "PROVINCE_ID")
     private Integer provinceId;
+    @Column(name ="PROVINCE_NAME")
+    private String provinceName;
     @Column(name ="USER_GROUP_NAME")
     private String userGroupName;
     @Column(name ="USER_GROUP_LVL")
     private Integer userGroupLvl;
-
+    
     /**
      * @return the userId
      */
@@ -262,6 +264,20 @@ public class ViewUser extends DomainEntity{
     @Override
     public String toString() {
         return "ViewUser{" + "userId=" + userId + ", username=" + username + ", password=" + password + ", isActive=" + isActive + ", fname=" + fname + ", lname=" + lname + ", sex=" + sex + ", userGroupId=" + userGroupId + ", provinceId=" + provinceId + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + '}';
+    }
+
+    /**
+     * @return the provinceName
+     */
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    /**
+     * @param provinceName the provinceName to set
+     */
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
     }
     
 }

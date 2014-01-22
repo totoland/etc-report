@@ -138,6 +138,11 @@ public class ReportName extends DomainEntity implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "ReportName{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportName=" + reportName + ", reportDesc=" + reportDesc + ", reportDetailCode=" + reportDetailCode + ", reportType=" + reportType + ", reportUrl=" + reportUrl + '}';
+    }
+    
     /**
      * @return the reportUrl
      */
