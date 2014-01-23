@@ -5,7 +5,7 @@
 package com.ect.db.report.dao.hibernate;
 
 import com.ect.db.dao.BaseDao;
-import com.ect.db.entity.Report002;
+import com.ect.db.report.entity.Report002;
 import com.ect.db.report.dao.Report002Dao;
 import com.ect.db.report.entity.ViewReport002;
 import java.io.Serializable;

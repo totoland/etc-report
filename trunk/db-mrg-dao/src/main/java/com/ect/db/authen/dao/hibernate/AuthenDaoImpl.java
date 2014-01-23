@@ -6,7 +6,6 @@ package com.ect.db.authen.dao.hibernate;
 
 import com.ect.db.authen.dao.AuthenDao;
 import com.ect.db.dao.BaseDao;
-import com.ect.db.entity.EctUser;
 import com.ect.db.entity.ViewUser;
 import java.io.Serializable;
 import org.springframework.stereotype.Repository;

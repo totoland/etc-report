@@ -67,6 +67,16 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
     protected Integer rejectedUser;
     @Column(name ="REJECTED_USER_NAME")
     protected String rejectedUserName;
+    @Column(name ="CREATED_USER_FULL_NAME")
+    private String createdUserFullName;
+    @Column(name ="UPDATED_USER_FULL_NAME")
+    private String updatedUserFullName;
+    @Column(name ="APPROVED_USER_FULL_NAME")
+    private String approvedUserFullName;
+    @Column(name ="REJECTED_USER_FULL_NAME")
+    private String rejectedUserFullName;
+    @Column(name ="REPORT_STATUS")
+    private Integer reportStatus;
     
     @Transient
     protected String documentNo;
@@ -295,7 +305,7 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
 
     @Override
     public String toString() {
-        return "ViewReportStatus{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", documentNo=" + documentNo + '}';
+        return "ViewReportStatus{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", documentNo=" + documentNo + '}';
     }
     
     /**
@@ -374,6 +384,76 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
      */
     public void setRejectedUserName(String rejectedUserName) {
         this.rejectedUserName = rejectedUserName;
+    }
+
+    /**
+     * @return the createdUserFullName
+     */
+    public String getCreatedUserFullName() {
+        return createdUserFullName;
+    }
+
+    /**
+     * @param createdUserFullName the createdUserFullName to set
+     */
+    public void setCreatedUserFullName(String createdUserFullName) {
+        this.createdUserFullName = createdUserFullName;
+    }
+
+    /**
+     * @return the updatedUserFullName
+     */
+    public String getUpdatedUserFullName() {
+        return updatedUserFullName;
+    }
+
+    /**
+     * @param updatedUserFullName the updatedUserFullName to set
+     */
+    public void setUpdatedUserFullName(String updatedUserFullName) {
+        this.updatedUserFullName = updatedUserFullName;
+    }
+
+    /**
+     * @return the approvedUserFullName
+     */
+    public String getApprovedUserFullName() {
+        return approvedUserFullName;
+    }
+
+    /**
+     * @param approvedUserFullName the approvedUserFullName to set
+     */
+    public void setApprovedUserFullName(String approvedUserFullName) {
+        this.approvedUserFullName = approvedUserFullName;
+    }
+
+    /**
+     * @return the rejectedUserFullName
+     */
+    public String getRejectedUserFullName() {
+        return rejectedUserFullName;
+    }
+
+    /**
+     * @param rejectedUserFullName the rejectedUserFullName to set
+     */
+    public void setRejectedUserFullName(String rejectedUserFullName) {
+        this.rejectedUserFullName = rejectedUserFullName;
+    }
+
+    /**
+     * @return the reportStatus
+     */
+    public Integer getReportStatus() {
+        return reportStatus;
+    }
+
+    /**
+     * @param reportStatus the reportStatus to set
+     */
+    public void setReportStatus(Integer reportStatus) {
+        this.reportStatus = reportStatus;
     }
 
     
