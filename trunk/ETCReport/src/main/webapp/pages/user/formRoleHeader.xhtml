@@ -19,7 +19,7 @@ and open the template in the editor.
                         <p:tab id="tab1" title="รายงานที่ยังไม่ได้ส่งพิจารณา">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <p:commandButton value="สร้างรายงาน" onclick="dlg1.show()"/>  
-                                <p:dataTable id="rptPreSendList" var="rpt" value="#{roleUser.rptPreSendList}"
+                                <p:dataTable id="rptPreSendList" var="rpt" value="#{FormReportMainController.rptPreSendList}"
                                              paginator="true" rows="5" 
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                              rowsPerPageTemplate="5,10,15">
@@ -78,7 +78,7 @@ and open the template in the editor.
                         </p:tab>
                         <p:tab id="tab2" title="รายงานรอผลพิจารณา">
                             <h:panelGrid columns="1" cellpadding="10">
-                                <p:dataTable id="rptWaitStatusList" var="rpt" value="#{roleUser.rptWaitStatusList}"
+                                <p:dataTable id="rptWaitStatusList" var="rpt" value="#{FormReportMainController.rptWaitStatusList}"
                                              paginator="true" rows="5"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                              rowsPerPageTemplate="5,10,15">
@@ -144,7 +144,7 @@ and open the template in the editor.
                         </p:tab>
                         <p:tab id="tab3" title="รายงานที่อนุมัติแล้ว">
                             <h:panelGrid columns="1" cellpadding="10">
-                                <p:dataTable id="rptCompleteList" var="rpt" value="#{roleUser.rptCompleteList}"
+                                <p:dataTable id="rptCompleteList" var="rpt" value="#{FormReportMainController.rptCompleteList}"
                                              paginator="true" rows="5" 
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                              rowsPerPageTemplate="5,10,15">

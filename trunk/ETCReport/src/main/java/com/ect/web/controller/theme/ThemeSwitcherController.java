@@ -4,7 +4,6 @@
  */
 package com.ect.web.controller.theme;
 
-import com.ect.web.controller.BaseController;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +22,7 @@ public class ThemeSwitcherController implements Serializable{
     private String theme;
     
     public ThemeSwitcherController() {
+        
         this.theme = "flick";
         themes = new HashMap<String, String>();  
         themes.put("Aristo", "aristo");  

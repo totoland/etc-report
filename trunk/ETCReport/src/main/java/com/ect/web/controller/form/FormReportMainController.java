@@ -6,11 +6,11 @@ package com.ect.web.controller.form;
 
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
-import com.ect.db.entity.Report001;
-import com.ect.db.entity.Report001Detail;
-import com.ect.db.entity.ReportName.ReportCode;
+import com.ect.db.entity.EctFlowStatus.ReportStatus;
+import com.ect.db.report.entity.Report001;
+import com.ect.db.report.entity.Report001Detail;
+import com.ect.db.report.entity.ReportName.ReportCode;
 import com.ect.db.report.entity.ViewReportStatus;
-import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.Report001Service;
 import com.ect.web.service.ReportGennericService;
@@ -37,14 +37,15 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *
  * @author Jirawat.l
  */
 @ViewScoped
-@ManagedBean(name = "roleUser")
-public class FormReportMainController extends BaseController {
+@ManagedBean(name = "FormReportMainController")
+public class FormReportMainController extends BaseFormReportController {
 
     private static Logger logger = LoggerFactory.getLogger(FormReportMainController.class);
     private static final long serialVersionUID = 7863151922951862688L;
@@ -52,16 +53,10 @@ public class FormReportMainController extends BaseController {
      * *
      * Service
      */
-    @ManagedProperty(value = "#{dropdownFactory}")
-    private DropdownFactory dropdownFactory;
     @ManagedProperty(value = "#{reportGennericService}")
     private ReportGennericService<Report001> reportGennericService;
     @ManagedProperty(value = "#{report001Service}")
     private Report001Service report001Service;
-    @ManagedProperty(value = "#{reportService}")
-    private ReportService reportService;
-    @ManagedProperty(value = "#{ectConfManager}")
-    private EctConfManager ectConfManager;
     /**
      * *
      * For Insert Report001
@@ -104,6 +99,7 @@ public class FormReportMainController extends BaseController {
      * *
      * Save and close popup
      */
+    @Override
     public void save() {
 
         report001.setReport001DetailList(report001Details);
@@ -136,6 +132,7 @@ public class FormReportMainController extends BaseController {
      * *
      * init before loadPopup
      */
+    @Override
     public void initReportDetail() {
 
         logger.debug("initReportDetail...");
@@ -231,15 +228,15 @@ public class FormReportMainController extends BaseController {
      * *
      * Load Report Reject
      */
-    public void loadReportRejectState() {
+    public void loadReportDrafState() {
 
-        logger.trace("loadReportRejectState!!");
+        logger.trace("loadReportDrafState!!");
 
-        listReportStatusReject = (List<ViewReportStatus>) reportService.findReportByStatus(FlowStatus.REJECT.getStatus());
+        listReportStatusReject = (List<ViewReportStatus>) reportService.findReportByStatus(FlowStatus.DRAFF.getStatus());
 
         if (listReportStatusReject == null || listReportStatusReject.isEmpty()) {
 
-            logger.debug("loadReportApproveState is null!!");
+            logger.debug("loadReportDrafState is null!!");
             return;
 
         }
@@ -252,7 +249,7 @@ public class FormReportMainController extends BaseController {
      * *
      * AddReportDetail to Grid
      */
-    public void addReportDetail(ActionEvent actionEvent) throws Exception {
+    public void addReportDetail() throws Exception {
 
         logger.debug("addReportDetail... {}", inputReport001Detail);
 
@@ -275,6 +272,7 @@ public class FormReportMainController extends BaseController {
     }
     private StreamedContent file;
 
+    @Override
     public void fileXLSDownload() {
         InputStream stream = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/pages/xls/report.xlsx");
         file = new DefaultStreamedContent(stream, "application/vnd.ms-excel ", "report.xlsx");
@@ -316,7 +314,7 @@ public class FormReportMainController extends BaseController {
 
         } else if (tabName.equalsIgnoreCase(FlowStatus.REJECT.getName())) {
 
-            loadReportRejectState();
+            loadReportDrafState();
 
         }
 
@@ -383,6 +381,7 @@ public class FormReportMainController extends BaseController {
 
                 addInfo("ส่งพิจรณาแล้ว");
                 
+                loadReportDrafState();
                 loadReportSTEP1State();
                 loadReportSTEP2State();
 
@@ -390,6 +389,7 @@ public class FormReportMainController extends BaseController {
 
         } catch (Exception ex) {
 
+            addError("เกิดข้อผิดพลาด เลขที่ : " + MDC.get("reqId"));
             logger.error("Cannot updateReportFlowStatus ", ex);
 
         }
@@ -447,19 +447,31 @@ public class FormReportMainController extends BaseController {
 
         }
     }
-
-    /**
-     * @return the dropdownFactory
-     */
-    public DropdownFactory getDropdownFactory() {
-        return dropdownFactory;
-    }
-
-    /**
-     * @param dropdownFactory the dropdownFactory to set
-     */
-    public void setDropdownFactory(DropdownFactory dropdownFactory) {
-        this.dropdownFactory = dropdownFactory;
+    
+    public String reportStatusName(Integer reportStatus){
+        
+        if(reportStatus==null){
+            return "";
+        }
+        
+        if(reportStatus==ReportStatus.APPROVE.getStatus()){
+        
+            return "อนุมัต";
+            
+        }else if(reportStatus == ReportStatus.REJECTE.getStatus()){
+        
+            return "ไม่ผ่านการอนุมัติ";
+        
+        }else if(reportStatus == ReportStatus.WAIT.getStatus()){
+        
+            return "รอส่งพิจรณา";
+            
+        }else{
+        
+            return "N/A";
+        
+        }
+        
     }
 
     /**
@@ -583,35 +595,7 @@ public class FormReportMainController extends BaseController {
     public void setListReportStatusStep1(List<ViewReportStatus> listReportStatusStep1) {
         this.listReportStatusStep1 = listReportStatusStep1;
     }
-
-    /**
-     * @return the reportService
-     */
-    public ReportService getReportService() {
-        return reportService;
-    }
-
-    /**
-     * @param reportService the reportService to set
-     */
-    public void setReportService(ReportService reportService) {
-        this.reportService = reportService;
-    }
-
-    /**
-     * @return the ectConfManager
-     */
-    public EctConfManager getEctConfManager() {
-        return ectConfManager;
-    }
-
-    /**
-     * @param ectConfManager the ectConfManager to set
-     */
-    public void setEctConfManager(EctConfManager ectConfManager) {
-        this.ectConfManager = ectConfManager;
-    }
-
+    
     /**
      * @return the listReportStatusStep2
      */
@@ -694,5 +678,15 @@ public class FormReportMainController extends BaseController {
      */
     public void setSelectReject(ViewReportStatus selectReject) {
         this.selectReject = selectReject;
+    }
+
+    @Override
+    public void edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addReportDetail(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

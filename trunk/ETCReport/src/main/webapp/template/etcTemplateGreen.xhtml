@@ -10,10 +10,10 @@
             <ui:include src="scriptHeader.xhtml"/>
         </ui:insert>
         <ui:insert name="javascript">
-            
+
         </ui:insert>
-        
-            
+
+
     </h:head>
 
     <h:body style="font-size: 10px">
@@ -38,7 +38,7 @@
                         <div class="art-content-layout-row">
                             <div class="art-layout-cell art-sidebar1">
                                 <ui:insert name="leftMenu">
-                                    
+
                                 </ui:insert>
                             </div>
                             <div class="art-layout-cell art-content">
@@ -69,24 +69,47 @@
         </p:blockUI>
         <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show();checkAuthen();" oncomplete="blogui.hide()">
         </p:ajaxStatus>
-        
-        <h:outputScript library="js" name="i18N.js" target="head" />
-        
-        <script>
-            function checkAuthen(){
-                console.log("checkAuthen");
-                var user = '${formSelectReport.userAuthen.toJson()}';
 
-                if(user==null || user==''){
+        <h:outputScript library="js" name="i18N.js" target="head" />
+
+        <script>
+            //<![CDATA[
+            secLogin = 6000;
+
+            var countSession = function() {
+
+                secLogin = secLogin - 1;
+                
+                //console.log(secLogin);
+                
+                if (secLogin < 1) {
+                    alert("Session ของคุณหมดอายุโปรดทำการ Login อีกครั้ง");
+                    window.location = '${request.contextPath}/pages/login/login.xhtml';
+                }else{
+                    setTimeout(countSession, 1000);
+                }
+
+            }
+            
+            
+
+            function checkAuthen() {
+                console.log("checkAuthen");
+                secLogin = 6000;
+                var user = '${formSelectReport.userAuthen.isActive}';
+
+                if (user == null || user == '') {
                     alert("Session ของคุณหมดอายุโปรดทำการ Login อีกครั้ง");
                     window.location = '${request.contextPath}/pages/login/login.xhtml';
                 }
             }
-            $(function(){
+            $(function() {
+                countSession();
                 checkAuthen();
             });
+            //]]>
         </script>
-        
+
     </h:body>
 
 </html>

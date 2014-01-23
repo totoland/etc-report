@@ -6,11 +6,17 @@ package com.ect.web.controller;
 
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
 import com.ect.db.entity.ViewUser;
+import com.ect.web.controller.login.LoginController;
+import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.MessageUtils;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -95,6 +101,23 @@ public abstract class BaseController implements Serializable {
         return (ViewUser) getSessionBean("userAuthen");
     }
 
+    public void sendError(FacesContext faces, int code, String message) {
+        try {
+            faces.getExternalContext().setResponseStatus(code);
+            faces.getExternalContext().getRequestMap().put("javax.servlet.error.message", message);
+            ViewHandler views = faces.getApplication().getViewHandler();
+            String template = "/pages/error/" + code + ".xhtml";
+            UIViewRoot view = views.createView(faces, template);
+            faces.setViewRoot(view);
+            views.getViewDeclarationLanguage(faces, template).
+                    buildView(faces, view);
+            views.renderView(faces, view);
+            faces.responseComplete();
+        } catch (IOException ioe) {
+            throw new RuntimeException(ioe);
+        }
+    }
+
     public void redirectPage(String url) {
         executeJavaScript("window.location='" + url + "'");
     }
@@ -154,88 +177,9 @@ public abstract class BaseController implements Serializable {
         return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(param);
     }
 
-    public boolean canApprove(Integer flowStatusId) {
-
-        ViewUser user = getUserAuthen();
-
-        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
-
-        if (FlowStatus.STEP_1.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() < 4;
-
-        } else if (FlowStatus.STEP_2.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() < 3;
-
-        } else if (FlowStatus.STEP_3.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() < 2;
-
-        } else if (FlowStatus.APPROVED.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() == 0;
-
-        } else if (FlowStatus.REJECT.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() != 4;
-
-        } else if (FlowStatus.DRAFF.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() == 4;
-
-        }
-
-        return false;
-
-    }
-
-    public boolean canReject(Integer flowStatusId) {
-
-        ViewUser user = getUserAuthen();
-
-        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
-
-        if (FlowStatus.STEP_1.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() < 4;
-
-        } else if (FlowStatus.STEP_2.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() < 3;
-
-        } else if (FlowStatus.STEP_3.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() < 2;
-
-        } else if (FlowStatus.APPROVED.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() == 0;
-
-        } else if (FlowStatus.REJECT.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() != 4;
-
-        } else if (FlowStatus.DRAFF.getStatus() == flowStatusId) {
-
-            return user.getUserGroupLvl() == 4;
-
-        }
-
-        return false;
-
-    }
-
-    public boolean canEdit(Integer createdUserGroup) {
-
-        ViewUser user = getUserAuthen();
-
-        logger.trace("Login UserGroup {} Created UserGroup {}",user.getUserGroupId(),createdUserGroup);
+    public String dateTH(Date date){
         
-        if (user.getUserGroupId() != null && createdUserGroup.intValue() == user.getUserGroupId().intValue()) {
-            return true;
-        }
-
-        return false;
+        return DateTimeUtils.getInstance().thDate(date,DateTimeUtils.DISPLAY_DATETIME_FORMAT);
+        
     }
 }

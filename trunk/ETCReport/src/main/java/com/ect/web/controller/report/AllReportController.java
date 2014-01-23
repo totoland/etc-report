@@ -5,12 +5,18 @@
 package com.ect.web.controller.report;
 
 import com.ect.db.bean.ReportCriteria;
+import com.ect.db.entity.ViewUser;
+import com.ect.db.report.entity.Report001;
+import com.ect.db.report.entity.Report001Detail;
+import com.ect.db.report.entity.Report002;
+import com.ect.db.report.entity.Report002Detail;
 import com.ect.db.report.entity.ViewReportStatus;
-import com.ect.web.controller.BaseController;
-import com.ect.web.service.ReportService;
+import com.ect.web.controller.form.BaseFormReportController;
+import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +25,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
@@ -35,45 +43,99 @@ import org.slf4j.LoggerFactory;
  */
 @ManagedBean
 @ViewScoped
-public class AllReportController extends BaseController {
+public class AllReportController extends BaseFormReportController {
 
     private static final long serialVersionUID = 8451238753520170431L;
     private static Logger logger = LoggerFactory.getLogger(AllReportController.class);
+    @ManagedProperty(value = "#{userService}")
+    private UserService userService;
+    private List<ViewReportStatus> viewReportResult;
 
-    @ManagedProperty(value = "#{reportService}")
-    private ReportService reportService;
-    
-    private List<ViewReportStatus>viewReportResult;
-    
-    public void search(){
-    
+    public void search() {
+
         logger.trace("Search!!");
-        
+
         viewReportResult = reportService.findByCriteria(new ReportCriteria());
-        
+
     }
-    
+
     @Override
     public void resetForm() {
-        
     }
 
-    public void fileXLSDownload() {
+    public void fileXLSDownload(ViewReportStatus viewReportStatus) {
+
+        logger.trace("Select report : {}", viewReportStatus);
+
+        String month = DateTimeUtils.getInstance().thDate(viewReportStatus.getCreatedDate(), "MMMM");
+        String year = DateTimeUtils.getInstance().thDate(viewReportStatus.getCreatedDate(), "yyyy");
+        String depName = "";
+        String createdDate = DateTimeUtils.getInstance().thDate(viewReportStatus.getCreatedDate(), DateTimeUtils.DISPLAY_DATETIME_FORMAT);
+        String reportName = "";
+        
+        ViewUser viewUser = userService.findByUserId(viewReportStatus.getCreatedUser());
+
+        if (viewUser != null) {
+
+            depName = viewUser.getProvinceName();
+
+        }
+
+        Map<String, Object> beans = new HashMap<>();
+        beans.put("month", month);
+        beans.put("year", year);
+        beans.put("depName", depName);
+        beans.put("createdDate", createdDate);
+        beans.put("createdUser",viewReportStatus.getCreatedUserFullName());
+        
+        if (viewReportStatus.getReportCode().equals(REPORT_001)) {
+
+            reportName = REPORT_001;
+            
+            Report001 report001 = reportService.findByReport001ById(viewReportStatus.getReportId());
+
+            if (report001 == null || report001.getReport001DetailList() == null || report001.getReport001DetailList().isEmpty()) {
+            
+                logger.warn("Cannot find Report001 by Id : {}",viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report001Detail>());
+                
+            } else {
+                
+                beans.put("details", report001.getReport001DetailList());
+                
+            }
+        } else if(viewReportStatus.getReportCode().equals(REPORT_002)){
+        
+            reportName = REPORT_002;
+            
+            Report002 report002 = reportService.findByReport002ById(viewReportStatus.getReportId());
+
+            if (report002 == null || report002.getReport002DetailList() == null || report002.getReport002DetailList().isEmpty()) {
+            
+                logger.warn("Cannot find Report002 by Id : {}",viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report002Detail>());
+                
+            } else {
+                
+                beans.put("details", report002.getReport002DetailList());
+                
+            }
+            
+        }
 
         HSSFWorkbook wb = null;
-        //InputStream is = MemImportXLSController.class.getResourceAsStream("errorXLS.xls");
-        InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/report.xls");
+        InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/"+reportName+".xls");
         XLSTransformer transformer = new XLSTransformer();
-        Map<String, Object> beans = new HashMap<>();
+
 
         wb = transformer.transformXLS(is, beans);
 
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext ectx = ctx.getExternalContext();
-        
+
         HttpServletResponse response = (HttpServletResponse) ectx.getResponse();
         response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=\"errorXLS" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\""+reportName+"" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
 
         try {
             ServletOutputStream out = response.getOutputStream();
@@ -85,27 +147,12 @@ public class AllReportController extends BaseController {
         }
         ctx.responseComplete();
     }
-    
     private StreamedContent file;
-    
+
     public StreamedContent getFile() {
         InputStream is = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/pages/xls/report.xlsx");
         file = new DefaultStreamedContent(is, "application/vnd.ms-excel ", "report.xlsx");
         return file;
-    }
-
-    /**
-     * @return the reportService
-     */
-    public ReportService getReportService() {
-        return reportService;
-    }
-
-    /**
-     * @param reportService the reportService to set
-     */
-    public void setReportService(ReportService reportService) {
-        this.reportService = reportService;
     }
 
     /**
@@ -127,5 +174,54 @@ public class AllReportController extends BaseController {
      */
     public void setFile(StreamedContent file) {
         this.file = file;
+    }
+
+    /**
+     * @return the userService
+     */
+    public UserService getUserService() {
+        return userService;
+    }
+
+    /**
+     * @param userService the userService to set
+     */
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Override
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addReportDetail(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onEdit(RowEditEvent event) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onCancel(RowEditEvent event) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void initReportDetail() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void fileXLSDownload() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -16,7 +16,7 @@ and open the template in the editor.
 
             <ui:define name="content">
 
-                <h:form id="formRoleUser">
+                <h:form id="formFormReportMainController">
                     <p:panel header="หน้าหลัก">
                         <p:tabView id="tabView">
                             <p:tab id="tab0" title="สร้างรายงาน">
@@ -40,7 +40,7 @@ and open the template in the editor.
 
                             <p:tab id="tab2" title="รายงานรอผลพิจารณา (หน.อก.)">
                                 <h:panelGrid columns="1" cellpadding="10">
-                                    <p:dataTable id="rptPreSendList2" var="item" value="#{roleUser.listReportStatusWait}"
+                                    <p:dataTable id="rptPreSendList2" var="item" value="#{FormReportMainController.listReportStatusWait}"
                                                  paginator="true" rows="5" 
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10,15">
@@ -63,7 +63,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
-                                            <h:outputText value="#{roleUser.statusConvertor(item.flowStatusId)}" />
+                                            <h:outputText value="#{FormReportMainController.statusConvertor(item.flowStatusId)}" />
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -85,7 +85,7 @@ and open the template in the editor.
                             </p:tab>
                             <p:tab id="tab3" title="รายงานรอผลพิจารณา (หน.ส่วนงาน)">
                                 <h:panelGrid columns="1" cellpadding="10">
-                                    <p:dataTable id="rptCompleteList3" var="rpt" value="#{roleUser.rptCompleteList}"
+                                    <p:dataTable id="rptCompleteList3" var="rpt" value="#{FormReportMainController.rptCompleteList}"
                                                  paginator="true" rows="5" 
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10,15">
@@ -142,7 +142,7 @@ and open the template in the editor.
                             </p:tab>
                             <p:tab id="tab4" title="รายงานรอผลพิจารณา (ส่วนกลาง)">
                                 <h:panelGrid columns="1" cellpadding="10">
-                                    <p:dataTable id="rptCompleteList4" var="rpt" value="#{roleUser.rptCompleteList}"
+                                    <p:dataTable id="rptCompleteList4" var="rpt" value="#{FormReportMainController.rptCompleteList}"
                                                  paginator="true" rows="5" 
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10,15">
@@ -199,7 +199,7 @@ and open the template in the editor.
                             </p:tab>
                             <p:tab id="tab5" title="รายงานที่อนุมัติแล้ว">
                                 <h:panelGrid columns="1" cellpadding="10">
-                                    <p:dataTable id="rptCompleteList5" var="rpt" value="#{roleUser.rptCompleteList}"
+                                    <p:dataTable id="rptCompleteList5" var="rpt" value="#{FormReportMainController.rptCompleteList}"
                                                  paginator="true" rows="5" 
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10,15">
@@ -256,7 +256,7 @@ and open the template in the editor.
                             </p:tab>
                             <p:tab id="tab1" title="รายงานที่ไม่ผ่านพิจารณา">
                                 <h:panelGrid columns="1" cellpadding="10">
-                                    <p:dataTable id="rptPreSendList1" var="item" value="#{roleUser.listReportStatusReject}" style="width:700px"
+                                    <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}" style="width:700px"
                                                  paginator="true" rows="5" 
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10,15">
@@ -279,7 +279,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
-                                            <h:outputText value="#{roleUser.statusConvertor(item.flowStatusId)}" />
+                                            <h:outputText value="#{FormReportMainController.statusConvertor(item.flowStatusId)}" />
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -307,53 +307,53 @@ and open the template in the editor.
                             </style>
                         </p:tabView>
                         <p:dialog id="basicDialog" header="รายงานผลการปฏิบัติงาน กรณีจัดทำเป็นโครงการ" widgetVar="dlg1" modal="true">                         
-                            <p:panel header="#{msg.report_001_header_title} #{roleUser.curYear}" style="width: 100%;">
+                            <p:panel header="#{msg.report_001_header_title} #{FormReportMainController.curYear}" style="width: 100%;">
                                 <p:messages id="msgFrmDetails"></p:messages>
                                 <p:panelGrid columns="4" styleClass="frmSelect">
                                     <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
                                     <p:selectOneMenu style="width: 180px;" rendered="false">
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
                                     </p:selectOneMenu>  
                                     <p:outputLabel value="เลือกเดือน : " rendered="false"/>
                                     <p:selectOneMenu style="width: 180px;" rendered="false">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlMonth()}"></f:selectItems>
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlMonth()}"></f:selectItems>
                                     </p:selectOneMenu>  
                                     <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
                                     <p:selectOneMenu style="width: 180px;" rendered="false">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
                                     </p:selectOneMenu>  
                                     <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
                                     <p:selectOneMenu style="width: 180px;" rendered="false">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                                     </p:selectOneMenu>  
                                     <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                                    <p:selectOneMenu style="width: 180px;" id="strategicId" value="#{roleUser.report001.strategicId}">  
+                                    <p:selectOneMenu style="width: 180px;" id="strategicId" value="#{FormReportMainController.report001.strategicId}">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlStrategic()}"></f:selectItems>
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlStrategic()}"></f:selectItems>
                                     </p:selectOneMenu>
                                     <p:outputLabel value="เลือกกลยุทธ์ : " id="subStrategicId"/>
-                                    <p:selectOneMenu style="width: 180px;" value="#{roleUser.report001.subStrategicId}">  
+                                    <p:selectOneMenu style="width: 180px;" value="#{FormReportMainController.report001.subStrategicId}">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
                                     </p:selectOneMenu>
                                     <p:outputLabel value="เลือกแผนงาน : "/>
-                                    <p:selectOneMenu style="width: 180px;" id="planId" value="#{roleUser.report001.planId}">  
+                                    <p:selectOneMenu style="width: 180px;" id="planId" value="#{FormReportMainController.report001.planId}">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlPlan()}"></f:selectItems>  
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlPlan()}"></f:selectItems>  
                                     </p:selectOneMenu>
                                     <p:outputLabel value="เลือกโครงการ : "/>
-                                    <p:selectOneMenu style="width: 180px;" id="projectId" value="#{roleUser.report001.projectId}">  
+                                    <p:selectOneMenu style="width: 180px;" id="projectId" value="#{FormReportMainController.report001.projectId}">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlProject()}"></f:selectItems> 
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlProject()}"></f:selectItems> 
                                     </p:selectOneMenu>
                                     <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
                                     <p:selectOneMenu style="width: 180px;" rendered="false">  
                                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{roleUser.dropdownFactory.ddlActivity()}"></f:selectItems> 
+                                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{FormReportMainController.dropdownFactory.ddlActivity()}"></f:selectItems> 
                                     </p:selectOneMenu>
                                     <p:outputLabel value=""/>
                                     <p:outputLabel value=""/>                            
@@ -361,15 +361,15 @@ and open the template in the editor.
 
                                 <p:panelGrid columns="2" style="width: 880px;" styleClass="frmDetail" id="pnlFrm">
                                     <f:facet name="header"  class="txtLeft">
-                                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="dlgAddReportDetail.show()" update="pn_addReportDetail" actionListener="#{roleUser.initReportDetail()}"/>
+                                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="dlgAddReportDetail.show()" update="pn_addReportDetail" actionListener="#{FormReportMainController.initReportDetail()}"/>
                                     </f:facet>       
 
-                                    <p:dataTable var="item" value="#{roleUser.report001Details}" id="carList" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
+                                    <p:dataTable var="item" value="#{FormReportMainController.report001Details}" id="carList" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                                  rowsPerPageTemplate="5,10,15">  
 
-                                        <p:ajax event="rowEdit" listener="#{roleUser.onEdit}"/>  
-                                        <p:ajax event="rowEditCancel" listener="#{roleUser.onCancel}"/>
+                                        <p:ajax event="rowEdit" listener="#{FormReportMainController.onEdit}"/>  
+                                        <p:ajax event="rowEditCancel" listener="#{FormReportMainController.onCancel}"/>
 
                                         <p:column headerText="ลำดับ" style="width:30%">  
                                             <p:cellEditor>  
@@ -471,7 +471,7 @@ and open the template in the editor.
                                 </p:panelGrid>
                             </p:panel>
                             <div id="pnlCmd" align="center">
-                                <p:commandButton value="#{msg.btn_save}" onsuccess="dlg1.hide()" actionListener="#{roleUser.save()}" id="btnSave"/>
+                                <p:commandButton value="#{msg.btn_save}" onsuccess="dlg1.hide()" actionListener="#{FormReportMainController.save()}" id="btnSave"/>
                                 <p:commandButton value="#{msg.btn_cancel}" id="btnCancel"/>
                             </div>
                         </p:dialog>
@@ -481,31 +481,31 @@ and open the template in the editor.
                             <p:panelGrid columns="2" id="pn_addReportDetail">
 
                                 <h:outputLabel for="lb1" value="สำนัก/ส่วนงาน/สนง.กกต.จว *" />  
-                                <p:inputText id="lb1" value="#{roleUser.inputReport001Detail.depName}" required="true" requiredMessage="กรุณาระบุสำนัก/ส่วนงาน/สนง.กกต.จว" label="lb1"/>  
+                                <p:inputText id="lb1" value="#{FormReportMainController.inputReport001Detail.depName}" required="true" requiredMessage="กรุณาระบุสำนัก/ส่วนงาน/สนง.กกต.จว" label="lb1"/>  
 
                                 <h:outputLabel for="lb2" value="ชื่อกิจกรรม *" />  
-                                <p:inputText id="lb2" value="#{roleUser.inputReport001Detail.activityName}" requiredMessage="กรุณาระบุชื่อกิจกรรม" required="true" label="lb2"/> 
+                                <p:inputText id="lb2" value="#{FormReportMainController.inputReport001Detail.activityName}" requiredMessage="กรุณาระบุชื่อกิจกรรม" required="true" label="lb2"/> 
 
                                 <h:outputLabel for="lb3" value="ประเภท *" />  
-                                <p:inputText id="lb3" value="#{roleUser.inputReport001Detail.activityType}" requiredMessage="กรุณาระบุประเภท" required="true" label="lb3"/> 
+                                <p:inputText id="lb3" value="#{FormReportMainController.inputReport001Detail.activityType}" requiredMessage="กรุณาระบุประเภท" required="true" label="lb3"/> 
 
                                 <h:outputLabel for="lb4" value="จำนวน *" />  
-                                <p:inputMask mask="9?9999999" id="lb4" value="#{roleUser.inputReport001Detail.activityAmount}" requiredMessage="กรุณาระบุจำนวน" required="true" label="lb4"/> 
+                                <p:inputMask mask="9?9999999" id="lb4" value="#{FormReportMainController.inputReport001Detail.activityAmount}" requiredMessage="กรุณาระบุจำนวน" required="true" label="lb4"/> 
 
                                 <h:outputLabel for="lb5" value="งบประมาณตั้งไว้ *" />  
-                                <p:inputMask mask="9?9999999" id="lb5" value="#{roleUser.inputReport001Detail.budgetSet}" requiredMessage="กรุณาระบุงบประมาณตั้งไว้" required="true" label="lb5"/>
+                                <p:inputMask mask="9?9999999" id="lb5" value="#{FormReportMainController.inputReport001Detail.budgetSet}" requiredMessage="กรุณาระบุงบประมาณตั้งไว้" required="true" label="lb5"/>
 
                                 <h:outputLabel for="lb6" value="เบิกจ่าย *" />  
-                                <p:inputMask mask="9?9999999" id="lb6" value="#{roleUser.inputReport001Detail.budgetReal}" requiredMessage="กรุณาระบุงบประมาณเบิกจ่าย" required="true" label="lb6"/>
+                                <p:inputMask mask="9?9999999" id="lb6" value="#{FormReportMainController.inputReport001Detail.budgetReal}" requiredMessage="กรุณาระบุงบประมาณเบิกจ่าย" required="true" label="lb6"/>
 
                                 <h:outputLabel for="lb7" value="การบรรลุตัวชี้วัด *" /> 
-                                <p:selectOneRadio id="lb7" value="#{roleUser.inputReport001Detail.isPass}" requiredMessage="กรุณาระบุการบรรลุตัวชี้วัด" required="true" style="border-style:none">  
+                                <p:selectOneRadio id="lb7" value="#{FormReportMainController.inputReport001Detail.isPass}" requiredMessage="กรุณาระบุการบรรลุตัวชี้วัด" required="true" style="border-style:none">  
                                     <f:selectItem itemLabel="ผ่าน" itemValue="true" />  
                                     <f:selectItem itemLabel="ไม่ผ่าน" itemValue="false" /> 
                                 </p:selectOneRadio>
 
                                 <f:facet name="footer">  
-                                    <p:commandButton value="เพิ่ม" actionListener="#{roleUser.addReportDetail(actionEvent)}" update="msgAddReportDetail,carList" icon="ui-icon-check" style="margin:0"/>  
+                                    <p:commandButton value="เพิ่ม" actionListener="#{FormReportMainController.addReportDetail(actionEvent)}" update="msgAddReportDetail,carList" icon="ui-icon-check" style="margin:0"/>  
                                 </f:facet>
                             </p:panelGrid>
 

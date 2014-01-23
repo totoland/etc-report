@@ -20,10 +20,10 @@ and open the template in the editor.
 
                 <h:form id="form1">
                     <p:messages id="msgFormMain" closable="true"/>
-                    <p:panel header="หน้าหลัก">
+                    <p:panel header="หน้าหลัก" style="height: 580px">
                         <p:tabView id="tabView" dynamic="true" cache="false">
 
-                            <p:ajax event="tabChange" listener="#{roleUser.onTabChange}"/> 
+                            <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}"/> 
 
                             <p:tab id="tab0" title="สร้างรายงาน">
 
@@ -46,250 +46,299 @@ and open the template in the editor.
 
                                 </p:panel>
                             </p:tab>
+                            <p:tab id="tab_REJECT" title="รอส่งพิจารณา">
+                                <div style="width: 1170px;overflow-x: scroll">
+                                    <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}"
+                                                 paginator="true" rows="5" style="width: 1450px;"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10">
 
+                                        <p:column width="70">
+                                            <f:facet name="header">
+                                                <h:outputText value="เลขที่เอกสาร" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.documentNo}" />
+                                        </p:column>
+
+                                        <p:column style="width: 220px">
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อรายงาน" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.reportDesc}" />
+                                        </p:column>
+                                        <p:column style="width: 100px">
+                                            <f:facet name="header">
+                                                <h:outputText value="สถานะ" />
+                                            </f:facet>
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                        </p:column>
+                                        <p:column style="width:120px">
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่สร้าง" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.createdDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column style="width:170px">
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้สร้าง" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.createdUserFullName}" />
+                                        </p:column>
+                                        <p:column style="width: 120px">
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่ส่งกลับ" />
+                                            </f:facet>
+                                            
+                                            <totoland:convertDateTime value="#{item.rejectedDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column style="width: 220px">
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้ส่งกลับ" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.rejectedUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
+                                            <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 101)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+                            </p:tab>
                             <p:tab id="tab_STEP_1" title="รายงานรอผลพิจารณา (หน.อก.)">
-                                <p:dataTable id="rptPreSendList2" var="item" value="#{roleUser.listReportStatusStep1}"
-                                             paginator="true" rows="5" 
-                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             rowsPerPageTemplate="5,10,15">
+                                <div style="width: 1170px;overflow-x: scroll">
+                                    <p:dataTable id="rptPreSendList2" var="item" value="#{FormReportMainController.listReportStatusStep1}"
+                                                 paginator="true" rows="5" style="width: 1800px"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10">
 
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="เลขที่เอกสาร" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.documentNo}" />
-                                    </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="เลขที่เอกสาร" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.documentNo}" />
+                                        </p:column>
 
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อรายงาน" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.reportDesc}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
-                                        <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{roleUser.approve(item.reportCode, item.reportId, 102)}" icon="ui-icon-check" rendered="#{roleUser.canApprove(item.flowStatusId)}"/>
-                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{roleUser.canReject(item.flowStatusId)}"/>
-                                    </p:column>
-                                </p:dataTable>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อรายงาน" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.reportDesc}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่สร้าง" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.createdDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้สร้าง" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.createdUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่ส่งพิจรณา" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.approvedDate}">
+                                                
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้ส่งพิจรณา" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.approvedUserFullName}" />
+                                        </p:column>
+                                        <p:column style="width: 120px">
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่ส่งกลับ" />
+                                            </f:facet>
+                                            
+                                            <totoland:convertDateTime value="#{item.rejectedDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column style="width: 220px">
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้ส่งกลับ" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.rejectedUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
+                                            <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 102)}" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
+                                            <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,0)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
                             </p:tab>
                             <p:tab id="tab_STEP_2" title="รายงานรอผลพิจารณา (หน.ส่วนงาน)">
-                                <p:dataTable id="rptCompleteList3" var="item" value="#{roleUser.listReportStatusStep2}"
-                                             paginator="true" rows="5" 
-                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             rowsPerPageTemplate="5,10,15">
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="เลขที่เอกสาร" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.documentNo}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อรายงาน" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.reportDesc}" />
-                                    </p:column>                                    
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่ส่งพิจรณา" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.approvedDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้ส่งพิจรณา" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.approvedUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
-                                        <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" actionListener="#{roleUser.approve(item.reportCode, item.reportId, 103)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{roleUser.canApprove(item.flowStatusId)}"/>                                        
-                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{roleUser.canReject(item.flowStatusId)}"/>
-                                    </p:column>
-                                </p:dataTable>
+                                <div style="width: 1170px;overflow-x: scroll">
+                                    <p:dataTable id="rptCompleteList3" var="item" value="#{FormReportMainController.listReportStatusStep2}"
+                                                 paginator="true" rows="5" style="width: 1450px"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10">
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="เลขที่เอกสาร" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.documentNo}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อรายงาน" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.reportDesc}" />
+                                        </p:column>                                    
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่สร้าง" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.createdDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้สร้าง" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.createdUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่ส่งพิจรณา" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.approvedDate}">
+                                                
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้ส่งพิจรณา" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.approvedUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
+                                            <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" actionListener="#{FormReportMainController.approve(item.reportCode, item.reportId, 103)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>                                        
+                                            <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,101)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
                             </p:tab>
                             <p:tab id="tab_STEP_3" title="รายงานรอผลพิจารณา (ส่วนกลาง)">
-                                <p:dataTable id="rptCompleteList4" var="item" value="#{roleUser.listReportStatusStep3}"
-                                             paginator="true" rows="5" 
-                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             rowsPerPageTemplate="5,10,15">
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="เลขที่เอกสาร" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.documentNo}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อรายงาน" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.reportDesc}" />
-                                    </p:column>                                   
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่ส่งพิจราณา" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.approvedDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้ส่งพิจราณา" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.approvedUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
-                                        <p:commandButton value="#{msg.btn_approve}" onclick="return confirm('#{msg.confirmation_message_approve}')" actionListener="#{roleUser.approve(item.reportCode, item.reportId, 200)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{roleUser.canApprove(item.flowStatusId)}"/>                                        
-                                        <p:commandButton value="#{msg.btn_reject}" actionListener="#{roleUser.initReject(item,-1)}" update=":form1:dialogRemark" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{roleUser.canReject(item.flowStatusId)}"/>
-                                    </p:column>
-                                </p:dataTable>
+                                <div style="width: 1170px;overflow-x: scroll">
+                                    <p:dataTable id="rptCompleteList4" var="item" value="#{FormReportMainController.listReportStatusStep3}"
+                                                 paginator="true" rows="5" style="width: 1450px"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10">
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="เลขที่เอกสาร" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.documentNo}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อรายงาน" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.reportDesc}" />
+                                        </p:column>                                   
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่สร้าง" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.createdDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้สร้าง" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.createdUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่ส่งพิจราณา" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.approvedDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้ส่งพิจราณา" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.approvedUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
+                                            <p:commandButton value="#{msg.btn_approve}" onclick="return confirm('#{msg.confirmation_message_approve}')" actionListener="#{FormReportMainController.approve(item.reportCode, item.reportId, 200)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>                                        
+                                            <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,0)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
                             </p:tab>
                             <p:tab id="tab_APPROVED" title="รายงานที่อนุมัติแล้ว">
-                                <p:dataTable id="rptCompleteList5" var="item" value="#{roleUser.listReportStatusApprove}"
-                                             paginator="true" rows="5" 
-                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             rowsPerPageTemplate="5,10,15">
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="เลขที่เอกสาร" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.documentNo}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อรายงาน" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.reportDesc}" />
-                                    </p:column>                                    
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่อนุมัติ" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.approvedDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้อนุมัติ" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.approvedUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include">
-                                        </p:commandButton>
-                                    </p:column>
-                                </p:dataTable>
-                            </p:tab>
-                            <p:tab id="tab_REJECT" title="รายงานที่ไม่ผ่านพิจารณา">
-                                <p:dataTable id="rptPreSendList1" var="item" value="#{roleUser.listReportStatusReject}"
-                                             paginator="true" rows="5" 
-                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             rowsPerPageTemplate="5,10,15">
-
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="เลขที่เอกสาร" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.documentNo}" />
-                                    </p:column>
-
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อรายงาน" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.reportDesc}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้สร้าง" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.createdUserName}" />
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="วันที่ส่งกลับ" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.rejectedDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="ชื่อผู้ส่งกลับ" />
-                                        </f:facet>
-                                        <h:outputText value="#{item.rejectedUserName}" />
-                                    </p:column>
-                                </p:dataTable>
+                                <div style="width: 1170px;overflow-x: scroll">
+                                    <p:dataTable id="rptCompleteList5" var="item" value="#{FormReportMainController.listReportStatusApprove}"
+                                                 paginator="true" rows="5" style="width:1450px"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10">
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="เลขที่เอกสาร" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.documentNo}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อรายงาน" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.reportDesc}" />
+                                        </p:column>                                    
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่สร้าง" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.createdDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้สร้าง" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.createdUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่อนุมัติ" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.approvedDate}">
+                                                
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้อนุมัติ" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.approvedUserFullName}" />
+                                        </p:column>
+                                        <p:column>
+                                            <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include">
+                                            </p:commandButton>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
                             </p:tab>
                             <style>
                                 .art-layout-cell {
@@ -306,29 +355,31 @@ and open the template in the editor.
                         </p:tabView>
 
                     </p:panel>
-                    
+
                     <!-- Dialog Reason -->
                     <p:dialog id="dialogRemark" header="เหตุผลไม่ผ่านการพิจรณา" widgetVar="dialogRemark" resizable="false" modal="true">  
                         <p:messages id="remarkMsg"/>
                         <p:panelGrid columns="2">  
                             <h:outputLabel for="remark" value="เหตุผล:" />  
-                            <p:inputTextarea value="#{roleUser.remark}" id="remark" label="remark" />  
+                            <p:inputTextarea value="#{FormReportMainController.remark}" id="remark" label="remark" />  
                             <f:facet name="footer">  
-                                <p:commandButton id="btSaveReject" value="#{msg.btn_save}" update=":form1:msgFormMain,remarkMsg"   
-                                                 actionListener="#{roleUser.reject(actionEvent)}">
+                                <p:commandButton id="btSaveReject" value="#{msg.btn_save}" update=":form1:msgFormMain,remarkMsg,tabView"   
+                                                 actionListener="#{FormReportMainController.reject(actionEvent)}">
                                 </p:commandButton>
                             </f:facet>  
                         </p:panelGrid>
                     </p:dialog>
-                    
+
                     <!-- Include Report Create-->
                     <h:panelGroup id="include">
 
                         <ui:include src="formReport001.xhtml" />
                         <ui:include src="formReport002.xhtml" />
+                        <ui:include src="formReport003.xhtml" />
+                        <ui:include src="formReport004.xhtml" />
 
                     </h:panelGroup>
-                    
+
                     <!-- Include Report Edit-->
                     <h:panelGroup id="includeEdit">
                         <p:dialog id="dialogEdit" header="แสดงข้อมูล" widgetVar="dialogEdit" resizable="true" height="500" width="1100" modal="true">

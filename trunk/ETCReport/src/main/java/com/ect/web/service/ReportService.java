@@ -5,8 +5,10 @@
 package com.ect.web.service;
 
 import com.ect.db.bean.ReportCriteria;
-import com.ect.db.entity.Report001;
-import com.ect.db.entity.Report002;
+import com.ect.db.report.entity.Report001;
+import com.ect.db.report.entity.Report002;
+import com.ect.db.report.entity.Report003;
+import com.ect.db.report.entity.Report004;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
 import java.util.List;
@@ -30,4 +32,10 @@ public interface ReportService {
     List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria);
 
     Report002 findByReport002ById(Integer paramReportId);
+    
+    List<ViewReportStatus>findReportByStatus(Integer flowStatusId,Integer reportStatus);
+
+    Report003 findByReport003ById(Integer paramReportId);
+
+    Report004 findByReport004ById(Integer paramReportId);
 }

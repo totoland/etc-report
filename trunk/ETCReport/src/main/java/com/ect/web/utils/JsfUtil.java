@@ -1,6 +1,7 @@
 package com.ect.web.utils;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -18,9 +19,10 @@ import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JsfUtil {
+public class JsfUtil implements Serializable{
 
     private static final Logger logger = LoggerFactory.getLogger(JsfUtil.class);
+    private static final long serialVersionUID = 5017019437928010910L;
 
     private RequestContext context = RequestContext.getCurrentInstance();
     

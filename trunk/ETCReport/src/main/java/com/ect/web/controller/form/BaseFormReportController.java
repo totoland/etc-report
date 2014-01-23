@@ -5,12 +5,16 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.common.dao.hibernate.EctConfManager;
+import com.ect.db.entity.EctFlowStatus;
+import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportService;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -19,6 +23,8 @@ import org.primefaces.event.RowEditEvent;
 public abstract class BaseFormReportController extends BaseController{
     private static final long serialVersionUID = -7864668711794526812L;
 
+    private static Logger logger = LoggerFactory.getLogger(BaseFormReportController.class);
+    
     /**
      * *
      * Service
@@ -34,6 +40,8 @@ public abstract class BaseFormReportController extends BaseController{
     
     protected static final String REPORT_001 = "REPORT_001";
     protected static final String REPORT_002 = "REPORT_002";
+    protected static final String REPORT_003 = "REPORT_003";
+    protected static final String REPORT_004 = "REPORT_004";
     protected static final String REPORT_MODE_EDIT = "edit";
     protected static final String REPORT_MODE_VIEW = "view";
     protected static final String REPORT_MODE_CREATE = "create";
@@ -80,6 +88,91 @@ public abstract class BaseFormReportController extends BaseController{
      */
     public abstract void fileXLSDownload();
 
+    public boolean canApprove(Integer flowStatusId) {
+
+        ViewUser user = getUserAuthen();
+
+//        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
+
+        if (EctFlowStatus.FlowStatus.DRAFF.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 4;
+
+        } else if (EctFlowStatus.FlowStatus.STEP_1.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 4;
+
+        } else if (EctFlowStatus.FlowStatus.STEP_2.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 3;
+
+        } else if (EctFlowStatus.FlowStatus.STEP_3.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 2;
+
+        } else if (EctFlowStatus.FlowStatus.APPROVED.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 0;
+
+        } else if (EctFlowStatus.FlowStatus.DRAFF.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 4;
+
+        }
+
+        return false;
+
+    }
+
+    public boolean canReject(Integer flowStatusId) {
+
+        ViewUser user = getUserAuthen();
+
+//        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
+
+        if (EctFlowStatus.FlowStatus.STEP_1.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 4;
+
+        } else if (EctFlowStatus.FlowStatus.STEP_2.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 3;
+
+        } else if (EctFlowStatus.FlowStatus.STEP_3.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() < 2;
+
+        } else if (EctFlowStatus.FlowStatus.APPROVED.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 0;
+
+        } else if (EctFlowStatus.FlowStatus.REJECT.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() != 4;
+
+        } else if (EctFlowStatus.FlowStatus.DRAFF.getStatus() == flowStatusId) {
+
+            return user.getUserGroupLvl() == 4;
+
+        }
+
+        return false;
+
+    }
+
+    public boolean canEdit(Integer createdUserGroup) {
+
+        ViewUser user = getUserAuthen();
+
+//        logger.trace("Login UserGroup {} Created UserGroup {}", user.getUserGroupId(), createdUserGroup);
+
+        if (user.getUserGroupId() != null && createdUserGroup.intValue() == user.getUserGroupId().intValue()) {
+            return true;
+        }
+
+        return false;
+    }
+    
     /**
      * @return the ectConfManager
      */

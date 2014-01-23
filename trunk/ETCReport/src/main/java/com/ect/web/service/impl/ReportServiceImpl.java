@@ -5,11 +5,15 @@
 package com.ect.web.service.impl;
 
 import com.ect.db.bean.ReportCriteria;
-import com.ect.db.entity.Report001;
-import com.ect.db.entity.Report002;
+import com.ect.db.report.entity.Report001;
+import com.ect.db.report.entity.Report002;
 import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.dao.Report002Dao;
+import com.ect.db.report.dao.Report003Dao;
+import com.ect.db.report.dao.Report004Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
+import com.ect.db.report.entity.Report003;
+import com.ect.db.report.entity.Report004;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
@@ -33,9 +37,20 @@ public class ReportServiceImpl implements ReportService{
     @Autowired
     Report002Dao report002Dao;
     
+    @Autowired
+    Report003Dao report003Dao;
+    
+    @Autowired
+    Report004Dao report004Dao;
+    
     @Override
     public List<ViewReportStatus>findReportByStatus(Integer flowStatusId){
         return viewReportByStatusDao.findReportByStatus(flowStatusId);
+    }
+    
+    @Override
+    public List<ViewReportStatus>findReportByStatus(Integer flowStatusId,Integer reportStatus){
+        return viewReportByStatusDao.findReportByStatus(flowStatusId,reportStatus);
     }
     
     @Override
@@ -66,6 +81,16 @@ public class ReportServiceImpl implements ReportService{
     @Override
     public Report002 findByReport002ById(Integer paramReportId) {
         return report002Dao.findByReportId(paramReportId);
+    }
+
+    @Override
+    public Report003 findByReport003ById(Integer paramReportId) {
+        return report003Dao.findByReportId(paramReportId);
+    }
+
+    @Override
+    public Report004 findByReport004ById(Integer paramReportId) {
+        return report004Dao.findByReportId(paramReportId);
     }
     
 }

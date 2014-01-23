@@ -28,13 +28,13 @@ and open the template in the editor.
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlMonth()}"></f:selectItems>
                             </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " />
-                            <p:selectOneMenu style="width: 180px;"  >  
+                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 180px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
                             </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกแบบรายงาน : " />
-                            <p:selectOneMenu style="width: 180px;"  >  
+                            <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
+                            <p:selectOneMenu style="width: 180px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                             </p:selectOneMenu>  
@@ -109,21 +109,20 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     <h:outputText value="วันที่สร้าง" />
                                 </f:facet>
-                                <h:outputText value="#{item.createdDate}" />
+                                <h:outputText value="#{allReportController.dateTH(item.createdDate)}" />
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="ชื่อผู้สร้าง" />
                                 </f:facet>
-                                <h:outputText value="oper" />
+                                <h:outputText value="#{item.createdUserFullName}" />
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="ส่งออก Excel" />
                                 </f:facet>
-                                <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" actionListener="#{allReportController.fileXLSDownload()}" onclick="PrimeFaces.monitorDownload(start, stop)"   
-                                                 icon="ui-icon-arrowthichk-s">   
-                                    <p:fileDownload value="#{allReportController.file}" />  
+                                <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" actionListener="#{allReportController.fileXLSDownload(item)}" onclick="PrimeFaces.monitorDownload(start, stop)"   
+                                                 icon="ui-icon-arrowthichk-s">
                                 </p:commandButton>
                             </p:column>
                             <f:facet name="footer">

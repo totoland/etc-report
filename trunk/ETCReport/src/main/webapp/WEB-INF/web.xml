@@ -27,7 +27,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    <servlet>
+<!--    <servlet>
         <servlet-name>Push Servlet</servlet-name>
         <servlet-class>org.primefaces.push.PushServlet</servlet-class>
         <load-on-startup>1</load-on-startup> 
@@ -35,11 +35,11 @@
             <param-name>channels</param-name>
             <param-value>chat,counter</param-value>
         </init-param>
-    </servlet>
-    <servlet-mapping>
+    </servlet>-->
+<!--    <servlet-mapping>
         <servlet-name>Push Servlet</servlet-name>
         <url-pattern>/prime-push/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
     <!--    <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -70,6 +70,6 @@
     </welcome-file-list>
     <error-page>
         <error-code>401</error-code>
-        <location>/pages/login.xhtml</location>
+        <location>/pages/login/login.xhtml</location>
     </error-page>
 </web-app>

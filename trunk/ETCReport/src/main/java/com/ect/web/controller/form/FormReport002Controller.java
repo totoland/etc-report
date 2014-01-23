@@ -5,8 +5,8 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.entity.EctFlowStatus;
-import com.ect.db.entity.Report002Detail;
-import com.ect.db.entity.Report002;
+import com.ect.db.report.entity.Report002Detail;
+import com.ect.db.report.entity.Report002;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.DateTimeUtils;
@@ -109,7 +109,7 @@ public class FormReport002Controller extends BaseFormReportController{
         report002.setReport002DetailList(report002Details);
         report002.setCreatedDate(new Date());
         report002.setCreatedUser(super.getUserAuthen().getUserId());
-        report002.setFlowStatusId(EctFlowStatus.FlowStatus.STEP_1.getStatus());
+        report002.setFlowStatusId(EctFlowStatus.FlowStatus.DRAFF.getStatus());
         report002.setReportDesc(ectConfManager.getReportName(REPORT_002));
         report002.setReportCode(REPORT_002);
         report002.setCreatedUserGroup(getUserAuthen().getUserGroupId());

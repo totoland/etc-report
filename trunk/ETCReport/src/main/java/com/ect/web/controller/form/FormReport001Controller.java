@@ -5,8 +5,8 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
-import com.ect.db.entity.Report001;
-import com.ect.db.entity.Report001Detail;
+import com.ect.db.report.entity.Report001;
+import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.entity.ViewReport001;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_001;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_CREATE;
@@ -120,7 +120,7 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setReport001DetailList(report001Details);
         report001.setCreatedDate(new Date());
         report001.setCreatedUser(super.getUserAuthen().getUserId());
-        report001.setFlowStatusId(FlowStatus.STEP_1.getStatus());
+        report001.setFlowStatusId(FlowStatus.DRAFF.getStatus());
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
@@ -137,7 +137,7 @@ public class FormReport001Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog");
+            JsfUtil.hidePopup("REPORT_MainDialog_"+REPORT_001);
 
         } catch (Exception ex) {
 
