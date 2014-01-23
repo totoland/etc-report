@@ -34,6 +34,8 @@ public class LoginController extends BaseController {
     private AuthenDao authenDao;
     
     private ViewUser loginUser;
+    
+    private boolean loggedIn = false;
 
     @PostConstruct
     public void init() {
@@ -47,7 +49,7 @@ public class LoginController extends BaseController {
         
         logger.info("loginProcess!!");
 
-        logger.trace("userName : {} , passWord : {}", userName,passWord);
+        logger.info("userName : {} , passWord : {}", userName,passWord);
 
         if (!validateLongin()) {
             addError("loggin fial!!");
@@ -64,6 +66,8 @@ public class LoginController extends BaseController {
             String nPassWord = ECTUtils.encrypt(passWord);
             
             loginUser = getAuthenDao().loginUser(userName, nPassWord);
+            
+            loggedIn = true;
             
             super.getRequest().getSession().setAttribute("userAuthen", loginUser);
 
@@ -91,6 +95,15 @@ public class LoginController extends BaseController {
 
         executeJavaScript("blockUI.show();setTimeout(function(){window.location='"+path+"/pages/form/index.xhtml';},1000);");
 
+    }
+    
+    public void logout(){
+        
+        logger.trace("logout!!");
+    
+        super.getRequest().getSession().invalidate();
+        
+        redirectPage(JsfUtil.getContextPath()+"/pages/login/login.xhtml");
     }
 
     /**
@@ -161,6 +174,20 @@ public class LoginController extends BaseController {
      */
     public void setLoginUser(ViewUser loginUser) {
         this.loginUser = loginUser;
+    }
+
+    /**
+     * @return the loggedIn
+     */
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    /**
+     * @param loggedIn the loggedIn to set
+     */
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
     
 }

@@ -23,7 +23,7 @@ and open the template in the editor.
         <h:form>
             <p:panel id="REPORT_001">
 
-                <p:panel header="#{msg.report_header_title}">
+                <p:panel header="#{formReport001Controller.reportTitle}">
                     <p:messages id="REPORT_001msgFrmDetails"></p:messages>
                     <p:panelGrid columns="4" styleClass="frmSelect">
                         <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
@@ -95,7 +95,7 @@ and open the template in the editor.
                                     ${index+1} 
                             </p:column>
 
-                            <p:column headerText="รายละเอียดการดำเนินงาน" style="width:120px">  
+                            <p:column headerText="รายละเอียดการดำเนินงาน" style="width:130px">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
                                         <h:outputText value="#{item.workDetail}" />  
@@ -128,7 +128,7 @@ and open the template in the editor.
                                 </p:cellEditor>
                             </p:column>
 
-                            <p:column headerText="ประเภทผลการปฏิบัติงาน" style="width:120px">  
+                            <p:column headerText="ประเภทผลการปฏิบัติงาน" style="width:130px">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
                                         <h:outputText value="#{item.resultType}" />  
@@ -139,7 +139,7 @@ and open the template in the editor.
                                 </p:cellEditor>
                             </p:column>
 
-                            <p:column headerText="จำนวนผลการปฏิบัติงาน" style="width:110px">  
+                            <p:column headerText="จำนวนผลการปฏิบัติงาน" style="width:130px">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
                                         <h:outputText value="#{item.resultAmount}" />  
@@ -150,7 +150,7 @@ and open the template in the editor.
                                 </p:cellEditor>
                             </p:column>
 
-                            <p:column headerText="งบประมาณที่ตั้งไว้" style="width:80px">  
+                            <p:column headerText="งบประมาณที่ตั้งไว้" style="width:120px">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
                                         <h:outputText value="#{item.budgetSet}" />  
@@ -161,7 +161,7 @@ and open the template in the editor.
                                 </p:cellEditor>
                             </p:column>
 
-                            <p:column headerText="งบประมาณจ่ายจริง" style="width:90px">  
+                            <p:column headerText="งบประมาณจ่ายจริง" style="width:120px">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
                                         <h:outputText value="#{item.budgetReal}" />  

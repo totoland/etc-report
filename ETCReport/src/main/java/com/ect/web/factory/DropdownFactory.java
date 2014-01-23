@@ -130,6 +130,22 @@ public class DropdownFactory implements Serializable {
     }
     
     /***
+     * กลยุทธ์
+     * @return All SubStrategic
+     */
+    public List<DropDownList> ddlSubStrategic(Integer strateGicId) {
+
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("ECT_SUB_STRATEGIC");
+        criteria.setOrderByField("SUB_STRATEGIC_NAME");
+        criteria.setName("SUB_STRATEGIC_NAME");
+        criteria.setValue("SUB_STRATEGIC_ID");
+        criteria.setCondition("WHERE STRATEGIC_ID = "+strateGicId);
+
+        return commonService.getDropdownList(criteria);
+    }
+    
+    /***
      * แผนงาน
      * @return All Plan
      */
@@ -182,7 +198,7 @@ public class DropdownFactory implements Serializable {
         DropDownList criteria = new DropDownList();
         criteria.setTableName("REPORT_NAME");
         criteria.setOrderByField("REPORT_CODE");
-        criteria.setName("REPORT_NAME");
+        criteria.setName("REPORT_DESC + ' ' + REPORT_NAME");
         criteria.setValue("REPORT_CODE");
         criteria.setCondition("REPORT_TYPE = 1");
 

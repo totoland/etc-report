@@ -10,187 +10,131 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <p:panel id="REPORT_002" rendered="#{formSelectReport.reportCode=='REPORT_002'}" >
-                
-                <p:dialog id="basicDialog2" header="รายงานผลการปฏิบัติงานกรณีไม่ได้จัดทำเป็นโครงการ" widgetVar="dlg1" modal="true">                         
-                    <p:panel header="#{msg.report_001_header_title} #{formReport001Controller.curYear}" style="width: 100%;">
-                        <p:messages id="msgFrmDetails"></p:messages>
-                        <p:panelGrid columns="4" styleClass="frmSelect">
-                            <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" rendered="false">
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกเดือน : " rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" rendered="false">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlMonth()}"></f:selectItems>
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" rendered="false">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" rendered="false">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportForm()}"></f:selectItems>  
-                            </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                            <p:selectOneMenu style="width: 180px;" id="strategicId" value="#{formReport001Controller.report001.strategicId}">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlStrategic()}"></f:selectItems>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกลยุทธ์ : " id="subStrategicId"/>
-                            <p:selectOneMenu style="width: 180px;" value="#{formReport001Controller.report001.subStrategicId}">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกแผนงาน : "/>
-                            <p:selectOneMenu style="width: 180px;" id="planId" value="#{formReport001Controller.report001.planId}">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlPlan()}"></f:selectItems>  
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" id="projectId" rendered="false" value="#{formReport001Controller.report001.projectId}">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlProject()}"></f:selectItems> 
-                            </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" rendered="false">  
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlActivity()}"></f:selectItems> 
-                            </p:selectOneMenu>
-                            <p:outputLabel value=""/>
-                            <p:outputLabel value=""/>                            
-                        </p:panelGrid>
 
-                        <p:panelGrid columns="2" style="width: 880px;" styleClass="frmDetail" id="pnlFrm">
-                            <f:facet name="header"  class="txtLeft">
-                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="dlgAddReportDetail.show()" update="pn_addReportDetail" actionListener="#{formReport001Controller.initReportDetail()}"/>
-                            </f:facet>       
+    <p:panel id="REPORT_003" rendered="#{formSelectReport.reportCode=='REPORT_003'}">
 
-                            <p:dataTable var="item" value="#{formReport001Controller.report001Details}" id="carList" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                                         rowsPerPageTemplate="5,10,15">  
+        <p:dialog id="REPORT_MainDialog_REPORT_003" header="#{msg.report_003_header}" widgetVar="REPORT_MainDialog_REPORT_003" modal="true">                         
+            <p:panel header="#{formReport003Controller.reportTitle}" style="width: 100%;">
+                <p:messages id="REPORT_003msgFrmDetails"></p:messages>
 
-                                <p:ajax event="rowEdit" listener="#{formReport001Controller.onEdit}"/>  
-                                <p:ajax event="rowEditCancel" listener="#{formReport001Controller.onCancel}"/>
-
-                                <p:column headerText="ลำดับ" style="width:30%">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.key}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.key}" />  
-                                        </f:facet> 
-                                    </p:cellEditor>
-                                </p:column>
-
-                                <p:column headerText="รายละเอียดการดำเนินงาน" style="width:30%">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.depName}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.depName}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-
-                                <p:column headerText="วัตถุประสงค์" style="width:30%">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.activityName}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.activityName}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-
-                                <p:column headerText="เป้าหมาย (จำนวน)" style="width:30%">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.activityAmount}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.activityAmount}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-
-                                <p:column headerText="ผลการดำเนินงาน" style="width:30%">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.activityType}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.activityType}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-
-                                <p:column headerText="งบประมาณที่ตั้งไว้" style="width:30%">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.budgetSet}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.budgetSet}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-
-                                <p:column style="width:6%">  
-                                    <p:rowEditor />  
-                                </p:column>  
-
-                            </p:dataTable>
-
-                        </p:panelGrid>
-                    </p:panel>
-                    <div id="pnlCmd" align="center">
-                        <p:commandButton value="#{msg.btn_save}" onsuccess="dlg1.hide()" actionListener="#{formReport001Controller.save()}" id="btnSave"/>
-                        <p:commandButton value="#{msg.btn_cancel}" id="btnCancel"/>
-                    </div>
-                </p:dialog>
-
-                <p:dialog id="dlgAddReportDetail" header="เพิ่มข้อมูล" widgetVar="dlgAddReportDetail" modal="true" draggable="true">
-                    <p:messages id="msgAddReportDetail" closable="true"></p:messages>
-                    <p:panelGrid columns="2" id="pn_addReportDetail">
-
-                        <h:outputLabel for="lb1" value="รายละเอียดการดำเนินงาน *" />  
-                        <p:inputText id="lb1" value="#{formReport001Controller.inputReport001Detail.depName}" required="true" label="lb1"/>  
-
-                        <h:outputLabel for="lb9" value="วัตถุประสงค์ *" />  
-                        <p:inputText id="lb9" value="#{formReport001Controller.inputReport001Detail.activityName}" required="true" requiredMessage="กรุณาระบุสำนัก/ส่วนงาน/สนง.กกต.จว" label="lb1"/>  
-
-                        <h:outputLabel for="lb4" value="เป้าหมาย (จำนวน) *" />  
-                        <p:inputMask mask="9?9999999" id="lb4" value="#{formReport001Controller.inputReport001Detail.activityAmount}" requiredMessage="กรุณาระบุจำนวน" required="true" label="lb4"/> 
-
-                        <h:outputLabel for="lb8" value="ผลการดำเนินงาน *" />  
-                        <p:inputText id="lb8" value="#{formReport001Controller.inputReport001Detail.activityType}" required="true" label="lb1"/>  
-
-
-                        <h:outputLabel for="lb5" value="งบประมาณตั้งไว้ *" />  
-                        <p:inputMask mask="9?9999999" id="lb5" value="#{formReport001Controller.inputReport001Detail.budgetSet}" requiredMessage="กรุณาระบุงบประมาณตั้งไว้" required="true" label="lb5"/>
-
-
-                        <f:facet name="footer">  
-                            <p:commandButton value="เพิ่ม" actionListener="#{formReport001Controller.addReportDetail(actionEvent)}" update="msgAddReportDetail,carList" icon="ui-icon-check" style="margin:0"/>  
+                    <p:panelGrid styleClass="frmDetail" id="REPORT_003pnlFrm">
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column>หนังสือรับ</p:column>  
+                                <p:column>จำนวน (ฉบับ/เรื่อง)</p:column>  
+                                <p:column>หนังสือสั่ง</p:column>  
+                                <p:column>จำนวน (ฉบับ/เรื่อง)</p:column>  
+                            </p:row>  
                         </f:facet>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[0].docReceive}" />
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc1" value="#{formReport003Controller.report003Details[0].docReceiveAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[0].docSend}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc1Amount" value="#{formReport003Controller.report003Details[0].docSendAmount}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[1].docReceive}" />
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc2" value="#{formReport003Controller.report003Details[1].docReceiveAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[1].docSend}" />
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc2Amount" value="#{formReport003Controller.report003Details[1].docSendAmount}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[2].docReceive}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc3" value="#{formReport003Controller.report003Details[4].docReceiveAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[2].docSend}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc3Amount" value="#{formReport003Controller.report003Details[2].docSendAmount}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[3].docReceive}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc4" value="#{formReport003Controller.report003Details[3].docReceiveAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[3].docSend}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc4Amount" value="#{formReport003Controller.report003Details[3].docSendAmount}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[4].docReceive}" />
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc5" value="#{formReport003Controller.report003Details[4].docReceiveAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="" />
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[5].docReceive}"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc6" value="#{formReport003Controller.report003Details[5].docReceiveAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="" />
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputLabel value="#{formReport003Controller.report003Details[6].docReceive}" />
+                            </p:column>
+                            <p:column>
+                                <p:inputMask mask="9?9999999" id="doc7" value="#{formReport003Controller.report003Details[6].docReceiveAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="" />
+                            </p:column>
+                            <p:column>
+                                <h:outputLabel value="" />
+                            </p:column>
+                        </p:row>
                     </p:panelGrid>
 
-                    <style>
-                        .ui-panelgrid td {
-                            border-color: inherit;
-                            border-style: inherit;
-                            border-width: 1px;
-                            padding: 4px 10px;
-                        }
-                    </style>
-                </p:dialog>
+                <h:panelGroup id="REPORT_003pnlCmd">
+                    <div align="center">
+                        <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport003Controller.save()}" id="REPORT_003btnSave"/>
+                        <p:commandButton value="#{msg.btn_cancel}" id="REPORT_003btnCancel" onclick="REPORT_MainDialog_REPORT_003.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </p:panel>
+        </p:dialog>
+
+
     </p:panel>
 </html>
