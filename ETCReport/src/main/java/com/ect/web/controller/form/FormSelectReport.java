@@ -33,11 +33,9 @@ public class FormSelectReport extends BaseFormReportController {
     protected boolean selectedReport = true;
     protected String reportMode;
     
-    @ManagedProperty(value = "#{reportService}")
-    protected ReportService reportService;
-    
     @PostConstruct
     public void init() {
+        reportCode = "";
     }
 
     /**
@@ -176,20 +174,6 @@ public class FormSelectReport extends BaseFormReportController {
      */
     public void setReportMode(String reportMode) {
         this.reportMode = reportMode;
-    }
-
-    /**
-     * @return the reportService
-     */
-    public ReportService getReportService() {
-        return reportService;
-    }
-
-    /**
-     * @param reportService the reportService to set
-     */
-    public void setReportService(ReportService reportService) {
-        this.reportService = reportService;
     }
 
     @Override
