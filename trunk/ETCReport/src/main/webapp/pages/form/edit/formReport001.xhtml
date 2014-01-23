@@ -21,7 +21,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:panel id="REPORT_001">
+            <p:panel id="REPORT_001" header="#{msg.report_001_header}">
 
                 <p:panel header="#{formReport001Controller.reportTitle}">
                     <p:messages id="REPORT_001msgFrmDetails"></p:messages>
@@ -75,125 +75,128 @@ and open the template in the editor.
                         <p:outputLabel value=""/>                            
                     </p:panelGrid>
 
-                    <p:panelGrid columns="2" styleClass="frmDetail" style="width:950px" id="REPORT_001pnlFrm">
-                        <f:facet name="header">
-                            <div style="text-align: left">
-                                <p:commandButton value="เพิ่มข้อมูล"  oncomplete="REPORT_001dlgAddReportDetail.show()" update="REPORT_001pn_addReportDetail" actionListener="#{formReport001Controller.initReportDetail()}" rendered="#{param.mode!='view'}"/>
-                            </div>
-                        </f:facet>       
+                    <div style="width: 1000px;overflow-x: scroll">
+                        <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_001pnlFrm">
+                            <f:facet name="header">
+                                <div style="text-align: left">
+                                    <p:commandButton value="เพิ่มข้อมูล"  oncomplete="REPORT_001dlgAddReportDetail.show()" update="REPORT_001pn_addReportDetail" actionListener="#{formReport001Controller.initReportDetail()}" rendered="#{param.mode!='view'}"/>
+                                </div>
+                            </f:facet>       
 
-                        <p:dataTable var="item" value="#{formReport001Controller.report001Details}" id="REPORT_001Grid" editable="true"
-                                     paginator="true" rows="5" emptyMessage="#{msg.no_data_found}" scrollable="true" scrollWidth="1000" 
-                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowIndexVar="index"
-                                     rowsPerPageTemplate="5">  
+                            <p:dataTable var="item" value="#{formReport001Controller.report001Details}" id="REPORT_001Grid" editable="true"
+                                         paginator="true" rows="5" emptyMessage="#{msg.no_data_found}" style="width: 1200px"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowIndexVar="index"
+                                         rowsPerPageTemplate="5">  
 
-                            <p:ajax event="rowEdit" listener="#{formReport001Controller.onEdit}"/>  
-                            <p:ajax event="rowEditCancel" listener="#{formReport001Controller.onCancel}"/>
+                                <p:ajax event="rowEdit" listener="#{formReport001Controller.onEdit}"/>  
+                                <p:ajax event="rowEditCancel" listener="#{formReport001Controller.onCancel}"/>
 
-                            <p:column headerText="ลำดับ" style="width:25px">
+                                <p:column headerText="ลำดับ" >
                                     ${index+1} 
-                            </p:column>
+                                </p:column>
 
-                            <p:column headerText="รายละเอียดการดำเนินงาน" style="width:130px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.workDetail}" />  
-                                    </f:facet>
-                                    <f:facet name="input">  
-                                        <p:inputText value="#{item.workDetail}" />  
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="กิจกรรม" >  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.workDetail}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.workDetail}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
 
-                            <p:column headerText="เป้าหมายประเภท" style="width:90px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.goalType}" />  
-                                    </f:facet>
-                                    <f:facet name="input">  
-                                        <p:inputText value="#{item.goalType}" />  
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="หน่วยนับ (เป้าหมาย)">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.goalType}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.goalType}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
 
-                            <p:column headerText="เป้าหมาย (จำนวน)" style="width:90px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.goalAmount}" />  
-                                    </f:facet>
-                                    <f:facet name="input">  
-                                        <p:inputText value="#{item.goalAmount}" />  
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="จำนวน (เป้าหมาย)" >  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.goalAmount}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.goalAmount}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
 
-                            <p:column headerText="ประเภทผลการปฏิบัติงาน" style="width:130px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.resultType}" />  
-                                    </f:facet>
-                                    <f:facet name="input">  
-                                        <p:inputText value="#{item.resultType}" />  
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="หน่วยนับ (ผลการปฏิบัติงาน)" >  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.resultType}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.resultType}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
 
-                            <p:column headerText="จำนวนผลการปฏิบัติงาน" style="width:130px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.resultAmount}" />  
-                                    </f:facet>
-                                    <f:facet name="input">  
-                                        <p:inputText value="#{item.resultAmount}" />  
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="จำนวน (ผลการปฏิบัติงาน)" >  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.resultAmount}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.resultAmount}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
 
-                            <p:column headerText="งบประมาณที่ตั้งไว้" style="width:120px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.budgetSet}" />  
-                                    </f:facet>
-                                    <f:facet name="input">  
-                                        <p:inputText value="#{item.budgetSet}" />  
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="งบประมาณที่ตั้งไว้" >  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.budgetSet}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.budgetSet}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
 
-                            <p:column headerText="งบประมาณจ่ายจริง" style="width:120px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.budgetReal}" />  
-                                    </f:facet>
-                                    <f:facet name="input">  
-                                        <p:inputText value="#{item.budgetReal}" />  
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="งบประมาณจ่ายจริง" >  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.budgetReal}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.budgetReal}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+                                <p:column headerText="รัอยละ"> 
+                                    <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
+                                </p:column>
 
-                            <p:column headerText="การบรรลุชี้วัด" style="width:80px">  
-                                <p:cellEditor>  
-                                    <f:facet name="output">  
-                                        <h:outputText value="#{item.isPass?'ผ่าน':'ไม่ผ่าน'}" />  
-                                    </f:facet>
-                                    <f:facet name="input">
-                                        <h:selectOneRadio value="#{item.isPass}" style="border-style:none">  
-                                            <f:selectItem itemLabel="ผ่าน" itemValue="true" />  
-                                            <f:selectItem itemLabel="ไม่ผ่าน" itemValue="false" /> 
-                                        </h:selectOneRadio>
-                                    </f:facet>  
-                                </p:cellEditor>
-                            </p:column>
+                                <p:column headerText="การบรรลุชี้วัด" style="width:80px">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.isPass?'ผ่าน':'ไม่ผ่าน'}" />  
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <h:selectOneRadio value="#{item.isPass}" style="border-style:none">  
+                                                <f:selectItem itemLabel="ผ่าน" itemValue="true" />  
+                                                <f:selectItem itemLabel="ไม่ผ่าน" itemValue="false" /> 
+                                            </h:selectOneRadio>
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
 
-                            <p:column style="width:50px" rendered="#{formReport001Controller.paramMode=='edit'}">  
-                                <p:rowEditor />  
-                            </p:column>  
+                                <p:column style="width:50px" rendered="#{formReport001Controller.paramMode=='edit'}">  
+                                    <p:rowEditor />  
+                                </p:column>  
 
-                        </p:dataTable>
-
-                    </p:panelGrid>
-
+                            </p:dataTable>
+                        </p:panelGrid>
+                    </div>
                     <h:panelGroup id="REPORT_001pnlCmd" rendered="#{formReport001Controller.report001.flowStatusId!=200}">
                         <div align="center">
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport001Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport001Controller.paramMode=='view' and formReport001Controller.canEdit(formReport001Controller.report001.createdUserGroup)}"/>
@@ -203,7 +206,7 @@ and open the template in the editor.
                         </div>
                     </h:panelGroup>
                 </p:panel>
-                
+
                 <p:dialog id="REPORT_001AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_001dlgAddReportDetail" modal="true" draggable="true">
                     <p:messages id="REPORT_001msgAddReportDetail" escape="false" closable="true"></p:messages>
                     <p:panelGrid columns="2" id="REPORT_001pn_addReportDetail">

@@ -10,6 +10,10 @@ import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.entity.Report002;
 import com.ect.db.report.entity.Report002Detail;
+import com.ect.db.report.entity.Report003;
+import com.ect.db.report.entity.Report003Detail;
+import com.ect.db.report.entity.Report004;
+import com.ect.db.report.entity.Report004Detail;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.service.UserService;
@@ -121,6 +125,40 @@ public class AllReportController extends BaseFormReportController {
                 
             }
             
+        } else if(viewReportStatus.getReportCode().equals(REPORT_003)){
+        
+            reportName = REPORT_003;
+            
+            Report003 report003 = reportService.findByReport003ById(viewReportStatus.getReportId());
+
+            if (report003 == null || report003.getReport003DetailList() == null || report003.getReport003DetailList().isEmpty()) {
+            
+                logger.warn("Cannot find Report003 by Id : {}",viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report003Detail>());
+                
+            } else {
+                
+                beans.put("details", report003.getReport003DetailList());
+                
+            }
+            
+        } else if(viewReportStatus.getReportCode().equals(REPORT_004)){
+        
+            reportName = REPORT_004;
+            
+            Report004 report004 = reportService.findByReport004ById(viewReportStatus.getReportId());
+
+            if (report004 == null || report004.getReport004DetailList() == null || report004.getReport004DetailList().isEmpty()) {
+            
+                logger.warn("Cannot find Report004 by Id : {}",viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report004Detail>());
+                
+            } else {
+                
+                beans.put("details", report004.getReport004DetailList());
+                
+            }
+            
         }
 
         HSSFWorkbook wb = null;
@@ -192,36 +230,36 @@ public class AllReportController extends BaseFormReportController {
 
     @Override
     public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void edit() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void addReportDetail(ActionEvent actionEvent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void onEdit(RowEditEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void onCancel(RowEditEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void initReportDetail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void fileXLSDownload() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }
