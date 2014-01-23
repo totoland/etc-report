@@ -13,5 +13,7 @@ import com.ect.db.entity.ViewUser;
 public interface AuthenDao {
     
     ViewUser loginUser(String userName,String passWord);
+
+    ViewUser findByUserId(Integer userId);
     
 }
