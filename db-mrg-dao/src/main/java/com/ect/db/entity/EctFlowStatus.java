@@ -97,11 +97,60 @@ public class EctFlowStatus extends DomainEntity implements Serializable {
 
     public static enum FlowStatus {
 
-        DRAFF(0,"DRAFF"),STEP_1(101,"STEP_1"),STEP_2(102,"STEP_2"),STEP_3(103,"STEP_3"), APPROVED(200,"APPROVED"), REJECT(-1,"REJECT");
+        DRAFF(0,"DRAFF"),
+        STEP_1(101,"STEP_1"),
+        STEP_2(102,"STEP_2"),
+        STEP_3(103,"STEP_3"), 
+        APPROVED(200,"APPROVED"), 
+        REJECT(-1,"REJECT");
+        
         private int status = 0;
         protected String name = "";
         
         FlowStatus(int status,String name) {
+            this.status = status;
+            this.name = name;
+        }
+
+        /**
+         * @return the status
+         */
+        public int getStatus() {
+            return status;
+        }
+
+        /**
+         * @param status the status to set
+         */
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        /**
+         * @return the name
+         */
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * @param name the name to set
+         */
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+    
+    public static enum ReportStatus {
+
+        WAIT(100,"WAIT"),
+        APPROVE(200,"APPROVE"), 
+        REJECTE(401,"REJECT");
+        
+        private int status = 0;
+        protected String name = "";
+        
+        ReportStatus(int status,String name) {
             this.status = status;
             this.name = name;
         }

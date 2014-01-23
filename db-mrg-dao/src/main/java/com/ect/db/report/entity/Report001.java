@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ect.db.entity;
+package com.ect.db.report.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
@@ -80,6 +80,8 @@ public class Report001 extends DomainEntity implements Serializable {
     @Column(name = "REJECTED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date rejectedDate;
+    @Column(name = "REPORT_STATUS")
+    private Integer reportStatus;
     
     @OneToMany(mappedBy = "reportId",cascade={CascadeType.ALL},targetEntity = Report001Detail.class,fetch = FetchType.EAGER)
     private List<Report001Detail> report001DetailList;
@@ -291,7 +293,21 @@ public class Report001 extends DomainEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Report001{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", approvedDate=" + approvedDate + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", activityId=" + activityId + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", report001DetailList=" + report001DetailList + '}';
+        return "Report001{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", approvedDate=" + approvedDate + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", activityId=" + activityId + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", reportStatus=" + reportStatus + ", report001DetailList=" + report001DetailList + '}';
+    }
+
+    /**
+     * @return the reportStatus
+     */
+    public Integer getReportStatus() {
+        return reportStatus;
+    }
+
+    /**
+     * @param reportStatus the reportStatus to set
+     */
+    public void setReportStatus(Integer reportStatus) {
+        this.reportStatus = reportStatus;
     }
     
 }

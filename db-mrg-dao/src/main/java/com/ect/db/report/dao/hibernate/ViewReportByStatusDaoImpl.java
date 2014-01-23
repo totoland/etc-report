@@ -22,14 +22,22 @@ import org.springframework.stereotype.Repository;
 public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportByStatusDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
-    private static String SQL_REPORT_001 = "SELECT * FROM VIEW_REPORT_STATUS";
-
+    private static String SQL_REPORT_001 = "SELECT ROW_NUMBER() OVER (ORDER BY CREATED_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
+    
     @Override
     public List<ViewReportStatus> findReportByStatus(Integer flowStatus) {
 
         String sql = SQL_REPORT_001 + " WHERE FLOW_STATUS_ID = ?";
 
         return super.findNativeQuery(sql, ViewReportStatus.class, flowStatus);
+    }
+    
+    @Override
+    public List<ViewReportStatus> findReportByStatus(Integer flowStatus,Integer reportStatus) {
+
+        String sql = SQL_REPORT_001 + " WHERE FLOW_STATUS_ID = ? AND REPORT_STATUS = ?";
+
+        return super.findNativeQuery(sql, ViewReportStatus.class, flowStatus,reportStatus);
     }
 
     @Override
@@ -46,7 +54,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
     @Override
     public Integer updateReportStatusReject(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser, String remark) {
 
-        String sql = "UPDATE " + reportName + " SET FLOW_STATUS_ID = ?, REJECTED_DATE = ? , REJECTED_USER = ? ,REMARK = ? WHERE REPORT_ID = ? ";
+        String sql = "UPDATE " + reportName + " SET REPORT_STATUS = 401, FLOW_STATUS_ID = ?, REJECTED_DATE = ? , REJECTED_USER = ? ,REMARK = ? WHERE REPORT_ID = ? ";
 
         logger.trace("updateReportStatus SQL : {}", sql);
 

@@ -7,7 +7,7 @@ package com.ect.db.report.dao.hibernate;
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.dao.BaseDao;
 import com.ect.db.entity.EctConf;
-import com.ect.db.entity.ReportName;
+import com.ect.db.report.entity.ReportName;
 import com.ect.db.report.dao.ReportNameDao;
 import java.io.Serializable;
 import java.util.List;

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ect.db.entity;
+package com.ect.db.report.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
@@ -31,12 +31,12 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author totoland
  */
 @Entity
-@Table(name = "REPORT_002")
+@Table(name = "REPORT_003")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Report002.findAll", query = "SELECT r FROM Report002 r")})
-public class Report002 extends DomainEntity implements Serializable {
-    private static final long serialVersionUID = 8539656983860424114L;    
+    @NamedQuery(name = "Report003.findAll", query = "SELECT r FROM Report003 r")})
+public class Report003 extends DomainEntity implements Serializable {
+    private static final long serialVersionUID = -3912121489180997097L;
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -60,39 +60,31 @@ public class Report002 extends DomainEntity implements Serializable {
     private Date updatedDate;
     @Column(name = "UPDATED_USER")
     private Integer updatedUser;
-    @Column(name = "STRATEGIC_ID")
-    private Integer strategicId;
-    @Column(name = "SUB_STRATEGIC_ID")
-    private Integer subStrategicId;
-    @Column(name = "PLAN_ID")
-    private Integer planId;
-    @Column(name = "PROJECT_ID")
-    private Integer projectId;
-    @Column(name = "ACTIVITY_ID")
-    private Integer activityId;
+    @Column(name = "FLOW_STATUS_ID")
+    private Integer flowStatusId;
+    @Column(name = "REPORT_STATUS")
+    private Integer reportStatus;
     @Lob
     @Column(name = "REMARK")
     private String remark;
-    @Column(name = "APPROVED_USER")
-    private Integer approvedUser;
-    @Column(name = "FLOW_STATUS_ID")
-    private Integer flowStatusId;
     @Column(name = "REJECTED_USER")
     private Integer rejectedUser;
     @Column(name = "REJECTED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date rejectedDate;
-    @Column(name ="APPROVED_DATE")
+    @Column(name = "APPROVED_USER")
+    private Integer approvedUser;
+    @Column(name = "APPROVED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDate;
     
-    @OneToMany(mappedBy = "reportId",cascade = CascadeType.ALL,targetEntity = Report002Detail.class,fetch = FetchType.EAGER)
-    private List<Report002Detail> report002DetailList;
+    @OneToMany(mappedBy = "reportId",cascade = CascadeType.ALL,targetEntity = Report003Detail.class,fetch = FetchType.EAGER)
+    private List<Report003Detail> report003DetailList;
 
-    public Report002() {
+    public Report003() {
     }
 
-    public Report002(Integer reportId) {
+    public Report003(Integer reportId) {
         this.reportId = reportId;
     }
 
@@ -160,44 +152,20 @@ public class Report002 extends DomainEntity implements Serializable {
         this.updatedUser = updatedUser;
     }
 
-    public Integer getStrategicId() {
-        return strategicId;
+    public Integer getFlowStatusId() {
+        return flowStatusId;
     }
 
-    public void setStrategicId(Integer strategicId) {
-        this.strategicId = strategicId;
+    public void setFlowStatusId(Integer flowStatusId) {
+        this.flowStatusId = flowStatusId;
     }
 
-    public Integer getSubStrategicId() {
-        return subStrategicId;
+    public Integer getReportStatus() {
+        return reportStatus;
     }
 
-    public void setSubStrategicId(Integer subStrategicId) {
-        this.subStrategicId = subStrategicId;
-    }
-
-    public Integer getPlanId() {
-        return planId;
-    }
-
-    public void setPlanId(Integer planId) {
-        this.planId = planId;
-    }
-
-    public Integer getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
-    }
-
-    public Integer getActivityId() {
-        return activityId;
-    }
-
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
+    public void setReportStatus(Integer reportStatus) {
+        this.reportStatus = reportStatus;
     }
 
     public String getRemark() {
@@ -208,20 +176,33 @@ public class Report002 extends DomainEntity implements Serializable {
         this.remark = remark;
     }
 
-    public Integer getApprovedUser() {
-        return approvedUser;
+    @XmlTransient
+    public List<Report003Detail> getReport003DetailList() {
+        return report003DetailList;
     }
 
-    public void setApprovedUser(Integer approvedUser) {
-        this.approvedUser = approvedUser;
+    public void setReport003DetailList(List<Report003Detail> report003DetailList) {
+        this.report003DetailList = report003DetailList;
     }
 
-    public Integer getFlowStatusId() {
-        return flowStatusId;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (reportId != null ? reportId.hashCode() : 0);
+        return hash;
     }
 
-    public void setFlowStatusId(Integer flowStatusId) {
-        this.flowStatusId = flowStatusId;
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Report003)) {
+            return false;
+        }
+        Report003 other = (Report003) object;
+        if ((this.reportId == null && other.reportId != null) || (this.reportId != null && !this.reportId.equals(other.reportId))) {
+            return false;
+        }
+        return true;
     }
 
     public Integer getRejectedUser() {
@@ -240,52 +221,25 @@ public class Report002 extends DomainEntity implements Serializable {
         this.rejectedDate = rejectedDate;
     }
 
-    @XmlTransient
-    public List<Report002Detail> getReport002DetailList() {
-        return report002DetailList;
+    public Integer getApprovedUser() {
+        return approvedUser;
     }
 
-    public void setReport002DetailList(List<Report002Detail> report002DetailList) {
-        this.report002DetailList = report002DetailList;
+    public void setApprovedUser(Integer approvedUser) {
+        this.approvedUser = approvedUser;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (reportId != null ? reportId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Report002)) {
-            return false;
-        }
-        Report002 other = (Report002) object;
-        if ((this.reportId == null && other.reportId != null) || (this.reportId != null && !this.reportId.equals(other.reportId))) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @return the approvedDate
-     */
     public Date getApprovedDate() {
         return approvedDate;
     }
 
-    /**
-     * @param approvedDate the approvedDate to set
-     */
     public void setApprovedDate(Date approvedDate) {
         this.approvedDate = approvedDate;
     }
 
     @Override
     public String toString() {
-        return "Report002{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", activityId=" + activityId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedDate=" + approvedDate + '}';
+        return "Report003{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", report003DetailList=" + report003DetailList + '}';
     }
     
 }

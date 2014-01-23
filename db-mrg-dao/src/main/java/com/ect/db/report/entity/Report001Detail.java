@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ect.db.entity;
+package com.ect.db.report.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;

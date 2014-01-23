@@ -4,15 +4,14 @@
  */
 package com.ect.db.report.dao;
 
-import com.ect.db.report.entity.ReportName;
-import java.util.List;
+import com.ect.db.report.entity.Report004;
 
 /**
  *
  * @author totoland
  */
-public interface ReportNameDao {
-    
-    public List<ReportName> getAllReportName();
+public interface Report004Dao {
+
+    Report004 findByReportId(Integer paramReportId);
     
 }

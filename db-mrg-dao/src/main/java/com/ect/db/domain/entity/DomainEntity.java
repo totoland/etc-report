@@ -4,9 +4,7 @@
  */
 package com.ect.db.domain.entity;
 
-import com.ect.db.utils.HibernateProxyTypeAdapter;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.Serializable;
 import javax.persistence.Transient;
 
@@ -18,7 +16,7 @@ public class DomainEntity implements Serializable {
 
     private static final long serialVersionUID = 5726217663187352331L;
     
-    protected GsonBuilder b = new GsonBuilder();
+    protected static Gson b = new Gson();
     
     @Transient
     private int key;
@@ -45,7 +43,6 @@ public class DomainEntity implements Serializable {
      * @return the gson
      */
     public Gson getGson() {
-        b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-        return b.create();
+        return b;
     }
 }

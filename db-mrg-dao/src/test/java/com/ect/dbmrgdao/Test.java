@@ -9,13 +9,12 @@ import com.ect.db.common.dao.EctConfDao;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
-import com.ect.db.entity.Report001;
-import com.ect.db.entity.Report001Detail;
-import com.ect.db.entity.Report002;
+import com.ect.db.report.entity.Report001;
+import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.dao.Report002Dao;
+import com.ect.db.report.dao.Report004Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
-import com.ect.db.report.entity.ViewReport002;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +58,9 @@ public class Test {
     @Autowired
     Report002Dao report002Dao;
     
+    @Autowired
+    Report004Dao report004Dao;
+    
 //    @Autowired
 //    GennericDao<EctProvince>gennericDao;
     @Before
@@ -68,11 +70,18 @@ public class Test {
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
     
-//    @Ignore
+    @org.junit.Test
+    public void testReport004(){
+    
+        System.out.println((report004Dao.findByReportId(1)));
+        
+    }
+    
+    @Ignore
     @org.junit.Test
     public void testReport002(){
     
-        System.out.println((viewReportByStatusDao.findReportByStatus(FlowStatus.STEP_1.getStatus())));
+        System.out.println((viewReportByStatusDao.findReportByStatus(FlowStatus.DRAFF.getStatus())));
         
     }
     

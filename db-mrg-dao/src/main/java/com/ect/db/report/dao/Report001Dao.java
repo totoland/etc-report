@@ -4,7 +4,7 @@
  */
 package com.ect.db.report.dao;
 
-import com.ect.db.entity.Report001;
+import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.ViewReport001;
 import java.util.List;
 

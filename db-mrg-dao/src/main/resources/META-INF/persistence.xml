@@ -17,9 +17,6 @@
     <class>com.ect.db.entity.EctTask</class>
     <class>com.ect.db.entity.EctConstant</class>
     <class>com.ect.db.common.entity.Report001Detail</class>
-    <class>com.ect.db.entity.Report001</class>
-    <class>com.ect.db.entity.Report001Detail</class>
-    <class>com.ect.db.entity.ReportName</class>
     <class>com.ect.db.entity.EctConf</class>
     <class>com.ect.db.entity.EctGroupLvl</class>
     <class>com.ect.db.entity.EctStrategic</class>
@@ -27,8 +24,15 @@
     <class>com.ect.db.entity.EctSubStrategic</class>
     <class>com.ect.db.entity.EctPlan</class>
     <class>com.ect.db.entity.EctProject</class>
-    <class>com.ect.db.entity.Report002</class>
     <class>com.ect.db.entity.Report002Detail</class>
+    <class>com.ect.db.report.entity.Report001Detail</class>
+    <class>com.ect.db.report.entity.Report001</class>
+    <class>com.ect.db.report.entity.Report002</class>
+    <class>com.ect.db.report.entity.ReportName</class>
+    <class>com.ect.db.report.entity.Report003Detail</class>
+    <class>com.ect.db.report.entity.Report003</class>
+    <class>com.ect.db.report.entity.Report004</class>
+    <class>com.ect.db.report.entity.Report004Detail</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost\MSSQLSERVER:1433;databaseName=thaihua"/>
       <property name="javax.persistence.jdbc.password" value="1951465"/>
