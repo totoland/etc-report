@@ -369,7 +369,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         try {
 
-            reportService.updateReportFlowStatus(reportName, reportId, flowStatusId, getUserAuthen().getUserId());
+            reportService.updateReportStatusApprove(reportName, reportId, flowStatusId, getUserAuthen().getUserId());
 
             if (FlowStatus.APPROVED.getStatus() == flowStatusId) {
 

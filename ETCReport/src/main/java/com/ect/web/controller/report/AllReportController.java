@@ -16,6 +16,7 @@ import com.ect.db.report.entity.Report004;
 import com.ect.db.report.entity.Report004Detail;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
+import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -51,15 +53,28 @@ public class AllReportController extends BaseFormReportController {
 
     private static final long serialVersionUID = 8451238753520170431L;
     private static Logger logger = LoggerFactory.getLogger(AllReportController.class);
+    
+    @ManagedProperty(value = "#{dropdownFactory}")
+    private DropdownFactory dropdownFactory;
     @ManagedProperty(value = "#{userService}")
     private UserService userService;
+    
     private List<ViewReportStatus> viewReportResult;
-
+    private ReportCriteria reportCriteria;
+    
+    @PostConstruct
+    public void init(){
+    
+        reportCriteria = new ReportCriteria();
+        
+    }
+    
     public void search() {
 
         logger.trace("Search!!");
+        logger.trace("Criteria : {}",reportCriteria);
 
-        viewReportResult = reportService.findByCriteria(new ReportCriteria());
+        viewReportResult = reportService.findByCriteria(reportCriteria);
 
     }
 
@@ -261,5 +276,33 @@ public class AllReportController extends BaseFormReportController {
     @Override
     public void fileXLSDownload() {
         
+    }
+
+    /**
+     * @return the reportCriteria
+     */
+    public ReportCriteria getReportCriteria() {
+        return reportCriteria;
+    }
+
+    /**
+     * @param reportCriteria the reportCriteria to set
+     */
+    public void setReportCriteria(ReportCriteria reportCriteria) {
+        this.reportCriteria = reportCriteria;
+    }
+
+    /**
+     * @return the dropdownFactory
+     */
+    public DropdownFactory getDropdownFactory() {
+        return dropdownFactory;
+    }
+
+    /**
+     * @param dropdownFactory the dropdownFactory to set
+     */
+    public void setDropdownFactory(DropdownFactory dropdownFactory) {
+        this.dropdownFactory = dropdownFactory;
     }
 }

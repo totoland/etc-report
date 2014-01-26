@@ -140,8 +140,24 @@ public class DropdownFactory implements Serializable {
         criteria.setOrderByField("SUB_STRATEGIC_NAME");
         criteria.setName("SUB_STRATEGIC_NAME");
         criteria.setValue("SUB_STRATEGIC_ID");
-        criteria.setCondition("WHERE STRATEGIC_ID = "+strateGicId);
+        criteria.setCondition("STRATEGIC_ID = "+strateGicId);
 
+        return commonService.getDropdownList(criteria);
+    }
+    
+    /***
+     * แผนงาน
+     * @return All Plan
+     */
+    public List<DropDownList> ddlPlan(Integer subStrateGicId) {
+
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("ECT_PLAN");
+        criteria.setOrderByField("PLAN_NAME");
+        criteria.setName("PLAN_NAME");
+        criteria.setValue("PLAN_ID");
+        criteria.setCondition("SUB_STATEGIC_ID = "+subStrateGicId);
+        
         return commonService.getDropdownList(criteria);
     }
     
@@ -164,6 +180,21 @@ public class DropdownFactory implements Serializable {
      * โครงการ
      * @return All Project 
      */
+    public List<DropDownList> ddlProject(Integer planId) {
+
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("ECT_PROJECT");
+        criteria.setOrderByField("PROJECT_NAME");
+        criteria.setName("PROJECT_NAME");
+        criteria.setValue("PROJECT_ID");
+        criteria.setCondition("PLAN_ID = "+planId);
+        return commonService.getDropdownList(criteria);
+    }
+    
+    /***
+     * โครงการ
+     * @return All Project 
+     */
     public List<DropDownList> ddlProject() {
 
         DropDownList criteria = new DropDownList();
@@ -171,6 +202,21 @@ public class DropdownFactory implements Serializable {
         criteria.setOrderByField("PROJECT_NAME");
         criteria.setName("PROJECT_NAME");
         criteria.setValue("PROJECT_ID");
+        return commonService.getDropdownList(criteria);
+    }
+    
+    /***
+     * กิจกรรม
+     * @return All Activity 
+     */
+    public List<DropDownList> ddlActivity(Integer projectId) {
+
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("ECT_ACTIVITY");
+        criteria.setOrderByField("ACTIVITY_NAME");
+        criteria.setName("ACTIVITY_NAME");
+        criteria.setValue("ACTIVITY_ID");
+        criteria.setCondition("PROJECT_ID = "+projectId);
         return commonService.getDropdownList(criteria);
     }
     
