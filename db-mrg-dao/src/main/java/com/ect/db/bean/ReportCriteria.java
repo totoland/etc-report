@@ -23,7 +23,7 @@ public class ReportCriteria implements Serializable{
     private String project;
     private String activity;
     private String status;
-    private String reportId;
+    private String reportCode;
 
     /**
      * @return the year
@@ -166,22 +166,22 @@ public class ReportCriteria implements Serializable{
     }
 
     /**
-     * @return the reportId
+     * @return the reportCode
      */
-    public String getReportId() {
-        return reportId;
+    public String getReportCode() {
+        return reportCode;
     }
 
     /**
-     * @param reportId the reportId to set
+     * @param reportCode the reportCode to set
      */
-    public void setReportId(String reportId) {
-        this.reportId = reportId;
+    public void setReportCode(String reportCode) {
+        this.reportCode = reportCode;
     }
 
     @Override
     public String toString() {
-        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", reportId=" + reportId + '}';
+        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", reportCode=" + reportCode + '}';
     }
     
 }

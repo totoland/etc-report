@@ -22,35 +22,35 @@ import org.springframework.stereotype.Repository;
 public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportByStatusDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
-    private static String SQL_REPORT_001 = "SELECT ROW_NUMBER() OVER (ORDER BY CREATED_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
-    
+    private static String SQL_REPORT = "SELECT ROW_NUMBER() OVER (ORDER BY CREATED_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
+
     @Override
     public List<ViewReportStatus> findReportByStatus(Integer flowStatus) {
 
-        String sql = SQL_REPORT_001 + " WHERE FLOW_STATUS_ID = ?";
+        String sql = SQL_REPORT + " WHERE FLOW_STATUS_ID = ?";
 
         return super.findNativeQuery(sql, ViewReportStatus.class, flowStatus);
     }
-    
+
     @Override
-    public List<ViewReportStatus> findReportByStatus(Integer flowStatus,Integer reportStatus) {
+    public List<ViewReportStatus> findReportByStatus(Integer flowStatus, Integer reportStatus) {
 
-        String sql = SQL_REPORT_001 + " WHERE FLOW_STATUS_ID = ? AND REPORT_STATUS = ?";
+        String sql = SQL_REPORT + " WHERE FLOW_STATUS_ID = ? AND REPORT_STATUS = ?";
 
-        return super.findNativeQuery(sql, ViewReportStatus.class, flowStatus,reportStatus);
+        return super.findNativeQuery(sql, ViewReportStatus.class, flowStatus, reportStatus);
     }
 
     @Override
-    public Integer updateReportStatus(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser) {
+    public Integer updateReportStatusApprove(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser) {
 
-        String sql = "UPDATE " + reportName + " SET FLOW_STATUS_ID = ?, APPROVED_DATE = ? , APPROVED_USER = ? WHERE REPORT_ID = ? ";
+        String sql = "UPDATE " + reportName + " SET REPORT_STATUS = 200 ,FLOW_STATUS_ID = ?, APPROVED_DATE = ? , APPROVED_USER = ? WHERE REPORT_ID = ? ";
 
         logger.trace("updateReportStatus SQL : {}", sql);
 
         return updateNativeQuery(sql, flowStatusId, new Date(), approvedUser, reportId);
 
     }
-    
+
     @Override
     public Integer updateReportStatusReject(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser, String remark) {
 
@@ -61,13 +61,26 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
         return updateNativeQuery(sql, flowStatusId, new Date(), approvedUser, remark, reportId);
 
     }
-    
+
     @Override
-    public List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria){
-        
+    public List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria) {
+
         StringBuilder sql = new StringBuilder();
-        sql.append(SQL_REPORT_001);
-        
+        sql.append(SQL_REPORT);
+        sql.append(" WHERE 1=1");
+
+        if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
+
+            sql.append(" AND REPORT_STATUS = ").append(reportCriteria.getStatus());
+
+        }
+
+        if (reportCriteria.getReportCode() != null && !reportCriteria.getReportCode().isEmpty()) {
+
+            sql.append(" AND REPORT_CODE = ").append(reportCriteria.getReportCode());
+
+        }
+
         return super.findNativeQuery(sql.toString(), ViewReportStatus.class);
     }
 }

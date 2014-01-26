@@ -16,7 +16,7 @@ public interface ViewReportByStatusDao {
     
     List<ViewReportStatus> findReportByStatus(Integer flowStatus);
     
-    Integer updateReportStatus(String reportName,Integer reportId,Integer flowStatusId,Integer approvedUser);
+    Integer updateReportStatusApprove(String reportName,Integer reportId,Integer flowStatusId,Integer approvedUser);
     
     Integer updateReportStatusReject(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser, String remark);
     
