@@ -21,7 +21,7 @@ public interface ReportService {
     
     List<ViewReportStatus>findReportByStatus(Integer flowStatusId);
     
-    Integer updateReportFlowStatus(String reportName,Integer reportId,Integer flowStatusId,Integer approvedUser);
+    Integer updateReportStatusApprove(String reportName,Integer reportId,Integer flowStatusId,Integer approvedUser);
   
     Integer updateReportStatusReject(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser, String remark);
     

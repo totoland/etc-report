@@ -54,8 +54,8 @@ public class ReportServiceImpl implements ReportService{
     }
     
     @Override
-    public Integer updateReportFlowStatus(String reportName,Integer reportId,Integer flowStatusId,Integer approvedUser){
-        return viewReportByStatusDao.updateReportStatus(reportName, reportId, flowStatusId,approvedUser);
+    public Integer updateReportStatusApprove(String reportName,Integer reportId,Integer flowStatusId,Integer approvedUser){
+        return viewReportByStatusDao.updateReportStatusApprove(reportName, reportId, flowStatusId,approvedUser);
     }
     
     @Override
