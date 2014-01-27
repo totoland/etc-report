@@ -93,4 +93,8 @@ public class ReportServiceImpl implements ReportService{
         return report004Dao.findByReportId(paramReportId);
     }
     
+    @Override
+    public Integer countByCriteria(ReportCriteria reportCriteria){
+        return viewReportByStatusDao.countByCriteria(reportCriteria);
+    }
 }

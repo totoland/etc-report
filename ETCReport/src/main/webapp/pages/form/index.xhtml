@@ -49,7 +49,7 @@ and open the template in the editor.
                             <p:tab id="tab_REJECT" title="รอส่งพิจารณา">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}"
-                                                 paginator="true" rows="5" style="width: 1450px;"
+                                                 paginator="true" rows="10" style="width: 1450px;"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
@@ -111,7 +111,7 @@ and open the template in the editor.
                             <p:tab id="tab_STEP_1" title="รายงานรอผลพิจารณา (หน.อก.)">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList2" var="item" value="#{FormReportMainController.listReportStatusStep1}"
-                                                 paginator="true" rows="5" style="width: 1800px"
+                                                 paginator="true" rows="10" style="width: 1900px"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
@@ -127,6 +127,12 @@ and open the template in the editor.
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
+                                        </p:column>
+                                        <p:column style="width: 100px">
+                                            <f:facet name="header">
+                                                <h:outputText value="สถานะ" />
+                                            </f:facet>
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -182,7 +188,7 @@ and open the template in the editor.
                             <p:tab id="tab_STEP_2" title="รายงานรอผลพิจารณา (หน.ส่วนงาน)">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList3" var="item" value="#{FormReportMainController.listReportStatusStep2}"
-                                                 paginator="true" rows="5" style="width: 1450px"
+                                                 paginator="true" rows="10" style="width: 1450px"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
                                         <p:column>
@@ -196,7 +202,13 @@ and open the template in the editor.
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
-                                        </p:column>                                    
+                                        </p:column>
+                                        <p:column style="width: 100px">
+                                            <f:facet name="header">
+                                                <h:outputText value="สถานะ" />
+                                            </f:facet>
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                        </p:column>
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่สร้าง" />
@@ -236,7 +248,7 @@ and open the template in the editor.
                             <p:tab id="tab_STEP_3" title="รายงานรอผลพิจารณา (ส่วนกลาง)">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList4" var="item" value="#{FormReportMainController.listReportStatusStep3}"
-                                                 paginator="true" rows="5" style="width: 1450px"
+                                                 paginator="true" rows="10" style="width: 1450px"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
                                         <p:column>
@@ -250,7 +262,13 @@ and open the template in the editor.
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
-                                        </p:column>                                   
+                                        </p:column>
+                                        <p:column style="width: 100px">
+                                            <f:facet name="header">
+                                                <h:outputText value="สถานะ" />
+                                            </f:facet>
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                        </p:column>
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่สร้าง" />
@@ -290,7 +308,7 @@ and open the template in the editor.
                             <p:tab id="tab_APPROVED" title="รายงานที่อนุมัติแล้ว">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList5" var="item" value="#{FormReportMainController.listReportStatusApprove}"
-                                                 paginator="true" rows="5" style="width:1450px"
+                                                 paginator="true" rows="10" style="width:1450px"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
                                         <p:column>

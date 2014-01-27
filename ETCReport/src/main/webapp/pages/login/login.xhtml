@@ -27,7 +27,7 @@ and open the template in the editor.
                                            id="password" required="true" label="password" />  
 
                         </h:panelGrid>  
-                        <p:commandButton id="loginButton" value="#{msg.login}" update="messages" icon="ui-icon-key"  
+                        <p:commandButton id="loginButton" value="#{msg.login}" update="messages" icon="ui-icon-key"
                                          actionListener="#{loginController.loginProcess()}"/>
                     </p:panel>
                 <p:blockUI widgetVar="blockUI"  trigger="loginButton" block="pnl"/> 
