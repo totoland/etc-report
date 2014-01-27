@@ -5,6 +5,7 @@
 package com.ect.dbmrgdao;
 
 import com.ect.db.authen.dao.AuthenDao;
+import com.ect.db.bean.ReportCriteria;
 import com.ect.db.common.dao.EctConfDao;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.db.common.dao.hibernate.EctConfManager;
@@ -70,6 +71,7 @@ public class Test {
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
     
+    @Ignore
     @org.junit.Test
     public void testReport004(){
     
@@ -77,11 +79,11 @@ public class Test {
         
     }
     
-    @Ignore
+//    @Ignore
     @org.junit.Test
     public void testReport002(){
     
-        System.out.println((viewReportByStatusDao.findReportByStatus(FlowStatus.DRAFF.getStatus())));
+        System.out.println((viewReportByStatusDao.findByCriteria(new ReportCriteria())));
         
     }
     

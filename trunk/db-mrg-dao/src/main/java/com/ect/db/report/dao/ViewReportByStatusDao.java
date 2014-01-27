@@ -24,4 +24,6 @@ public interface ViewReportByStatusDao {
     
     List<ViewReportStatus> findReportByStatus(Integer flowStatus,Integer reportStatus);
     
+    Integer countByCriteria(ReportCriteria reportCriteria);
+    
 }
