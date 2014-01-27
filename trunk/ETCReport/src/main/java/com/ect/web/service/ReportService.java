@@ -38,4 +38,6 @@ public interface ReportService {
     Report003 findByReport003ById(Integer paramReportId);
 
     Report004 findByReport004ById(Integer paramReportId);
+    
+    Integer countByCriteria(ReportCriteria reportCriteria);
 }

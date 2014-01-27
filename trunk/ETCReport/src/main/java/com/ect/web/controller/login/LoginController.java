@@ -93,7 +93,7 @@ public class LoginController extends BaseController {
 
         logger.trace("path : {}", path);
 
-        executeJavaScript("blockUI.show();setTimeout(function(){window.location='"+path+"/pages/form/index.xhtml';},1000);");
+        executeJavaScript("blockUI.show();setTimeout(function(){window.location='"+path+"/pages/form/index.xhtml';},100);");
 
     }
     

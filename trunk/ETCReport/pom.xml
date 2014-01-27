@@ -18,6 +18,8 @@
         <org.springframework.version>3.2.4.RELEASE</org.springframework.version>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
         <db-mrg-dao>1.1-SNAPSHOT</db-mrg-dao>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
     </properties>
 
     <repositories>
@@ -234,8 +236,14 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
-    <profiles>
+    <!--    <profiles>
         <profile>
             <id>local</id>
             <properties>
@@ -249,6 +257,9 @@
                 <resources>
                     <resource>
                         <directory>src/main/resources/totoland</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/com/etc/web/resources</directory>
                     </resource>
                 </resources>
             </build>
@@ -264,8 +275,11 @@
                     <resource>
                         <directory>src/main/resources/vps</directory>
                     </resource>
+                    <resource>
+                        <directory>src/main/resources/com/etc/web/resources</directory>
+                    </resource>
                 </resources>
             </build>
         </profile>
-    </profiles>
+    </profiles>-->
 </project>

@@ -39,6 +39,8 @@ import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,29 +55,127 @@ public class AllReportController extends BaseFormReportController {
 
     private static final long serialVersionUID = 8451238753520170431L;
     private static Logger logger = LoggerFactory.getLogger(AllReportController.class);
-    
-    @ManagedProperty(value = "#{dropdownFactory}")
-    private DropdownFactory dropdownFactory;
     @ManagedProperty(value = "#{userService}")
     private UserService userService;
-    
     private List<ViewReportStatus> viewReportResult;
     private ReportCriteria reportCriteria;
-    
+    private LazyDataModel<ViewReportStatus> lazyModel;
+
     @PostConstruct
-    public void init(){
-    
+    public void init() {
+
         reportCriteria = new ReportCriteria();
-        
+
     }
-    
+
     public void search() {
 
         logger.trace("Search!!");
-        logger.trace("Criteria : {}",reportCriteria);
+        logger.trace("Criteria : {}", reportCriteria);
 
-        viewReportResult = reportService.findByCriteria(reportCriteria);
+        final Integer count = reportService.countByCriteria(reportCriteria);
 
+        if (count != null || count > 0) {
+
+            lazyModel = new LazyDataModel<ViewReportStatus>() {
+                private static final long serialVersionUID = 3109256773218160485L;
+
+                @Override
+                public List<ViewReportStatus> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+                    
+                    reportCriteria.setStartRow(first);
+                    reportCriteria.setMaxRow(pageSize);
+                    datasource = reportService.findByCriteria(reportCriteria);
+                    
+                    return datasource;
+                    
+                }
+                private List<ViewReportStatus> datasource;
+                private int pageSize;
+                private int rowIndex;
+                private int rowCount = count;
+
+                @Override
+                public boolean isRowAvailable() {
+                    if (datasource == null) {
+                        return false;
+                    }
+                    int index = rowIndex % pageSize;
+                    return index >= 0 && index < datasource.size();
+                }
+
+                @Override
+                public Object getRowKey(ViewReportStatus user) {
+                    return user.getReportId();
+                }
+
+                @Override
+                public ViewReportStatus getRowData() {
+                    if (datasource == null) {
+                        return null;
+                    }
+                    int index = rowIndex % pageSize;
+                    if (index > datasource.size()) {
+                        return null;
+                    }
+                    return datasource.get(index);
+                }
+
+                @Override
+                public ViewReportStatus getRowData(String rowKey) {
+                    if (datasource == null) {
+                        return null;
+                    }
+                    for (ViewReportStatus user : datasource) {
+                        if ((user.getId() + "").equals(rowKey)) {
+                            return user;
+                        }
+                    }
+                    return null;
+                }
+
+                @Override
+                public void setPageSize(int pageSize) {
+                    this.pageSize = pageSize;
+                }
+
+                @Override
+                public int getPageSize() {
+                    return pageSize;
+                }
+
+                @Override
+                public int getRowIndex() {
+                    return this.rowIndex;
+                }
+
+                @Override
+                public void setRowIndex(int rowIndex) {
+                    this.rowIndex = rowIndex;
+                }
+
+                @Override
+                public void setRowCount(int rowCount) {
+                    this.rowCount = rowCount;
+                }
+
+                @Override
+                public int getRowCount() {
+                    return this.rowCount;
+                }
+
+                @Override
+                public void setWrappedData(Object list) {
+                    this.datasource = (List<ViewReportStatus>) list;
+                }
+
+                @Override
+                public Object getWrappedData() {
+                    return datasource;
+                }
+            };
+        
+        }
     }
 
     @Override
@@ -91,7 +191,7 @@ public class AllReportController extends BaseFormReportController {
         String depName = "";
         String createdDate = DateTimeUtils.getInstance().thDate(viewReportStatus.getCreatedDate(), DateTimeUtils.DISPLAY_DATETIME_FORMAT);
         String reportName = "";
-        
+
         ViewUser viewUser = userService.findByUserId(viewReportStatus.getCreatedUser());
 
         if (viewUser != null) {
@@ -105,79 +205,79 @@ public class AllReportController extends BaseFormReportController {
         beans.put("year", year);
         beans.put("depName", depName);
         beans.put("createdDate", createdDate);
-        beans.put("createdUser",viewReportStatus.getCreatedUserFullName());
-        
+        beans.put("createdUser", viewReportStatus.getCreatedUserFullName());
+
         if (viewReportStatus.getReportCode().equals(REPORT_001)) {
 
             reportName = REPORT_001;
-            
+
             Report001 report001 = reportService.findByReport001ById(viewReportStatus.getReportId());
 
             if (report001 == null || report001.getReport001DetailList() == null || report001.getReport001DetailList().isEmpty()) {
-            
-                logger.warn("Cannot find Report001 by Id : {}",viewReportStatus.getReportId());
+
+                logger.warn("Cannot find Report001 by Id : {}", viewReportStatus.getReportId());
                 beans.put("details", new ArrayList<Report001Detail>());
-                
+
             } else {
-                
+
                 beans.put("details", report001.getReport001DetailList());
-                
+
             }
-        } else if(viewReportStatus.getReportCode().equals(REPORT_002)){
-        
+        } else if (viewReportStatus.getReportCode().equals(REPORT_002)) {
+
             reportName = REPORT_002;
-            
+
             Report002 report002 = reportService.findByReport002ById(viewReportStatus.getReportId());
 
             if (report002 == null || report002.getReport002DetailList() == null || report002.getReport002DetailList().isEmpty()) {
-            
-                logger.warn("Cannot find Report002 by Id : {}",viewReportStatus.getReportId());
+
+                logger.warn("Cannot find Report002 by Id : {}", viewReportStatus.getReportId());
                 beans.put("details", new ArrayList<Report002Detail>());
-                
+
             } else {
-                
+
                 beans.put("details", report002.getReport002DetailList());
-                
+
             }
-            
-        } else if(viewReportStatus.getReportCode().equals(REPORT_003)){
-        
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_003)) {
+
             reportName = REPORT_003;
-            
+
             Report003 report003 = reportService.findByReport003ById(viewReportStatus.getReportId());
 
             if (report003 == null || report003.getReport003DetailList() == null || report003.getReport003DetailList().isEmpty()) {
-            
-                logger.warn("Cannot find Report003 by Id : {}",viewReportStatus.getReportId());
+
+                logger.warn("Cannot find Report003 by Id : {}", viewReportStatus.getReportId());
                 beans.put("details", new ArrayList<Report003Detail>());
-                
+
             } else {
-                
+
                 beans.put("details", report003.getReport003DetailList());
-                
+
             }
-            
-        } else if(viewReportStatus.getReportCode().equals(REPORT_004)){
-        
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_004)) {
+
             reportName = REPORT_004;
-            
+
             Report004 report004 = reportService.findByReport004ById(viewReportStatus.getReportId());
 
             if (report004 == null || report004.getReport004DetailList() == null || report004.getReport004DetailList().isEmpty()) {
-            
-                logger.warn("Cannot find Report004 by Id : {}",viewReportStatus.getReportId());
+
+                logger.warn("Cannot find Report004 by Id : {}", viewReportStatus.getReportId());
                 beans.put("details", new ArrayList<Report004Detail>());
-                
+
             } else {
-                
+
                 beans.put("details", report004.getReport004DetailList());
-                
+
             }
-            
+
         }
 
         HSSFWorkbook wb = null;
-        InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/"+reportName+".xls");
+        InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/" + reportName + ".xls");
         XLSTransformer transformer = new XLSTransformer();
 
 
@@ -188,7 +288,7 @@ public class AllReportController extends BaseFormReportController {
 
         HttpServletResponse response = (HttpServletResponse) ectx.getResponse();
         response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=\""+reportName+"" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + reportName + "" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
 
         try {
             ServletOutputStream out = response.getOutputStream();
@@ -245,37 +345,30 @@ public class AllReportController extends BaseFormReportController {
 
     @Override
     public void save() {
-        
     }
 
     @Override
     public void edit() {
-        
     }
 
     @Override
     public void addReportDetail(ActionEvent actionEvent) {
-        
     }
 
     @Override
     public void onEdit(RowEditEvent event) {
-        
     }
 
     @Override
     public void onCancel(RowEditEvent event) {
-        
     }
 
     @Override
     public void initReportDetail() {
-        
     }
 
     @Override
     public void fileXLSDownload() {
-        
     }
 
     /**
@@ -293,16 +386,16 @@ public class AllReportController extends BaseFormReportController {
     }
 
     /**
-     * @return the dropdownFactory
+     * @return the lazyModel
      */
-    public DropdownFactory getDropdownFactory() {
-        return dropdownFactory;
+    public LazyDataModel<ViewReportStatus> getLazyModel() {
+        return lazyModel;
     }
 
     /**
-     * @param dropdownFactory the dropdownFactory to set
+     * @param lazyModel the lazyModel to set
      */
-    public void setDropdownFactory(DropdownFactory dropdownFactory) {
-        this.dropdownFactory = dropdownFactory;
+    public void setLazyModel(LazyDataModel<ViewReportStatus> lazyModel) {
+        this.lazyModel = lazyModel;
     }
 }
