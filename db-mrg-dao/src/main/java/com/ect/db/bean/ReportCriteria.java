@@ -24,6 +24,8 @@ public class ReportCriteria implements Serializable{
     private String activity;
     private String status;
     private String reportCode;
+    private int startRow = 1;
+    private int maxRow = 10;
 
     /**
      * @return the year
@@ -181,7 +183,35 @@ public class ReportCriteria implements Serializable{
 
     @Override
     public String toString() {
-        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", reportCode=" + reportCode + '}';
+        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + '}';
+    }
+
+    /**
+     * @return the startRow
+     */
+    public int getStartRow() {
+        return startRow;
+    }
+
+    /**
+     * @param startRow the startRow to set
+     */
+    public void setStartRow(int startRow) {
+        this.startRow = startRow;
+    }
+
+    /**
+     * @return the maxRow
+     */
+    public int getMaxRow() {
+        return maxRow;
+    }
+
+    /**
+     * @param maxRow the maxRow to set
+     */
+    public void setMaxRow(int maxRow) {
+        this.maxRow = maxRow;
     }
     
 }

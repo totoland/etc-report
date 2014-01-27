@@ -17,91 +17,107 @@ public abstract class BaseDao extends HibernateDaoSupport {
     public void anyMethodName(SessionFactory sessionFactory) {
         setSessionFactory(sessionFactory);
     }
-    
-    public Object findUniqNativeQuery(final String SQL,final Class entity,final Object... value){
-        Object t =  (Object) getHibernateTemplate().execute(new HibernateCallback(){
 
+    public Object findUniqNativeQuery(final String SQL, final Class entity, final Object... value) {
+        Object t = (Object) getHibernateTemplate().execute(new HibernateCallback() {
             @Override
             public Object doInHibernate(Session sn) throws HibernateException, SQLException {
                 SQLQuery query = sn.createSQLQuery(SQL).addEntity(entity);
-                
-                for(int i=0;i<value.length;i++){
+
+                for (int i = 0; i < value.length; i++) {
                     query.setParameter(i, value[i]);
                 }
-                
+
                 return query.uniqueResult();
             }
-        
         });
-        
+
         return t;
     }
-    
-    public List findNativeQuery(final String SQL,final Class entity,final Object... value){
-        List t =  (List) getHibernateTemplate().execute(new HibernateCallback(){
 
+    public List findNativeQuery(final String SQL, final Class entity, final Object... value) {
+        List t = (List) getHibernateTemplate().execute(new HibernateCallback() {
             @Override
             public Object doInHibernate(Session sn) throws HibernateException, SQLException {
                 SQLQuery query = sn.createSQLQuery(SQL).addEntity(entity);
-                
-                for(int i=0;i<value.length;i++){
+
+                for (int i = 0; i < value.length; i++) {
                     query.setParameter(i, value[i]);
                 }
-                
+
                 return query.list();
             }
-        
         });
         return t;
     }
-    
-    public List findNativeQuery(final String SQL,final Class entity){
-        List t =  (List) getHibernateTemplate().execute(new HibernateCallback(){
 
+    public List findNativeQuery(final String SQL, final Class entity) {
+        List t = (List) getHibernateTemplate().execute(new HibernateCallback() {
             @Override
             public Object doInHibernate(Session sn) throws HibernateException, SQLException {
                 SQLQuery query = sn.createSQLQuery(SQL).addEntity(entity);
-                
                 return query.list();
             }
-        
         });
         return t;
     }
     
-    public Integer countNativeQuery(final String SQL,final Object... value){
-        Object t =  getHibernateTemplate().execute(new HibernateCallback(){
+    public List findNativePagginQuery(final String SQL,final int start,final int max, final Class entity) {
+        List t = (List) getHibernateTemplate().execute(new HibernateCallback() {
+            @Override
+            public Object doInHibernate(Session sn) throws HibernateException, SQLException {
+                SQLQuery query = sn.createSQLQuery(genSQLPaggin(SQL,start,max)).addEntity(entity);
+                return query.list();
+            }
+        });
+        return t;
+    }
 
+    public String genSQLPaggin(String sql, int start, int max) {
+
+        StringBuilder statmentSQL = new StringBuilder();
+        statmentSQL.append("SELECT TOP(").append(max).append(") * FROM ( ");
+        statmentSQL.append(sql);
+        statmentSQL.append(" ) Y");
+        statmentSQL.append(" WHERE Y.ROW_NO >");
+        statmentSQL.append(start);
+
+        return statmentSQL.toString();
+    }
+
+    public Integer countNativeQuery(final String SQL, final Object... value) {
+        Object t = getHibernateTemplate().execute(new HibernateCallback() {
             @Override
             public Object doInHibernate(Session sn) throws HibernateException, SQLException {
                 SQLQuery query = sn.createSQLQuery(SQL);
                 
-                for(int i=0;i<value.length;i++){
+                for (int i = 0; i < value.length; i++) {
                     query.setParameter(i, value[i]);
                 }
-                
-                return ((BigDecimal)query.uniqueResult()).intValue();
+
+                return ((Integer) query.uniqueResult()).intValue();
             }
-        
         });
-        return (Integer)t;
+        return (Integer) t;
     }
     
-    public Integer updateNativeQuery(final String SQL,final Object... value){
-        Object t =  getHibernateTemplate().execute(new HibernateCallback(){
+    public Integer countNativeQuery(final String SQL) {
+        return countNativeQuery(SQL, new Object[]{});
+    }
 
+    public Integer updateNativeQuery(final String SQL, final Object... value) {
+        Object t = getHibernateTemplate().execute(new HibernateCallback() {
             @Override
             public Object doInHibernate(Session sn) throws HibernateException, SQLException {
                 SQLQuery query = sn.createSQLQuery(SQL);
-                
-                for(int i=0;i<value.length;i++){
+
+                for (int i = 0; i < value.length; i++) {
                     query.setParameter(i, value[i]);
                 }
-                
+
                 return query.executeUpdate();
             }
-        
         });
-        return (Integer)t;
+        return (Integer) t;
     }
 }

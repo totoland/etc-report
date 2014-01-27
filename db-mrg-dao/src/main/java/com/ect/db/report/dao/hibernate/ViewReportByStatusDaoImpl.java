@@ -81,6 +81,29 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         }
 
-        return super.findNativeQuery(sql.toString(), ViewReportStatus.class);
+        return super.findNativePagginQuery(sql.toString(), reportCriteria.getStartRow(), reportCriteria.getMaxRow(), ViewReportStatus.class);
     }
+
+    @Override
+    public Integer countByCriteria(ReportCriteria reportCriteria) {
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT COUNT(1) FROM VIEW_REPORT_STATUS");
+        sql.append(" WHERE 1=1");
+
+        if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
+
+            sql.append(" AND REPORT_STATUS = ").append(reportCriteria.getStatus());
+
+        }
+
+        if (reportCriteria.getReportCode() != null && !reportCriteria.getReportCode().isEmpty()) {
+
+            sql.append(" AND REPORT_CODE = ").append(reportCriteria.getReportCode());
+
+        }
+
+        return super.countNativeQuery(sql.toString());
+    }
+
 }
