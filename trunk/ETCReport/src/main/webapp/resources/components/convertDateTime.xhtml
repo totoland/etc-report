@@ -13,13 +13,14 @@
     <composite:interface>
 
         <composite:attribute name="value" />
+        <composite:attribute name="format" />
 
     </composite:interface>
 
     <composite:implementation>
 
-        <h:outputText value="#{allReportController.dateTH(cc.attrs.value)}"/>
-        
+        <h:outputText value="#{allReportController.dateTH(cc.attrs.value,cc.attrs.format)}"/>
+
     </composite:implementation>
 
 </html>

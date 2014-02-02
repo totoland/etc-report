@@ -27,7 +27,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-<!--    <servlet>
+    <!--    <servlet>
         <servlet-name>Push Servlet</servlet-name>
         <servlet-class>org.primefaces.push.PushServlet</servlet-class>
         <load-on-startup>1</load-on-startup> 
@@ -36,7 +36,7 @@
             <param-value>chat,counter</param-value>
         </init-param>
     </servlet>-->
-<!--    <servlet-mapping>
+    <!--    <servlet-mapping>
         <servlet-name>Push Servlet</servlet-name>
         <url-pattern>/prime-push/*</url-pattern>
     </servlet-mapping>-->
@@ -52,22 +52,46 @@
             <param-value>2048000</param-value>
         </init-param>
     </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
     <!--    <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>-->
+    
+    <!-- OmniFaces specific settings. -->
+<!--
+    <filter>
+        <filter-name>facesExceptionFilter</filter-name>
+        <filter-class>org.omnifaces.filter.FacesExceptionFilter</filter-class>
+    </filter>
     <filter-mapping>
-        <filter-name>PrimeFaces FileUpload Filter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
+        <filter-name>facesExceptionFilter</filter-name>
+        <servlet-name>facesServlet</servlet-name>
     </filter-mapping>
+    -->
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/pages/errors/view_expired.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>com.ect.web.controller.exception.SessionExpireException</exception-type>
+        <location>/pages/login/login.xhtml</location>
+    </error-page>
     <welcome-file-list>
         <welcome-file>pages/login/login.xhtml</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/pages/errors/500.xhtml</location>
+    </error-page>
     <error-page>
         <error-code>401</error-code>
         <location>/pages/login/login.xhtml</location>

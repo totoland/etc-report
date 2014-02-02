@@ -13,11 +13,16 @@
         <p>version ${config['version.web']}</p>
     </body>
     <script type="text/javascript">
-        $('body').bind('ajaxError', function(event, xhr){
+        $('body').bind('ajaxError', function(event, xhr) {
             logger(xhr);
-            if(xhr.status==401){
+            if (xhr.status == 401) {
                 window.location = "${request.contextPath}/pages/login.xhtml";
-            }    
+            }
         });
     </script>
+    <style>
+        #element, .elements {
+            font-family: "THSarabunNewfont";
+        }
+    </style>
 </html>

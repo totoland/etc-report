@@ -5,7 +5,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+
+      xmlns:h="http://java.sun.com/jsf/html">
     <head>
     </head>
     <body>
@@ -22,20 +23,22 @@
                     text-align: center;
                 }
             </style>
-            <p:menubar>  
-                <p:menuitem value="หน้าหลัก" url="${pageContext.request.contextPath}/pages/form/index.xhtml" icon="ui-icon-contact"/>
-                <p:menuitem value="หน้าออกรายงาน" url="${pageContext.request.contextPath}/pages/report/formReport.xhtml" icon="ui-icon-print"/>                
-                <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/permission/permission.xhtml" icon="ui-icon-comment"/>  
-                <p:submenu label="ดาวน์โหลด" icon="ui-icon-comment">  
-                </p:submenu>
+            <h:form>
+                <p:menubar>  
+                    <p:menuitem value="หน้าหลัก" url="${pageContext.request.contextPath}/pages/form/index.xhtml" icon="ui-icon-contact"/>
+                    <p:menuitem value="หน้าออกรายงาน" url="${pageContext.request.contextPath}/pages/report/formReport.xhtml" icon="ui-icon-print"/>                
+                    <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/permission/permission.xhtml" icon="ui-icon-comment"/>  
+                    <p:submenu label="ดาวน์โหลด" icon="ui-icon-comment">  
+                    </p:submenu>
 
-                <p:submenu label="ติดต่อเรา" icon="ui-icon-person">
-                </p:submenu>
+                    <p:submenu label="ติดต่อเรา" icon="ui-icon-person">
+                    </p:submenu>
 
-                <f:facet name="options">  
-                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" onclick="if(confirm('ยืนยันการออกจากระบบ'))window.location = '/ETCReport/pages/login/login.xhtml'"/>  
-                </f:facet>
-            </p:menubar>
+                    <f:facet name="options">  
+                        <p:commandButton value="Logout" icon="ui-icon-extlink" onclick="return confirm('ยืนยันการออกจากระบบ')" update="@form" action="#{loginController.logout()}"/>  
+                    </f:facet>
+                </p:menubar>
+            </h:form>
         </ui:composition>
     </body>
 </html>

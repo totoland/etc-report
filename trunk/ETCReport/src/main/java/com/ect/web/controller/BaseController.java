@@ -6,6 +6,7 @@ package com.ect.web.controller;
 
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
 import com.ect.db.entity.ViewUser;
+import com.ect.web.controller.exception.SessionExpireException;
 import com.ect.web.controller.login.LoginController;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.MessageUtils;
@@ -98,7 +99,8 @@ public abstract class BaseController implements Serializable {
     }
 
     public ViewUser getUserAuthen() {
-        return (ViewUser) getSessionBean("userAuthen");
+        ViewUser viewUser = (ViewUser) getSessionBean("userAuthen");
+        return viewUser;
     }
 
     public void sendError(FacesContext faces, int code, String message) {
@@ -177,9 +179,11 @@ public abstract class BaseController implements Serializable {
         return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(param);
     }
 
-    public String dateTH(Date date){
-        
-        return DateTimeUtils.getInstance().thDate(date,DateTimeUtils.DISPLAY_DATETIME_FORMAT);
-        
+    public String dateTH(Date date,String format) {
+        if(format == null || format.isEmpty()){
+            return DateTimeUtils.getInstance().thDate(date, DateTimeUtils.DISPLAY_DATETIME_FORMAT);
+        }
+        return DateTimeUtils.getInstance().thDate(date, format);
+
     }
 }
