@@ -30,7 +30,7 @@ and open the template in the editor.
                                 <p:panel header="ระบบรายงานผลการปฏิบัติงานประจำเดือนฯ" style="margin-bottom:10px;">  
 
                                     <h:panelGrid columns="2" cellpadding="5">
-                                        <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." for="lb1" style="width: 350px"/>
+                                        <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." style="width: 350px"/>
                                         <p:selectOneMenu id="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
@@ -395,6 +395,7 @@ and open the template in the editor.
                         <ui:include src="formReport002.xhtml" />
                         <ui:include src="formReport003.xhtml" />
                         <ui:include src="formReport004.xhtml" />
+                        <ui:include src="formReport005.xhtml" />
 
                     </h:panelGroup>
 

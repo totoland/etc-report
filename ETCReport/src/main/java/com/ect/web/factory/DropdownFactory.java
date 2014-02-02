@@ -266,4 +266,20 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
+    
+    /***
+     * จังหวัด
+     * @return All Activity 
+     */
+    public List<DropDownList> ddlProvince() {
+
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("ECT_PROVINCE");
+        criteria.setOrderByField("PROVINCE_NAME");
+        criteria.setName("PROVINCE_NAME");
+        criteria.setValue("PROVINCE_ID");
+        criteria.setSortName("ASC");
+
+        return commonService.getDropdownList(criteria);
+    }
 }

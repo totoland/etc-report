@@ -35,6 +35,7 @@ public class FormSelectReport extends BaseFormReportController {
     
     @PostConstruct
     public void init() {
+        logger.trace("int FormSelectReport..");
         reportCode = "";
     }
 

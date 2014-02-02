@@ -9,7 +9,7 @@ body
     background: #FFFFFF;
     margin:0 auto;
     font-size: 10px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: normal;
     position: relative;
@@ -23,7 +23,7 @@ body
 table, ul.art-hmenu
 {
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: normal;
 }
@@ -82,7 +82,7 @@ ul.art-vmenu a
 .art-postcontent a:hover,
 .art-postcontent a.hovered
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 
 .art-postcontent p
@@ -111,21 +111,21 @@ ul.art-vmenu a
 
 .art-postcontent a, .art-postcontent a:link
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
     color: #000000;
 }
 
 .art-postcontent a:visited, .art-postcontent a.visited
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
     color: #959A65;
 }
 
 .art-postcontent  a:hover, .art-postcontent a.hover
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: underline;
     color: #818F00;
 }
@@ -418,7 +418,7 @@ li p, .art-postcontent li p, .art-blockcontent li p
 .art-headline a:hover
 {
     font-size: 28px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -453,7 +453,7 @@ li p, .art-postcontent li p, .art-blockcontent li p
 .art-slogan a:hover
 {
     font-size: 18px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
     text-align: left;
     padding: 0;
@@ -663,7 +663,7 @@ ul.art-hmenu>li>a
 .art-hmenu a:hover
 {
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: normal;
     text-decoration: none;
@@ -742,7 +742,7 @@ ul.art-hmenu li li ul>li:last-child
     line-height: 25px;
     color: #2D3413;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
     margin:0;
 }
@@ -756,7 +756,7 @@ ul.art-hmenu li li ul>li:last-child
     line-height: 25px;
     color: #2D3413;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
     margin:0;
 }
@@ -1287,7 +1287,7 @@ ul.art-vmenu a
     cursor: pointer;
     z-index: 1;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1393,7 +1393,7 @@ ul.art-vmenu ul a
     line-height: 32px;
     color: #959A65;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1406,7 +1406,7 @@ ul.art-vmenu ul a:visited, ul.art-vmenu ul a.active:hover, ul.art-vmenu ul a:hov
     line-height: 32px;
     color: #959A65;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1563,7 +1563,7 @@ div.art-block img
     margin:0 auto;
     color: #181910;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 .art-blockcontent table,
 .art-blockcontent li, 
@@ -1574,7 +1574,7 @@ div.art-block img
 {
     color: #181910;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 
 .art-blockcontent p
@@ -1585,7 +1585,7 @@ div.art-block img
 .art-blockcontent a, .art-blockcontent a:link
 {
     color: #A1BA45;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1594,7 +1594,7 @@ div.art-block img
 .art-blockcontent a:visited, .art-blockcontent a.visited
 {
     color: #959A65;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1603,7 +1603,7 @@ div.art-block img
 .art-blockcontent a:hover, .art-blockcontent a.hover
 {
     color: #BA4B1C;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: underline;
@@ -1629,7 +1629,7 @@ div.art-block img
 .art-block li
 {
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     line-height: 125%;
     color: #303120;
 }
@@ -1660,7 +1660,7 @@ button.art-button
 {
     text-decoration: none;
     font-size: 14px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     position:relative;
@@ -1695,7 +1695,7 @@ input, select, textarea, a.art-search-button span
 {
     vertical-align: middle;
     font-size: 14px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
 }
@@ -1774,7 +1774,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="url
     padding: 6px 0;
     /*   color: #181910 !important;*/
     font-size: 14px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-shadow: none;
@@ -1795,7 +1795,7 @@ input.art-error, textarea.art-error
 input.art-error, textarea.art-error {
     color: #181910 !important;
     font-size: 14px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
 }
@@ -1815,7 +1815,7 @@ form.art-search input[type="text"]
     box-sizing: border-box;
     color: #181910 !important;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: normal;
 }
@@ -1890,7 +1890,7 @@ label.art-checkbox
 {
     cursor: pointer;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: normal;
     line-height: 20px;
@@ -1974,7 +1974,7 @@ label.art-radiobutton
 {
     cursor: pointer;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: normal;
     line-height: 16px;
@@ -2075,7 +2075,7 @@ label.art-radiobutton.hovered:before
 {
     padding:10px 0;
     color: #181910;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 
 .art-comment:first-child
@@ -2091,7 +2091,7 @@ label.art-radiobutton.hovered:before
 .art-comment-header
 {
     color: #181910;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 
 .art-comment-header a, 
@@ -2101,24 +2101,24 @@ label.art-radiobutton.hovered:before
 .art-comment-header a:hover,
 .art-comment-header a.hovered
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 
 .art-comment-header a, .art-comment-header a:link
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #000000;
 }
 
 .art-comment-header a:visited, .art-comment-header a.visited
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #4A4D32;
 }
 
 .art-comment-header a:hover,  .art-comment-header a.hovered
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #818F00;
 }
 
@@ -2129,24 +2129,24 @@ label.art-radiobutton.hovered:before
 .art-comment-content a:hover,
 .art-comment-content a.hovered
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 
 .art-comment-content a, .art-comment-content a:link
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #000000;
 }
 
 .art-comment-content a:visited, .art-comment-content a.visited
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #4A4D32;
 }
 
 .art-comment-content a:hover,  .art-comment-content a.hovered
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #818F00;
 }
 
@@ -2186,7 +2186,7 @@ label.art-radiobutton.hovered:before
 .art-pager a:link,
 .art-pager a:visited
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
     color: #3E450D
         ;
@@ -2460,7 +2460,7 @@ pre
 .art-postheadericons a:hover
 {
     font-size: 12px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #4A4D32;
 }
 
@@ -2471,7 +2471,7 @@ pre
 
 .art-postheadericons a, .art-postheadericons a:link
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -2480,7 +2480,7 @@ pre
 
 .art-postheadericons a:visited, .art-postheadericons a.visited
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -2489,7 +2489,7 @@ pre
 
 .art-postheadericons a:hover, .art-postheadericons a.hover
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: bold;
     font-style: normal;
     text-decoration: underline;
@@ -2602,7 +2602,7 @@ pre
 
 .art-postcontent li, .art-post li, .art-textblock li
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #1A1E0B;
     margin: 5px 0 5px 13px;
 }
@@ -2656,7 +2656,7 @@ blockquote
     padding:12px 12px 12px 49px;
     margin:0 0 0 20px;
     color: #15160E;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: italic;
     /* makes block not to align behind the image if they are in the same line */
@@ -2669,7 +2669,7 @@ blockquote a:visited, .art-postcontent blockquote a:visited, .art-blockcontent b
 blockquote a:hover, .art-postcontent blockquote a:hover, .art-blockcontent blockquote a:hover, .art-footer blockquote a:hover
 {
     color: #15160E;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     font-weight: normal;
     font-style: italic;
 }
@@ -2698,31 +2698,31 @@ blockquote p,
 .Sorter a
 {
     position:relative;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #94AB3F;
 }
 
 .Sorter a:link
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #94AB3F;
 }
 
 .Sorter a:visited, .Sorter a.visited
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #94AB3F;
 }
 
 .Sorter a:hover, .Sorter a.hover
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color: #718230;
 }
 
 .Sorter
 {
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     color:#505D22;
 }
 
@@ -2735,7 +2735,7 @@ blockquote p,
     position: relative;
     color: #45472E;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-align: center;
     padding: 0;
 }
@@ -2750,7 +2750,7 @@ blockquote p,
 {
     color: #45472E;
     font-size: 11px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
 }
 
 .art-footer p 
@@ -2763,21 +2763,21 @@ blockquote p,
 .art-footer a:link
 {
     color: #9AB342;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
 }
 
 .art-footer a:visited
 {
     color: #8F9461;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: none;
 }
 
 .art-footer a:hover
 {
     color: #BA4B1C;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     text-decoration: underline;
 }
 
@@ -2903,7 +2903,7 @@ blockquote p,
 .art-footer li
 {
     font-size: 14px;
-    font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+    font-family:THSarabunNewfont;
     line-height: 125%;
     color: #2D2E1E;
 }

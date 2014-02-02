@@ -11,9 +11,11 @@ import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.dao.Report002Dao;
 import com.ect.db.report.dao.Report003Dao;
 import com.ect.db.report.dao.Report004Dao;
+import com.ect.db.report.dao.Report005Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.Report003;
 import com.ect.db.report.entity.Report004;
+import com.ect.db.report.entity.Report005;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
@@ -42,6 +44,9 @@ public class ReportServiceImpl implements ReportService{
     
     @Autowired
     Report004Dao report004Dao;
+    
+    @Autowired
+    Report005Dao report005Dao;
     
     @Override
     public List<ViewReportStatus>findReportByStatus(Integer flowStatusId){
@@ -96,5 +101,10 @@ public class ReportServiceImpl implements ReportService{
     @Override
     public Integer countByCriteria(ReportCriteria reportCriteria){
         return viewReportByStatusDao.countByCriteria(reportCriteria);
+    }
+
+    @Override
+    public Report005 findByReport005ById(Integer paramReportId) {
+        return report005Dao.findByReportId(paramReportId);
     }
 }
