@@ -10,6 +10,7 @@ import com.ect.db.common.dao.EctConfDao;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
+import com.ect.db.entity.EctProvince;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.dao.Report001Dao;
@@ -38,8 +39,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class Test {
 
-    @Autowired
-    GennericDao<Report001> gennericDao;
+    //@Autowired
+    //GennericDao<Report001> gennericDao;
 
     @Autowired
     AuthenDao authenDao;
@@ -62,8 +63,8 @@ public class Test {
     @Autowired
     Report004Dao report004Dao;
     
-//    @Autowired
-//    GennericDao<EctProvince>gennericDao;
+    @Autowired
+    GennericDao<EctProvince>gennericDao;
     @Before
     public void init() throws Exception {
         // Log4J junit configuration.
@@ -91,7 +92,7 @@ public class Test {
     @org.junit.Test
     public void testReport001(){
     
-        System.out.println(((Report001)gennericDao.find(33, Report001.class)));
+        //System.out.println(((Report001)gennericDao.find(33, Report001.class)));
         
     }
     
@@ -149,7 +150,7 @@ public class Test {
 
         try {
             
-            gennericDao.create(report001);
+            //gennericDao.create(report001);
             
             System.out.println("Done!!");
         }catch(Exception ex){
