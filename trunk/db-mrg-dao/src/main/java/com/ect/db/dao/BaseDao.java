@@ -1,6 +1,5 @@
 package com.ect.db.dao;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.HibernateException;
