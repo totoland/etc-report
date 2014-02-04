@@ -7,7 +7,6 @@ package com.ect.db.report.entity;
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,8 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Report005Detail.findAll", query = "SELECT r FROM Report005Detail r")})
 public class Report005Detail extends DomainEntity implements Serializable {
+    private static final long serialVersionUID = 8184560529690219805L;
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REPORT_DETAIL_ID")
