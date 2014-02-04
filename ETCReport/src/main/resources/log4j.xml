@@ -5,9 +5,9 @@
 <!--for print out to log file-->
     <appender name="LOGFILE" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="File" value="${catalina.base}/logs/web/ectReport.log"/>
-        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="DatePattern" value="'.'dd-MM-yyyy"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d | %p | %l | reqId: %X{reqId} | %m%n" />
+            <param name="ConversionPattern" value="%d | %p | %C{2} (%M,%L) | reqId: %X{reqId} | %m%n" />
         </layout>
     </appender>
 
@@ -16,7 +16,7 @@
         <errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler"/>
         <param name="Target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d | %p | %l | reqId: %X{reqId} | %m%n"/>
+            <param name="ConversionPattern" value="%d | %p | %C{2} (%M,%L) | reqId: %X{reqId} | %m%n"/>
         </layout>
     </appender>
     <logger name="com.ect">

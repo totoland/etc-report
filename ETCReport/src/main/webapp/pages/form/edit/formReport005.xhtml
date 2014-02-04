@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
+        <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
+
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <p:panel id="REPORT_005">
+                
+                <div id="div_REPORT_005" style="width: 1050px;height: 450px;overflow-x: scroll;overflow-y: scroll;">
+                    <p:panel header="#{formReport005Controller.reportTitle}" style="width: 100%">
+                        <p:messages id="REPORT_005msgFrmDetails"></p:messages>
+
+                        <p:panelGrid styleClass="frmDetail" id="REPORT_005pnlFrm" style="width: 100%">
+                            <f:facet name="header">
+
+                            </f:facet>
+
+                            <p:row>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isVote}"/>
+                                    <h:outputText value="1.การเลือกตั้ง"/>
+                                </p:column>
+                                <p:column colspan="3">
+                                    <h:outputText value="(ให้เลือกประเภทการเลือกตั้งหรือการสรรหา ประเภทการเลือกตั้ง แบ่งการเลือกตั้ง ส.ว. หรือ ส.ส.)"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElected}"/>
+                                    <h:outputText value="การเลือกตั้ง ส.ส."/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElectedNormal}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElectedVacancy}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElected}"/>
+                                    <h:outputText value="การเลือกตั้ง ส.ว."/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElectedNormal}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElectedVacancy}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
+                                </p:column>
+                            </p:row>
+
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_005pn_frmDetailDetail">
+                            <f:facet name="header"  class="txtLeft">
+                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005dlgAddReportDetail.show()" update="REPORT_005pn_addReportDetail" actionListener="#{formReport005Controller.initReportDetail()}"/>
+                            </f:facet>       
+
+
+                            <p:dataTable var="item" value="#{formReport005Controller.report005Details}" id="REPORT_005Grid" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         style="width:1200px"
+                                         rowsPerPageTemplate="5,10,15">  
+
+                                <p:ajax event="rowEdit" listener="#{formReport005Controller.onEdit}"/>  
+                                <p:ajax event="rowEditCancel" listener="#{formReport005Controller.onCancel}"/>
+
+                                <p:column headerText="วันที่เลือกตั้ง">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <totoland:convertDateTime format="dd/MM/yyyy" value="#{item.electedDay}" />  
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" value="#{item.electedDay}" lang="th" style="width: 180px"/>
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="จังหวัด">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.provinceId}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.provinceId}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="เขตเลือกตั้ง">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.electedZone}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.electedZone}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="ผู้มีสิทธิ์เลือกตั้ง">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.voterAmount}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.voterAmount}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="ผู้มาใช้สิทธ์เลือกตั้ง">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.votedAmount}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.votedAmount}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="ร้อยละ">
+                                    <h:outputText value="#{(item.votedAmount*100)/item.voterAmount}" >
+                                        <f:convertNumber pattern="#0.00"/>
+                                    </h:outputText>%
+                                </p:column>
+
+                                <p:column headerText="บัตรเสีย">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.voidedBallotPaper}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.voidedBallotPaper}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="ร้อยละ">
+                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}">
+                                        <f:convertNumber pattern="#0.00"/>
+                                    </h:outputText>%
+                                </p:column>
+
+                                <p:column headerText="บัตรไม่ประสงค์จะลงคะแนน">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.voteNo}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.voteNo}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="ร้อยละ">
+                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}" >
+                                        <f:convertNumber pattern="#0.00 "/>
+                                    </h:outputText>%
+                                </p:column>
+
+                                <p:column style="width:6%">  
+                                    <p:rowEditor />  
+                                </p:column>  
+
+                            </p:dataTable>
+
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" styleClass="frmDetail2" id="REPORT_005pnlFrm2" style="width: 100%">
+                            <p:row>
+                                <p:column>
+                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isNomination}"/>
+                                    <h:outputText value="2.การสรรหา"/>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                        <p:panelGrid columns="1" styleClass="frmDetail3" id="REPORT_005pnlFrm3" style="width: 100%">
+                            <f:facet name="header"  class="txtLeft">
+                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" actionListener="#{formReport005Controller.initReportDetail()}"/>
+                            </f:facet>
+
+                            <p:dataTable var="item" value="#{formReport005Controller.report005Details2}" id="REPORT_005Grid2" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         style="width:1200px"
+                                         rowsPerPageTemplate="5,10,15">
+
+                                <p:ajax event="rowEdit" listener="#{formReport005Controller.onEdit2}"/>  
+                                <p:ajax event="rowEditCancel" listener="#{formReport005Controller.onCancel}"/>
+
+                                <p:column headerText="ระยะเวลาสรรหา ส.ว.">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.nominationPeriod}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.nominationPeriod}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="การเลือกตั้ง">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.election}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.election}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="จำนวนองค์/รายชื่อที่เสนอ">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.corporateAmount}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.corporateAmount}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="จำนวน ส.ว. สรรหา">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.senatorNominationAmount}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.senatorNominationAmount}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width:6%">  
+                                    <p:rowEditor />  
+                                </p:column>  
+
+                            </p:dataTable>
+
+                        </p:panelGrid>
+
+                        <h:panelGroup id="REPORT_005pnlCmd" rendered="#{formReport005Controller.report005.flowStatusId!=200}">
+                            <div align="center">
+                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport005Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport005Controller.paramMode=='view' and formReport005Controller.canEdit(formReport005Controller.report005.createdUserGroup)}"/>
+                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport005Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport005Controller.paramMode=='view'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport005Controller.edit()}" id="REPORT_001btnSave" rendered="#{formReport005Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="#{msg.btn_cancel}" id="REPORT_005btnCancel" actionListener="#{formReport005Controller.goToCancel()}" rendered="#{formReport005Controller.paramMode=='edit'}"/>
+                            </div>
+                        </h:panelGroup>
+                    </p:panel>
+                </div>
+
+                <p:dialog id="REPORT_005pn_addReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_005dlgAddReportDetail" modal="true" draggable="true">
+                    <p:messages id="REPORT_005msgAddReportDetail" escape="false" closable="true"></p:messages>
+                    <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail">
+
+                        <h:outputLabel value="วันที่เลือกตั้ง *"/>  
+                        <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
+
+                        <h:outputLabel value="จังหวัด *" />  
+                        <p:selectOneMenu id="ectProvince" style="width: 220px" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.provinceId}">  
+                            <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlProvince()}"/>
+                        </p:selectOneMenu>  
+
+                        <h:outputLabel value="เขตเลือกตั้ง *" />  
+                        <p:inputText id="REPORT_005lb03" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedZone}"/>  
+
+                        <h:outputLabel value="ผู้มีสิทธิ์เลือกตั้ง *" />  
+                        <p:inputMask mask="9?9999999" id="REPORT_005lb04" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voterAmount}"/>
+
+                        <h:outputLabel value="ผู้มาใช้สิทธิ์เลือกตั้ง *" />  
+                        <p:inputMask mask="9?9999999" id="REPORT_005lb05" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.votedAmount}"/>  
+
+                        <h:outputLabel value="บัตรเสีย *" />  
+                        <p:inputMask mask="9?9999999" id="REPORT_005lb07" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
+
+                        <h:outputLabel value="บัตรไม่ประสงค์จะลงคะแนน *" />  
+                        <p:inputMask mask="9?9999999" id="REPORT_005lb08" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
+
+                        <f:facet name="footer">  
+                            <p:commandButton value="เพิ่ม" actionListener="#{formReport005Controller.addReportDetail(actionEvent)}" update="REPORT_005msgAddReportDetail,REPORT_005Grid" icon="ui-icon-check" style="margin:0"/>  
+                        </f:facet>
+                    </p:panelGrid>
+
+                    <style>
+                        .cal input {
+                            width: 190px;
+                        }
+                        .ui-panelgrid td {
+                            border-color: inherit;
+                            border-style: inherit;
+                            border-width: 1px;
+                            padding: 4px 10px;
+                        }
+                    </style>
+                </p:dialog>
+
+                <p:dialog id="REPORT_005pn_addReportDetail2" header="เพิ่มข้อมูล" widgetVar="REPORT_005pn_addReportDetail2" modal="true" draggable="true">
+                    <p:messages id="REPORT_005msgAddReportDetail2" escape="false" closable="true"></p:messages>
+                    <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail2">
+
+                        <h:outputLabel value="ระยะเวลาสรรหา ส.ว. *" />  
+                        <p:inputText id="REPORT_005lb01" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.nominationPeriod}"/>  
+
+                        <h:outputLabel value="การเลือกตั้ง *" />  
+                        <p:inputText id="REPORT_005lb3" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.election}"/>  
+
+                        <h:outputLabel value="จำนวนองค์/รายชื่อที่เสนอ *" />  
+                        <p:inputMask mask="9?9999999" id="REPORT_005lb4" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.corporateAmount}"/>
+
+                        <h:outputLabel value="จำนวน ส.ว. สรรหา *" />  
+                        <p:inputMask mask="9?9999999" id="REPORT_005lb5" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.senatorNominationAmount}"/>  
+
+                        <f:facet name="footer">  
+                            <p:commandButton value="เพิ่ม" actionListener="#{formReport005Controller.addReportDetail2(actionEvent)}" update="REPORT_005msgAddReportDetail2,REPORT_005Grid2" icon="ui-icon-check" style="margin:0"/>  
+                        </f:facet>
+                    </p:panelGrid>
+
+                    <style>
+                        .cal input {
+                            width: 190px;
+                        }
+                        .ui-panelgrid td {
+                            border-color: inherit;
+                            border-style: inherit;
+                            border-width: 1px;
+                            padding: 4px 10px;
+                        }
+                    </style>
+                </p:dialog>
+
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

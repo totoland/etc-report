@@ -5,12 +5,10 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.report.entity.ReportName;
-import com.ect.web.service.ReportService;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;

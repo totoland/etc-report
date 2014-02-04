@@ -14,9 +14,10 @@ import com.ect.db.report.entity.Report003;
 import com.ect.db.report.entity.Report003Detail;
 import com.ect.db.report.entity.Report004;
 import com.ect.db.report.entity.Report004Detail;
+import com.ect.db.report.entity.Report005;
+import com.ect.db.report.entity.Report005Detail;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
-import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
 import java.io.IOException;
@@ -82,13 +83,13 @@ public class AllReportController extends BaseFormReportController {
 
                 @Override
                 public List<ViewReportStatus> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-                    
+
                     reportCriteria.setStartRow(first);
                     reportCriteria.setMaxRow(pageSize);
                     datasource = reportService.findByCriteria(reportCriteria);
-                    
+
                     return datasource;
-                    
+
                 }
                 private List<ViewReportStatus> datasource;
                 private int pageSize;
@@ -174,7 +175,7 @@ public class AllReportController extends BaseFormReportController {
                     return datasource;
                 }
             };
-        
+
         }
     }
 
@@ -272,6 +273,40 @@ public class AllReportController extends BaseFormReportController {
 
                 beans.put("details", report004.getReport004DetailList());
 
+            }
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_005)) {
+
+            reportName = REPORT_005;
+            
+            Report005 report005 = reportService.findByReport005ById(viewReportStatus.getReportId());
+
+            beans.put("report", report005);
+            
+            if (report005 == null || report005.getReport005DetailList() == null || report005.getReport005DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report004 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report004Detail>());
+                beans.put("details2", new ArrayList<Report004Detail>());
+
+            } else {
+
+                List<Report005Detail> report005Details = new ArrayList<>();
+                List<Report005Detail> report005Details2 = new ArrayList<>();
+                
+                for (Report005Detail report005Detail : report005.getReport005DetailList()) {
+
+                    if (report005Detail.getElectedType() != null && report005Detail.getElectedType().intValue() == 1) {
+                        report005Details.add(report005Detail);
+                    } else {
+                        report005Details2.add(report005Detail);
+                    }
+
+                }
+                
+                beans.put("details", report005Details);
+                beans.put("details2", report005Details2);
+                
             }
 
         }

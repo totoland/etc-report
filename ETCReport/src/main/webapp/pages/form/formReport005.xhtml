@@ -15,8 +15,8 @@ and open the template in the editor.
     <p:panel id="REPORT_005" rendered="#{formSelectReport.reportCode=='REPORT_005'}">
 
         <p:dialog id="REPORT_MainDialog_REPORT_005" header="#{msg.report_005_header}" widgetVar="REPORT_MainDialog_REPORT_005" modal="true">                         
-            <div style="width: 1150px;overflow-x: scroll">
-                <p:panel header="#{formReport004Controller.reportTitle}" style="width: 100%">
+            <div style="width: 1150px;height: 550px;overflow: scroll">
+                <p:panel header="#{formReport005Controller.reportTitle}" style="width: 100%">
                     <p:messages id="REPORT_005msgFrmDetails"></p:messages>
 
                     <p:panelGrid styleClass="frmDetail" id="REPORT_005pnlFrm" style="width: 100%">
@@ -25,46 +25,46 @@ and open the template in the editor.
                         </f:facet>
 
                         <p:row>
-                            <p:column>
-                                <p:selectBooleanCheckbox />
-                                <h:outputText value="1.การเลือกตั้ง"/>
-                            </p:column>
-                            <p:column colspan="3">
-                                <h:outputText value="(ให้เลือกประเภทการเลือกตั้งหรือการสรรหา ประเภทการเลือกตั้ง แบ่งการเลือกตั้ง ส.ว. หรือ ส.ส.)"/>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column>
-                            </p:column>
-                            <p:column>
-                                <p:selectBooleanCheckbox />
-                                <h:outputText value="การเลือกตั้ง ส.ส."/>
-                            </p:column>
-                            <p:column>
-                                <p:selectBooleanCheckbox />
-                                <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
-                            </p:column>
-                            <p:column>
-                                <p:selectBooleanCheckbox />
-                                <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column>
-                            </p:column>
-                            <p:column>
-                                <p:selectBooleanCheckbox />
-                                <h:outputText value="การเลือกตั้ง ส.ว."/>
-                            </p:column>
-                            <p:column>
-                                <p:selectBooleanCheckbox />
-                                <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
-                            </p:column>
-                            <p:column>
-                                <p:selectBooleanCheckbox />
-                                <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
-                            </p:column>
-                        </p:row>
+                                <p:column>
+                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isVote}"/>
+                                    <h:outputText value="1.การเลือกตั้ง"/>
+                                </p:column>
+                                <p:column colspan="3">
+                                    <h:outputText value="(ให้เลือกประเภทการเลือกตั้งหรือการสรรหา ประเภทการเลือกตั้ง แบ่งการเลือกตั้ง ส.ว. หรือ ส.ส.)"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElected}"/>
+                                    <h:outputText value="การเลือกตั้ง ส.ส."/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElectedNormal}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElectedVacancy}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElected}"/>
+                                    <h:outputText value="การเลือกตั้ง ส.ว."/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElectedNormal}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElectedVacancy}"/>
+                                    <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
+                                </p:column>
+                            </p:row>
 
                     </p:panelGrid>
 
@@ -138,9 +138,9 @@ and open the template in the editor.
                             </p:column>
 
                             <p:column headerText="ร้อยละ">
-                                <h:outputText value="#{(item.voterAmount*100)/item.votedAmount}" >
-                                    <f:convertNumber pattern="#0.00 %"/>
-                                </h:outputText>
+                                <h:outputText value="#{(item.votedAmount*100)/item.voterAmount}" >
+                                    <f:convertNumber pattern="#0.00"/>
+                                </h:outputText>%
                             </p:column>
 
                             <p:column headerText="บัตรเสีย">  
@@ -156,8 +156,8 @@ and open the template in the editor.
 
                             <p:column headerText="ร้อยละ">
                                     <h:outputText value="#{(item.voterAmount*100)/item.voidedBallotPaper}">
-                                        <f:convertNumber pattern="#0.00 %"/>
-                                    </h:outputText>
+                                        <f:convertNumber pattern="#0.00"/>
+                                    </h:outputText>%
                             </p:column>
 
                             <p:column headerText="บัตรไม่ประสงค์จะลงคะแนน">  
@@ -173,8 +173,8 @@ and open the template in the editor.
 
                             <p:column headerText="ร้อยละ">
                                 <h:outputText value="#{(item.voterAmount*100)/item.voidedBallotPaper}" >
-                                    <f:convertNumber pattern="#0.00 %"/>
-                                </h:outputText>
+                                    <f:convertNumber pattern="#0.00"/>
+                                </h:outputText>%
                             </p:column>
 
                             <p:column style="width:6%">  
@@ -188,7 +188,7 @@ and open the template in the editor.
                     <p:panelGrid columns="1" styleClass="frmDetail2" id="REPORT_005pnlFrm2" style="width: 100%">
                         <p:row>
                             <p:column>
-                                <p:selectBooleanCheckbox />
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isNomination}"/>
                                 <h:outputText value="2.การสรรหา"/>
                             </p:column>
                         </p:row>
@@ -198,12 +198,12 @@ and open the template in the editor.
                             <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" actionListener="#{formReport005Controller.initReportDetail()}"/>
                         </f:facet>
 
-                        <p:dataTable var="item" value="#{formReport005Controller.report005Details}" id="REPORT_005Grid2" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
+                        <p:dataTable var="item" value="#{formReport005Controller.report005Details2}" id="REPORT_005Grid2" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      style="width:1200px"
                                      rowsPerPageTemplate="5,10,15">
 
-                            <p:ajax event="rowEdit" listener="#{formReport005Controller.onEdit}"/>  
+                            <p:ajax event="rowEdit" listener="#{formReport005Controller.onEdit2}"/>  
                             <p:ajax event="rowEditCancel" listener="#{formReport005Controller.onCancel}"/>
 
                             <p:column headerText="ระยะเวลาสรรหา ส.ว.">  

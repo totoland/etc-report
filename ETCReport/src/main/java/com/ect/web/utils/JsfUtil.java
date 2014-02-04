@@ -24,6 +24,10 @@ public class JsfUtil implements Serializable{
     private static final Logger logger = LoggerFactory.getLogger(JsfUtil.class);
     private static final long serialVersionUID = 5017019437928010910L;
 
+    public static void windowReload() {
+        JsfUtil.executeJavaScript("window.location = '';");
+    }
+
     private RequestContext context = RequestContext.getCurrentInstance();
     
     public static void addErrorMessage(Exception ex, String defaultMsg) {
@@ -202,6 +206,6 @@ public class JsfUtil implements Serializable{
         }
         
         executeJavaScript("dialogEdit.show();");
-        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='"+url+"&random=\" + Math.random() + \"'  scrolling='no' style='border: none;width: 100%;height:500px'></iframe>\");");
+        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='"+url+"&random=\" + Math.random() + \"'  scrolling='yes' style='border: none;width: 100%;height:500px'></iframe>\");");
     }
 }
