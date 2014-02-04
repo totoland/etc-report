@@ -155,7 +155,7 @@ and open the template in the editor.
                             </p:column>
 
                             <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voterAmount*100)/item.voidedBallotPaper}">
+                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}">
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>%
                             </p:column>
@@ -172,7 +172,7 @@ and open the template in the editor.
                             </p:column>
 
                             <p:column headerText="ร้อยละ">
-                                <h:outputText value="#{(item.voterAmount*100)/item.voidedBallotPaper}" >
+                                <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}" >
                                     <f:convertNumber pattern="#0.00"/>
                                 </h:outputText>%
                             </p:column>
@@ -272,8 +272,9 @@ and open the template in the editor.
             <p:messages id="REPORT_005msgAddReportDetail" escape="false" closable="true"></p:messages>
             <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail">
 
-                <h:outputLabel value="วันที่เลือกตั้ง *"/>  
-                <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
+                <h:outputLabel value="วันที่เลือกตั้ง *"/>
+                
+                <totoland:calendarTH id="calElectedDay" value="#{formReport005Controller.inputReport005Detail.electedDay}" style="width: 180px"/>
 
                 <h:outputLabel value="จังหวัด *" />  
                 <p:selectOneMenu id="ectProvince" style="width: 220px" value="#{formReport005Controller.inputReport005Detail.provinceId}">  

@@ -16,7 +16,7 @@
 
     </h:head>
 
-    <h:body style="font-size: 12px">
+    <h:body>
         <div id="art-main">
             <header class="art-header">
                 <div class="art-shapes">
@@ -99,7 +99,7 @@
                 var user = '${formSelectReport.userAuthen.isActive}';
             
                 if (user == null || user == '') {
-                    alert("Session ของคุณหมดอายุโปรดทำการ Login อีกครั้ง");
+                    alert("#{msg.session_timeout}");
                     window.location = '${request.contextPath}/pages/login/login.xhtml';
                 }
             }

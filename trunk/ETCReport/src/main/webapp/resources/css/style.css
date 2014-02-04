@@ -9,7 +9,7 @@ body
     background: #FFFFFF;
     margin:0 auto;
     font-size: 10px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
     position: relative;
@@ -22,8 +22,8 @@ body
 }
 table, ul.art-hmenu
 {
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -82,7 +82,7 @@ ul.art-vmenu a
 .art-postcontent a:hover,
 .art-postcontent a.hovered
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
 }
 
 .art-postcontent p
@@ -111,21 +111,21 @@ ul.art-vmenu a
 
 .art-postcontent a, .art-postcontent a:link
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
     color: #000000;
 }
 
 .art-postcontent a:visited, .art-postcontent a.visited
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
     color: #959A65;
 }
 
 .art-postcontent  a:hover, .art-postcontent a.hover
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: underline;
     color: #818F00;
 }
@@ -418,7 +418,7 @@ li p, .art-postcontent li p, .art-blockcontent li p
 .art-headline a:hover
 {
     font-size: 28px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -453,7 +453,7 @@ li p, .art-postcontent li p, .art-blockcontent li p
 .art-slogan a:hover
 {
     font-size: 18px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
     text-align: left;
     padding: 0;
@@ -662,8 +662,8 @@ ul.art-hmenu>li>a
 .art-hmenu a.active, 
 .art-hmenu a:hover
 {
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
     text-decoration: none;
@@ -741,8 +741,8 @@ ul.art-hmenu li li ul>li:last-child
     text-align: left;
     line-height: 25px;
     color: #2D3413;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
     margin:0;
 }
@@ -755,8 +755,8 @@ ul.art-hmenu li li ul>li:last-child
     text-align: left;
     line-height: 25px;
     color: #2D3413;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
     margin:0;
 }
@@ -1286,8 +1286,8 @@ ul.art-vmenu a
     display: block;
     cursor: pointer;
     z-index: 1;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1392,8 +1392,8 @@ ul.art-vmenu ul a
     z-index: 0;
     line-height: 32px;
     color: #959A65;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1405,8 +1405,8 @@ ul.art-vmenu ul a:visited, ul.art-vmenu ul a.active:hover, ul.art-vmenu ul a:hov
 {
     line-height: 32px;
     color: #959A65;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1562,8 +1562,8 @@ div.art-block img
     padding:5px;
     margin:0 auto;
     color: #181910;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
 }
 .art-blockcontent table,
 .art-blockcontent li, 
@@ -1573,8 +1573,8 @@ div.art-block img
 .art-blockcontent a:hover
 {
     color: #181910;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
 }
 
 .art-blockcontent p
@@ -1585,7 +1585,7 @@ div.art-block img
 .art-blockcontent a, .art-blockcontent a:link
 {
     color: #A1BA45;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1594,7 +1594,7 @@ div.art-block img
 .art-blockcontent a:visited, .art-blockcontent a.visited
 {
     color: #959A65;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -1603,7 +1603,7 @@ div.art-block img
 .art-blockcontent a:hover, .art-blockcontent a.hover
 {
     color: #BA4B1C;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: underline;
@@ -1628,8 +1628,8 @@ div.art-block img
 
 .art-block li
 {
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     line-height: 125%;
     color: #303120;
 }
@@ -1660,7 +1660,7 @@ button.art-button
 {
     text-decoration: none;
     font-size: 14px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     position:relative;
@@ -1695,7 +1695,7 @@ input, select, textarea, a.art-search-button span
 {
     vertical-align: middle;
     font-size: 14px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
 }
@@ -1774,7 +1774,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="url
     padding: 6px 0;
     /*   color: #181910 !important;*/
     font-size: 14px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-shadow: none;
@@ -1795,7 +1795,7 @@ input.art-error, textarea.art-error
 input.art-error, textarea.art-error {
     color: #181910 !important;
     font-size: 14px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
 }
@@ -1814,8 +1814,8 @@ form.art-search input[type="text"]
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     color: #181910 !important;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
 }
@@ -1889,8 +1889,8 @@ label.art-checkbox:before
 label.art-checkbox
 {
     cursor: pointer;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
     line-height: 20px;
@@ -1973,8 +1973,8 @@ label.art-radiobutton:before
 label.art-radiobutton
 {
     cursor: pointer;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
     line-height: 16px;
@@ -2075,7 +2075,7 @@ label.art-radiobutton.hovered:before
 {
     padding:10px 0;
     color: #181910;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
 }
 
 .art-comment:first-child
@@ -2091,7 +2091,7 @@ label.art-radiobutton.hovered:before
 .art-comment-header
 {
     color: #181910;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
 }
 
 .art-comment-header a, 
@@ -2101,24 +2101,24 @@ label.art-radiobutton.hovered:before
 .art-comment-header a:hover,
 .art-comment-header a.hovered
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
 }
 
 .art-comment-header a, .art-comment-header a:link
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #000000;
 }
 
 .art-comment-header a:visited, .art-comment-header a.visited
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #4A4D32;
 }
 
 .art-comment-header a:hover,  .art-comment-header a.hovered
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #818F00;
 }
 
@@ -2129,24 +2129,24 @@ label.art-radiobutton.hovered:before
 .art-comment-content a:hover,
 .art-comment-content a.hovered
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
 }
 
 .art-comment-content a, .art-comment-content a:link
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #000000;
 }
 
 .art-comment-content a:visited, .art-comment-content a.visited
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #4A4D32;
 }
 
 .art-comment-content a:hover,  .art-comment-content a.hovered
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #818F00;
 }
 
@@ -2186,7 +2186,7 @@ label.art-radiobutton.hovered:before
 .art-pager a:link,
 .art-pager a:visited
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
     color: #3E450D
         ;
@@ -2460,7 +2460,7 @@ pre
 .art-postheadericons a:hover
 {
     font-size: 12px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #4A4D32;
 }
 
@@ -2471,7 +2471,7 @@ pre
 
 .art-postheadericons a, .art-postheadericons a:link
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -2480,7 +2480,7 @@ pre
 
 .art-postheadericons a:visited, .art-postheadericons a.visited
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
@@ -2489,7 +2489,7 @@ pre
 
 .art-postheadericons a:hover, .art-postheadericons a.hover
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: bold;
     font-style: normal;
     text-decoration: underline;
@@ -2602,7 +2602,7 @@ pre
 
 .art-postcontent li, .art-post li, .art-textblock li
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #1A1E0B;
     margin: 5px 0 5px 13px;
 }
@@ -2656,7 +2656,7 @@ blockquote
     padding:12px 12px 12px 49px;
     margin:0 0 0 20px;
     color: #15160E;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: italic;
     /* makes block not to align behind the image if they are in the same line */
@@ -2669,7 +2669,7 @@ blockquote a:visited, .art-postcontent blockquote a:visited, .art-blockcontent b
 blockquote a:hover, .art-postcontent blockquote a:hover, .art-blockcontent blockquote a:hover, .art-footer blockquote a:hover
 {
     color: #15160E;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: italic;
 }
@@ -2698,31 +2698,31 @@ blockquote p,
 .Sorter a
 {
     position:relative;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #94AB3F;
 }
 
 .Sorter a:link
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #94AB3F;
 }
 
 .Sorter a:visited, .Sorter a.visited
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #94AB3F;
 }
 
 .Sorter a:hover, .Sorter a.hover
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color: #718230;
 }
 
 .Sorter
 {
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     color:#505D22;
 }
 
@@ -2734,8 +2734,8 @@ blockquote p,
     margin:10px auto 0;
     position: relative;
     color: #45472E;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
     text-align: center;
     padding: 0;
 }
@@ -2749,8 +2749,8 @@ blockquote p,
 .art-footer caption
 {
     color: #45472E;
-    font-size: 11px;
-    font-family:THSarabunNewfont;
+    font-size: 12px;
+    font-family:Helvetica,Arial,sans-serif;
 }
 
 .art-footer p 
@@ -2763,21 +2763,21 @@ blockquote p,
 .art-footer a:link
 {
     color: #9AB342;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
 }
 
 .art-footer a:visited
 {
     color: #8F9461;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: none;
 }
 
 .art-footer a:hover
 {
     color: #BA4B1C;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     text-decoration: underline;
 }
 
@@ -2903,7 +2903,7 @@ blockquote p,
 .art-footer li
 {
     font-size: 14px;
-    font-family:THSarabunNewfont;
+    font-family:Helvetica,Arial,sans-serif;
     line-height: 125%;
     color: #2D2E1E;
 }
@@ -3156,5 +3156,8 @@ blockquote p,
 /* Begin Additional CSS Styles */
 .ui-button,  .ui-button-text .ui-button{  
     font-size: 12px !important; 
+}
+.ui-datatable .ui-datatable-odd {
+    background: none repeat scroll 0 0 #EDF5FF;
 }
 /* End Additional CSS Styles */

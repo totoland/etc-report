@@ -181,7 +181,7 @@ public abstract class BaseController implements Serializable {
 
     public String dateTH(Date date,String format) {
         if(format == null || format.isEmpty()){
-            return DateTimeUtils.getInstance().thDate(date, DateTimeUtils.DISPLAY_DATETIME_FORMAT);
+            return DateTimeUtils.getInstance().thDate(date, DateTimeUtils.DISPLAY_DATE_FORMAT);
         }
         return DateTimeUtils.getInstance().thDate(date, format);
 
