@@ -138,9 +138,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่สร้าง" />
                                             </f:facet>
-                                            <totoland:convertDateTime value="#{item.createdDate}">
-                                                
-                                            </totoland:convertDateTime>
+                                            <totoland:convertDateTime value="#{item.createdDate}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -152,9 +150,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่ส่งพิจรณา" />
                                             </f:facet>
-                                            <h:outputText value="#{item.approvedDate}">
-                                                
-                                            </h:outputText>
+                                            <totoland:convertDateTime value="#{item.approvedDate}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -227,9 +223,9 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่ส่งพิจรณา" />
                                             </f:facet>
-                                            <h:outputText value="#{item.approvedDate}">
+                                            <totoland:convertDateTime value="#{item.approvedDate}">
                                                 
-                                            </h:outputText>
+                                            </totoland:convertDateTime>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">

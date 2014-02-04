@@ -58,6 +58,7 @@ public class FormReport005Controller extends BaseFormReportController {
      * For ListDetail
      */
     private List<Report005Detail> report005Details;
+    private List<Report005Detail> report005Details2;
     /**
      * *
      * For Add Record
@@ -102,6 +103,11 @@ public class FormReport005Controller extends BaseFormReportController {
 
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Save Report : {}", REPORT_005 + MessageUtils.PRINT_LINE_STAR());
 
+        if (report005Details2 != null && !report005Details2.isEmpty()) {
+
+            report005Details.addAll(report005Details2);
+
+        }
         report005.setReport005DetailList(report005Details);
         report005.setCreatedDate(new Date());
         report005.setCreatedUser(super.getUserAuthen().getUserId());
@@ -113,7 +119,7 @@ public class FormReport005Controller extends BaseFormReportController {
         if (!validateBeforeSave()) {
             return;
         }
-
+        
         try {
 
             reportGennericService.create(report005);
@@ -126,7 +132,7 @@ public class FormReport005Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -134,6 +140,7 @@ public class FormReport005Controller extends BaseFormReportController {
 
             logger.trace("Save... {} ", report005);
 
+            JsfUtil.windowReload();
         }
     }
 
@@ -216,6 +223,12 @@ public class FormReport005Controller extends BaseFormReportController {
 
         }
 
+        /**
+         * *
+         * 1=เลือกตั้ง,2=สรรหา for REPORT_005 only
+         */
+        inputReport005Detail.setElectedType(1);
+
         inputReport005Detail.setReportId(report005);
 
         report005Details.add(inputReport005Detail);
@@ -235,20 +248,25 @@ public class FormReport005Controller extends BaseFormReportController {
             return;
         }
 
-        if (report005Details == null || report005Details.isEmpty()) {
+        if (report005Details2 == null || report005Details2.isEmpty()) {
 
-            report005Details = new ArrayList<>();
+            report005Details2 = new ArrayList<>();
             inputReport005Detail2.setKey(1);
 
         } else {
 
-            inputReport005Detail2.setKey(report005Details.get(report005Details.size() - 1).getKey() + 1);
+            inputReport005Detail2.setKey(report005Details2.get(report005Details2.size() - 1).getKey() + 1);
 
         }
 
+        /**
+         * *
+         * 1=เลือกตั้ง,2=สรรหา for REPORT_005 only
+         */
+        inputReport005Detail.setElectedType(2);
         inputReport005Detail2.setReportId(report005);
 
-        report005Details.add(inputReport005Detail2);
+        report005Details2.add(inputReport005Detail2);
 
         JsfUtil.hidePopup("REPORT_005pn_addReportDetail2");
     }
@@ -307,6 +325,36 @@ public class FormReport005Controller extends BaseFormReportController {
     public void onCancel(RowEditEvent event) {
 
         JsfUtil.addSuccessMessage("ยกเลิก!!");
+
+    }
+
+    /**
+     * *
+     * Row Edit
+     *
+     * @param event
+     */
+    public void onEdit2(RowEditEvent event) {
+
+        Report005Detail editRow = ((Report005Detail) event.getObject());
+
+        logger.trace("Edit Row : {}", editRow);
+
+        for (int i = 0; i < report005Details2.size(); i++) {
+
+            if (report005Details2.get(i).getKey() == editRow.getKey()) {
+
+                report005Details2.remove(i);
+                report005Details2.add(i, editRow);
+
+                logger.trace("After Edit Row : {}", editRow);
+            }
+
+            break;
+
+        }
+
+        JsfUtil.addSuccessMessage("แก้ใขข้อมูลสำเร็จ!!");
 
     }
 
@@ -426,18 +474,9 @@ public class FormReport005Controller extends BaseFormReportController {
 
         String msg = "";
 
-//        if (report005.getStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
-//        }
-//        if (report005.getSubStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
-//        }
-//        if (report005.getPlanId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
-//        }
-//        if (report005.getReport005DetailList() == null || report005.getReport005DetailList().isEmpty()) {
-//            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
-//        }
+        if (report005.getReport005DetailList() == null || report005.getReport005DetailList().isEmpty()) {
+            msg += (MessageUtils.getResourceBundleString("require_vote_or_nomination")) + ("\\n");
+        }
 
         if (!StringUtils.isBlank(msg.toString())) {
             JsfUtil.alertJavaScript(msg.toString().trim());
@@ -503,11 +542,34 @@ public class FormReport005Controller extends BaseFormReportController {
              * * Set ReportDetail **
              */
             report005Details = new ArrayList<>();
-            report005Details.addAll(report005.getReport005DetailList());
+            report005Details2 = new ArrayList<>();
+
+            /**
+             * *
+             * For Report005 only
+             */
+            for (Report005Detail report005Detail : report005.getReport005DetailList()) {
+
+                if (report005Detail.getElectedType() != null && report005Detail.getElectedType().intValue() == 1) {
+
+                    report005Details.add(report005Detail);
+
+                } else {
+
+                    report005Details2.add(report005Detail);
+
+                }
+            }
 
             for (int i = 0; i < report005Details.size(); i++) {
 
                 report005Details.get(i).setKey(i);
+
+            }
+
+            for (int i = 0; i < report005Details2.size(); i++) {
+
+                report005Details2.get(i).setKey(i);
 
             }
 
@@ -594,5 +656,19 @@ public class FormReport005Controller extends BaseFormReportController {
      */
     public void setInputReport005Detail2(Report005Detail inputReport005Detail2) {
         this.inputReport005Detail2 = inputReport005Detail2;
+    }
+
+    /**
+     * @return the report005Details2
+     */
+    public List<Report005Detail> getReport005Details2() {
+        return report005Details2;
+    }
+
+    /**
+     * @param report005Details2 the report005Details2 to set
+     */
+    public void setReport005Details2(List<Report005Detail> report005Details2) {
+        this.report005Details2 = report005Details2;
     }
 }
