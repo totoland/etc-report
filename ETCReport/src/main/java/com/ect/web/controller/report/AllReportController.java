@@ -441,4 +441,9 @@ public class AllReportController extends BaseFormReportController {
     private void initCriteria() {
         reportCriteria = new ReportCriteria();
     }
+
+    @Override
+    public void onDelete(Object object) {
+        
+    }
 }

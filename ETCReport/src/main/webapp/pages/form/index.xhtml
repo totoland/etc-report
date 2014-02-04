@@ -34,14 +34,15 @@ and open the template in the editor.
                                         <p:selectOneMenu id="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
-                                            <p:ajax listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
                                         </p:selectOneMenu> 
 
                                     </h:panelGrid>
 
                                     <p:separator />
 
-                                    <p:commandButton value="สร้างรายงาน" actionListener="#{formSelectReport.validateSelectReport()}" update=":form1:msgFormMain"/>
+                                    <p:commandButton value="สร้างรายงาน" action="#{formSelectReport.selectReport()}" update=":form1:msgFormMain,:form1:include"/>
+                                    <p:remoteCommand name="initReport" actionListener="#{formSelectReport.validateSelectReport()}"> 
+                                    </p:remoteCommand>
 
 
                                 </p:panel>
@@ -77,7 +78,7 @@ and open the template in the editor.
                                                 <h:outputText value="วันที่สร้าง" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.createdDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column style="width:170px">
@@ -90,9 +91,9 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่ส่งกลับ" />
                                             </f:facet>
-                                            
+
                                             <totoland:convertDateTime value="#{item.rejectedDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column style="width: 220px">
@@ -162,9 +163,9 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่ส่งกลับ" />
                                             </f:facet>
-                                            
+
                                             <totoland:convertDateTime value="#{item.rejectedDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column style="width: 220px">
@@ -210,7 +211,7 @@ and open the template in the editor.
                                                 <h:outputText value="วันที่สร้าง" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.createdDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column>
@@ -224,7 +225,7 @@ and open the template in the editor.
                                                 <h:outputText value="วันที่ส่งพิจรณา" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.approvedDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column>
@@ -270,7 +271,7 @@ and open the template in the editor.
                                                 <h:outputText value="วันที่สร้าง" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.createdDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column>
@@ -284,7 +285,7 @@ and open the template in the editor.
                                                 <h:outputText value="วันที่ส่งพิจราณา" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.approvedDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column>
@@ -324,7 +325,7 @@ and open the template in the editor.
                                                 <h:outputText value="วันที่สร้าง" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.createdDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column>
@@ -338,7 +339,7 @@ and open the template in the editor.
                                                 <h:outputText value="วันที่อนุมัติ" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.approvedDate}">
-                                                
+
                                             </totoland:convertDateTime>
                                         </p:column>
                                         <p:column>
@@ -392,6 +393,7 @@ and open the template in the editor.
                         <ui:include src="formReport003.xhtml" />
                         <ui:include src="formReport004.xhtml" />
                         <ui:include src="formReport005.xhtml" />
+                        <ui:include src="formReport006.xhtml" />
 
                     </h:panelGroup>
 

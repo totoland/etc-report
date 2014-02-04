@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <p:panel id="REPORT_006" rendered="#{formSelectReport.reportCode=='REPORT_006'}">
+        <p:dialog id="REPORT_MainDialog_REPORT_006" header="#{msg.report_006_header}" widgetVar="REPORT_MainDialog_REPORT_006" modal="true">                         
+            <p:panel header="#{formReport006Controller.reportTitle}" style="width: 100%;">
+                <p:messages id="REPORT_006msgFrmDetails"></p:messages>
+
+                <div style="width: 1000px;overflow-x: scroll">
+                    <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_006pnlFrm">
+                        <f:facet name="header"  class="txtLeft">
+                            <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_006dlgAddReportDetail.show()" update="REPORT_006pn_addReportDetail" actionListener="#{formReport006Controller.initReportDetail()}"/>
+                        </f:facet>   
+                        <p:dataTable var="item" value="#{formReport006Controller.report006Details}" id="REPORT_006Grid" 
+                                     style="width: 1200px"
+                                     rowIndexVar="index" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15">  
+
+                            <p:ajax event="rowEdit" listener="#{formReport006Controller.onEdit}"/>  
+                            <p:ajax event="rowEditCancel" listener="#{formReport006Controller.onCancel}"/>
+
+                            <p:columnGroup type="header"> 
+                                <p:row>  
+                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="ลำดับ"></p:column>
+                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="เรื่อง"></p:column>  
+                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="จำนวน (เรื่อง)"></p:column>
+                                    <p:column colspan="3" style="text-align: center" headerText="สถานะของเรื่องที่ยังไม่ได้พิจรณา"></p:column>
+                                    <p:column colspan="2" style="text-align: center" headerText="จำนวนเรื่องที่ผ่านการพิจรณาแล้ว"></p:column>
+                                    <p:column rowspan="2"></p:column>
+                                    <p:column rowspan="2"></p:column>
+                                </p:row>
+                                <p:row>  
+                                    <p:column style="text-align: center" headerText="เสนอผู้บริหาร สนง. (เรื่อง)"></p:column>
+                                    <p:column style="text-align: center" headerText="เสนอผู้ ปธ.กกต. ลงนามบรรจุวาระ (เรื่อง)"></p:column>
+                                    <p:column style="text-align: center" headerText="บรรจุวาระแล้ว (เรื่อง)"></p:column>
+                                    <p:column style="text-align: center" headerText="เป็นมติ (เรื่อง)"></p:column>
+                                    <p:column style="text-align: center" headerText="เป็นความเห็น (เรื่อง)"></p:column>
+                                </p:row>
+                            </p:columnGroup>
+
+                            <p:column>  
+                                ${index+1}
+                            </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.title}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.title}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.amount}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.amount}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.submitManager}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.submitManager}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.submitPresidentEct}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.submitPresidentEct}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.submited}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.submited}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.conclusion}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.conclusion}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.comment}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.comment}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>  
+                                <p:rowEditor />  
+                            </p:column> 
+                            <p:column>  
+                                <p:commandLink action="#{formReport006Controller.onDelete(item)}" update="REPORT_006Grid">
+                                    <span class="ui-icon ui-icon-trash"></span>
+                                    <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
+                                </p:commandLink>
+                            </p:column> 
+                        </p:dataTable>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+                            <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+                            <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+                        </p:confirmDialog> 
+                    </p:panelGrid>
+                </div>
+                <h:panelGroup id="REPORT_006pnlCmd">
+                    <div align="center">
+                        <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport006Controller.save()}" id="REPORT_006btnSave"/>
+                        <p:commandButton value="#{msg.btn_cancel}" id="REPORT_006btnCancel" actionListener="#{formReport006Controller.resetForm()}" update="REPORT_MainDialog_REPORT_006" onsuccess="REPORT_MainDialog_REPORT_006.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </p:panel>
+        </p:dialog>
+
+        <p:dialog id="REPORT_006AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_006dlgAddReportDetail" modal="true" draggable="true">
+            <p:messages id="REPORT_006msgAddReportDetail" escape="false" closable="true"></p:messages>
+            <p:panelGrid columns="2" id="REPORT_006pn_addReportDetail">
+
+
+                <f:facet name="footer">  
+                    <p:commandButton value="เพิ่ม" actionListener="#{formReport006Controller.addReportDetail(actionEvent)}" update="REPORT_006msgAddReportDetail,REPORT_006Grid" icon="ui-icon-check" style="margin:0"/>  
+                </f:facet>
+            </p:panelGrid>
+            <style>
+                .ui-panelgrid td {
+                    border-color: inherit;
+                    border-style: inherit;
+                    border-width: 1px;
+                    padding: 4px 10px;
+                }
+            </style>
+        </p:dialog>
+
+
+    </p:panel>
+</html>

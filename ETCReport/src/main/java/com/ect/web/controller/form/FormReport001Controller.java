@@ -62,7 +62,7 @@ public class FormReport001Controller extends BaseFormReportController {
      * *
      * For ListDetail
      */
-    private List<Report001Detail> report001Details;
+    private List<Report001Detail> report001Details = new ArrayList<>();
     /**
      * *
      * For Add Record
@@ -109,7 +109,9 @@ public class FormReport001Controller extends BaseFormReportController {
 
     @Override
     public void resetForm() {
-        
+        this.report001 = new Report001();
+        this.report001Details.clear();
+        initForm();
     }
 
     @Override
@@ -597,5 +599,10 @@ public class FormReport001Controller extends BaseFormReportController {
         
         reportTitle = MessageUtils.getResourceBundleString("report_header_title", DateTimeUtils.getInstance().thDate(curDate,"MMMM"),DateTimeUtils.getInstance().thDate(curDate,"yyyy"),getUserAuthen().getProvinceName());
         
+    }
+
+    @Override
+    public void onDelete(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

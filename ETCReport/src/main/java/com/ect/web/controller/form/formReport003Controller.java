@@ -57,7 +57,7 @@ public class formReport003Controller extends BaseFormReportController {
      * *
      * For ListDetail
      */
-    private List<Report003Detail> report003Details;
+    private List<Report003Detail> report003Details = new ArrayList<>();
     /**
      * *
      * For Add Record
@@ -94,6 +94,9 @@ public class formReport003Controller extends BaseFormReportController {
 
     @Override
     public void resetForm() {
+        this.report003 = new Report003();
+        this.report003Details.clear();
+        initForm();
     }
 
     @Override
@@ -564,5 +567,10 @@ public class formReport003Controller extends BaseFormReportController {
         report003Details.add(report003Detail6);
         report003Details.add(report003Detail7);
         
+    }
+
+    @Override
+    public void onDelete(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

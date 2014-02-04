@@ -43,6 +43,7 @@ public abstract class BaseFormReportController extends BaseController{
     protected static final String REPORT_003 = "REPORT_003";
     protected static final String REPORT_004 = "REPORT_004";
     protected static final String REPORT_005 = "REPORT_005";
+    protected static final String REPORT_006 = "REPORT_006";
     protected static final String REPORT_MODE_EDIT = "edit";
     protected static final String REPORT_MODE_VIEW = "view";
     protected static final String REPORT_MODE_CREATE = "create";
@@ -77,6 +78,14 @@ public abstract class BaseFormReportController extends BaseController{
      * @param event
      */
     public abstract void onCancel(RowEditEvent event);
+    
+    /**
+     * *
+     * Row Delete
+     *
+     * @param row object
+     */
+    public abstract void onDelete(Object object);
     
     /**
      * *
