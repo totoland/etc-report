@@ -16,6 +16,7 @@ import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.dao.Report002Dao;
 import com.ect.db.report.dao.Report004Dao;
+import com.ect.db.report.dao.Report006Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -65,11 +66,21 @@ public class Test {
     
     @Autowired
     GennericDao<EctProvince>gennericDao;
+    
+    @Autowired
+    Report006Dao report006Dao;
+    
     @Before
     public void init() throws Exception {
         // Log4J junit configuration.
         System.out.println("init");
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
+    }
+    
+    public void testReport006(){
+    
+        System.out.println(report006Dao.findByReportId(1));
+    
     }
     
     @Ignore
