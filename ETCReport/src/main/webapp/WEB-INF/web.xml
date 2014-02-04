@@ -83,7 +83,7 @@
     </error-page>
     <error-page>
         <exception-type>com.ect.web.controller.exception.SessionExpireException</exception-type>
-        <location>/pages/login/login.xhtml</location>
+        <location>/pages/errors/session_expired.xhtml</location>
     </error-page>
     <welcome-file-list>
         <welcome-file>pages/login/login.xhtml</welcome-file>

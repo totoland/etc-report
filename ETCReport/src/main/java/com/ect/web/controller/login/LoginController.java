@@ -5,7 +5,6 @@
 package com.ect.web.controller.login;
 
 import com.ect.db.authen.dao.AuthenDao;
-import com.ect.db.entity.EctUser;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.utils.ECTUtils;

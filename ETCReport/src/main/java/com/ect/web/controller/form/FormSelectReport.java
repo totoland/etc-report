@@ -50,20 +50,12 @@ public class FormSelectReport extends BaseFormReportController {
 
         this.reportUrl = null;
         
-        if (StringUtils.isBlank(reportCode)) {
-
-            addError(MessageUtils.getResourceBundleString("require_select_message", "รายงาน"));
-            return;
-
-        }
-        
         ReportName reportName = ectConfManager.getReportObj(reportCode);
 
         logger.trace("Report : {}", reportName);
 
         if (reportName != null) {
             reportUrl = reportName.getReportUrl();
-            JsfUtil.executeJavaScript("initReport();");
         }
 
     }

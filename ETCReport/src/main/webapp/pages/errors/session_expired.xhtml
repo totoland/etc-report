@@ -14,16 +14,9 @@ and open the template in the editor.
     <h:head>
     </h:head>
     <h:body>
-        <ui:composition template="../../template/etcTemplateGreen.xhtml">
-
-            <ui:define name="content">
-                <p:panel>
                     <script>
                         alert("Session ของคุณหมดอายุ กรุณา login อีกครั้ง");
                         window.location = '${request.contextPath}/pages/login/login.xhtml';
                     </script>
-                </p:panel>
-            </ui:define>
-        </ui:composition>
     </h:body>
 </html>
