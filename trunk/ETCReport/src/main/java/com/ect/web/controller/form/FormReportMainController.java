@@ -4,17 +4,14 @@
  */
 package com.ect.web.controller.form;
 
-import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
 import com.ect.db.entity.EctFlowStatus.ReportStatus;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.entity.ReportName.ReportCode;
 import com.ect.db.report.entity.ViewReportStatus;
-import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.Report001Service;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.service.ReportService;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
@@ -687,6 +684,11 @@ public class FormReportMainController extends BaseFormReportController {
 
     @Override
     public void addReportDetail(ActionEvent actionEvent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

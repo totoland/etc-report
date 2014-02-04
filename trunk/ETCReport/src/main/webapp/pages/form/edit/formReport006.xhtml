@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
+        <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
+
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <p:panel id="REPORT_006" header="#{msg.report_006_header}">
+                <p:panel header="#{formReport006Controller.reportTitle}">
+                    <p:messages id="REPORT_006msgFrmDetails"></p:messages>
+                    <p:panelGrid styleClass="frmDetail" id="REPORT_006pnlFrm" style="width: 100%">
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column rowspan="2">ลำดับ</p:column>
+                                <p:column rowspan="2">เรื่อง</p:column>  
+                                <p:column rowspan="2">จำนวน (เรื่อง)</p:column>
+                                <p:column colspan="3">สถานะของเรื่องที่ยังไม่ได้พิจรณา</p:column>
+                                <p:column colspan="2">จำนวนเรื่องที่ผ่านการพิจรณาแล้ว</p:column>
+                            </p:row>
+                            <p:row>  
+                                <p:column>เสนอผู้บริหาร สนง. (เรื่อง)</p:column>
+                                <p:column>เสนอผู้ ปธ.กกต. ลงนามบรรจุวาระ (เรื่อง)</p:column>
+                                <p:column>บรรจุวาระแล้ว (เรื่อง)</p:column>
+                                <p:column>เป็นมติ (เรื่อง)</p:column>
+                                <p:column>เป็นความเห็น (เรื่อง)</p:column>
+                            </p:row>
+                        </f:facet>
+                    </p:panelGrid>
+
+                    <h:panelGroup id="REPORT_006pnlCmd" rendered="#{formReport006Controller.report006.flowStatusId!=200}">
+                        <div align="center">
+                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport006Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport006Controller.paramMode=='view' and formReport006Controller.canEdit(formReport006Controller.report006.createdUserGroup)}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport006Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport006Controller.paramMode=='view'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport006Controller.edit()}" id="REPORT_001btnSave" rendered="#{formReport006Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_cancel}" id="REPORT_006btnCancel" actionListener="#{formReport006Controller.goToCancel()}" rendered="#{formReport006Controller.paramMode=='edit'}"/>
+                        </div>
+                    </h:panelGroup>
+                </p:panel>
+
+
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

@@ -5,6 +5,7 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.report.entity.ReportName;
+import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
 import javax.annotation.PostConstruct;
@@ -46,6 +47,15 @@ public class FormSelectReport extends BaseFormReportController {
         logger.trace("Select report by create mode: " + reportCode);
 
         this.reportMode = REPORT_MODE_CREATE;
+
+        this.reportUrl = null;
+        
+        if (StringUtils.isBlank(reportCode)) {
+
+            addError(MessageUtils.getResourceBundleString("require_select_message", "รายงาน"));
+            return;
+
+        }
         
         ReportName reportName = ectConfManager.getReportObj(reportCode);
 
@@ -53,6 +63,7 @@ public class FormSelectReport extends BaseFormReportController {
 
         if (reportName != null) {
             reportUrl = reportName.getReportUrl();
+            JsfUtil.executeJavaScript("initReport();");
         }
 
     }
@@ -177,6 +188,11 @@ public class FormSelectReport extends BaseFormReportController {
 
     @Override
     public void edit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

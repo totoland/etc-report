@@ -196,7 +196,7 @@ and open the template in the editor.
                 <h:panelGroup id="REPORT_001pnlCmd">
                     <div align="center">
                         <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport001Controller.save()}" id="REPORT_001btnSave"/>
-                        <p:commandButton value="#{msg.btn_cancel}" id="REPORT_001btnCancel" onclick="REPORT_MainDialog_REPORT_001.hide()"/>
+                        <p:commandButton value="#{msg.btn_cancel}" id="REPORT_001btnCancel" actionListener="#{formReport001Controller.resetForm()}" update="REPORT_MainDialog_REPORT_001" onsuccess="REPORT_MainDialog_REPORT_001.hide()"/>
                     </div>
                 </h:panelGroup>
             </p:panel>
