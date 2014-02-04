@@ -85,6 +85,7 @@ public class FormReport001Controller extends BaseFormReportController {
     public void init() {
 
         initParam();
+        initForm();
         /**
          * *
          * Check Mode
@@ -102,8 +103,6 @@ public class FormReport001Controller extends BaseFormReportController {
             initEditMode();
             
         }
-        
-        initForm();
 
     }
 
