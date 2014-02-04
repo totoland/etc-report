@@ -65,7 +65,7 @@ public class AllReportController extends BaseFormReportController {
     @PostConstruct
     public void init() {
 
-        reportCriteria = new ReportCriteria();
+        initCriteria();
 
     }
 
@@ -181,6 +181,10 @@ public class AllReportController extends BaseFormReportController {
 
     @Override
     public void resetForm() {
+        initCriteria();
+        lazyModel = new LazyDataModel<ViewReportStatus>() {
+            private static final long serialVersionUID = 3109256773218160485L;
+        };
     }
 
     public void fileXLSDownload(ViewReportStatus viewReportStatus) {
@@ -278,11 +282,11 @@ public class AllReportController extends BaseFormReportController {
         } else if (viewReportStatus.getReportCode().equals(REPORT_005)) {
 
             reportName = REPORT_005;
-            
+
             Report005 report005 = reportService.findByReport005ById(viewReportStatus.getReportId());
 
             beans.put("report", report005);
-            
+
             if (report005 == null || report005.getReport005DetailList() == null || report005.getReport005DetailList().isEmpty()) {
 
                 logger.warn("Cannot find Report004 by Id : {}", viewReportStatus.getReportId());
@@ -293,7 +297,7 @@ public class AllReportController extends BaseFormReportController {
 
                 List<Report005Detail> report005Details = new ArrayList<>();
                 List<Report005Detail> report005Details2 = new ArrayList<>();
-                
+
                 for (Report005Detail report005Detail : report005.getReport005DetailList()) {
 
                     if (report005Detail.getElectedType() != null && report005Detail.getElectedType().intValue() == 1) {
@@ -303,10 +307,10 @@ public class AllReportController extends BaseFormReportController {
                     }
 
                 }
-                
+
                 beans.put("details", report005Details);
                 beans.put("details2", report005Details2);
-                
+
             }
 
         }
@@ -432,5 +436,9 @@ public class AllReportController extends BaseFormReportController {
      */
     public void setLazyModel(LazyDataModel<ViewReportStatus> lazyModel) {
         this.lazyModel = lazyModel;
+    }
+
+    private void initCriteria() {
+        reportCriteria = new ReportCriteria();
     }
 }

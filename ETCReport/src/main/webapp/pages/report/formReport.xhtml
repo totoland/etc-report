@@ -17,30 +17,30 @@ and open the template in the editor.
             <ui:define name="content">
                 <h:form id="form1" prependId="false">
                     <p:panel header="หน้าออกรายงาน">
-                        <p:panelGrid columns="4" style="width: 900px;" styleClass="frmSelect">
+                        <p:panelGrid columns="4" style="width: 100%;" styleClass="frmSelect" id="searchCriteria">
                             <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
                             <p:outputLabel value="#{msg.label_fiscal_year} :" />
-                            <p:selectOneMenu style="width: 180px;" value="#{allReportController.reportCriteria.year}">
+                            <p:selectOneMenu style="width: 220px;" value="#{allReportController.reportCriteria.year}">
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
-                            </p:selectOneMenu>  
+                            </p:selectOneMenu>
                             <p:outputLabel value="เลือกเดือน : " />
-                            <p:selectOneMenu style="width: 180px;" value="#{allReportController.reportCriteria.month}">  
+                            <p:selectOneMenu style="width: 220px;" value="#{allReportController.reportCriteria.month}">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlMonth()}"></f:selectItems>
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
-                            <p:selectOneMenu style="width: 180px;" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                            <p:selectOneMenu style="width: 180px;" id="REPORT_001strategicId" value="#{allReportController.reportCriteria.strategic}">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001strategicId" value="#{allReportController.reportCriteria.strategic}">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
                                                value="#{allReportController.dropdownFactory.ddlStrategic()}">
@@ -48,30 +48,30 @@ and open the template in the editor.
                                 <p:ajax update="subStrategicId"/>  
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId"/>
-                            <p:selectOneMenu style="width: 180px;" id="subStrategicId" value="#{allReportController.reportCriteria.subStrategic}" >  
+                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{allReportController.reportCriteria.subStrategic}" >  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlSubStrategic(allReportController.reportCriteria.strategic)}"></f:selectItems>
                                 <p:ajax update="REPORT_001planId"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกแผนงาน : "/>
-                            <p:selectOneMenu style="width: 180px;" id="REPORT_001planId" value="#{allReportController.reportCriteria.plan}" >  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{allReportController.reportCriteria.plan}" >  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlPlan(allReportController.reportCriteria.subStrategic)}"></f:selectItems>  
                                 <p:ajax update="REPORT_001projectId"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกโครงการ : " />
-                            <p:selectOneMenu style="width: 180px;" id="REPORT_001projectId"  value="#{allReportController.reportCriteria.project}" >  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{allReportController.reportCriteria.project}" >  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlProject(allReportController.reportCriteria.plan)}"></f:selectItems> 
                                 <p:ajax update="REPORT_001Activity"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกกิจกรรม : " />
-                            <p:selectOneMenu style="width: 180px;" id="REPORT_001Activity" value="#{allReportController.reportCriteria.activity}">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{allReportController.reportCriteria.activity}">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlActivity(allReportController.reportCriteria.project)}"></f:selectItems> 
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกสถานะ : "/>
-                            <p:selectOneMenu style="width: 180px" value="#{allReportController.reportCriteria.status}">  
+                            <p:selectOneMenu style="width: 220px" value="#{allReportController.reportCriteria.status}">  
                                 <f:selectItem itemLabel="เลือก" itemValue="" />  
                                 <f:selectItem itemLabel="รอพิจารณา" itemValue="100" />  
                                 <f:selectItem itemLabel="ไม่อนุมัติ" itemValue="401" />  
@@ -79,16 +79,19 @@ and open the template in the editor.
                             </p:selectOneMenu>
 
                             <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" for="lb2" rendered="#{param.user==null}"/>
-                            <p:selectOneMenu  id="ectDll2" style="width: 180px" rendered="#{param.user==null}" value="#{allReportController.reportCriteria.reportCode}">  
+                            <p:selectOneMenu  id="ectDll2" style="width: 220px" rendered="#{param.user==null}" value="#{allReportController.reportCriteria.reportCode}">  
                                 <f:selectItem itemLabel="-เลือก-" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlDepEctCenter()}"/>  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlDepEct()}"/>  
                             </p:selectOneMenu>
                             <f:facet name="footer">
-                                <div align="center"><p:commandButton id="btnShowRpt" action="#{allReportController.search()}" update="rptPreSendList2" value="แสดงรายงาน"/></div>
+                                <div align="center">
+                                    <p:commandButton id="btnShowRpt" action="#{allReportController.search()}" update="rptPreSendList2" value="แสดงรายงาน"/>
+                                    <p:commandButton id="btnResetwRpt" action="#{allReportController.resetForm()}" update="searchCriteria,rptPreSendList2" value="เริ่มใหม่"/>
+                                </div>
                             </f:facet>
                         </p:panelGrid><br/>       
                         <p:dataTable id="rptPreSendList2" var="item" value="#{allReportController.lazyModel}"
-                                     paginator="true" rows="10" lazy="true"
+                                     paginator="true" rows="10" lazy="true" emptyMessage="#{msg.no_data_found}"
                                      currentPageReportTemplate="#{msg.current_pagereport_template}"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="10,15,20">
@@ -120,7 +123,7 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     <h:outputText value="วันที่สร้าง" />
                                 </f:facet>
-                                <totoland:convertDateTime value="#{item.createdDate}"/>
+                                <totoland:convertDateTime value="#{item.createdDate}" format="dd/MM/yyyy"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
