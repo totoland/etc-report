@@ -8,9 +8,10 @@ import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,24 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Report005.findAll", query = "SELECT r FROM Report005 r")})
 public class Report005 extends DomainEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2180515455869321307L;
+    
+    @Column(name = "IS_VOTE")
+    private Boolean isVote;
+    @Column(name = "IS_NOMINATION")
+    private Boolean isNomination;
+    @Column(name = "IS_ELECTED")
+    private Boolean isElected;
+    @Column(name = "IS_ELECTED_NORMAL")
+    private Boolean isElectedNormal;
+    @Column(name = "IS_ELECTED_VACANCY")
+    private Boolean isElectedVacancy;
+    @Column(name = "IS_SEN_ELECTED")
+    private Boolean isSenElected;
+    @Column(name = "IS_SEN_ELECTED_NORMAL")
+    private Boolean isSenElectedNormal;
+    @Column(name = "IS_SEN_ELECTED_VACANCY")
+    private Boolean isSenElectedVacancy;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "REPORT_ID")
@@ -73,7 +91,7 @@ public class Report005 extends DomainEntity implements Serializable {
     @Column(name = "APPROVED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDate;
-    @OneToMany(mappedBy = "reportId")
+    @OneToMany(mappedBy = "reportId",cascade = CascadeType.ALL,targetEntity = Report005Detail.class,fetch = FetchType.EAGER)
     private List<Report005Detail> report005DetailList;
 
     public Report005() {
@@ -232,9 +250,73 @@ public class Report005 extends DomainEntity implements Serializable {
         return true;
     }
 
+    public Boolean getIsVote() {
+        return isVote;
+    }
+
+    public void setIsVote(Boolean isVote) {
+        this.isVote = isVote;
+    }
+
+    public Boolean getIsNomination() {
+        return isNomination;
+    }
+
+    public void setIsNomination(Boolean isNomination) {
+        this.isNomination = isNomination;
+    }
+
+    public Boolean getIsElected() {
+        return isElected;
+    }
+
+    public void setIsElected(Boolean isElected) {
+        this.isElected = isElected;
+    }
+
+    public Boolean getIsElectedNormal() {
+        return isElectedNormal;
+    }
+
+    public void setIsElectedNormal(Boolean isElectedNormal) {
+        this.isElectedNormal = isElectedNormal;
+    }
+
+    public Boolean getIsElectedVacancy() {
+        return isElectedVacancy;
+    }
+
+    public void setIsElectedVacancy(Boolean isElectedVacancy) {
+        this.isElectedVacancy = isElectedVacancy;
+    }
+
+    public Boolean getIsSenElected() {
+        return isSenElected;
+    }
+
+    public void setIsSenElected(Boolean isSenElected) {
+        this.isSenElected = isSenElected;
+    }
+
+    public Boolean getIsSenElectedNormal() {
+        return isSenElectedNormal;
+    }
+
+    public void setIsSenElectedNormal(Boolean isSenElectedNormal) {
+        this.isSenElectedNormal = isSenElectedNormal;
+    }
+
+    public Boolean getIsSenElectedVacancy() {
+        return isSenElectedVacancy;
+    }
+
+    public void setIsSenElectedVacancy(Boolean isSenElectedVacancy) {
+        this.isSenElectedVacancy = isSenElectedVacancy;
+    }
+
     @Override
     public String toString() {
-        return "Report005{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", report005DetailList=" + report005DetailList + '}';
+        return "Report005{" + "isVote=" + isVote + ", isNomination=" + isNomination + ", isElected=" + isElected + ", isElectedNormal=" + isElectedNormal + ", isElectedVacancy=" + isElectedVacancy + ", isSenElected=" + isSenElected + ", isSenElectedNormal=" + isSenElectedNormal + ", isSenElectedVacancy=" + isSenElectedVacancy + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", report005DetailList=" + report005DetailList + '}';
     }
     
 }
