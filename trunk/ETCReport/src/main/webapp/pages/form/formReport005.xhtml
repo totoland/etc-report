@@ -25,46 +25,46 @@ and open the template in the editor.
                         </f:facet>
 
                         <p:row>
-                                <p:column>
-                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isVote}"/>
-                                    <h:outputText value="1.การเลือกตั้ง"/>
-                                </p:column>
-                                <p:column colspan="3">
-                                    <h:outputText value="(ให้เลือกประเภทการเลือกตั้งหรือการสรรหา ประเภทการเลือกตั้ง แบ่งการเลือกตั้ง ส.ว. หรือ ส.ส.)"/>
-                                </p:column>
-                            </p:row>
-                            <p:row>
-                                <p:column>
-                                </p:column>
-                                <p:column>
-                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElected}"/>
-                                    <h:outputText value="การเลือกตั้ง ส.ส."/>
-                                </p:column>
-                                <p:column>
-                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElectedNormal}"/>
-                                    <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
-                                </p:column>
-                                <p:column>
-                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElectedVacancy}"/>
-                                    <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
-                                </p:column>
-                            </p:row>
-                            <p:row>
-                                <p:column>
-                                </p:column>
-                                <p:column>
-                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElected}"/>
-                                    <h:outputText value="การเลือกตั้ง ส.ว."/>
-                                </p:column>
-                                <p:column>
-                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElectedNormal}"/>
-                                    <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
-                                </p:column>
-                                <p:column>
-                                    <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElectedVacancy}"/>
-                                    <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
-                                </p:column>
-                            </p:row>
+                            <p:column>
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isVote}"/>
+                                <h:outputText value="1.การเลือกตั้ง"/>
+                            </p:column>
+                            <p:column colspan="3">
+                                <h:outputText value="(ให้เลือกประเภทการเลือกตั้งหรือการสรรหา ประเภทการเลือกตั้ง แบ่งการเลือกตั้ง ส.ว. หรือ ส.ส.)"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                            </p:column>
+                            <p:column>
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElected}"/>
+                                <h:outputText value="การเลือกตั้ง ส.ส."/>
+                            </p:column>
+                            <p:column>
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElectedNormal}"/>
+                                <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
+                            </p:column>
+                            <p:column>
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isElectedVacancy}"/>
+                                <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                            </p:column>
+                            <p:column>
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElected}"/>
+                                <h:outputText value="การเลือกตั้ง ส.ว."/>
+                            </p:column>
+                            <p:column>
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElectedNormal}"/>
+                                <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
+                            </p:column>
+                            <p:column>
+                                <p:selectBooleanCheckbox value="#{formReport005Controller.report005.isSenElectedVacancy}"/>
+                                <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
+                            </p:column>
+                        </p:row>
 
                     </p:panelGrid>
 
@@ -99,8 +99,11 @@ and open the template in the editor.
                                         <h:outputText value="#{item.provinceId}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputText value="#{item.provinceId}" />  
-                                    </f:facet>  
+                                        <p:selectOneMenu id="provinceId" style="width: 180px" value="#{item.provinceId}">  
+                                            <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                                            <f:selectItems itemLabel="#{items.name}" itemValue="#{items.value}" var="items" value="#{welcomeController.dropdownFactory.ddlProvince()}"/>
+                                        </p:selectOneMenu>
+                                    </f:facet> 
                                 </p:cellEditor>
                             </p:column>
 
@@ -155,9 +158,9 @@ and open the template in the editor.
                             </p:column>
 
                             <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}">
-                                        <f:convertNumber pattern="#0.00"/>
-                                    </h:outputText>%
+                                <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}">
+                                    <f:convertNumber pattern="#0.00"/>
+                                </h:outputText>%
                             </p:column>
 
                             <p:column headerText="บัตรไม่ประสงค์จะลงคะแนน">  
@@ -172,7 +175,7 @@ and open the template in the editor.
                             </p:column>
 
                             <p:column headerText="ร้อยละ">
-                                <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}" >
+                                <h:outputText value="#{(item.voteNo*100)/item.voterAmount}" >
                                     <f:convertNumber pattern="#0.00"/>
                                 </h:outputText>%
                             </p:column>
@@ -273,7 +276,7 @@ and open the template in the editor.
             <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail">
 
                 <h:outputLabel value="วันที่เลือกตั้ง *"/>
-                
+
                 <totoland:calendarTH id="calElectedDay" value="#{formReport005Controller.inputReport005Detail.electedDay}" style="width: 180px"/>
 
                 <h:outputLabel value="จังหวัด *" />  
@@ -314,7 +317,7 @@ and open the template in the editor.
                 }
             </style>
         </p:dialog>
-        
+
         <p:dialog id="REPORT_005pn_addReportDetail2" header="เพิ่มข้อมูล" widgetVar="REPORT_005pn_addReportDetail2" modal="true" draggable="true">
             <p:messages id="REPORT_005msgAddReportDetail2" escape="false" closable="true"></p:messages>
             <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail2">
