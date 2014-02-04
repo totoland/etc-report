@@ -90,11 +90,11 @@ and open the template in the editor.
                                 <p:ajax event="rowEdit" listener="#{formReport002Controller.onEdit}"/>  
                                 <p:ajax event="rowEditCancel" listener="#{formReport002Controller.onCancel}"/>
 
-                                <p:column headerText="ลำดับ" style="width:30%">  
+                                <p:column headerText="ลำดับ">  
                                     ${index+1}
                                 </p:column>
 
-                                <p:column headerText="รายละเอียดการดำเนินงาน" style="width:30%">  
+                                <p:column headerText="รายละเอียดการดำเนินงาน">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.workDetail}" />  
@@ -105,7 +105,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="เป้าหมาย" style="width:30%">  
+                                <p:column headerText="เป้าหมาย">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.objective}" />  
@@ -116,7 +116,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="เป้าหมาย (จำนวน)" style="width:30%">  
+                                <p:column headerText="เป้าหมาย (จำนวน)">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.goalAmount}" />  
@@ -127,7 +127,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="ผลการปฏิบัติงาน" style="width:30%">  
+                                <p:column headerText="ผลการปฏิบัติงาน">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.result}" />  
@@ -138,7 +138,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="งบประมาณ" style="width:30%">  
+                                <p:column headerText="งบประมาณ">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.budget}" />  
@@ -149,7 +149,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="แหล่งที่มางบประมาณ" style="width:30%">  
+                                <p:column headerText="แหล่งที่มางบประมาณ">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.buggetSource}" />  

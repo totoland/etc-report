@@ -24,7 +24,7 @@ and open the template in the editor.
         <h:form>
 
             <p:panel id="REPORT_005">
-                
+
                 <div id="div_REPORT_005" style="width: 1050px;height: 450px;overflow-x: scroll;overflow-y: scroll;">
                     <p:panel header="#{formReport005Controller.reportTitle}" style="width: 100%">
                         <p:messages id="REPORT_005msgFrmDetails"></p:messages>
@@ -109,7 +109,10 @@ and open the template in the editor.
                                             <h:outputText value="#{item.provinceId}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:inputText value="#{item.provinceId}" />  
+                                            <p:selectOneMenu id="provinceId" style="width: 180px" value="#{item.provinceId}">  
+                                                <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                                                <f:selectItems itemLabel="#{items.name}" itemValue="#{items.value}" var="items" value="#{welcomeController.dropdownFactory.ddlProvince()}"/>
+                                            </p:selectOneMenu>
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -187,7 +190,7 @@ and open the template in the editor.
                                     </h:outputText>%
                                 </p:column>
 
-                                <p:column style="width:6%">  
+                                <p:column style="width:6%" rendered="#{formReport002Controller.paramMode=='edit'}">  
                                     <p:rowEditor />  
                                 </p:column>  
 
@@ -260,7 +263,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column style="width:6%">  
+                                <p:column style="width:6%" rendered="#{formReport005Controller.paramMode=='edit'}">  
                                     <p:rowEditor />  
                                 </p:column>  
 

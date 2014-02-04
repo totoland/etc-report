@@ -72,6 +72,7 @@ public class formReport003Controller extends BaseFormReportController {
     public void init() {
 
         initParam();
+        initForm();
         /**
          * *
          * Check Mode
@@ -87,8 +88,6 @@ public class formReport003Controller extends BaseFormReportController {
             initEditMode();
 
         }
-
-        initForm();
 
     }
 
@@ -144,7 +143,7 @@ public class formReport003Controller extends BaseFormReportController {
 
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_003 + MessageUtils.PRINT_LINE_STAR());
 
-        //report003.setReport003DetailList(report003Details);
+        report003.setReport003DetailList(report003Details);
         report003.setUpdatedDate(new Date());
         report003.setUpdatedUser(super.getUserAuthen().getUserId());
         report003.setFlowStatusId(EctFlowStatus.FlowStatus.STEP_1.getStatus());
