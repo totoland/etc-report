@@ -20,7 +20,7 @@
                     <supported-locale>en_US</supported-locale>  
         </locale-config>
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-        <!--<resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler</resource-handler>-->
+<!--        <resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler</resource-handler>-->
 
     </application>
     <factory>

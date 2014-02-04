@@ -34,15 +34,14 @@ and open the template in the editor.
                                         <p:selectOneMenu id="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
+                                            <p:ajax listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
                                         </p:selectOneMenu> 
 
                                     </h:panelGrid>
 
                                     <p:separator />
 
-                                    <p:commandButton value="สร้างรายงาน" action="#{formSelectReport.selectReport()}" update=":form1:msgFormMain,:form1:include"/>
-                                    <p:remoteCommand name="initReport" actionListener="#{formSelectReport.validateSelectReport()}"> 
-                                    </p:remoteCommand>
+                                    <p:commandButton value="สร้างรายงาน" actionListener="#{formSelectReport.validateSelectReport()}" update=":form1:msgFormMain"/>
 
 
                                 </p:panel>
@@ -123,7 +122,7 @@ and open the template in the editor.
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
 
-                                        <p:column>
+                                        <p:column style="width: 320px">
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
@@ -194,7 +193,7 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
-                                        <p:column>
+                                        <p:column style="width: 320px">
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
@@ -254,7 +253,7 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
-                                        <p:column>
+                                        <p:column style="width: 320px">
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
@@ -314,7 +313,7 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
-                                        <p:column>
+                                        <p:column style="width: 320px">
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
