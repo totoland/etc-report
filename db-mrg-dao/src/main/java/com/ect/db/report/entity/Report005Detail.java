@@ -5,10 +5,12 @@
 package com.ect.db.report.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
+import com.ect.db.entity.EctProvince;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -71,6 +74,10 @@ public class Report005Detail extends DomainEntity implements Serializable {
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
     @ManyToOne
     private Report005 reportId;
+    
+    @OneToOne(targetEntity = EctProvince.class,fetch = FetchType.EAGER)
+    @JoinColumn(name = "PROVINCE_ID",insertable = false,updatable = false)
+    private EctProvince province;
 
     public Report005Detail() {
     }
@@ -238,5 +245,19 @@ public class Report005Detail extends DomainEntity implements Serializable {
     @Override
     public String toString() {
         return "Report005Detail{" + "reportDetailId=" + reportDetailId + ", electedDay=" + electedDay + ", provinceId=" + provinceId + ", electedZone=" + electedZone + ", voterAmount=" + voterAmount + ", votedAmount=" + votedAmount + ", votePercen=" + votePercen + ", voidedBallotPaper=" + voidedBallotPaper + ", voidedBallotPaperPercen=" + voidedBallotPaperPercen + ", voteNo=" + voteNo + ", voteNoPercen=" + voteNoPercen + ", electedType=" + electedType + ", nominationPeriod=" + nominationPeriod + ", election=" + election + ", corporateAmount=" + corporateAmount + ", senatorNominationAmount=" + senatorNominationAmount + '}';
+    }
+
+    /**
+     * @return the province
+     */
+    public EctProvince getProvince() {
+        return province;
+    }
+
+    /**
+     * @param province the province to set
+     */
+    public void setProvince(EctProvince province) {
+        this.province = province;
     }
 }
