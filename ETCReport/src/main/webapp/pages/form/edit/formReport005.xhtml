@@ -109,7 +109,8 @@ and open the template in the editor.
                                             <h:outputText value="#{item.provinceId}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:selectOneMenu id="provinceId" style="width: 180px" value="#{item.provinceId}">  
+                                            <p:selectOneMenu id="provinceId" style="width: 180px" value="#{item.provinceId}">
+<!--                                                <f:converter converterId="dllProvinceConverter"/>-->
                                                 <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                                 <f:selectItems itemLabel="#{items.name}" itemValue="#{items.value}" var="items" value="#{welcomeController.dropdownFactory.ddlProvince()}"/>
                                             </p:selectOneMenu>
