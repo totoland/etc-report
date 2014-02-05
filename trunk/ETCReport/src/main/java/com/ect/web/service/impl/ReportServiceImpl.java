@@ -13,11 +13,13 @@ import com.ect.db.report.dao.Report003Dao;
 import com.ect.db.report.dao.Report004Dao;
 import com.ect.db.report.dao.Report005Dao;
 import com.ect.db.report.dao.Report006Dao;
+import com.ect.db.report.dao.Report023Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.Report003;
 import com.ect.db.report.entity.Report004;
 import com.ect.db.report.entity.Report005;
 import com.ect.db.report.entity.Report006;
+import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
@@ -30,49 +32,45 @@ import org.springframework.stereotype.Service;
  * @author totoland
  */
 @Service("reportService")
-public class ReportServiceImpl implements ReportService{
-    
+public class ReportServiceImpl implements ReportService {
+
     @Autowired
     ViewReportByStatusDao viewReportByStatusDao;
-    
     @Autowired
     Report001Dao report001Dao;
-    
     @Autowired
     Report002Dao report002Dao;
-    
     @Autowired
     Report003Dao report003Dao;
-    
     @Autowired
     Report004Dao report004Dao;
-    
     @Autowired
     Report005Dao report005Dao;
-    
     @Autowired
     Report006Dao report006Dao;
-    
+    @Autowired
+    Report023Dao report023Dao;
+
     @Override
-    public List<ViewReportStatus>findReportByStatus(Integer flowStatusId){
+    public List<ViewReportStatus> findReportByStatus(Integer flowStatusId) {
         return viewReportByStatusDao.findReportByStatus(flowStatusId);
     }
-    
+
     @Override
-    public List<ViewReportStatus>findReportByStatus(Integer flowStatusId,Integer reportStatus){
-        return viewReportByStatusDao.findReportByStatus(flowStatusId,reportStatus);
+    public List<ViewReportStatus> findReportByStatus(Integer flowStatusId, Integer reportStatus) {
+        return viewReportByStatusDao.findReportByStatus(flowStatusId, reportStatus);
     }
-    
+
     @Override
-    public Integer updateReportStatusApprove(String reportName,Integer reportId,Integer flowStatusId,Integer approvedUser){
-        return viewReportByStatusDao.updateReportStatusApprove(reportName, reportId, flowStatusId,approvedUser);
+    public Integer updateReportStatusApprove(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser) {
+        return viewReportByStatusDao.updateReportStatusApprove(reportName, reportId, flowStatusId, approvedUser);
     }
-    
+
     @Override
-    public Integer updateReportStatusReject(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser, String remark){
-         return viewReportByStatusDao.updateReportStatusReject(reportName, reportId, flowStatusId,approvedUser,remark);
+    public Integer updateReportStatusReject(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser, String remark) {
+        return viewReportByStatusDao.updateReportStatusReject(reportName, reportId, flowStatusId, approvedUser, remark);
     }
-    
+
     @Override
     public List<ViewReport001> findByStatus(Integer status) {
         return report001Dao.findByStatus(status);
@@ -82,9 +80,9 @@ public class ReportServiceImpl implements ReportService{
     public Report001 findByReport001ById(Integer reportId) {
         return report001Dao.findByReportId(reportId);
     }
-    
+
     @Override
-    public List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria){
+    public List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria) {
         return viewReportByStatusDao.findByCriteria(reportCriteria);
     }
 
@@ -102,9 +100,9 @@ public class ReportServiceImpl implements ReportService{
     public Report004 findByReport004ById(Integer paramReportId) {
         return report004Dao.findByReportId(paramReportId);
     }
-    
+
     @Override
-    public Integer countByCriteria(ReportCriteria reportCriteria){
+    public Integer countByCriteria(ReportCriteria reportCriteria) {
         return viewReportByStatusDao.countByCriteria(reportCriteria);
     }
 
@@ -116,5 +114,10 @@ public class ReportServiceImpl implements ReportService{
     @Override
     public Report006 findByReport006ById(Integer paramReportId) {
         return report006Dao.findByReportId(paramReportId);
+    }
+
+    @Override
+    public Report023 findByReport023ById(Integer paramReportId) {
+        return report023Dao.findByReportId(paramReportId);
     }
 }
