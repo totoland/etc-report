@@ -5,9 +5,8 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.entity.EctFlowStatus;
-import com.ect.db.report.entity.Report007Detail;
-import com.ect.db.report.entity.Report007Detail;
-import com.ect.db.report.entity.Report007;
+import com.ect.db.report.entity.Report003Detail;
+import com.ect.db.report.entity.Report003;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.DateTimeUtils;
@@ -39,31 +38,31 @@ import org.slf4j.LoggerFactory;
  */
 @ViewScoped
 @ManagedBean
-public class FormReport007Controller extends BaseFormReportController {
+public class FormReport003Controller extends BaseFormReportController {
 
-    private static Logger logger = LoggerFactory.getLogger(FormReport007Controller.class);
+    private static Logger logger = LoggerFactory.getLogger(FormReport003Controller.class);
     private static final long serialVersionUID = 1764749403349238850L;
     /**
      * *
      * Service
      */
     @ManagedProperty(value = "#{reportGennericService}")
-    private ReportGennericService<Report007> reportGennericService;
+    private ReportGennericService<Report003> reportGennericService;
     /**
      * *
-     * For Insert Report007
+     * For Insert Report003
      */
-    private Report007 report007 = new Report007();
+    private Report003 report003 = new Report003();
     /**
      * *
      * For ListDetail
      */
-    private List<Report007Detail> report007Details = new ArrayList<>();
+    private List<Report003Detail> report003Details = new ArrayList<>();
     /**
      * *
      * For Add Record
      */
-    private Report007Detail inputReport007Detail = new Report007Detail();
+    private Report003Detail inputReport003Detail = new Report003Detail();
     private String paramReportCode;
     private Integer paramReportId;
     private String paramMode;
@@ -94,23 +93,23 @@ public class FormReport007Controller extends BaseFormReportController {
 
     @Override
     public void resetForm() {
-        this.report007 = new Report007();
-        report007Details.clear();
+        this.report003 = new Report003();
+        this.report003Details.clear();
         initForm();
     }
 
     @Override
     public void save() {
 
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "Save Report : {}", REPORT_007 + MessageUtils.PRINT_LINE_STAR());
+        logger.trace(MessageUtils.PRINT_LINE_STAR() + "Save Report : {}", REPORT_003 + MessageUtils.PRINT_LINE_STAR());
 
-        report007.setReport007DetailList(report007Details);
-        report007.setCreatedDate(new Date());
-        report007.setCreatedUser(super.getUserAuthen().getUserId());
-        report007.setFlowStatusId(EctFlowStatus.FlowStatus.DRAFF.getStatus());
-        report007.setReportDesc(ectConfManager.getReportName(REPORT_007));
-        report007.setReportCode(REPORT_007);
-        report007.setCreatedUserGroup(getUserAuthen().getUserGroupId());
+        report003.setReport003DetailList(report003Details);
+        report003.setCreatedDate(new Date());
+        report003.setCreatedUser(super.getUserAuthen().getUserId());
+        report003.setFlowStatusId(EctFlowStatus.FlowStatus.DRAFF.getStatus());
+        report003.setReportDesc(ectConfManager.getReportName(REPORT_003));
+        report003.setReportCode(REPORT_003);
+        report003.setCreatedUserGroup(getUserAuthen().getUserGroupId());
 
         if (!validateBeforeSave()) {
             return;
@@ -118,13 +117,13 @@ public class FormReport007Controller extends BaseFormReportController {
 
         try {
 
-            reportGennericService.create(report007);
+            reportGennericService.create(report003);
 
             logger.trace("Save Success !! ");
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_007");
+            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_003");
 
         } catch (Exception ex) {
 
@@ -134,8 +133,7 @@ public class FormReport007Controller extends BaseFormReportController {
 
         } finally {
 
-            logger.trace("Save... {} ", report007);
-            resetForm();
+            logger.trace("Save... {} ", report003);
 
         }
     }
@@ -143,15 +141,15 @@ public class FormReport007Controller extends BaseFormReportController {
     @Override
     public void edit() {
 
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_007 + MessageUtils.PRINT_LINE_STAR());
+        logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_003 + MessageUtils.PRINT_LINE_STAR());
 
-        //report007.setReport007DetailList(report007Details);
-        report007.setUpdatedDate(new Date());
-        report007.setUpdatedUser(super.getUserAuthen().getUserId());
-        report007.setFlowStatusId(EctFlowStatus.FlowStatus.STEP_1.getStatus());
-        report007.setReportDesc(ectConfManager.getReportName(REPORT_007));
-        report007.setReportCode(REPORT_007);
-        report007.setCreatedUserGroup(getUserAuthen().getUserGroupId());
+        report003.setReport003DetailList(report003Details);
+        report003.setUpdatedDate(new Date());
+        report003.setUpdatedUser(super.getUserAuthen().getUserId());
+        report003.setFlowStatusId(EctFlowStatus.FlowStatus.STEP_1.getStatus());
+        report003.setReportDesc(ectConfManager.getReportName(REPORT_003));
+        report003.setReportCode(REPORT_003);
+        report003.setCreatedUserGroup(getUserAuthen().getUserGroupId());
 
         if (!validateBeforeSave()) {
             return;
@@ -159,7 +157,7 @@ public class FormReport007Controller extends BaseFormReportController {
 
         try {
 
-            getReportGennericService().edit(report007);
+            getReportGennericService().edit(report003);
 
             logger.trace("Edit Success !! ");
 
@@ -175,7 +173,7 @@ public class FormReport007Controller extends BaseFormReportController {
 
         } finally {
 
-            logger.trace("Edit... {} ", report007);
+            logger.trace("Edit... {} ", report003);
 
         }
 
@@ -192,7 +190,7 @@ public class FormReport007Controller extends BaseFormReportController {
 
         clearAllMessage();
 
-        inputReport007Detail = new Report007Detail();
+        inputReport003Detail = new Report003Detail();
     }
 
     /**
@@ -202,28 +200,28 @@ public class FormReport007Controller extends BaseFormReportController {
     @Override
     public void addReportDetail(ActionEvent actionEvent) {
 
-        logger.trace("addReportDetail... {}", inputReport007Detail);
+        logger.trace("addReportDetail... {}", inputReport003Detail);
 
         if (!validateReportDetail()) {
             return;
         }
 
-        if (report007Details == null || report007Details.isEmpty()) {
+        if (report003Details == null || report003Details.isEmpty()) {
 
-            report007Details = new ArrayList<>();
-            inputReport007Detail.setKey(1);
+            report003Details = new ArrayList<>();
+            inputReport003Detail.setKey(1);
 
         } else {
 
-            inputReport007Detail.setKey(report007Details.get(report007Details.size() - 1).getKey() + 1);
+            inputReport003Detail.setKey(report003Details.get(report003Details.size() - 1).getKey() + 1);
 
         }
 
-        inputReport007Detail.setReportId(report007);
+        inputReport003Detail.setReportId(report003);
 
-        report007Details.add(inputReport007Detail);
+        report003Details.add(inputReport003Detail);
 
-        JsfUtil.hidePopup("REPORT_007dlgAddReportDetail");
+        JsfUtil.hidePopup("REPORT_003dlgAddReportDetail");
     }
     private StreamedContent file;
 
@@ -248,16 +246,16 @@ public class FormReport007Controller extends BaseFormReportController {
     @Override
     public void onEdit(RowEditEvent event) {
 
-        Report007Detail editRow = ((Report007Detail) event.getObject());
+        Report003Detail editRow = ((Report003Detail) event.getObject());
 
         logger.trace("Edit Row : {}", editRow);
 
-        for (int i = 0; i < report007Details.size(); i++) {
+        for (int i = 0; i < report003Details.size(); i++) {
 
-            if (report007Details.get(i).getKey() == editRow.getKey()) {
+            if (report003Details.get(i).getKey() == editRow.getKey()) {
 
-                report007Details.remove(i);
-                report007Details.add(i, editRow);
+                report003Details.remove(i);
+                report003Details.add(i, editRow);
 
                 logger.trace("After Edit Row : {}", editRow);
             }
@@ -294,69 +292,69 @@ public class FormReport007Controller extends BaseFormReportController {
     }
 
     /**
-     * @return the report007Details
+     * @return the report003Details
      */
-    public List<Report007Detail> getReport007Details() {
-        return report007Details;
+    public List<Report003Detail> getReport003Details() {
+        return report003Details;
     }
 
     /**
-     * @param report007Details the report007Details to set
+     * @param report003Details the report003Details to set
      */
-    public void setReport007Details(List<Report007Detail> report007Details) {
-        this.report007Details = report007Details;
+    public void setReport003Details(List<Report003Detail> report003Details) {
+        this.report003Details = report003Details;
     }
 
     /**
-     * @return the inputReport007Detail
+     * @return the inputReport003Detail
      */
-    public Report007Detail getInputReport007Detail() {
-        return inputReport007Detail;
+    public Report003Detail getInputReport003Detail() {
+        return inputReport003Detail;
     }
 
     /**
-     * @param inputReport007Detail the inputReport007Detail to set
+     * @param inputReport003Detail the inputReport003Detail to set
      */
-    public void setInputReport007Detail(Report007Detail inputReport007Detail) {
-        this.inputReport007Detail = inputReport007Detail;
+    public void setInputReport003Detail(Report003Detail inputReport003Detail) {
+        this.inputReport003Detail = inputReport003Detail;
     }
 
     /**
-     * @return the report007
+     * @return the report003
      */
-    public Report007 getReport007() {
-        return report007;
+    public Report003 getReport003() {
+        return report003;
     }
 
     /**
-     * @param report007 the report007 to set
+     * @param report003 the report003 to set
      */
-    public void setReport007(Report007 report007) {
-        this.report007 = report007;
+    public void setReport003(Report003 report003) {
+        this.report003 = report003;
     }
 
     private boolean validateReportDetail() {
 
-        logger.trace("validateReportDetail : {}", inputReport007Detail);
+        logger.trace("validateReportDetail : {}", inputReport003Detail);
 
         String msg = "";
 
-//        if (StringUtils.isBlank(inputReport007Detail.getWorkDetail())) {
+//        if (StringUtils.isBlank(inputReport003Detail.getWorkDetail())) {
 //            msg += "กรุณาระบุรายละเอียดการดำเนินงาน<br/>";
 //        }
-//        if (StringUtils.isBlank(inputReport007Detail.getObjective())) {
+//        if (StringUtils.isBlank(inputReport003Detail.getObjective())) {
 //            msg += "กรุณาระบุวัตถุประสงค์<br/>";
 //        }
-//        if (inputReport007Detail.getGoalAmount().intValue() == 0) {
+//        if (inputReport003Detail.getGoalAmount().intValue() == 0) {
 //            msg += "กรุณาระบุจำนวนเป้าหมาย<br/>";
 //        }
-//        if (StringUtils.isBlank(inputReport007Detail.getResult())) {
+//        if (StringUtils.isBlank(inputReport003Detail.getResult())) {
 //            msg += "กรุณาระบุผลการปฏิบัติงาน<br/>";
 //        }
-//        if (inputReport007Detail.getBudget().intValue() == 0) {
+//        if (inputReport003Detail.getBudget().intValue() == 0) {
 //            msg += "กรุณาระบุงบประมาณbr/>";
 //        }
-//        if (StringUtils.isBlank(inputReport007Detail.getBuggetSource())) {
+//        if (StringUtils.isBlank(inputReport003Detail.getBuggetSource())) {
 //            msg += "กรุณาระบุที่มาของงบประมาณbr/>";
 //        }
 
@@ -372,16 +370,16 @@ public class FormReport007Controller extends BaseFormReportController {
 
         String msg = "";
 
-//        if (report007.getStrategicId().intValue() == -1) {
+//        if (report003.getStrategicId().intValue() == -1) {
 //            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
 //        }
-//        if (report007.getSubStrategicId().intValue() == -1) {
+//        if (report003.getSubStrategicId().intValue() == -1) {
 //            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
 //        }
-//        if (report007.getPlanId().intValue() == -1) {
+//        if (report003.getPlanId().intValue() == -1) {
 //            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
 //        }
-//        if (report007.getReport007DetailList() == null || report007.getReport007DetailList().isEmpty()) {
+//        if (report003.getReport003DetailList() == null || report003.getReport003DetailList().isEmpty()) {
 //            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
 //        }
 //
@@ -439,21 +437,21 @@ public class FormReport007Controller extends BaseFormReportController {
 
         logger.trace("initViewMode...");
 
-        if (REPORT_007.equalsIgnoreCase(paramReportCode)) {
+        if (REPORT_003.equalsIgnoreCase(paramReportCode)) {
 
-            report007 = reportService.findByReport007ById(paramReportId);
+            report003 = reportService.findByReport003ById(paramReportId);
 
-            logger.trace("report007 : {}", report007);
+            logger.trace("report003 : {}", report003);
 
             /**
              * * Set ReportDetail **
              */
-            report007Details = new ArrayList<>();
-            report007Details.addAll(report007.getReport007DetailList());
+            report003Details = new ArrayList<>();
+            report003Details.addAll(report003.getReport003DetailList());
 
-            for (int i = 0; i < report007Details.size(); i++) {
+            for (int i = 0; i < report003Details.size(); i++) {
 
-                report007Details.get(i).setKey(i);
+                report003Details.get(i).setKey(i);
 
             }
 
@@ -476,7 +474,7 @@ public class FormReport007Controller extends BaseFormReportController {
 
     public void goToCancel() {
 
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_007 + MessageUtils.PRINT_LINE_STAR());
+        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_003 + MessageUtils.PRINT_LINE_STAR());
         String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
         redirectPage(url);
 
@@ -495,14 +493,14 @@ public class FormReport007Controller extends BaseFormReportController {
     /**
      * @return the reportGennericService
      */
-    public ReportGennericService<Report007> getReportGennericService() {
+    public ReportGennericService<Report003> getReportGennericService() {
         return reportGennericService;
     }
 
     /**
      * @param reportGennericService the reportGennericService to set
      */
-    public void setReportGennericService(ReportGennericService<Report007> reportGennericService) {
+    public void setReportGennericService(ReportGennericService<Report003> reportGennericService) {
         this.reportGennericService = reportGennericService;
     }
 
@@ -526,65 +524,73 @@ public class FormReport007Controller extends BaseFormReportController {
 
         reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
 
-        report007Details = new ArrayList<>();
+        report003Details = new ArrayList<>();
 
-        Report007Detail report007Detail1 = new Report007Detail();
-        report007Detail1.setTitle("1.รับรองการจัดตั้งพรรคการเมือง");
-        report007Detail1.setPoliticalPartyAmount(0);
-        report007Detail1.setStoryAmount(0);
-        report007Detail1.setBranchAmount(0);
-        report007Detail1.setReportId(report007);
+        Report003Detail report003Detail1 = new Report003Detail();
+        report003Detail1.setDocReceive("หนังสือรับภายใน");
+        report003Detail1.setDocSend("หนังสือส่งภายใน");
+        report003Detail1.setDocSendAmount(0);
+        report003Detail1.setReportDetailId(0);
+        report003Detail1.setDocReceiveAmount(0);
+        report003Detail1.setReportId(report003);
         
-        Report007Detail report007Detail2 = new Report007Detail();
-        report007Detail2.setTitle("2.รับรองการจัดตั้งสาขาพรรคการเมือง");
-        report007Detail2.setPoliticalPartyAmount(0);
-        report007Detail2.setStoryAmount(0);
-        report007Detail2.setBranchAmount(0);
-        report007Detail2.setReportId(report007);
+        Report003Detail report003Detail2 = new Report003Detail();
+        report003Detail2.setDocReceive("หนังสือรับภายใน (ชั้นความลับ)");
+        report003Detail2.setDocSend("หนังสือส่งภายใน (ชั้นความลับ)");
+        report003Detail2.setDocSendAmount(0);
+        report003Detail2.setReportDetailId(0);
+        report003Detail2.setDocReceiveAmount(0);
+        report003Detail2.setReportId(report003);
 
-        Report007Detail report007Detail3 = new Report007Detail();
-        report007Detail3.setTitle("3.ไม่รับรองการจัดตั้งพรรคการเมือง");
-        report007Detail3.setPoliticalPartyAmount(0);
-        report007Detail3.setStoryAmount(0);
-        report007Detail3.setBranchAmount(0);
-        report007Detail3.setReportId(report007);
+        Report003Detail report003Detail3 = new Report003Detail();
+        report003Detail3.setDocReceive("หนังสือรับภายนอก");
+        report003Detail3.setDocSend("หนังสือส่งภายนอก");
+        report003Detail3.setDocSendAmount(0);
+        report003Detail3.setReportDetailId(0);
+        report003Detail3.setDocReceiveAmount(0);
+        report003Detail3.setReportId(report003);
         
-        Report007Detail report007Detail4 = new Report007Detail();
-        report007Detail4.setTitle("4.ยกเลิกรับรองการจัดตั้งสาขาพรรคการเมือง");
-        report007Detail4.setPoliticalPartyAmount(0);
-        report007Detail4.setStoryAmount(0);
-        report007Detail4.setBranchAmount(0);
-        report007Detail4.setReportId(report007);
+        Report003Detail report003Detail4 = new Report003Detail();
+        report003Detail4.setDocReceive("หนังสือรับภายนอก (ชั้นความลับ)");
+        report003Detail4.setDocSend("หนังสือส่งภายนอก (ชั้นความลับ)");
+        report003Detail4.setDocSendAmount(0);
+        report003Detail4.setReportDetailId(0);
+        report003Detail4.setDocReceiveAmount(0);
+        report003Detail4.setReportId(report003);
         
-        Report007Detail report007Detail5 = new Report007Detail();
-        report007Detail5.setTitle("5.ตอบรับการเปลี่ยนแปลงตามมาตรา 41 ของ พระราชบัญญัติประกอบรัฐธรรมนูญว่าด้วย พรรคการเมือง พ.ศ. 2550");
-        report007Detail5.setPoliticalPartyAmount(0);
-        report007Detail5.setStoryAmount(0);
-        report007Detail5.setBranchAmount(0);
-        report007Detail5.setReportId(report007);
+        Report003Detail report003Detail5 = new Report003Detail();
+        report003Detail5.setDocReceive("เรื่องร้องเรียน ร้องขอความเป็นธรรม");
+        report003Detail5.setDocSendAmount(0);
+        report003Detail5.setReportDetailId(0);
+        report003Detail5.setDocReceiveAmount(0);
+        report003Detail5.setReportId(report003);
         
-        Report007Detail report007Detail6 = new Report007Detail();
-        report007Detail6.setTitle("6.ดำเนินกิจการของพรรคการเมืองตามมาตรา 69 ของ พระราชบัญญัติประกอบรัฐธรรมนูญว่าด้วย พรรคการเมือง พ.ศ. 2550");
-        report007Detail6.setPoliticalPartyAmount(0);
-        report007Detail6.setStoryAmount(0);
-        report007Detail6.setBranchAmount(0);
-        report007Detail6.setReportId(report007);
+        Report003Detail report003Detail6 = new Report003Detail();
+        report003Detail6.setDocReceive("สำนวนร้องคัดค้าน");
+        report003Detail6.setDocSendAmount(0);
+        report003Detail6.setReportDetailId(0);
+        report003Detail6.setDocReceiveAmount(0);
+        report003Detail6.setReportId(report003);
+        
+        Report003Detail report003Detail7 = new Report003Detail();
+        report003Detail7.setDocReceive("อื่นๆ");
+        report003Detail7.setDocSendAmount(0);
+        report003Detail7.setReportDetailId(0);
+        report003Detail7.setDocReceiveAmount(0);
+        report003Detail7.setReportId(report003);
 
-        report007Details.add(report007Detail1);
-        report007Details.add(report007Detail2);
-        report007Details.add(report007Detail3);
-        report007Details.add(report007Detail4);
-        report007Details.add(report007Detail5);
-        report007Details.add(report007Detail6);
+        report003Details.add(report003Detail1);
+        report003Details.add(report003Detail2);
+        report003Details.add(report003Detail3);
+        report003Details.add(report003Detail4);
+        report003Details.add(report003Detail5);
+        report003Details.add(report003Detail6);
+        report003Details.add(report003Detail7);
         
     }
 
     @Override
     public void onDelete(Object object) {
-        Report007Detail rowDelete = (Report007Detail)object;
-        
-        logger.trace("delete item : {}",rowDelete);
-        
-        report007Details.remove(rowDelete);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

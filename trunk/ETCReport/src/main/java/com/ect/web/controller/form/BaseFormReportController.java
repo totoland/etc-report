@@ -5,11 +5,14 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.common.dao.hibernate.EctConfManager;
+import com.ect.db.common.entity.DropDownList;
 import com.ect.db.entity.EctFlowStatus;
+import com.ect.db.entity.EctProvince;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportService;
+import java.util.List;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
@@ -24,7 +27,7 @@ public abstract class BaseFormReportController extends BaseController{
     private static final long serialVersionUID = -7864668711794526812L;
 
     private static Logger logger = LoggerFactory.getLogger(BaseFormReportController.class);
-    
+
     /**
      * *
      * Service
@@ -45,6 +48,7 @@ public abstract class BaseFormReportController extends BaseController{
     protected static final String REPORT_005 = "REPORT_005";
     protected static final String REPORT_006 = "REPORT_006";
     protected static final String REPORT_007 = "REPORT_007";
+    protected static final String REPORT_008 = "REPORT_008";
     protected static final String REPORT_MODE_EDIT = "edit";
     protected static final String REPORT_MODE_VIEW = "view";
     protected static final String REPORT_MODE_CREATE = "create";

@@ -6,6 +6,7 @@
 package com.ect.web.factory;
 
 import com.ect.db.common.entity.DropDownList;
+import com.ect.db.entity.EctProvince;
 import com.ect.web.service.CommonService;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -23,7 +24,6 @@ import org.springframework.stereotype.Component;
 public class DropdownFactory implements Serializable {
 
     private static final long serialVersionUID = 7739283351270265693L;
-
     @Autowired
     CommonService commonService;
 
@@ -82,9 +82,11 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * แบบรายงาน
+     *
      * @return ReportForm
      */
     public List<DropDownList> ddlReportForm() {
@@ -98,9 +100,11 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * ยุทธศาสตร์
+     *
      * @return All Strategic
      */
     public List<DropDownList> ddlStrategic() {
@@ -113,9 +117,11 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * กลยุทธ์
+     *
      * @return All SubStrategic
      */
     public List<DropDownList> ddlSubStrategic() {
@@ -128,9 +134,11 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * กลยุทธ์
+     *
      * @return All SubStrategic
      */
     public List<DropDownList> ddlSubStrategic(Integer strateGicId) {
@@ -140,13 +148,15 @@ public class DropdownFactory implements Serializable {
         criteria.setOrderByField("SUB_STRATEGIC_NAME");
         criteria.setName("SUB_STRATEGIC_NAME");
         criteria.setValue("SUB_STRATEGIC_ID");
-        criteria.setCondition("STRATEGIC_ID = "+strateGicId);
+        criteria.setCondition("STRATEGIC_ID = " + strateGicId);
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * แผนงาน
+     *
      * @return All Plan
      */
     public List<DropDownList> ddlPlan(Integer subStrateGicId) {
@@ -156,13 +166,15 @@ public class DropdownFactory implements Serializable {
         criteria.setOrderByField("PLAN_NAME");
         criteria.setName("PLAN_NAME");
         criteria.setValue("PLAN_ID");
-        criteria.setCondition("SUB_STATEGIC_ID = "+subStrateGicId);
-        
+        criteria.setCondition("SUB_STATEGIC_ID = " + subStrateGicId);
+
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * แผนงาน
+     *
      * @return All Plan
      */
     public List<DropDownList> ddlPlan() {
@@ -172,13 +184,15 @@ public class DropdownFactory implements Serializable {
         criteria.setOrderByField("PLAN_NAME");
         criteria.setName("PLAN_NAME");
         criteria.setValue("PLAN_ID");
-        
+
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * โครงการ
-     * @return All Project 
+     *
+     * @return All Project
      */
     public List<DropDownList> ddlProject(Integer planId) {
 
@@ -187,13 +201,15 @@ public class DropdownFactory implements Serializable {
         criteria.setOrderByField("PROJECT_NAME");
         criteria.setName("PROJECT_NAME");
         criteria.setValue("PROJECT_ID");
-        criteria.setCondition("PLAN_ID = "+planId);
+        criteria.setCondition("PLAN_ID = " + planId);
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * โครงการ
-     * @return All Project 
+     *
+     * @return All Project
      */
     public List<DropDownList> ddlProject() {
 
@@ -204,10 +220,12 @@ public class DropdownFactory implements Serializable {
         criteria.setValue("PROJECT_ID");
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * กิจกรรม
-     * @return All Activity 
+     *
+     * @return All Activity
      */
     public List<DropDownList> ddlActivity(Integer projectId) {
 
@@ -216,13 +234,15 @@ public class DropdownFactory implements Serializable {
         criteria.setOrderByField("ACTIVITY_NAME");
         criteria.setName("ACTIVITY_NAME");
         criteria.setValue("ACTIVITY_ID");
-        criteria.setCondition("PROJECT_ID = "+projectId);
+        criteria.setCondition("PROJECT_ID = " + projectId);
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * กิจกรรม
-     * @return All Activity 
+     *
+     * @return All Activity
      */
     public List<DropDownList> ddlActivity() {
 
@@ -234,10 +254,12 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * ระบบรายงานผลการปฏิบัติงาน สนง.กกต.
-     * @return All Activity 
+     *
+     * @return All Activity
      */
     public List<DropDownList> ddlDepEct() {
 
@@ -250,10 +272,12 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+
+    /**
+     * *
      * ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง
-     * @return All Activity 
+     *
+     * @return All Activity
      */
     public List<DropDownList> ddlDepEctCenter() {
 
@@ -266,20 +290,45 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
-    
-    /***
+    private static List<DropDownList> ectProvinces;
+
+    /**
+     * *
      * จังหวัด
-     * @return All Activity 
+     *
+     * @return All Activity
      */
     public List<DropDownList> ddlProvince() {
 
-        DropDownList criteria = new DropDownList();
-        criteria.setTableName("ECT_PROVINCE");
-        criteria.setOrderByField("PROVINCE_NAME");
-        criteria.setName("PROVINCE_NAME");
-        criteria.setValue("PROVINCE_ID");
-        criteria.setSortName("ASC");
+        if (ectProvinces == null) {
 
-        return commonService.getDropdownList(criteria);
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("ECT_PROVINCE");
+            criteria.setOrderByField("PROVINCE_NAME");
+            criteria.setName("PROVINCE_NAME");
+            criteria.setValue("PROVINCE_ID");
+            criteria.setSortName("ASC");
+
+            ectProvinces = commonService.getDropdownList(criteria);
+        }
+
+        return ectProvinces;
+    }
+
+    public EctProvince findProvinceById(Integer id) {
+
+        for (DropDownList ddl : ectProvinces) {
+
+            if (id.intValue() == Integer.valueOf(ddl.getValue())) {
+                EctProvince ectProvince = new EctProvince();
+                ectProvince.setProvinceId(id);
+                ectProvince.setProvinceName(ddl.getName());
+
+                return ectProvince;
+            }
+        }
+        
+        return null;
+
     }
 }
