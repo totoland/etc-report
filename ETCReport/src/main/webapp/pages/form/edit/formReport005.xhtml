@@ -106,11 +106,10 @@ and open the template in the editor.
                                 <p:column headerText="จังหวัด">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
-                                            <h:outputText value="#{item.provinceId}" />  
+                                            <h:outputText value="#{formReport005Controller.dropdownFactory.findProvinceById(item.provinceId).provinceName}" /> 
                                         </f:facet>
                                         <f:facet name="input">  
                                             <p:selectOneMenu id="provinceId" style="width: 180px" value="#{item.provinceId}">
-<!--                                                <f:converter converterId="dllProvinceConverter"/>-->
                                                 <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                                 <f:selectItems itemLabel="#{items.name}" itemValue="#{items.value}" var="items" value="#{welcomeController.dropdownFactory.ddlProvince()}"/>
                                             </p:selectOneMenu>
