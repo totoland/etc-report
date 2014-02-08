@@ -26,6 +26,8 @@ public class ReportCriteria implements Serializable{
     private String reportCode;
     private int startRow = 1;
     private int maxRow = 10;
+    private String sortField;
+    private String sortOrder;
 
     /**
      * @return the year
@@ -212,6 +214,34 @@ public class ReportCriteria implements Serializable{
      */
     public void setMaxRow(int maxRow) {
         this.maxRow = maxRow;
+    }
+
+    /**
+     * @return the sortField
+     */
+    public String getSortField() {
+        return sortField;
+    }
+
+    /**
+     * @param sortField the sortField to set
+     */
+    public void setSortField(String sortField) {
+        this.sortField = sortField;
+    }
+
+    /**
+     * @return the sortOrder
+     */
+    public String getSortOrder() {
+        return sortOrder;
+    }
+
+    /**
+     * @param sortOrder the sortOrder to set
+     */
+    public void setSortOrder(String sortOrder) {
+        this.sortOrder = sortOrder;
     }
     
 }

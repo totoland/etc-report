@@ -8,6 +8,7 @@ import com.ect.db.bean.ReportCriteria;
 import com.ect.db.dao.BaseDao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.ViewReportStatus;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
@@ -22,7 +23,8 @@ import org.springframework.stereotype.Repository;
 public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportByStatusDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
-    private static String SQL_REPORT = "SELECT ROW_NUMBER() OVER (ORDER BY CREATED_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
+    private String SQL_REPORT = "SELECT ROW_NUMBER() OVER (ORDER BY CREATED_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
+    private String SQL_REPORT_ORDER = "SELECT ROW_NUMBER() OVER (ORDER BY {0} {1}) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
 
     @Override
     public List<ViewReportStatus> findReportByStatus(Integer flowStatus) {
@@ -66,7 +68,24 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
     public List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria) {
 
         StringBuilder sql = new StringBuilder();
-        sql.append(SQL_REPORT);
+
+        if (reportCriteria.getSortField() != null && !reportCriteria.getSortField().isEmpty()) {
+
+            String sortField = reportCriteria.getSortField();
+            
+            if (sortField.equals("documentNo")) {
+                sortField = "REPORT_CODE+CONVERT(NVARCHAR(4),REPORT_ID)";
+            }
+
+            MessageFormat messageFormat = new MessageFormat(SQL_REPORT);
+            sql.append(messageFormat.format(SQL_REPORT_ORDER, sortField, reportCriteria.getSortOrder()));
+
+        } else {
+
+            sql.append(SQL_REPORT);
+
+        }
+
         sql.append(" WHERE 1=1");
 
         if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
@@ -105,5 +124,4 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         return super.countNativeQuery(sql.toString());
     }
-
 }
