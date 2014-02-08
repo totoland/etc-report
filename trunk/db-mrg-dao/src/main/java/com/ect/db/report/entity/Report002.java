@@ -25,6 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -89,6 +90,7 @@ public class Report002 extends DomainEntity implements Serializable {
     private Integer reportStatus;
     
     @OneToMany(mappedBy = "reportId",cascade = CascadeType.ALL,targetEntity = Report002Detail.class,fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     private List<Report002Detail> report002DetailList;
 
     public Report002() {
