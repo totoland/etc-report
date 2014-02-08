@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
+        <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
+
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <p:panel id="REPORT_009" header="#{msg.report_009_header} #{formReport009Controller.reportTitle}">
+
+                <p:panel style="width: 100%;">
+                    <p:messages id="REPORT_009msgFrmDetails"></p:messages>
+                    <f:facet name="header"  class="txtLeft">
+                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_009dlgAddReportDetail.show()" update="REPORT_009pn_addReportDetail" actionListener="#{formReport009Controller.initReportDetail()}"/>
+                    </f:facet>  
+
+                    <div style="width: 1000px;overflow-x: scroll">
+                        <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_009pnlFrm"> 
+                            <p:dataTable var="item" value="#{formReport009Controller.report009Details}" id="REPORT_009Grid" 
+                                         style="width: 1000px"
+                                         rowIndexVar="index" editable="true" paginator="true" rows="10" emptyMessage="#{msg.no_data_found}"  
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                         rowsPerPageTemplate="5,10,15">  
+
+                                <p:ajax event="rowEdit" listener="#{formReport009Controller.onEdit}"/>  
+                                <p:ajax event="rowEditCancel" listener="#{formReport009Controller.onCancel}"/>
+
+                                <p:columnGroup type="header"> 
+                                    <p:row>  
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="ลำดับ"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="พรรค"></p:column>  
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="งบประมาณที่ได้รับสนับสนุน"></p:column>
+                                    </p:row>
+                                </p:columnGroup>
+
+                                <p:column>  
+                                    ${index+1}
+                                </p:column>
+                                <p:column>
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.politicalParty}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.politicalParty}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+                                <p:column>
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.donate}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputMask mask="9?9999999" value="#{item.donate}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                    <p:rowEditor />  
+                                </p:column> 
+                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                    <p:commandLink action="#{formReport009Controller.onDelete(item)}" update="REPORT_009Grid">
+                                        <span class="ui-icon ui-icon-trash"></span>
+                                        <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
+                                    </p:commandLink>
+                                </p:column> 
+                            </p:dataTable>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+                                <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+                                <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+                            </p:confirmDialog> 
+                        </p:panelGrid>
+                    </div>
+                    <h:panelGroup id="REPORT_009pnlCmd" rendered="#{formReport009Controller.report009.flowStatusId!=200}">
+                        <div align="center">
+                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport009Controller.goToEdit()}" id="REPORT_009btnEdit" rendered="#{formReport009Controller.paramMode=='view' and formReport009Controller.canEdit(formReport009Controller.report009.createdUserGroup)}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport009Controller.goToClose()}" id="REPORT_009btnClose" rendered="#{formReport009Controller.paramMode=='view'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport009Controller.edit()}" id="REPORT_009btnSave" rendered="#{formReport009Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_cancel}" id="REPORT_009btnCancel" actionListener="#{formReport009Controller.goToCancel()}" rendered="#{formReport009Controller.paramMode=='edit'}"/>
+                        </div>
+                    </h:panelGroup>
+                </p:panel>
+
+                <p:dialog id="REPORT_009AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_009dlgAddReportDetail" modal="true" draggable="true">
+                    <p:messages id="REPORT_009msgAddReportDetail" escape="false" closable="true"></p:messages>
+                    <p:panelGrid columns="2" id="REPORT_009pn_addReportDetail">
+
+                        <h:outputLabel value="พรรค *" />  
+                        <p:inputText id="REPORT_009lb01" value="#{formReport009Controller.inputReport009Detail.politicalParty}"/>  
+
+                        <h:outputLabel value="จำนวนเงินที่ได้รับบริจาค *"/>
+                        <p:inputMask mask="9?9999999" id="REPORT_009lb02" value="#{formReport009Controller.inputReport009Detail.donate}"/>  
+
+                        <f:facet name="footer">  
+                            <p:commandButton value="เพิ่ม" actionListener="#{formReport009Controller.addReportDetail(actionEvent)}" update="REPORT_009msgAddReportDetail,REPORT_009Grid" icon="ui-icon-check" style="margin:0"/>  
+                        </f:facet>
+                    </p:panelGrid>
+                    <style>
+                        .ui-panelgrid td {
+                            border-color: inherit;
+                            border-style: inherit;
+                            border-width: 1px;
+                            padding: 4px 10px;
+                        }
+                    </style>
+                </p:dialog>
+
+
+            </p:panel>
+
+        </h:form>
+    </h:body>
+</html>

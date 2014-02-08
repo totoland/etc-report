@@ -110,10 +110,10 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column>  
+                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
                                     <p:rowEditor />  
                                 </p:column> 
-                                <p:column>  
+                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
                                     <p:commandLink action="#{formReport008Controller.onDelete(item)}" update="REPORT_008Grid">
                                         <span class="ui-icon ui-icon-trash"></span>
                                         <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  

@@ -78,7 +78,7 @@ and open the template in the editor.
                                 <f:selectItem itemLabel="อนุมัติ" itemValue="200" />
                             </p:selectOneMenu>
 
-                            <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" for="lb2" rendered="#{param.user==null}"/>
+                            <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" rendered="#{param.user==null}"/>
                             <p:selectOneMenu  id="ectDll2" style="width: 220px" rendered="#{param.user==null}" value="#{allReportController.reportCriteria.reportCode}">  
                                 <f:selectItem itemLabel="-เลือก-" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlDepEct()}"/>  
@@ -96,21 +96,21 @@ and open the template in the editor.
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="10,15,20">
 
-                            <p:column>
+                            <p:column sortBy="documentNo">
                                 <f:facet name="header">
                                     <h:outputText value="เลขที่เอกสาร" />
                                 </f:facet>
                                 <h:outputText value="#{item.documentNo}" />
                             </p:column>
 
-                            <p:column>
+                            <p:column sortBy="report_Desc">
                                 <f:facet name="header">
                                     <h:outputText value="ชื่อรายงาน" />
                                 </f:facet>
                                 <h:outputText value="#{item.reportDesc}" />
                             </p:column>
 
-                            <p:column>
+                            <p:column sortBy="flow_Status_Name">
                                 <f:facet name="header">
                                     <h:outputText value="สถานะ" />
                                 </f:facet>
@@ -119,13 +119,13 @@ and open the template in the editor.
 
                                 <h:outputText value="รายงานที่อนุมัติแล้ว" rendered="#{item.reportStatus==200}"/>
                             </p:column>
-                            <p:column>
+                            <p:column sortBy="created_Date">
                                 <f:facet name="header">
                                     <h:outputText value="วันที่สร้าง" />
                                 </f:facet>
                                 <totoland:convertDateTime value="#{item.createdDate}" format="dd/MM/yyyy"/>
                             </p:column>
-                            <p:column>
+                            <p:column sortBy="created_User_Full_Name">
                                 <f:facet name="header">
                                     <h:outputText value="ชื่อผู้สร้าง" />
                                 </f:facet>
