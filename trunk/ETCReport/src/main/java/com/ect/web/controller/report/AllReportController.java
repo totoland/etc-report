@@ -22,10 +22,13 @@ import com.ect.db.report.entity.Report007;
 import com.ect.db.report.entity.Report007Detail;
 import com.ect.db.report.entity.Report008;
 import com.ect.db.report.entity.Report008Detail;
+import com.ect.db.report.entity.Report009;
+import com.ect.db.report.entity.Report009Detail;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
+import com.ect.web.utils.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -90,8 +93,25 @@ public class AllReportController extends BaseFormReportController {
                 @Override
                 public List<ViewReportStatus> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
 
+                    logger.trace("sortField : {} , sortOrder : {}", sortField, sortOrder);
+
                     reportCriteria.setStartRow(first);
                     reportCriteria.setMaxRow(pageSize);
+
+                    if (!StringUtils.isBlank(sortField)) {
+                        
+                        reportCriteria.setSortField(sortField);
+                        
+                        if (sortOrder.name().equals("ASCENDING")) {
+                            reportCriteria.setSortOrder("ASC");
+                        } else {
+                            reportCriteria.setSortOrder("DESC");
+                        }
+                        
+                    }
+
+
+
                     datasource = reportService.findByCriteria(reportCriteria);
 
                     return datasource;
@@ -188,9 +208,7 @@ public class AllReportController extends BaseFormReportController {
     @Override
     public void resetForm() {
         initCriteria();
-        lazyModel = new LazyDataModel<ViewReportStatus>() {
-            private static final long serialVersionUID = 3109256773218160485L;
-        };
+        lazyModel = null;
     }
 
     public void fileXLSDownload(ViewReportStatus viewReportStatus) {
@@ -370,6 +388,23 @@ public class AllReportController extends BaseFormReportController {
 
             }
 
+        } else if (viewReportStatus.getReportCode().equals(REPORT_009)) {
+
+            reportName = REPORT_009;
+
+            Report009 report009 = reportService.findByReport009ById(viewReportStatus.getReportId());
+
+            if (report009 == null || report009.getReport009DetailList() == null || report009.getReport009DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report008 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report009Detail>());
+
+            } else {
+
+                beans.put("details", report009.getReport009DetailList());
+
+            }
+
         }
 
         HSSFWorkbook wb = null;
@@ -501,6 +536,5 @@ public class AllReportController extends BaseFormReportController {
 
     @Override
     public void onDelete(Object object) {
-        
     }
 }

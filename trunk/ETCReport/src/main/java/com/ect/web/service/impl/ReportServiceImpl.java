@@ -15,6 +15,7 @@ import com.ect.db.report.dao.Report005Dao;
 import com.ect.db.report.dao.Report006Dao;
 import com.ect.db.report.dao.Report007Dao;
 import com.ect.db.report.dao.Report008Dao;
+import com.ect.db.report.dao.Report009Dao;
 import com.ect.db.report.dao.Report023Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.Report003;
@@ -23,6 +24,7 @@ import com.ect.db.report.entity.Report005;
 import com.ect.db.report.entity.Report006;
 import com.ect.db.report.entity.Report007;
 import com.ect.db.report.entity.Report008;
+import com.ect.db.report.entity.Report009;
 import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
@@ -58,6 +60,8 @@ public class ReportServiceImpl implements ReportService {
     Report007Dao report007Dao;
     @Autowired
     Report008Dao report008Dao;
+    @Autowired
+    Report009Dao report009Dao;
 
     @Override
     public List<ViewReportStatus> findReportByStatus(Integer flowStatusId) {
@@ -137,5 +141,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Report008 findByReport008ById(Integer paramReportId) {
         return report008Dao.findByReportId(paramReportId);
+    }
+
+    @Override
+    public Report009 findByReport009ById(Integer paramReportId) {
+        return report009Dao.findByReportId(paramReportId);
     }
 }

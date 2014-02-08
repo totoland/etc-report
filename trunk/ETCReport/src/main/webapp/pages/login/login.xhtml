@@ -20,11 +20,11 @@ and open the template in the editor.
                         <h:panelGrid columns="2">  
                             <h:outputLabel for="username" value="#{msg.username}:" />  
                             <p:inputText value="#{loginController.userName}" 
-                                         id="username" required="true" label="username" />  
+                                         id="username" required="true" requiredMessage="กรุณาระบุ ชื่อผู้ใช้" label="username" />  
 
                             <h:outputLabel for="password" value="#{msg.password}:" />  
                             <h:inputSecret value="#{loginController.passWord}"   
-                                           id="password" required="true" label="password" />  
+                                           id="password" required="true" requiredMessage="กรุณาระบุ รหัสผ่าน" label="password" />  
 
                         </h:panelGrid>  
                         <p:commandButton id="loginButton" value="#{msg.login}" update="messages" icon="ui-icon-key"
