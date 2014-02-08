@@ -5,7 +5,6 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.report.entity.ReportName;
-import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
 import javax.annotation.PostConstruct;

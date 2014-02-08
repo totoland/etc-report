@@ -28,7 +28,7 @@ and open the template in the editor.
                 <p:panel style="width: 100%;">
                     <p:messages id="REPORT_009msgFrmDetails"></p:messages>
                     <f:facet name="header"  class="txtLeft">
-                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_009dlgAddReportDetail.show()" update="REPORT_009pn_addReportDetail" actionListener="#{formReport009Controller.initReportDetail()}"/>
+                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_009dlgAddReportDetail.show()" update="REPORT_009pn_addReportDetail" actionListener="#{formReport009Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode=='edit'}"/>
                     </f:facet>  
 
                     <div style="width: 1000px;overflow-x: scroll">
