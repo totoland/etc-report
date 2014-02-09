@@ -61,6 +61,4 @@ public interface ReportService {
     Report009 findByReport009ById(Integer paramReportId);
 
     Report010 findByReport010ById(Integer paramReportId);
-
-    Report023 findByReport023ById(Integer paramReportId);
 }
