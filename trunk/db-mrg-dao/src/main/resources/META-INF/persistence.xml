@@ -33,6 +33,8 @@
     <class>com.ect.db.report.entity.Report003</class>
     <class>com.ect.db.report.entity.Report004</class>
     <class>com.ect.db.report.entity.Report004Detail</class>
+    <class>com.ect.db.report.entity.Report023Detail</class>
+    <class>com.ect.db.report.entity.Report023</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost\MSSQLSERVER:1433;databaseName=thaihua"/>
       <property name="javax.persistence.jdbc.password" value="1951465"/>
