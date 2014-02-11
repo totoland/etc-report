@@ -23,7 +23,7 @@ and open the template in the editor.
                     <p:panel header="หน้าหลัก" style="height: 620px">
                         <p:tabView id="tabView" dynamic="true" cache="false">
 
-                            <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}" onstart="$('#form1\\:tabView\\:ectDll_input').val('')"/>
+                            <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}" oncomplete="resetDdl()"/>
 
                             <p:tab id="tab0" title="สร้างรายงาน">
 
@@ -411,7 +411,17 @@ and open the template in the editor.
                         </p:dialog>
                     </h:panelGroup>
                 </h:form>
-
+                <script>
+                    function resetDdl(){
+                            try{
+                                $('#form1\\:tabView\\:ectDll_input').val('');
+                            }catch(err){
+                                setTimeout(function(){
+                                    resetDdl();
+                                },100);
+                            }
+                    }
+                </script>
 
             </ui:define>
         </ui:composition>
