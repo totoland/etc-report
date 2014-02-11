@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+
+      xmlns:components="http://java.sun.com/jsf/composite/components">
+
+    <composite:interface>
+
+        <composite:attribute name="value" />
+        <composite:attribute name="id" />
+        <composite:attribute name="maxlength" />
+        <composite:attribute name="disabled" />
+        <composite:attribute name="rendered"/>
+        <composite:attribute name="readonly"/>
+    </composite:interface>
+
+    <composite:implementation>
+        
+        <p:inputText id="#{cc.attrs.id}" styleClass="inputNumber" disabled="#{cc.attrs.disabled==null?'false':cc.attrs.disabled}" readonly="#{cc.attrs.readonly==null?'false':cc.attrs.readonly}" rendered="#{cc.attrs.rendered==null?'true':cc.attrs.rendered}"  maxlength="#{cc.attrs.maxlength==null?'7':cc.attrs.maxlength}" onkeydown="inputNumber(event)" value="#{cc.attrs.value}">
+            <composite:insertChildren/>
+        </p:inputText>
+        <script>
+            //<![CDATA[
+            function inputNumber(event) {
+                // Allow only backspace and delete
+                if (event.keyCode == 46 || event.keyCode == 8) {
+                    // let it happen, don't do anything
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.keyCode < 48 || event.keyCode > 57) {
+                        event.preventDefault();
+                    }
+                }
+            }
+            //]]>
+        </script>
+    </composite:implementation>
+
+</html>

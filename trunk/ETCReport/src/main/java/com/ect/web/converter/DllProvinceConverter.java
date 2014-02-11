@@ -13,7 +13,6 @@ import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import org.primefaces.component.selectonemenu.SelectOneMenu;
 
 /**
  *
