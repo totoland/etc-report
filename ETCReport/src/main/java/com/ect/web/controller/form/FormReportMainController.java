@@ -30,6 +30,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -88,7 +89,6 @@ public class FormReportMainController extends BaseFormReportController {
 
     @PostConstruct
     public void init() {
-
     }
 
     @Override
@@ -139,7 +139,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         inputReport001Detail = new Report001Detail();
     }
-    
+
     /**
      * *
      * Load Report Step1
@@ -149,8 +149,8 @@ public class FormReportMainController extends BaseFormReportController {
         logger.trace("loadReportSTEP1State!!");
 
         ReportCriteria reportCriteria = new ReportCriteria();
-        reportCriteria.setFlowStatus(FlowStatus.STEP_1.getStatus()+"");
-        
+        reportCriteria.setFlowStatus(FlowStatus.STEP_1.getStatus() + "");
+
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -159,11 +159,11 @@ public class FormReportMainController extends BaseFormReportController {
             reportModel.setRowCount(count);
             reportModel.setReportService(reportService);
             reportModel.setReportCriteria(reportCriteria);
-            
+
             listReportStatusStep1 = reportModel;
 
         }
-        
+
         if (listReportStatusStep1 == null) {
 
             logger.debug("listReportStatusWait is null!!");
@@ -182,8 +182,8 @@ public class FormReportMainController extends BaseFormReportController {
         logger.trace("loadReportSTEP2State!!");
 
         ReportCriteria reportCriteria = new ReportCriteria();
-        reportCriteria.setFlowStatus(FlowStatus.STEP_2.getStatus()+"");
-        
+        reportCriteria.setFlowStatus(FlowStatus.STEP_2.getStatus() + "");
+
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -192,7 +192,7 @@ public class FormReportMainController extends BaseFormReportController {
             reportModel.setRowCount(count);
             reportModel.setReportService(reportService);
             reportModel.setReportCriteria(reportCriteria);
-            
+
             listReportStatusStep2 = reportModel;
 
         }
@@ -208,8 +208,8 @@ public class FormReportMainController extends BaseFormReportController {
         logger.trace("loadReportSTEP3State!!");
 
         ReportCriteria reportCriteria = new ReportCriteria();
-        reportCriteria.setFlowStatus(FlowStatus.STEP_3.getStatus()+"");
-        
+        reportCriteria.setFlowStatus(FlowStatus.STEP_3.getStatus() + "");
+
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -218,7 +218,7 @@ public class FormReportMainController extends BaseFormReportController {
             reportModel.setRowCount(count);
             reportModel.setReportService(reportService);
             reportModel.setReportCriteria(reportCriteria);
-            
+
             listReportStatusStep3 = reportModel;
 
         }
@@ -232,10 +232,10 @@ public class FormReportMainController extends BaseFormReportController {
     public void loadReportApproveState() {
 
         logger.trace("loadReportApproveState!!");
-
-        ReportCriteria reportCriteria = new ReportCriteria();
-        reportCriteria.setFlowStatus(FlowStatus.APPROVED.getStatus()+"");
         
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setFlowStatus(FlowStatus.APPROVED.getStatus() + "");
+
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -244,7 +244,7 @@ public class FormReportMainController extends BaseFormReportController {
             reportModel.setRowCount(count);
             reportModel.setReportService(reportService);
             reportModel.setReportCriteria(reportCriteria);
-            
+
             listReportStatusApprove = reportModel;
 
         }
@@ -258,10 +258,10 @@ public class FormReportMainController extends BaseFormReportController {
     public void loadReportDrafState() {
 
         logger.trace("loadReportDrafState!!");
-
-        ReportCriteria reportCriteria = new ReportCriteria();
-        reportCriteria.setFlowStatus(FlowStatus.DRAFF.getStatus()+"");
         
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setFlowStatus(FlowStatus.DRAFF.getStatus() + "");
+
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -270,7 +270,7 @@ public class FormReportMainController extends BaseFormReportController {
             reportModel.setRowCount(count);
             reportModel.setReportService(reportService);
             reportModel.setReportCriteria(reportCriteria);
-            
+
             listReportStatusReject = reportModel;
 
         }
@@ -406,13 +406,13 @@ public class FormReportMainController extends BaseFormReportController {
             if (FlowStatus.APPROVED.getStatus() == flowStatusId) {
 
                 addInfo("อนุมัติรายงาน");
-                
+
                 loadReportSTEP3State();
-                
+
             } else {
 
                 addInfo("ส่งพิจรณาแล้ว");
-                
+
                 loadReportDrafState();
                 loadReportSTEP1State();
                 loadReportSTEP2State();
@@ -433,7 +433,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         this.selectReject = selectReject;
         this.flowStatusUpdate = flowStatusUpdate;
-        
+
         this.remark = "";
 
     }
@@ -447,7 +447,7 @@ public class FormReportMainController extends BaseFormReportController {
         if (StringUtils.isBlank(remark)) {
 
             addError(MessageUtils.getResourceBundleString("require_message", "เหตุผล"));
-            
+
             return;
 
         }
@@ -458,13 +458,14 @@ public class FormReportMainController extends BaseFormReportController {
 
             addInfo("ส่งกลับสำเร็จ");
 
-            /***
+            /**
+             * *
              * Load Tab after update flow status
              */
             loadReportSTEP1State();
             loadReportSTEP2State();
             loadReportSTEP3State();
-            
+
             closeDialog("dialogRemark");
 
         } catch (Exception ex) {
@@ -479,31 +480,31 @@ public class FormReportMainController extends BaseFormReportController {
 
         }
     }
-    
-    public String reportStatusName(Integer reportStatus){
-        
-        if(reportStatus==null){
+
+    public String reportStatusName(Integer reportStatus) {
+
+        if (reportStatus == null) {
             return "";
         }
-        
-        if(reportStatus==ReportStatus.APPROVE.getStatus()){
-        
+
+        if (reportStatus == ReportStatus.APPROVE.getStatus()) {
+
             return "อนุมัต";
-            
-        }else if(reportStatus == ReportStatus.REJECTE.getStatus()){
-        
+
+        } else if (reportStatus == ReportStatus.REJECTE.getStatus()) {
+
             return "ไม่ผ่านการอนุมัติ";
-        
-        }else if(reportStatus == ReportStatus.WAIT.getStatus()){
-        
+
+        } else if (reportStatus == ReportStatus.WAIT.getStatus()) {
+
             return "รอส่งพิจรณา";
-            
-        }else{
-        
+
+        } else {
+
             return "N/A";
-        
+
         }
-        
+
     }
 
     /**
@@ -627,7 +628,7 @@ public class FormReportMainController extends BaseFormReportController {
     public void setListReportStatusStep1(LazyDataModel<ViewReportStatus> listReportStatusStep1) {
         this.listReportStatusStep1 = listReportStatusStep1;
     }
-    
+
     /**
      * @return the listReportStatusStep2
      */

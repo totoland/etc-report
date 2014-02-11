@@ -73,8 +73,8 @@ and open the template in the editor.
                             <p:outputLabel value="เลือกสถานะ : "/>
                             <p:selectOneMenu style="width: 220px" value="#{allReportController.reportCriteria.status}">  
                                 <f:selectItem itemLabel="เลือก" itemValue="" />  
-                                <f:selectItem itemLabel="รอพิจารณา" itemValue="100" />  
-                                <f:selectItem itemLabel="ไม่อนุมัติ" itemValue="401" />  
+                                <f:selectItem itemLabel="รอพิจารณา" itemValue="0,101,102,103" />  
+                                <f:selectItem itemLabel="ไม่อนุมัติ" itemValue="-1" />  
                                 <f:selectItem itemLabel="อนุมัติ" itemValue="200" />
                             </p:selectOneMenu>
 
@@ -114,10 +114,7 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     <h:outputText value="สถานะ" />
                                 </f:facet>
-                                <h:outputText value="รายงานที่ไม่ผ่านพิจารณา" rendered="#{item.reportStatus==401}"/>
-                                <h:outputText value="#{item.flowStatusName}" rendered="#{item.reportStatus!=401 and item.reportStatus!=200}"/>
-
-                                <h:outputText value="รายงานที่อนุมัติแล้ว" rendered="#{item.reportStatus==200}"/>
+                                <h:outputText value="#{item.flowStatusName}"/>
                             </p:column>
                             <p:column sortBy="created_Date">
                                 <f:facet name="header">
