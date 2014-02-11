@@ -23,6 +23,7 @@ public class ReportCriteria implements Serializable{
     private String project;
     private String activity;
     private String status;
+    private String flowStatus;
     private String reportCode;
     private int startRow = 1;
     private int maxRow = 10;
@@ -183,11 +184,6 @@ public class ReportCriteria implements Serializable{
         this.reportCode = reportCode;
     }
 
-    @Override
-    public String toString() {
-        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + '}';
-    }
-
     /**
      * @return the startRow
      */
@@ -242,6 +238,25 @@ public class ReportCriteria implements Serializable{
      */
     public void setSortOrder(String sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    /**
+     * @return the flowStatus
+     */
+    public String getFlowStatus() {
+        return flowStatus;
+    }
+
+    /**
+     * @param flowStatus the flowStatus to set
+     */
+    public void setFlowStatus(String flowStatus) {
+        this.flowStatus = flowStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", flowStatus=" + flowStatus + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + ", sortField=" + sortField + ", sortOrder=" + sortOrder + '}';
     }
     
 }
