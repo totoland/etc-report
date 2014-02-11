@@ -1,5 +1,6 @@
 package com.ect.web.utils;
 
+import com.sun.faces.component.visit.FullVisitContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Iterator;
@@ -8,10 +9,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.UISelectItem;
+import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlInputText;
+import javax.faces.component.visit.VisitCallback;
+import javax.faces.component.visit.VisitContext;
+import javax.faces.component.visit.VisitResult;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.dialog.Dialog;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
@@ -19,7 +25,7 @@ import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JsfUtil implements Serializable{
+public class JsfUtil implements Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(JsfUtil.class);
     private static final long serialVersionUID = 5017019437928010910L;
@@ -28,8 +34,30 @@ public class JsfUtil implements Serializable{
         JsfUtil.executeJavaScript("window.location = '';");
     }
 
+    public static DataTable getDataTable(String name) {
+        final DataTable d = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
+                .findComponent(name);
+        return d;
+    }
+
+    public UIComponent findComponent(final String id) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        UIViewRoot root = context.getViewRoot();
+        final UIComponent[] found = new UIComponent[1];
+        root.visitTree(new FullVisitContext(context), new VisitCallback() {
+            @Override
+            public VisitResult visit(VisitContext context, UIComponent component) {
+                if (component.getId().equals(id)) {
+                    found[0] = component;
+                    return VisitResult.COMPLETE;
+                }
+                return VisitResult.ACCEPT;
+            }
+        });
+        return found[0];
+    }
     private RequestContext context = RequestContext.getCurrentInstance();
-    
+
     public static void addErrorMessage(Exception ex, String defaultMsg) {
         String msg = ex.getLocalizedMessage();
         if (msg != null && msg.length() > 0) {
@@ -106,9 +134,9 @@ public class JsfUtil implements Serializable{
     public static void hidePopup(String dlgAddReportDetail) {
         executeJavaScript(dlgAddReportDetail.concat(".").concat("hide();"));
     }
-    
+
     public static void hidePopupIframe(String report_MainDialog) {
-        executeJavaScript("parent."+report_MainDialog.concat(".").concat("hide();"));
+        executeJavaScript("parent." + report_MainDialog.concat(".").concat("hide();"));
     }
 
     public static void executeJavaScript(String function) {
@@ -124,13 +152,13 @@ public class JsfUtil implements Serializable{
         HttpServletRequest servletRequest = (HttpServletRequest) ctx.getExternalContext().getRequest();
         return servletRequest.getContextPath();
     }
-    
+
     public static String getContextURI() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         HttpServletRequest servletRequest = (HttpServletRequest) ctx.getExternalContext().getRequest();
         return servletRequest.getRequestURI();
     }
-    
+
     /**
      * *
      * Close Popup
@@ -173,11 +201,11 @@ public class JsfUtil implements Serializable{
     public void disablePopup(String id) {
         FacesContext ctx = FacesContext.getCurrentInstance();
         Dialog panel = (Dialog) ctx.getViewRoot().findComponent(id);
-        
-        if(panel==null){
+
+        if (panel == null) {
             return;
         }
-        
+
         disableAll(panel.getChildren());
     }
 
@@ -198,14 +226,14 @@ public class JsfUtil implements Serializable{
             disableAll(component.getChildren());
         }
     }
-    
-    public void openIframe(String url){
-        
-        if(url.indexOf("?")==-1){
-            url +="?q=q";
+
+    public void openIframe(String url) {
+
+        if (url.indexOf("?") == -1) {
+            url += "?q=q";
         }
-        
+
         executeJavaScript("dialogEdit.show();");
-        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='"+url+"&random=\" + Math.random() + \"'  scrolling='yes' style='border: none;width: 100%;height:500px'></iframe>\");");
+        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='" + url + "&random=\" + Math.random() + \"'  scrolling='yes' style='border: none;width: 100%;height:500px'></iframe>\");");
     }
 }

@@ -33,7 +33,6 @@ import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewReportImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
-import com.ect.web.utils.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -52,10 +51,10 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,11 +91,15 @@ public class AllReportController extends BaseFormReportController {
 
         if (count != null || count > 0) {
 
+            final DataTable d = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
+                    .findComponent(":form1:rptPreSendList2");
+            d.setFirst(0);
+            
             LazyViewReportImpl reportModel = new LazyViewReportImpl();
             reportModel.setRowCount(count);
             reportModel.setReportService(reportService);
             reportModel.setReportCriteria(reportCriteria);
-            
+
             lazyModel = reportModel;
 
         }
