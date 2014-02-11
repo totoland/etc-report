@@ -4,12 +4,14 @@
  */
 package com.ect.web.controller.form;
 
+import com.ect.db.bean.ReportCriteria;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
 import com.ect.db.entity.EctFlowStatus.ReportStatus;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.entity.ReportName.ReportCode;
 import com.ect.db.report.entity.ViewReportStatus;
+import com.ect.web.controller.model.LazyViewReportImpl;
 import com.ect.web.service.Report001Service;
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.JsfUtil;
@@ -31,6 +33,7 @@ import javax.servlet.ServletContext;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,11 +76,11 @@ public class FormReportMainController extends BaseFormReportController {
      * *
      * For Query each flow status
      */
-    private List<ViewReportStatus> listReportStatusStep1;
-    private List<ViewReportStatus> listReportStatusStep2;
-    private List<ViewReportStatus> listReportStatusStep3;
-    private List<ViewReportStatus> listReportStatusReject;
-    private List<ViewReportStatus> listReportStatusApprove;
+    private LazyDataModel<ViewReportStatus> listReportStatusStep1;
+    private LazyDataModel<ViewReportStatus> listReportStatusStep2;
+    private LazyDataModel<ViewReportStatus> listReportStatusStep3;
+    private LazyDataModel<ViewReportStatus> listReportStatusReject;
+    private LazyDataModel<ViewReportStatus> listReportStatusApprove;
     private String remark;
     private boolean validRemark = true;
     private ViewReportStatus selectReject;
@@ -136,7 +139,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         inputReport001Detail = new Report001Detail();
     }
-
+    
     /**
      * *
      * Load Report Step1
@@ -145,16 +148,28 @@ public class FormReportMainController extends BaseFormReportController {
 
         logger.trace("loadReportSTEP1State!!");
 
-        listReportStatusStep1 = (List<ViewReportStatus>) reportService.findReportByStatus(FlowStatus.STEP_1.getStatus());
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setFlowStatus(FlowStatus.STEP_1.getStatus()+"");
+        
+        final Integer count = reportService.countByCriteria(reportCriteria);
 
-        if (listReportStatusStep1 == null || listReportStatusStep1.isEmpty()) {
+        if (count != null || count > 0) {
+
+            LazyViewReportImpl reportModel = new LazyViewReportImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+            
+            listReportStatusStep1 = reportModel;
+
+        }
+        
+        if (listReportStatusStep1 == null) {
 
             logger.debug("listReportStatusWait is null!!");
             return;
 
         }
-
-        logger.debug("listReportStatusWait : {}", new Gson().toJson(listReportStatusStep1));
 
     }
 
@@ -166,16 +181,21 @@ public class FormReportMainController extends BaseFormReportController {
 
         logger.trace("loadReportSTEP2State!!");
 
-        listReportStatusStep2 = (List<ViewReportStatus>) reportService.findReportByStatus(FlowStatus.STEP_2.getStatus());
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setFlowStatus(FlowStatus.STEP_2.getStatus()+"");
+        
+        final Integer count = reportService.countByCriteria(reportCriteria);
 
-        if (listReportStatusStep2 == null || listReportStatusStep2.isEmpty()) {
+        if (count != null || count > 0) {
 
-            logger.debug("listReportStatusStep2 is null!!");
-            return;
+            LazyViewReportImpl reportModel = new LazyViewReportImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+            
+            listReportStatusStep2 = reportModel;
 
         }
-
-        logger.debug("listReportStatusStep2 : {}", new Gson().toJson(listReportStatusStep2));
 
     }
 
@@ -187,16 +207,21 @@ public class FormReportMainController extends BaseFormReportController {
 
         logger.trace("loadReportSTEP3State!!");
 
-        listReportStatusStep3 = (List<ViewReportStatus>) reportService.findReportByStatus(FlowStatus.STEP_3.getStatus());
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setFlowStatus(FlowStatus.STEP_3.getStatus()+"");
+        
+        final Integer count = reportService.countByCriteria(reportCriteria);
 
-        if (listReportStatusStep3 == null || listReportStatusStep3.isEmpty()) {
+        if (count != null || count > 0) {
 
-            logger.debug("listReportStatusStep3 is null!!");
-            return;
+            LazyViewReportImpl reportModel = new LazyViewReportImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+            
+            listReportStatusStep3 = reportModel;
 
         }
-
-        logger.debug("listReportStatusStep3 : {}", new Gson().toJson(listReportStatusStep3));
 
     }
 
@@ -208,16 +233,21 @@ public class FormReportMainController extends BaseFormReportController {
 
         logger.trace("loadReportApproveState!!");
 
-        listReportStatusApprove = (List<ViewReportStatus>) reportService.findReportByStatus(FlowStatus.APPROVED.getStatus());
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setFlowStatus(FlowStatus.APPROVED.getStatus()+"");
+        
+        final Integer count = reportService.countByCriteria(reportCriteria);
 
-        if (listReportStatusApprove == null || listReportStatusApprove.isEmpty()) {
+        if (count != null || count > 0) {
 
-            logger.debug("loadReportApproveState is null!!");
-            return;
+            LazyViewReportImpl reportModel = new LazyViewReportImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+            
+            listReportStatusApprove = reportModel;
 
         }
-
-        logger.debug("loadReportApproveState : {}", new Gson().toJson(listReportStatusApprove));
 
     }
 
@@ -229,16 +259,21 @@ public class FormReportMainController extends BaseFormReportController {
 
         logger.trace("loadReportDrafState!!");
 
-        listReportStatusReject = (List<ViewReportStatus>) reportService.findReportByStatus(FlowStatus.DRAFF.getStatus());
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setFlowStatus(FlowStatus.DRAFF.getStatus()+"");
+        
+        final Integer count = reportService.countByCriteria(reportCriteria);
 
-        if (listReportStatusReject == null || listReportStatusReject.isEmpty()) {
+        if (count != null || count > 0) {
 
-            logger.debug("loadReportDrafState is null!!");
-            return;
+            LazyViewReportImpl reportModel = new LazyViewReportImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+            
+            listReportStatusReject = reportModel;
 
         }
-
-        logger.debug("loadReportRejectState : {}", new Gson().toJson(listReportStatusReject));
 
     }
 
@@ -554,70 +589,70 @@ public class FormReportMainController extends BaseFormReportController {
     /**
      * @return the listReportStatusReject
      */
-    public List<ViewReportStatus> getListReportStatusReject() {
+    public LazyDataModel<ViewReportStatus> getListReportStatusReject() {
         return listReportStatusReject;
     }
 
     /**
      * @param listReportStatusReject the listReportStatusReject to set
      */
-    public void setListReportStatusReject(List<ViewReportStatus> listReportStatusReject) {
+    public void setListReportStatusReject(LazyDataModel<ViewReportStatus> listReportStatusReject) {
         this.listReportStatusReject = listReportStatusReject;
     }
 
     /**
      * @return the listReportStatusApprove
      */
-    public List<ViewReportStatus> getListReportStatusApprove() {
+    public LazyDataModel<ViewReportStatus> getListReportStatusApprove() {
         return listReportStatusApprove;
     }
 
     /**
      * @param listReportStatusApprove the listReportStatusApprove to set
      */
-    public void setListReportStatusApprove(List<ViewReportStatus> listReportStatusApprove) {
+    public void setListReportStatusApprove(LazyDataModel<ViewReportStatus> listReportStatusApprove) {
         this.listReportStatusApprove = listReportStatusApprove;
     }
 
     /**
      * @return the listReportStatusStep1
      */
-    public List<ViewReportStatus> getListReportStatusStep1() {
+    public LazyDataModel<ViewReportStatus> getListReportStatusStep1() {
         return listReportStatusStep1;
     }
 
     /**
      * @param listReportStatusStep1 the listReportStatusStep1 to set
      */
-    public void setListReportStatusStep1(List<ViewReportStatus> listReportStatusStep1) {
+    public void setListReportStatusStep1(LazyDataModel<ViewReportStatus> listReportStatusStep1) {
         this.listReportStatusStep1 = listReportStatusStep1;
     }
     
     /**
      * @return the listReportStatusStep2
      */
-    public List<ViewReportStatus> getListReportStatusStep2() {
+    public LazyDataModel<ViewReportStatus> getListReportStatusStep2() {
         return listReportStatusStep2;
     }
 
     /**
      * @param listReportStatusStep2 the listReportStatusStep2 to set
      */
-    public void setListReportStatusStep2(List<ViewReportStatus> listReportStatusStep2) {
+    public void setListReportStatusStep2(LazyDataModel<ViewReportStatus> listReportStatusStep2) {
         this.listReportStatusStep2 = listReportStatusStep2;
     }
 
     /**
      * @return the listReportStatusStep3
      */
-    public List<ViewReportStatus> getListReportStatusStep3() {
+    public LazyDataModel<ViewReportStatus> getListReportStatusStep3() {
         return listReportStatusStep3;
     }
 
     /**
      * @param listReportStatusStep3 the listReportStatusStep3 to set
      */
-    public void setListReportStatusStep3(List<ViewReportStatus> listReportStatusStep3) {
+    public void setListReportStatusStep3(LazyDataModel<ViewReportStatus> listReportStatusStep3) {
         this.listReportStatusStep3 = listReportStatusStep3;
     }
 

@@ -4,26 +4,59 @@
  */
 package com.ect.web.controller.model;
 
+import com.ect.db.bean.ReportCriteria;
 import com.ect.db.report.entity.ViewReportStatus;
-import java.io.Serializable;
+import com.ect.web.service.ReportService;
+import com.ect.web.utils.StringUtils;
 import java.util.List;
 import java.util.Map;
+import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author totoland
  */
-public abstract class LazyDataModel extends org.primefaces.model.LazyDataModel<ViewReportStatus> implements Serializable {
+public class LazyViewReportImpl extends LazyDataModel<ViewReportStatus> {
 
     private static final long serialVersionUID = -7332140435235556716L;
+    private static Logger logger = LoggerFactory.getLogger(LazyViewReportImpl.class);
     private List<ViewReportStatus> datasource;
     private int pageSize;
     private int rowIndex;
     private int rowCount;
+    private ReportCriteria reportCriteria;
+    private ReportService reportService;
 
     @Override
-    public abstract List<ViewReportStatus> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters);
+    public List<ViewReportStatus> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+
+        logger.trace("sortField : {} , sortOrder : {}", sortField, sortOrder);
+
+        getReportCriteria().setStartRow(first);
+        getReportCriteria().setMaxRow(pageSize);
+
+        if (!StringUtils.isBlank(sortField)) {
+
+            getReportCriteria().setSortField(sortField);
+
+            if (sortOrder.name().equals("ASCENDING")) {
+                getReportCriteria().setSortOrder("ASC");
+            } else {
+                getReportCriteria().setSortOrder("DESC");
+            }
+
+        }
+
+
+
+        datasource = reportService.findByCriteria(getReportCriteria());
+
+        return datasource;
+
+    }
 
     @Override
     public boolean isRowAvailable() {
@@ -102,5 +135,33 @@ public abstract class LazyDataModel extends org.primefaces.model.LazyDataModel<V
     @Override
     public Object getWrappedData() {
         return datasource;
+    }
+
+    /**
+     * @return the reportCriteria
+     */
+    public ReportCriteria getReportCriteria() {
+        return reportCriteria;
+    }
+
+    /**
+     * @param reportCriteria the reportCriteria to set
+     */
+    public void setReportCriteria(ReportCriteria reportCriteria) {
+        this.reportCriteria = reportCriteria;
+    }
+
+    /**
+     * @return the reportService
+     */
+    public ReportService getReportService() {
+        return reportService;
+    }
+
+    /**
+     * @param reportService the reportService to set
+     */
+    public void setReportService(ReportService reportService) {
+        this.reportService = reportService;
     }
 }
