@@ -30,6 +30,7 @@ import com.ect.db.report.entity.Report011;
 import com.ect.db.report.entity.Report012;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
+import com.ect.web.controller.model.LazyViewReportImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.StringUtils;
@@ -91,120 +92,12 @@ public class AllReportController extends BaseFormReportController {
 
         if (count != null || count > 0) {
 
-            lazyModel = new LazyDataModel<ViewReportStatus>() {
-                private static final long serialVersionUID = 3109256773218160485L;
-
-                @Override
-                public List<ViewReportStatus> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-
-                    logger.trace("sortField : {} , sortOrder : {}", sortField, sortOrder);
-
-                    reportCriteria.setStartRow(first);
-                    reportCriteria.setMaxRow(pageSize);
-
-                    if (!StringUtils.isBlank(sortField)) {
-                        
-                        reportCriteria.setSortField(sortField);
-                        
-                        if (sortOrder.name().equals("ASCENDING")) {
-                            reportCriteria.setSortOrder("ASC");
-                        } else {
-                            reportCriteria.setSortOrder("DESC");
-                        }
-                        
-                    }
-
-
-
-                    datasource = reportService.findByCriteria(reportCriteria);
-
-                    return datasource;
-
-                }
-                private List<ViewReportStatus> datasource;
-                private int pageSize;
-                private int rowIndex;
-                private int rowCount = count;
-
-                @Override
-                public boolean isRowAvailable() {
-                    if (datasource == null) {
-                        return false;
-                    }
-                    int index = rowIndex % pageSize;
-                    return index >= 0 && index < datasource.size();
-                }
-
-                @Override
-                public Object getRowKey(ViewReportStatus user) {
-                    return user.getReportId();
-                }
-
-                @Override
-                public ViewReportStatus getRowData() {
-                    if (datasource == null) {
-                        return null;
-                    }
-                    int index = rowIndex % pageSize;
-                    if (index > datasource.size()) {
-                        return null;
-                    }
-                    return datasource.get(index);
-                }
-
-                @Override
-                public ViewReportStatus getRowData(String rowKey) {
-                    if (datasource == null) {
-                        return null;
-                    }
-                    for (ViewReportStatus user : datasource) {
-                        if ((user.getId() + "").equals(rowKey)) {
-                            return user;
-                        }
-                    }
-                    return null;
-                }
-
-                @Override
-                public void setPageSize(int pageSize) {
-                    this.pageSize = pageSize;
-                }
-
-                @Override
-                public int getPageSize() {
-                    return pageSize;
-                }
-
-                @Override
-                public int getRowIndex() {
-                    return this.rowIndex;
-                }
-
-                @Override
-                public void setRowIndex(int rowIndex) {
-                    this.rowIndex = rowIndex;
-                }
-
-                @Override
-                public void setRowCount(int rowCount) {
-                    this.rowCount = rowCount;
-                }
-
-                @Override
-                public int getRowCount() {
-                    return this.rowCount;
-                }
-
-                @Override
-                public void setWrappedData(Object list) {
-                    this.datasource = (List<ViewReportStatus>) list;
-                }
-
-                @Override
-                public Object getWrappedData() {
-                    return datasource;
-                }
-            };
+            LazyViewReportImpl reportModel = new LazyViewReportImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+            
+            lazyModel = reportModel;
 
         }
     }
