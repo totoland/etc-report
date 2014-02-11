@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Report022Detail.findAll", query = "SELECT r FROM Report022Detail r")})
 public class Report022Detail implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -130,7 +131,6 @@ public class Report022Detail implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ect.db.report.entity.Report022Detail[ reportDetailId=" + reportDetailId + " ]";
+        return "Report022Detail{" + "reportDetailId=" + reportDetailId + ", orderNo=" + orderNo + ", notice=" + notice + ", edit=" + edit + ", redraft=" + redraft + ", result=" + result + ", reportId=" + reportId + '}';
     }
-    
 }

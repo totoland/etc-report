@@ -4,12 +4,15 @@
  */
 package com.ect.db.report.entity;
 
+import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -30,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Report022.findAll", query = "SELECT r FROM Report022 r")})
-public class Report022 implements Serializable {
+public class Report022 extends DomainEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -69,7 +73,7 @@ public class Report022 implements Serializable {
     @Column(name = "APPROVED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDate;
-    @OneToMany(mappedBy = "reportId")
+    @OneToMany(mappedBy = "reportId", cascade = CascadeType.ALL, targetEntity = Report022Detail.class, fetch = FetchType.EAGER)
     private List<Report022Detail> report022DetailList;
 
     public Report022() {
@@ -230,7 +234,6 @@ public class Report022 implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ect.db.report.entity.Report022[ reportId=" + reportId + " ]";
+        return "Report022{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", report022DetailList=" + report022DetailList + '}';
     }
-    
 }
