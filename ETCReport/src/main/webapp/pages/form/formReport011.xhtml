@@ -17,7 +17,24 @@ and open the template in the editor.
         <p:dialog id="REPORT_MainDialog_REPORT_011" header="#{msg.report_011_header}" widgetVar="REPORT_MainDialog_REPORT_011" modal="true">                         
 
             <p:panel header="#{formReport011Controller.reportTitle}">
+
+
                 <p:messages id="REPORT_011msgFrmDetails"></p:messages>
+
+                <script>
+                    //<![CDATA[
+                    function disabledInput(flag) {
+                        var input = document.getElementsByTagName("input");
+
+                        for (var i = 0; i < input.length; i++) {
+                            input[i].style.display = flag==true?'none':'';
+                        }
+                    }
+                    //]]>
+                </script>
+
+                <p:remoteCommand name="calSum" update="REPORT_011pnlFrm" onstart="disabledInput(true)" oncomplete="disabledInput(false)" actionListener="#{formReport011Controller.calSum()}">
+                </p:remoteCommand>
 
                 <p:panelGrid styleClass="frmDetail" id="REPORT_011pnlFrm" style="text-align: center;vertical-align: middle">
                     <f:facet name="header">
@@ -47,34 +64,34 @@ and open the template in the editor.
                             <h:outputText value="#{formReport011Controller.report011Details[0].atCenter}"/>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[0].atEctProvince}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[0].atEctProvince}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[0].ectResolve}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[0].ectResolve}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[0].analystRemain}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[0].analystRemain}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[0].offerEct}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[0].offerEct}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[0].accessCommittee}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[0].accessCommittee}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[0].onAgenda}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[0].onAgenda}">
+
+                            </totoland:inputNumber>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -88,34 +105,34 @@ and open the template in the editor.
                             <h:outputText value="#{formReport011Controller.report011Details[1].atCenter}"/>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[1].atEctProvince}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[1].atEctProvince}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[1].ectResolve}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[1].ectResolve}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[1].analystRemain}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[1].analystRemain}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[1].offerEct}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[1].offerEct}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[1].accessCommittee}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[1].accessCommittee}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[1].onAgenda}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[1].onAgenda}">
+
+                            </totoland:inputNumber>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -129,34 +146,34 @@ and open the template in the editor.
                             <h:outputText value="#{formReport011Controller.report011Details[2].atCenter}"/>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[2].atEctProvince}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[2].atEctProvince}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[2].ectResolve}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[2].ectResolve}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[2].analystRemain}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[2].analystRemain}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[2].offerEct}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[2].offerEct}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[2].accessCommittee}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[2].accessCommittee}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[2].onAgenda}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[2].onAgenda}">
+
+                            </totoland:inputNumber>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -170,34 +187,34 @@ and open the template in the editor.
                             <h:outputText value="#{formReport011Controller.report011Details[3].atCenter}"/>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[3].atEctProvince}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[3].atEctProvince}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[3].ectResolve}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[3].ectResolve}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[3].analystRemain}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[3].analystRemain}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[3].offerEct}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[3].offerEct}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[3].accessCommittee}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[3].accessCommittee}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[3].onAgenda}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[3].onAgenda}">
+
+                            </totoland:inputNumber>
                         </p:column>
                     </p:row>
                     <p:row>
@@ -211,34 +228,34 @@ and open the template in the editor.
                             <h:outputText value="#{formReport011Controller.report011Details[4].atCenter}"/>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[4].atEctProvince}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[4].atEctProvince}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[4].ectResolve}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[4].ectResolve}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[4].analystRemain}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[4].analystRemain}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[4].offerEct}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[4].offerEct}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[4].accessCommittee}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[4].accessCommittee}">
+
+                            </totoland:inputNumber>
                         </p:column>
                         <p:column>
-                            <p:inputText styleClass="inputNumber" onkeydown="inputNumber(event)" value="#{formReport011Controller.report011Details[4].onAgenda}">
-                                
-                            </p:inputText>
+                            <totoland:inputNumber onblur="calSum()"  value="#{formReport011Controller.report011Details[4].onAgenda}">
+
+                            </totoland:inputNumber>
                         </p:column>
                     </p:row>
 

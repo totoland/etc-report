@@ -23,7 +23,7 @@ and open the template in the editor.
                     <p:panel header="หน้าหลัก" style="height: 620px">
                         <p:tabView id="tabView" dynamic="true" cache="false">
 
-                            <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}"/> 
+                            <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}" onstart="$('#form1\\:tabView\\:ectDll_input').val('')"/>
 
                             <p:tab id="tab0" title="สร้างรายงาน">
 
@@ -32,7 +32,7 @@ and open the template in the editor.
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." style="width: 350px"/>
                                         <p:selectOneMenu id="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
-                                            <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                                            <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
                                             <p:ajax listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
                                         </p:selectOneMenu> 
@@ -43,7 +43,7 @@ and open the template in the editor.
 
                                     <p:commandButton value="สร้างรายงาน" actionListener="#{formSelectReport.validateSelectReport()}" update=":form1:msgFormMain"/>
 
-                                    
+
                                 </p:panel>
                             </p:tab>
                             <p:tab id="tab_REJECT" title="รอส่งพิจารณา">
