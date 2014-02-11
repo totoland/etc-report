@@ -19,11 +19,15 @@
         <composite:attribute name="disabled" />
         <composite:attribute name="rendered"/>
         <composite:attribute name="readonly"/>
+        <composite:attribute name="onkeyup"/>
+        <composite:attribute name="onchange"/>
+        <composite:attribute name="onblur"/>
+        
     </composite:interface>
 
     <composite:implementation>
         
-        <p:inputText id="#{cc.attrs.id}" styleClass="inputNumber" disabled="#{cc.attrs.disabled==null?'false':cc.attrs.disabled}" readonly="#{cc.attrs.readonly==null?'false':cc.attrs.readonly}" rendered="#{cc.attrs.rendered==null?'true':cc.attrs.rendered}"  maxlength="#{cc.attrs.maxlength==null?'7':cc.attrs.maxlength}" onkeydown="inputNumber(event)" value="#{cc.attrs.value}">
+        <p:inputText id="#{cc.attrs.id}" onkeyup="#{cc.attrs.onkeyup==null?'':cc.attrs.onkeyup}" onblur="#{cc.attrs.onblur==null?'':cc.attrs.onblur}" onchange="#{cc.attrs.onchange==null?'':cc.attrs.onchange}" styleClass="inputNumber" disabled="#{cc.attrs.disabled==null?'false':cc.attrs.disabled}" readonly="#{cc.attrs.readonly==null?'false':cc.attrs.readonly}" rendered="#{cc.attrs.rendered==null?'true':cc.attrs.rendered}"  maxlength="#{cc.attrs.maxlength==null?'7':cc.attrs.maxlength}" onkeydown="inputNumber(event)" value="#{cc.attrs.value}">
             <composite:insertChildren/>
         </p:inputText>
         <script>

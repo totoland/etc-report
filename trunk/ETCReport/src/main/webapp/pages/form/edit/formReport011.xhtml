@@ -18,7 +18,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
         <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
-        
+
     </h:head>
     <h:body>
         <h:form>
@@ -26,9 +26,26 @@ and open the template in the editor.
             <p:panel id="REPORT_011">
 
                 <p:panel header="#{formReport011Controller.reportTitle}">
+
+
                     <p:messages id="REPORT_011msgFrmDetails"></p:messages>
 
-                    <p:panelGrid styleClass="frmDetail" id="REPORT_011pnlFrm">
+                    <script>
+                        //<![CDATA[
+                        function disabledInput(flag) {
+                            var input = document.getElementsByTagName("input");
+
+                            for (var i = 0; i < input.length; i++) {
+                                input[i].style.display = flag == true ? 'none' : '';
+                            }
+                        }
+                        //]]>
+                    </script>
+
+                    <p:remoteCommand name="calSum" update="REPORT_011pnlFrm" onstart="disabledInput(true)" oncomplete="disabledInput(false)" actionListener="#{formReport011Controller.calSum()}">
+                    </p:remoteCommand>
+
+                    <p:panelGrid styleClass="frmDetail" id="REPORT_011pnlFrm" style="text-align: center;vertical-align: middle">
                         <f:facet name="header">
                             <p:row>  
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 150px">สำนัก</p:column>
@@ -50,28 +67,40 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport011Controller.report011Details[0].institution}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{formReport011Controller.report011Details[0].allamount}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].atCenter}"/>
+                                <h:outputText value="#{formReport011Controller.report011Details[0].atCenter}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].atEctProvince}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[0].atEctProvince}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].ectResolve}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[0].ectResolve}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].analystRemain}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[0].analystRemain}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].offerEct}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[0].offerEct}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].accessCommittee}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[0].accessCommittee}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].onAgenda}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[0].onAgenda}">
+
+                                </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -79,28 +108,40 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport011Controller.report011Details[1].institution}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{formReport011Controller.report011Details[1].allamount}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[1].atCenter}"/>
+                                <h:outputText value="#{formReport011Controller.report011Details[1].atCenter}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[1].atEctProvince}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[1].atEctProvince}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[1].ectResolve}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[1].ectResolve}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[1].analystRemain}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[1].analystRemain}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[1].offerEct}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[1].offerEct}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[1].accessCommittee}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[1].accessCommittee}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[1].onAgenda}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[1].onAgenda}">
+
+                                </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -108,28 +149,40 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport011Controller.report011Details[2].institution}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{formReport011Controller.report011Details[2].allamount}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[2].atCenter}"/>
+                                <h:outputText value="#{formReport011Controller.report011Details[2].atCenter}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[2].atEctProvince}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[2].atEctProvince}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[2].ectResolve}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[2].ectResolve}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[2].analystRemain}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[2].analystRemain}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[2].offerEct}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[2].offerEct}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[2].accessCommittee}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[2].accessCommittee}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[2].onAgenda}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[2].onAgenda}">
+
+                                </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -137,28 +190,40 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport011Controller.report011Details[3].institution}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{formReport011Controller.report011Details[3].allamount}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[3].atCenter}"/>
+                                <h:outputText value="#{formReport011Controller.report011Details[3].atCenter}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[3].atEctProvince}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[3].atEctProvince}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[3].ectResolve}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[3].ectResolve}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[3].analystRemain}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[3].analystRemain}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[3].offerEct}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[3].offerEct}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[3].accessCommittee}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[3].accessCommittee}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[3].onAgenda}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[3].onAgenda}">
+
+                                </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -166,28 +231,40 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport011Controller.report011Details[4].institution}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{formReport011Controller.report011Details[4].allamount}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[4].atCenter}"/>
+                                <h:outputText value="#{formReport011Controller.report011Details[4].atCenter}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[4].atEctProvince}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[4].atEctProvince}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[4].ectResolve}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[4].ectResolve}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[4].analystRemain}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[4].analystRemain}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[4].offerEct}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[4].offerEct}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[4].accessCommittee}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[4].accessCommittee}">
+
+                                </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport011Controller.paramMode=='view'}" value="#{formReport011Controller.report011Details[0].onAgenda}"/>
+                                <totoland:inputNumber onblur="calSum()" disabled="#{formReport011Controller.paramMode=='view'}"  value="#{formReport011Controller.report011Details[4].onAgenda}">
+
+                                </totoland:inputNumber>
                             </p:column>
                         </p:row>
 

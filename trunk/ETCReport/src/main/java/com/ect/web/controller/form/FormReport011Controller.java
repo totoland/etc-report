@@ -107,7 +107,7 @@ public class FormReport011Controller extends BaseFormReportController {
 
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Save Report : {}", REPORT_011 + MessageUtils.PRINT_LINE_STAR());
 
-        calSum(report011Details);
+        calSum();
 
         report011.setReport011DetailList(report011Details);
         report011.setCreatedDate(new Date());
@@ -288,11 +288,11 @@ public class FormReport011Controller extends BaseFormReportController {
 
     }
 
-    public void calSum(List<Report011Detail> rd) {
+    public void calSum() {
 
-        for (Report011Detail report011Detail : rd) {
-            report011Detail.setAtCenter(report011Detail.getOnAgenda() + report011Detail.getAccessCommittee() + report011Detail.getOfferEct() + report011Detail.getAnalystRemain());
-            report011Detail.setAllamount(report011Detail.getAtCenter() + report011Detail.getAtEctProvince() + report011Detail.getEctResolve());
+        for (int i = 0; i < report011Details.size(); i++) {
+            report011Details.get(i).setAtCenter(report011Details.get(i).getOnAgenda() + report011Details.get(i).getAccessCommittee() + report011Details.get(i).getOfferEct() + report011Details.get(i).getAnalystRemain());
+            report011Details.get(i).setAllamount(report011Details.get(i).getAtCenter() + report011Details.get(i).getAtEctProvince() + report011Details.get(i).getEctResolve());
         }
     }
 
