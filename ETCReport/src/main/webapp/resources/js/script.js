@@ -3,16 +3,16 @@
 /*global jQuery BackgroundHelper */
 
 // css helper
-(function ($) {
+(function($) {
     'use strict';
     var data = [
-        { str: navigator.userAgent, sub: 'Chrome', ver: 'Chrome', name: 'chrome' },
-        { str: navigator.vendor, sub: 'Apple', ver: 'Version', name: 'safari' },
-        { prop: window.opera, ver: 'Opera', name: 'opera' },
-        { str: navigator.userAgent, sub: 'Firefox', ver: 'Firefox', name: 'firefox' },
-        { str: navigator.userAgent, sub: 'MSIE', ver: 'MSIE', name: 'ie' }
+        {str: navigator.userAgent, sub: 'Chrome', ver: 'Chrome', name: 'chrome'},
+        {str: navigator.vendor, sub: 'Apple', ver: 'Version', name: 'safari'},
+        {prop: window.opera, ver: 'Opera', name: 'opera'},
+        {str: navigator.userAgent, sub: 'Firefox', ver: 'Firefox', name: 'firefox'},
+        {str: navigator.userAgent, sub: 'MSIE', ver: 'MSIE', name: 'ie'}
     ];
-    var v = function (s, n) {
+    var v = function(s, n) {
         var i = s.indexOf(data[n].ver);
         return (i !== -1) ? parseInt(s.substring(i + data[n].ver.length + 1), 10) : '';
     };
@@ -28,14 +28,14 @@
     html.addClass('desktop');
 })(jQuery);
 
-jQuery(function ($) {
+jQuery(function($) {
     'use strict';
     var i, j, k, l, m;
     if (!$.browser.msie || parseInt($.browser.version, 10) !== 9) {
         return;
     }
 
-    var splitByTokens = function (str, startToken, endToken, last) {
+    var splitByTokens = function(str, startToken, endToken, last) {
         if (!last) {
             last = false;
         }
@@ -51,7 +51,7 @@ jQuery(function ($) {
         return '';
     };
 
-    var splitWithBrackets = function (str, token, brackets) {
+    var splitWithBrackets = function(str, token, brackets) {
         /*jshint nonstandard:true */
         if (!token) {
             token = ',';
@@ -84,7 +84,7 @@ jQuery(function ($) {
         return result;
     };
 
-    var byteToHex = function (d) {
+    var byteToHex = function(d) {
         var hex = Number(d).toString(16);
         while (hex.length < 2) {
             hex = "0" + hex;
@@ -143,7 +143,7 @@ jQuery(function ($) {
                         if (isPx) {
                             maxOffset = Math.max(maxOffset, parseInt(stopOffset, 10) || 0);
                         }
-                        stops.push({ offset: stopOffset, color: stopColor, opacity: stopOpacity, isPx: isPx });
+                        stops.push({offset: stopOffset, color: stopColor, opacity: stopOpacity, isPx: isPx});
                     }
                     var stopsXML = '';
                     var lastStop = null;
@@ -166,16 +166,16 @@ jQuery(function ($) {
                     var last = "";
                     if (lastStop !== null && maxOffset > 0) {
                         last = '<rect ' +
-                            (isLeft ?
-                                'x="' + maxOffset + '" y="0"' :
-                                'x="0" y="' + maxOffset + '"') +
-                            ' width="100%" height="100%" style="fill:' + lastStop.color + ';opacity:' + lastStop.opacity + ';"/>';
+                                (isLeft ?
+                                        'x="' + maxOffset + '" y="0"' :
+                                        'x="0" y="' + maxOffset + '"') +
+                                ' width="100%" height="100%" style="fill:' + lastStop.color + ';opacity:' + lastStop.opacity + ';"/>';
 
                     }
                     var svgGradient = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><linearGradient id="g" gradientUnits="objectBoundingBox" ' + direction + '>' + stopsXML + '</linearGradient><rect x="0" y="0" ' + size + ' fill="url(#g)" />' + last + '</svg>';
                     values[l] = values[l].replace('linear-gradient(' + g + ')', 'url(data:image/svg+xml,' + escape(svgGradient) + ')');
                 }
-                n.push({ s: s.rules[k].selectorText, v: 'background: ' + values.join(",") });
+                n.push({s: s.rules[k].selectorText, v: 'background: ' + values.join(",")});
             }
             for (k = 0; k < n.length; k++) {
                 s.addRule(n[k].s, n[k].v);
@@ -184,17 +184,18 @@ jQuery(function ($) {
     }
 });
 
-jQuery(function ($) {
+jQuery(function($) {
     'use strict';
     // ie < 9 slider multiple background fix
-    if (!$.browser.msie || $.browser.version > 8) return;
-    
+    if (!$.browser.msie || $.browser.version > 8)
+        return;
+
     function split(str) {
         str = str.replace(/"/g, '').replace(/%20/g, '');
         return  str.split(/\s*,\s*/);
     }
 
-    $('.art-slider .art-slide-item').each(function () {
+    $('.art-slider .art-slide-item').each(function() {
         var bgs = split($(this).css('background-image'));
         // needs to use the last image
         if (bgs.length > 1) {
@@ -203,16 +204,18 @@ jQuery(function ($) {
     });
 });
 
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
     // ie8
-    if (!$.browser.msie || $.browser.version > 8) return;
+    if (!$.browser.msie || $.browser.version > 8)
+        return;
     $('.art-shapes').css('z-index', 1);
-    
+
     // ie7
-    if (!$.browser.msie || $.browser.version > 7) return;
+    if (!$.browser.msie || $.browser.version > 7)
+        return;
     var textblockTexts = $('.art-textblock > div');
-    textblockTexts.each(function () {
+    textblockTexts.each(function() {
         var tbText = $(this);
         var valign = tbText.css('vertical-align') ? tbText.css('vertical-align') : 'top';
         if (valign === 'middle') {
@@ -237,9 +240,9 @@ jQuery(function ($) {
 });
 
 /* Set wmode=transparent for iframes to show it under the menus, lightboxes etc. */
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
-    $("iframe[src]").each(function () {
+    $("iframe[src]").each(function() {
         var iframe = $(this);
         var src = iframe.attr("src");
         if (src == "") {
@@ -254,16 +257,19 @@ jQuery(function ($) {
     });
 });
 
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
-    $(window).bind("resize", function () { navigatorResizeHandler($("html").hasClass("responsive")); });
+    $(window).bind("resize", function() {
+        navigatorResizeHandler($("html").hasClass("responsive"));
+    });
 });
 
-var navigatorResizeHandler = (function ($) {
+var navigatorResizeHandler = (function($) {
     "use strict";
-    return function (responsiveDesign) {
-        if (responsiveDesign) return;
-        $(".art-slider").each(function () {
+    return function(responsiveDesign) {
+        if (responsiveDesign)
+            return;
+        $(".art-slider").each(function() {
             var slider = $(this);
             var sliderWidth = slider.width();
             var nav = slider.siblings(".art-slidenavigator");
@@ -279,14 +285,14 @@ var navigatorResizeHandler = (function ($) {
         });
     };
 })(jQuery);
-jQuery(window).bind("resize", (function ($) {
+jQuery(window).bind("resize", (function($) {
     /*global responsiveDesign */
     "use strict";
-    return function () {
+    return function() {
         if (typeof responsiveDesign !== "undefined" && responsiveDesign.isResponsive)
             return;
         var sheetLeft = $(".art-sheet").offset().left;
-        $("header.art-header #art-flash-area").each(function () {
+        $("header.art-header #art-flash-area").each(function() {
             var object = $(this);
             object.css("left", sheetLeft + "px");
         });
@@ -299,21 +305,25 @@ jQuery(function($) {
 });
 
 
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
     if (!$.browser.msie || parseInt($.browser.version, 10) > 7) {
         return;
     }
-    $('ul.art-hmenu>li:not(:first-child)').each(function () { $(this).prepend('<span class="art-hmenu-separator"> </span>'); });
+    $('ul.art-hmenu>li:not(:first-child)').each(function() {
+        $(this).prepend('<span class="art-hmenu-separator"> </span>');
+    });
 });
 
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
-    $("ul.art-hmenu a:not([href])").attr('href', '#').click(function (e) { e.preventDefault(); });
+    $("ul.art-hmenu a:not([href])").attr('href', '#').click(function(e) {
+        e.preventDefault();
+    });
 });
 
 
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
     if (!$.browser.msie) {
         return;
@@ -324,13 +334,13 @@ jQuery(function ($) {
     }
 
     /* Fix width of submenu items.
-    * The width of submenu item calculated incorrectly in IE6-7. IE6 has wider items, IE7 display items like stairs.
-    */
-    $.each($("ul.art-hmenu ul"), function () {
+     * The width of submenu item calculated incorrectly in IE6-7. IE6 has wider items, IE7 display items like stairs.
+     */
+    $.each($("ul.art-hmenu ul"), function() {
         var maxSubitemWidth = 0;
         var submenu = $(this);
         var subitem = null;
-        $.each(submenu.children("li").children("a"), function () {
+        $.each(submenu.children("li").children("a"), function() {
             subitem = $(this);
             var subitemWidth = subitem.outerWidth(false);
             if (maxSubitemWidth < subitemWidth) {
@@ -347,7 +357,7 @@ jQuery(function ($) {
         }
     });
 });
-jQuery(function () {
+jQuery(function() {
     "use strict";
     setHMenuOpenDirection({
         container: "div.art-sheet",
@@ -358,13 +368,13 @@ jQuery(function () {
     });
 });
 
-var setHMenuOpenDirection = (function ($) {
+var setHMenuOpenDirection = (function($) {
     "use strict";
     return (function(menuInfo) {
         var defaultContainer = $(menuInfo.defaultContainer);
         defaultContainer = defaultContainer.length > 0 ? defaultContainer = $(defaultContainer[0]) : null;
 
-        $("ul." + menuInfo.menuClass + ">li>ul").each(function () {
+        $("ul." + menuInfo.menuClass + ">li>ul").each(function() {
             var submenu = $(this);
 
             var submenuWidth = submenu.outerWidth(false);
@@ -391,9 +401,9 @@ var setHMenuOpenDirection = (function ($) {
 })(jQuery);
 
 
-var menuExtendedCreate = (function ($) {
+var menuExtendedCreate = (function($) {
     "use strict";
-    return function () {
+    return function() {
         var sheet = $(".art-sheet");
         var sheetLeft = sheet.offset().left;
         var sheetWidth = sheet.width();
@@ -411,7 +421,7 @@ var menuExtendedCreate = (function ($) {
             subm.children("li").children("a").css("width", "");
 
             var lw = 0, rw = 0;
-        
+
             if (typeof subm.attr("data-ext-l") !== "undefined" && typeof subm.attr("data-ext-r") !== "undefined") {
                 lw = parseInt(subm.attr("data-ext-l"), 10) + 0;
                 rw = parseInt(subm.attr("data-ext-r"), 10) + 0;
@@ -450,9 +460,9 @@ var menuExtendedCreate = (function ($) {
 })(jQuery);
 jQuery(window).load(menuExtendedCreate);
 
-jQuery(function ($) {
+jQuery(function($) {
     'use strict';
-    $(window).bind('resize', function () {
+    $(window).bind('resize', function() {
         var bh = $('body').height();
         var mh = 0;
         var c = $('div.art-content');
@@ -463,7 +473,7 @@ jQuery(function ($) {
                 mh += $(this).outerHeight(true);
             }
         });
-        
+
         if (mh < bh) {
             var r = bh - mh;
             c.css('height', (c.outerHeight(true) + r) + 'px');
@@ -476,8 +486,11 @@ jQuery(function ($) {
             var s = c.parent().children('.art-layout-cell:not(.art-content)');
             var w = 0;
             c.hide();
-            s.each(function() { w += $(this).outerWidth(true); });
-            c.w = c.parent().width(); c.css('width', c.w - w + 'px');
+            s.each(function() {
+                w += $(this).outerWidth(true);
+            });
+            c.w = c.parent().width();
+            c.css('width', c.w - w + 'px');
             c.show();
         });
     }
@@ -490,15 +503,17 @@ jQuery(function($) {
     if (!$('html').hasClass('ie7')) {
         return;
     }
-    $('ul.art-vmenu li:not(:first-child),ul.art-vmenu li li li:first-child,ul.art-vmenu>li>ul').each(function () { $(this).append('<div class="art-vmenu-separator"> </div><div class="art-vmenu-separator-bg"> </div>'); });
+    $('ul.art-vmenu li:not(:first-child),ul.art-vmenu li li li:first-child,ul.art-vmenu>li>ul').each(function() {
+        $(this).append('<div class="art-vmenu-separator"> </div><div class="art-vmenu-separator-bg"> </div>');
+    });
 });
 
 
 
-var artButtonSetup = (function ($) {
+var artButtonSetup = (function($) {
     'use strict';
-    return (function (className) {
-        $.each($("a." + className + ", button." + className + ", input." + className), function (i, val) {
+    return (function(className) {
+        $.each($("a." + className + ", button." + className + ", input." + className), function(i, val) {
             var b = $(val);
             if (!b.hasClass('art-button')) {
                 b.addClass('art-button');
@@ -506,17 +521,17 @@ var artButtonSetup = (function ($) {
             if (b.is('input')) {
                 b.val(b.val().replace(/^\s*/, '')).css('zoom', '1');
             }
-            b.mousedown(function () {
+            b.mousedown(function() {
                 var b = $(this);
                 b.addClass("active");
             });
-            b.mouseup(function () {
+            b.mouseup(function() {
                 var b = $(this);
                 if (b.hasClass('active')) {
                     b.removeClass('active');
                 }
             });
-            b.mouseleave(function () {
+            b.mouseleave(function() {
                 var b = $(this);
                 if (b.hasClass('active')) {
                     b.removeClass('active');
@@ -525,7 +540,7 @@ var artButtonSetup = (function ($) {
         });
     });
 })(jQuery);
-jQuery(function () {
+jQuery(function() {
     'use strict';
     artButtonSetup("art-button");
 });
@@ -535,61 +550,61 @@ jQuery(function($) {
     $('input.art-search-button, form.art-search input[type="submit"]').attr('value', '');
 });
 
-var Control = (function ($) {
+var Control = (function($) {
     'use strict';
-    return (function () {
+    return (function() {
         this.init = function(label, type, callback) {
-            var chAttr = label.find('input[type="' +type + '"]').attr('checked');
+            var chAttr = label.find('input[type="' + type + '"]').attr('checked');
             if (chAttr === 'checked') {
-              label.addClass('art-checked');
+                label.addClass('art-checked');
             }
 
-            label.mouseleave(function () {
-              $(this).removeClass('hovered').removeClass('active');
+            label.mouseleave(function() {
+                $(this).removeClass('hovered').removeClass('active');
             });
-            label.mouseover(function () {
-              $(this).addClass('hovered').removeClass('active');
+            label.mouseover(function() {
+                $(this).addClass('hovered').removeClass('active');
             });
-            label.mousedown(function (event) {
-              if (event.which !== 1) {
-                  return;
-              }
-              $(this).addClass('active').removeClass('hovered');
+            label.mousedown(function(event) {
+                if (event.which !== 1) {
+                    return;
+                }
+                $(this).addClass('active').removeClass('hovered');
             });
-            label.mouseup(function (event) {
-              if (event.which !== 1) {
-                  return;
-              }
-              callback.apply(this);
-              $(this).removeClass('active').addClass('hovered');
+            label.mouseup(function(event) {
+                if (event.which !== 1) {
+                    return;
+                }
+                callback.apply(this);
+                $(this).removeClass('active').addClass('hovered');
             });
         };
     });
 })(jQuery);
 
 
-jQuery(function ($) {
+jQuery(function($) {
     'use strict';
     $('.art-pager').contents().filter(
-        function () {
-            return this.nodeType === this.TEXT_NODE;
-        }
+            function() {
+                return this.nodeType === this.TEXT_NODE;
+            }
     ).remove();
 });
-var fixRssIconLineHeight = (function ($) {
+var fixRssIconLineHeight = (function($) {
     "use strict";
-    return function (className) {
+    return function(className) {
         $("." + className).css("line-height", $("." + className).height() + "px");
     };
 })(jQuery);
 
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
     var rssIcons = $(".art-rss-tag-icon");
-    if (rssIcons.length){
+    if (rssIcons.length) {
         fixRssIconLineHeight("art-rss-tag-icon");
         if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
-            rssIcons.each(function () {
+            rssIcons.each(function() {
                 if ($.trim($(this).html()) === "") {
                     $(this).css("vertical-align", "middle");
                 }
@@ -598,49 +613,49 @@ jQuery(function ($) {
     }
 });
 /**
-* @license 
-* jQuery Tools 1.2.6 Mousewheel
-* 
-* NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
-* 
-* http://flowplayer.org/tools/toolbox/mousewheel.html
-* 
-* based on jquery.event.wheel.js ~ rev 1 ~ 
-* Copyright (c) 2008, Three Dub Media
-* http://threedubmedia.com 
-*
-* Since: Mar 2010
-* Date:  
-*/
-(function ($) {
+ * @license 
+ * jQuery Tools 1.2.6 Mousewheel
+ * 
+ * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
+ * 
+ * http://flowplayer.org/tools/toolbox/mousewheel.html
+ * 
+ * based on jquery.event.wheel.js ~ rev 1 ~ 
+ * Copyright (c) 2008, Three Dub Media
+ * http://threedubmedia.com 
+ *
+ * Since: Mar 2010
+ * Date:  
+ */
+(function($) {
     'use strict';
-    $.fn.mousewheel = function (fn) {
+    $.fn.mousewheel = function(fn) {
         return this[fn ? "bind" : "trigger"]("wheel", fn);
     };
 
     // special event config
     $.event.special.wheel = {
-        setup: function () {
+        setup: function() {
             $.event.add(this, wheelEvents, wheelHandler, {});
         },
-        teardown: function () {
+        teardown: function() {
             $.event.remove(this, wheelEvents, wheelHandler);
         }
     };
 
     // events to bind ( browser sniffed... )
     var wheelEvents = !$.browser.mozilla ? "mousewheel" : // IE, opera, safari
-        "DOMMouseScroll" + ($.browser.version < "1.9" ? " mousemove" : ""); // firefox
+            "DOMMouseScroll" + ($.browser.version < "1.9" ? " mousemove" : ""); // firefox
 
     // shared event handler
     function wheelHandler(event) {
         /*jshint validthis:true*/
-        
+
         switch (event.type) {
 
             // FF2 has incorrect event positions
             case "mousemove":
-                return $.extend(event.data, { // store the correct properties
+                return $.extend(event.data, {// store the correct properties
                     clientX: event.clientX, clientY: event.clientY,
                     pageX: event.pageX, pageY: event.pageY
                 });
@@ -651,7 +666,7 @@ jQuery(function ($) {
                 event.delta = -event.detail / 3; // normalize delta
                 break;
 
-            // IE, opera, safari
+                // IE, opera, safari
             case "mousewheel":
                 event.delta = event.wheelDelta / 120;
                 break;
@@ -846,8 +861,8 @@ jQuery(function ($) {
     // transition && transitionEnd && browser prefix
     $.support.transition = (function() {
         var thisBody = document.body || document.documentElement,
-            thisStyle = thisBody.style,
-            support = thisStyle.transition !== undefined ||
+                thisStyle = thisBody.style,
+                support = thisStyle.transition !== undefined ||
                 thisStyle.WebkitTransition !== undefined ||
                 thisStyle.MozTransition !== undefined ||
                 thisStyle.MsTransition !== undefined ||
@@ -881,7 +896,7 @@ jQuery(function ($) {
         };
     })();
 
-    window.BackgroundHelper = function () {
+    window.BackgroundHelper = function() {
         var slides = [];
         var direction = "next";
         var motion = "horizontal";
@@ -906,13 +921,13 @@ jQuery(function ($) {
 
             var bgPosition = element.css("background-position");
             var positions = bgPosition.split(",");
-            $.each(positions, function (i) {
+            $.each(positions, function(i) {
                 var position = $.trim(this);
                 var point = position.split(" ");
                 if (point.length > 1) {
                     var x = parseInt(point[0], 10);
                     var y = parseInt(point[1], 10);
-                    pos.push({ x: x, y: y });
+                    pos.push({x: x, y: y});
                 }
             });
 
@@ -921,19 +936,19 @@ jQuery(function ($) {
                 "sizes": element.css("background-size"),
                 "positions": pos
             });
-            
+
             if (modify)
                 element.css("background-image", "none");
         };
-        
-        this.updateSize = function (element, initialSize) {
+
+        this.updateSize = function(element, initialSize) {
             width = element.outerWidth(false);
             height = element.outerHeight();
             if (initialSize && parseInt(initialSize.width, 10) !== 0) {
                 multiplier = width / initialSize.width;
                 if (motion === "fade") {
-                    $.each(element.children(), function (i) {
-                        $(this).css("background-position", getCssPositions(slides[i].positions, { x: 0, y: 0 }));
+                    $.each(element.children(), function(i) {
+                        $(this).css("background-position", getCssPositions(slides[i].positions, {x: 0, y: 0}));
                     });
                 }
             }
@@ -942,7 +957,7 @@ jQuery(function ($) {
         this.setBackground = function(element, items) {
             var bg = [];
             var sizes = [];
-            $.each(items, function (i, o) {
+            $.each(items, function(i, o) {
                 bg.push(o.images);
                 sizes.push(o.sizes);
             });
@@ -981,8 +996,8 @@ jQuery(function ($) {
         };
 
         this.items = function(prev, next, move) {
-            var prevItem = { x: 0, y: 0 };
-            var nextItem = { x: 0, y: 0 };
+            var prevItem = {x: 0, y: 0};
+            var nextItem = {x: 0, y: 0};
             var isDirectionNext = direction === "next";
             if (motion === "horizontal") {
                 nextItem.x = isDirectionNext ? width : -width;
@@ -999,14 +1014,14 @@ jQuery(function ($) {
                     nextItem.y += isDirectionNext ? -height : height;
                 }
             }
-            var result = [ ];
+            var result = [];
             if (!!prev) {
-                result.push({ images: prev.images, positions: getCssPositions(prev.positions, prevItem), sizes: prev.sizes });
+                result.push({images: prev.images, positions: getCssPositions(prev.positions, prevItem), sizes: prev.sizes});
             }
             if (!!next) {
-                result.push({ images: next.images, positions: getCssPositions(next.positions, nextItem), sizes: next.sizes });
+                result.push({images: next.images, positions: getCssPositions(next.positions, nextItem), sizes: next.sizes});
             }
-            
+
             if (direction === "next") {
                 result.reverse();
             }
@@ -1017,7 +1032,7 @@ jQuery(function ($) {
         this.transition = function(container, on) {
             container.css($.support.transition.prefix + "transition", on ? transitionDuration + " ease-in-out background-position" : "");
         };
-        
+
         function getCssPositions(positions, offset) {
             var result = [];
             if (positions === undefined) {
@@ -1033,7 +1048,7 @@ jQuery(function ($) {
     };
 
 
-    var Slider = function (element, settings) {
+    var Slider = function(element, settings) {
 
         var interval = null;
         var active = false;
@@ -1041,7 +1056,7 @@ jQuery(function ($) {
         var last = false;
         var running = false;
 
-        this.settings = $.extend({ }, {
+        this.settings = $.extend({}, {
             "animation": "horizontal",
             "direction": "next",
             "speed": 600,
@@ -1054,79 +1069,87 @@ jQuery(function ($) {
             "helper": null
         }, settings);
 
-        this.move = function (direction, next) {
+        this.move = function(direction, next) {
             var activeItem = element.find(".active"),
-                nextItem = next || activeItem[direction](),
-                innerDirection = this.settings.direction === "next" ? "forward" : "back",
-                reset = direction === "next" ? "first" : "last",
-                moving = interval,
-                slider = this, tmp;
+                    nextItem = next || activeItem[direction](),
+                    innerDirection = this.settings.direction === "next" ? "forward" : "back",
+                    reset = direction === "next" ? "first" : "last",
+                    moving = interval,
+                    slider = this, tmp;
 
             active = true;
 
-            if (moving) { this.stop(true); }
+            if (moving) {
+                this.stop(true);
+            }
 
             if (!nextItem.length) {
                 nextItem = element.find(".art-slide-item")[reset]();
-                if (!this.settings.repeat) { last = true; active = false; return; }
+                if (!this.settings.repeat) {
+                    last = true;
+                    active = false;
+                    return;
+                }
             }
 
             if ($.support.transition) {
                 nextItem.addClass(this.settings.direction);
                 tmp = nextItem.get(0).offsetHeight;
-                
+
                 activeItem.addClass(innerDirection);
                 nextItem.addClass(innerDirection);
-                
+
                 element.trigger("beforeSlide", children.length);
-                
-                element.one($.support.transition.event, function () {
+
+                element.one($.support.transition.event, function() {
                     nextItem.removeClass(slider.settings.direction)
-                        .removeClass(innerDirection)
-                        .addClass("active");
+                            .removeClass(innerDirection)
+                            .addClass("active");
                     activeItem.removeClass("active")
-                        .removeClass(innerDirection);
+                            .removeClass(innerDirection);
                     active = false;
-                    setTimeout(function () {
+                    setTimeout(function() {
                         element.trigger("afterSlide", children.length);
                     }, 0);
                 });
             } else {
                 element.trigger("beforeSlide", children.length);
-                
+
                 activeItem.removeClass("active");
                 nextItem.addClass("active");
                 active = false;
-                
+
                 element.trigger("afterSlide", children.length);
             }
 
             this.navigate(nextItem);
 
-            if (moving) { this.start(); }
+            if (moving) {
+                this.start();
+            }
         };
 
-        this.navigate = function (position) {
+        this.navigate = function(position) {
             var index = children.index(position);
             $(this.settings.navigator).children().removeClass("active").eq(index).addClass("active");
         };
 
-        this.to = function (index) {
+        this.to = function(index) {
             var activeItem = element.find(".active"),
-                children = activeItem.parent().children(),
-                activeIndex = children.index(activeItem),
-                slider = this;
+                    children = activeItem.parent().children(),
+                    activeIndex = children.index(activeItem),
+                    slider = this;
 
             if (index > (children.length - 1) || index < 0) {
                 return;
             }
 
             if (active) {
-                return element.one("afterSlide", function () {
+                return element.one("afterSlide", function() {
                     slider.to(index);
                 });
             }
-            
+
             if (activeIndex === index) {
                 return;
             }
@@ -1134,21 +1157,27 @@ jQuery(function ($) {
             this.move(index > activeIndex ? "next" : "prev", $(children[index]));
         };
 
-        this.next = function () {
+        this.next = function() {
             if (!active) {
-                if (last) { this.stop(); return;  }
+                if (last) {
+                    this.stop();
+                    return;
+                }
                 this.move("next");
             }
         };
 
-        this.prev = function () {
+        this.prev = function() {
             if (!active) {
-                if (last) { this.stop(); return; }
+                if (last) {
+                    this.stop();
+                    return;
+                }
                 this.move("prev");
             }
         };
 
-        this.start = function (force) {
+        this.start = function(force) {
             if (!!force) {
                 setTimeout($.proxy(this.next, this), 10);
             }
@@ -1156,25 +1185,25 @@ jQuery(function ($) {
             running = true;
         };
 
-        this.stop = function (pause) {
+        this.stop = function(pause) {
             clearInterval(interval);
             interval = null;
             running = !!pause;
             active = false;
         };
 
-        this.active = function () {
+        this.active = function() {
             return running;
         };
 
-        this.moving = function () {
+        this.moving = function() {
             return active;
         };
-        
+
         this.navigate(children.filter(".active"));
 
         if (this.settings.clickevents) {
-            $(this.settings.navigator).on("click", "a", { slider: this }, function (event) {
+            $(this.settings.navigator).on("click", "a", {slider: this}, function(event) {
                 var activeIndex = children.index(children.filter(".active"));
                 var index = $(this).parent().children().index($(this));
                 if (activeIndex !== index) {
@@ -1183,29 +1212,33 @@ jQuery(function ($) {
                 event.preventDefault();
             });
         }
-        
+
         if (this.settings.hover) {
             var slider = this;
             element.add(this.settings.navigator)
-                   .add(element.siblings(".art-shapes")).hover(function () {
-                if (element.is(":visible") && !last) { slider.stop(true); }
-            }, function () {
-                if (element.is(":visible") && !last) { slider.start(); }
+                    .add(element.siblings(".art-shapes")).hover(function() {
+                if (element.is(":visible") && !last) {
+                    slider.stop(true);
+                }
+            }, function() {
+                if (element.is(":visible") && !last) {
+                    slider.start();
+                }
             });
         }
     };
 
-    $.fn.slider = function (arg) {
-        return this.each(function () {
+    $.fn.slider = function(arg) {
+        return this.each(function() {
             var element = $(this),
-                data = element.data("slider"),
-                options = typeof arg === "object" && arg;
+                    data = element.data("slider"),
+                    options = typeof arg === "object" && arg;
 
             if (!data) {
                 data = new Slider(element, options);
                 element.data("slider", data);
             }
-            
+
             if (typeof arg === "string" && data[arg]) {
                 data[arg]();
             } else if (data.settings.auto && element.is(":visible")) {
@@ -1219,7 +1252,7 @@ jQuery(function ($) {
 
 
 
-jQuery(function ($) {
+jQuery(function($) {
     "use strict";
     if (!$.browser.msie || parseInt($.browser.version, 10) > 8)
         return;
@@ -1232,9 +1265,9 @@ jQuery(function ($) {
     processHeaderMultipleBg(path);
 });
 
-var processHeaderMultipleBg = (function ($) {
+var processHeaderMultipleBg = (function($) {
     "use strict";
-    return (function (path) {
+    return (function(path) {
         var header = $(".art-header");
         var bgimages = "".split(",");
         var bgpositions = "".split(",");
@@ -1254,55 +1287,69 @@ var processHeaderMultipleBg = (function ($) {
 
 LOG_ACTIVE = false;
 
-function logger(msg){
-    if(LOG_ACTIVE){
-        try{
+function logger(msg) {
+    if (LOG_ACTIVE) {
+        try {
             console.log(msg);
-        }catch(err){}
+        } catch (err) {
+        }
     }
 }
 
 PrimeFaces.locales['th'] = {
-        closeText: '\u0E1B\u0E34\u0E14',
-        prevText: '\u0E22\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A',
-        nextText: '\u0E16\u0E31\u0E14\u0E44\u0E1B',
-        monthNames: ['\u0E21\u0E01\u0E23\u0E32\u0E04\u0E21',
-            '\u0E01\u0E38\u0E21\u0E20\u0E32\u0E1E\u0E31\u0E19\u0E18\u0E4C',
-            '\u0E21\u0E35\u0E19\u0E32\u0E04\u0E21',
-            '\u0E40\u0E21\u0E29\u0E32\u0E22\u0E19',
-            '\u0E1E\u0E24\u0E29\u0E20\u0E32\u0E04\u0E21',
-            '\u0E21\u0E34\u0E16\u0E38\u0E19\u0E32\u0E22\u0E19',
-            '\u0E01\u0E23\u0E01\u0E0E\u0E32\u0E04\u0E21',
-            '\u0E2A\u0E34\u0E07\u0E2B\u0E32\u0E04\u0E21',
-            '\u0E01\u0E31\u0E19\u0E22\u0E32\u0E22\u0E19',
-            '\u0E15\u0E38\u0E25\u0E32\u0E04\u0E21',
-            '\u0E1E\u0E24\u0E28\u0E08\u0E34\u0E01\u0E32\u0E22\u0E19',
-            '\u0E18\u0E31\u0E19\u0E27\u0E32\u0E04\u0E21'],
-        monthNamesShort: ['\u0E21.\u0E04.', '\u0E01.\u0E1E.', '\u0E21\u0E35.\u0E04.',
-            '\u0E40\u0E21.\u0E22.', '\u0E1E.\u0E04.', '\u0E21\u0E34.\u0E22.',
-            '\u0E01.\u0E04.', '\u0E2A.\u0E04.', '\u0E01.\u0E22.',
-            '\u0E15.\u0E04.', '\u0E1E.\u0E22.', '\u0E18.\u0E04.'],
-        dayNames: ['\u0E2D\u0E32\u0E17\u0E34\u0E15\u0E22\u0E4C', '\u0E08\u0E31\u0E19\u0E17\u0E23\u0E4C',
-            '\u0E2D\u0E31\u0E07\u0E04\u0E32\u0E23', '\u0E1E\u0E38\u0E18',
-            '\u0E1E\u0E24\u0E2B\u0E31\u0E2A\u0E1A\u0E14\u0E35', '\u0E28\u0E38\u0E01\u0E23\u0E4C',
-            '\u0E40\u0E2A\u0E32\u0E23\u0E4C'],
-        dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Tue', 'Fri', 'Sat'],
-        dayNamesMin: ['\u0E2D\u0E32.', '\u0E08.', '\u0E2D.', '\u0E1E.', '\u0E1E\u0E24.', '\u0E28.', '\u0E2A.'],
-        weekHeader: 'Week',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: '',
-        timeOnlyTitle: '\u0E40\u0E27\u0E25\u0E32\u0E40\u0E17\u0E48\u0E32\u0E19\u0E31\u0E49\u0E19',
-        timeText: '\u0E40\u0E27\u0E25\u0E32',
-        hourText: '\u0E0A\u0E31\u0E48\u0E27\u0E42\u0E21\u0E07',
-        minuteText: '\u0E19\u0E32\u0E17\u0E35',
-        secondText: '\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35',
-        currentText: '\u0E40\u0E27\u0E25\u0E32\u0E1B\u0E31\u0E08\u0E08\u0E38\u0E1A\u0E31\u0E19',
-        ampm: false,
-        month: '\u0E40\u0E14\u0E37\u0E2D\u0E19',
-        week: '\u0E2A\u0E31\u0E1B\u0E14\u0E32\u0E2B\u0E4C',
-        day: '\u0E27\u0E31\u0E19',
-        allDayText: '\u0E17\u0E38\u0E01\u0E27\u0E31\u0E19'
+    closeText: '\u0E1B\u0E34\u0E14',
+    prevText: '\u0E22\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A',
+    nextText: '\u0E16\u0E31\u0E14\u0E44\u0E1B',
+    monthNames: ['\u0E21\u0E01\u0E23\u0E32\u0E04\u0E21',
+        '\u0E01\u0E38\u0E21\u0E20\u0E32\u0E1E\u0E31\u0E19\u0E18\u0E4C',
+        '\u0E21\u0E35\u0E19\u0E32\u0E04\u0E21',
+        '\u0E40\u0E21\u0E29\u0E32\u0E22\u0E19',
+        '\u0E1E\u0E24\u0E29\u0E20\u0E32\u0E04\u0E21',
+        '\u0E21\u0E34\u0E16\u0E38\u0E19\u0E32\u0E22\u0E19',
+        '\u0E01\u0E23\u0E01\u0E0E\u0E32\u0E04\u0E21',
+        '\u0E2A\u0E34\u0E07\u0E2B\u0E32\u0E04\u0E21',
+        '\u0E01\u0E31\u0E19\u0E22\u0E32\u0E22\u0E19',
+        '\u0E15\u0E38\u0E25\u0E32\u0E04\u0E21',
+        '\u0E1E\u0E24\u0E28\u0E08\u0E34\u0E01\u0E32\u0E22\u0E19',
+        '\u0E18\u0E31\u0E19\u0E27\u0E32\u0E04\u0E21'],
+    monthNamesShort: ['\u0E21.\u0E04.', '\u0E01.\u0E1E.', '\u0E21\u0E35.\u0E04.',
+        '\u0E40\u0E21.\u0E22.', '\u0E1E.\u0E04.', '\u0E21\u0E34.\u0E22.',
+        '\u0E01.\u0E04.', '\u0E2A.\u0E04.', '\u0E01.\u0E22.',
+        '\u0E15.\u0E04.', '\u0E1E.\u0E22.', '\u0E18.\u0E04.'],
+    dayNames: ['\u0E2D\u0E32\u0E17\u0E34\u0E15\u0E22\u0E4C', '\u0E08\u0E31\u0E19\u0E17\u0E23\u0E4C',
+        '\u0E2D\u0E31\u0E07\u0E04\u0E32\u0E23', '\u0E1E\u0E38\u0E18',
+        '\u0E1E\u0E24\u0E2B\u0E31\u0E2A\u0E1A\u0E14\u0E35', '\u0E28\u0E38\u0E01\u0E23\u0E4C',
+        '\u0E40\u0E2A\u0E32\u0E23\u0E4C'],
+    dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Tue', 'Fri', 'Sat'],
+    dayNamesMin: ['\u0E2D\u0E32.', '\u0E08.', '\u0E2D.', '\u0E1E.', '\u0E1E\u0E24.', '\u0E28.', '\u0E2A.'],
+    weekHeader: 'Week',
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: '',
+    timeOnlyTitle: '\u0E40\u0E27\u0E25\u0E32\u0E40\u0E17\u0E48\u0E32\u0E19\u0E31\u0E49\u0E19',
+    timeText: '\u0E40\u0E27\u0E25\u0E32',
+    hourText: '\u0E0A\u0E31\u0E48\u0E27\u0E42\u0E21\u0E07',
+    minuteText: '\u0E19\u0E32\u0E17\u0E35',
+    secondText: '\u0E27\u0E34\u0E19\u0E32\u0E17\u0E35',
+    currentText: '\u0E40\u0E27\u0E25\u0E32\u0E1B\u0E31\u0E08\u0E08\u0E38\u0E1A\u0E31\u0E19',
+    ampm: false,
+    month: '\u0E40\u0E14\u0E37\u0E2D\u0E19',
+    week: '\u0E2A\u0E31\u0E1B\u0E14\u0E32\u0E2B\u0E4C',
+    day: '\u0E27\u0E31\u0E19',
+    allDayText: '\u0E17\u0E38\u0E01\u0E27\u0E31\u0E19'
 
-    };
+};
+
+function inputNumber(event) {
+    // Allow only backspace and delete
+    if (event.keyCode == 46 || event.keyCode == 8) {
+        // let it happen, don't do anything
+    }
+    else {
+        // Ensure that it is a number and stop the keypress
+        if (event.keyCode < 48 || event.keyCode > 57) {
+            event.preventDefault();
+        }
+    }
+}

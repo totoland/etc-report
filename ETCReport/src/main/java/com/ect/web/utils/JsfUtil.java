@@ -166,8 +166,8 @@ public class JsfUtil implements Serializable{
 
     }
 
-    public void updateCliend(String updateId) {
-        context.update(updateId);
+    public static void updateCliend(String updateId) {
+        RequestContext.getCurrentInstance().update(updateId);
     }
 
     public void disablePopup(String id) {

@@ -133,7 +133,7 @@ public abstract class BaseController implements Serializable {
     }
 
     public void updateCliend(String updateId) {
-        context.update(updateId);
+        RequestContext.getCurrentInstance().update(updateId);
     }
 
     public void disablePopup(String id) {
