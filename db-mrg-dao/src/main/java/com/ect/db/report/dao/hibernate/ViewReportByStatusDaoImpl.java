@@ -88,6 +88,12 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         sql.append(" WHERE 1=1");
 
+        if (reportCriteria.getFlowStatus() != null && !reportCriteria.getFlowStatus().isEmpty()) {
+
+            sql.append(" AND FLOW_STATUS_ID = ").append("'").append(reportCriteria.getFlowStatus()).append("'");
+
+        }
+        
         if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
 
             sql.append(" AND REPORT_STATUS = ").append(reportCriteria.getStatus());
@@ -110,6 +116,12 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
         sql.append("SELECT COUNT(1) FROM VIEW_REPORT_STATUS");
         sql.append(" WHERE 1=1");
 
+        if (reportCriteria.getFlowStatus() != null && !reportCriteria.getFlowStatus().isEmpty()) {
+
+            sql.append(" AND FLOW_STATUS_ID = ").append("'").append(reportCriteria.getFlowStatus()).append("'");
+
+        }
+        
         if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
 
             sql.append(" AND REPORT_STATUS = ").append(reportCriteria.getStatus());
