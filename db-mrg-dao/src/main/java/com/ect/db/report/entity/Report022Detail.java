@@ -4,6 +4,7 @@
  */
 package com.ect.db.report.entity;
 
+import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Report022Detail.findAll", query = "SELECT r FROM Report022Detail r")})
-public class Report022Detail implements Serializable {
+public class Report022Detail  extends DomainEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
