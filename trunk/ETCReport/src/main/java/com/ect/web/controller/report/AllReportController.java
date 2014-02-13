@@ -28,6 +28,7 @@ import com.ect.db.report.entity.Report010;
 import com.ect.db.report.entity.Report010Detail;
 import com.ect.db.report.entity.Report011;
 import com.ect.db.report.entity.Report012;
+import com.ect.db.report.entity.Report013;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewReportImpl;
@@ -347,12 +348,29 @@ public class AllReportController extends BaseFormReportController {
 
             if (report012 == null || report012.getReport012DetailList() == null || report012.getReport012DetailList().isEmpty()) {
 
-                logger.warn("Cannot find Report011 by Id : {}", viewReportStatus.getReportId());
+                logger.warn("Cannot find Report012 by Id : {}", viewReportStatus.getReportId());
                 beans.put("details", new ArrayList<Report010Detail>());
 
             } else {
 
                 beans.put("details", report012.getReport012DetailList());
+
+            }
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_013)) {
+
+            reportName = REPORT_013;
+
+            Report013 report013 = reportService.findByReport013ById(viewReportStatus.getReportId());
+
+            if (report013 == null || report013.getReport013DetailList() == null || report013.getReport013DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report013 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report013.getReport013DetailList());
 
             }
 
