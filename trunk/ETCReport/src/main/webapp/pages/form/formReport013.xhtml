@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+
+    <p:panel id="REPORT_013" rendered="#{formSelectReport.reportCode=='REPORT_013'}">
+
+        <p:dialog id="REPORT_MainDialog_REPORT_013" header="#{msg.report_013_header}" widgetVar="REPORT_MainDialog_REPORT_013" modal="true">                         
+
+            <p:panel header="#{formReport013Controller.reportTitle}">
+
+
+                <p:messages id="REPORT_013msgFrmDetails"></p:messages>
+
+                <script>
+                    //<![CDATA[
+                    function disabledInput(flag) {
+                        var input = document.getElementsByTagName("input");
+
+                        for (var i = 0; i < input.length; i++) {
+                            input[i].style.display = flag == true ? 'none' : '';
+                        }
+                    }
+                    function sum(obj){
+                        if(obj.value!=0){
+                            calSum();
+                        }
+                        return false;
+                    }
+                    //]]>
+                </script>
+
+                <p:remoteCommand name="calSum" update="REPORT_013pnlFrm" onstart="disabledInput(true)" oncomplete="disabledInput(false)" actionListener="#{formReport013Controller.calSum()}">
+                </p:remoteCommand>
+
+                <p:panelGrid styleClass="frmDetail" id="REPORT_013pnlFrm" style="text-align: center;vertical-align: middle">
+                    <f:facet name="header">
+                        <p:row>  
+                            <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 150px">สำนัก</p:column>
+                            <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">คำวินิจฉัยที่ต้องจัดทำ (เรื่อง)</p:column>
+                            <p:column colspan="4" style="text-align: center;vertical-align: middle;">การดำเนินการ (เรื่อง)</p:column>
+                            <p:column colspan="2" style="text-align: center;vertical-align: middle;">ส่งคำวินิจฉัยให้ ผอ. กกต.จว. (เรื่อง)</p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1" style="text-align: center;width: 90px">กำลังจัดทำ</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">จัดทำเสร็จ</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">อยู่ระหว่างเสนอ กกต. ลงนาม</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">กกต. ลงนามครบถ้วน</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">ส่งแล้ว</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">ค้างส่ง</p:column>
+                        </p:row>
+                    </f:facet>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[0].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[0].decisionToPrepare}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)" value="#{formReport013Controller.report013Details[0].onProcess}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[0].complete}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[0].ectSignedOnprocess}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[0].ectSignedComplee}">
+
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[0].sended}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[0].noSend}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[1].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[1].decisionToPrepare}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)" value="#{formReport013Controller.report013Details[1].onProcess}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[1].complete}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[1].ectSignedOnprocess}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[1].ectSignedComplee}">
+
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[1].sended}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[1].noSend}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[2].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[2].decisionToPrepare}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)" value="#{formReport013Controller.report013Details[2].onProcess}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[2].complete}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[2].ectSignedOnprocess}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[2].ectSignedComplee}">
+
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[2].sended}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[2].noSend}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[3].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[3].decisionToPrepare}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)" value="#{formReport013Controller.report013Details[3].onProcess}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[3].complete}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)" value="#{formReport013Controller.report013Details[3].ectSignedOnprocess}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[3].ectSignedComplee}">
+
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[3].sended}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[3].noSend}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[4].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[4].decisionToPrepare}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)" value="#{formReport013Controller.report013Details[4].onProcess}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport013Controller.report013Details[4].complete}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[4].ectSignedOnprocess}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <h:outputText  value="#{formReport013Controller.report013Details[4].ectSignedComplee}">
+
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[4].sended}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport013Controller.report013Details[4].noSend}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+
+                </p:panelGrid>
+
+                <h:panelGroup id="REPORT_013pnlCmd">
+                    <div align="center">
+                        <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport013Controller.save()}" id="REPORT_013btnSave"/>
+                        <p:commandButton value="#{msg.btn_cancel}" id="REPORT_013btnCancel" actionListener="#{formReport013Controller.resetForm()}" update="REPORT_MainDialog_REPORT_013" onsuccess="REPORT_MainDialog_REPORT_013.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </p:panel>
+
+        </p:dialog>
+
+
+    </p:panel>
+</html>
