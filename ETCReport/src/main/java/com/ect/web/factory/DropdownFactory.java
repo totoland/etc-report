@@ -254,6 +254,7 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
+    private static List<DropDownList> depEct;
 
     /**
      * *
@@ -263,15 +264,22 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlDepEct() {
 
-        DropDownList criteria = new DropDownList();
-        criteria.setTableName("REPORT_NAME");
-        criteria.setOrderByField("REPORT_CODE");
-        criteria.setName("REPORT_DESC + ' ' + REPORT_NAME");
-        criteria.setValue("REPORT_CODE");
-        criteria.setCondition("REPORT_TYPE = 1");
+        if (depEct == null) {
+            
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("REPORT_NAME");
+            criteria.setOrderByField("REPORT_CODE");
+            criteria.setName("REPORT_DESC + ' ' + REPORT_NAME");
+            criteria.setValue("REPORT_CODE");
+            criteria.setCondition("REPORT_TYPE = 1");
 
-        return commonService.getDropdownList(criteria);
+            depEct = commonService.getDropdownList(criteria);
+            
+        }
+        
+        return depEct;
     }
+    private static List<DropDownList> depEctCenter;
 
     /**
      * *
@@ -281,14 +289,19 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlDepEctCenter() {
 
-        DropDownList criteria = new DropDownList();
-        criteria.setTableName("REPORT_NAME");
-        criteria.setOrderByField("REPORT_CODE");
-        criteria.setName("REPORT_NAME");
-        criteria.setValue("REPORT_CODE");
-        criteria.setCondition("REPORT_TYPE = 2");
+        if (depEctCenter == null) {
 
-        return commonService.getDropdownList(criteria);
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("REPORT_NAME");
+            criteria.setOrderByField("REPORT_CODE");
+            criteria.setName("REPORT_NAME");
+            criteria.setValue("REPORT_CODE");
+            criteria.setCondition("REPORT_TYPE = 2");
+
+            depEctCenter = commonService.getDropdownList(criteria);
+        }
+
+        return depEctCenter;
     }
     private static List<DropDownList> ectProvinces;
 
@@ -327,7 +340,7 @@ public class DropdownFactory implements Serializable {
                 return ectProvince;
             }
         }
-        
+
         return null;
 
     }
