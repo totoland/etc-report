@@ -5,18 +5,13 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.common.dao.hibernate.EctConfManager;
-import com.ect.db.common.entity.DropDownList;
 import com.ect.db.entity.EctFlowStatus;
-import com.ect.db.entity.EctProvince;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportService;
-import java.util.List;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +50,7 @@ public abstract class BaseFormReportController extends BaseController{
     protected static final String REPORT_010 = "REPORT_010";
     protected static final String REPORT_011 = "REPORT_011";
     protected static final String REPORT_012 = "REPORT_012";
+    protected static final String REPORT_013 = "REPORT_013";
     protected static final String REPORT_022 = "REPORT_022";
     protected static final String REPORT_023 = "REPORT_023";
     protected static final String REPORT_MODE_EDIT = "edit";
