@@ -96,7 +96,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
         
         if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
 
-            sql.append(" AND REPORT_STATUS = ").append(reportCriteria.getStatus());
+            sql.append(" AND FLOW_STATUS_ID IN (").append(reportCriteria.getStatus()).append(")");
 
         }
 
@@ -124,7 +124,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
         
         if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
 
-            sql.append(" AND REPORT_STATUS = ").append(reportCriteria.getStatus());
+            sql.append(" AND FLOW_STATUS_ID IN (").append(reportCriteria.getStatus()).append(")");
 
         }
 
