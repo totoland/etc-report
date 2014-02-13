@@ -185,6 +185,11 @@
             <artifactId>omnifaces</artifactId>
             <version>1.7</version> <!-- Or 1.8-SNAPSHOT -->
         </dependency> 
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>1.2.1</version>
+        </dependency>
         <!--        <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
