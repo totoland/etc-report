@@ -33,8 +33,8 @@ and open the template in the editor.
                                         <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." style="width: 350px"/>
                                         <p:selectOneMenu id="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
-                                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlDepEct()}"/>
-                                            <p:ajax listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
+                                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlDepEct()}"/>
+                                            <p:ajax event="change" listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
                                         </p:selectOneMenu> 
 
                                     </h:panelGrid>
@@ -404,6 +404,7 @@ and open the template in the editor.
                         <ui:include src="formReport010.xhtml" />
                         <ui:include src="formReport011.xhtml" />
                         <ui:include src="formReport012.xhtml" />
+                        <ui:include src="formReport013.xhtml" />
                         <ui:include src="formReport023.xhtml" />
 
                     </h:panelGroup>
