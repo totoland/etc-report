@@ -149,7 +149,7 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlSubStrategic(Integer strateGicId) {
 
-        if (strateGicId == -1) {
+        if (strateGicId == null || strateGicId == -1) {
             return null;
         }
 
@@ -171,7 +171,7 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlPlan(Integer subStrateGicId) {
 
-        if(subStrateGicId == -1){
+        if(subStrateGicId == null || subStrateGicId == -1){
             return null;
         }
         
@@ -210,7 +210,7 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlProject(Integer planId) {
 
-        if(planId == -1){
+        if(planId == null || planId == -1){
             return null;
         }
         
