@@ -16,7 +16,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body id="body">
         <div id="art-main">
             <header class="art-header">
                 <div class="art-shapes">
@@ -64,8 +64,9 @@
         </div>
         <ui:insert name="modalDialog">
         </ui:insert>
-        <p:blockUI  block="contentBody" widgetVar="blogui">
+        <p:blockUI  block="body" widgetVar="blogui">
             LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
         </p:blockUI>
         <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show();" oncomplete="blogui.hide()">
         </p:ajaxStatus>
@@ -94,7 +95,7 @@
             
 
             function checkAuthen() {
-                console.log("checkAuthen");
+                logger("checkAuthen");
                 secLogin = 6000;
                 var user = '${formSelectReport.userAuthen.isActive}';
             

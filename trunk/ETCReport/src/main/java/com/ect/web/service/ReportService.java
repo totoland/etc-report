@@ -18,6 +18,7 @@ import com.ect.db.report.entity.Report010;
 import com.ect.db.report.entity.Report011;
 import com.ect.db.report.entity.Report012;
 import com.ect.db.report.entity.Report013;
+import com.ect.db.report.entity.Report014;
 import com.ect.db.report.entity.Report022;
 import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
@@ -69,6 +70,8 @@ public interface ReportService {
     Report012 findByReport012ById(Integer paramReportId);
     
     Report013 findByReport013ById(Integer paramReportId);
+    
+    Report014 findByReport014ById(Integer paramReportId);
     
     Report022 findByReport022ById(Integer paramReportId);
     

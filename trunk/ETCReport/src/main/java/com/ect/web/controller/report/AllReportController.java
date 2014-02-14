@@ -29,12 +29,14 @@ import com.ect.db.report.entity.Report010Detail;
 import com.ect.db.report.entity.Report011;
 import com.ect.db.report.entity.Report012;
 import com.ect.db.report.entity.Report013;
+import com.ect.db.report.entity.Report014;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewReportImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
-import java.io.IOException;
+import com.ect.web.utils.JsfUtil;
+import com.ect.web.utils.MessageUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -95,7 +97,7 @@ public class AllReportController extends BaseFormReportController {
             final DataTable d = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
                     .findComponent(":form1:rptPreSendList2");
             d.setFirst(0);
-            
+
             LazyViewReportImpl reportModel = new LazyViewReportImpl();
             reportModel.setRowCount(count);
             reportModel.setReportService(reportService);
@@ -374,31 +376,54 @@ public class AllReportController extends BaseFormReportController {
 
             }
 
+        } else if (viewReportStatus.getReportCode().equals(REPORT_014)) {
+
+            reportName = REPORT_014;
+
+            Report014 report014 = reportService.findByReport014ById(viewReportStatus.getReportId());
+
+            if (report014 == null || report014.getReport014DetailList() == null || report014.getReport014DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report014 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report014.getReport014DetailList());
+
+            }
+
         }
 
         HSSFWorkbook wb = null;
         InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/" + reportName + ".xls");
         XLSTransformer transformer = new XLSTransformer();
 
-
-        wb = transformer.transformXLS(is, beans);
-
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ExternalContext ectx = ctx.getExternalContext();
-
-        HttpServletResponse response = (HttpServletResponse) ectx.getResponse();
-        response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + reportName + "" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
-
         try {
+
+            wb = transformer.transformXLS(is, beans);
+
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ExternalContext ectx = ctx.getExternalContext();
+
+            HttpServletResponse response = (HttpServletResponse) ectx.getResponse();
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + reportName + "" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
+
             ServletOutputStream out = response.getOutputStream();
             wb.write(out);
             out.flush();
             out.close();
-        } catch (IOException ioe) {
-            //whatever
+            
+            ctx.responseComplete();
+        } catch (Exception ex) {
+
+            JsfUtil.alertJavaScript(MessageUtils.getString("error", ex.getMessage()));
+            logger.error("cannot export report", ex);
+
+        }finally{
+        
         }
-        ctx.responseComplete();
     }
     private StreamedContent file;
 

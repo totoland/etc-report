@@ -25,24 +25,17 @@ and open the template in the editor.
 
             <p:panel id="REPORT_012">
 
-                <p:panel header="#{formReport012Controller.reportTitle}">
+                <p:panel id="REPORT_REPORT_012" header="#{formReport012Controller.reportTitle}">
 
 
                     <p:messages id="REPORT_012msgFrmDetails"></p:messages>
 
                     <script>
                         //<![CDATA[
-                        function disabledInput(flag) {
-                            var input = document.getElementsByTagName("input");
-
-                            for (var i = 0; i < input.length; i++) {
-                                input[i].style.display = flag == true ? 'none' : '';
-                            }
-                        }
                         //]]>
                     </script>
 
-                    <p:remoteCommand name="calSum" update="REPORT_012pnlFrm" onstart="disabledInput(true)" oncomplete="disabledInput(false)" actionListener="#{formReport012Controller.calSum()}">
+                    <p:remoteCommand name="calSum" update="REPORT_012pnlFrm" onstart="blogui012.show();" oncomplete="blogui012.hide()" actionListener="#{formReport012Controller.calSum()}">
                     </p:remoteCommand>
 
                     <p:panelGrid styleClass="frmDetail" id="REPORT_012pnlFrm" style="text-align: center;vertical-align: middle">
@@ -280,6 +273,10 @@ and open the template in the editor.
                 </p:panel>
 
             </p:panel>
+            <p:blockUI  block="REPORT_REPORT_012" widgetVar="blogui012">
+                LOADING<br />
+                <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+            </p:blockUI>
         </h:form>
     </h:body>
 </html>

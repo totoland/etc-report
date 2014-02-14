@@ -16,22 +16,15 @@ and open the template in the editor.
 
         <p:dialog id="REPORT_MainDialog_REPORT_013" header="#{msg.report_013_header}" widgetVar="REPORT_MainDialog_REPORT_013" modal="true">                         
 
-            <p:panel header="#{formReport013Controller.reportTitle}">
+            <p:panel id="REPORT_REPORT_013" header="#{formReport013Controller.reportTitle}">
 
 
                 <p:messages id="REPORT_013msgFrmDetails"></p:messages>
 
                 <script>
                     //<![CDATA[
-                    function disabledInput(flag) {
-                        var input = document.getElementsByTagName("input");
-
-                        for (var i = 0; i < input.length; i++) {
-                            input[i].style.display = flag == true ? 'none' : '';
-                        }
-                    }
-                    function sum(obj){
-                        if(obj.value!=0){
+                    function sum(obj) {
+                        if (obj.value != 0) {
                             calSum();
                         }
                         return false;
@@ -39,7 +32,7 @@ and open the template in the editor.
                     //]]>
                 </script>
 
-                <p:remoteCommand name="calSum" update="REPORT_013pnlFrm" onstart="disabledInput(true)" oncomplete="disabledInput(false)" actionListener="#{formReport013Controller.calSum()}">
+                <p:remoteCommand name="calSum" update="REPORT_013pnlFrm" onstart="blogui2.show();" oncomplete="blogui2.hide()" actionListener="#{formReport013Controller.calSum()}">
                 </p:remoteCommand>
 
                 <p:panelGrid styleClass="frmDetail" id="REPORT_013pnlFrm" style="text-align: center;vertical-align: middle">
@@ -244,4 +237,8 @@ and open the template in the editor.
 
 
     </p:panel>
+    <p:blockUI  block="REPORT_REPORT_013" widgetVar="blogui2">
+        LOADING<br />
+        <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+    </p:blockUI>
 </html>
