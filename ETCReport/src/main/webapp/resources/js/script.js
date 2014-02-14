@@ -1285,17 +1285,6 @@ var processHeaderMultipleBg = (function($) {
     });
 })(jQuery);
 
-LOG_ACTIVE = false;
-
-function logger(msg) {
-    if (LOG_ACTIVE) {
-        try {
-            console.log(msg);
-        } catch (err) {
-        }
-    }
-}
-
 PrimeFaces.locales['th'] = {
     closeText: '\u0E1B\u0E34\u0E14',
     prevText: '\u0E22\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A',
@@ -1341,3 +1330,13 @@ PrimeFaces.locales['th'] = {
 
 };
 
+LOG_ACTIVE = true;
+
+logger = function(log) {
+    if (LOG_ACTIVE) {
+        try {
+            console.log(log);
+        } catch (e) {
+        }
+    }
+};

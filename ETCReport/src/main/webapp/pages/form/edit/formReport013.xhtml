@@ -25,20 +25,13 @@ and open the template in the editor.
 
             <p:panel id="REPORT_013">
 
-                <p:panel header="#{formReport013Controller.reportTitle}">
+                <p:panel id="REPORT_REPORT_013" header="#{formReport013Controller.reportTitle}">
 
 
                     <p:messages id="REPORT_013msgFrmDetails"></p:messages>
 
                     <script>
                         //<![CDATA[
-                        function disabledInput(flag) {
-                            var input = document.getElementsByTagName("input");
-
-                            for (var i = 0; i < input.length; i++) {
-                                input[i].style.display = flag == true ? 'none' : '';
-                            }
-                        }
                         function sum(obj) {
                             if (obj.value != 0) {
                                 calSum();
@@ -48,7 +41,7 @@ and open the template in the editor.
                         //]]>
                     </script>
 
-                    <p:remoteCommand name="calSum" update="REPORT_013pnlFrm" onstart="disabledInput(true)" oncomplete="disabledInput(false)" actionListener="#{formReport013Controller.calSum()}">
+                    <p:remoteCommand name="calSum" update="REPORT_013pnlFrm" onstart="blogui013.show();" oncomplete="blogui013.hide()" actionListener="#{formReport013Controller.calSum()}">
                     </p:remoteCommand>
 
                     <p:panelGrid styleClass="frmDetail" id="REPORT_013pnlFrm" style="text-align: center;vertical-align: middle">
@@ -251,6 +244,10 @@ and open the template in the editor.
                 </p:panel>
 
             </p:panel>
+            <p:blockUI  block="REPORT_REPORT_013" widgetVar="blogui013">
+                LOADING<br />
+                <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+            </p:blockUI>
         </h:form>
     </h:body>
 </html>

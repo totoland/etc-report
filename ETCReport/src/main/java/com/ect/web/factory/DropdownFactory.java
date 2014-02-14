@@ -100,6 +100,7 @@ public class DropdownFactory implements Serializable {
 
         return commonService.getDropdownList(criteria);
     }
+    private static List<DropDownList> strategic;
 
     /**
      * *
@@ -109,13 +110,18 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlStrategic() {
 
-        DropDownList criteria = new DropDownList();
-        criteria.setTableName("ECT_STRATEGIC");
-        criteria.setOrderByField("STRATEGIC_ID");
-        criteria.setName("STRATEGIC_NAME");
-        criteria.setValue("STRATEGIC_ID");
+        if (strategic == null) {
 
-        return commonService.getDropdownList(criteria);
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("ECT_STRATEGIC");
+            criteria.setOrderByField("STRATEGIC_ID");
+            criteria.setName("STRATEGIC_NAME");
+            criteria.setValue("STRATEGIC_ID");
+
+            strategic = commonService.getDropdownList(criteria);
+
+        }
+        return strategic;
     }
 
     /**
@@ -143,6 +149,10 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlSubStrategic(Integer strateGicId) {
 
+        if (strateGicId == -1) {
+            return null;
+        }
+
         DropDownList criteria = new DropDownList();
         criteria.setTableName("ECT_SUB_STRATEGIC");
         criteria.setOrderByField("SUB_STRATEGIC_NAME");
@@ -161,6 +171,10 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlPlan(Integer subStrateGicId) {
 
+        if(subStrateGicId == -1){
+            return null;
+        }
+        
         DropDownList criteria = new DropDownList();
         criteria.setTableName("ECT_PLAN");
         criteria.setOrderByField("PLAN_NAME");
@@ -196,6 +210,10 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlProject(Integer planId) {
 
+        if(planId == -1){
+            return null;
+        }
+        
         DropDownList criteria = new DropDownList();
         criteria.setTableName("ECT_PROJECT");
         criteria.setOrderByField("PROJECT_NAME");
@@ -265,7 +283,7 @@ public class DropdownFactory implements Serializable {
     public List<DropDownList> ddlDepEct() {
 
         if (depEct == null) {
-            
+
             DropDownList criteria = new DropDownList();
             criteria.setTableName("REPORT_NAME");
             criteria.setOrderByField("REPORT_CODE");
@@ -274,9 +292,9 @@ public class DropdownFactory implements Serializable {
             criteria.setCondition("REPORT_TYPE = 1");
 
             depEct = commonService.getDropdownList(criteria);
-            
+
         }
-        
+
         return depEct;
     }
     private static List<DropDownList> depEctCenter;

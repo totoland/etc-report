@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+
+    <p:panel id="REPORT_014" rendered="#{formSelectReport.reportCode=='REPORT_014'}">
+
+        <p:dialog id="REPORT_MainDialog_REPORT_014" header="#{msg.report_014_header}" widgetVar="REPORT_MainDialog_REPORT_014" modal="true">                         
+
+            <p:panel id="REPORT_REPORT_014" header="#{formReport014Controller.reportTitle}">
+
+
+                <p:messages id="REPORT_014msgFrmDetails"></p:messages>
+
+                <script>
+                    //<![CDATA[
+                    function sum(obj) {
+                        if (obj.value != 0) {
+                            calSum();
+                        }
+                        return false;
+                    }
+                    //]]>
+                </script>
+
+                <p:remoteCommand name="calSum" update="REPORT_014pnlFrm" onstart="blogui14.show()" oncomplete="blogui14.hide()" actionListener="#{formReport014Controller.calSum()}">
+                </p:remoteCommand>
+
+                <p:panelGrid styleClass="frmDetail" id="REPORT_014pnlFrm" style="text-align: center;vertical-align: middle">
+                    <f:facet name="header">
+                        <p:row>  
+                            <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 150px">สำนัก</p:column>
+                            <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">สำนวนทังหมด (เรื่อง)</p:column>
+                            <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ส่วนกลาง (เรื่อง)</p:column>
+                            <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ที่ สนง. กกต.จว. (เรื่อง)</p:column>
+                            <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">กกต. มีมติ (เรื่อง)</p:column>
+                            <p:column colspan="5" style="text-align: center;">สถานะเรื่องค้างที่ส่วนกลาง</p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="1" style="text-align: center;width: 90px">จนท. วิเคราะห์</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">เสนอ ลธ.กกต.</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">เข้าคณะอนุฯ</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">อยู่ในวาระ กกต.</p:column>
+                            <p:column colspan="1" style="text-align: center;width: 90px">ส่ง สวค. ทำ ควฉ.</p:column>
+                        </p:row>
+                    </f:facet>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[0].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[0].allAmount}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[0].atCenter}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[0].atEctProvince}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[0].ectResolve}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[0].analystRemain}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[0].offerEct}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[0].accessCommittee}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[0].onAgenda}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[0].sendRequest}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[1].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[1].allAmount}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[1].atCenter}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[1].atEctProvince}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[1].ectResolve}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[1].analystRemain}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[1].offerEct}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[1].accessCommittee}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[1].onAgenda}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[1].sendRequest}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[2].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[2].allAmount}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[2].atCenter}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[2].atEctProvince}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[2].ectResolve}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[2].analystRemain}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[2].offerEct}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[2].accessCommittee}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[2].onAgenda}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[2].sendRequest}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[3].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[3].allAmount}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[3].atCenter}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[3].atEctProvince}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[3].ectResolve}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[3].analystRemain}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[3].offerEct}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[3].accessCommittee}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[3].onAgenda}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[3].sendRequest}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[4].institution}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[4].allAmount}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{formReport014Controller.report014Details[4].atCenter}"/>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[4].atEctProvince}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[4].ectResolve}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[4].analystRemain}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[4].offerEct}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[4].accessCommittee}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[4].onAgenda}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                        <p:column>
+                            <totoland:inputNumber onblur="sum(this)"  value="#{formReport014Controller.report014Details[4].sendRequest}">
+
+                            </totoland:inputNumber>
+                        </p:column>
+                    </p:row>
+
+                </p:panelGrid>
+
+                <h:panelGroup id="REPORT_014pnlCmd">
+                    <div align="center">
+                        <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport014Controller.save()}" id="REPORT_014btnSave"/>
+                        <p:commandButton value="#{msg.btn_cancel}" id="REPORT_014btnCancel" actionListener="#{formReport014Controller.resetForm()}" update="REPORT_MainDialog_REPORT_014" onsuccess="REPORT_MainDialog_REPORT_014.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </p:panel>
+
+        </p:dialog>
+
+
+    </p:panel>
+    <p:blockUI  block="REPORT_REPORT_014" widgetVar="blogui14">
+        LOADING<br />
+        <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+    </p:blockUI>
+</html>
