@@ -564,7 +564,7 @@ public class FormReport023Controller extends BaseFormReportController {
 //        report023Detail1.setTerminates4(30);
 
         Report023Detail report023Detail2 = new Report023Detail();
-//        report023Detail2.setCases("การเลือกตั้ง สส");
+        report023Detail2.setCases("การเลือกตั้ง สส");
 //        report023Detail2.setOldCasesQuoted(1);
 //        report023Detail2.setNewCasesQuoted(2);
 //        report023Detail2.setSumCases(3);
@@ -597,7 +597,7 @@ public class FormReport023Controller extends BaseFormReportController {
 //        report023Detail2.setTerminates4(30);
 
         Report023Detail report023Detail3 = new Report023Detail();
-//        report023Detail3.setCases("การเลือกตั้งท้องถิ่น");
+        report023Detail3.setCases("การเลือกตั้งท้องถิ่น");
 //        report023Detail3.setOldCasesQuoted(1);
 //        report023Detail3.setNewCasesQuoted(2);
 //        report023Detail3.setSumCases(3);
@@ -630,7 +630,7 @@ public class FormReport023Controller extends BaseFormReportController {
 //        report023Detail3.setTerminates4(30);
 
         Report023Detail report023Detail4 = new Report023Detail();
-//        report023Detail4.setCases("พรรคการเมือง");
+        report023Detail4.setCases("พรรคการเมือง");
 //        report023Detail4.setOldCasesQuoted(1);
 //        report023Detail4.setNewCasesQuoted(2);
 //        report023Detail4.setSumCases(3);
@@ -663,7 +663,7 @@ public class FormReport023Controller extends BaseFormReportController {
 //        report023Detail4.setTerminates4(30);
 
         Report023Detail report023Detail5 = new Report023Detail();
-//        report023Detail5.setCases("องค์การเอกชน");
+        report023Detail5.setCases("องค์การเอกชน");
 //        report023Detail5.setOldCasesQuoted(1);
 //        report023Detail5.setNewCasesQuoted(2);
 //        report023Detail5.setSumCases(3);
@@ -696,7 +696,7 @@ public class FormReport023Controller extends BaseFormReportController {
 //        report023Detail5.setTerminates4(30);
 
         Report023Detail report023Detail6 = new Report023Detail();
-//        report023Detail6.setCases("กกต.ถูกฟ้อง");
+        report023Detail6.setCases("กกต.ถูกฟ้อง");
 //        report023Detail6.setOldCasesQuoted(1);
 //        report023Detail6.setNewCasesQuoted(2);
 //        report023Detail6.setSumCases(3);
