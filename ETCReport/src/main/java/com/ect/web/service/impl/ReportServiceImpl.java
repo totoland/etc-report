@@ -21,6 +21,8 @@ import com.ect.db.report.dao.Report011Dao;
 import com.ect.db.report.dao.Report012Dao;
 import com.ect.db.report.dao.Report013Dao;
 import com.ect.db.report.dao.Report014Dao;
+import com.ect.db.report.dao.Report020Dao;
+import com.ect.db.report.dao.Report021Dao;
 import com.ect.db.report.dao.Report022Dao;
 import com.ect.db.report.dao.Report023Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
@@ -36,6 +38,8 @@ import com.ect.db.report.entity.Report011;
 import com.ect.db.report.entity.Report012;
 import com.ect.db.report.entity.Report013;
 import com.ect.db.report.entity.Report014;
+import com.ect.db.report.entity.Report020;
+import com.ect.db.report.entity.Report021;
 import com.ect.db.report.entity.Report022;
 import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
@@ -82,6 +86,10 @@ public class ReportServiceImpl implements ReportService {
     Report013Dao report013Dao;
     @Autowired
     Report014Dao report014Dao;
+    @Autowired
+    Report020Dao report020Dao;
+    @Autowired
+    Report021Dao report021Dao;
     @Autowired
     Report022Dao report022Dao;
     @Autowired
@@ -181,15 +189,25 @@ public class ReportServiceImpl implements ReportService {
     public Report012 findByReport012ById(Integer paramReportId) {
         return report012Dao.findByReportId(paramReportId);
     }
-    
+
     @Override
     public Report013 findByReport013ById(Integer paramReportId) {
         return report013Dao.findByReportId(paramReportId);
     }
-    
+
     @Override
     public Report014 findByReport014ById(Integer paramReportId) {
         return report014Dao.findByReportId(paramReportId);
+    }
+
+    @Override
+    public Report020 findByReport020ById(Integer paramReportId) {
+        return report020Dao.findByReportId(paramReportId);
+    }
+
+    @Override
+    public Report021 findByReport021ById(Integer paramReportId) {
+        return report021Dao.findByReportId(paramReportId);
     }
 
     @Override
@@ -201,5 +219,4 @@ public class ReportServiceImpl implements ReportService {
     public Report023 findByReport023ById(Integer paramReportId) {
         return report023Dao.findByReportId(paramReportId);
     }
-    
 }
