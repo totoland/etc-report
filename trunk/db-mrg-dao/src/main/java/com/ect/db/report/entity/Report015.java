@@ -4,6 +4,7 @@
  */
 package com.ect.db.report.entity;
 
+import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ import org.hibernate.annotations.Cascade;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Report015.findAll", query = "SELECT r FROM Report015 r")})
-public class Report015 implements Serializable {
+public class Report015 extends DomainEntity implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
