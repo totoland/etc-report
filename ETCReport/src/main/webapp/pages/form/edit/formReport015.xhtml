@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
+        <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
+
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <p:panel id="REPORT_015" header="#{msg.report_015_header}">
+
+                <div style="width: 1050px;overflow-x: scroll">
+                    <p:panel id="REPORT_REPORT_015" header="#{formReport015Controller.reportTitle}" style="width: 1550px">
+                        <p:messages id="REPORT_015msgFrmDetails"></p:messages>
+
+                        <script>
+                            //<![CDATA[
+                            function sum(obj) {
+                                if (obj.value != 0) {
+                                    calSum();
+                                }
+                                return false;
+                            }
+                            //]]>
+                        </script>
+
+                        <p:remoteCommand name="calSum" update="REPORT_015pnlFrm" onstart="blogui15.show()" oncomplete="blogui15.hide()" actionListener="#{formReport015Controller.calSum()}">
+                        </p:remoteCommand>
+
+                        <p:panelGrid styleClass="frmDetail" id="REPORT_015pnlFrm">
+                            <f:facet name="header">
+                                <p:row>  
+                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 130px">สำนัก</p:column>
+                                    <p:column rowspan="2" style="text-align: center;">จังหวัด/อำเภอ/เทศบาล/อบต./เขต</p:column>
+                                    <p:column rowspan="2" style="text-align: center;width: 220px">วันที่เลือกตั้ง/วันที่ประกาศผล</p:column>
+                                    <p:column rowspan="2" style="text-align: center;">การประชุม กกต.ครั้งที่/วันที่</p:column>
+                                    <p:column rowspan="2" style="text-align: center;">มติที่ประชุม</p:column>
+                                    <p:column rowspan="2" style="text-align: center;">ชื่อ-สกุล</p:column>
+                                    <p:column colspan="2" rowspan="1" style="text-align: center;">ประเภทตำแหน่ง</p:column>
+                                    <p:column rowspan="2" style="text-align: center;">รวม (คน)</p:column>
+                                </p:row>
+                                <p:row>
+                                    <p:column colspan="1" style="text-align: center;">ส.ถ. (คน)</p:column>
+                                    <p:column colspan="1" style="text-align: center;">ผ.ถ. (คน)</p:column>
+                                </p:row>
+                            </f:facet>
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[0].institution}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[0].depName}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[0].electionDay}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[0].meetingDate}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[0].conclusionMeeting}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[0].fullName}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[0].stAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[0].ptAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[0].sumAmount}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[1].institution}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[1].depName}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[1].electionDay}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[1].meetingDate}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[1].conclusionMeeting}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[1].fullName}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[1].stAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[1].ptAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[1].sumAmount}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[2].institution}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[2].depName}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[2].electionDay}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[2].meetingDate}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[2].conclusionMeeting}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[2].fullName}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[2].stAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[2].ptAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[2].sumAmount}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[3].institution}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[3].depName}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[3].electionDay}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[3].meetingDate}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[3].conclusionMeeting}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[3].fullName}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[3].stAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[3].ptAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[3].sumAmount}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[4].institution}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[4].depName}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[4].electionDay}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[4].meetingDate}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[4].conclusionMeeting}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[4].fullName}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[4].stAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[4].ptAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[4].sumAmount}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[5].institution}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[5].depName}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[5].electionDay}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[5].meetingDate}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[5].conclusionMeeting}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[5].fullName}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[5].stAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[5].ptAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[5].sumAmount}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[6].institution}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[6].depName}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[6].electionDay}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:panelGroup style="width: 200px">
+                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[6].meetingDate}"/>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[6].conclusionMeeting}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[6].fullName}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[6].stAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[6].ptAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{formReport015Controller.report015Details[6].sumAmount}"/>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+
+                        <h:panelGroup id="REPORT_015pnlCmd" rendered="#{formReport015Controller.report015.flowStatusId!=200}">
+                            <div align="center">
+                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport015Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport015Controller.paramMode=='view' and formReport015Controller.canEdit(formReport015Controller.report015.createdUserGroup)}"/>
+                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport015Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport015Controller.paramMode=='view'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport015Controller.edit()}" id="REPORT_015btnSave" rendered="#{formReport015Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="#{msg.btn_cancel}" id="REPORT_015btnCancel" actionListener="#{formReport015Controller.goToCancel()}" rendered="#{formReport015Controller.paramMode=='edit'}"/>
+                            </div>
+                        </h:panelGroup>
+                    </p:panel>
+                </div>
+                <p:blockUI  block="REPORT_REPORT_015" widgetVar="blogui15" trigger="REPORT_015btnSave">
+                    LOADING<br />
+                    <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+                </p:blockUI>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
