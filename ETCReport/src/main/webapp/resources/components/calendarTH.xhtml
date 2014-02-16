@@ -15,12 +15,13 @@
         <composite:attribute name="value" />
         <composite:attribute name="style" />
         <composite:attribute name="id" />
+        <composite:attribute name="showOn" />
 
     </composite:interface>
 
     <composite:implementation>
 
-        <p:calendar id="#{cc.attrs.id}" styleClass="cal" locale="th" showOn="button" value="#{cc.attrs.value}" lang="th" style="#{cc.attrs.style}">  
+        <p:calendar id="#{cc.attrs.id}" size="10" styleClass="cal" locale="th" showOn="#{cc.attrs.showOn==null?'button':cc.attrs.showOn}" value="#{cc.attrs.value}" lang="th" style="#{cc.attrs.style}">  
         </p:calendar>
     </composite:implementation>
 

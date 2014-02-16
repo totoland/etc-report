@@ -21,6 +21,7 @@ import com.ect.db.report.dao.Report011Dao;
 import com.ect.db.report.dao.Report012Dao;
 import com.ect.db.report.dao.Report013Dao;
 import com.ect.db.report.dao.Report014Dao;
+import com.ect.db.report.dao.Report015Dao;
 import com.ect.db.report.dao.Report020Dao;
 import com.ect.db.report.dao.Report021Dao;
 import com.ect.db.report.dao.Report022Dao;
@@ -38,6 +39,7 @@ import com.ect.db.report.entity.Report011;
 import com.ect.db.report.entity.Report012;
 import com.ect.db.report.entity.Report013;
 import com.ect.db.report.entity.Report014;
+import com.ect.db.report.entity.Report015;
 import com.ect.db.report.entity.Report020;
 import com.ect.db.report.entity.Report021;
 import com.ect.db.report.entity.Report022;
@@ -86,6 +88,8 @@ public class ReportServiceImpl implements ReportService {
     Report013Dao report013Dao;
     @Autowired
     Report014Dao report014Dao;
+    @Autowired
+    Report015Dao report15Dao;
     @Autowired
     Report020Dao report020Dao;
     @Autowired
@@ -198,6 +202,11 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Report014 findByReport014ById(Integer paramReportId) {
         return report014Dao.findByReportId(paramReportId);
+    }
+    
+    @Override
+    public Report015 findByReport015ById(Integer paramReportId) {
+        return report15Dao.findByReportId(paramReportId);
     }
 
     @Override

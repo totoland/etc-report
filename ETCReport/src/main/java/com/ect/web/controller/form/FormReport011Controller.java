@@ -150,6 +150,8 @@ public class FormReport011Controller extends BaseFormReportController {
 
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_011 + MessageUtils.PRINT_LINE_STAR());
 
+        calSum();
+        
         report011.setReport011DetailList(report011Details);
         report011.setUpdatedDate(new Date());
         report011.setUpdatedUser(super.getUserAuthen().getUserId());

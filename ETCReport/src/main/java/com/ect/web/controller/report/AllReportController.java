@@ -30,6 +30,7 @@ import com.ect.db.report.entity.Report011;
 import com.ect.db.report.entity.Report012;
 import com.ect.db.report.entity.Report013;
 import com.ect.db.report.entity.Report014;
+import com.ect.db.report.entity.Report015;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewReportImpl;
@@ -390,6 +391,23 @@ public class AllReportController extends BaseFormReportController {
             } else {
 
                 beans.put("details", report014.getReport014DetailList());
+
+            }
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_015)) {
+
+            reportName = REPORT_015;
+
+            Report015 report015 = reportService.findByReport015ById(viewReportStatus.getReportId());
+
+            if (report015 == null || report015.getReport015DetailList() == null || report015.getReport015DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report015 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report015.getReport015DetailList());
 
             }
 
