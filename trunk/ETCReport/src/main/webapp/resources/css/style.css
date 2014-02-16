@@ -2731,7 +2731,7 @@ blockquote p,
     background: rgba(206, 209, 184, 0.2);
     border-top:1px dotted #CED1B8;
     margin:10px auto 0;
-    position: relative;
+    /*position: relative;*/
     color: #45472E;
     font-size: 12px;
     font-family:Helvetica,Arial,sans-serif;
