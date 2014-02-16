@@ -20,24 +20,20 @@ import org.slf4j.LoggerFactory;
  *
  * @author totoland
  */
-public abstract class BaseFormReportController extends BaseController{
+public abstract class BaseFormReportController extends BaseController {
+
     private static final long serialVersionUID = -7864668711794526812L;
-
     private static Logger logger = LoggerFactory.getLogger(BaseFormReportController.class);
-
     /**
      * *
      * Service
      */
     @ManagedProperty(value = "#{dropdownFactory}")
     protected DropdownFactory dropdownFactory;
-    
     @ManagedProperty(value = "#{ectConfManager}")
     protected EctConfManager ectConfManager;
-    
     @ManagedProperty(value = "#{reportService}")
     protected ReportService reportService;
-    
     protected static final String REPORT_001 = "REPORT_001";
     protected static final String REPORT_002 = "REPORT_002";
     protected static final String REPORT_003 = "REPORT_003";
@@ -53,27 +49,28 @@ public abstract class BaseFormReportController extends BaseController{
     protected static final String REPORT_013 = "REPORT_013";
     protected static final String REPORT_014 = "REPORT_014";
     protected static final String REPORT_015 = "REPORT_015";
+    protected static final String REPORT_020 = "REPORT_020";
+    protected static final String REPORT_021 = "REPORT_021";
     protected static final String REPORT_022 = "REPORT_022";
     protected static final String REPORT_023 = "REPORT_023";
     protected static final String REPORT_MODE_EDIT = "edit";
     protected static final String REPORT_MODE_VIEW = "view";
     protected static final String REPORT_MODE_CREATE = "create";
-    
+
     @Override
     public void resetForm() {
-        
     }
-    
+
     public abstract void save();
-    
+
     public abstract void edit();
-    
+
     /**
      * *
      * AddReportDetail to Grid
      */
     public abstract void addReportDetail(ActionEvent actionEvent);
-    
+
     /**
      * *
      * Row Edit
@@ -81,7 +78,7 @@ public abstract class BaseFormReportController extends BaseController{
      * @param event
      */
     public abstract void onEdit(RowEditEvent event);
-    
+
     /**
      * *
      * Row Cancel
@@ -89,7 +86,7 @@ public abstract class BaseFormReportController extends BaseController{
      * @param event
      */
     public abstract void onCancel(RowEditEvent event);
-    
+
     /**
      * *
      * Row Delete
@@ -97,14 +94,15 @@ public abstract class BaseFormReportController extends BaseController{
      * @param row object
      */
     public abstract void onDelete(Object object);
-    
+
     /**
      * *
      * init before loadPopup
      */
     public abstract void initReportDetail();
-    
-    /***
+
+    /**
+     * *
      * File Export Excel
      */
     public abstract void fileXLSDownload();
@@ -193,7 +191,7 @@ public abstract class BaseFormReportController extends BaseController{
 
         return false;
     }
-    
+
     /**
      * @return the ectConfManager
      */
