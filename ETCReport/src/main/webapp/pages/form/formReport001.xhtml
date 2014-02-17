@@ -14,7 +14,7 @@ and open the template in the editor.
     <p:panel id="REPORT_001" rendered="#{formSelectReport.reportCode=='REPORT_001'}">
 
         <p:dialog id="REPORT_MainDialog_REPORT_001" header="#{msg.report_001_header}" widgetVar="REPORT_MainDialog_REPORT_001" modal="true">                         
-            <p:panel header="#{formReport001Controller.reportTitle}" style="width: 100%;">
+            <p:panel id="REPORT_REPORT_001" header="#{formReport001Controller.reportTitle}" style="width: 100%;">
                 <p:messages id="REPORT_001msgFrmDetails"></p:messages>
                 <p:panelGrid columns="4" styleClass="frmSelect">
                     <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>

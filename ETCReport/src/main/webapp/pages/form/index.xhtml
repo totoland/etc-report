@@ -407,10 +407,10 @@ and open the template in the editor.
                         <ui:include src="formReport013.xhtml" />
                         <ui:include src="formReport014.xhtml" />
                         <ui:include src="formReport015.xhtml" />
-<!--                    <ui:include src="formReport016.xhtml" />
-                        <ui:include src="formReport017.xhtml" />
-                        <ui:include src="formReport018.xhtml" />
-                        <ui:include src="formReport019.xhtml" />-->
+                        <ui:include src="formReport016.xhtml" />
+                        <!--            <ui:include src="formReport017.xhtml" />
+                                                  <ui:include src="formReport018.xhtml" />
+                                                  <ui:include src="formReport019.xhtml" />-->
                         <ui:include src="formReport020.xhtml" />
                         <ui:include src="formReport021.xhtml" />
                         <ui:include src="formReport022.xhtml" />
@@ -427,15 +427,15 @@ and open the template in the editor.
                     </h:panelGroup>
                 </h:form>
                 <script>
-                    function resetDdl(){
-                            try{
-                                $('#form1\\:tabView\\:ectDll_input').val('');
-                            }catch(err){
-                                setTimeout(function(){
-                                    resetDdl();
-                                },100);
-                            }
-                    }
+                                                function resetDdl() {
+                                                    try {
+                                                        $('#form1\\:tabView\\:ectDll_input').val('');
+                                                    } catch (err) {
+                                                        setTimeout(function() {
+                                                            resetDdl();
+                                                        }, 100);
+                                                    }
+                                                }
                 </script>
 
             </ui:define>
