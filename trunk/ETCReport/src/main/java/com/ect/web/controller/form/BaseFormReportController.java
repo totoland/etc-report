@@ -50,6 +50,7 @@ public abstract class BaseFormReportController extends BaseController {
     protected static final String REPORT_014 = "REPORT_014";
     protected static final String REPORT_015 = "REPORT_015";
     protected static final String REPORT_016 = "REPORT_016";
+    protected static final String REPORT_017 = "REPORT_017";
     protected static final String REPORT_020 = "REPORT_020";
     protected static final String REPORT_021 = "REPORT_021";
     protected static final String REPORT_022 = "REPORT_022";

@@ -31,7 +31,7 @@ and open the template in the editor.
 
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." style="width: 350px"/>
-                                        <p:selectOneMenu id="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
+                                        <p:selectOneMenu id="ectDll" widgetVar="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlDepEct()}"/>
                                             <p:ajax event="change" listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
@@ -408,8 +408,8 @@ and open the template in the editor.
                         <ui:include src="formReport014.xhtml" />
                         <ui:include src="formReport015.xhtml" />
                         <ui:include src="formReport016.xhtml" />
-                        <!--            <ui:include src="formReport017.xhtml" />
-                                                  <ui:include src="formReport018.xhtml" />
+                        <ui:include src="formReport017.xhtml" />
+                        <!--            <ui:include src="formReport018.xhtml" />
                                                   <ui:include src="formReport019.xhtml" />-->
                         <ui:include src="formReport020.xhtml" />
                         <ui:include src="formReport021.xhtml" />
@@ -429,13 +429,16 @@ and open the template in the editor.
                 <script>
                                                 function resetDdl() {
                                                     try {
-                                                        $('#form1\\:tabView\\:ectDll_input').val('');
+                                                        ectDll.selectValue("");
                                                     } catch (err) {
                                                         setTimeout(function() {
                                                             resetDdl();
                                                         }, 100);
                                                     }
                                                 }
+                                                $(function(){
+                                                    resetDdl();
+                                                });
                 </script>
 
             </ui:define>
