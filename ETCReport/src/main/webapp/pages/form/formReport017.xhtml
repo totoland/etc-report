@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+
+    <p:panel id="REPORT_017" rendered="#{formSelectReport.reportCode=='REPORT_017'}">
+
+        <p:dialog id="REPORT_MainDialog_REPORT_017" header="#{msg.report_017_header}" widgetVar="REPORT_MainDialog_REPORT_017" modal="true">                         
+            <div style="width: 1150px;overflow-x: scroll">
+                <p:panel id="REPORT_REPORT_017" header="#{formReport017Controller.reportTitle}" style="width: 1450px">
+                    <p:messages id="REPORT_017msgFrmDetails"></p:messages>
+
+                    <script>
+                        //<![CDATA[
+                        function sum(obj) {
+                            if (obj.value != 0) {
+                                calSum();
+                            }
+                            return false;
+                        }
+                        //]]>
+                    </script>
+
+                    <p:remoteCommand name="calSum" update="REPORT_017pnlFrm" onstart="blogui15.show()" oncomplete="blogui15.hide()" actionListener="#{formReport017Controller.calSum()}">
+                    </p:remoteCommand>
+
+                    <p:panelGrid styleClass="frmDetail" id="REPORT_017pnlFrm">
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column style="text-align: center;vertical-align: middle;width: 130px">สำนัก</p:column>
+                                <p:column style="text-align: center;">สำนวนทั้งหทด (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">ใบแดง (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">ใบเหลือง (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">ใบเหลือง/ดำเนินคดีอาญา (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">นับคะแนนใหม่ (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">ดำเนินคดีอาญา (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">สอบเพิ่ม (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">รับคำร้อง (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">ไม่รับคำร้อง (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">ถอนคำร้อง (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">อื่นๆ (เรื่อง)</p:column>
+                            </p:row>
+                        </f:facet>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport017Controller.report017Details[0].institution}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].allStory}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].redCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].yellowCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].yellowCardCriminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].resetCounter}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].criminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].adding}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].requestReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].requestNoReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].withdrawnRequest}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[0].ect}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport017Controller.report017Details[1].institution}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].allStory}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].redCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].yellowCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].yellowCardCriminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].resetCounter}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].criminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].adding}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].requestReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].requestNoReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].withdrawnRequest}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[1].ect}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport017Controller.report017Details[2].institution}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].allStory}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].redCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].yellowCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].yellowCardCriminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].resetCounter}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].criminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].adding}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].requestReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].requestNoReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].withdrawnRequest}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[2].ect}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport017Controller.report017Details[3].institution}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].allStory}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].redCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].yellowCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].yellowCardCriminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].resetCounter}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].criminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].adding}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].requestReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].requestNoReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].withdrawnRequest}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[3].ect}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport017Controller.report017Details[4].institution}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].allStory}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].redCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].yellowCard}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].yellowCardCriminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].resetCounter}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].criminalCase}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].adding}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].requestReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].requestNoReceived}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].withdrawnRequest}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber style="width:80px" value="#{formReport017Controller.report017Details[4].ect}"/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+
+                    <h:panelGroup id="REPORT_017pnlCmd">
+                        <div align="center">
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport017Controller.save()}" update="REPORT_MainDialog_REPORT_017" id="REPORT_017btnSave"/>
+                            <p:commandButton value="#{msg.btn_cancel}" id="REPORT_017btnCancel" actionListener="#{formReport017Controller.resetForm()}" update="REPORT_MainDialog_REPORT_017" onsuccess="REPORT_MainDialog_REPORT_017.hide()"/>
+                        </div>
+                    </h:panelGroup>
+                </p:panel>
+                <p:blockUI  block="REPORT_REPORT_017" widgetVar="blogui017" trigger="REPORT_017btnSave,REPORT_017btnCancel">
+                    LOADING<br />
+                    <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+                </p:blockUI>
+            </div>
+        </p:dialog>
+
+
+    </p:panel>
+</html>
