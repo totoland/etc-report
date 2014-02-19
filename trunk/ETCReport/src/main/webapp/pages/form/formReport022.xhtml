@@ -62,7 +62,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.edit}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.edit}" />  
+                                        <p:inputText  value="#{item.edit}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -72,7 +72,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.redraft}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.redraft}" />  
+                                        <p:inputText  value="#{item.redraft}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -82,7 +82,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.result}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.result}" />  
+                                        <p:inputText  value="#{item.result}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>                            
@@ -118,13 +118,13 @@ and open the template in the editor.
                 <h:outputLabel value="กฎหมาย ระเบียบ ประกาศ ข้อกำหนด *" />  
                 <p:inputText id="REPORT_022lb01" value="#{formReport022Controller.inputReport022Detail.notice}"/>  
 
-                <h:outputLabel value="แก้ไข *"/>
+                <h:outputLabel value="แก้ไข "/>
                 <p:inputText id="REPORT_022lb02" value="#{formReport022Controller.inputReport022Detail.edit}"/>  
 
-                <h:outputLabel value="ร่างใหม่ *"/>
+                <h:outputLabel value="ร่างใหม่ "/>
                 <p:inputText id="REPORT_022lb03" value="#{formReport022Controller.inputReport022Detail.redraft}"/>  
 
-                <h:outputLabel value="ผลการดำเนินการ *"/>
+                <h:outputLabel value="ผลการดำเนินการ "/>
                 <p:inputText id="REPORT_022lb04" value="#{formReport022Controller.inputReport022Detail.result}"/>  
 
                 <f:facet name="footer">  

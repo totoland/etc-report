@@ -72,7 +72,7 @@ public class FormReport022Controller extends BaseFormReportController {
     public void init() {
 
         logger.trace("init Form022!!");
-        
+
         initParam();
         initForm();
         /**
@@ -141,7 +141,7 @@ public class FormReport022Controller extends BaseFormReportController {
 
         }
     }
-    
+
     @Override
     public void edit() {
 
@@ -342,10 +342,10 @@ public class FormReport022Controller extends BaseFormReportController {
         logger.trace("validateReportDetail : {}", inputReport022Detail);
 
         String msg = "";
-//
-//        if (StringUtils.isBlank(inputReport022Detail.getPoliticalParty())) {
-//            msg += "กรุณาระบุพรรค<br/>";
-//        }
+
+        if (StringUtils.isBlank(inputReport022Detail.getNotice())) {
+            msg += "กรุณาระบุกฎหมาย ระเบียบ ประกาศ ข้อกำหนด<br/>";
+        }
 //        if (!NumberUtils.isNumber(inputReport022Detail.getBudget()) || inputReport022Detail.getBudget().intValue() == 0) {
 //            msg += "กรุณาระบุงบประมาณที่ได้รับสนับสนุน<br/>";
 //        }
@@ -359,10 +359,10 @@ public class FormReport022Controller extends BaseFormReportController {
 //            msg += "กรุณาระบุคงเหลือ<br/>";
 //        }
 //
-//        if (!StringUtils.isBlank(msg)) {
-//            addError(msg);
-//            return false;
-//        }
+        if (!StringUtils.isBlank(msg)) {
+            addError(msg);
+            return false;
+        }
 
         return true;
     }
@@ -371,23 +371,14 @@ public class FormReport022Controller extends BaseFormReportController {
 
         String msg = "";
 
-//        if (report022.getStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
-//        }
-//        if (report022.getSubStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
-//        }
-//        if (report022.getPlanId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
-//        }
-//        if (report022.getReport022DetailList() == null || report022.getReport022DetailList().isEmpty()) {
-//            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
-//        }
-//
-//        if (!StringUtils.isBlank(msg.toString())) {
-//            JsfUtil.alertJavaScript(msg.toString().trim());
-//            return false;
-//        }
+        if (report022.getReport022DetailList() == null || report022.getReport022DetailList().isEmpty()) {
+            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
+        }
+
+        if (!StringUtils.isBlank(msg.toString())) {
+            JsfUtil.alertJavaScript(msg.toString().trim());
+            return false;
+        }
 
         return true;
     }
@@ -524,17 +515,17 @@ public class FormReport022Controller extends BaseFormReportController {
         Date curDate = new Date();
 
         reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
-        
+
     }
 
     @Override
     public void onDelete(Object object) {
-        
-        Report022Detail rowDelete = (Report022Detail)object;
-        
-        logger.trace("delete item : {}",rowDelete);
-        
+
+        Report022Detail rowDelete = (Report022Detail) object;
+
+        logger.trace("delete item : {}", rowDelete);
+
         report022Details.remove(rowDelete);
-        
+
     }
 }

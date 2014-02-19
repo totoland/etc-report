@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_021" rendered="#{formSelectReport.reportCode=='REPORT_021'}">
         <p:dialog id="REPORT_MainDialog_REPORT_021" header="#{msg.report_021_header}" widgetVar="REPORT_MainDialog_REPORT_021" modal="true">                         
@@ -56,10 +57,10 @@ and open the template in the editor.
                             <p:column>
                                 <p:cellEditor>  
                                     <f:facet name="output">  
-                                        <h:outputText value="#{item.operationDate}" />  
+                                        <totoland:convertDateTime value="#{item.operationDate}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputText value="#{item.operationDate}" />  
+                                        <p:calendar pattern="dd/MM/yyyy" value="#{item.operationDate}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -126,15 +127,15 @@ and open the template in the editor.
                 <p:inputText id="REPORT_021lb01" value="#{formReport021Controller.inputReport021Detail.inspector}"/>  
 
                 <h:outputLabel value="ว.ด.ป.ที่ปฎิบัติ *"/>
-                <p:inputText id="REPORT_021lb02" value="#{formReport021Controller.inputReport021Detail.operationDate}"/>  
+                <p:calendar pattern="dd/MM/yyyy"  id="REPORT_021lb02" value="#{formReport021Controller.inputReport021Detail.operationDate}"/>  
 
                 <h:outputLabel value="หน่วยรับการตรวจฯ/จำนวน(แห่ง) *"/>
-                <p:inputText id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  
+                <p:inputMask mask="9?9999999" id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  
 
                 <h:outputLabel value="ข้อสังเกต/ผลการตรวจพบที่สำคัญ *"/>
                 <p:inputText id="REPORT_021lb04" value="#{formReport021Controller.inputReport021Detail.result}"/>  
 
-                <h:outputLabel value="ข้อแนะนำของทีมตรวจการ/ตรวจสอบภายใน/นิเทศ *"/>
+                <h:outputLabel value="ข้อแนะนำของทีมตรวจการ/ตรวจสอบภายใน/นิเทศ "/>
                 <p:inputText id="REPORT_021lb05" value="#{formReport021Controller.inputReport021Detail.advice}"/>  
 
                 <f:facet name="footer">  
