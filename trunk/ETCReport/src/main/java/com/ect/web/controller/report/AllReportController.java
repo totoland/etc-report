@@ -33,6 +33,9 @@ import com.ect.db.report.entity.Report014;
 import com.ect.db.report.entity.Report015;
 import com.ect.db.report.entity.Report016;
 import com.ect.db.report.entity.Report017;
+import com.ect.db.report.entity.Report020;
+import com.ect.db.report.entity.Report021;
+import com.ect.db.report.entity.Report022;
 import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
@@ -445,6 +448,57 @@ public class AllReportController extends BaseFormReportController {
             } else {
 
                 beans.put("details", report017.getReport017DetailList());
+
+            }
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_020)) {
+
+            reportName = REPORT_020;
+
+            Report020 report020 = reportService.findByReport020ById(viewReportStatus.getReportId());
+
+            if (report020 == null || report020.getReport020DetailList() == null || report020.getReport020DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report020 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report020.getReport020DetailList());
+
+            }
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_021)) {
+
+            reportName = REPORT_021;
+
+            Report021 report021 = reportService.findByReport021ById(viewReportStatus.getReportId());
+
+            if (report021 == null || report021.getReport021DetailList() == null || report021.getReport021DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report021 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report021.getReport021DetailList());
+
+            }
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_022)) {
+
+            reportName = REPORT_022;
+
+            Report022 report022 = reportService.findByReport022ById(viewReportStatus.getReportId());
+
+            if (report022 == null || report022.getReport022DetailList() == null || report022.getReport022DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report022 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report022.getReport022DetailList());
 
             }
 
