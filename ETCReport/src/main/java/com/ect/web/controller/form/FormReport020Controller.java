@@ -525,6 +525,29 @@ public class FormReport020Controller extends BaseFormReportController {
 
         reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
 
+        report020Details = new ArrayList<>();
+        Report020Detail rpt023dtl1 = new Report020Detail();
+        rpt023dtl1.setList("แจ้งอนุมัติโครงการ");
+        Report020Detail rpt023dtl2 = new Report020Detail();
+        rpt023dtl2.setList("แจ้งอนุมัติปรับปรุงสำนักงาน");
+        Report020Detail rpt023dtl3 = new Report020Detail();
+        rpt023dtl3.setList("แจ้งอนุมัติจักซื้อครุภัณฑ์");
+        Report020Detail rpt023dtl4 = new Report020Detail();
+        rpt023dtl4.setList("แจ้งอนุมัติงบประมาณ");
+        Report020Detail rpt023dtl5 = new Report020Detail();
+        rpt023dtl5.setList("อื่นๆ (โปรดระบุ)");
+        Report020Detail rpt023dtl6 = new Report020Detail();
+        rpt023dtl6.setList("อื่นๆ (โปรดระบุ)");
+        report020Details.add(rpt023dtl1);
+        report020Details.add(rpt023dtl2);
+        report020Details.add(rpt023dtl3);
+        report020Details.add(rpt023dtl4);
+        report020Details.add(rpt023dtl5);
+        report020Details.add(rpt023dtl6);
+
+        for (int i = 0; i < report020Details.size(); i++) {
+            report020Details.get(i).setReportId(report020);
+        }
     }
 
     @Override

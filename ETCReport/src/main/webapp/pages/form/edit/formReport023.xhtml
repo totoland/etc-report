@@ -28,19 +28,6 @@ and open the template in the editor.
                     <p:panel header="#{formReport023Controller.reportTitle}" style="width: 1800px;">
 
                         <p:messages id="REPORT_023msgFrmDetails"></p:messages>                
-
-                        <style>
-/*                            .col_head{
-                                vertical-align: middle!important;
-                                text-align: center!important;                                                        
-                            }
-                            .rotate{
-                                -webkit-transform: rotate(270deg)!important;
-                                -moz-transform: rotate(270deg)!important;
-                                -o-transform: rotate(270deg)!important;
-                                writing-mode: lr-tb!important;
-                            }*/
-                        </style>
                         <p:panelGrid styleClass="frmDetail" id="REPORT_023Grid">
                             <f:facet name="header">
                                 <p:row>  
@@ -256,36 +243,36 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column><h:outputText value="#{formReport023Controller.report023Details[5].cases}"/></p:column> 
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].oldCasesQuoted}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].newCasesQuoted}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].sumCases}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].adminCourt}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].criminalCases}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].civilCases}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].rulingCases}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].rhetoricWaiting}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].progress}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].investigator}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].nacc}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].attorney}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].prosecutors}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].civilCases}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].appeals}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].thessaloniki}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].pending}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].attorney2}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].prosecutors2}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].appeals2}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].thessaloniki2}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].execution}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates2}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].progress2}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].province}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].supreme}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates3}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].considering}"/></p:column>  
-                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates4}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].oldCasesQuoted}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].newCasesQuoted}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].sumCases}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].adminCourt}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].criminalCases}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].civilCases}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].rulingCases}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].rhetoricWaiting}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].progress}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].investigator}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].nacc}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].attorney}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].prosecutors}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].civilCases}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].appeals}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].thessaloniki}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].pending}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].attorney2}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].prosecutors2}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].appeals2}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].thessaloniki2}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].execution}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates2}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].progress2}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].province}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].supreme}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates3}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].considering}"/></p:column>  
+                                <p:column><p:inputMask disabled="#{formReport023Controller.paramMode=='view'}" mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates4}"/></p:column>  
                             </p:row>
                         </p:panelGrid>
                         <h:panelGroup id="REPORT_023pnlCmd" rendered="#{formReport023Controller.report023.flowStatusId!=200}">
