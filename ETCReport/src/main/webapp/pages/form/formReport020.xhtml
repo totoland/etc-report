@@ -121,10 +121,10 @@ and open the template in the editor.
                 <p:inputText id="REPORT_020lb02" value="#{formReport020Controller.inputReport020Detail.project}"/>  
 
                 <h:outputLabel value="ขอรับการสนับสนุน(จำนวน) *"/>
-                <p:inputText id="REPORT_020lb03" value="#{formReport020Controller.inputReport020Detail.support}"/>  
+                <p:inputMask mask="9?9999999" id="REPORT_020lb03" value="#{formReport020Controller.inputReport020Detail.support}"/>  
 
                 <h:outputLabel value="อนุมัติ(จำนวน) *"/>
-                <p:inputText id="REPORT_020lb04" value="#{formReport020Controller.inputReport020Detail.approve}"/>  
+                <p:inputMask mask="9?9999999" id="REPORT_020lb04" value="#{formReport020Controller.inputReport020Detail.approve}"/>  
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport020Controller.addReportDetail(actionEvent)}" update="REPORT_020msgAddReportDetail,REPORT_020Grid" icon="ui-icon-check" style="margin:0"/>  

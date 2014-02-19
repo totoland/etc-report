@@ -131,14 +131,14 @@ and open the template in the editor.
                         <h:outputLabel value="กฎหมาย ระเบียบ ประกาศ ข้อกำหนด *" />  
                         <p:inputText id="REPORT_022lb01" value="#{formReport022Controller.inputReport022Detail.notice}"/>  
 
-                        <h:outputLabel value="แก้ไข *"/>
+                        <h:outputLabel value="แก้ไข "/>
                         <p:inputText id="REPORT_022lb02" value="#{formReport022Controller.inputReport022Detail.edit}"/>  
 
-                        <h:outputLabel value="ร่างใหม่ *"/>
+                        <h:outputLabel value="ร่างใหม่ "/>
                         <p:inputText id="REPORT_022lb03" value="#{formReport022Controller.inputReport022Detail.redraft}"/>  
 
-                        <h:outputLabel value="ผลการดำเนินการ *"/>
-                        <p:inputText id="REPORT_022lb04" value="#{formReport022Controller.inputReport022Detail.result}"/> 
+                        <h:outputLabel value="ผลการดำเนินการ "/>
+                        <p:inputText id="REPORT_022lb04" value="#{formReport022Controller.inputReport022Detail.result}"/>  
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport022Controller.addReportDetail(actionEvent)}" update="REPORT_022msgAddReportDetail,REPORT_022Grid" icon="ui-icon-check" style="margin:0"/>  

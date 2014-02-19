@@ -342,27 +342,28 @@ public class FormReport021Controller extends BaseFormReportController {
         logger.trace("validateReportDetail : {}", inputReport021Detail);
 
         String msg = "";
-//
-//        if (StringUtils.isBlank(inputReport021Detail.getPoliticalParty())) {
-//            msg += "กรุณาระบุพรรค<br/>";
-//        }
-//        if (!NumberUtils.isNumber(inputReport021Detail.getBudget()) || inputReport021Detail.getBudget().intValue() == 0) {
-//            msg += "กรุณาระบุงบประมาณที่ได้รับสนับสนุน<br/>";
-//        }
-//        if (!NumberUtils.isNumber(inputReport021Detail.getDisbursedPrevious()) || inputReport021Detail.getDisbursedPrevious().intValue() == 0) {
-//            msg += "กรุณาระบุก่อนหน้านี้<br/>";
-//        }
-//        if (!NumberUtils.isNumber(inputReport021Detail.getDisbursedMonth()) || inputReport021Detail.getDisbursedPrevious().intValue() == 0) {
-//            msg += "กรุณาระบุเดือนนี้<br/>";
-//        }
+
+        if (StringUtils.isBlank(inputReport021Detail.getInspector())) {
+            msg += "กรุณาระบุทีมตรวจการตรวจสอบฯ/นิเทศ<br/>";
+        }
+        if (null == inputReport021Detail.getOperationDate()) {
+            msg += "กรุณาระบุว.ด.ป.ที่ปฎิบัติ<br/>";
+        }
+        if (!NumberUtils.isNumber(inputReport021Detail.getObtained()) || inputReport021Detail.getObtained().intValue() == 0) {
+            msg += "กรุณาระบุหน่วยรับการตรวจฯ/จำนวน(แห่ง)<br/>";
+        }
+        if (StringUtils.isBlank(inputReport021Detail.getResult())) {
+            msg += "กรุณาระบุข้อสังเกต/ผลการตรวจพบที่สำคัญ<br/>";
+        }
+
 //        if (!NumberUtils.isNumber(inputReport021Detail.getBalance()) || inputReport021Detail.getBalance().intValue() == 0) {
 //            msg += "กรุณาระบุคงเหลือ<br/>";
 //        }
-//
-//        if (!StringUtils.isBlank(msg)) {
-//            addError(msg);
-//            return false;
-//        }
+
+        if (!StringUtils.isBlank(msg)) {
+            addError(msg);
+            return false;
+        }
 
         return true;
     }
@@ -371,23 +372,14 @@ public class FormReport021Controller extends BaseFormReportController {
 
         String msg = "";
 
-//        if (report021.getStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
-//        }
-//        if (report021.getSubStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
-//        }
-//        if (report021.getPlanId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
-//        }
-//        if (report021.getReport021DetailList() == null || report021.getReport021DetailList().isEmpty()) {
-//            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
-//        }
-//
-//        if (!StringUtils.isBlank(msg.toString())) {
-//            JsfUtil.alertJavaScript(msg.toString().trim());
-//            return false;
-//        }
+        if (report021.getReport021DetailList() == null || report021.getReport021DetailList().isEmpty()) {
+            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
+        }
+
+        if (!StringUtils.isBlank(msg.toString())) {
+            JsfUtil.alertJavaScript(msg.toString().trim());
+            return false;
+        }
 
         return true;
     }

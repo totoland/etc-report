@@ -374,23 +374,14 @@ public class FormReport023Controller extends BaseFormReportController {
 
         String msg = "";
 
-//        if (report023.getStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
-//        }
-//        if (report023.getSubStrategicId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
-//        }
-//        if (report023.getPlanId().intValue() == -1) {
-//            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
-//        }
-//        if (report023.getReport023DetailList() == null || report023.getReport023DetailList().isEmpty()) {
-//            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
-//        }
-//
-//        if (!StringUtils.isBlank(msg.toString())) {
-//            JsfUtil.alertJavaScript(msg.toString().trim());
-//            return false;
-//        }
+        if (report023.getReport023DetailList() == null || report023.getReport023DetailList().isEmpty()) {
+            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
+        }
+
+        if (!StringUtils.isBlank(msg.toString())) {
+            JsfUtil.alertJavaScript(msg.toString().trim());
+            return false;
+        }
 
         return true;
     }
@@ -734,8 +725,8 @@ public class FormReport023Controller extends BaseFormReportController {
         report023Details.add(report023Detail4);
         report023Details.add(report023Detail5);
         report023Details.add(report023Detail6);
-        
-        for(int i=0;i<report023Details.size();i++){
+
+        for (int i = 0; i < report023Details.size(); i++) {
             report023Details.get(i).setReportId(report023);
         }
 //        
