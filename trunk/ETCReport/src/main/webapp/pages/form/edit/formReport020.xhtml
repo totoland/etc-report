@@ -25,98 +25,60 @@ and open the template in the editor.
 
             <p:panel id="REPORT_020">
 
-                <p:panel header="#{formReport020Controller.reportTitle}" style="width: 100%;">
-                    <p:messages id="REPORT_020msgFrmDetails"></p:messages>
-                    <f:facet name="header"  class="txtLeft">
-                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_020dlgAddReportDetail.show()" update="REPORT_020pn_addReportDetail" actionListener="#{formReport020Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode=='edit'}"/>
-                    </f:facet>  
+                <p:panel header="#{formReport020Controller.reportTitle}" style="width: 710px;">
+                    <p:messages id="REPORT_020msgFrmDetails"></p:messages>                   
 
-                    <div style="width: 1000px;overflow-x: scroll">
+                    <div style="width: 700px;overflow-x: scroll">
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_020pnlFrm"> 
-                            <p:dataTable var="item" value="#{formReport020Controller.report020Details}" id="REPORT_020Grid" 
-                                         style="width: 1000px"
-                                         rowIndexVar="index" editable="true" paginator="true" rows="10" emptyMessage="#{msg.no_data_found}"  
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                                         rowsPerPageTemplate="5,10,15">  
-
-                                <p:ajax event="rowEdit" listener="#{formReport020Controller.onEdit}"/>  
-                                <p:ajax event="rowEditCancel" listener="#{formReport020Controller.onCancel}"/>
-
-                                <p:columnGroup type="header"> 
+                            <p:panelGrid styleClass="frmDetail" id="REPORT_020Grid">
+                                <f:facet name="header">                            
                                     <p:row>  
-                                        <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="รายการ"></p:column>
-                                        <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="สนง.กกต.จว. /สำนัก(แห่ง/โครงการ)"></p:column>  
-                                        <p:column colspan="2" style="text-align: center;vertical-align: middle" headerText="งบประมาณ"></p:column>
+                                        <p:column rowspan="2" style="width:150px;">รายการ</p:column>
+                                        <p:column rowspan="2" style="width:180px;">สนง.กกต.จว. /สำนัก(แห่ง/โครงการ)</p:column>
+                                        <p:column colspan="2">งบประมาณ</p:column>                                
                                     </p:row>
-                                    <p:row>  
-                                        <p:column style="text-align: center" headerText="ขอรับการสนับสนุน(จำนวน)"></p:column>
-                                        <p:column style="text-align: center" headerText="อนุมัติ(จำนวน)"></p:column>
-                                    </p:row>              
-                                </p:columnGroup>
-
-                                <p:column>  
-                                    ${index+1}
-                                </p:column>
-                                <p:column>
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.list}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.list}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-                                <p:column>
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.project}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.project}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-                                <p:column>
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.support}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputMask mask="9?9999999" value="#{item.support}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-                                <p:column>
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.approve}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputMask mask="9?9999999" value="#{item.approve}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column> 
-                                <p:column>
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.result}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputMask mask="9?9999999" value="#{item.result}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>   
-                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
-                                    <p:rowEditor />  
-                                </p:column> 
-                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
-                                    <p:commandLink action="#{formReport020Controller.onDelete(item)}" update="REPORT_020Grid">
-                                        <span class="ui-icon ui-icon-trash"></span>
-                                        <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
-                                    </p:commandLink>
-                                </p:column> 
-                            </p:dataTable>
+                                    <p:row>                              
+                                        <p:column>ขอรับการสนับสนุน(จำนวน)</p:column>
+                                        <p:column>อนุมัติ(จำนวน)</p:column>                                 
+                                    </p:row>
+                                </f:facet>                          
+                                <p:row>
+                                    <p:column><h:outputText value="#{formReport020Controller.report020Details[0].list}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[0].project}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[0].support}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[0].approve}"/></p:column>  
+                                </p:row>  
+                                <p:row>
+                                    <p:column><h:outputText value="#{formReport020Controller.report020Details[1].list}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[1].project}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[1].support}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[1].approve}"/></p:column>  
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputText value="#{formReport020Controller.report020Details[2].list}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[2].project}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[2].support}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[2].approve}"/></p:column>  
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputText value="#{formReport020Controller.report020Details[3].list}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[3].project}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[3].support}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[3].approve}"/></p:column>  
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputText value="#{formReport020Controller.report020Details[4].list}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[4].project}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[4].support}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[4].approve}"/></p:column>  
+                                </p:row>
+                                <p:row>
+                                    <p:column><h:outputText value="#{formReport020Controller.report020Details[5].list}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[5].project}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[5].support}"/></p:column>  
+                                    <p:column><p:inputMask mask="9?9999999" value="#{formReport020Controller.report020Details[5].approve}"/></p:column>  
+                                </p:row>
+                            </p:panelGrid>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
                                 <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
                                 <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
@@ -131,39 +93,7 @@ and open the template in the editor.
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_020btnCancel" actionListener="#{formReport020Controller.goToCancel()}" rendered="#{formReport020Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>
-                </p:panel>
-
-                <p:dialog id="REPORT_020AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_020dlgAddReportDetail" modal="true" draggable="true">
-                    <p:messages id="REPORT_020msgAddReportDetail" escape="false" closable="true"></p:messages>
-                    <p:panelGrid columns="2" id="REPORT_020pn_addReportDetail">
-
-                        <h:outputLabel value="รายการ *" />  
-                        <p:inputText id="REPORT_020lb01" value="#{formReport020Controller.inputReport020Detail.list}"/>  
-
-                        <h:outputLabel value="สนง.กกต.จว. /สำนัก(แห่ง/โครงการ) *"/>
-                        <p:inputText id="REPORT_020lb02" value="#{formReport020Controller.inputReport020Detail.project}"/>  
-
-                        <h:outputLabel value="ขอรับการสนับสนุน(จำนวน) *"/>
-                        <p:inputMask mask="9?9999999" id="REPORT_020lb03" value="#{formReport020Controller.inputReport020Detail.support}"/>  
-
-                        <h:outputLabel value="อนุมัติ(จำนวน) *"/>
-                        <p:inputMask mask="9?9999999" id="REPORT_020lb04" value="#{formReport020Controller.inputReport020Detail.approve}"/>  
-
-                        <f:facet name="footer">  
-                            <p:commandButton value="เพิ่ม" actionListener="#{formReport020Controller.addReportDetail(actionEvent)}" update="REPORT_020msgAddReportDetail,REPORT_020Grid" icon="ui-icon-check" style="margin:0"/>  
-                        </f:facet>
-                    </p:panelGrid>
-                    <style>
-                        .ui-panelgrid td {
-                            border-color: inherit;
-                            border-style: inherit;
-                            border-width: 1px;
-                            padding: 4px 10px;
-                        }
-                    </style>
-                </p:dialog>
-
-
+                </p:panel>               
             </p:panel>
 
         </h:form>
