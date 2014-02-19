@@ -39,28 +39,28 @@ and open the template in the editor.
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                             </p:selectOneMenu>  
-                            <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001strategicId" value="#{allReportController.reportCriteria.strategic}">  
+                            <p:outputLabel value="เลือกยุทธศาสตร์ที่ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001strategicId" value="#{allReportController.reportCriteria.strategic}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
                                                value="#{allReportController.dropdownFactory.ddlStrategic()}">
                                 </f:selectItems>
                                 <p:ajax update="subStrategicId"/>  
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId"/>
-                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{allReportController.reportCriteria.subStrategic}" >  
+                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId" rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{allReportController.reportCriteria.subStrategic}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlSubStrategic(allReportController.reportCriteria.strategic)}"></f:selectItems>
                                 <p:ajax update="REPORT_001planId"/>
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกแผนงาน : "/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{allReportController.reportCriteria.plan}" >  
+                            <p:outputLabel value="เลือกแผนงาน : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{allReportController.reportCriteria.plan}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlPlan(allReportController.reportCriteria.subStrategic)}"></f:selectItems>  
                                 <p:ajax update="REPORT_001projectId"/>
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกโครงการ : " />
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{allReportController.reportCriteria.project}" >  
+                            <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{allReportController.reportCriteria.project}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlProject(allReportController.reportCriteria.plan)}"></f:selectItems> 
                                 <p:ajax update="REPORT_001Activity"/>
@@ -132,7 +132,7 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     <h:outputText value="ส่งออก Excel" />
                                 </f:facet>
-                                <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" actionListener="#{allReportController.fileXLSDownload(item)}"   
+                                <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" onclick="blogui.show()" onblur="blogui.hide()" actionListener="#{allReportController.fileXLSDownload(item)}"   
                                                  icon="ui-icon-arrowthichk-s">
                                 </p:commandButton>
                             </p:column>
