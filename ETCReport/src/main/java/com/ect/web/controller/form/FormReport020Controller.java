@@ -380,14 +380,14 @@ public class FormReport020Controller extends BaseFormReportController {
 //        if (report020.getPlanId().intValue() == -1) {
 //            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
 //        }
-//        if (report020.getReport020DetailList() == null || report020.getReport020DetailList().isEmpty()) {
-//            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
-//        }
-//
-//        if (!StringUtils.isBlank(msg.toString())) {
-//            JsfUtil.alertJavaScript(msg.toString().trim());
-//            return false;
-//        }
+        if (report020.getReport020DetailList() == null || report020.getReport020DetailList().isEmpty()) {
+            msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
+        }
+
+        if (!StringUtils.isBlank(msg.toString())) {
+            JsfUtil.alertJavaScript(msg.toString().trim());
+            return false;
+        }
 
         return true;
     }
