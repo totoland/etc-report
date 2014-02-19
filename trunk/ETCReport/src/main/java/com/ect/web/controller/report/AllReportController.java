@@ -33,6 +33,7 @@ import com.ect.db.report.entity.Report014;
 import com.ect.db.report.entity.Report015;
 import com.ect.db.report.entity.Report016;
 import com.ect.db.report.entity.Report017;
+import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewReportImpl;
@@ -447,6 +448,23 @@ public class AllReportController extends BaseFormReportController {
 
             }
 
+        } else if (viewReportStatus.getReportCode().equals(REPORT_023)) {
+
+            reportName = REPORT_023;
+
+            Report023 report023 = reportService.findByReport023ById(viewReportStatus.getReportId());
+
+            if (report023 == null || report023.getReport023DetailList() == null || report023.getReport023DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report023 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report023.getReport023DetailList());
+
+            }
+
         }
 
         HSSFWorkbook wb = null;
@@ -468,15 +486,14 @@ public class AllReportController extends BaseFormReportController {
             wb.write(out);
             out.flush();
             out.close();
-            
+
             ctx.responseComplete();
         } catch (Exception ex) {
 
             JsfUtil.alertJavaScript(MessageUtils.getString("error", ex.getMessage()));
             logger.error("cannot export report", ex);
 
-        }finally{
-        
+        } finally {
         }
     }
     private StreamedContent file;
