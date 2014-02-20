@@ -34,6 +34,7 @@ import com.ect.db.report.entity.Report015;
 import com.ect.db.report.entity.Report016;
 import com.ect.db.report.entity.Report017;
 import com.ect.db.report.entity.Report018;
+import com.ect.db.report.entity.Report019;
 import com.ect.db.report.entity.Report020;
 import com.ect.db.report.entity.Report021;
 import com.ect.db.report.entity.Report022;
@@ -466,6 +467,23 @@ public class AllReportController extends BaseFormReportController {
             } else {
 
                 beans.put("details", report018.getReport018DetailList());
+
+            }
+
+        } else if (viewReportStatus.getReportCode().equals(REPORT_019)) {
+
+            reportName = REPORT_019;
+
+            Report019 report019 = reportService.findByReport019ById(viewReportStatus.getReportId());
+
+            if (report019 == null || report019.getReport019DetailList() == null || report019.getReport019DetailList().isEmpty()) {
+
+                logger.warn("Cannot find Report019 by Id : {}", viewReportStatus.getReportId());
+                beans.put("details", new ArrayList<Report010Detail>());
+
+            } else {
+
+                beans.put("details", report019.getReport019DetailList());
 
             }
 

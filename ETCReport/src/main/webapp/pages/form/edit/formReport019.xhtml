@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+            <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
+        <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
+
+    </h:head>
+    <h:body>
+        <h:form>
+
+        <p:panel id="REPORT_019" header="#{msg.report_019_header}">
+
+        <div style="width: 1150px;overflow-x: scroll">
+                <p:panel id="REPORT_REPORT_019" header="#{formReport019Controller.reportTitle}" style="width: 1450px">
+                    <p:messages id="REPORT_019msgFrmDetails"></p:messages>
+
+                    <script>
+                        //<![CDATA[
+                        function sum(obj) {
+                            if (obj.value != 0) {
+                                calSum();
+                            }
+                            return false;
+                        }
+                        //]]>
+                    </script>
+
+                    <p:remoteCommand name="calSum" update="REPORT_019pnlFrm" onstart="blogui15.show()" oncomplete="blogui15.hide()" actionListener="#{formReport019Controller.calSum()}">
+                    </p:remoteCommand>
+
+                    <p:panelGrid styleClass="frmDetail" id="REPORT_019pnlFrm">
+                        <f:facet name="header">
+                            <p:row>  
+                                <p:column rowspan="2" style="text-align: center;">การตรวจสอบการเลือกตั้ง</p:column>
+                                <p:column rowspan="2" style="text-align: center;">จำนวน (แห่ง)</p:column>
+                                <p:column colspan="3" style="text-align: center;">ประเภทของการเลือกตั้ง</p:column>
+                                <p:column colspan="2" style="text-align: center;">การรายงานผลของ ออช.</p:column>
+                                <p:column colspan="2" style="text-align: center;">การขยายผลของเรื่องที่ได้รับรายงาน</p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column style="text-align: center;">ครบวาระ (แห่ง)</p:column>
+                                <p:column style="text-align: center;">เลือกตั้งใหม่ (แห่ง)</p:column>
+                                <p:column style="text-align: center;">แทนตำแหน่งที่ว่าง (แห่ง)</p:column>
+                                <p:column style="text-align: center;">รายงาน (แห่งเ/รื่อง)</p:column>
+                                <p:column style="text-align: center;">ไม่มีรายงาน (แห่ง)</p:column>
+                                <p:column style="text-align: center;">ขยายผลต่อได้ (เรื่อง)</p:column>
+                                <p:column style="text-align: center;">ไม่สามารถขยายผลต่อได้ (เรื่อง)</p:column>
+                            </p:row>
+                        </f:facet>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[0].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[0].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[1].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[1].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[2].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[2].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[3].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[3].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[4].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[4].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[5].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[5].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[6].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[6].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="#{formReport019Controller.report019Details[7].verifyElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].verifyElectionAmount}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].fullTerm}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].newElection}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].replaceEmplyPosition}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].reportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].noReportLaas}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].extendResult}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport019Controller.report019Details[7].noExtendResult}"/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+
+                    <h:panelGroup id="REPORT_019pnlCmd" rendered="#{formReport019Controller.report019.flowStatusId!=200}">
+                            <div align="center">
+                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport019Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport019Controller.paramMode=='view' and formReport019Controller.canEdit(formReport019Controller.report019.createdUserGroup)}"/>
+                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport019Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport019Controller.paramMode=='view'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport019Controller.edit()}" id="REPORT_019btnSave" rendered="#{formReport019Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="#{msg.btn_cancel}" id="REPORT_019btnCancel" actionListener="#{formReport019Controller.goToCancel()}" rendered="#{formReport019Controller.paramMode=='edit'}"/>
+                            </div>
+                        </h:panelGroup>
+                </p:panel>
+                <p:blockUI  block="REPORT_REPORT_019" widgetVar="blogui019" trigger="REPORT_019btnSave,REPORT_019btnCancel">
+                    LOADING<br />
+                    <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+                </p:blockUI>
+            </div>
+
+
+    </p:panel>
+        </h:form>
+    </h:body>
+</html>
