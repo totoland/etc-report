@@ -25,6 +25,7 @@ import com.ect.db.report.dao.Report015Dao;
 import com.ect.db.report.dao.Report016Dao;
 import com.ect.db.report.dao.Report017Dao;
 import com.ect.db.report.dao.Report018Dao;
+import com.ect.db.report.dao.Report019Dao;
 import com.ect.db.report.dao.Report020Dao;
 import com.ect.db.report.dao.Report021Dao;
 import com.ect.db.report.dao.Report022Dao;
@@ -46,6 +47,7 @@ import com.ect.db.report.entity.Report015;
 import com.ect.db.report.entity.Report016;
 import com.ect.db.report.entity.Report017;
 import com.ect.db.report.entity.Report018;
+import com.ect.db.report.entity.Report019;
 import com.ect.db.report.entity.Report020;
 import com.ect.db.report.entity.Report021;
 import com.ect.db.report.entity.Report022;
@@ -95,13 +97,15 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     Report014Dao report014Dao;
     @Autowired
-    Report015Dao report15Dao;
+    Report015Dao report015Dao;
     @Autowired
-    Report016Dao report16Dao;
+    Report016Dao report016Dao;
     @Autowired
-    Report017Dao report17Dao;
+    Report017Dao report017Dao;
     @Autowired
-    Report018Dao report18Dao;
+    Report018Dao report018Dao;
+    @Autowired
+    Report019Dao report019Dao;
     @Autowired
     Report020Dao report020Dao;
     @Autowired
@@ -218,22 +222,27 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public Report015 findByReport015ById(Integer paramReportId) {
-        return report15Dao.findByReportId(paramReportId);
+        return report015Dao.findByReportId(paramReportId);
     }
 
     @Override
     public Report016 findByReport016ById(Integer paramReportId) {
-        return report16Dao.findByReportId(paramReportId);
+        return report016Dao.findByReportId(paramReportId);
     }
 
     @Override
     public Report017 findByReport017ById(Integer paramReportId) {
-        return report17Dao.findByReportId(paramReportId);
+        return report017Dao.findByReportId(paramReportId);
     }
 
     @Override
     public Report018 findByReport018ById(Integer paramReportId) {
-        return report18Dao.findByReportId(paramReportId);
+        return report018Dao.findByReportId(paramReportId);
+    }
+
+    @Override
+    public Report019 findByReport019ById(Integer paramReportId) {
+        return report019Dao.findByReportId(paramReportId);
     }
 
     @Override

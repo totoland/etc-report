@@ -4,7 +4,7 @@
 
     <groupId>com.ect</groupId>
     <artifactId>ECTReport</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2U-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>ECTReport</name>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>db-mrg-dao</artifactId>
-            <version>${project.version}</version>
+            <version>${db-mrg-dao}</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
