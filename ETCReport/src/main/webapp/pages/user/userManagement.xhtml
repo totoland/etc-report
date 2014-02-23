@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+author : chain
+create date : 19/01/2556
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head></h:head>
+    <h:body>
+        <ui:composition template="../../template/etcTemplateGreen.xhtml">
+            <ui:define name="content">
+                <h:form id="formUser">                    
+                    <p:panel id="panel" header="ค้นหาผู้ใช้" style="margin-bottom:10px;">
+
+                        <h:panelGrid columns="2">  
+                            <h:outputLabel for="groupLvl" value="ระดับผู้ใช้" />
+                            <p:selectOneMenu id="groupLvl" style="width:200px" value="#{userManagementController.userCriteria.groupLvl}">
+                                <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
+                                <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserLvl()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="groupId" value="กลุ่มผู้ใช้" />
+                            <p:selectOneMenu id="groupId" style="width:200px" value="#{userManagementController.userCriteria.groupId}">
+                                <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
+                                <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserGroup()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="criteria_username" value="ชื่อผู้ใช้" style="width:200px"/>
+                            <p:inputText id="criteria_username" value="#{userManagementController.userCriteria.userName}"/>
+                            <p:commandButton value="#{msg.btn_search}" icon="ui-icon-search" action="#{userManagementController.search()}" update="gridUser"/>
+                            <h:panelGroup>
+                                <p:commandButton value="#{msg.btn_reset}" icon="ui-icon-arrowrefresh-1-w" action="#{userManagementController.resetForm()}" update="gridUser"/>
+                                <p:commandButton value="สร้างผู้ใช้ใหม่" icon="ui-icon-plusthick" action="#{userManagementController.initCreateUser()}" update="modalDialogCreate"/>
+                            </h:panelGroup>
+                        </h:panelGrid>  
+                    </p:panel>
+
+                    <p:dataTable id="gridUser" var="item" value="#{userManagementController.ectUsers}"
+                                 paginator="true" rows="10" emptyMessage="#{msg.no_data_found}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="10,15,20">
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="ชื่อผู้ใช้" />
+                            </f:facet>
+                            <h:outputText value="#{item.username}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="ชื่อ-นามสกุล" />
+                            </f:facet>
+                            <h:outputText value="#{item.fname} #{item.lname}" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="กลุ่มผู้ใช้" />
+                            </f:facet>
+                            <h:outputText value="#{item.userGroupName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="ระดับกลุ่มผู้ใช้" />
+                            </f:facet>
+                            <h:outputText value="#{item.userGroupLvlName}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputLabel value=""/>
+                            </f:facet>
+                            <p:commandButton value="#{msg.btn_edit}" action="#{userManagementController.initEditUser(item)}" update=":formUser:modalDialogEdit"/>
+                        </p:column>
+                        <f:facet name="footer">
+
+                        </f:facet>
+                    </p:dataTable>
+
+                    <p:dialog id="modalDialogCreate" header="เพิ่มผู่ใช้" widgetVar="modalDialogCreate" modal="true">  
+                        <p:panelGrid columns="2">  
+                            <h:outputLabel for="username" value="ชื่อผู้ใช้ (username)" />
+                            <p:inputText id="username" value="#{userManagementController.ectUser.username}"/>
+                            <h:outputLabel for="password" value="รหัสผ่าน" />
+                            <p:password id="password" value="#{userManagementController.ectUser.password}"/>
+                            <h:outputLabel for="password2" value="รหัสผ่านอีกครั้ง" />
+                            <p:password id="password2" value="#{userManagementController.rePassword}"/>
+                            <h:outputLabel for="fname" value="ชื่อ" />
+                            <p:inputText id="fname" value="#{userManagementController.ectUser.fname}"/>
+                            <h:outputLabel for="lname" value="นามสกุล" />
+                            <p:inputText id="lname" value="#{userManagementController.ectUser.lname}"/>
+                            <h:outputLabel for="sex" value="เพศ" />
+                            <h:selectOneRadio id="sex" value="#{userManagementController.ectUser.sex}" style="border-style:none">  
+                                <f:selectItem itemLabel="ชาย" itemValue="0" />  
+                                <f:selectItem itemLabel="หญิง" itemValue="1" /> 
+                            </h:selectOneRadio>
+                            <h:outputLabel for="userGroupLvl" value="ระดับผู้ใช้" style="width:200px"/>
+                            <p:selectOneMenu id="userGroupLvl" style="width:200px" value="#{userManagementController.ectUser.userGroupLvl}">
+                                <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
+                                <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserLvl()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="userGroup" value="กลุ่มผู้ใช้" style="width:200px"/>
+                            <p:selectOneMenu id="userGroup" style="width:200px" value="#{userManagementController.ectUser.userGroupId}">
+                                <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
+                                <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserGroup()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="isactive" value="สถานะ" style="width:200px"/>
+                            <h:selectOneRadio id="isactive" value="#{userManagementController.ectUser.isActive}" style="border-style:none">  
+                                <f:selectItem itemLabel="ทำงาน" itemValue="true" />  
+                                <f:selectItem itemLabel="หยุดทำงาน" itemValue="false" /> 
+                            </h:selectOneRadio>
+                            <h:outputLabel value=""/>
+                            <h:panelGroup>
+                            <p:commandButton value="#{msg.btn_save}"  icon="ui-icon-disk" action="#{userManagementController.save()}" update="gridUser"/>
+                            <p:commandButton value="#{msg.btn_close}" icon="ui-icon-close" onclick="modalDialogCreate.hide()"/>
+                            </h:panelGroup>
+                        </p:panelGrid>  
+                    </p:dialog>
+                    
+                    <p:dialog id="modalDialogEdit" header="แก้ใขผู่ใช้" widgetVar="modalDialogEdit" modal="true">  
+                        <p:panelGrid columns="2">  
+                            <h:outputLabel for="usernameEdit" value="ชื่อผู้ใช้ (username)" />
+                            <p:inputText id="usernameEdit" value="#{userManagementController.ectUser.username}"/>
+                            <h:outputLabel for="passwordEdit" value="รหัสผ่าน" />
+                            <p:password redisplay="true" id="passwordEdit" value="#{userManagementController.ectUser.password}"/>
+                            <h:outputLabel for="password2Edit" value="รหัสผ่านอีกครั้ง" title="ระบุรหัสผ่านอีกครั้ง"/>
+                            <p:password redisplay="true" id="password2Edit" value="#{userManagementController.rePassword}"/>
+                            <h:outputLabel for="fnameEdit" value="ชื่อ" />
+                            <p:inputText id="fnameEdit" value="#{userManagementController.ectUser.fname}"/>
+                            <h:outputLabel for="lnameEdit" value="นามสกุล" />
+                            <p:inputText id="lnameEdit" value="#{userManagementController.ectUser.lname}"/>
+                            <h:outputLabel for="sexEdit" value="เพศ" />
+                            <h:selectOneRadio id="sexEdit" value="#{userManagementController.ectUser.sex}" style="border-style:none">  
+                                <f:selectItem itemLabel="ชาย" itemValue="0" />  
+                                <f:selectItem itemLabel="หญิง" itemValue="1" /> 
+                            </h:selectOneRadio>
+                            <h:outputLabel for="userGroupLvlEdit" value="ระดับผู้ใช้" style="width:200px"/>
+                            <p:selectOneMenu id="userGroupLvlEdit" style="width:200px" value="#{userManagementController.ectUser.userGroupLvl}">
+                                <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
+                                <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserLvl()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="userGroupEdit" value="กลุ่มผู้ใช้" style="width:200px"/>
+                            <p:selectOneMenu id="userGroupEdit" style="width:200px" value="#{userManagementController.ectUser.userGroupId}">
+                                <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
+                                <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserGroup()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <h:outputLabel for="isactiveEdit" value="สถานะ" style="width:200px"/>
+                            <h:selectOneRadio id="isactiveEdit" value="#{userManagementController.ectUser.isActive}" style="border-style:none">  
+                                <f:selectItem itemLabel="ทำงาน" itemValue="true" />  
+                                <f:selectItem itemLabel="หยุดทำงาน" itemValue="false" /> 
+                            </h:selectOneRadio>
+                            <h:outputLabel value=""/>
+                            <h:panelGroup>
+                            <p:commandButton value="#{msg.btn_save}"  icon="ui-icon-disk" action="#{userManagementController.edit()}" update=":formUser:gridUser"/>
+                            <p:commandButton value="#{msg.btn_close}" icon="ui-icon-close" onclick="modalDialogEdit.hide()"/>
+                            </h:panelGroup>
+                        </p:panelGrid>  
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

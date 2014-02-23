@@ -111,6 +111,10 @@ public abstract class BaseFormReportController extends BaseController {
      */
     public abstract void fileXLSDownload();
 
+    public boolean canCreateReport(){
+        return getUserAuthen().getUserGroupLvl().intValue() == 4;
+    }
+    
     public boolean canApprove(Integer flowStatusId) {
 
         ViewUser user = getUserAuthen();

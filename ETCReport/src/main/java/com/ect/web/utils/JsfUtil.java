@@ -165,19 +165,19 @@ public class JsfUtil implements Serializable {
      *
      * @param dialogId
      */
-    public void closeDialog(String dialogId) {
+    public static void closeDialog(String dialogId) {
         executeJavaScript(dialogId + ".hide()");
     }
 
-    public void openDialog(String dialogId) {
+    public static void openDialog(String dialogId) {
         executeJavaScript(dialogId + ".show()");
     }
 
-    public void consoleLog(String log) {
+    public static void consoleLog(String log) {
         executeJavaScript("logger('" + log + "');");
     }
 
-    public void redirectPage(String url) {
+    public static void redirectPage(String url) {
         ExternalContext _context = FacesContext.getCurrentInstance().getExternalContext();
         try {
             _context.redirect(_context.getRequestContextPath() + url);

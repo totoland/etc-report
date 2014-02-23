@@ -25,7 +25,7 @@ and open the template in the editor.
 
                             <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}" oncomplete="resetDdl()"/>
 
-                            <p:tab id="tab0" title="สร้างรายงาน">
+                            <p:tab id="tab0" title="สร้างรายงาน" rendered="#{formSelectReport.canCreateReport()}">
 
                                 <p:panel header="ระบบรายงานผลการปฏิบัติงานประจำเดือนฯ" style="margin-bottom:10px;">  
 

@@ -362,4 +362,47 @@ public class DropdownFactory implements Serializable {
         return null;
 
     }
+    
+    private static List<DropDownList> ectGroupLvl;
+    /***
+     * ระดับผู้ใช้
+     * @return 
+     */
+    public List<DropDownList>ddlUserLvl(){
+        if (ectGroupLvl == null) {
+
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("ECT_GROUP_LVL");
+            criteria.setOrderByField("GROUP_LVL_ID");
+            criteria.setName("GROUP_LVL_NAME");
+            criteria.setValue("GROUP_LVL_ID");
+            criteria.setSortName("ASC");
+            criteria.setCondition("GROUP_LVL_ID <> 5");
+
+            ectGroupLvl = commonService.getDropdownList(criteria);
+        }
+
+        return ectGroupLvl;
+    }
+    
+    private List<DropDownList> ectUserGroup;
+    /***
+     * กลุ่มผู้ใช้
+     * @return 
+     */
+    public List<DropDownList>ddlUserGroup(){
+        if (ectUserGroup == null) {
+
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("ECT_USER_GROUP");
+            criteria.setOrderByField("USER_GROUP_NAME");
+            criteria.setName("USER_GROUP_NAME");
+            criteria.setValue("USER_GROUP_ID");
+            criteria.setSortName("ASC");
+
+            ectUserGroup = commonService.getDropdownList(criteria);
+        }
+
+        return ectUserGroup;
+    }
 }

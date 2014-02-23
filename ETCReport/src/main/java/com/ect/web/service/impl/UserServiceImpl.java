@@ -5,9 +5,12 @@
 package com.ect.web.service.impl;
 
 import com.ect.db.authen.dao.AuthenDao;
+import com.ect.db.bean.UserCriteria;
 import com.ect.db.entity.ViewUser;
+import com.ect.db.user.dao.UserDao;
 import com.ect.web.service.UserService;
 import java.io.Serializable;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +24,17 @@ public class UserServiceImpl implements UserService , Serializable{
     
     @Autowired
     AuthenDao authenDao;
+    @Autowired
+    UserDao userDao;
     
     @Override
     public ViewUser findByUserId(Integer userId){
         return authenDao.findByUserId(userId);
+    }
+    
+    @Override
+    public List<ViewUser> findByUserName(UserCriteria userName){
+        return userDao.searchByUserName(userName);
     }
     
 }
