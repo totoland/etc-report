@@ -293,7 +293,7 @@ public class ViewUser extends DomainEntity{
 
     @Override
     public String toString() {
-        return "ViewUser{" + "userId=" + userId + ", username=" + username + ", password=" + password + ", isActive=" + isActive + ", fname=" + fname + ", lname=" + lname + ", sex=" + sex + ", userGroupId=" + userGroupId + ", provinceId=" + provinceId + ", provinceName=" + provinceName + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", userGroupLvlName=" + userGroupLvlName + '}';
+        return "ViewUser{" + "userId=" + userId + ", username=" + username + ", isActive=" + isActive + ", fname=" + fname + ", lname=" + lname + ", sex=" + sex + ", userGroupId=" + userGroupId + ", provinceId=" + provinceId + ", provinceName=" + provinceName + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", userGroupLvlName=" + userGroupLvlName + '}';
     }
     
 }
