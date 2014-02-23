@@ -137,7 +137,7 @@ public class AllReportController extends BaseFormReportController {
 
         if (viewUser != null) {
 
-            depName = viewUser.getProvinceName();
+            depName = viewUser.getUserGroupName();
 
         }
 
