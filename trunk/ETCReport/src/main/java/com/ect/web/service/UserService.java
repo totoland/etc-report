@@ -4,7 +4,9 @@
  */
 package com.ect.web.service;
 
+import com.ect.db.bean.UserCriteria;
 import com.ect.db.entity.ViewUser;
+import java.util.List;
 
 /**
  *
@@ -12,4 +14,5 @@ import com.ect.db.entity.ViewUser;
  */
 public interface UserService {
     ViewUser findByUserId(Integer userId);
+    List<ViewUser> findByUserName(UserCriteria userName);
 }

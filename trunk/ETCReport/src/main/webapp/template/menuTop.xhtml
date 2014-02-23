@@ -27,14 +27,17 @@
                 <p:menubar>  
                     <p:menuitem value="หน้าหลัก" url="${pageContext.request.contextPath}/pages/form/index.xhtml" icon="ui-icon-contact"/>
                     <p:menuitem value="หน้าออกรายงาน" url="${pageContext.request.contextPath}/pages/report/formReport.xhtml" icon="ui-icon-print"/>                
-                    <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/permission/permission.xhtml" icon="ui-icon-comment"/>  
+                    <p:submenu label="จัดการสิทธิ์ผู้ใช้" icon="ui-icon-person">
+                        <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/user/userManagement.xhtml" icon="ui-icon-comment">
+                        </p:menuitem>
+                    </p:submenu>
                     <p:submenu label="ดาวน์โหลด" icon="ui-icon-comment">  
                     </p:submenu>
 
                     <p:submenu label="ติดต่อเรา" icon="ui-icon-person">
                     </p:submenu>
-
-                    <f:facet name="options">  
+                    
+                    <f:facet name="options"> 
                         <p:commandButton value="Logout" icon="ui-icon-extlink" onclick="return confirm('ยืนยันการออกจากระบบ')" update="@form" action="#{loginController.logout()}"/>  
                     </f:facet>
                 </p:menubar>
