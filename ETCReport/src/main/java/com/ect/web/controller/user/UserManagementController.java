@@ -175,6 +175,7 @@ public class UserManagementController extends BaseController {
     @Override
     public void resetForm() {
         initForm();
+        userCriteria = new UserCriteria();
     }
 
     public void initForm() {
