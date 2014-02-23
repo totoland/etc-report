@@ -33,7 +33,23 @@ public abstract class BaseDao extends HibernateDaoSupport {
 
         return t;
     }
+    
+    public List findNativeQuery(final String SQL, final Class entity, final List<Object> value) {
+        List t = (List) getHibernateTemplate().execute(new HibernateCallback() {
+            @Override
+            public Object doInHibernate(Session sn) throws HibernateException, SQLException {
+                SQLQuery query = sn.createSQLQuery(SQL).addEntity(entity);
 
+                for (int i = 0; i < value.size(); i++) {
+                    query.setParameter(i, value.get(i));
+                }
+
+                return query.list();
+            }
+        });
+        return t;
+    }
+    
     public List findNativeQuery(final String SQL, final Class entity, final Object... value) {
         List t = (List) getHibernateTemplate().execute(new HibernateCallback() {
             @Override

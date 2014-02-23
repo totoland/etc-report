@@ -6,6 +6,7 @@ package com.ect.dbmrgdao;
 
 import com.ect.db.authen.dao.AuthenDao;
 import com.ect.db.bean.ReportCriteria;
+import com.ect.db.bean.UserCriteria;
 import com.ect.db.common.dao.EctConfDao;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.db.common.dao.hibernate.EctConfManager;
@@ -19,6 +20,7 @@ import com.ect.db.report.dao.Report004Dao;
 import com.ect.db.report.dao.Report006Dao;
 import com.ect.db.report.dao.Report023Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
+import com.ect.db.user.dao.UserDao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +65,8 @@ public class Test {
     GennericDao<EctProvince> gennericDao;
     @Autowired
     Report006Dao report006Dao;
+    @Autowired
+    UserDao userDao;
 
     @Before
     public void init() throws Exception {
@@ -71,12 +75,22 @@ public class Test {
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
 
+    @org.junit.Test
+    public void testUser(){
+        UserCriteria criteria = new UserCriteria();
+        criteria.setUserName("เจ้า");
+        System.out.println(userDao.searchByUserName(criteria));
+    }
+    
+    @Ignore
+    @org.junit.Test
     public void testReport006() {
 
         System.out.println(report006Dao.findByReportId(1));
 
     }
 
+    @Ignore
     @org.junit.Test
     public void testReport023() {
         System.out.println(report023Dao.findByReportId(1));

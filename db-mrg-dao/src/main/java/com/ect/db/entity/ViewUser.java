@@ -44,6 +44,8 @@ public class ViewUser extends DomainEntity{
     private String userGroupName;
     @Column(name ="USER_GROUP_LVL")
     private Integer userGroupLvl;
+    @Column(name ="GROUP_LVL_NAME")
+    private String userGroupLvlName;
     
     /**
      * @return the userId
@@ -260,12 +262,7 @@ public class ViewUser extends DomainEntity{
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "ViewUser{" + "userId=" + userId + ", username=" + username + ", password=" + password + ", isActive=" + isActive + ", fname=" + fname + ", lname=" + lname + ", sex=" + sex + ", userGroupId=" + userGroupId + ", provinceId=" + provinceId + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + '}';
-    }
-
+    
     /**
      * @return the provinceName
      */
@@ -278,6 +275,25 @@ public class ViewUser extends DomainEntity{
      */
     public void setProvinceName(String provinceName) {
         this.provinceName = provinceName;
+    }
+
+    /**
+     * @return the userGroupLvlName
+     */
+    public String getUserGroupLvlName() {
+        return userGroupLvlName;
+    }
+
+    /**
+     * @param userGroupLvlName the userGroupLvlName to set
+     */
+    public void setUserGroupLvlName(String userGroupLvlName) {
+        this.userGroupLvlName = userGroupLvlName;
+    }
+
+    @Override
+    public String toString() {
+        return "ViewUser{" + "userId=" + userId + ", username=" + username + ", password=" + password + ", isActive=" + isActive + ", fname=" + fname + ", lname=" + lname + ", sex=" + sex + ", userGroupId=" + userGroupId + ", provinceId=" + provinceId + ", provinceName=" + provinceName + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", userGroupLvlName=" + userGroupLvlName + '}';
     }
     
 }

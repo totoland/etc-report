@@ -11,6 +11,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,8 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "EctUser.findAll", query = "SELECT e FROM EctUser e")})
 public class EctUser extends DomainEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -4855261819879712859L;
+    
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "USER_ID")
     private Integer userId;
@@ -48,6 +52,8 @@ public class EctUser extends DomainEntity implements Serializable {
     private Integer userGroupId;
     @Column(name = "PROVINCE_ID")
     private Integer provinceId;
+    @Column(name = "USER_GROUP_LVL")
+    private Integer userGroupLvl;
 
     public EctUser() {
     }
@@ -147,5 +153,17 @@ public class EctUser extends DomainEntity implements Serializable {
         }
         return true;
     }
-    
+
+    public Integer getUserGroupLvl() {
+        return userGroupLvl;
+    }
+
+    public void setUserGroupLvl(Integer userGroupLvl) {
+        this.userGroupLvl = userGroupLvl;
+    }
+
+    @Override
+    public String toString() {
+        return "EctUser{" + "userId=" + userId + ", username=" + username + ", password=" + password + ", isActive=" + isActive + ", fname=" + fname + ", lname=" + lname + ", sex=" + sex + ", userGroupId=" + userGroupId + ", provinceId=" + provinceId + ", userGroupLvl=" + userGroupLvl + '}';
+    }
 }
