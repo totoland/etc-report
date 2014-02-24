@@ -6,6 +6,8 @@ package com.ect.web.controller.form;
 
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus;
+import com.ect.db.entity.EctGroupLvl;
+import com.ect.db.entity.EctGroupLvl.GroupLevel;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
@@ -111,10 +113,19 @@ public abstract class BaseFormReportController extends BaseController {
      */
     public abstract void fileXLSDownload();
 
-    public boolean canCreateReport(){
-        return getUserAuthen().getUserGroupLvl().intValue() == 4;
+    /**
+     * *
+     * Only SYS_ADMIN OR OPERATOR can See Tab Create Report
+     *
+     * @return boolean
+     */
+    public boolean canCreateReport() {
+        if (getUserAuthen() == null) {
+            return false;
+        }
+        return getUserAuthen().getUserGroupLvl().intValue() == GroupLevel.OPERATOR.getLevel() || getUserAuthen().getUserGroupLvl().intValue() == GroupLevel.SYSTEM_ADMIN.getLevel();
     }
-    
+
     public boolean canApprove(Integer flowStatusId) {
 
         ViewUser user = getUserAuthen();

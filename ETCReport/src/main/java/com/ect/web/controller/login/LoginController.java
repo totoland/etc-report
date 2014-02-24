@@ -31,24 +31,22 @@ public class LoginController extends BaseController {
     private String passWord;
     @ManagedProperty(value = "#{authenDao}")
     private AuthenDao authenDao;
-    
     private ViewUser loginUser;
-    
     private boolean loggedIn = false;
 
     @PostConstruct
     public void init() {
-        
+
         logger.info("init");
     }
 
     public void loginProcess() {
-        
+
         //MDC.put("reqId", ECTUtils.generateToken());
-        
+
         logger.info("loginProcess!!");
 
-        logger.info("userName : {} , passWord : {}", userName,passWord);
+        logger.info("userName : {} , passWord : {}", userName, passWord);
 
         if (!validateLongin()) {
             addError("loggin fial!!");
@@ -59,20 +57,15 @@ public class LoginController extends BaseController {
          * *
          * Authen Login
          */
-        
         try {
 
             String nPassWord = ECTUtils.encrypt(passWord);
-            
+
             loginUser = getAuthenDao().loginUser(userName, nPassWord);
-            
-            loggedIn = true;
-            
-            super.getRequest().getSession().setAttribute("userAuthen", loginUser);
 
         } catch (Exception ex) {
-        
-            logger.error("Cannot Authen : ",ex);
+
+            logger.error("Cannot Authen : ", ex);
             return;
         }
 
@@ -86,23 +79,37 @@ public class LoginController extends BaseController {
 
         }
 
+        if (!loginUser.getIsActive()) {
+
+            addError(MessageUtils.getResourceBundleString("login.authen.disabled"));
+
+            logger.warn("Login {} block user was disbled!!", loginUser);
+
+            return;
+
+        }
+
+        loggedIn = true;
+
+        super.getRequest().getSession().setAttribute("userAuthen", loginUser);
+
         addInfo(MessageUtils.getResourceBundleString("login.loginprocess"));
 
         String path = JsfUtil.getContextPath();
 
         logger.trace("path : {}", path);
 
-        executeJavaScript("setTimeout(function(){window.location='"+path+"/pages/form/index.xhtml';blockUI.show();},100);");
+        executeJavaScript("setTimeout(function(){window.location='" + path + "/pages/form/index.xhtml';blockUI.show();},100);");
 
     }
-    
-    public void logout(){
-        
+
+    public void logout() {
+
         logger.trace("logout!!");
-    
+
         super.getRequest().getSession().invalidate();
-        
-        redirectPage(JsfUtil.getContextPath()+"/pages/login/login.xhtml");
+
+        redirectPage(JsfUtil.getContextPath() + "/pages/login/login.xhtml");
     }
 
     /**
@@ -188,5 +195,4 @@ public class LoginController extends BaseController {
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
     }
-    
 }

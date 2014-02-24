@@ -377,7 +377,7 @@ public class DropdownFactory implements Serializable {
             criteria.setName("GROUP_LVL_NAME");
             criteria.setValue("GROUP_LVL_ID");
             criteria.setSortName("ASC");
-            criteria.setCondition("GROUP_LVL_ID <> 5");
+            //criteria.setCondition("GROUP_LVL_ID <> 5");
 
             ectGroupLvl = commonService.getDropdownList(criteria);
         }

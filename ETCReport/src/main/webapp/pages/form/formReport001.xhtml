@@ -38,29 +38,35 @@ and open the template in the editor.
                         <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                     </p:selectOneMenu>  
                     <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
-                    <p:selectOneMenu style="width: 180px;" id="REPORT_001strategicId" value="#{formReport001Controller.report001.strategicId}">  
+                    <p:selectOneMenu style="width: 220px;" id="REPORT_001strategicId" value="#{formReport001Controller.report001.strategicId}">  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlStrategic()}"></f:selectItems>
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
+                                       value="#{formReport001Controller.dropdownFactory.ddlStrategic()}">
+                        </f:selectItems>
+                        <p:ajax update="subStrategicId"/>  
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId"/>
-                    <p:selectOneMenu style="width: 180px;" value="#{formReport001Controller.report001.subStrategicId}" >  
+                    <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{formReport001Controller.report001.subStrategicId}">  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlSubStrategic(formReport001Controller.report001.strategicId)}"></f:selectItems>
+                        <p:ajax update="REPORT_001planId"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกแผนงาน : "/>
-                    <p:selectOneMenu style="width: 180px;" id="REPORT_001planId" value="#{formReport001Controller.report001.planId}" >  
+                    <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{formReport001Controller.report001.planId}">  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlPlan()}"></f:selectItems>  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlPlan(formReport001Controller.report001.subStrategicId)}"></f:selectItems>  
+                        <p:ajax update="REPORT_001projectId"/>
                     </p:selectOneMenu>
-                    <p:outputLabel value="เลือกโครงการ : " />
-                    <p:selectOneMenu style="width: 180px;" id="REPORT_001projectId"  value="#{formReport001Controller.report001.projectId}" >  
+                    <p:outputLabel value="เลือกโครงการ : "/>
+                    <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{formReport001Controller.report001.projectId}">  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlProject()}"></f:selectItems> 
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlProject(formReport001Controller.report001.planId)}"></f:selectItems> 
+                        <p:ajax update="REPORT_001Activity"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกกิจกรรม : " />
-                    <p:selectOneMenu style="width: 180px;" value="#{formReport001Controller.report001.activityId}">  
+                    <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{formReport001Controller.report001.activityId}">  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlActivity()}"></f:selectItems> 
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlActivity(formReport001Controller.report001.projectId)}"></f:selectItems> 
                     </p:selectOneMenu>
                     <p:outputLabel value=""/>
                     <p:outputLabel value=""/>                            

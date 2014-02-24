@@ -85,6 +85,10 @@
         <exception-type>com.ect.web.controller.exception.SessionExpireException</exception-type>
         <location>/pages/errors/session_expired.xhtml</location>
     </error-page>
+    <error-page>
+        <exception-type>com.ect.web.controller.exception.AccessDenieException</exception-type>
+        <location>/pages/errors/access_denie.xhtml</location>
+    </error-page>
     <welcome-file-list>
         <welcome-file>pages/login/login.xhtml</welcome-file>
     </welcome-file-list>
@@ -95,5 +99,9 @@
     <error-page>
         <error-code>401</error-code>
         <location>/pages/login/login.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/errors/404.xhtml</location>
     </error-page>
 </web-app>
