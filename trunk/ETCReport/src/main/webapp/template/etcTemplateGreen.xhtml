@@ -97,7 +97,7 @@
                 logger("checkAuthen");
                 secLogin = 6000;
                 var user = '${formSelectReport.userAuthen.isActive}';
-            
+                
                 if (user == null || user == '') {
                     alert("#{msg.session_timeout}");
                     window.location = '${request.contextPath}/pages/login/login.xhtml';

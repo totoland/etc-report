@@ -80,7 +80,7 @@ and open the template in the editor.
 
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_005pn_frmDetailDetail">
                             <f:facet name="header"  class="txtLeft">
-                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005dlgAddReportDetail.show()" update="REPORT_005pn_addReportDetail" actionListener="#{formReport005Controller.initReportDetail()}"/>
+                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005dlgAddReportDetail.show()" update="REPORT_005pn_addReportDetail" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport002Controller.paramMode=='edit'}"/>
                             </f:facet>       
 
 
@@ -208,7 +208,7 @@ and open the template in the editor.
                         </p:panelGrid>
                         <p:panelGrid columns="1" styleClass="frmDetail3" id="REPORT_005pnlFrm3" style="width: 100%">
                             <f:facet name="header"  class="txtLeft">
-                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" actionListener="#{formReport005Controller.initReportDetail()}"/>
+                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport002Controller.paramMode=='edit'}"/>
                             </f:facet>
 
                             <p:dataTable var="item" value="#{formReport005Controller.report005Details2}" id="REPORT_005Grid2" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  

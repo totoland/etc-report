@@ -100,12 +100,13 @@ public abstract class BaseController implements Serializable {
         return viewUser;
     }
 
-    public void sendError(FacesContext faces, int code, String message) {
+    public void sendError(int code, String message) {
         try {
+            FacesContext faces = FacesContext.getCurrentInstance();
             faces.getExternalContext().setResponseStatus(code);
             faces.getExternalContext().getRequestMap().put("javax.servlet.error.message", message);
             ViewHandler views = faces.getApplication().getViewHandler();
-            String template = "/pages/error/" + code + ".xhtml";
+            String template = "/pages/errors/" + code + ".xhtml";
             UIViewRoot view = views.createView(faces, template);
             faces.setViewRoot(view);
             views.getViewDeclarationLanguage(faces, template).

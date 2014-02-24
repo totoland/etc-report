@@ -5,9 +5,11 @@
 package com.ect.web.controller.user;
 
 import com.ect.db.bean.UserCriteria;
+import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.entity.EctUser;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
+import com.ect.web.controller.exception.AccessDenieException;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.service.UserService;
@@ -21,6 +23,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.view.facelets.FaceletContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,6 +51,7 @@ public class UserManagementController extends BaseController {
     @PostConstruct
     public void init() {
         logger.trace("initPage");
+        checkRole();
         initForm();
     }
 
@@ -101,7 +105,8 @@ public class UserManagementController extends BaseController {
     }
 
     public void save() {
-        logger.trace("save...");
+        
+        logger.trace("Save... {} ", ectUser);
 
         if (!validateBeforeSave()) {
             return;
@@ -129,7 +134,6 @@ public class UserManagementController extends BaseController {
             logger.error("Cannot Save Data : ", ex);
         } finally {
 
-            logger.trace("Save... {} ", ectUser);
             resetForm();
 
         }
@@ -284,10 +288,10 @@ public class UserManagementController extends BaseController {
         if (ectUser.getSex() == null) {
             msg += (MessageUtils.getResourceBundleString("require_message", "เพศ")) + ("\\n");
         }
-        if (ectUser.getUserGroupLvl() == null || ectUser.getUserGroupLvl().intValue() == 0) {
+        if (ectUser.getUserGroupLvl() == null || ectUser.getUserGroupLvl().intValue() == -1) {
             msg += (MessageUtils.getResourceBundleString("require_message", "ระดับผู้ใช้")) + ("\\n");
         }
-        if (ectUser.getUserGroupId() == null || ectUser.getUserGroupId().intValue() == 0) {
+        if (ectUser.getUserGroupId() == null || ectUser.getUserGroupId().intValue() == -1) {
             msg += (MessageUtils.getResourceBundleString("require_message", "กลุ่มผู้ใช้")) + ("\\n");
         }
         if (ectUser.getIsActive() == null) {
@@ -319,5 +323,12 @@ public class UserManagementController extends BaseController {
      */
     public void setRePassword(String rePassword) {
         this.rePassword = rePassword;
+    }
+
+    private void checkRole() {
+        if(getUserAuthen().getUserGroupLvl().intValue()!=EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()){
+            sendError(401, "Cannot Access User Management Page ,You are not Admin.");
+            //throw new AccessDenieException("Cannot Access User Management Page ,You are not Admin.");
+        };
     }
 }

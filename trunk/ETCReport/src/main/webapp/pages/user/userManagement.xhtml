@@ -72,6 +72,12 @@ create date : 19/01/2556
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="สถานะ" />
+                            </f:facet>
+                            <h:outputText value="#{item.isActive?'ใช้งาน':'ระงับการใช้งาน'}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputLabel value=""/>
                             </f:facet>
                             <p:commandButton value="#{msg.btn_edit}" action="#{userManagementController.initEditUser(item)}" update=":formUser:modalDialogEdit"/>
@@ -110,12 +116,12 @@ create date : 19/01/2556
                             </p:selectOneMenu>
                             <h:outputLabel for="isactive" value="สถานะ" style="width:200px"/>
                             <h:selectOneRadio id="isactive" value="#{userManagementController.ectUser.isActive}" style="border-style:none">  
-                                <f:selectItem itemLabel="ทำงาน" itemValue="true" />  
-                                <f:selectItem itemLabel="หยุดทำงาน" itemValue="false" /> 
+                                <f:selectItem itemLabel="ใช้งาน" itemValue="true" />  
+                                <f:selectItem itemLabel="ระงับการใช้งาน" itemValue="false" /> 
                             </h:selectOneRadio>
                             <h:outputLabel value=""/>
                             <h:panelGroup>
-                            <p:commandButton value="#{msg.btn_save}"  icon="ui-icon-disk" action="#{userManagementController.save()}" update="gridUser"/>
+                                <p:commandButton value="#{msg.btn_save}"  icon="ui-icon-disk" action="#{userManagementController.save()}" process="modalDialogCreate" update="gridUser"/>
                             <p:commandButton value="#{msg.btn_close}" icon="ui-icon-close" onclick="modalDialogCreate.hide()"/>
                             </h:panelGroup>
                         </p:panelGrid>  
@@ -150,12 +156,12 @@ create date : 19/01/2556
                             </p:selectOneMenu>
                             <h:outputLabel for="isactiveEdit" value="สถานะ" style="width:200px"/>
                             <h:selectOneRadio id="isactiveEdit" value="#{userManagementController.ectUser.isActive}" style="border-style:none">  
-                                <f:selectItem itemLabel="ทำงาน" itemValue="true" />  
-                                <f:selectItem itemLabel="หยุดทำงาน" itemValue="false" /> 
+                                <f:selectItem itemLabel="ใช้งาน" itemValue="true" />  
+                                <f:selectItem itemLabel="ระงับการใช้งาน" itemValue="false" /> 
                             </h:selectOneRadio>
                             <h:outputLabel value=""/>
                             <h:panelGroup>
-                            <p:commandButton value="#{msg.btn_save}"  icon="ui-icon-disk" action="#{userManagementController.edit()}" update=":formUser:gridUser"/>
+                            <p:commandButton value="#{msg.btn_save}"  icon="ui-icon-disk" action="#{userManagementController.edit()}" process="modalDialogEdit" update=":formUser:gridUser"/>
                             <p:commandButton value="#{msg.btn_close}" icon="ui-icon-close" onclick="modalDialogEdit.hide()"/>
                             </h:panelGroup>
                         </p:panelGrid>  

@@ -12,22 +12,13 @@
     <body>
         <ui:composition>
             <style type="text/css">
-                .menubar{
-                    position: relative;
-                    display: block;
-                    height: 27px;
-                    text-decoration: none;
-                    color: #3F5469;
-                    padding: 0 10px;
-                    line-height: 27px;
-                    text-align: center;
-                }
+
             </style>
             <h:form>
                 <p:menubar>  
                     <p:menuitem value="หน้าหลัก" url="${pageContext.request.contextPath}/pages/form/index.xhtml" icon="ui-icon-contact"/>
                     <p:menuitem value="หน้าออกรายงาน" url="${pageContext.request.contextPath}/pages/report/formReport.xhtml" icon="ui-icon-print"/>                
-                    <p:submenu label="จัดการสิทธิ์ผู้ใช้" icon="ui-icon-person">
+                    <p:submenu label="จัดการสิทธิ์ผู้ใช้" icon="ui-icon-person" rendered="#{formSelectReport.userAuthen.userGroupLvl == 0}">
                         <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/user/userManagement.xhtml" icon="ui-icon-comment">
                         </p:menuitem>
                     </p:submenu>
@@ -36,9 +27,12 @@
 
                     <p:submenu label="ติดต่อเรา" icon="ui-icon-person">
                     </p:submenu>
-                    
-                    <f:facet name="options"> 
-                        <p:commandButton value="Logout" icon="ui-icon-extlink" onclick="return confirm('ยืนยันการออกจากระบบ')" update="@form" action="#{loginController.logout()}"/>  
+
+                    <f:facet name="options">
+                        <h:panelGrid columns="2">
+                            <p:button value="ยินดีต้อนรับ #{loginController.userAuthen.fname}" icon="ui-icon-person"/>
+                            <p:commandButton value="ออกจากระบบ" icon="ui-icon-extlink" onclick="return confirm('ยืนยันการออกจากระบบ')" update="@form" action="#{loginController.logout()}"/>  
+                        </h:panelGrid>
                     </f:facet>
                 </p:menubar>
             </h:form>
