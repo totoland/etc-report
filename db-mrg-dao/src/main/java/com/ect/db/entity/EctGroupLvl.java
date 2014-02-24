@@ -90,7 +90,26 @@ public class EctGroupLvl implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ect.db.entity.EctGroupLvl[ groupLvlId=" + groupLvlId + " ]";
+        return "EctGroupLvl{" + "groupLvlId=" + groupLvlId + ", groupLvlName=" + groupLvlName + ", groupLvlDesc=" + groupLvlDesc + '}';
+    }
+    
+    public static enum GroupLevel {
+
+        SYSTEM_ADMIN(0),
+        CENTER(1),
+        LEAD(2),
+        HEAD(3), 
+        OPERATOR(4);
+        
+        private int level = 0;
+        
+        GroupLevel(int level) {
+            this.level = level;
+        }
+
+        public int getLevel() {
+            return level;
+        }
     }
     
 }
