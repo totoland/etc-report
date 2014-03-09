@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_009" rendered="#{formSelectReport.reportCode=='REPORT_009'}">
         <p:dialog id="REPORT_MainDialog_REPORT_009" header="#{msg.report_009_header}" widgetVar="REPORT_MainDialog_REPORT_009" modal="true">                         
@@ -57,7 +58,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.donate}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.donate}" />  
+                                        <totoland:inputNumber value="#{item.donate}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -94,7 +95,7 @@ and open the template in the editor.
                 <p:inputText id="REPORT_009lb01" value="#{formReport009Controller.inputReport009Detail.politicalParty}"/>  
 
                 <h:outputLabel value="จำนวนเงินที่ได้รับบริจาค *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_009lb02" value="#{formReport009Controller.inputReport009Detail.donate}"/>  
+                <totoland:inputNumber id="REPORT_009lb02" value="#{formReport009Controller.inputReport009Detail.donate}"/>  
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport009Controller.addReportDetail(actionEvent)}" update="REPORT_009msgAddReportDetail,REPORT_009Grid" icon="ui-icon-check" style="margin:0"/>  

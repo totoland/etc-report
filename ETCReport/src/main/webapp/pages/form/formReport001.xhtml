@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_001" rendered="#{formSelectReport.reportCode=='REPORT_001'}">
 
@@ -219,20 +220,20 @@ and open the template in the editor.
                 <p:inputText id="REPORT_001lb2" value="#{formReport001Controller.inputReport001Detail.goalType}" />  
 
                 <h:outputLabel value="จำนวน (เป้าหมาย)*" />  
-                <p:inputMask mask="9?9999999" id="REPORT_001lb3" value="#{formReport001Controller.inputReport001Detail.goalAmount}" />  
+                <totoland:inputNumber id="REPORT_001lb3" value="#{formReport001Controller.inputReport001Detail.goalAmount}" />  
 
                 <h:outputLabel value="หน่วยนับ (ผลการปฏิบัติงาน) *" />  
                 <p:inputText id="REPORT_001lb4" value="#{formReport001Controller.inputReport001Detail.resultType}" />  
 
                 <h:outputLabel value="จำนวน (ผลการปฏิบัติงาน) *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
+                <totoland:inputNumber id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
 
 
                 <h:outputLabel value="งบประมาณตั้งไว้ *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_001lb6" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
+                <totoland:inputNumber id="REPORT_001lb6" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
 
                 <h:outputLabel value="งบประมาณจ่ายจริง *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_001lb7" value="#{formReport001Controller.inputReport001Detail.budgetReal}" />
+                <totoland:inputNumber id="REPORT_001lb7" value="#{formReport001Controller.inputReport001Detail.budgetReal}" />
 
                 <h:outputLabel value="การบรรลุตัวชี้วัด *" /> 
                 <p:selectOneRadio id="lb7" value="#{formReport001Controller.inputReport001Detail.isPass}" style="border-style:none">  

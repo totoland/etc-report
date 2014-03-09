@@ -289,16 +289,16 @@ and open the template in the editor.
                 <p:inputText id="REPORT_005lb03" value="#{formReport005Controller.inputReport005Detail.electedZone}"/>  
 
                 <h:outputLabel value="ผู้มีสิทธิ์เลือกตั้ง *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_005lb04" value="#{formReport005Controller.inputReport005Detail.voterAmount}"/>
+                <totoland:inputNumber id="REPORT_005lb04" value="#{formReport005Controller.inputReport005Detail.voterAmount}"/>
 
                 <h:outputLabel value="ผู้มาใช้สิทธิ์เลือกตั้ง *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_005lb05" value="#{formReport005Controller.inputReport005Detail.votedAmount}"/>  
+                <totoland:inputNumber id="REPORT_005lb05" value="#{formReport005Controller.inputReport005Detail.votedAmount}"/>  
 
                 <h:outputLabel value="บัตรเสีย *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_005lb07" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
+                <totoland:inputNumber id="REPORT_005lb07" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
 
                 <h:outputLabel value="บัตรไม่ประสงค์จะลงคะแนน *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_005lb08" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
+                <totoland:inputNumber id="REPORT_005lb08" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport005Controller.addReportDetail(actionEvent)}" update="REPORT_005msgAddReportDetail,REPORT_005Grid" icon="ui-icon-check" style="margin:0"/>  
@@ -329,10 +329,10 @@ and open the template in the editor.
                 <p:inputText id="REPORT_005lb3" value="#{formReport005Controller.inputReport005Detail2.election}"/>  
 
                 <h:outputLabel value="จำนวนองค์/รายชื่อที่เสนอ *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_005lb4" value="#{formReport005Controller.inputReport005Detail2.corporateAmount}"/>
+                <totoland:inputNumber id="REPORT_005lb4" value="#{formReport005Controller.inputReport005Detail2.corporateAmount}"/>
 
                 <h:outputLabel value="จำนวน ส.ว. สรรหา *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_005lb5" value="#{formReport005Controller.inputReport005Detail2.senatorNominationAmount}"/>  
+                <totoland:inputNumber id="REPORT_005lb5" value="#{formReport005Controller.inputReport005Detail2.senatorNominationAmount}"/>  
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport005Controller.addReportDetail2(actionEvent)}" update="REPORT_005msgAddReportDetail2,REPORT_005Grid2" icon="ui-icon-check" style="margin:0"/>  

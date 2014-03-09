@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_006" rendered="#{formSelectReport.reportCode=='REPORT_006'}">
         <p:dialog id="REPORT_MainDialog_REPORT_006" header="#{msg.report_006_header}" widgetVar="REPORT_MainDialog_REPORT_006" modal="true">                         
@@ -154,22 +155,22 @@ and open the template in the editor.
                 <p:inputText id="REPORT_006lb1" value="#{formReport006Controller.inputReport006Detail.title}" />  
 
                 <h:outputLabel value="จำนวน (เรื่อง) *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_006lb2" value="#{formReport006Controller.inputReport006Detail.amount}" />  
+                <totoland:inputNumber id="REPORT_006lb2" value="#{formReport006Controller.inputReport006Detail.amount}" />  
 
                 <h:outputLabel value="เสนอผู้บริหาร สนง. (เรื่อง) *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_006lb3" value="#{formReport006Controller.inputReport006Detail.submitManager}" />  
+                <totoland:inputNumber id="REPORT_006lb3" value="#{formReport006Controller.inputReport006Detail.submitManager}" />  
 
                 <h:outputLabel value="เสนอผู้ ปธ.กกต. ลงนามบรรจุวาระ (เรื่อง) *" />  
                 <p:inputText id="REPORT_006lb4" value="#{formReport006Controller.inputReport006Detail.submitPresidentEct}" />  
 
                 <h:outputLabel value="บรรจุวาระแล้ว (เรื่อง) *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_006lb6" value="#{formReport006Controller.inputReport006Detail.submited}" /> 
+                <totoland:inputNumber id="REPORT_006lb6" value="#{formReport006Controller.inputReport006Detail.submited}" /> 
 
                 <h:outputLabel value="เป็นมติ (เรื่อง) *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_006lb7" value="#{formReport006Controller.inputReport006Detail.conclusion}" />
+                <totoland:inputNumber id="REPORT_006lb7" value="#{formReport006Controller.inputReport006Detail.conclusion}" />
 
                 <h:outputLabel value="เป็นความเห็น (เรื่อง) *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_006lb8" value="#{formReport006Controller.inputReport006Detail.comment}" />
+                <totoland:inputNumber id="REPORT_006lb8" value="#{formReport006Controller.inputReport006Detail.comment}" />
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport006Controller.addReportDetail(actionEvent)}" update="REPORT_006msgAddReportDetail,REPORT_006Grid" icon="ui-icon-check" style="margin:0"/>  
