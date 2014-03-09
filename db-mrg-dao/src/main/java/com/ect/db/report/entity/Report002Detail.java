@@ -147,7 +147,7 @@ public class Report002Detail extends DomainEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Report002Detail{" + "reportDetailId=" + reportDetailId + ", workDetail=" + workDetail + ", objective=" + objective + ", goalAmount=" + goalAmount + ", result=" + result + ", budget=" + budget + ", buggetSource=" + buggetSource + ", reportId=" + reportId + '}';
+        return "Report002Detail{" + "reportDetailId=" + reportDetailId + ", workDetail=" + workDetail + ", objective=" + objective + ", goalAmount=" + goalAmount + ", result=" + result + ", budget=" + budget + ", buggetSource=" + buggetSource +  '}';
     }
     
 }

@@ -13,5 +13,7 @@ import java.util.List;
  * @author totoland
  */
 public interface UserDao {
-    List<ViewUser>searchByUserName(UserCriteria criteria);
+    List<ViewUser>searchByUserCriteria(UserCriteria criteria);
+
+    ViewUser searchByUserName(String criteria);
 }
