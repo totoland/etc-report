@@ -497,7 +497,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         } else if (reportStatus == ReportStatus.WAIT.getStatus()) {
 
-            return "รอส่งพิจรณา";
+            return "รอส่งพิจารณา";
 
         } else {
 

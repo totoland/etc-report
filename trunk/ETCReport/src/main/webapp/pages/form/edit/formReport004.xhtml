@@ -24,9 +24,9 @@ and open the template in the editor.
         <h:form>
 
             <p:panel id="REPORT_004" header="#{msg.report_004_header}">
-                
+
                 <div style="width: 1050px;overflow-x: scroll">
-                    <p:panel header="#{formReport004Controller.reportTitle}" style="width: 1550px">
+                    <p:panel id="REPORT_REPORT_004" header="#{formReport004Controller.reportTitle}" style="width: 1550px">
                         <p:messages id="REPORT_004msgFrmDetails"></p:messages>
 
                         <p:panelGrid styleClass="frmDetail" id="REPORT_004pnlFrm">
@@ -325,40 +325,40 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="รวม"/>
+                                    <p:commandButton icon="ui-icon-calculator" value="รวม" disabled="#{formReport002Controller.paramMode=='view'}" action="#{formReport004Controller.cal()}" update="REPORT_004pnlFrm"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionBeforeAnnouncement}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionFillVacancy}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.amountSTh}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.amountPhTh}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionEarlierLastMonthSTh}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionEarlierLastMonthPhTh}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionEarlierCurMonthSTh}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionEarlierCurMonthPhTh}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionEarlierAmountSTh}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value=""/>
+                                    <h:outputLabel value="#{formReport004Controller.footer.electionEarlierAmountPhTh}"/>
                                 </p:column>
                             </p:row>
 
@@ -366,9 +366,9 @@ and open the template in the editor.
 
                         <h:panelGroup id="REPORT_004pnlCmd" rendered="#{formReport004Controller.report004.flowStatusId!=200}">
                             <div align="center">
-                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport004Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport004Controller.paramMode=='view' and formReport004Controller.canEdit(formReport004Controller.report004.createdUserGroup)}"/>
-                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport004Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport004Controller.paramMode=='view'}"/>
-                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport004Controller.edit()}" id="REPORT_001btnSave" rendered="#{formReport004Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport004Controller.goToEdit()}" id="REPORT_004btnEdit" rendered="#{formReport004Controller.paramMode=='view' and formReport004Controller.canEdit(formReport004Controller.report004.createdUserGroup)}"/>
+                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport004Controller.goToClose()}" id="REPORT_004btnClose" rendered="#{formReport004Controller.paramMode=='view'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport004Controller.edit()}" id="REPORT_004btnSave" rendered="#{formReport004Controller.paramMode=='edit'}"/>
                                 <p:commandButton value="#{msg.btn_cancel}" id="REPORT_004btnCancel" actionListener="#{formReport004Controller.goToCancel()}" rendered="#{formReport004Controller.paramMode=='edit'}"/>
                             </div>
                         </h:panelGroup>
@@ -376,6 +376,11 @@ and open the template in the editor.
                 </div>
 
             </p:panel>
+            <p:ajaxStatus onstart="blogui004.show()" oncomplete="blogui004.hide()"/>
+            <p:blockUI  block="REPORT_REPORT_004" widgetVar="blogui004">
+                LOADING<br />
+                <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+            </p:blockUI>
         </h:form>
     </h:body>
 </html>

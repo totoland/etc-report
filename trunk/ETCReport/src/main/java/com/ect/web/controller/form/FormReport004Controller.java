@@ -127,7 +127,7 @@ public class FormReport004Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -167,7 +167,7 @@ public class FormReport004Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -461,6 +461,7 @@ public class FormReport004Controller extends BaseFormReportController {
 
     private void initEditMode() {
         initViewMode();
+        cal();
     }
 
     public void goToEdit() {
@@ -529,7 +530,7 @@ public class FormReport004Controller extends BaseFormReportController {
         Report004Detail report004Detail1 = new Report004Detail();
         report004Detail1.setDlaType("กรุงเทพมหานคร");
         report004Detail1.setReportId(report004);
-        
+
         Report004Detail report004Detail2 = new Report004Detail();
         report004Detail2.setDlaType("องค์การบริหารส่วนตำบล");
         report004Detail2.setReportId(report004);
@@ -537,19 +538,19 @@ public class FormReport004Controller extends BaseFormReportController {
         Report004Detail report004Detail3 = new Report004Detail();
         report004Detail3.setDlaType("เมืองพัทยา");
         report004Detail3.setReportId(report004);
-        
+
         Report004Detail report004Detail4 = new Report004Detail();
         report004Detail4.setDlaType("1.เทศบาลนคร");
         report004Detail4.setReportId(report004);
-        
+
         Report004Detail report004Detail5 = new Report004Detail();
         report004Detail5.setDlaType("2.เทศบาลเมือง");
         report004Detail5.setReportId(report004);
-        
+
         Report004Detail report004Detail6 = new Report004Detail();
         report004Detail6.setDlaType("3.เทศบาลตำบล");
         report004Detail6.setReportId(report004);
-        
+
         Report004Detail report004Detail7 = new Report004Detail();
         report004Detail7.setDlaType("องค์การบริหารส่วนตำบล");
         report004Detail7.setReportId(report004);
@@ -561,11 +562,76 @@ public class FormReport004Controller extends BaseFormReportController {
         report004Details.add(report004Detail5);
         report004Details.add(report004Detail6);
         report004Details.add(report004Detail7);
-        
+
+        /***
+         * Init Footer
+         */
+        setFooter(new Report004Detail());
+        getFooter().setAmountPhTh(0);
+        getFooter().setAmountSTh(0);
+        getFooter().setElectionBeforeAnnouncement(0);
+        getFooter().setElectionEarlierAmountPhTh(0);
+        getFooter().setElectionEarlierAmountSTh(0);
+        getFooter().setElectionEarlierCurMonthPhTh(0);
+        getFooter().setElectionEarlierCurMonthSTh(0);
+        getFooter().setElectionEarlierLastMonthPhTh(0);
+        getFooter().setElectionEarlierLastMonthSTh(0);
+        getFooter().setElectionFillVacancy(0);
+        getFooter().setFullTerm(0);
     }
 
     @Override
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private Report004Detail footer;
+
+    public void cal() {
+
+        footer = new Report004Detail();
+        
+        setFooter(new Report004Detail());
+        getFooter().setAmountPhTh(0);
+        getFooter().setAmountSTh(0);
+        getFooter().setElectionBeforeAnnouncement(0);
+        getFooter().setElectionEarlierAmountPhTh(0);
+        getFooter().setElectionEarlierAmountSTh(0);
+        getFooter().setElectionEarlierCurMonthPhTh(0);
+        getFooter().setElectionEarlierCurMonthSTh(0);
+        getFooter().setElectionEarlierLastMonthPhTh(0);
+        getFooter().setElectionEarlierLastMonthSTh(0);
+        getFooter().setElectionFillVacancy(0);
+        getFooter().setFullTerm(0);
+        
+        for (Report004Detail rwDetail : report004Details) {
+
+            getFooter().setAmountPhTh(getFooter().getAmountPhTh() + rwDetail.getAmountPhTh());
+            getFooter().setAmountSTh(getFooter().getAmountSTh() + rwDetail.getAmountSTh());
+            getFooter().setElectionBeforeAnnouncement(getFooter().getElectionBeforeAnnouncement() + rwDetail.getElectionBeforeAnnouncement());
+            getFooter().setElectionEarlierAmountPhTh(getFooter().getElectionEarlierAmountPhTh() + rwDetail.getElectionEarlierAmountPhTh());
+            getFooter().setElectionEarlierAmountSTh(getFooter().getElectionEarlierAmountSTh() + rwDetail.getElectionEarlierAmountSTh());
+            getFooter().setElectionEarlierCurMonthPhTh(getFooter().getElectionEarlierCurMonthPhTh() + rwDetail.getElectionEarlierAmountPhTh());
+            getFooter().setElectionEarlierCurMonthSTh(getFooter().getElectionEarlierCurMonthSTh() + rwDetail.getElectionEarlierCurMonthSTh());
+            getFooter().setElectionEarlierLastMonthPhTh(getFooter().getElectionEarlierLastMonthPhTh() + rwDetail.getElectionEarlierLastMonthPhTh());
+            getFooter().setElectionEarlierLastMonthSTh(getFooter().getElectionEarlierLastMonthSTh() + rwDetail.getElectionEarlierLastMonthSTh());
+            getFooter().setElectionFillVacancy(getFooter().getElectionFillVacancy() + rwDetail.getElectionFillVacancy());
+            getFooter().setFullTerm(getFooter().getFullTerm() + rwDetail.getFullTerm());
+
+        }
+
+    }
+
+    /**
+     * @return the footer
+     */
+    public Report004Detail getFooter() {
+        return footer;
+    }
+
+    /**
+     * @param footer the footer to set
+     */
+    public void setFooter(Report004Detail footer) {
+        this.footer = footer;
     }
 }

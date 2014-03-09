@@ -131,7 +131,7 @@ public class FormReport002Controller extends BaseFormReportController{
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -171,7 +171,7 @@ public class FormReport002Controller extends BaseFormReportController{
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -356,10 +356,10 @@ public class FormReport002Controller extends BaseFormReportController{
             msg += "กรุณาระบุผลการปฏิบัติงาน<br/>";
         }
         if (inputReport002Detail.getBudget().intValue() == 0) {
-            msg += "กรุณาระบุงบประมาณbr/>";
+            msg += "กรุณาระบุงบประมาณ<br/>";
         }
         if (StringUtils.isBlank(inputReport002Detail.getBuggetSource())) {
-            msg += "กรุณาระบุที่มาของงบประมาณbr/>";
+            msg += "กรุณาระบุที่มาของงบประมาณ<br/>";
         }
 
         if (!StringUtils.isBlank(msg)) {
