@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_003" rendered="#{formSelectReport.reportCode=='REPORT_003'}">
 
@@ -31,13 +32,13 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003Details[0].docReceive}" />
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc1" value="#{formReport003Controller.report003Details[0].docReceiveAmount}"/>
+                                <totoland:inputNumber id="doc1" value="#{formReport003Controller.report003Details[0].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
                                 <h:outputLabel value="#{formReport003Controller.report003Details[0].docSend}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc1Amount" value="#{formReport003Controller.report003Details[0].docSendAmount}"/>
+                                <totoland:inputNumber id="doc1Amount" value="#{formReport003Controller.report003Details[0].docSendAmount}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -45,13 +46,13 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003Details[1].docReceive}" />
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc2" value="#{formReport003Controller.report003Details[1].docReceiveAmount}"/>
+                                <totoland:inputNumber id="doc2" value="#{formReport003Controller.report003Details[1].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
                                 <h:outputLabel value="#{formReport003Controller.report003Details[1].docSend}" />
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc2Amount" value="#{formReport003Controller.report003Details[1].docSendAmount}"/>
+                                <totoland:inputNumber id="doc2Amount" value="#{formReport003Controller.report003Details[1].docSendAmount}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -59,13 +60,13 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003Details[2].docReceive}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc3" value="#{formReport003Controller.report003Details[4].docReceiveAmount}"/>
+                                <totoland:inputNumber id="doc3" value="#{formReport003Controller.report003Details[4].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
                                 <h:outputLabel value="#{formReport003Controller.report003Details[2].docSend}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc3Amount" value="#{formReport003Controller.report003Details[2].docSendAmount}"/>
+                                <totoland:inputNumber id="doc3Amount" value="#{formReport003Controller.report003Details[2].docSendAmount}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -73,13 +74,13 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003Details[3].docReceive}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc4" value="#{formReport003Controller.report003Details[3].docReceiveAmount}"/>
+                                <totoland:inputNumber id="doc4" value="#{formReport003Controller.report003Details[3].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
                                 <h:outputLabel value="#{formReport003Controller.report003Details[3].docSend}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc4Amount" value="#{formReport003Controller.report003Details[3].docSendAmount}"/>
+                                <totoland:inputNumber id="doc4Amount" value="#{formReport003Controller.report003Details[3].docSendAmount}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -87,7 +88,7 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003Details[4].docReceive}" />
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc5" value="#{formReport003Controller.report003Details[4].docReceiveAmount}"/>
+                                <totoland:inputNumber id="doc5" value="#{formReport003Controller.report003Details[4].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
                                 <h:outputLabel value="" />
@@ -101,7 +102,7 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003Details[5].docReceive}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc6" value="#{formReport003Controller.report003Details[5].docReceiveAmount}"/>
+                                <totoland:inputNumber id="doc6" value="#{formReport003Controller.report003Details[5].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
                                 <h:outputLabel value="" />
@@ -115,7 +116,7 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003Details[6].docReceive}" />
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" id="doc7" value="#{formReport003Controller.report003Details[6].docReceiveAmount}"/>
+                                <totoland:inputNumber id="doc7" value="#{formReport003Controller.report003Details[6].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
                                 <h:outputLabel value="" />

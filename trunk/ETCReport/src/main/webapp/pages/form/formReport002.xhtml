@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_002" rendered="#{formSelectReport.reportCode=='REPORT_002'}">
 
@@ -187,16 +188,16 @@ and open the template in the editor.
                 <p:inputText id="REPORT_002lb2" value="#{formReport002Controller.inputReport002Detail.objective}" />  
 
                 <h:outputLabel value="เป้าหมายจำนวน *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_002lb3" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
+                <totoland:inputNumber id="REPORT_002lb3" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
 
                 <h:outputLabel value="ผลการดำเนินงาน *" />  
                 <p:inputText id="REPORT_002lb4" value="#{formReport002Controller.inputReport002Detail.result}" />  
 
                 <h:outputLabel value="งบประมาณ *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_002lb6" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
+                <totoland:inputNumber id="REPORT_002lb6" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
 
                 <h:outputLabel value="แหล่งที่มางบประมาณ *" />  
-                <p:inputMask mask="9?9999999" id="REPORT_002lb7" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
+                <totoland:inputNumber id="REPORT_002lb7" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport002Controller.addReportDetail(actionEvent)}" update="REPORT_002msgAddReportDetail,REPORT_002Grid" icon="ui-icon-check" style="margin:0"/>  

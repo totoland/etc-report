@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_004" rendered="#{formSelectReport.reportCode=='REPORT_004'}">
 
@@ -51,37 +52,37 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport004Controller.report004Details[0].dlaType}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].fullTerm}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionBeforeAnnouncement}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionFillVacancy}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].amountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].amountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionEarlierLastMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionEarlierLastMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionEarlierCurMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionEarlierCurMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionEarlierAmountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[0].electionEarlierAmountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[0].electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -89,37 +90,37 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport004Controller.report004Details[1].dlaType}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].fullTerm}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionBeforeAnnouncement}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionFillVacancy}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].amountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].amountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionEarlierLastMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionEarlierLastMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionEarlierCurMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionEarlierCurMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionEarlierAmountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[1].electionEarlierAmountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[1].electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -127,37 +128,37 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport004Controller.report004Details[2].dlaType}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].fullTerm}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionBeforeAnnouncement}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionFillVacancy}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].amountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].amountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionEarlierLastMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionEarlierLastMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionEarlierCurMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionEarlierCurMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionEarlierAmountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[2].electionEarlierAmountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[2].electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -165,37 +166,37 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport004Controller.report004Details[3].dlaType}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].fullTerm}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionBeforeAnnouncement}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionFillVacancy}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].amountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].amountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionEarlierLastMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionEarlierLastMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionEarlierCurMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionEarlierCurMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionEarlierAmountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[3].electionEarlierAmountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[3].electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -203,37 +204,37 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport004Controller.report004Details[4].dlaType}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].fullTerm}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionBeforeAnnouncement}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionFillVacancy}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].amountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].amountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionEarlierLastMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionEarlierLastMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionEarlierCurMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionEarlierCurMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionEarlierAmountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[4].electionEarlierAmountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[4].electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -241,37 +242,37 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport004Controller.report004Details[5].dlaType}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].fullTerm}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionBeforeAnnouncement}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionFillVacancy}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].amountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].amountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionEarlierLastMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionEarlierLastMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionEarlierCurMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionEarlierCurMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionEarlierAmountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[5].electionEarlierAmountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[5].electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -279,37 +280,37 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport004Controller.report004Details[6].dlaType}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].fullTerm}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionBeforeAnnouncement}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionFillVacancy}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].amountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].amountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionEarlierLastMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionEarlierLastMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionEarlierCurMonthSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionEarlierCurMonthPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionEarlierAmountSTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <p:inputMask mask="9?9999999" value="#{formReport004Controller.report004Details[6].electionEarlierAmountPhTh}"/>
+                                <totoland:inputNumber value="#{formReport004Controller.report004Details[6].electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
                         <p:row>

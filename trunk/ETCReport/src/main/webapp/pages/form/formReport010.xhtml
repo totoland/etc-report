@@ -87,7 +87,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.caseIn}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.caseIn}" />  
+                                        <totoland:inputNumber value="#{item.caseIn}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -97,7 +97,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.caseOut}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.caseOut}" />  
+                                        <totoland:inputNumber value="#{item.caseOut}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -107,7 +107,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.caseDissolveParliament}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.caseDissolveParliament}" />  
+                                        <totoland:inputNumber value="#{item.caseDissolveParliament}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -150,13 +150,13 @@ and open the template in the editor.
                 <p:calendar pattern="dd/MM/yyyy" id="REPORT_010lb03" locale="th" value="#{formReport010Controller.inputReport010Detail.acceptedDate}"/>  
                 
                 <h:outputLabel value="กรณีย้ายเข้า *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_010lb04" value="#{formReport010Controller.inputReport010Detail.caseIn}"/>  
+                <totoland:inputNumber id="REPORT_010lb04" value="#{formReport010Controller.inputReport010Detail.caseIn}"/>  
 
                 <h:outputLabel value="กรณีพ้น *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_010lb05" value="#{formReport010Controller.inputReport010Detail.caseOut}"/>  
+                <totoland:inputNumber id="REPORT_010lb05" value="#{formReport010Controller.inputReport010Detail.caseOut}"/>  
 
                 <h:outputLabel value="กรณียุสภา *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_010lb06" value="#{formReport010Controller.inputReport010Detail.caseDissolveParliament}"/>  
+                <totoland:inputNumber id="REPORT_010lb06" value="#{formReport010Controller.inputReport010Detail.caseDissolveParliament}"/>  
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport010Controller.addReportDetail(actionEvent)}" update="REPORT_010msgAddReportDetail,REPORT_010Grid" icon="ui-icon-check" style="margin:0"/>  

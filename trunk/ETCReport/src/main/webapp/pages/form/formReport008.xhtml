@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_008" rendered="#{formSelectReport.reportCode=='REPORT_008'}">
         <p:dialog id="REPORT_MainDialog_REPORT_008" header="#{msg.report_008_header}" widgetVar="REPORT_MainDialog_REPORT_008" modal="true">                         
@@ -64,7 +65,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.budget}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.budget}" />  
+                                        <totoland:inputNumber value="#{item.budget}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -74,7 +75,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.disbursedPrevious}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.disbursedPrevious}" />  
+                                        <totoland:inputNumber value="#{item.disbursedPrevious}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -84,7 +85,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.disbursedMonth}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.disbursedMonth}" />  
+                                        <totoland:inputNumber value="#{item.disbursedMonth}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -94,7 +95,7 @@ and open the template in the editor.
                                         <h:outputText value="#{item.balance}" />  
                                     </f:facet>
                                     <f:facet name="input">  
-                                        <p:inputMask mask="9?9999999" value="#{item.balance}" />  
+                                        <totoland:inputNumber value="#{item.balance}" />  
                                     </f:facet>  
                                 </p:cellEditor>
                             </p:column>
@@ -131,16 +132,16 @@ and open the template in the editor.
                 <p:inputText id="REPORT_008lb01" value="#{formReport008Controller.inputReport008Detail.politicalParty}"/>  
 
                 <h:outputLabel value="งบประมาณที่ได้รับสนับสนุน *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_008lb02" value="#{formReport008Controller.inputReport008Detail.budget}"/>  
+                <totoland:inputNumber id="REPORT_008lb02" value="#{formReport008Controller.inputReport008Detail.budget}"/>  
 
                 <h:outputLabel value="ก่อนหน้านี้ *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_008lb03" value="#{formReport008Controller.inputReport008Detail.disbursedPrevious}"/>  
+                <totoland:inputNumber id="REPORT_008lb03" value="#{formReport008Controller.inputReport008Detail.disbursedPrevious}"/>  
 
                 <h:outputLabel value="เดือนนี้ *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_008lb04" value="#{formReport008Controller.inputReport008Detail.disbursedMonth}"/>  
+                <totoland:inputNumber id="REPORT_008lb04" value="#{formReport008Controller.inputReport008Detail.disbursedMonth}"/>  
 
                 <h:outputLabel value="คงเหลือ *"/>
-                <p:inputMask mask="9?9999999" id="REPORT_008lb06" value="#{formReport008Controller.inputReport008Detail.balance}"/>  
+                <totoland:inputNumber id="REPORT_008lb06" value="#{formReport008Controller.inputReport008Detail.balance}"/>  
 
                 <f:facet name="footer">  
                     <p:commandButton value="เพิ่ม" actionListener="#{formReport008Controller.addReportDetail(actionEvent)}" update="REPORT_008msgAddReportDetail,REPORT_008Grid" icon="ui-icon-check" style="margin:0"/>  

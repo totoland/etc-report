@@ -9,7 +9,8 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
 
     <p:panel id="REPORT_023" rendered="#{formSelectReport.reportCode=='REPORT_023'}">
         <p:dialog id="REPORT_MainDialog_REPORT_023" header="#{msg.report_023_header}" widgetVar="REPORT_MainDialog_REPORT_023" modal="true">                         
@@ -80,201 +81,201 @@ and open the template in the editor.
                         </f:facet>                          
                         <p:row>
                             <p:column><h:outputText value="#{formReport023Controller.report023Details[0].cases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].oldCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].newCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].sumCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].adminCourt}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].criminalCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].rulingCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].rhetoricWaiting}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].progress}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].investigator}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].nacc}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].attorney}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].prosecutors}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].appeals}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].thessaloniki}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].terminates}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].pending}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].attorney2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].prosecutors2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].appeals2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].thessaloniki2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].execution}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].terminates2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].progress2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].province}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].supreme}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].terminates3}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].considering}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[0].terminates4}"/></p:column>                              
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].oldCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].newCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].sumCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].adminCourt}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].criminalCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].rulingCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].rhetoricWaiting}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].progress}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].investigator}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].nacc}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].attorney}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].prosecutors}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].appeals}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].thessaloniki}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].terminates}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].pending}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].attorney2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].prosecutors2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].appeals2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].thessaloniki2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].execution}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].terminates2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].progress2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].province}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].supreme}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].terminates3}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].considering}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[0].terminates4}"/></p:column>                              
                         </p:row>
                         <p:row>
                             <p:column><h:outputText value="#{formReport023Controller.report023Details[1].cases}"/></p:column> 
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].oldCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].newCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].sumCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].adminCourt}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].criminalCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].rulingCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].rhetoricWaiting}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].progress}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].investigator}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].nacc}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].attorney}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].prosecutors}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].appeals}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].thessaloniki}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].pending}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].attorney2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].prosecutors2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].appeals2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].thessaloniki2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].execution}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].progress2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].province}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].supreme}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates3}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].considering}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[1].terminates4}"/></p:column> 
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].oldCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].newCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].sumCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].adminCourt}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].criminalCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].rulingCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].rhetoricWaiting}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].progress}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].investigator}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].nacc}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].attorney}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].prosecutors}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].appeals}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].thessaloniki}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].terminates}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].pending}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].attorney2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].prosecutors2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].appeals2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].thessaloniki2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].execution}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].terminates2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].progress2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].province}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].supreme}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].terminates3}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].considering}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[1].terminates4}"/></p:column> 
                         </p:row>
                         <p:row>
                             <p:column><h:outputText value="#{formReport023Controller.report023Details[2].cases}"/></p:column> 
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].oldCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].newCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].sumCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].adminCourt}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].criminalCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].rulingCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].rhetoricWaiting}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].progress}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].investigator}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].nacc}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].attorney}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].prosecutors}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].appeals}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].thessaloniki}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].terminates}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].pending}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].attorney2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].prosecutors2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].appeals2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].thessaloniki2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].execution}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].terminates2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].progress2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].province}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].supreme}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].terminates3}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].considering}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[2].terminates4}"/></p:column> 
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].oldCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].newCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].sumCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].adminCourt}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].criminalCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].rulingCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].rhetoricWaiting}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].progress}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].investigator}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].nacc}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].attorney}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].prosecutors}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].appeals}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].thessaloniki}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].terminates}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].pending}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].attorney2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].prosecutors2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].appeals2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].thessaloniki2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].execution}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].terminates2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].progress2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].province}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].supreme}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].terminates3}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].considering}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[2].terminates4}"/></p:column> 
                         </p:row>
                         <p:row>
                             <p:column><h:outputText value="#{formReport023Controller.report023Details[3].cases}"/></p:column> 
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].oldCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].newCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].sumCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].adminCourt}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].criminalCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].rulingCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].rhetoricWaiting}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].progress}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].investigator}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].nacc}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].attorney}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].prosecutors}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].appeals}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].thessaloniki}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].terminates}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].pending}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].attorney2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].prosecutors2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].appeals2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].thessaloniki2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].execution}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].terminates2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].progress2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].province}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].supreme}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].terminates3}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].considering}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[3].terminates4}"/></p:column> 
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].oldCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].newCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].sumCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].adminCourt}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].criminalCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].rulingCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].rhetoricWaiting}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].progress}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].investigator}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].nacc}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].attorney}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].prosecutors}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].appeals}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].thessaloniki}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].terminates}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].pending}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].attorney2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].prosecutors2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].appeals2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].thessaloniki2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].execution}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].terminates2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].progress2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].province}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].supreme}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].terminates3}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].considering}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[3].terminates4}"/></p:column> 
                         </p:row>
                         <p:row>
                             <p:column><h:outputText value="#{formReport023Controller.report023Details[4].cases}"/></p:column> 
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].oldCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].newCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].sumCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].adminCourt}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].criminalCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].rulingCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].rhetoricWaiting}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].progress}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].investigator}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].nacc}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].attorney}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].prosecutors}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].appeals}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].thessaloniki}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].terminates}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].pending}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].attorney2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].prosecutors2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].appeals2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].thessaloniki2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].execution}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].terminates2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].progress2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].province}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].supreme}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].terminates3}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].considering}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[4].terminates4}"/></p:column> 
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].oldCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].newCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].sumCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].adminCourt}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].criminalCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].rulingCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].rhetoricWaiting}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].progress}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].investigator}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].nacc}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].attorney}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].prosecutors}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].appeals}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].thessaloniki}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].terminates}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].pending}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].attorney2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].prosecutors2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].appeals2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].thessaloniki2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].execution}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].terminates2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].progress2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].province}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].supreme}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].terminates3}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].considering}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[4].terminates4}"/></p:column> 
                         </p:row>
                         <p:row>
                             <p:column><h:outputText value="#{formReport023Controller.report023Details[5].cases}"/></p:column> 
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].oldCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].newCasesQuoted}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].sumCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].adminCourt}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].criminalCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].rulingCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].rhetoricWaiting}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].progress}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].investigator}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].nacc}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].attorney}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].prosecutors}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].civilCases}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].appeals}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].thessaloniki}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].pending}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].attorney2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].prosecutors2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].appeals2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].thessaloniki2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].execution}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].progress2}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].province}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].supreme}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates3}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].considering}"/></p:column>  
-                            <p:column><p:inputMask mask="9?9999999" value="#{formReport023Controller.report023Details[5].terminates4}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].oldCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].newCasesQuoted}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].sumCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].adminCourt}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].criminalCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].rulingCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].rhetoricWaiting}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].progress}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].investigator}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].nacc}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].attorney}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].prosecutors}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].civilCases}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].appeals}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].thessaloniki}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].terminates}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].pending}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].attorney2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].prosecutors2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].appeals2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].thessaloniki2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].execution}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].terminates2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].progress2}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].province}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].supreme}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].terminates3}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].considering}"/></p:column>  
+                            <p:column><totoland:inputNumber value="#{formReport023Controller.report023Details[5].terminates4}"/></p:column>  
                         </p:row>
                     </p:panelGrid>                   
                     <h:panelGroup id="REPORT_023pnlCmd">

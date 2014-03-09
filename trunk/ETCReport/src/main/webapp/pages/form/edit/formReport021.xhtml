@@ -82,7 +82,7 @@ and open the template in the editor.
                                             <h:outputText value="#{item.obtained}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:inputMask mask="9?9999999" value="#{item.obtained}" />  
+                                            <totoland:inputNumber value="#{item.obtained}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -143,7 +143,7 @@ and open the template in the editor.
                         <p:calendar pattern="dd/MM/yyyy"  id="REPORT_021lb02" value="#{formReport021Controller.inputReport021Detail.operationDate}"/>  
 
                         <h:outputLabel value="หน่วยรับการตรวจฯ/จำนวน(แห่ง) *"/>
-                        <p:inputMask mask="9?9999999" id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  
+                        <totoland:inputNumber id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  
 
                         <h:outputLabel value="ข้อสังเกต/ผลการตรวจพบที่สำคัญ *"/>
                         <p:inputText id="REPORT_021lb04" value="#{formReport021Controller.inputReport021Detail.result}"/>  
