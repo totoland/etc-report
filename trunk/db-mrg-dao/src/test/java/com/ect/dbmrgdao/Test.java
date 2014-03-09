@@ -20,6 +20,8 @@ import com.ect.db.report.dao.Report004Dao;
 import com.ect.db.report.dao.Report006Dao;
 import com.ect.db.report.dao.Report023Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
+import com.ect.db.report.entity.Report003;
+import com.ect.db.report.entity.Report003Detail;
 import com.ect.db.user.dao.UserDao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -43,8 +45,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class Test {
 
-    //@Autowired
-    //GennericDao<Report001> gennericDao;
+    @Autowired
+    GennericDao<Report003> gennericDao;
     @Autowired
     AuthenDao authenDao;
     @Autowired
@@ -61,25 +63,102 @@ public class Test {
     Report002Dao report002Dao;
     @Autowired
     Report004Dao report004Dao;
-    @Autowired
-    GennericDao<EctProvince> gennericDao;
+//    @Autowired
+//    GennericDao<EctProvince> gennericDao;
     @Autowired
     Report006Dao report006Dao;
     @Autowired
     UserDao userDao;
-
+    
     @Before
     public void init() throws Exception {
         // Log4J junit configuration.
         System.out.println("init");
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
+    
+    @org.junit.Test
+    public void testSearchByUserName(){
+    
+        System.out.println(userDao.searchByUserName("administrator"));
+        
+    }
+    
+    @Ignore
+    @org.junit.Test
+    public void testReport003(){
+        
+        Report003 report003 = new Report003();
+        report003.setReportId(6);
+        
+        List<Report003Detail>report003Details = new ArrayList<Report003Detail>();
 
+        Report003Detail report003Detail1 = new Report003Detail();
+        report003Detail1.setDocReceive("หนังสือรับภายใน");
+        report003Detail1.setDocSend("หนังสือส่งภายใน");
+        report003Detail1.setDocSendAmount(0);
+        report003Detail1.setDocReceiveAmount(0);
+        report003Detail1.setReportId(report003);
+        
+        Report003Detail report003Detail2 = new Report003Detail();
+        report003Detail2.setDocReceive("หนังสือรับภายใน (ชั้นความลับ)");
+        report003Detail2.setDocSend("หนังสือส่งภายใน (ชั้นความลับ)");
+        report003Detail2.setDocSendAmount(0);
+        report003Detail2.setDocReceiveAmount(0);
+        report003Detail2.setReportId(report003);
+
+        Report003Detail report003Detail3 = new Report003Detail();
+        report003Detail3.setDocReceive("หนังสือรับภายนอก");
+        report003Detail3.setDocSend("หนังสือส่งภายนอก");
+        report003Detail3.setDocSendAmount(0);
+        report003Detail3.setDocReceiveAmount(0);
+        report003Detail3.setReportId(report003);
+        
+        Report003Detail report003Detail4 = new Report003Detail();
+        report003Detail4.setDocReceive("หนังสือรับภายนอก (ชั้นความลับ)");
+        report003Detail4.setDocSend("หนังสือส่งภายนอก (ชั้นความลับ)");
+        report003Detail4.setDocSendAmount(0);
+        report003Detail4.setDocReceiveAmount(0);
+        report003Detail4.setReportId(report003);
+        
+        Report003Detail report003Detail5 = new Report003Detail();
+        report003Detail5.setDocReceive("เรื่องร้องเรียน ร้องขอความเป็นธรรม");
+        report003Detail5.setDocSendAmount(0);
+        report003Detail5.setDocReceiveAmount(0);
+        report003Detail5.setReportId(report003);
+        
+        Report003Detail report003Detail6 = new Report003Detail();
+        report003Detail6.setDocReceive("สำนวนร้องคัดค้าน");
+        report003Detail6.setDocSendAmount(0);
+        report003Detail6.setDocReceiveAmount(0);
+        report003Detail6.setReportId(report003);
+        
+        Report003Detail report003Detail7 = new Report003Detail();
+        report003Detail7.setDocReceive("อื่นๆ");
+        report003Detail7.setDocSendAmount(0);
+        report003Detail7.setDocReceiveAmount(0);
+        report003Detail7.setReportId(report003);
+
+        report003Details.add(report003Detail1);
+        report003Details.add(report003Detail2);
+        report003Details.add(report003Detail3);
+        report003Details.add(report003Detail4);
+        report003Details.add(report003Detail5);
+        report003Details.add(report003Detail6);
+        report003Details.add(report003Detail7);
+        
+        report003.setReport003DetailList(report003Details);
+        
+        gennericDao.create(report003);
+        
+    }
+
+    @Ignore
     @org.junit.Test
     public void testUser(){
         UserCriteria criteria = new UserCriteria();
         criteria.setUserName("เจ้า");
-        System.out.println(userDao.searchByUserName(criteria));
+        System.out.println(userDao.searchByUserCriteria(criteria));
     }
     
     @Ignore
