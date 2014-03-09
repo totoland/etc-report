@@ -132,7 +132,7 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     <h:outputText value="ส่งออก Excel" />
                                 </f:facet>
-                                <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" onclick="blogui.show()" onblur="blogui.hide()" actionListener="#{allReportController.fileXLSDownload(item)}"   
+                                <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" onclick="blogui.show()" onblur="blogui.hide()" action="#{allReportController.fileXLSDownload(item)}"   
                                                  icon="ui-icon-arrowthichk-s">
                                 </p:commandButton>
                             </p:column>

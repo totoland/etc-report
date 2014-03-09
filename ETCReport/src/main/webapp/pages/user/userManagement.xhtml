@@ -29,9 +29,9 @@ create date : 19/01/2556
                                 <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
                                 <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserGroup()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
                             </p:selectOneMenu>
-                            <h:outputLabel for="criteria_username" value="ชื่อผู้ใช้" style="width:200px"/>
+                            <h:outputLabel for="criteria_username" value="ชื่อหรือนามสกุล" style="width:200px"/>
                             <p:inputText id="criteria_username" value="#{userManagementController.userCriteria.userName}"/>
-                            <p:commandButton value="#{msg.btn_search}" icon="ui-icon-search" action="#{userManagementController.search()}" update="gridUser"/>
+                            <p:commandButton value="#{msg.btn_search}" id="search" icon="ui-icon-search" action="#{userManagementController.search()}" update="gridUser"/>
                             <h:panelGroup>
                                 <p:commandButton value="#{msg.btn_reset}" icon="ui-icon-arrowrefresh-1-w" action="#{userManagementController.resetForm()}" update="pnCriteria,gridUser"/>
                                 <p:commandButton value="สร้างผู้ใช้ใหม่" icon="ui-icon-plusthick" action="#{userManagementController.initCreateUser()}" update="modalDialogCreate"/>

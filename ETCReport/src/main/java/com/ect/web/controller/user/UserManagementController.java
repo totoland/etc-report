@@ -9,7 +9,6 @@ import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.entity.EctUser;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
-import com.ect.web.controller.exception.AccessDenieException;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.service.UserService;
@@ -23,7 +22,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.view.facelets.FaceletContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +56,7 @@ public class UserManagementController extends BaseController {
     public void search() {
         logger.trace("search userCriteria : {}", getUserCriteria());
 
-        ectUsers = getUserService().findByUserName(getUserCriteria());
+        ectUsers = getUserService().findByUserCriteria(getUserCriteria());
 
         logger.trace("ectUsers size : {}", ectUsers);
     }
@@ -122,19 +120,19 @@ public class UserManagementController extends BaseController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            search();
-
             JsfUtil.hidePopup("modalDialogCreate");
+            
+            search();
 
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
         } finally {
 
-            resetForm();
+            logger.trace("Save... {} ", ectUser);
 
         }
     }
@@ -163,7 +161,7 @@ public class UserManagementController extends BaseController {
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
             
@@ -272,7 +270,13 @@ public class UserManagementController extends BaseController {
 
     private boolean validateBeforeSave() {
         String msg = "";
-
+        
+        if(userService.findByUserName(ectUser.getUsername())!=null){
+            
+            JsfUtil.alertJavaScript(MessageUtils.getResourceBundleString("dupp_username",ectUser.getUsername()));
+            return false;
+        };
+        
         if (StringUtils.isBlank(ectUser.getUsername())) {
             msg += (MessageUtils.getResourceBundleString("require_message", "ชื่อผู้ใช้")) + ("\\n");
         }

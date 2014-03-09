@@ -14,5 +14,6 @@ import java.util.List;
  */
 public interface UserService {
     ViewUser findByUserId(Integer userId);
-    List<ViewUser> findByUserName(UserCriteria userName);
+    List<ViewUser> findByUserCriteria(UserCriteria userName);
+    ViewUser findByUserName(String criteria);
 }

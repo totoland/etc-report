@@ -130,7 +130,7 @@ public class FormReport018Controller extends BaseFormReportController {
             resetForm();
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -172,7 +172,7 @@ public class FormReport018Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Edit Data : ", ex);
 

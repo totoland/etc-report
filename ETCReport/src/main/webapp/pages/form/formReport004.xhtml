@@ -16,7 +16,7 @@ and open the template in the editor.
 
         <p:dialog id="REPORT_MainDialog_REPORT_004" header="#{msg.report_004_header}" widgetVar="REPORT_MainDialog_REPORT_004" modal="true">                         
             <div style="width: 1150px;overflow-x: scroll">
-                <p:panel header="#{formReport004Controller.reportTitle}" style="width: 1450px">
+                <p:panel id="REPORT_REPORT_004" header="#{formReport004Controller.reportTitle}" style="width: 1450px">
                     <p:messages id="REPORT_004msgFrmDetails"></p:messages>
 
                     <p:panelGrid styleClass="frmDetail" id="REPORT_004pnlFrm">
@@ -315,40 +315,40 @@ and open the template in the editor.
                         </p:row>
                         <p:row>
                             <p:column>
-                                <h:outputText value="รวม"/>
+                                <p:commandButton icon="ui-icon-calculator" value="รวม" action="#{formReport004Controller.cal()}" update="REPORT_004pnlFrm"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.fullTerm}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionBeforeAnnouncement}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionFillVacancy}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.amountSTh}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.amountPhTh}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionEarlierLastMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionEarlierLastMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionEarlierCurMonthSTh}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionEarlierCurMonthPhTh}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionEarlierAmountSTh}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value=""/>
+                                <h:outputLabel value="#{formReport004Controller.footer.electionEarlierAmountPhTh}"/>
                             </p:column>
                         </p:row>
 
@@ -364,6 +364,10 @@ and open the template in the editor.
             </div>
         </p:dialog>
 
-
+        <p:ajaxStatus onstart="blogui004.show()" oncomplete="blogui004.hide()"/>
+        <p:blockUI  block="REPORT_REPORT_004" widgetVar="blogui004">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
     </p:panel>
 </html>

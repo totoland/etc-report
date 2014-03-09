@@ -15,7 +15,7 @@ and open the template in the editor.
     <p:panel id="REPORT_002" rendered="#{formSelectReport.reportCode=='REPORT_002'}">
 
         <p:dialog id="REPORT_MainDialog_REPORT_002" header="#{msg.report_002_header}" widgetVar="REPORT_MainDialog_REPORT_002" modal="true">                         
-            <p:panel header="#{formReport002Controller.reportTitle}" style="width: 100%;">
+            <p:panel id="REPORT_REPORT_002" header="#{formReport002Controller.reportTitle}" style="width: 100%;">
                 <p:messages id="REPORT_002msgFrmDetails"></p:messages>
                 <p:panelGrid columns="4" styleClass="frmSelect">
                     <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
@@ -42,21 +42,25 @@ and open the template in the editor.
                     <p:selectOneMenu style="width: 320px;" id="REPORT_002strategicId" value="#{formReport002Controller.report002.strategicId}" >  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
                         <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlStrategic()}"></f:selectItems>
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002subStrategicId"/> 
                     </p:selectOneMenu>
-                    <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_002subStrategicId"/>
-                    <p:selectOneMenu style="width: 320px;" value="#{formReport002Controller.report002.subStrategicId}" >  
+                    <p:outputLabel value="เลือกกลยุทธ์ : " />
+                    <p:selectOneMenu style="width: 320px;" id="REPORT_002subStrategicId" value="#{formReport002Controller.report002.subStrategicId}" >  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlSubStrategic(formReport002Controller.report002.strategicId)}"></f:selectItems>
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002planId"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกแผนงาน : "/>
                     <p:selectOneMenu style="width: 320px;" id="REPORT_002planId" value="#{formReport002Controller.report002.planId}" >  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlPlan()}"></f:selectItems>  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlPlan(formReport002Controller.report002.subStrategicId)}"></f:selectItems>  
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002projectId"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
                     <p:selectOneMenu style="width: 320px;" id="REPORT_002projectId"  value="#{formReport002Controller.report002.projectId}" rendered="false">  
                         <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlProject()}"></f:selectItems> 
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlProject(formReport002Controller.report002.planId)}"></f:selectItems> 
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002Activity"/>
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
                     <p:selectOneMenu style="width: 320px;" value="#{formReport002Controller.report002.activityId}" rendered="false">  
@@ -70,7 +74,7 @@ and open the template in the editor.
                 <div style="width: 1000px;overflow-x: scroll">
                     <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_002pnlFrm">
                         <f:facet name="header"  class="txtLeft">
-                            <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_002dlgAddReportDetail.show()" update="REPORT_002pn_addReportDetail" actionListener="#{formReport002Controller.initReportDetail()}"/>
+                            <p:commandButton value="เพิ่มข้อมูล" id="REPORT_002_btAdd" oncomplete="REPORT_002dlgAddReportDetail.show()" update="REPORT_002pn_addReportDetail" actionListener="#{formReport002Controller.initReportDetail()}"/>
                         </f:facet>       
 
 
@@ -79,8 +83,8 @@ and open the template in the editor.
                                      style="width:1200px"
                                      rowsPerPageTemplate="5,10,15">  
 
-                            <p:ajax event="rowEdit" listener="#{formReport002Controller.onEdit}"/>  
-                            <p:ajax event="rowEditCancel" listener="#{formReport002Controller.onCancel}"/>
+                            <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" event="rowEdit" listener="#{formReport002Controller.onEdit}"/>  
+                            <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" event="rowEditCancel" listener="#{formReport002Controller.onCancel}"/>
 
                             <p:column headerText="ลำดับ">  
                                 <p:cellEditor>  
@@ -212,6 +216,11 @@ and open the template in the editor.
                     padding: 4px 10px;
                 }
             </style>
+
+            <p:blockUI  block="REPORT_REPORT_002" widgetVar="blogui002" trigger="REPORT_002_btAdd,REPORT_002btnSave,REPORT_002btnCancel">
+                LOADING<br />
+                <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+            </p:blockUI>
         </p:dialog>
 
     </p:panel>

@@ -33,8 +33,13 @@ public class UserServiceImpl implements UserService , Serializable{
     }
     
     @Override
-    public List<ViewUser> findByUserName(UserCriteria userName){
-        return userDao.searchByUserName(userName);
+    public List<ViewUser> findByUserCriteria(UserCriteria userName){
+        return userDao.searchByUserCriteria(userName);
+    }
+
+    @Override
+    public ViewUser findByUserName(String criteria) {
+        return userDao.searchByUserName(criteria);
     }
     
 }

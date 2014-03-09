@@ -22,59 +22,63 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:panel id="REPORT_001" header="#{msg.report_002_header}">
+            <p:panel id="REPORT_002" header="#{msg.report_002_header}">
 
                 <p:panel header="#{formReport002Controller.reportTitle}" style="width: 100%;">
                     <p:messages id="REPORT_002msgFrmDetails"></p:messages>
                     <p:panelGrid columns="4" styleClass="frmSelect">
-                        <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
-                        <p:selectOneMenu style="width: 180px;" rendered="false" >
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกเดือน : " rendered="false"/>
-                        <p:selectOneMenu style="width: 180px;" rendered="false" >  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlMonth()}"></f:selectItems>
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
-                        <p:selectOneMenu style="width: 180px;" rendered="false" >  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
-                        <p:selectOneMenu style="width: 180px;" rendered="false" >  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlReportForm()}"></f:selectItems>  
-                        </p:selectOneMenu>  
-                        <p:outputLabel value="เลือกยุทธศาสตร์ที่ : " />
-                        <p:selectOneMenu style="width: 180px;" id="REPORT_002strategicId" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport002Controller.report002.strategicId}" >  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlStrategic()}"></f:selectItems>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_002subStrategicId"/>
-                        <p:selectOneMenu style="width: 180px;" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport002Controller.report002.subStrategicId}" >  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlSubStrategic()}"></f:selectItems> 
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกแผนงาน : "/>
-                        <p:selectOneMenu style="width: 180px;" id="REPORT_002planId" value="#{formReport002Controller.report002.planId}" disabled="#{formReport002Controller.paramMode=='view'}">  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlPlan()}"></f:selectItems>  
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
-                        <p:selectOneMenu style="width: 180px;" id="REPORT_002projectId"  value="#{formReport002Controller.report002.projectId}" rendered="false">  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlProject()}"></f:selectItems> 
-                        </p:selectOneMenu>
-                        <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
-                        <p:selectOneMenu style="width: 180px;" value="#{formReport002Controller.report002.activityId}" rendered="false">  
-                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlActivity()}"></f:selectItems> 
-                        </p:selectOneMenu>
-                        <p:outputLabel value=""/>
-                        <p:outputLabel value=""/>                            
-                    </p:panelGrid>
+                    <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
+                    <p:selectOneMenu style="width: 320px;" rendered="false" disabled="#{formReport002Controller.paramMode=='view'}">
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                    </p:selectOneMenu>  
+                    <p:outputLabel value="เลือกเดือน : " rendered="false"/>
+                    <p:selectOneMenu style="width: 320px;" rendered="false" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlMonth()}"></f:selectItems>
+                    </p:selectOneMenu>  
+                    <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
+                    <p:selectOneMenu style="width: 320px;" rendered="false" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                    </p:selectOneMenu>  
+                    <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
+                    <p:selectOneMenu style="width: 320px;" rendered="false" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                    </p:selectOneMenu>  
+                    <p:outputLabel value="เลือกยุทธศาสตร์ที่ : "/>
+                    <p:selectOneMenu style="width: 320px;" id="REPORT_002strategicId" value="#{formReport002Controller.report002.strategicId}" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlStrategic()}"></f:selectItems>
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002subStrategicId"/> 
+                    </p:selectOneMenu>
+                    <p:outputLabel value="เลือกกลยุทธ์ : " />
+                    <p:selectOneMenu style="width: 320px;" id="REPORT_002subStrategicId" value="#{formReport002Controller.report002.subStrategicId}" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlSubStrategic(formReport002Controller.report002.strategicId)}"></f:selectItems>
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002planId"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="เลือกแผนงาน : "/>
+                    <p:selectOneMenu style="width: 320px;" id="REPORT_002planId" value="#{formReport002Controller.report002.planId}" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlPlan(formReport002Controller.report002.subStrategicId)}"></f:selectItems>  
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002projectId"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
+                    <p:selectOneMenu style="width: 320px;" id="REPORT_002projectId"  value="#{formReport002Controller.report002.projectId}" rendered="false" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlProject(formReport002Controller.report002.planId)}"></f:selectItems> 
+                        <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" update="REPORT_002Activity"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
+                    <p:selectOneMenu style="width: 320px;" value="#{formReport002Controller.report002.activityId}" rendered="false" disabled="#{formReport002Controller.paramMode=='view'}">  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                        <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport002Controller.dropdownFactory.ddlActivity()}"></f:selectItems> 
+                    </p:selectOneMenu>
+                    <p:outputLabel value=""/>
+                    <p:outputLabel value=""/>                            
+                </p:panelGrid>
 
                     <div style="width: 1000px;overflow-x: scroll">
                         <p:panel style="width: 100%;">
@@ -89,8 +93,8 @@ and open the template in the editor.
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                              rowsPerPageTemplate="5,10,15">  
 
-                                    <p:ajax event="rowEdit" listener="#{formReport002Controller.onEdit}"/>  
-                                    <p:ajax event="rowEditCancel" listener="#{formReport002Controller.onCancel}"/>
+                                    <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" event="rowEdit" listener="#{formReport002Controller.onEdit}"/>  
+                                    <p:ajax onstart="blogui002.show()" oncomplete="blogui002.hide()" event="rowEditCancel" listener="#{formReport002Controller.onCancel}"/>
 
                                     <p:column headerText="ลำดับ">  
                                         ${index+1}
@@ -167,15 +171,15 @@ and open the template in the editor.
                                     </p:column>  
 
                                 </p:dataTable>
-                                
+
                             </p:panelGrid>
                         </p:panel>
                     </div>
                     <h:panelGroup id="REPORT_002pnlCmd" rendered="#{formReport002Controller.report002.flowStatusId!=200}">
                         <div align="center">
-                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport002Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport002Controller.paramMode=='view' and formReport002Controller.canEdit(formReport002Controller.report002.createdUserGroup)}"/>
-                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport002Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport002Controller.paramMode=='view'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport002Controller.edit()}" id="REPORT_001btnSave" rendered="#{formReport002Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport002Controller.goToEdit()}" id="REPORT_002btnEdit" rendered="#{formReport002Controller.paramMode=='view' and formReport002Controller.canEdit(formReport002Controller.report002.createdUserGroup)}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport002Controller.goToClose()}" id="REPORT_002btnClose" rendered="#{formReport002Controller.paramMode=='view'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport002Controller.edit()}" id="REPORT_002btnSave" rendered="#{formReport002Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_002btnCancel" actionListener="#{formReport002Controller.goToCancel()}" rendered="#{formReport002Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>
@@ -217,6 +221,10 @@ and open the template in the editor.
                         }
                     </style>
                 </p:dialog>
+                <p:blockUI  block="REPORT_002" widgetVar="blogui002" trigger="REPORT_002btnSave,REPORT_002btnCancel">
+                    LOADING<br />
+                    <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+                </p:blockUI>
             </p:panel>
         </h:form>
     </h:body>

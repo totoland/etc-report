@@ -127,7 +127,7 @@ public class FormReport003Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -167,7 +167,7 @@ public class FormReport003Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.addErrorMessage(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -530,7 +530,6 @@ public class FormReport003Controller extends BaseFormReportController {
         report003Detail1.setDocReceive("หนังสือรับภายใน");
         report003Detail1.setDocSend("หนังสือส่งภายใน");
         report003Detail1.setDocSendAmount(0);
-        report003Detail1.setReportDetailId(0);
         report003Detail1.setDocReceiveAmount(0);
         report003Detail1.setReportId(report003);
         
@@ -538,7 +537,6 @@ public class FormReport003Controller extends BaseFormReportController {
         report003Detail2.setDocReceive("หนังสือรับภายใน (ชั้นความลับ)");
         report003Detail2.setDocSend("หนังสือส่งภายใน (ชั้นความลับ)");
         report003Detail2.setDocSendAmount(0);
-        report003Detail2.setReportDetailId(0);
         report003Detail2.setDocReceiveAmount(0);
         report003Detail2.setReportId(report003);
 
@@ -546,7 +544,6 @@ public class FormReport003Controller extends BaseFormReportController {
         report003Detail3.setDocReceive("หนังสือรับภายนอก");
         report003Detail3.setDocSend("หนังสือส่งภายนอก");
         report003Detail3.setDocSendAmount(0);
-        report003Detail3.setReportDetailId(0);
         report003Detail3.setDocReceiveAmount(0);
         report003Detail3.setReportId(report003);
         
@@ -554,28 +551,24 @@ public class FormReport003Controller extends BaseFormReportController {
         report003Detail4.setDocReceive("หนังสือรับภายนอก (ชั้นความลับ)");
         report003Detail4.setDocSend("หนังสือส่งภายนอก (ชั้นความลับ)");
         report003Detail4.setDocSendAmount(0);
-        report003Detail4.setReportDetailId(0);
         report003Detail4.setDocReceiveAmount(0);
         report003Detail4.setReportId(report003);
         
         Report003Detail report003Detail5 = new Report003Detail();
         report003Detail5.setDocReceive("เรื่องร้องเรียน ร้องขอความเป็นธรรม");
         report003Detail5.setDocSendAmount(0);
-        report003Detail5.setReportDetailId(0);
         report003Detail5.setDocReceiveAmount(0);
         report003Detail5.setReportId(report003);
         
         Report003Detail report003Detail6 = new Report003Detail();
         report003Detail6.setDocReceive("สำนวนร้องคัดค้าน");
         report003Detail6.setDocSendAmount(0);
-        report003Detail6.setReportDetailId(0);
         report003Detail6.setDocReceiveAmount(0);
         report003Detail6.setReportId(report003);
         
         Report003Detail report003Detail7 = new Report003Detail();
         report003Detail7.setDocReceive("อื่นๆ");
         report003Detail7.setDocSendAmount(0);
-        report003Detail7.setReportDetailId(0);
         report003Detail7.setDocReceiveAmount(0);
         report003Detail7.setReportId(report003);
 
