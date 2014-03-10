@@ -49,7 +49,7 @@ public class UserManagementController extends BaseController {
     @PostConstruct
     public void init() {
         logger.trace("initPage");
-        checkRole();
+        checkRoleAdmin();
         initForm();
     }
 
@@ -328,11 +328,5 @@ public class UserManagementController extends BaseController {
     public void setRePassword(String rePassword) {
         this.rePassword = rePassword;
     }
-
-    private void checkRole() {
-        if(getUserAuthen().getUserGroupLvl().intValue()!=EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()){
-            sendError(401, "Cannot Access User Management Page ,You are not Admin.");
-            //throw new AccessDenieException("Cannot Access User Management Page ,You are not Admin.");
-        };
-    }
+    
 }

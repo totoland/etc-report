@@ -6,7 +6,6 @@ package com.ect.web.controller.form;
 
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus;
-import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.entity.EctGroupLvl.GroupLevel;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;

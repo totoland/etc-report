@@ -4,6 +4,7 @@
  */
 package com.ect.web.controller;
 
+import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.MessageUtils;
@@ -183,5 +184,12 @@ public abstract class BaseController implements Serializable {
         }
         return DateTimeUtils.getInstance().thDate(date, format);
 
+    }
+    
+    protected void checkRoleAdmin() {
+        if(getUserAuthen().getUserGroupLvl().intValue()!=EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()){
+            sendError(401, "Cannot Access This Page ,You are not Admin.");
+            //throw new AccessDenieException("Cannot Access User Management Page ,You are not Admin.");
+        };
     }
 }
