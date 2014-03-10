@@ -4,14 +4,15 @@
  */
 package com.ect.dbmrgdao;
 
+import com.ect.db.admin.dao.AdminManagementDao;
 import com.ect.db.authen.dao.AuthenDao;
+import com.ect.db.bean.ActivityCriteria;
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.bean.UserCriteria;
 import com.ect.db.common.dao.EctConfDao;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
-import com.ect.db.entity.EctProvince;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.dao.Report001Dao;
@@ -69,6 +70,8 @@ public class Test {
     Report006Dao report006Dao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    AdminManagementDao adminManagementDao;
     
     @Before
     public void init() throws Exception {
@@ -77,6 +80,18 @@ public class Test {
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
     
+    @org.junit.Test
+    public void testAdminManagementDao(){
+        
+        ActivityCriteria criteria = new ActivityCriteria();
+        criteria.setProject("2");
+        criteria.setActivity("11");
+        
+        System.out.println(adminManagementDao.findActivityByCriteria(criteria));
+        
+    }
+    
+    @Ignore
     @org.junit.Test
     public void testSearchByUserName(){
     
