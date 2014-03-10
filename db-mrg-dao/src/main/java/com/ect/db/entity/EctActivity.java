@@ -4,10 +4,13 @@
  */
 package com.ect.db.entity;
 
+import com.ect.db.dao.BaseDao;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,9 +26,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EctActivity.findAll", query = "SELECT e FROM EctActivity e")})
-public class EctActivity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class EctActivity extends BaseDao implements Serializable {
+    private static final long serialVersionUID = -260629771027284729L;
+    
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ACTIVITY_ID")
     private Integer activityId;
@@ -97,7 +102,7 @@ public class EctActivity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ect.db.entity.EctActivity[ activityId=" + activityId + " ]";
+        return "EctActivity{" + "activityId=" + activityId + ", activityName=" + activityName + ", activityDesc=" + activityDesc + ", projectId=" + projectId + '}';
     }
     
 }
