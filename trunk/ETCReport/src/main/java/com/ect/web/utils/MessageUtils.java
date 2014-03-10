@@ -78,6 +78,9 @@ public class MessageUtils {
     public static String REQUIRE_SELECT_ACTIVITY(){
         return getResourceBundleString("require_select_activity");
     }
+    public static String REQUIRQ_ENTER_ACTIVITY(){
+        return getResourceBundleString("require_enter_activity");
+    }
     public static String REQUIRE_ADD_REPORT_DETAIL(){
         return getResourceBundleString("require_add_report_detail");
     }

@@ -19,8 +19,9 @@
                     <p:menuitem value="หน้าหลัก" url="${pageContext.request.contextPath}/pages/form/index.xhtml" icon="ui-icon-contact"/>
                     <p:menuitem value="หน้าออกรายงาน" url="${pageContext.request.contextPath}/pages/report/formReport.xhtml" icon="ui-icon-print"/>                
                     <p:submenu label="ผู้ดูแลระบบ" icon="ui-icon-person" rendered="#{formSelectReport.userAuthen.userGroupLvl == 0}">
-                        <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/user/userManagement.xhtml" icon="ui-icon-comment">
+                        <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/user/userManagement.xhtml" icon="ui-icon-key">
                         </p:menuitem>
+                        <p:menuitem value="จัดการกิจกกรม" url="/pages/admin/activityManagement.xhtml" icon="ui-icon-calendar"></p:menuitem>
                     </p:submenu>
                     <p:submenu label="ดาวน์โหลด" icon="ui-icon-comment">  
                     </p:submenu>
