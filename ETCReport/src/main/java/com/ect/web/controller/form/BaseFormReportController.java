@@ -131,29 +131,35 @@ public abstract class BaseFormReportController extends BaseController {
 
 //        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
 
+        if(user.getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel()){
+        
+            return true;
+            
+        }
+        
         if (EctFlowStatus.FlowStatus.DRAFF.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() == 4;
+            return user.getUserGroupLvl() == GroupLevel.OPERATOR.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.STEP_1.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < 4;
+            return user.getUserGroupLvl() < GroupLevel.OPERATOR.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.STEP_2.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < 3;
+            return user.getUserGroupLvl() < GroupLevel.HEAD.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.STEP_3.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < 2;
+            return user.getUserGroupLvl() < GroupLevel.LEAD.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.APPROVED.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() == 0;
+            return user.getUserGroupLvl() == GroupLevel.CENTER.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.DRAFF.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() == 4;
+            return user.getUserGroupLvl() == GroupLevel.OPERATOR.getLevel();
 
         }
 

@@ -66,7 +66,7 @@ and open the template in the editor.
                     </p:selectOneMenu>
                     <p:outputLabel value="เลือกกิจกรรม : " />
                     <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{formReport001Controller.report001.activityId}">  
-                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                        <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                         <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formReport001Controller.dropdownFactory.ddlActivity(formReport001Controller.report001.projectId)}"></f:selectItems> 
                     </p:selectOneMenu>
                     <p:outputLabel value=""/>
@@ -155,7 +155,16 @@ and open the template in the editor.
                                 </p:cellEditor>
                             </p:column>
 
-                            <p:column></p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.goalResult}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.goalResult}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
                             
                             <p:column>  
                                 <p:cellEditor>  
@@ -179,7 +188,16 @@ and open the template in the editor.
                                 </p:cellEditor>
                             </p:column>
                             
-                            <p:column></p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.practiceResult}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.practiceResult}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
                             <p:column>  
                                 <p:cellEditor>  
@@ -247,15 +265,20 @@ and open the template in the editor.
                 <h:outputLabel value="หน่วยนับ (เป้าหมาย) *" />  
                 <p:inputText id="REPORT_001lb2" value="#{formReport001Controller.inputReport001Detail.goalType}" />  
 
-                <h:outputLabel value="จำนวน (เป้าหมาย)*" />  
+                <h:outputLabel value="แผน (เป้าหมาย)*" />  
                 <totoland:inputNumber id="REPORT_001lb3" value="#{formReport001Controller.inputReport001Detail.goalAmount}" />  
 
-                <h:outputLabel value="หน่วยนับ (ผลการปฏิบัติงาน) *" />  
+                <h:outputLabel value="ผล (เป้าหมาย)*" />  
+                <totoland:inputNumber id="REPORT_001lb3b" value="#{formReport001Controller.inputReport001Detail.goalResult}" />  
+
+                <h:outputLabel value="ตัวชี้วัด (ผลการปฏิบัติงาน) *" />  
                 <p:inputText id="REPORT_001lb4" value="#{formReport001Controller.inputReport001Detail.resultType}" />  
 
-                <h:outputLabel value="จำนวน (ผลการปฏิบัติงาน) *" />  
+                <h:outputLabel value="แผน (ผลการปฏิบัติงาน) *" />  
                 <totoland:inputNumber id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
 
+                <h:outputLabel value="ผล (ผลการปฏิบัติงาน)*" />  
+                <totoland:inputNumber id="REPORT_001lb5b" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
 
                 <h:outputLabel value="งบประมาณตั้งไว้ *" />  
                 <totoland:inputNumber id="REPORT_001lb6" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
