@@ -57,7 +57,7 @@ public class FormReport009Controller extends BaseFormReportController {
      * *
      * For ListDetail
      */
-    private List<Report009Detail> report009Details;
+    private List<Report009Detail> report009Details = new ArrayList<>();
     /**
      * *
      * For Add Record

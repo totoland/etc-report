@@ -48,6 +48,7 @@ public class FormReport008Controller extends BaseFormReportController {
      */
     @ManagedProperty(value = "#{reportGennericService}")
     private ReportGennericService<Report008> reportGennericService;
+    
     /**
      * *
      * For Insert Report008
@@ -57,7 +58,7 @@ public class FormReport008Controller extends BaseFormReportController {
      * *
      * For ListDetail
      */
-    private List<Report008Detail> report008Details;
+    private List<Report008Detail> report008Details = new ArrayList<>();
     /**
      * *
      * For Add Record
@@ -524,7 +525,7 @@ public class FormReport008Controller extends BaseFormReportController {
         Date curDate = new Date();
 
         reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
-        
+     
     }
 
     @Override
@@ -537,4 +538,5 @@ public class FormReport008Controller extends BaseFormReportController {
         report008Details.remove(rowDelete);
         
     }
+    
 }

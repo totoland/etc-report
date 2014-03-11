@@ -125,12 +125,16 @@ and open the template in the editor.
         </p:dialog>
 
         <p:dialog id="REPORT_008AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_008dlgAddReportDetail" modal="true" draggable="true">
-            <p:messages id="REPORT_008msgAddReportDetail" escape="false" closable="true"></p:messages>
+                <p:messages id="REPORT_008msgAddReportDetail" escape="false" closable="true"></p:messages>
             <p:panelGrid columns="2" id="REPORT_008pn_addReportDetail">
-                
-                <h:outputLabel value="พรรค *" />  
-                <p:inputText id="REPORT_008lb01" value="#{formReport008Controller.inputReport008Detail.politicalParty}"/>  
 
+                <h:outputLabel value="พรรค *" />
+                <p:selectOneMenu id="REPORT_008lb01" value="#{formReport008Controller.inputReport008Detail.politicalParty}"
+                                 effect="fade" var="p" filter="true" filterMatchMode="contains">  
+                    <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                    <f:selectItems value="#{formReport008Controller.dropdownFactory.ddlPoliticalParty()}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}"/> 
+                </p:selectOneMenu>
+                
                 <h:outputLabel value="งบประมาณที่ได้รับสนับสนุน *"/>
                 <totoland:inputNumber id="REPORT_008lb02" value="#{formReport008Controller.inputReport008Detail.budget}"/>  
 
