@@ -13,6 +13,7 @@ import com.ect.db.common.dao.EctConfDao;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.db.common.dao.hibernate.EctConfManager;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
+import com.ect.db.entity.PoliticalParty;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.dao.Report001Dao;
@@ -72,6 +73,8 @@ public class Test {
     UserDao userDao;
     @Autowired
     AdminManagementDao adminManagementDao;
+    @Autowired
+    GennericDao<PoliticalParty>gennericService;
     
     @Before
     public void init() throws Exception {
@@ -80,6 +83,14 @@ public class Test {
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
     
+    @org.junit.Test
+    public void testPoliticalPartyDao(){
+        
+        System.out.println(gennericService.findAll(PoliticalParty.class));
+        
+    }
+    
+    @Ignore
     @org.junit.Test
     public void testAdminManagementDao(){
         
