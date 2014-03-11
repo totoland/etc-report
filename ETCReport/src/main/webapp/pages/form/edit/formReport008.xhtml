@@ -141,8 +141,11 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_008pn_addReportDetail">
 
                         <h:outputLabel value="พรรค *" />  
-                        <p:inputText id="REPORT_008lb01" value="#{formReport008Controller.inputReport008Detail.politicalParty}"/>  
-
+                        <p:selectOneMenu id="REPORT_008lb01" value="#{formReport008Controller.inputReport008Detail.politicalParty}"
+                                         effect="fade" var="p" filter="true" filterMatchMode="contains">  
+                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                            <f:selectItems value="#{formReport008Controller.dropdownFactory.ddlPoliticalParty()}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}"/> 
+                        </p:selectOneMenu>
                         <h:outputLabel value="งบประมาณที่ได้รับสนับสนุน *"/>
                         <totoland:inputNumber id="REPORT_008lb02" value="#{formReport008Controller.inputReport008Detail.budget}"/>  
 

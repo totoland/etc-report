@@ -7,6 +7,7 @@ package com.ect.web.factory;
 
 import com.ect.db.common.entity.DropDownList;
 import com.ect.db.entity.EctProvince;
+import com.ect.db.entity.PoliticalParty;
 import com.ect.web.service.CommonService;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -171,10 +172,10 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlPlan(Integer subStrateGicId) {
 
-        if(subStrateGicId == null || subStrateGicId == -1){
+        if (subStrateGicId == null || subStrateGicId == -1) {
             return null;
         }
-        
+
         DropDownList criteria = new DropDownList();
         criteria.setTableName("ECT_PLAN");
         criteria.setOrderByField("PLAN_NAME");
@@ -210,10 +211,10 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlProject(Integer planId) {
 
-        if(planId == null || planId == -1){
+        if (planId == null || planId == -1) {
             return null;
         }
-        
+
         DropDownList criteria = new DropDownList();
         criteria.setTableName("ECT_PROJECT");
         criteria.setOrderByField("PROJECT_NAME");
@@ -362,13 +363,15 @@ public class DropdownFactory implements Serializable {
         return null;
 
     }
-    
     private static List<DropDownList> ectGroupLvl;
-    /***
+
+    /**
+     * *
      * ระดับผู้ใช้
-     * @return 
+     *
+     * @return
      */
-    public List<DropDownList>ddlUserLvl(){
+    public List<DropDownList> ddlUserLvl() {
         if (ectGroupLvl == null) {
 
             DropDownList criteria = new DropDownList();
@@ -384,13 +387,15 @@ public class DropdownFactory implements Serializable {
 
         return ectGroupLvl;
     }
-    
     private List<DropDownList> ectUserGroup;
-    /***
+
+    /**
+     * *
      * กลุ่มผู้ใช้
-     * @return 
+     *
+     * @return
      */
-    public List<DropDownList>ddlUserGroup(){
+    public List<DropDownList> ddlUserGroup() {
         if (ectUserGroup == null) {
 
             DropDownList criteria = new DropDownList();
@@ -404,5 +409,16 @@ public class DropdownFactory implements Serializable {
         }
 
         return ectUserGroup;
+    }
+
+    public List<DropDownList> ddlPoliticalParty() {
+        DropDownList criteria = new DropDownList();
+        criteria.setTableName("POLITICAL_PARTY");
+        criteria.setOrderByField("POLITICAL_PARTY_ID");
+        criteria.setName("POLITICAL_PARTY_NAME");
+        criteria.setValue("POLITICAL_PARTY_ID");
+        criteria.setSortName("ASC");
+
+        return commonService.getDropdownList(criteria);
     }
 }

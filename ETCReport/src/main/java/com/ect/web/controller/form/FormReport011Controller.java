@@ -6,7 +6,6 @@ package com.ect.web.controller.form;
 
 import com.ect.db.entity.EctFlowStatus;
 import com.ect.db.report.entity.Report011Detail;
-import com.ect.db.report.entity.Report011Detail;
 import com.ect.db.report.entity.Report011;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
@@ -58,7 +57,7 @@ public class FormReport011Controller extends BaseFormReportController {
      * *
      * For ListDetail
      */
-    private List<Report011Detail> report011Details;
+    private List<Report011Detail> report011Details = new ArrayList<>();
     /**
      * *
      * For Add Record
