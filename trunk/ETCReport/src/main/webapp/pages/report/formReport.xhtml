@@ -65,8 +65,8 @@ and open the template in the editor.
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlProject(allReportController.reportCriteria.plan)}"></f:selectItems> 
                                 <p:ajax update="REPORT_001Activity"/>
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกิจกรรม : " />
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{allReportController.reportCriteria.activity}">  
+                            <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{allReportController.reportCriteria.activity}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlActivity(allReportController.reportCriteria.project)}"></f:selectItems> 
                             </p:selectOneMenu>

@@ -257,4 +257,8 @@ public abstract class BaseFormReportController extends BaseController {
     public void setReportService(ReportService reportService) {
         this.reportService = reportService;
     }
+
+    public void selectTab(String tabId) {
+        executeJavaScript("$('#form1\\\\:tabView ul li a[href=\"#form1:tabView:"+tabId+"\"]').click();");
+    }
 }

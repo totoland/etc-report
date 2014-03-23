@@ -46,6 +46,7 @@ import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,6 +99,13 @@ public class AllReportController extends BaseFormReportController {
 
         logger.trace("Search!!");
         logger.trace("Criteria : {}", reportCriteria);
+        
+        if(!StringUtils.isBlank(reportCriteria.getMonth())){
+            reportCriteria.setMonth(reportCriteria.getMonth());
+        }
+        if(!StringUtils.isBlank(reportCriteria.getYear())){
+            reportCriteria.setYear(Integer.parseInt(reportCriteria.getYear())-543+"");
+        }
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 

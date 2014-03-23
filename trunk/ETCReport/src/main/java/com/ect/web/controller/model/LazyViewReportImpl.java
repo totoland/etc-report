@@ -37,7 +37,7 @@ public class LazyViewReportImpl extends LazyDataModel<ViewReportStatus> {
 
         getReportCriteria().setStartRow(first);
         getReportCriteria().setMaxRow(pageSize);
-
+        
         if (!StringUtils.isBlank(sortField)) {
 
             getReportCriteria().setSortField(sortField);
