@@ -105,6 +105,30 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND REPORT_CODE = ").append("'").append(reportCriteria.getReportCode()).append("'");
 
         }
+        
+        if(reportCriteria.getUserGroupId()!=null && !reportCriteria.getUserGroupId().isEmpty()){
+            
+            sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" OR USER_GROUP_LVL = 0 ) ");
+            
+        }
+        
+        if(reportCriteria.getUserGroupLvl()!=null && !reportCriteria.getUserGroupLvl().isEmpty()){
+            
+            sql.append(" AND ( USER_GROUP_LVL = ").append(reportCriteria.getUserGroupLvl()).append(" OR USER_GROUP_LVL = 0 )");
+            
+        }
+        
+        if(reportCriteria.getMonth()!=null && !reportCriteria.getMonth().isEmpty()){
+            
+            sql.append(" AND MONTH(CREATED_DATE) = ").append(reportCriteria.getMonth());
+            
+        }
+        
+        if(reportCriteria.getYear()!=null && !reportCriteria.getYear().isEmpty()){
+            
+            sql.append(" AND YEAR(CREATED_DATE) = ").append(reportCriteria.getYear());
+            
+        }
 
         return super.findNativePagginQuery(sql.toString(), reportCriteria.getStartRow(), reportCriteria.getMaxRow(), ViewReportStatus.class);
     }
@@ -133,7 +157,19 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND REPORT_CODE = ").append("'").append(reportCriteria.getReportCode()).append("'");
 
         }
-
+        
+        if(reportCriteria.getUserGroupId()!=null){
+            
+            sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" OR USER_GROUP_LVL = 0 ) ");
+            
+        }
+        
+        if(reportCriteria.getUserGroupLvl()!=null){
+            
+            sql.append(" AND ( USER_GROUP_LVL = ").append(reportCriteria.getUserGroupLvl()).append(" OR USER_GROUP_LVL = 0 )");
+            
+        }
+        
         return super.countNativeQuery(sql.toString());
     }
 }

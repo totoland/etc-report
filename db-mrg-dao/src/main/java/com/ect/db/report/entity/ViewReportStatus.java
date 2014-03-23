@@ -77,6 +77,10 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
     private String rejectedUserFullName;
     @Column(name ="REPORT_STATUS")
     private Integer reportStatus;
+    @Column(name ="USER_GROUP_ID")
+    private Integer userGroupId;
+    @Column(name = "USER_GROUP_LVL")
+    private Integer userGroupLvl;
     
     @Transient
     protected String documentNo;
@@ -302,12 +306,6 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "ViewReportStatus{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", documentNo=" + documentNo + '}';
-    }
-    
     /**
      * @return the id
      */
@@ -456,5 +454,37 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
         this.reportStatus = reportStatus;
     }
 
+    /**
+     * @return the userGroupId
+     */
+    public Integer getUserGroupId() {
+        return userGroupId;
+    }
+
+    /**
+     * @param userGroupId the userGroupId to set
+     */
+    public void setUserGroupId(Integer userGroupId) {
+        this.userGroupId = userGroupId;
+    }
+
+    /**
+     * @return the userGroupLvl
+     */
+    public Integer getUserGroupLvl() {
+        return userGroupLvl;
+    }
+
+    /**
+     * @param userGroupLvl the userGroupLvl to set
+     */
+    public void setUserGroupLvl(Integer userGroupLvl) {
+        this.userGroupLvl = userGroupLvl;
+    }
+
+    @Override
+    public String toString() {
+        return "ViewReportStatus{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", reportStatus=" + reportStatus + ", userGroupId=" + userGroupId + ", userGroupLvl=" + userGroupLvl + ", documentNo=" + documentNo + '}';
+    }
     
 }
