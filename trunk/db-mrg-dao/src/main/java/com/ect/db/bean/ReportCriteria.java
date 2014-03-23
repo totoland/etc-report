@@ -29,6 +29,8 @@ public class ReportCriteria implements Serializable{
     private int maxRow = 10;
     private String sortField;
     private String sortOrder;
+    private String userGroupId;
+    private String userGroupLvl;
 
     /**
      * @return the year
@@ -254,9 +256,37 @@ public class ReportCriteria implements Serializable{
         this.flowStatus = flowStatus;
     }
 
+    /**
+     * @return the userGroupId
+     */
+    public String getUserGroupId() {
+        return userGroupId;
+    }
+
+    /**
+     * @param userGroupId the userGroupId to set
+     */
+    public void setUserGroupId(String userGroupId) {
+        this.userGroupId = userGroupId;
+    }
+
+    /**
+     * @return the userGroupLvl
+     */
+    public String getUserGroupLvl() {
+        return userGroupLvl;
+    }
+
+    /**
+     * @param userGroupLvl the userGroupLvl to set
+     */
+    public void setUserGroupLvl(String userGroupLvl) {
+        this.userGroupLvl = userGroupLvl;
+    }
+
     @Override
     public String toString() {
-        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", flowStatus=" + flowStatus + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + ", sortField=" + sortField + ", sortOrder=" + sortOrder + '}';
+        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", flowStatus=" + flowStatus + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + ", sortField=" + sortField + ", sortOrder=" + sortOrder + ", userGroupId=" + userGroupId + ", userGroupLvl=" + userGroupLvl + '}';
     }
     
 }
