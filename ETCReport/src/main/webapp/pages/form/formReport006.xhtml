@@ -26,18 +26,18 @@ and open the template in the editor.
                                      style="width: 1200px"
                                      rowIndexVar="index" editable="true" paginator="true" rows="10" emptyMessage="#{msg.no_data_found}"  
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                                     rowsPerPageTemplate="5,10,15">  
+                                     rowsPerPageTemplate="5,10,15" summary="">  
 
-                            <p:ajax event="rowEdit" listener="#{formReport006Controller.onEdit}"/>  
-                            <p:ajax event="rowEditCancel" listener="#{formReport006Controller.onCancel}"/>
+                            <p:ajax event="rowEdit" listener="#{formReport006Controller.onEdit}" update="REPORT_006Grid"/>  
+                            <p:ajax event="rowEditCancel" listener="#{formReport006Controller.onCancel}" update="REPORT_006Grid"/>
 
                             <p:columnGroup type="header"> 
                                 <p:row>  
                                     <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="ลำดับ"></p:column>
                                     <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="เรื่อง"></p:column>  
                                     <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="จำนวน (เรื่อง)"></p:column>
-                                    <p:column colspan="3" style="text-align: center" headerText="สถานะของเรื่องที่ยังไม่ได้พิจรณา"></p:column>
-                                    <p:column colspan="2" style="text-align: center" headerText="จำนวนเรื่องที่ผ่านการพิจรณาแล้ว"></p:column>
+                                    <p:column colspan="3" style="text-align: center" headerText="สถานะของเรื่องที่ยังไม่ได้พิจารณา"></p:column>
+                                    <p:column colspan="2" style="text-align: center" headerText="จำนวนเรื่องที่ผ่านการพิจารณาแล้ว"></p:column>
                                     <p:column rowspan="2"></p:column>
                                     <p:column rowspan="2"></p:column>
                                 </p:row>
@@ -131,7 +131,32 @@ and open the template in the editor.
                                     <span class="ui-icon ui-icon-trash"></span>
                                     <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
                                 </p:commandLink>
-                            </p:column> 
+                            </p:column>
+
+                            <p:columnGroup type="footer" id="footer">  
+                                <p:row>  
+                                    <p:column footerText="รวม" />
+                                    <p:column footerText=""  
+                                              style="text-align:left"/>
+                                    <p:column footerText="#{formReport006Controller.sumDetail.amount}"  
+                                              style="text-align:left" />
+                                    <p:column footerText="#{formReport006Controller.sumDetail.submitManager}"  
+                                              style="text-align:left" />
+                                    <p:column footerText="#{formReport006Controller.sumDetail.submitPresidentEct}"  
+                                              style="text-align:left" />
+                                    <p:column footerText="#{formReport006Controller.sumDetail.submited}"  
+                                              style="text-align:left" />
+                                    <p:column footerText="#{formReport006Controller.sumDetail.conclusion}"  
+                                              style="text-align:left" />
+                                    <p:column footerText="#{formReport006Controller.sumDetail.comment}"  
+                                              style="text-align:left" />
+                                    <p:column footerText=""  
+                                              style="text-align:center" />
+                                    <p:column footerText=""  
+                                              style="text-align:center" />
+                                </p:row> 
+                            </p:columnGroup> 
+
                         </p:dataTable>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
                             <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  

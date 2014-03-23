@@ -221,6 +221,8 @@ public class FormReport006Controller extends BaseFormReportController {
         inputReport006Detail.setReportId(report006);
 
         report006Details.add(inputReport006Detail);
+        
+        sumReport006Details();
 
         JsfUtil.hidePopup("REPORT_006dlgAddReportDetail");
     }
@@ -265,6 +267,8 @@ public class FormReport006Controller extends BaseFormReportController {
 
         }
 
+        sumReport006Details();
+        
         JsfUtil.addSuccessMessage("แก้ใขข้อมูลสำเร็จ!!");
 
     }
@@ -586,5 +590,49 @@ public class FormReport006Controller extends BaseFormReportController {
         
         report006Details.remove(rowDelete);
         
+        sumReport006Details();
+        
     }
+    
+    private Report006Detail sumDetail = new Report006Detail();
+    
+    public void sumReport006Details(){
+     
+        sumDetail.setAmount(0);
+        sumDetail.setComment(0);
+        sumDetail.setConclusion(0);
+        sumDetail.setSubmitManager(0);
+        sumDetail.setSubmitPresidentEct(0);
+        sumDetail.setSubmited(0);
+    
+        
+        for(Report006Detail rd : report006Details){
+        
+            getSumDetail().setAmount(getSumDetail().getAmount()+rd.getAmount());
+            getSumDetail().setComment(getSumDetail().getComment()+rd.getComment());
+            getSumDetail().setConclusion(getSumDetail().getConclusion()+rd.getConclusion());
+            getSumDetail().setSubmitManager(getSumDetail().getSubmitManager()+rd.getSubmitManager());
+            getSumDetail().setSubmitPresidentEct(getSumDetail().getSubmitPresidentEct()+rd.getSubmitPresidentEct());
+            getSumDetail().setSubmited(getSumDetail().getSubmited()+rd.getSubmited());
+            
+        }
+        
+        logger.trace("sumDetail : {}",sumDetail);
+        
+    }
+
+    /**
+     * @return the sumDetail
+     */
+    public Report006Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    /**
+     * @param sumDetail the sumDetail to set
+     */
+    public void setSumDetail(Report006Detail sumDetail) {
+        this.sumDetail = sumDetail;
+    }
+    
 }

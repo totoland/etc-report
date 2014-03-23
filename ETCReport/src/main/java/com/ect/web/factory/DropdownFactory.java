@@ -7,7 +7,6 @@ package com.ect.web.factory;
 
 import com.ect.db.common.entity.DropDownList;
 import com.ect.db.entity.EctProvince;
-import com.ect.db.entity.PoliticalParty;
 import com.ect.web.service.CommonService;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

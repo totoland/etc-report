@@ -5,8 +5,10 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.bean.ReportCriteria;
+import com.ect.db.entity.EctFlowStatus;
 import com.ect.db.entity.EctFlowStatus.FlowStatus;
 import com.ect.db.entity.EctFlowStatus.ReportStatus;
+import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.entity.ReportName.ReportCode;
@@ -17,7 +19,6 @@ import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
-import com.google.gson.Gson;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +31,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
-import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.commandbutton.CommandButton;
+import org.primefaces.component.confirmdialog.ConfirmDialog;
+import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -89,6 +92,9 @@ public class FormReportMainController extends BaseFormReportController {
 
     @PostConstruct
     public void init() {
+        
+        notifyFistLogin();
+        
     }
 
     @Override
@@ -149,6 +155,8 @@ public class FormReportMainController extends BaseFormReportController {
         logger.trace("loadReportSTEP1State!!");
 
         ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
+        
         reportCriteria.setFlowStatus(FlowStatus.STEP_1.getStatus() + "");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
@@ -183,6 +191,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.STEP_2.getStatus() + "");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -209,6 +218,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.STEP_3.getStatus() + "");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -235,6 +245,7 @@ public class FormReportMainController extends BaseFormReportController {
         
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.APPROVED.getStatus() + "");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -261,6 +272,7 @@ public class FormReportMainController extends BaseFormReportController {
         
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.DRAFF.getStatus() + "");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -328,6 +340,12 @@ public class FormReportMainController extends BaseFormReportController {
 
         String tabName = event.getTab().getId().replaceFirst("tab_", "");
 
+        if(tabName.equalsIgnoreCase(FlowStatus.DRAFF.getName())){
+        
+            loadReportDrafState();
+            
+        }
+        
         if (tabName.equalsIgnoreCase(FlowStatus.STEP_1.getName())) {
 
             loadReportSTEP1State();
@@ -358,6 +376,7 @@ public class FormReportMainController extends BaseFormReportController {
      *
      * @param event
      */
+    @Override
     public void onEdit(RowEditEvent event) {
 
         Report001Detail editRow = ((Report001Detail) event.getObject());
@@ -388,6 +407,7 @@ public class FormReportMainController extends BaseFormReportController {
      *
      * @param event
      */
+    @Override
     public void onCancel(RowEditEvent event) {
 
         JsfUtil.addSuccessMessage("ยกเลิก!!");
@@ -411,7 +431,7 @@ public class FormReportMainController extends BaseFormReportController {
 
             } else {
 
-                addInfo("ส่งพิจรณาแล้ว");
+                addInfo("ส่งพิจารณาแล้ว");
 
                 loadReportDrafState();
                 loadReportSTEP1State();
@@ -726,5 +746,66 @@ public class FormReportMainController extends BaseFormReportController {
     @Override
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private String notifyTaskMsg;
+    
+    private void notifyFistLogin() {
+        
+        if(super.getParameter("firstLogin")!=null){
+        
+            Integer task = getFollowUpNewTask();
+            
+            notifyTaskMsg = "คุณมีรายงานรอพิจารณา "+task+" รายการ";
+            
+        }
+        
+    }
+    
+    public Integer getFollowUpNewTask() {
+        ReportCriteria criteria = new ReportCriteria();
+        criteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
+
+        if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.OPERATOR.getLevel()) {
+            criteria.setFlowStatus(EctFlowStatus.FlowStatus.DRAFF.getStatus() + "");
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
+            criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_1.getStatus() + "");
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.HEAD.getLevel()) {
+            criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_2.getStatus() + "");
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.CENTER.getLevel()) {
+            criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_3.getStatus() + "");
+        }
+        return reportService.countByCriteria(criteria);
+    }
+
+    /**
+     * Select Tab for Render
+     */
+    public void goToUserTab(){
+        
+        if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.OPERATOR.getLevel()) {
+            super.selectTab("tab_"+EctFlowStatus.FlowStatus.DRAFF.getName());
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
+            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_1.getName());
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.HEAD.getLevel()) {
+            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_2.getName());
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.CENTER.getLevel()) {
+            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_3.getName());
+        }
+        
+    }
+    
+    /**
+     * @return the notifyTaskMsg
+     */
+    public String getNotifyTaskMsg() {
+        return notifyTaskMsg;
+    }
+
+    /**
+     * @param notifyTaskMsg the notifyTaskMsg to set
+     */
+    public void setNotifyTaskMsg(String notifyTaskMsg) {
+        this.notifyTaskMsg = notifyTaskMsg;
     }
 }

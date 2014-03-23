@@ -21,9 +21,15 @@ and open the template in the editor.
                 <h:form id="form1">
                     <p:messages id="msgFormMain" closable="true"/>
                     <p:panel header="หน้าหลัก">
-                        <p:tabView id="tabView" dynamic="true" cache="false">
+                        <p:tabView id="tabView" widgetVar="tabView" dynamic="true" cache="false">
 
                             <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}" oncomplete="resetDdl()"/>
+
+                            <p:tab id="tab" title="ติดตามสถานะงาน" rendered="#{formSelectReport.canCreateReport()}">
+                                <div style="width: 1170px;overflow-x: scroll">
+
+                                </div>
+                            </p:tab>
 
                             <p:tab id="tab0" title="สร้างรายงาน" rendered="#{formSelectReport.canCreateReport()}">
 
@@ -46,7 +52,7 @@ and open the template in the editor.
 
                                 </p:panel>
                             </p:tab>
-                            <p:tab id="tab_REJECT" title="รอส่งพิจารณา">
+                            <p:tab id="tab_DRAFF" title="รอส่งพิจารณา">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}"
                                                  paginator="true" rows="10" style="width: 1550px;" lazy="true"
@@ -117,7 +123,7 @@ and open the template in the editor.
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column style="width: 290px">
+                                        <p:column style="width: 320px">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 102)}" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
                                             <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,0)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
@@ -155,13 +161,13 @@ and open the template in the editor.
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="วันที่ส่งพิจรณา" />
+                                                <h:outputText value="วันที่ส่งพิจารณา" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.approvedDate}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="ชื่อผู้ส่งพิจรณา" />
+                                                <h:outputText value="ชื่อผู้ส่งพิจารณา" />
                                             </f:facet>
                                             <h:outputText value="#{item.approvedUserFullName}" />
                                         </p:column>
@@ -190,7 +196,7 @@ and open the template in the editor.
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
-                                        
+
                                         <p:column style="width: 290px">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" actionListener="#{FormReportMainController.approve(item.reportCode, item.reportId, 103)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>                                        
@@ -230,7 +236,7 @@ and open the template in the editor.
                                         </p:column>
                                         <p:column style="width: 80px">
                                             <f:facet name="header">
-                                                <h:outputText value="วันที่ส่งพิจรณา" />
+                                                <h:outputText value="วันที่ส่งพิจารณา" />
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.approvedDate}">
 
@@ -238,7 +244,7 @@ and open the template in the editor.
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="ชื่อผู้ส่งพิจรณา" />
+                                                <h:outputText value="ชื่อผู้ส่งพิจารณา" />
                                             </f:facet>
                                             <h:outputText value="#{item.approvedUserFullName}" />
                                         </p:column>
@@ -252,7 +258,7 @@ and open the template in the editor.
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
-                                        
+
                                         <p:column style="width: 290px">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
                                             <p:commandButton value="#{msg.btn_approve}" onclick="return confirm('#{msg.confirmation_message_approve}')" actionListener="#{FormReportMainController.approve(item.reportCode, item.reportId, 200)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>                                        
@@ -314,7 +320,7 @@ and open the template in the editor.
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
-                                        
+
                                         <p:column style="width: 130px">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include">
                                             </p:commandButton>
@@ -379,7 +385,7 @@ and open the template in the editor.
                     </p:panel>
 
                     <!-- Dialog Reason -->
-                    <p:dialog id="dialogRemark" header="เหตุผลไม่ผ่านการพิจรณา" widgetVar="dialogRemark" resizable="false" modal="true">  
+                    <p:dialog id="dialogRemark" header="เหตุผลไม่ผ่านการพิจารณา" widgetVar="dialogRemark" resizable="false" modal="true">  
                         <p:messages id="remarkMsg"/>
                         <p:panelGrid columns="2">  
                             <h:outputLabel for="remark" value="เหตุผล:" />  
@@ -421,6 +427,15 @@ and open the template in the editor.
 
                     </h:panelGroup>
 
+                    <p:commandButton value="" id="notifyTasks" style="display:none" action="#{FormReportMainController.goToUserTab()}" oncomplete="notifyTask.hide()">  
+                        <p:confirm header="#{msg.notify}" message="#{FormReportMainController.notifyTaskMsg}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:confirmDialog widgetVar="notifyTask" header="แจ้งเตือน" global="true" showEffect="fade" hideEffect="explode">
+                        <p:commandButton value="แสดง" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="ปิด" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>    
+                    </p:confirmDialog>
+
                     <!-- Include Report Edit-->
                     <h:panelGroup id="includeEdit">
                         <p:dialog id="dialogEdit" header="แสดงข้อมูล" widgetVar="dialogEdit" resizable="true" height="500" width="1100" modal="true">
@@ -430,6 +445,7 @@ and open the template in the editor.
                     </h:panelGroup>
                 </h:form>
                 <script>
+                                                //<![CDATA[
                                                 function resetDdl() {
                                                     try {
                                                         ectDll.selectValue("");
@@ -439,9 +455,15 @@ and open the template in the editor.
                                                         }, 100);
                                                     }
                                                 }
-                                                $(function(){
+                                                $(function() {
                                                     resetDdl();
+
+                                                    if (getParameterByName("firstLogin") != null && getParameterByName("firstLogin") != "" && ${FormReportMainController.userAuthen.userGroupLvl!=0}) {
+                                                        $("#form1\\:notifyTasks").click();
+                                                    }
+
                                                 });
+                                                //]]>
                 </script>
 
             </ui:define>
