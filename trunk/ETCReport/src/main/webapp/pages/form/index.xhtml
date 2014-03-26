@@ -60,7 +60,7 @@ and open the template in the editor.
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column width="180">
+                                        <p:column width="200">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 101)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
                                         </p:column>
