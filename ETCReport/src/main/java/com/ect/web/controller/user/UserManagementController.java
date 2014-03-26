@@ -140,7 +140,7 @@ public class UserManagementController extends BaseController {
     public void edit() {
         logger.trace("edit...");
 
-        if (!validateBeforeSave()) {
+        if (!validateBeforeEdit()) {
             return;
         }
 
@@ -268,6 +268,47 @@ public class UserManagementController extends BaseController {
         this.reportGennericService = reportGennericService;
     }
 
+    private boolean validateBeforeEdit() {
+        String msg = "";
+                
+        if (StringUtils.isBlank(ectUser.getUsername())) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "ชื่อผู้ใช้")) + ("\\n");
+        }
+        if (StringUtils.isBlank(ectUser.getPassword())) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "รหัสผ่าน")) + ("\\n");
+        }
+        if (StringUtils.isBlank(ectUser.getFname())) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "ชื่อ")) + ("\\n");
+        }
+        if (StringUtils.isBlank(ectUser.getLname())) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "นามสกุล")) + ("\\n");
+        }
+        if (ectUser.getSex() == null) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "เพศ")) + ("\\n");
+        }
+        if (ectUser.getUserGroupLvl() == null || ectUser.getUserGroupLvl().intValue() == -1) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "ระดับผู้ใช้")) + ("\\n");
+        }
+        if (ectUser.getUserGroupId() == null || ectUser.getUserGroupId().intValue() == -1) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "กลุ่มผู้ใช้")) + ("\\n");
+        }
+        if (ectUser.getIsActive() == null) {
+            msg += (MessageUtils.getResourceBundleString("require_message", "สถานนะ")) + ("\\n");
+        }
+
+        if (!StringUtils.isBlank(msg.toString())) {
+            JsfUtil.alertJavaScript(msg.toString().trim());
+            return false;
+        }
+
+        if (!ectUser.getPassword().equals(rePassword)) {
+            JsfUtil.alertJavaScript(MessageUtils.getResourceBundleString("password_not_same"));
+            return false;
+        }
+
+        return true;
+    }
+    
     private boolean validateBeforeSave() {
         String msg = "";
         
