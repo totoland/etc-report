@@ -17,4 +17,6 @@ public interface Report002Dao {
     List<ViewReport002> findByStatus(Integer status);
 
     Report002 findByReportId(Integer reportId);
+
+    List<Report002> checkDuppActivityInMonth002(Integer userGroupId, Integer activityId, int month);
 }

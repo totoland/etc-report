@@ -7,6 +7,7 @@
 package com.ect.db.common.dao;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -31,4 +32,6 @@ public interface GennericDao<T> {
     public int count(Class<T> entityClass);
     
     public List<T> findByStatus(Integer status,Class<T> entityClass);
+    
+    public List<T> findByDynamicField(Class<T> entityClass, Map<String, Object> hasValue);
 }

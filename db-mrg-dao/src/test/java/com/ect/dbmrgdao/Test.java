@@ -6,7 +6,6 @@ package com.ect.dbmrgdao;
 
 import com.ect.db.admin.dao.AdminManagementDao;
 import com.ect.db.authen.dao.AuthenDao;
-import com.ect.db.bean.ActivityCriteria;
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.bean.UserCriteria;
 import com.ect.db.common.dao.EctConfDao;
@@ -27,7 +26,10 @@ import com.ect.db.report.entity.Report003Detail;
 import com.ect.db.user.dao.UserDao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -75,7 +77,9 @@ public class Test {
     AdminManagementDao adminManagementDao;
     @Autowired
     GennericDao<PoliticalParty>gennericService;
-    
+    @Autowired
+    GennericDao<Report001>gennericDao1;
+        
     @Before
     public void init() throws Exception {
         // Log4J junit configuration.
@@ -83,6 +87,18 @@ public class Test {
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
     
+    @Ignore
+    @org.junit.Test
+    public void testQueryDynamicField(){
+        
+        Map<String, Object>has = new HashMap<String,Object>();
+        has.put("activityId", 1);
+        
+        System.out.println(gennericDao1.findByDynamicField(Report001.class, has));
+    
+    }
+    
+    @Ignore
     @org.junit.Test
     public void testPoliticalPartyDao(){
         
@@ -90,15 +106,13 @@ public class Test {
         
     }
     
-    @Ignore
     @org.junit.Test
     public void testAdminManagementDao(){
         
-        ActivityCriteria criteria = new ActivityCriteria();
-        criteria.setProject("2");
-        criteria.setActivity("11");
-        
-        System.out.println(adminManagementDao.findActivityByCriteria(criteria));
+        ReportCriteria criteria = new ReportCriteria();
+        criteria.setUserGroupId("1");
+                
+        System.out.println(viewReportByStatusDao.findByCriteria(criteria));
         
     }
     
