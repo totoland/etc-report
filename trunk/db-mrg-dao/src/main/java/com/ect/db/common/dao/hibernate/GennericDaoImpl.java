@@ -8,7 +8,9 @@ package com.ect.db.common.dao.hibernate;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.db.dao.BaseDao;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +48,7 @@ public class GennericDaoImpl<T> extends BaseDao implements GennericDao<T>, Seria
     public T find(Long id, Class<T> entityClass) {
         return getHibernateTemplate().load(entityClass, id);
     }
-    
+
     @Override
     @Transactional
     public T find(Integer id, Class<T> entityClass) {
@@ -75,9 +77,27 @@ public class GennericDaoImpl<T> extends BaseDao implements GennericDao<T>, Seria
     }
 
     @Override
-    public List<T> findByStatus(Integer status,Class<T> entityClass) {
-        List t = getHibernateTemplate().find("SELECT count(c) FROM " + entityClass.getSimpleName() + " c where c.flowStatusId = ?",status);
+    public List<T> findByStatus(Integer status, Class<T> entityClass) {
+        List t = getHibernateTemplate().find("SELECT count(c) FROM " + entityClass.getSimpleName() + " c where c.flowStatusId = ?", status);
+
+        return t;
+    }
+
+    @Override
+    public List<T> findByDynamicField(Class<T> entityClass, Map<String, Object> hasValue) {
+
+        StringBuilder sql = new StringBuilder().append(" where 1=1 ");
         
+        Iterator it = hasValue.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pairs = (Map.Entry) it.next();
+            System.out.println(pairs.getKey() + " = " + pairs.getValue());
+            sql.append(" and ").append("c.").append(pairs.getKey()).append(" = ").append(pairs.getValue());
+            it.remove(); 
+        }
+
+        List t = getHibernateTemplate().find("select c from " + entityClass.getSimpleName() +" c "+ sql.toString());
+
         return t;
     }
 }

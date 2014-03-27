@@ -33,4 +33,25 @@ public class Report002DaoImpl extends BaseDao implements Report002Dao, Serializa
         return (Report002) findUniqNativeQuery("SELECT * FROM REPORT_002 WHERE REPORT_ID = ? ", Report002.class, reportId);
         
     }
+    
+    @Override
+    public List<Report002> checkDuppActivityInMonth002(Integer userGroupId, Integer activityId, int month){
+    
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT     REPORT_002.REPORT_ID, REPORT_002.REPORT_CODE, REPORT_002.REPORT_DESC, REPORT_002.CREATED_DATE, REPORT_002.CREATED_USER, "
+                + "                      REPORT_002.CREATED_USER_GROUP, REPORT_002.UPDATED_DATE, REPORT_002.UPDATED_USER, REPORT_002.STRATEGIC_ID, "
+                + "                      REPORT_002.SUB_STRATEGIC_ID, REPORT_002.PLAN_ID, REPORT_002.PROJECT_ID, REPORT_002.ACTIVITY_ID, REPORT_002.REMARK, "
+                + "                      REPORT_002.APPROVED_USER, REPORT_002.FLOW_STATUS_ID, REPORT_002.APPROVED_DATE, REPORT_002.REJECTED_USER, "
+                + "                      REPORT_002.REJECTED_DATE, REPORT_002.REPORT_STATUS, ECT_USER.USER_GROUP_ID, ECT_USER.PROVINCE_ID "
+                + "FROM         ECT_USER INNER JOIN "
+                + "                      REPORT_002 ON ECT_USER.USER_ID = REPORT_002.CREATED_USER\n"
+                + "WHERE   ECT_USER.USER_GROUP_ID = ? "
+                + "AND  (REPORT_002.ACTIVITY_ID = ?) "
+                + "AND DATEPART(month, CREATED_DATE) = ?");
+
+        List<Report002> list = findNativeQuery(sql.toString(), Report002.class, userGroupId, activityId, month);
+        
+        return list;
+        
+    }
 }
