@@ -785,9 +785,9 @@ public class FormReportMainController extends BaseFormReportController {
         
         if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.OPERATOR.getLevel()) {
             super.selectTab("tab_"+EctFlowStatus.FlowStatus.DRAFF.getName());
-        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
-            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_1.getName());
         } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.HEAD.getLevel()) {
+            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_1.getName());
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
             super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_2.getName());
         } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.CENTER.getLevel()) {
             super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_3.getName());
