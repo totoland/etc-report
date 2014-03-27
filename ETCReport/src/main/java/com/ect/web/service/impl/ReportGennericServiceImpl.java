@@ -7,6 +7,7 @@ package com.ect.web.service.impl;
 import com.ect.db.common.dao.GennericDao;
 import com.ect.web.service.ReportGennericService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +64,11 @@ public class ReportGennericServiceImpl<T> implements ReportGennericService<T> {
     @Override
     public List<T> findByStatusId(Integer status,Class<T> entityClass) {
         return gennericDao.findByStatus(status, entityClass);
+    }
+    
+    @Override
+    public List<T> findByDynamicField(Class<T> entityClass, Map<String, Object> hasValue){
+        return gennericDao.findByDynamicField(entityClass, hasValue);
     }
 
 }

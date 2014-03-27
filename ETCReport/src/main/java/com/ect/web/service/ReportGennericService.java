@@ -5,6 +5,7 @@
 package com.ect.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -29,4 +30,6 @@ public interface ReportGennericService<T> {
     public int count(Class<T> entityClass);
     
     public List<T> findByStatusId(Integer status,Class<T> entityClass);
+    
+    public List<T> findByDynamicField(Class<T> entityClass, Map<String, Object> hasValue);
 }

@@ -31,9 +31,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
-import org.primefaces.component.commandbutton.CommandButton;
-import org.primefaces.component.confirmdialog.ConfirmDialog;
-import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -85,6 +82,7 @@ public class FormReportMainController extends BaseFormReportController {
     private LazyDataModel<ViewReportStatus> listReportStatusStep3;
     private LazyDataModel<ViewReportStatus> listReportStatusReject;
     private LazyDataModel<ViewReportStatus> listReportStatusApprove;
+    private LazyDataModel<ViewReportStatus> listReportStatusTracking;
     private String remark;
     private boolean validRemark = true;
     private ViewReportStatus selectReject;
@@ -92,9 +90,9 @@ public class FormReportMainController extends BaseFormReportController {
 
     @PostConstruct
     public void init() {
-        
+
         notifyFistLogin();
-        
+
     }
 
     @Override
@@ -148,6 +146,39 @@ public class FormReportMainController extends BaseFormReportController {
 
     /**
      * *
+     * Load Report Tracking report your self
+     */
+    public void loadReportTracking() {
+
+        logger.trace("loadReportSTEP1State!!");
+
+        ReportCriteria reportCriteria = new ReportCriteria();
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
+
+        final Integer count = reportService.countByCriteria(reportCriteria);
+
+        if (count != null && count > 0) {
+
+            LazyViewReportImpl reportModel = new LazyViewReportImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+
+            listReportStatusTracking = reportModel;
+
+        }
+
+        if (listReportStatusTracking == null) {
+
+            logger.debug("listReportStatusWait is null!!");
+            return;
+
+        }
+
+    }
+
+    /**
+     * *
      * Load Report Step1
      */
     public void loadReportSTEP1State() {
@@ -155,13 +186,13 @@ public class FormReportMainController extends BaseFormReportController {
         logger.trace("loadReportSTEP1State!!");
 
         ReportCriteria reportCriteria = new ReportCriteria();
-        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
-        
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
+
         reportCriteria.setFlowStatus(FlowStatus.STEP_1.getStatus() + "");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
-        if (count != null || count > 0) {
+        if (count != null && count > 0) {
 
             LazyViewReportImpl reportModel = new LazyViewReportImpl();
             reportModel.setRowCount(count);
@@ -191,7 +222,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.STEP_2.getStatus() + "");
-        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -218,7 +249,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.STEP_3.getStatus() + "");
-        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -242,10 +273,10 @@ public class FormReportMainController extends BaseFormReportController {
     public void loadReportApproveState() {
 
         logger.trace("loadReportApproveState!!");
-        
+
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.APPROVED.getStatus() + "");
-        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -269,10 +300,10 @@ public class FormReportMainController extends BaseFormReportController {
     public void loadReportDrafState() {
 
         logger.trace("loadReportDrafState!!");
-        
+
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.DRAFF.getStatus() + "");
-        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId()+"");
+        reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -340,12 +371,18 @@ public class FormReportMainController extends BaseFormReportController {
 
         String tabName = event.getTab().getId().replaceFirst("tab_", "");
 
-        if(tabName.equalsIgnoreCase(FlowStatus.DRAFF.getName())){
-        
-            loadReportDrafState();
-            
+        if (tabName.equalsIgnoreCase("TRACKING")) {
+
+            loadReportTracking();
+
         }
-        
+
+        if (tabName.equalsIgnoreCase(FlowStatus.DRAFF.getName())) {
+
+            loadReportDrafState();
+
+        }
+
         if (tabName.equalsIgnoreCase(FlowStatus.STEP_1.getName())) {
 
             loadReportSTEP1State();
@@ -509,7 +546,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         if (reportStatus == ReportStatus.APPROVE.getStatus()) {
 
-            return "อนุมัต";
+            return "อนุมัติ";
 
         } else if (reportStatus == ReportStatus.REJECTE.getStatus()) {
 
@@ -747,11 +784,10 @@ public class FormReportMainController extends BaseFormReportController {
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     private String notifyTaskMsg;
-    
+
     private void notifyFistLogin() {
-        
+
         if(super.getParameter("firstLogin")!=null){
         
             Integer task = getFollowUpNewTask();
@@ -759,9 +795,9 @@ public class FormReportMainController extends BaseFormReportController {
             notifyTaskMsg = "คุณมีรายงานรอพิจารณา "+task+" รายการ";
             
         }
-        
+
     }
-    
+
     public Integer getFollowUpNewTask() {
         ReportCriteria criteria = new ReportCriteria();
         criteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
@@ -781,20 +817,20 @@ public class FormReportMainController extends BaseFormReportController {
     /**
      * Select Tab for Render
      */
-    public void goToUserTab(){
-        
+    public void goToUserTab() {
+
         if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.OPERATOR.getLevel()) {
-            super.selectTab("tab_"+EctFlowStatus.FlowStatus.DRAFF.getName());
+            super.selectTab("tab_" + EctFlowStatus.FlowStatus.DRAFF.getName());
         } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.HEAD.getLevel()) {
-            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_1.getName());
+            super.selectTab("tab_" + EctFlowStatus.FlowStatus.STEP_1.getName());
         } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
-            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_2.getName());
+            super.selectTab("tab_" + EctFlowStatus.FlowStatus.STEP_2.getName());
         } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.CENTER.getLevel()) {
-            super.selectTab("tab_"+EctFlowStatus.FlowStatus.STEP_3.getName());
+            super.selectTab("tab_" + EctFlowStatus.FlowStatus.STEP_3.getName());
         }
-        
+
     }
-    
+
     /**
      * @return the notifyTaskMsg
      */
@@ -807,5 +843,19 @@ public class FormReportMainController extends BaseFormReportController {
      */
     public void setNotifyTaskMsg(String notifyTaskMsg) {
         this.notifyTaskMsg = notifyTaskMsg;
+    }
+
+    /**
+     * @return the listReportStatusTracking
+     */
+    public LazyDataModel<ViewReportStatus> getListReportStatusTracking() {
+        return listReportStatusTracking;
+    }
+
+    /**
+     * @param listReportStatusTracking the listReportStatusTracking to set
+     */
+    public void setListReportStatusTracking(LazyDataModel<ViewReportStatus> listReportStatusTracking) {
+        this.listReportStatusTracking = listReportStatusTracking;
     }
 }

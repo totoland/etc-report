@@ -21,13 +21,55 @@ and open the template in the editor.
                 <h:form id="form1">
                     <p:messages id="msgFormMain" closable="true"/>
                     <p:panel header="หน้าหลัก">
-                        <p:tabView id="tabView" widgetVar="tabView" dynamic="true" cache="false">
+                        <p:tabView id="tabView" widgetVar="tabView" dynamic="true" cache="false" activeIndex="0">
 
                             <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}" oncomplete="resetDdl()"/>
 
-                            <p:tab id="tab" title="ติดตามสถานะงาน" rendered="#{formSelectReport.canCreateReport()}">
+                            <p:tab id="tab_TRACKING" title="ติดตามสถานะงาน" rendered="#{formSelectReport.canCreateReport()}">
                                 <div style="width: 1170px;overflow-x: scroll">
+                                    <p:dataTable id="rptTrackerReport" var="item" value="#{FormReportMainController.listReportStatusTracking}"
+                                                 paginator="true" rows="10" style="width:1550px" lazy="true"
+                                                 currentPageReportTemplate="#{msg.current_pagereport_template}"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10">
 
+                                        <p:column style="width: 130px">
+                                            <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include">
+                                            </p:commandButton>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="เลขที่เอกสาร" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.documentNo}" />
+                                        </p:column>
+                                        <p:column style="width: 320px">
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อรายงาน" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.reportDesc}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="สถานะงาน" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.flowStatusName}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="วันที่สร้าง" />
+                                            </f:facet>
+                                            <totoland:convertDateTime value="#{item.createdDate}">
+
+                                            </totoland:convertDateTime>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="ชื่อผู้สร้าง" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.createdUserFullName}" />
+                                        </p:column>
+                                    </p:dataTable>
                                 </div>
                             </p:tab>
 
@@ -55,7 +97,7 @@ and open the template in the editor.
                             <p:tab id="tab_DRAFF" title="รอส่งพิจารณา">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}"
-                                                 paginator="true" rows="10" style="width: 1550px;" lazy="true"
+                                                 paginator="true" rows="10" style="width: 1650px;" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
@@ -82,6 +124,12 @@ and open the template in the editor.
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
                                             <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                        </p:column>
+                                        <p:column style="width: 100px">
+                                            <f:facet name="header">
+                                                <h:outputText value="เหตุผล/หมายเหตุ" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.remark}" />
                                         </p:column>
                                         <p:column style="width:80px">
                                             <f:facet name="header">
@@ -118,7 +166,7 @@ and open the template in the editor.
                             <p:tab id="tab_STEP_1" title="รายงานรอผลพิจารณา (หน.อก.)">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList2" var="item" value="#{FormReportMainController.listReportStatusStep1}"
-                                                 paginator="true" rows="10" style="width: 1900px" lazy="true"
+                                                 paginator="true" rows="10" style="width: 2000px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
@@ -146,6 +194,12 @@ and open the template in the editor.
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
                                             <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                        </p:column>
+                                        <p:column style="width: 100px">
+                                            <f:facet name="header">
+                                                <h:outputText value="เหตุผล/หมายเหตุ" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.remark}" />
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -192,12 +246,12 @@ and open the template in the editor.
                             <p:tab id="tab_STEP_2" title="รายงานรอผลพิจารณา (หน.ส่วนงาน)">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList3" var="item" value="#{FormReportMainController.listReportStatusStep2}"
-                                                 paginator="true" rows="10" style="width: 1550px" lazy="true"
+                                                 paginator="true" rows="10" style="width: 1650px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column style="width: 290px">
+                                        <p:column style="width: 320px">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" actionListener="#{FormReportMainController.approve(item.reportCode, item.reportId, 103)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>                                        
                                             <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,101)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
@@ -219,6 +273,12 @@ and open the template in the editor.
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
                                             <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                        </p:column>
+                                        <p:column style="width: 100px">
+                                            <f:facet name="header">
+                                                <h:outputText value="เหตุผล/หมายเหตุ" />
+                                            </f:facet>
+                                            <h:outputText value="#{item.remark}" />
                                         </p:column>
                                         <p:column style="width: 80px">
                                             <f:facet name="header">
@@ -433,7 +493,7 @@ and open the template in the editor.
 
                     <p:confirmDialog widgetVar="notifyTask" header="แจ้งเตือน" global="true" showEffect="fade" hideEffect="explode">
                         <p:commandButton value="แสดง" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                        <p:commandButton value="ปิด" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>    
+                        <p:commandButton value="ปิด" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="selectTab('tab_TRACKING')"/>    
                     </p:confirmDialog>
 
                     <!-- Include Report Edit-->
@@ -443,6 +503,8 @@ and open the template in the editor.
                             </div>    
                         </p:dialog>
                     </h:panelGroup>
+                    <p:remoteCommand name="loadReportTracking" update="tabView" action="#{FormReportMainController.loadReportTracking()}">
+                    </p:remoteCommand>
                 </h:form>
                 <script>
                                                 //<![CDATA[
@@ -461,8 +523,14 @@ and open the template in the editor.
                                                     if (getParameterByName("firstLogin") != null && getParameterByName("firstLogin") != "" && ${FormReportMainController.userAuthen.userGroupLvl!=0}) {
                                                         $("#form1\\:notifyTasks").click();
                                                     }
-
+                                                    
+                                                    blogui.show();
+                                                    loadReportTracking();
                                                 });
+
+                                                function selectTab(tab) {
+
+                                                }
                                                 //]]>
                 </script>
 
