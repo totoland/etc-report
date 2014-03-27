@@ -119,6 +119,10 @@ public class FormReport002Controller extends BaseFormReportController{
             return;
         }
 
+        if (!checkDuppActivity()) {
+            return;
+        }
+        
         try {
 
             reportGennericService.create(report002);
@@ -159,6 +163,10 @@ public class FormReport002Controller extends BaseFormReportController{
             return;
         }
 
+        if(!checkDuppEditActivity()){
+            return;
+        }
+        
         try {
 
             getReportGennericService().edit(report002);
@@ -531,5 +539,50 @@ public class FormReport002Controller extends BaseFormReportController{
     @Override
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    /**
+     * *
+     * Check is has Activity in month
+     *
+     * @return
+     */
+    /**
+     * *
+     * Check is has Activity in month
+     *
+     * @return
+     */
+    private boolean checkDuppActivity() {
+
+        List<Report002> isDupp = reportService.checkDuppActivityInMonthReport002(getUserAuthen().getUserGroupId(), report002.getActivityId(), report002.getCreatedDate().getMonth() + 1);
+
+        if (!(isDupp == null || isDupp.isEmpty())) {
+            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+DateTimeUtils.getInstance().thDate(new Date(), "MMMM"));
+            return false;
+        }
+
+        return true;
+    }
+    
+    private boolean checkDuppEditActivity() {
+
+        List<Report002> isDupp = reportService.checkDuppActivityInMonthReport002(getUserAuthen().getUserGroupId(), report002.getActivityId(), report002.getCreatedDate().getMonth() + 1);
+
+        if (!(isDupp == null || isDupp.isEmpty())) {
+            
+            for(Report002 report002 : isDupp){
+            
+                if(report002.getReportId().intValue() == paramReportId.intValue()){
+                    return true;
+                }
+                
+            }
+            
+            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+DateTimeUtils.getInstance().thDate(new Date(), "MMMM"));
+            return false;
+        }
+
+        return true;
     }
 }

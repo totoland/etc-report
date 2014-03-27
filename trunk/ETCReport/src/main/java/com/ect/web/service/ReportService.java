@@ -98,4 +98,8 @@ public interface ReportService {
     
     Report023 findByReport023ById(Integer paramReportId);
     
+    List<Report001> checkDuppActivityInMonth(Integer userGroupId,Integer activityId,Integer month);
+
+    List<Report002> checkDuppActivityInMonthReport002(Integer userGroupId, Integer activityId, int i);
+    
 }

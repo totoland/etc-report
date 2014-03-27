@@ -264,5 +264,15 @@ public class ReportServiceImpl implements ReportService {
     public Report023 findByReport023ById(Integer paramReportId) {
         return report023Dao.findByReportId(paramReportId);
     }
+
+    @Override
+    public List<Report001> checkDuppActivityInMonth(Integer userGroupId, Integer activityId, Integer month) {
+        return report001Dao.checkDuppActivityInMonth(userGroupId, activityId, month);
+    }
+
+    @Override
+    public List<Report002> checkDuppActivityInMonthReport002(Integer userGroupId, Integer activityId, int month) {
+        return report002Dao.checkDuppActivityInMonth002(userGroupId, activityId, month);
+    }
     
 }

@@ -23,7 +23,9 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -78,9 +80,8 @@ public class FormReport001Controller extends BaseFormReportController {
     private String paramReportCode;
     private Integer paramReportId;
     private String paramMode;
-
     private String reportTitle;
-    
+
     @PostConstruct
     public void init() {
 
@@ -91,17 +92,15 @@ public class FormReport001Controller extends BaseFormReportController {
          * Check Mode
          */
         if (StringUtils.isBlank(paramMode)) {
-
             //loadReportAllState();
-
         } else if (paramMode.equals(REPORT_MODE_VIEW)) {
 
             initViewMode();
 
         } else if (paramMode.equals(REPORT_MODE_EDIT)) {
-            
+
             initEditMode();
-            
+
         }
 
     }
@@ -125,8 +124,12 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
-        
+
         if (!validateBeforeSave()) {
+            return;
+        }
+
+        if (!checkDuppActivity()) {
             return;
         }
 
@@ -138,7 +141,9 @@ public class FormReport001Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_"+REPORT_001);
+            JsfUtil.hidePopup("REPORT_MainDialog_" + REPORT_001);
+            
+            resetForm();
 
         } catch (Exception ex) {
 
@@ -152,10 +157,10 @@ public class FormReport001Controller extends BaseFormReportController {
 
         }
     }
-    
+
     @Override
-    public void edit(){
-    
+    public void edit() {
+
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_001 + MessageUtils.PRINT_LINE_STAR());
 
         report001.setReport001DetailList(report001Details);
@@ -167,6 +172,10 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
 
         if (!validateBeforeSave()) {
+            return;
+        }
+        
+        if(!checkDuppEditActivity()){
             return;
         }
 
@@ -191,7 +200,7 @@ public class FormReport001Controller extends BaseFormReportController {
             logger.trace("Edit... {} ", report001);
 
         }
-        
+
     }
 
     public void loadReportAllState() {
@@ -516,17 +525,19 @@ public class FormReport001Controller extends BaseFormReportController {
         if (REPORT_001.equalsIgnoreCase(paramReportCode)) {
 
             report001 = reportService.findByReport001ById(paramReportId);
-            
+
             logger.trace("report001 : {}", report001);
-            
-            /*** Set ReportDetail ***/
+
+            /**
+             * * Set ReportDetail **
+             */
             report001Details = new ArrayList<>();
             report001Details.addAll(report001.getReport001DetailList());
-            
-            for(int i=0;i<report001Details.size();i++){
-                
+
+            for (int i = 0; i < report001Details.size(); i++) {
+
                 report001Details.get(i).setKey(i);
-                
+
             }
 
         }
@@ -536,32 +547,32 @@ public class FormReport001Controller extends BaseFormReportController {
     private void initEditMode() {
         initViewMode();
     }
-    
-    public void goToEdit(){
-        String url =  "?mode="+REPORT_MODE_EDIT+"&reportId="+paramReportId+"&reportCode="+paramReportCode;
+
+    public void goToEdit() {
+        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
         redirectPage(url);
     }
-    
-    public void goToClose(){
+
+    public void goToClose() {
         JsfUtil.hidePopupIframe("dialogEdit");
     }
-    
-    public void goToCancel(){
-        
+
+    public void goToCancel() {
+
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_001 + MessageUtils.PRINT_LINE_STAR());
-        String url =  "?mode="+REPORT_MODE_VIEW+"&reportId="+paramReportId+"&reportCode="+paramReportCode;
+        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
         redirectPage(url);
-        
+
     }
 
     private void initParam() {
         paramMode = getParameter("mode");
         paramReportCode = getParameter("reportCode");
         paramReportId = NumberUtils.toInteger(getParameter("reportId"));
-        
+
         logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
-        logger.trace("paramReportCode : {}",paramReportCode);
-        logger.trace("paramReportId : {}",paramReportId);
+        logger.trace("paramReportCode : {}", paramReportCode);
+        logger.trace("paramReportId : {}", paramReportId);
     }
 
     /**
@@ -593,15 +604,55 @@ public class FormReport001Controller extends BaseFormReportController {
     }
 
     private void initForm() {
-        
+
         Date curDate = new Date();
-        
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title", DateTimeUtils.getInstance().thDate(curDate,"MMMM"),DateTimeUtils.getInstance().thDate(curDate,"yyyy"),getUserAuthen().getProvinceName());
-        
+
+        reportTitle = MessageUtils.getResourceBundleString("report_header_title", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName());
+
     }
 
     @Override
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    /**
+     * *
+     * Check is has Activity in month
+     *
+     * @return
+     */
+    private boolean checkDuppActivity() {
+
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate().getMonth() + 1);
+
+        if (!(isDupp == null || isDupp.isEmpty())) {
+            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+DateTimeUtils.getInstance().thDate(new Date(), "MMMM"));
+            return false;
+        }
+
+        return true;
+    }
+    
+    private boolean checkDuppEditActivity() {
+
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate().getMonth() + 1);
+
+        if (!(isDupp == null || isDupp.isEmpty())) {
+            
+            for(Report001 report001 : isDupp){
+            
+                if(report001.getReportId().intValue() == paramReportId.intValue()){
+                    return true;
+                }
+                
+            }
+            
+            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+DateTimeUtils.getInstance().thDate(new Date(), "MMMM"));
+            return false;
+        }
+
+        return true;
+    }
+    
 }
