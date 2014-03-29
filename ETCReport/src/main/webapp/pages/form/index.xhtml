@@ -97,14 +97,15 @@ and open the template in the editor.
                             <p:tab id="tab_DRAFF" title="รอส่งพิจารณา">
                                 <div style="width: 1170px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}"
-                                                 paginator="true" rows="10" style="width: 1650px;" lazy="true"
+                                                 paginator="true" rows="10" style="width: 1680px;" lazy="true" emptyMessage="#{msg.no_data_found}"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column width="200">
+                                        <p:column width="260">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 101)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
+                                            <p:commandButton value="ลบ" onclick="return confirm('#{msg.confirmation_message_delete}')" action="#{FormReportMainController.delete(item.reportCode, item.reportId)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId) and item.reportStatus!=401}"/>
                                         </p:column>
                                         <p:column width="70">
                                             <f:facet name="header">
@@ -524,7 +525,6 @@ and open the template in the editor.
                                                         $("#form1\\:notifyTasks").click();
                                                     }
                                                     
-                                                    blogui.show();
                                                     loadReportTracking();
                                                 });
 

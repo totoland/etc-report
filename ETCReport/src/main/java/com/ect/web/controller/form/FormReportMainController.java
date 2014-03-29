@@ -20,6 +20,7 @@ import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -483,6 +484,25 @@ public class FormReportMainController extends BaseFormReportController {
 
         }
     }
+    
+    public void delete(String reportName,Integer reportId) {
+
+        logger.trace("Delete reportName {}", reportName);
+        logger.trace("Delete reportId {} ", reportId + "");
+
+        try {
+
+            reportService.deleteReport(reportName, reportId);
+
+            addInfo("ลบรายงาน");
+
+        } catch (Exception ex) {
+
+            addError("เกิดข้อผิดพลาด เลขที่ : " + MDC.get("reqId"));
+            logger.error("Cannot deleteReport ", ex);
+
+        }
+    }
 
     public void initReject(ViewReportStatus selectReject, Integer flowStatusUpdate) {
 
@@ -804,9 +824,9 @@ public class FormReportMainController extends BaseFormReportController {
 
         if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.OPERATOR.getLevel()) {
             criteria.setFlowStatus(EctFlowStatus.FlowStatus.DRAFF.getStatus() + "");
-        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
-            criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_1.getStatus() + "");
         } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.HEAD.getLevel()) {
+            criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_1.getStatus() + "");
+        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
             criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_2.getStatus() + "");
         } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.CENTER.getLevel()) {
             criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_3.getStatus() + "");

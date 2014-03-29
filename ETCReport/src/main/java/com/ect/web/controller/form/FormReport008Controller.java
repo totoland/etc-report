@@ -31,6 +31,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *
@@ -131,7 +132,7 @@ public class FormReport008Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -172,7 +173,7 @@ public class FormReport008Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Edit Data : ", ex);
 

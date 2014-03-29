@@ -6,7 +6,6 @@ package com.ect.web.controller.form;
 
 import com.ect.db.entity.EctFlowStatus;
 import com.ect.db.report.entity.Report007Detail;
-import com.ect.db.report.entity.Report007Detail;
 import com.ect.db.report.entity.Report007;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
@@ -32,6 +31,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *
@@ -128,7 +128,7 @@ public class FormReport007Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -169,7 +169,7 @@ public class FormReport007Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Edit Data : ", ex);
 
