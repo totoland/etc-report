@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
 public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportByStatusDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
-    private String SQL_REPORT = "SELECT ROW_NUMBER() OVER (ORDER BY CREATED_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
+    private String SQL_REPORT = "SELECT ROW_NUMBER() OVER (ORDER BY ACTION_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
     private String SQL_REPORT_ORDER = "SELECT ROW_NUMBER() OVER (ORDER BY {0} {1}) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
 
     @Override
@@ -72,7 +72,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
         if (reportCriteria.getSortField() != null && !reportCriteria.getSortField().isEmpty()) {
 
             String sortField = reportCriteria.getSortField();
-            
+
             if (sortField.equals("documentNo")) {
                 sortField = "REPORT_CODE+CONVERT(NVARCHAR(4),REPORT_ID)";
             }
@@ -93,7 +93,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND FLOW_STATUS_ID = ").append("'").append(reportCriteria.getFlowStatus()).append("'");
 
         }
-        
+
         if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
 
             sql.append(" AND FLOW_STATUS_ID IN (").append(reportCriteria.getStatus()).append(")");
@@ -105,29 +105,29 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND REPORT_CODE = ").append("'").append(reportCriteria.getReportCode()).append("'");
 
         }
-        
-        if(reportCriteria.getUserGroupId()!=null && !reportCriteria.getUserGroupId().isEmpty()){
-            
+
+        if (reportCriteria.getUserGroupId() != null && !reportCriteria.getUserGroupId().isEmpty()) {
+
             sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" OR USER_GROUP_LVL = 0 ) ");
-            
+
         }
-        
-        if(reportCriteria.getUserGroupLvl()!=null && !reportCriteria.getUserGroupLvl().isEmpty()){
-            
+
+        if (reportCriteria.getUserGroupLvl() != null && !reportCriteria.getUserGroupLvl().isEmpty()) {
+
             sql.append(" AND ( USER_GROUP_LVL = ").append(reportCriteria.getUserGroupLvl()).append(" OR USER_GROUP_LVL = 0 )");
-            
+
         }
-        
-        if(reportCriteria.getMonth()!=null && !reportCriteria.getMonth().isEmpty()){
-            
+
+        if (reportCriteria.getMonth() != null && !reportCriteria.getMonth().isEmpty()) {
+
             sql.append(" AND MONTH(CREATED_DATE) = ").append(reportCriteria.getMonth());
-            
+
         }
-        
-        if(reportCriteria.getYear()!=null && !reportCriteria.getYear().isEmpty()){
-            
+
+        if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
+
             sql.append(" AND YEAR(CREATED_DATE) = ").append(reportCriteria.getYear());
-            
+
         }
 
         return super.findNativePagginQuery(sql.toString(), reportCriteria.getStartRow(), reportCriteria.getMaxRow(), ViewReportStatus.class);
@@ -145,7 +145,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND FLOW_STATUS_ID = ").append("'").append(reportCriteria.getFlowStatus()).append("'");
 
         }
-        
+
         if (reportCriteria.getStatus() != null && !reportCriteria.getStatus().isEmpty()) {
 
             sql.append(" AND FLOW_STATUS_ID IN (").append(reportCriteria.getStatus()).append(")");
@@ -157,19 +157,57 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND REPORT_CODE = ").append("'").append(reportCriteria.getReportCode()).append("'");
 
         }
-        
-        if(reportCriteria.getUserGroupId()!=null){
-            
+
+        if (reportCriteria.getUserGroupId() != null) {
+
             sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" OR USER_GROUP_LVL = 0 ) ");
-            
+
         }
-        
-        if(reportCriteria.getUserGroupLvl()!=null){
-            
+
+        if (reportCriteria.getUserGroupLvl() != null) {
+
             sql.append(" AND ( USER_GROUP_LVL = ").append(reportCriteria.getUserGroupLvl()).append(" OR USER_GROUP_LVL = 0 )");
-            
+
         }
-        
+
         return super.countNativeQuery(sql.toString());
+    }
+
+    @Override
+    public Integer deleteReport(String name, Integer reportId) {
+
+        Integer res = 0;
+        
+        String[] arr = name.split("_");
+        
+        String reportName = arr[1];
+        
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("DELETE REPORT_").append(reportName).append("_DETAIL WHERE REPORT_ID = ? ");
+        
+        logger.trace("deleteReport SQL : {}", sql.toString());
+        res += updateNativeQuery(sql.toString(), reportId);
+        
+        sql = new StringBuilder();
+        sql.append("DELETE REPORT_").append(reportName).append("_DETAIL_HIS WHERE REPORT_ID = ? ");
+        
+        logger.trace("deleteReport SQL : {}", sql.toString());
+        res += updateNativeQuery(sql.toString(), reportId);
+        
+        sql = new StringBuilder();
+        sql.append("DELETE REPORT_").append(reportName).append(" WHERE REPORT_ID = ? ");
+        
+        logger.trace("deleteReport SQL : {}", sql.toString());
+        res += updateNativeQuery(sql.toString(), reportId);
+        
+        sql = new StringBuilder();
+        sql.append("DELETE REPORT_").append(reportName).append("_HIS WHERE REPORT_ID = ? ");
+        
+        logger.trace("deleteReport SQL : {}", sql.toString());
+        res += updateNativeQuery(sql.toString(), reportId);
+
+        return res;
+
     }
 }

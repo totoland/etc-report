@@ -5,8 +5,8 @@
 package com.ect.db.report.dao;
 
 import com.ect.db.report.entity.Report001;
-import com.ect.db.report.entity.Report002;
 import com.ect.db.report.entity.ViewReport001;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +19,6 @@ public interface Report001Dao {
 
     Report001 findByReportId(Integer reportId);
     
-    List<Report001> checkDuppActivityInMonth(int userGroupId,int activityId,int mount);
+    List<Report001> checkDuppActivityInMonth(int userGroupId,int activityId,Date date);
     
 }

@@ -25,10 +25,14 @@ import com.ect.db.report.entity.Report003;
 import com.ect.db.report.entity.Report003Detail;
 import com.ect.db.user.dao.UserDao;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -38,6 +42,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+import sun.util.BuddhistCalendar;
 
 /**
  *
@@ -108,11 +113,20 @@ public class Test {
     
     @org.junit.Test
     public void testAdminManagementDao(){
-        
-        ReportCriteria criteria = new ReportCriteria();
-        criteria.setUserGroupId("1");
                 
-        System.out.println(viewReportByStatusDao.findByCriteria(criteria));
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
+        Calendar calendar = new GregorianCalendar(Locale.ENGLISH);
+        sdf.setCalendar(calendar);
+        String date = sdf.format(new Date());
+                
+        if(date.startsWith("0")){
+            date = date.replaceFirst("0", "");
+        }
+        
+        System.out.println(report001Dao.checkDuppActivityInMonth(1, 11, new Date()));
+                
+        //System.out.println(viewReportByStatusDao.deleteReport("REPORT_023",9));
+        
         
     }
     
