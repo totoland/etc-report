@@ -5,6 +5,7 @@
 package com.ect.web.controller.report;
 
 import com.ect.db.bean.ReportCriteria;
+import com.ect.db.common.entity.DropDownList;
 import com.ect.db.entity.ViewUser;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
@@ -168,9 +169,59 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report001Detail>());
 
             } else {
-
+                
+                for(DropDownList ddl : dropdownFactory.ddlStrategic()){
+                    
+                    if(ddl.getValue().equals(report001.getStrategicId()+"")){
+                        
+                        beans.put("strategic", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlSubStrategic()){
+                    
+                    if(ddl.getValue().equals(report001.getSubStrategicId()+"")){
+                        
+                        beans.put("subStrategic", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlPlan()){
+                    
+                    if(ddl.getValue().equals(report001.getPlanId()+"")){
+                        
+                        beans.put("plan", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlProject()){
+                    
+                    if(ddl.getValue().equals(report001.getProjectId()+"")){
+                        
+                        beans.put("project", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlActivity()){
+                    
+                    if(ddl.getValue().equals(report001.getActivityId()+"")){
+                        
+                        beans.put("activity", ddl.getName());
+                        
+                    }
+                    
+                }
+                
                 beans.put("details", report001.getReport001DetailList());
-
+                
             }
         } else if (viewReportStatus.getReportCode().equals(REPORT_002)) {
 
@@ -185,6 +236,56 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for(DropDownList ddl : dropdownFactory.ddlStrategic()){
+                    
+                    if(ddl.getValue().equals(report002.getStrategicId()+"")){
+                        
+                        beans.put("strategic", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlSubStrategic()){
+                    
+                    if(ddl.getValue().equals(report002.getSubStrategicId()+"")){
+                        
+                        beans.put("subStrategic", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlPlan()){
+                    
+                    if(ddl.getValue().equals(report002.getPlanId()+"")){
+                        
+                        beans.put("plan", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlProject()){
+                    
+                    if(ddl.getValue().equals(report002.getProjectId()+"")){
+                        
+                        beans.put("project", ddl.getName());
+                        
+                    }
+                    
+                }
+                
+                for(DropDownList ddl : dropdownFactory.ddlActivity()){
+                    
+                    if(ddl.getValue().equals(report002.getActivityId()+"")){
+                        
+                        beans.put("activity", ddl.getName());
+                        
+                    }
+                    
+                }
+                
                 beans.put("details", report002.getReport002DetailList());
 
             }
