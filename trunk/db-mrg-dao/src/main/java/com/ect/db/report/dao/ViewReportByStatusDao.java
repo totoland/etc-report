@@ -26,4 +26,5 @@ public interface ViewReportByStatusDao {
     
     Integer countByCriteria(ReportCriteria reportCriteria);
     
+    Integer deleteReport(String reportName, Integer reportId);
 }

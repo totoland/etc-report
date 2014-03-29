@@ -8,7 +8,12 @@ import com.ect.db.dao.BaseDao;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.entity.ViewReport001;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -33,8 +38,17 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
     }
 
     @Override
-    public List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, int month) {
+    public List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, Date month) {
 
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
+        Calendar calendar = new GregorianCalendar(Locale.ENGLISH);
+        sdf.setCalendar(calendar);
+        String date = sdf.format(new Date());
+                
+        if(date.startsWith("0")){
+            date = date.replaceFirst("0", "");
+        }
+        
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT     REPORT_001.REPORT_ID, REPORT_001.REPORT_CODE, REPORT_001.REPORT_DESC, REPORT_001.CREATED_DATE, REPORT_001.CREATED_USER, "
                 + "                      REPORT_001.CREATED_USER_GROUP, REPORT_001.UPDATED_DATE, REPORT_001.UPDATED_USER, REPORT_001.STRATEGIC_ID, "
@@ -42,12 +56,12 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
                 + "                      REPORT_001.APPROVED_USER, REPORT_001.FLOW_STATUS_ID, REPORT_001.APPROVED_DATE, REPORT_001.REJECTED_USER, "
                 + "                      REPORT_001.REJECTED_DATE, REPORT_001.REPORT_STATUS, ECT_USER.USER_GROUP_ID, ECT_USER.PROVINCE_ID "
                 + "FROM         ECT_USER INNER JOIN "
-                + "                      REPORT_001 ON ECT_USER.USER_ID = REPORT_001.CREATED_USER\n"
+                + "                      REPORT_001 ON ECT_USER.USER_ID = REPORT_001.CREATED_USER "
                 + "WHERE   ECT_USER.USER_GROUP_ID = ? "
                 + "AND  (REPORT_001.ACTIVITY_ID = ?) "
-                + "AND DATEPART(month, CREATED_DATE) = ?");
+                + "AND (CONVERT(NVARCHAR(2),DATEPART(month,CREATED_DATE)) + '/' +CONVERT(NVARCHAR(4),DATEPART(year,CREATED_DATE))) = ? ");
 
-        List<Report001> list = findNativeQuery(sql.toString(), Report001.class, userGroupId, activityId, month);
+        List<Report001> list = findNativeQuery(sql.toString(), Report001.class, userGroupId, activityId, date);
         
         return list;
 
