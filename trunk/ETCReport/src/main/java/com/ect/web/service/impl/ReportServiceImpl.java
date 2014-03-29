@@ -55,6 +55,7 @@ import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -266,13 +267,18 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Report001> checkDuppActivityInMonth(Integer userGroupId, Integer activityId, Integer month) {
+    public List<Report001> checkDuppActivityInMonth(Integer userGroupId, Integer activityId, Date month) {
         return report001Dao.checkDuppActivityInMonth(userGroupId, activityId, month);
     }
 
     @Override
     public List<Report002> checkDuppActivityInMonthReport002(Integer userGroupId, Integer activityId, int month) {
         return report002Dao.checkDuppActivityInMonth002(userGroupId, activityId, month);
+    }
+    
+    @Override
+    public Integer deleteReport(String reportName, Integer reportId){
+        return viewReportByStatusDao.deleteReport(reportName, reportId);
     }
     
 }

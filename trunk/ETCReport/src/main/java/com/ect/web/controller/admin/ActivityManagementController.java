@@ -6,13 +6,10 @@ package com.ect.web.controller.admin;
 
 import com.ect.db.bean.ActivityCriteria;
 import com.ect.db.entity.EctActivity;
-import com.ect.db.entity.EctUser;
-import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.AdminManagementService;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
@@ -24,6 +21,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *
@@ -90,7 +88,7 @@ public class ActivityManagementController extends BaseController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
         } finally {
@@ -143,7 +141,7 @@ public class ActivityManagementController extends BaseController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 

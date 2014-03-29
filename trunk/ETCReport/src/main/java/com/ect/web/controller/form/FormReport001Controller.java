@@ -23,9 +23,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -38,6 +36,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *
@@ -147,7 +146,7 @@ public class FormReport001Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -191,7 +190,7 @@ public class FormReport001Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -624,7 +623,7 @@ public class FormReport001Controller extends BaseFormReportController {
      */
     private boolean checkDuppActivity() {
 
-        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate().getMonth() + 1);
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate());
 
         if (!(isDupp == null || isDupp.isEmpty())) {
             JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+DateTimeUtils.getInstance().thDate(new Date(), "MMMM"));
@@ -636,7 +635,7 @@ public class FormReport001Controller extends BaseFormReportController {
     
     private boolean checkDuppEditActivity() {
 
-        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate().getMonth() + 1);
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate());
 
         if (!(isDupp == null || isDupp.isEmpty())) {
             

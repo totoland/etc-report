@@ -5,7 +5,6 @@
 package com.ect.web.controller.user;
 
 import com.ect.db.bean.UserCriteria;
-import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.entity.EctUser;
 import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
@@ -24,6 +23,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *
@@ -127,7 +127,7 @@ public class UserManagementController extends BaseController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
         } finally {
@@ -161,7 +161,7 @@ public class UserManagementController extends BaseController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS());
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
             

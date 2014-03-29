@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *
@@ -42,7 +43,7 @@ public class LoginController extends BaseController {
 
     public void loginProcess() {
 
-        //MDC.put("reqId", ECTUtils.generateToken());
+        MDC.put("reqId", ECTUtils.generateToken());
 
         logger.info("loginProcess!!");
 
