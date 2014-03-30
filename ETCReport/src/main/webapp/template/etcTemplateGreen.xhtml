@@ -53,6 +53,12 @@
     </h:head>
 
     <h:body id="body">
+        <p:blockUI  block="body" widgetVar="blogui">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show();" oncomplete="blogui.hide()">
+        </p:ajaxStatus>
         <div id="art-main">
             <header class="art-header">
                 <div class="art-shapes">
@@ -99,12 +105,6 @@
         </div>
         <ui:insert name="modalDialog">
         </ui:insert>
-        <p:blockUI  block="body" widgetVar="blogui">
-            LOADING<br />
-            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
-        </p:blockUI>
-        <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show();" oncomplete="blogui.hide()">
-        </p:ajaxStatus>
 
         <h:outputScript library="js" name="i18N.js" target="head" />
 
