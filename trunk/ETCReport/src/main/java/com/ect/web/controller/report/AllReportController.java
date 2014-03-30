@@ -136,8 +136,8 @@ public class AllReportController extends BaseFormReportController {
 
         logger.trace("Select report : {}", viewReportStatus);
 
-        String month = DateTimeUtils.getInstance().thDate(viewReportStatus.getCreatedDate(), "MMMM");
-        String year = DateTimeUtils.getInstance().thDate(viewReportStatus.getCreatedDate(), "yyyy");
+        String month = dropdownFactory.getMonthName(viewReportStatus.getReportMonth());
+        String year = viewReportStatus.getReportYear();
         String depName = "";
         String createdDate = DateTimeUtils.getInstance().thDate(viewReportStatus.getCreatedDate(), DateTimeUtils.DISPLAY_DATETIME_FORMAT);
         String reportName = "";
