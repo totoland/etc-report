@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -53,7 +54,7 @@ public class Report002Detail extends DomainEntity implements Serializable {
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
     @ManyToOne
     private Report002 reportId;
-
+    
     public Report002Detail() {
     }
 

@@ -42,7 +42,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import sun.util.BuddhistCalendar;
 
 /**
  *
@@ -123,7 +122,7 @@ public class Test {
             date = date.replaceFirst("0", "");
         }
         
-        System.out.println(report001Dao.checkDuppActivityInMonth(1, 11, new Date()));
+        System.out.println(report001Dao.checkDuppActivityInMonth(1, 11, "03","2557"));
                 
         //System.out.println(viewReportByStatusDao.deleteReport("REPORT_023",9));
         

@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -29,11 +30,11 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Report001Detail.findAll", query = "SELECT r FROM Report001Detail r")})
 public class Report001Detail extends DomainEntity implements Serializable {
+
     private static final long serialVersionUID = 3520311716879656962L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "REPORT_DETAIL_ID",nullable = true)
+    @Column(name = "REPORT_DETAIL_ID", nullable = true)
     private Integer reportDetailId;
     @Column(name = "DEP_ID")
     private Integer depId;
@@ -66,8 +67,10 @@ public class Report001Detail extends DomainEntity implements Serializable {
     @Column(name = "IS_PASS")
     private Boolean isPass;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
-    @ManyToOne(targetEntity=Report001.class,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Report001.class, fetch = FetchType.EAGER)
     private Report001 reportId;
+    @Transient
+    private String result;
 
     public Report001Detail() {
     }
@@ -240,5 +243,18 @@ public class Report001Detail extends DomainEntity implements Serializable {
     public String toString() {
         return "Report001Detail{" + "reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", goalResult=" + goalResult + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", practiceResult=" + practiceResult + ", isPass=" + isPass + '}';
     }
-    
+
+    /**
+     * @return the result
+     */
+    public String getResult() {
+        
+        if (isPass) {
+            result = "ผ่าน";
+        } else {
+            result = "ไม่ผ่าน";
+        }
+        
+        return result;
+    }
 }

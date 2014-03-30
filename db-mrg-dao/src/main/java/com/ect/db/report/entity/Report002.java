@@ -88,6 +88,10 @@ public class Report002 extends DomainEntity implements Serializable {
     private Date approvedDate;
     @Column(name ="REPORT_STATUS")
     private Integer reportStatus;
+    @Column(name = "REPORT_MONTH",updatable = false)
+    private String reportMonth;
+    @Column(name = "REPORT_YEAR",updatable = false)
+    private String reportYear;
     
     @OneToMany(mappedBy = "reportId",cascade = CascadeType.ALL,targetEntity = Report002Detail.class,fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
@@ -287,11 +291,6 @@ public class Report002 extends DomainEntity implements Serializable {
         this.approvedDate = approvedDate;
     }
 
-    @Override
-    public String toString() {
-        return "Report002{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", activityId=" + activityId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedDate=" + approvedDate + ", reportStatus=" + reportStatus + ", report002DetailList=" + report002DetailList + '}';
-    }
-
     /**
      * @return the reportStatus
      */
@@ -304,6 +303,27 @@ public class Report002 extends DomainEntity implements Serializable {
      */
     public void setReportStatus(Integer reportStatus) {
         this.reportStatus = reportStatus;
+    }
+
+    public String getReportMonth() {
+        return reportMonth;
+    }
+
+    public void setReportMonth(String reportMonth) {
+        this.reportMonth = reportMonth;
+    }
+
+    public String getReportYear() {
+        return reportYear;
+    }
+
+    public void setReportYear(String reportYear) {
+        this.reportYear = reportYear;
+    }
+
+    @Override
+    public String toString() {
+        return "Report002{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", strategicId=" + strategicId + ", subStrategicId=" + subStrategicId + ", planId=" + planId + ", projectId=" + projectId + ", activityId=" + activityId + ", remark=" + remark + ", approvedUser=" + approvedUser + ", flowStatusId=" + flowStatusId + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedDate=" + approvedDate + ", reportStatus=" + reportStatus + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", report002DetailList=" + report002DetailList + '}';
     }
     
 }
