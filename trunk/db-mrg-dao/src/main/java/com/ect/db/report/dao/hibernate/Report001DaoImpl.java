@@ -66,4 +66,25 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         return list;
 
     }
+    
+    @Override
+    public List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, String month,String year) {
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT     REPORT_001.REPORT_ID, REPORT_001.REPORT_CODE, REPORT_001.REPORT_DESC, REPORT_001.CREATED_DATE, REPORT_001.CREATED_USER, "
+                + "                      REPORT_001.CREATED_USER_GROUP, REPORT_001.UPDATED_DATE, REPORT_001.UPDATED_USER, REPORT_001.STRATEGIC_ID, "
+                + "                      REPORT_001.SUB_STRATEGIC_ID, REPORT_001.PLAN_ID, REPORT_001.PROJECT_ID, REPORT_001.ACTIVITY_ID, REPORT_001.REMARK, "
+                + "                      REPORT_001.APPROVED_USER, REPORT_001.FLOW_STATUS_ID, REPORT_001.APPROVED_DATE, REPORT_001.REJECTED_USER, "
+                + "                      REPORT_001.REJECTED_DATE, REPORT_001.REPORT_STATUS, ECT_USER.USER_GROUP_ID, ECT_USER.PROVINCE_ID,REPORT_001.REPORT_MONTH,REPORT_001.REPORT_YEAR  "
+                + "FROM         ECT_USER INNER JOIN "
+                + "                      REPORT_001 ON ECT_USER.USER_ID = REPORT_001.CREATED_USER "
+                + "WHERE   ECT_USER.USER_GROUP_ID = ? "
+                + "AND  (REPORT_001.ACTIVITY_ID = ?) "
+                + "AND REPORT_001.REPORT_MONTH = ? AND REPORT_001.REPORT_YEAR = ? ");
+
+        List<Report001> list = findNativeQuery(sql.toString(), Report001.class, userGroupId, activityId, month,year);
+        
+        return list;
+
+    }
 }

@@ -21,4 +21,6 @@ public interface Report001Dao {
     
     List<Report001> checkDuppActivityInMonth(int userGroupId,int activityId,Date date);
     
+    List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, String month,String year);
+    
 }

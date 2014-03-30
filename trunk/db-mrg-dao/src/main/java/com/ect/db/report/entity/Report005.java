@@ -92,6 +92,11 @@ public class Report005 extends DomainEntity implements Serializable {
     @Column(name = "APPROVED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDate;
+    @Column(name = "REPORT_MONTH",updatable = false)
+    private String reportMonth;
+    @Column(name = "REPORT_YEAR",updatable = false)
+    private String reportYear;
+    
     @OneToMany(mappedBy = "reportId",cascade = CascadeType.ALL,targetEntity = Report005Detail.class,fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     private List<Report005Detail> report005DetailList;
@@ -316,9 +321,25 @@ public class Report005 extends DomainEntity implements Serializable {
         this.isSenElectedVacancy = isSenElectedVacancy;
     }
 
+    public String getReportMonth() {
+        return reportMonth;
+    }
+
+    public void setReportMonth(String reportMonth) {
+        this.reportMonth = reportMonth;
+    }
+
+    public String getReportYear() {
+        return reportYear;
+    }
+
+    public void setReportYear(String reportYear) {
+        this.reportYear = reportYear;
+    }
+
     @Override
     public String toString() {
-        return "Report005{" + "isVote=" + isVote + ", isNomination=" + isNomination + ", isElected=" + isElected + ", isElectedNormal=" + isElectedNormal + ", isElectedVacancy=" + isElectedVacancy + ", isSenElected=" + isSenElected + ", isSenElectedNormal=" + isSenElectedNormal + ", isSenElectedVacancy=" + isSenElectedVacancy + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", report005DetailList=" + report005DetailList + '}';
+        return "Report005{" + "isVote=" + isVote + ", isNomination=" + isNomination + ", isElected=" + isElected + ", isElectedNormal=" + isElectedNormal + ", isElectedVacancy=" + isElectedVacancy + ", isSenElected=" + isSenElected + ", isSenElectedNormal=" + isSenElectedNormal + ", isSenElectedVacancy=" + isSenElectedVacancy + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", report005DetailList=" + report005DetailList + '}';
     }
     
 }

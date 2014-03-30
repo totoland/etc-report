@@ -75,6 +75,11 @@ public class Report020 implements Serializable {
     @Column(name = "APPROVED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDate;
+    @Column(name = "REPORT_MONTH",updatable = false)
+    private String reportMonth;
+    @Column(name = "REPORT_YEAR",updatable = false)
+    private String reportYear;
+    
     @OneToMany(mappedBy = "reportId", cascade = CascadeType.ALL, targetEntity = Report020Detail.class, fetch = FetchType.EAGER)
     private List<Report020Detail> report020DetailList;
 
@@ -234,8 +239,24 @@ public class Report020 implements Serializable {
         return true;
     }
 
+    public String getReportMonth() {
+        return reportMonth;
+    }
+
+    public void setReportMonth(String reportMonth) {
+        this.reportMonth = reportMonth;
+    }
+
+    public String getReportYear() {
+        return reportYear;
+    }
+
+    public void setReportYear(String reportYear) {
+        this.reportYear = reportYear;
+    }
+
     @Override
     public String toString() {
-        return "Report020{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", report020DetailList=" + report020DetailList + '}';
+        return "Report020{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", report020DetailList=" + report020DetailList + '}';
     }
 }

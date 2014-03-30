@@ -79,6 +79,10 @@ public class Report003 extends DomainEntity implements Serializable {
     @Column(name = "APPROVED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDate;
+    @Column(name = "REPORT_MONTH",updatable = false)
+    private String reportMonth;
+    @Column(name = "REPORT_YEAR",updatable = false)
+    private String reportYear;
     
     @OneToMany(mappedBy = "reportId",cascade = CascadeType.ALL,targetEntity = Report003Detail.class,fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
@@ -240,9 +244,37 @@ public class Report003 extends DomainEntity implements Serializable {
         this.approvedDate = approvedDate;
     }
 
+    /**
+     * @return the reportMonth
+     */
+    public String getReportMonth() {
+        return reportMonth;
+    }
+
+    /**
+     * @param reportMonth the reportMonth to set
+     */
+    public void setReportMonth(String reportMonth) {
+        this.reportMonth = reportMonth;
+    }
+
+    /**
+     * @return the reportYear
+     */
+    public String getReportYear() {
+        return reportYear;
+    }
+
+    /**
+     * @param reportYear the reportYear to set
+     */
+    public void setReportYear(String reportYear) {
+        this.reportYear = reportYear;
+    }
+
     @Override
     public String toString() {
-        return "Report003{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", report003DetailList=" + report003DetailList + '}';
+        return "Report003{" + "reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", createdUserGroup=" + createdUserGroup + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", flowStatusId=" + flowStatusId + ", reportStatus=" + reportStatus + ", remark=" + remark + ", rejectedUser=" + rejectedUser + ", rejectedDate=" + rejectedDate + ", approvedUser=" + approvedUser + ", approvedDate=" + approvedDate + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", report003DetailList=" + report003DetailList + '}';
     }
     
 }
