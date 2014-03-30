@@ -75,7 +75,7 @@ public class FormSelectReport extends BaseFormReportController {
      *
      * @param reportCode
      */
-    public void initViewEditReport(String reportCode, Integer reportId) {
+    public void initViewEditReport(String reportCode, Integer reportId,String reportMonth,String reportYear) {
 
         logger.trace("Select report by view mode : {} reportId : {}", reportCode, reportId);
 
