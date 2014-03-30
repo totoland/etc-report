@@ -123,6 +123,8 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
+        report001.setReportMonth(reportMonth);
+        report001.setReportYear(reportYear);
 
         if (!validateBeforeSave()) {
             return;
@@ -169,6 +171,8 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
+        report001.setReportMonth(reportMonth);
+        report001.setReportYear(reportYear);
 
         if (!validateBeforeSave()) {
             return;
