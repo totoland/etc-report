@@ -22,7 +22,7 @@ public class App {
                 + "                      ECT_USER_1.FNAME + '  ' + ECT_USER_1.LNAME AS UPDATED_USER_FULL_NAME, \n"
                 + "                      ECT_USER_2.FNAME + '  ' + ECT_USER_2.LNAME AS APPROVED_USER_FULL_NAME, \n"
                 + "                      ECT_USER_3.FNAME + '  ' + ECT_USER_3.LNAME AS REJECTED_USER_FULL_NAME, ISNULL(REPORT_?.REPORT_STATUS, 100) AS REPORT_STATUS, \n"
-                + "                      ECT_USER.USER_GROUP_ID, ECT_USER.USER_GROUP_LVL,\n"
+                + "                      ECT_USER.USER_GROUP_ID, ECT_USER.USER_GROUP_LVL,REPORT_?.REPORT_MONTH,REPORT_?.REPORT_YEAR,\n"
                 + "                      CASE \n"
                 + "				WHEN ISNULL(REPORT_?.CREATED_DATE,'') > ISNULL(REPORT_?.APPROVED_DATE,'') AND ISNULL(REPORT_?.CREATED_DATE,'') > ISNULL(REPORT_?.REJECTED_DATE,'') THEN REPORT_?.CREATED_DATE\n"
                 + "				WHEN ISNULL(REPORT_?.APPROVED_DATE,'') > ISNULL(REPORT_?.CREATED_DATE,'') AND ISNULL(REPORT_?.APPROVED_DATE,'') > ISNULL(REPORT_?.REJECTED_DATE,'') THEN REPORT_?.APPROVED_DATE\n"
@@ -37,7 +37,11 @@ public class App {
                 + "UNION ALL");
 
         for (int i = 1; i < 10; i++) {
-            //System.out.println(sql.toString().replaceAll("\\?", "00"+i));
+            System.out.println(sql.toString().replaceAll("\\?", "00"+i));
+        }
+        
+        for (int i = 10; i <= 23; i++) {
+            System.out.println(sql.toString().replaceAll("\\?", "0"+i));
         }
 
         sql = new StringBuilder();
@@ -64,7 +68,7 @@ public class App {
                 + "UPDATE REPORT_?_HIS SET REPORT_MONTH = right('0'+ rtrim(DATEPART(month,CREATED_DATE)), 2),REPORT_YEAR = DATEPART(year,CREATED_DATE)+543");
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println(sql.toString().replaceAll("\\?", "0"+i));
+//            System.out.println(sql.toString().replaceAll("\\?", "0"+i));
         }
 
 
