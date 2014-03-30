@@ -140,7 +140,7 @@ public class FormReport001Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_" + REPORT_001);
+            JsfUtil.hidePopupIframe("dialogEdit");
             
             resetForm();
 
@@ -568,10 +568,14 @@ public class FormReport001Controller extends BaseFormReportController {
         paramMode = getParameter("mode");
         paramReportCode = getParameter("reportCode");
         paramReportId = NumberUtils.toInteger(getParameter("reportId"));
-
+        reportMonth = getParameter("reportMonth");
+        reportYear = getParameter("reportYear");
+        
         logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
         logger.trace("paramReportCode : {}", paramReportCode);
         logger.trace("paramReportId : {}", paramReportId);
+        logger.trace("reportMonth : {}", reportMonth);
+        logger.trace("reportYear : {}", reportYear);
     }
 
     /**
@@ -604,9 +608,7 @@ public class FormReport001Controller extends BaseFormReportController {
 
     private void initForm() {
 
-        Date curDate = new Date();
-
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName());
+        reportTitle = MessageUtils.getResourceBundleString("report_header_title", dropdownFactory.getMonthName(reportMonth), reportYear, getUserAuthen().getProvinceName());
 
     }
 
@@ -623,10 +625,10 @@ public class FormReport001Controller extends BaseFormReportController {
      */
     private boolean checkDuppActivity() {
 
-        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate());
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), reportMonth,reportYear);
 
         if (!(isDupp == null || isDupp.isEmpty())) {
-            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+DateTimeUtils.getInstance().thDate(new Date(), "MMMM"));
+            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+dropdownFactory.getMonthName(reportMonth));
             return false;
         }
 

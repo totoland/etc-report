@@ -79,11 +79,21 @@ and open the template in the editor.
 
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." style="width: 350px"/>
-                                        <p:selectOneMenu id="ectDll" widgetVar="ectDll" style="width: 450px" value="#{formSelectReport.reportCode}">  
+                                        <p:selectOneMenu id="ectDll" widgetVar="ectDll" style="width: 350px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlDepEct()}"/>
                                             <p:ajax event="change" listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
-                                        </p:selectOneMenu> 
+                                        </p:selectOneMenu>
+                                        <h:outputLabel value="ประจำเดือน" style="width: 350px"/>
+                                        <p:selectOneMenu id="monthDll" widgetVar="monthDll" style="width: 350px" value="#{formSelectReport.reportMonth}">  
+                                            <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
+                                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlMonth()}"/>
+                                        </p:selectOneMenu>
+                                        <h:outputLabel value="ปี" style="width: 350px"/>
+                                        <p:selectOneMenu id="yearDll" widgetVar="yearDll" style="width: 350px" value="#{formSelectReport.reportYear}">  
+                                            <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
+                                            <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlFiscalYear()}"/>
+                                        </p:selectOneMenu>
 
                                     </h:panelGrid>
 
@@ -105,7 +115,7 @@ and open the template in the editor.
                                         <p:column width="260">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 101)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
-                                            <p:commandButton value="ลบ" onclick="return confirm('#{msg.confirmation_message_delete}')" action="#{FormReportMainController.delete(item.reportCode, item.reportId)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId) and item.reportStatus!=401}"/>
+                                            <p:commandButton value="ลบ" onclick="return confirm('#{msg.confirmation_message_delete}')" action="#{FormReportMainController.delete(item.reportCode, item.reportId)}" update=":form1:tabView" icon="ui-icon-trash" rendered="#{FormReportMainController.canApprove(item.flowStatusId) and item.reportStatus!=401}"/>
                                         </p:column>
                                         <p:column width="70">
                                             <f:facet name="header">

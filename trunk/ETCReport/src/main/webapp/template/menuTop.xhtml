@@ -32,11 +32,22 @@
                     <f:facet name="options">
                         <h:panelGrid columns="2">
                             <p:button value="ยินดีต้อนรับ #{loginController.userAuthen.fname}" icon="ui-icon-person"/>
-                            <p:commandButton value="ออกจากระบบ" icon="ui-icon-extlink" onclick="return confirm('ยืนยันการออกจากระบบ')" update="@form" action="#{loginController.logout()}"/>  
+                            <p:button value="ออกจากระบบ" icon="ui-icon-extlink" onclick="return logout()"/>  
                         </h:panelGrid>
                     </f:facet>
                 </p:menubar>
             </h:form>
+            
+            <script>
+                function logout(){
+                    if(confirm('ยืนยันการออกจากระบบ')){
+                        console.log("${request.contextPath}");
+                        window.location = '${request.contextPath}/LogoutController';
+                        return true;
+                    }
+                    return false;
+                }
+            </script>
         </ui:composition>
     </body>
 </html>

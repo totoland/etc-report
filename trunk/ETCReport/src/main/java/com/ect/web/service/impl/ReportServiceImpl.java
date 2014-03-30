@@ -280,5 +280,10 @@ public class ReportServiceImpl implements ReportService {
     public Integer deleteReport(String reportName, Integer reportId){
         return viewReportByStatusDao.deleteReport(reportName, reportId);
     }
+
+    @Override
+    public List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, String month,String year) {
+        return report001Dao.checkDuppActivityInMonth(userGroupId, activityId, month,year);
+    }
     
 }

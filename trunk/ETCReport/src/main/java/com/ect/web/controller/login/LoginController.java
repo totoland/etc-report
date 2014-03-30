@@ -47,7 +47,7 @@ public class LoginController extends BaseController {
 
         logger.info("loginProcess!!");
 
-        logger.info("userName : {} , passWord : {}", userName, passWord);
+        logger.info("userName : {} , passWord : {}", userName, "********");
 
         if (!validateLongin()) {
             addError("loggin fial!!");
@@ -108,9 +108,8 @@ public class LoginController extends BaseController {
 
         logger.trace("logout!!");
 
-        super.getRequest().getSession().invalidate();
-
-        redirectPage(JsfUtil.getContextPath() + "/pages/login/login.xhtml");
+        redirectPage(JsfUtil.getContextPath() + "/LogoutController");
+    
     }
 
     /**

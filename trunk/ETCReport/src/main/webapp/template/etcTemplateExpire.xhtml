@@ -10,43 +10,7 @@
             <ui:include src="scriptHeader.xhtml"/>
         </ui:insert>
         <ui:insert name="javascript">
-            <script>
-                //<![CDATA[
-                secLogin = 6000;
 
-                var countSession = function() {
-
-                    secLogin = secLogin - 1;
-
-                    //console.log(secLogin);
-
-                    if (secLogin < 1) {
-                        alert("Session ของคุณหมดอายุโปรดทำการ Login อีกครั้ง");
-                        window.location = '${request.contextPath}/pages/login/login.xhtml';
-                    } else {
-                        setTimeout(countSession, 1000);
-                    }
-
-                }
-
-
-
-                function checkAuthen() {
-                    logger("checkAuthen");
-                    secLogin = 6000;
-                    var user = '${formSelectReport.userAuthen.isActive}';
-
-                    if (user == null || user == '') {
-                        alert("#{msg.session_timeout}");
-                        window.location = '${request.contextPath}/pages/login/login.xhtml';
-                    }
-                }
-                $(function() {
-                    countSession();
-                    checkAuthen();
-                });
-                //]]>
-            </script>
         </ui:insert>
 
 
@@ -107,6 +71,11 @@
         </p:ajaxStatus>
 
         <h:outputScript library="js" name="i18N.js" target="head" />
+
+        <script>
+            //<![CDATA[
+            //]]>
+        </script>
 
     </h:body>
 

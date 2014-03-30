@@ -53,16 +53,44 @@ public class DropdownFactory implements Serializable {
      *
      * @return get All Months
      */
+    public String getMonthName(String id) {
+
+        for(DropDownList month : ddlMonth()){
+            
+            if(month.getValue().equals(id)){
+                
+                return month.getName();
+                
+            }
+            
+        }
+        
+        
+        return null;
+    }
+    private static List<DropDownList> month;
+
+    /**
+     * *
+     *
+     * @return get All Months
+     */
     public List<DropDownList> ddlMonth() {
 
-        DropDownList criteria = new DropDownList();
-        criteria.setTableName("ECT_CONSTANT");
-        criteria.setOrderByField("CONS_SORT");
-        criteria.setName("CONS_NAME");
-        criteria.setValue("CONS_VALUE");
-        criteria.setCondition("CONS_KEY = 'month'");
+        if (month == null) {
 
-        return commonService.getDropdownList(criteria);
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("ECT_CONSTANT");
+            criteria.setOrderByField("CONS_SORT");
+            criteria.setName("CONS_NAME");
+            criteria.setValue("CONS_VALUE");
+            criteria.setCondition("CONS_KEY = 'month'");
+
+            month = commonService.getDropdownList(criteria);
+
+        }
+        
+        return month;
     }
 
     /**

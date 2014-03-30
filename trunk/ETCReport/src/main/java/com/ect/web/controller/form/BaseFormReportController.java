@@ -62,6 +62,10 @@ public abstract class BaseFormReportController extends BaseController {
     protected static final String REPORT_MODE_VIEW = "view";
     protected static final String REPORT_MODE_CREATE = "create";
 
+    
+    protected String reportMonth;
+    protected String reportYear;
+    
     @Override
     public void resetForm() {
     }
@@ -260,5 +264,35 @@ public abstract class BaseFormReportController extends BaseController {
 
     public void selectTab(String tabId) {
         executeJavaScript("$('#form1\\\\:tabView ul li a[href=\"#form1:tabView:"+tabId+"\"]').click();");
+    }
+    
+    
+
+    /**
+     * @return the reportMonth
+     */
+    public String getReportMonth() {
+        return reportMonth;
+    }
+
+    /**
+     * @param reportMonth the reportMonth to set
+     */
+    public void setReportMonth(String reportMonth) {
+        this.reportMonth = reportMonth;
+    }
+
+    /**
+     * @return the reportYear
+     */
+    public String getReportYear() {
+        return reportYear;
+    }
+
+    /**
+     * @param reportYear the reportYear to set
+     */
+    public void setReportYear(String reportYear) {
+        this.reportYear = reportYear;
     }
 }

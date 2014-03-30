@@ -5,8 +5,11 @@
 package com.ect.web.controller.form;
 
 import com.ect.db.report.entity.ReportName;
+import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
+import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -30,11 +33,18 @@ public class FormSelectReport extends BaseFormReportController {
     protected String reportUrl;
     protected boolean selectedReport = true;
     protected String reportMode;
-    
+
     @PostConstruct
     public void init() {
         logger.trace("int FormSelectReport..");
+
+        Date curDate = new Date();
+
         reportCode = "";
+        reportMonth = DateTimeUtils.getInstance().thDate(curDate, "MM");
+        reportYear = DateTimeUtils.getInstance().thDate(curDate, "yyyy");
+
+        logger.trace("reportMonth : {} reportYear : {}", reportMonth, reportYear);
     }
 
     /**
@@ -48,7 +58,7 @@ public class FormSelectReport extends BaseFormReportController {
         this.reportMode = REPORT_MODE_CREATE;
 
         this.reportUrl = null;
-        
+
         ReportName reportName = ectConfManager.getReportObj(reportCode);
 
         logger.trace("Report : {}", reportName);
@@ -59,42 +69,75 @@ public class FormSelectReport extends BaseFormReportController {
 
     }
 
-    /***
+    /**
+     * *
      * Init for ViewEdit Report
-     * @param reportCode 
+     *
+     * @param reportCode
      */
-    public void initViewEditReport(String reportCode,Integer reportId){
-        
-        logger.trace("Select report by view mode : {} reportId : {}", reportCode,reportId);
-        
+    public void initViewEditReport(String reportCode, Integer reportId) {
+
+        logger.trace("Select report by view mode : {} reportId : {}", reportCode, reportId);
+
         this.reportCode = reportCode;
-        
+
         this.reportMode = REPORT_MODE_VIEW;
-        
+
         String url = ectConfManager.getReportObj(reportCode).getReportUrl();
-        
-        url = "edit/"+url+"?mode="+reportMode+"&reportId="+reportId+"&reportCode="+reportCode;
-        
-        logger.trace("Open iframe URL : {}",url);
-        
+
+        url = "edit/" + url + "?mode=" + reportMode + "&reportId=" + reportId + "&reportCode=" + reportCode + "&reportMonth=" + reportMonth + "&reportYear=" + reportYear;
+
+        logger.trace("Open iframe URL : {}", url);
+
         openIframe(url);
     }
-    
+
     public void validateSelectReport() {
 
         reportMode = REPORT_MODE_CREATE;
-        
+
+        boolean isValidate = true;
+
         if (StringUtils.isBlank(reportCode)) {
 
             addError(MessageUtils.getResourceBundleString("require_select_message", "รายงาน"));
-            return;
+            isValidate = false;
+        }
 
+        if (StringUtils.isBlank(reportMonth)) {
+
+            addError(MessageUtils.getResourceBundleString("require_select_message", "เดือน"));
+            isValidate = false;
+        }
+
+        if (StringUtils.isBlank(reportYear)) {
+
+            addError(MessageUtils.getResourceBundleString("require_select_message", "ปี"));
+            isValidate = false;
+        }
+
+        if (!isValidate) {
+            return;
         }
 
         logger.trace("clearAllMessage!!");
-        
+
         clearAllMessage();
-        openDialog("REPORT_MainDialog_"+reportCode);
+
+        if (reportCode.equalsIgnoreCase(REPORT_001)) {
+
+            String url = ectConfManager.getReportObj(reportCode).getReportUrl();
+
+            this.reportMode = REPORT_MODE_CREATE;
+
+            url = "edit/" + url + "?mode=" + reportMode + "&reportCode=" + reportCode + "&reportMonth=" + reportMonth + "&reportYear=" + reportYear;
+
+            logger.trace("Open iframe URL : {}", url);
+
+            openIframe(url);
+        } else {
+            openDialog("REPORT_MainDialog_" + reportCode);
+        }
     }
 
     @Override

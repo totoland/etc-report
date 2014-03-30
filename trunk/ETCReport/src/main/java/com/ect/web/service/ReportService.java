@@ -105,4 +105,6 @@ public interface ReportService {
     
     Integer deleteReport(String reportName, Integer reportId);
     
+    List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, String month,String year);
+    
 }
