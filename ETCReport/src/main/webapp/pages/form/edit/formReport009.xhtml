@@ -20,16 +20,16 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
-        <h:form>
+    <h:body id="body009">
+        <h:form id="form1">
 
-            <p:panel id="REPORT_009" header="#{msg.report_009_header} #{formReport009Controller.reportTitle}">
+            <p:panel id="REPORT_009" header="#{msg.report_009_header}">
 
-                <p:panel style="width: 100%;">
+                <p:panel style="width: 100%;" header="#{formReport009Controller.reportTitle}">
                     <p:messages id="REPORT_009msgFrmDetails"></p:messages>
-                    <f:facet name="header"  class="txtLeft">
-                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_009dlgAddReportDetail.show()" update="REPORT_009pn_addReportDetail" actionListener="#{formReport009Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode=='edit'}"/>
-                    </f:facet>  
+                  
+                    <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_009dlgAddReportDetail.show()" update="REPORT_009pn_addReportDetail" actionListener="#{formReport009Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
+                 
 
                     <div style="width: 1000px;overflow-x: scroll">
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_009pnlFrm"> 
@@ -39,7 +39,7 @@ and open the template in the editor.
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                          rowsPerPageTemplate="5,10,15">  
 
-                                <p:ajax event="rowEdit" listener="#{formReport009Controller.onEdit}"/>  
+                                <p:ajax event="rowEdit" listener="#{formReport009Controller.onEdit}" oncomplete="updateFooter()"/>  
                                 <p:ajax event="rowEditCancel" listener="#{formReport009Controller.onCancel}"/>
 
                                 <p:columnGroup type="header"> 
@@ -63,7 +63,7 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column>
+                                <p:column style="text-align: right">
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.donate}" />  
@@ -73,16 +73,27 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                <p:column rendered="#{formReport002Controller.paramMode!='view'}">  
                                     <p:rowEditor />  
                                 </p:column> 
-                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                <p:column rendered="#{formReport002Controller.paramMode!='view'}">  
                                     <p:commandLink action="#{formReport009Controller.onDelete(item)}" update="REPORT_009Grid">
                                         <span class="ui-icon ui-icon-trash"></span>
                                         <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
                                     </p:commandLink>
-                                </p:column> 
+                                </p:column>
+                                                                
+                                <p:columnGroup id="footer" type="footer">
+                                    <p:row>  
+                                        <p:column style="text-align: center" footerText=""></p:column>
+                                        <p:column style="text-align: center" footerText="รวม"></p:column>
+                                        <p:column style="text-align: right" footerText="${formReport009Controller.sumDetail.donate}"></p:column>
+                                        <p:column style="text-align: right" footerText=""></p:column>
+                                    </p:row>
+                                </p:columnGroup>
                             </p:dataTable>
+                            <p:remoteCommand name="updateFooter" update=":form1:REPORT_009Grid"></p:remoteCommand>
+                            
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
                                 <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
                                 <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
@@ -91,9 +102,10 @@ and open the template in the editor.
                     </div>
                     <h:panelGroup id="REPORT_009pnlCmd" rendered="#{formReport009Controller.report009.flowStatusId!=200}">
                         <div align="center">
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport009Controller.save()}" id="REPORT_009btnSave" rendered="#{formReport009Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport009Controller.goToEdit()}" id="REPORT_009btnEdit" rendered="#{formReport009Controller.paramMode=='view' and formReport009Controller.canEdit(formReport009Controller.report009.createdUserGroup)}"/>
-                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport009Controller.goToClose()}" id="REPORT_009btnClose" rendered="#{formReport009Controller.paramMode=='view'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport009Controller.edit()}" id="REPORT_009btnSave" rendered="#{formReport009Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport009Controller.goToClose()}" id="REPORT_009btnClose" rendered="#{formReport009Controller.paramMode=='view' || formReport009Controller.paramMode=='create'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport009Controller.edit()}" id="REPORT_009btnSaveEdit" rendered="#{formReport009Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_009btnCancel" actionListener="#{formReport009Controller.goToCancel()}" rendered="#{formReport009Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>
@@ -127,5 +139,10 @@ and open the template in the editor.
             </p:panel>
 
         </h:form>
+        <p:blockUI block="body009"  widgetVar="blogui009">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui009.show()" oncomplete="blogui009.hide()"/>
     </h:body>
 </html>

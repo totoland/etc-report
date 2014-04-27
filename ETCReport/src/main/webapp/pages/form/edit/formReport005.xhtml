@@ -12,12 +12,8 @@ and open the template in the editor.
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:totoland="http://java.sun.com/jsf/composite/components">
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-            <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
-        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
-        <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
-        <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
+        
+        <ui:include src="../../../template/headScript.xhtml"/>
 
     </h:head>
     <h:body>
@@ -80,7 +76,7 @@ and open the template in the editor.
 
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_005pn_frmDetailDetail">
                             <f:facet name="header"  class="txtLeft">
-                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005dlgAddReportDetail.show()" update="REPORT_005pn_addReportDetail" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport002Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005dlgAddReportDetail.show()" update="REPORT_005pn_addReportDetail" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport005Controller.paramMode=='edit' or formReport005Controller.paramMode=='create'}"/>
                             </f:facet>       
 
 
@@ -208,7 +204,7 @@ and open the template in the editor.
                         </p:panelGrid>
                         <p:panelGrid columns="1" styleClass="frmDetail3" id="REPORT_005pnlFrm3" style="width: 100%">
                             <f:facet name="header"  class="txtLeft">
-                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport002Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport005Controller.paramMode=='edit' or formReport005Controller.paramMode=='create'}"/>
                             </f:facet>
 
                             <p:dataTable var="item" value="#{formReport005Controller.report005Details2}" id="REPORT_005Grid2" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
@@ -273,9 +269,10 @@ and open the template in the editor.
 
                         <h:panelGroup id="REPORT_005pnlCmd" rendered="#{formReport005Controller.report005.flowStatusId!=200}">
                             <div align="center">
-                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport005Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport005Controller.paramMode=='view' and formReport005Controller.canEdit(formReport005Controller.report005.createdUserGroup)}"/>
-                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport005Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport005Controller.paramMode=='view'}"/>
-                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport005Controller.edit()}" id="REPORT_001btnSave" rendered="#{formReport005Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport005Controller.save()}" id="REPORT_005btnSave" rendered="#{formReport005Controller.paramMode=='create'}"/>
+                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport005Controller.goToEdit()}" id="REPORT_005btnEdit" rendered="#{formReport005Controller.paramMode=='view' and formReport005Controller.canEdit(formReport005Controller.report005.createdUserGroup)}"/>
+                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport005Controller.goToClose()}" id="REPORT_005btnClose" rendered="#{formReport005Controller.paramMode=='view' || formReport005Controller.paramMode=='create'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport005Controller.edit()}" id="REPORT_005btnSaveEdit" rendered="#{formReport005Controller.paramMode=='edit'}"/>
                                 <p:commandButton value="#{msg.btn_cancel}" id="REPORT_005btnCancel" actionListener="#{formReport005Controller.goToCancel()}" rendered="#{formReport005Controller.paramMode=='edit'}"/>
                             </div>
                         </h:panelGroup>
