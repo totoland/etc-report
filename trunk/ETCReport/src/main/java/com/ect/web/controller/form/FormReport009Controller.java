@@ -15,6 +15,7 @@ import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,16 +65,12 @@ public class FormReport009Controller extends BaseFormReportController {
      * For Add Record
      */
     private Report009Detail inputReport009Detail = new Report009Detail();
-    private String paramReportCode;
-    private Integer paramReportId;
-    private String paramMode;
-    private String reportTitle;
 
     @PostConstruct
     public void init() {
 
         logger.trace("init Form009!!");
-        
+
         initParam();
         initForm();
         /**
@@ -91,7 +88,6 @@ public class FormReport009Controller extends BaseFormReportController {
             initEditMode();
 
         }
-
 
     }
 
@@ -127,11 +123,11 @@ public class FormReport009Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_009");
+            JsfUtil.hidePopupIframe("dialogEdit");
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -142,7 +138,7 @@ public class FormReport009Controller extends BaseFormReportController {
 
         }
     }
-    
+
     @Override
     public void edit() {
 
@@ -172,7 +168,7 @@ public class FormReport009Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -225,6 +221,8 @@ public class FormReport009Controller extends BaseFormReportController {
         inputReport009Detail.setReportId(report009);
 
         report009Details.add(inputReport009Detail);
+        
+        sumReport009Details();
 
         JsfUtil.hidePopup("REPORT_009dlgAddReportDetail");
     }
@@ -265,6 +263,7 @@ public class FormReport009Controller extends BaseFormReportController {
                 logger.trace("After Edit Row : {}", editRow);
             }
 
+            sumReport009Details();
             break;
 
         }
@@ -283,16 +282,6 @@ public class FormReport009Controller extends BaseFormReportController {
     public void onCancel(RowEditEvent event) {
 
         JsfUtil.addSuccessMessage("ยกเลิก!!");
-
-    }
-
-    /**
-     * @return the curYear
-     */
-    public String getCurYear() {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-        return dateFormat.format(new Date()).toString();
 
     }
 
@@ -375,48 +364,6 @@ public class FormReport009Controller extends BaseFormReportController {
         return true;
     }
 
-    /**
-     * @return the paramReportCode
-     */
-    public String getParamReportCode() {
-        return paramReportCode;
-    }
-
-    /**
-     * @param paramReportCode the paramReportCode to set
-     */
-    public void setParamReportCode(String paramReportCode) {
-        this.paramReportCode = paramReportCode;
-    }
-
-    /**
-     * @return the paramReportId
-     */
-    public Integer getParamReportId() {
-        return paramReportId;
-    }
-
-    /**
-     * @param paramReportId the paramReportId to set
-     */
-    public void setParamReportId(Integer paramReportId) {
-        this.paramReportId = paramReportId;
-    }
-
-    /**
-     * @return the paramMode
-     */
-    public String getParamMode() {
-        return paramMode;
-    }
-
-    /**
-     * @param paramMode the paramMode to set
-     */
-    public void setParamMode(String paramMode) {
-        this.paramMode = paramMode;
-    }
-
     private void initViewMode() {
 
         logger.trace("initViewMode...");
@@ -439,39 +386,13 @@ public class FormReport009Controller extends BaseFormReportController {
 
             }
 
+            sumReport009Details();
         }
 
     }
 
     private void initEditMode() {
         initViewMode();
-    }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_009 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
-    private void initParam() {
-        paramMode = getParameter("mode");
-        paramReportCode = getParameter("reportCode");
-        paramReportId = NumberUtils.toInteger(getParameter("reportId"));
-
-        logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
-        logger.trace("paramReportCode : {}", paramReportCode);
-        logger.trace("paramReportId : {}", paramReportId);
     }
 
     /**
@@ -488,36 +409,57 @@ public class FormReport009Controller extends BaseFormReportController {
         this.reportGennericService = reportGennericService;
     }
 
-    /**
-     * @return the reportTitle
-     */
-    public String getReportTitle() {
-        return reportTitle;
-    }
-
-    /**
-     * @param reportTitle the reportTitle to set
-     */
-    public void setReportTitle(String reportTitle) {
-        this.reportTitle = reportTitle;
-    }
-
     private void initForm() {
 
-        Date curDate = new Date();
+        initTitle();
 
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
-        
+        logger.trace("reportTitle : {}", reportTitle);
+
+        report009.setReport009DetailList(report009Details);
+        report009.setReportMonth(reportMonth);
+        report009.setReportYear(reportYear);
     }
 
     @Override
     public void onDelete(Object object) {
-        
-        Report009Detail rowDelete = (Report009Detail)object;
-        
-        logger.trace("delete item : {}",rowDelete);
-        
+
+        Report009Detail rowDelete = (Report009Detail) object;
+
+        logger.trace("delete item : {}", rowDelete);
+
         report009Details.remove(rowDelete);
         
+        sumReport009Details();
+
+    }
+    
+    private Report009Detail sumDetail = new Report009Detail();
+
+    public void sumReport009Details() {
+
+        sumDetail.setDonate(BigDecimal.ZERO);
+
+        for (Report009Detail rd : report009Details) {
+
+            getSumDetail().setDonate(getSumDetail().getDonate().add(rd.getDonate()));
+
+        }
+
+        logger.trace("sumDetail : {}", sumDetail);
+
+    }
+    
+    /**
+     * @return the sumDetail
+     */
+    public Report009Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    /**
+     * @param sumDetail the sumDetail to set
+     */
+    public void setSumDetail(Report009Detail sumDetail) {
+        this.sumDetail = sumDetail;
     }
 }

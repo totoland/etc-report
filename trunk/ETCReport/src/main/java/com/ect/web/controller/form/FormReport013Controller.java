@@ -64,10 +64,6 @@ public class FormReport013Controller extends BaseFormReportController {
      * For Add Record
      */
     private Report013Detail inputReport013Detail = new Report013Detail();
-    private String paramReportCode;
-    private Integer paramReportId;
-    private String paramMode;
-    private String reportTitle;
 
     @PostConstruct
     public void init() {
@@ -300,16 +296,6 @@ public class FormReport013Controller extends BaseFormReportController {
     }
 
     /**
-     * @return the curYear
-     */
-    public String getCurYear() {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-        return dateFormat.format(new Date()).toString();
-
-    }
-
-    /**
      * @return the report013Details
      */
     public List<Report013Detail> getReport013Details() {
@@ -381,48 +367,6 @@ public class FormReport013Controller extends BaseFormReportController {
         return true;
     }
 
-    /**
-     * @return the paramReportCode
-     */
-    public String getParamReportCode() {
-        return paramReportCode;
-    }
-
-    /**
-     * @param paramReportCode the paramReportCode to set
-     */
-    public void setParamReportCode(String paramReportCode) {
-        this.paramReportCode = paramReportCode;
-    }
-
-    /**
-     * @return the paramReportId
-     */
-    public Integer getParamReportId() {
-        return paramReportId;
-    }
-
-    /**
-     * @param paramReportId the paramReportId to set
-     */
-    public void setParamReportId(Integer paramReportId) {
-        this.paramReportId = paramReportId;
-    }
-
-    /**
-     * @return the paramMode
-     */
-    public String getParamMode() {
-        return paramMode;
-    }
-
-    /**
-     * @param paramMode the paramMode to set
-     */
-    public void setParamMode(String paramMode) {
-        this.paramMode = paramMode;
-    }
-
     private void initViewMode() {
 
         logger.trace("initViewMode...");
@@ -470,16 +414,6 @@ public class FormReport013Controller extends BaseFormReportController {
 
     }
 
-    private void initParam() {
-        paramMode = getParameter("mode");
-        paramReportCode = getParameter("reportCode");
-        paramReportId = NumberUtils.toInteger(getParameter("reportId"));
-
-        logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
-        logger.trace("paramReportCode : {}", paramReportCode);
-        logger.trace("paramReportId : {}", paramReportId);
-    }
-
     /**
      * @return the reportGennericService
      */
@@ -494,25 +428,9 @@ public class FormReport013Controller extends BaseFormReportController {
         this.reportGennericService = reportGennericService;
     }
 
-    /**
-     * @return the reportTitle
-     */
-    public String getReportTitle() {
-        return reportTitle;
-    }
-
-    /**
-     * @param reportTitle the reportTitle to set
-     */
-    public void setReportTitle(String reportTitle) {
-        this.reportTitle = reportTitle;
-    }
-
     private void initForm() {
 
-        Date curDate = new Date();
-
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
+        initTitle();
 
         report013Details = new ArrayList<>();
 

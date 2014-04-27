@@ -9,14 +9,12 @@ import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.entity.ViewReport001;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_001;
-import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_CREATE;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_EDIT;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
-import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import com.google.gson.Gson;
 import java.io.InputStream;
@@ -76,10 +74,6 @@ public class FormReport001Controller extends BaseFormReportController {
     private List<ViewReport001> listReportStatusWait = new ArrayList<>();
     private List<Report001> listReportStatusReject = new ArrayList<>();
     private List<Report001> listReportStatusApprove = new ArrayList<>();
-    private String paramReportCode;
-    private Integer paramReportId;
-    private String paramMode;
-    private String reportTitle;
 
     @PostConstruct
     public void init() {
@@ -90,13 +84,13 @@ public class FormReport001Controller extends BaseFormReportController {
          * *
          * Check Mode
          */
-        if (StringUtils.isBlank(paramMode)) {
+        if (StringUtils.isBlank(getParamMode())) {
             //loadReportAllState();
-        } else if (paramMode.equals(REPORT_MODE_VIEW)) {
+        } else if (getParamMode().equals(REPORT_MODE_VIEW)) {
 
             initViewMode();
 
-        } else if (paramMode.equals(REPORT_MODE_EDIT)) {
+        } else if (getParamMode().equals(REPORT_MODE_EDIT)) {
 
             initEditMode();
 
@@ -123,7 +117,7 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
-        report001.setReportMonth(reportMonth);
+        report001.setReportMonth(getReportMonth());
         report001.setReportYear(reportYear);
 
         if (!validateBeforeSave()) {
@@ -171,7 +165,7 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setReportDesc(ectConfManager.getReportName(REPORT_001));
         report001.setReportCode(REPORT_001);
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
-        report001.setReportMonth(reportMonth);
+        report001.setReportMonth(getReportMonth());
         report001.setReportYear(reportYear);
 
         if (!validateBeforeSave()) {
@@ -479,55 +473,13 @@ public class FormReport001Controller extends BaseFormReportController {
         return true;
     }
 
-    /**
-     * @return the paramReportCode
-     */
-    public String getParamReportCode() {
-        return paramReportCode;
-    }
-
-    /**
-     * @param paramReportCode the paramReportCode to set
-     */
-    public void setParamReportCode(String paramReportCode) {
-        this.paramReportCode = paramReportCode;
-    }
-
-    /**
-     * @return the paramReportId
-     */
-    public Integer getParamReportId() {
-        return paramReportId;
-    }
-
-    /**
-     * @param paramReportId the paramReportId to set
-     */
-    public void setParamReportId(Integer paramReportId) {
-        this.paramReportId = paramReportId;
-    }
-
-    /**
-     * @return the paramMode
-     */
-    public String getParamMode() {
-        return paramMode;
-    }
-
-    /**
-     * @param paramMode the paramMode to set
-     */
-    public void setParamMode(String paramMode) {
-        this.paramMode = paramMode;
-    }
-
     private void initViewMode() {
 
         logger.trace("initViewMode...");
 
-        if (REPORT_001.equalsIgnoreCase(paramReportCode)) {
+        if (REPORT_001.equalsIgnoreCase(getParamReportCode())) {
 
-            report001 = reportService.findByReport001ById(paramReportId);
+            report001 = reportService.findByReport001ById(getParamReportId());
 
             logger.trace("report001 : {}", report001);
 
@@ -550,38 +502,7 @@ public class FormReport001Controller extends BaseFormReportController {
     private void initEditMode() {
         initViewMode();
     }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_001 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
-    private void initParam() {
-        paramMode = getParameter("mode");
-        paramReportCode = getParameter("reportCode");
-        paramReportId = NumberUtils.toInteger(getParameter("reportId"));
-        reportMonth = getParameter("reportMonth");
-        reportYear = getParameter("reportYear");
-        
-        logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
-        logger.trace("paramReportCode : {}", paramReportCode);
-        logger.trace("paramReportId : {}", paramReportId);
-        logger.trace("reportMonth : {}", reportMonth);
-        logger.trace("reportYear : {}", reportYear);
-    }
-
+    
     /**
      * @return the reportGennericService
      */
@@ -596,24 +517,11 @@ public class FormReport001Controller extends BaseFormReportController {
         this.reportGennericService = reportGennericService;
     }
 
-    /**
-     * @return the reportTitle
-     */
-    public String getReportTitle() {
-        return reportTitle;
-    }
-
-    /**
-     * @param reportTitle the reportTitle to set
-     */
-    public void setReportTitle(String reportTitle) {
-        this.reportTitle = reportTitle;
-    }
-
     private void initForm() {
 
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title", dropdownFactory.getMonthName(reportMonth), reportYear, getUserAuthen().getProvinceName());
-
+        initTitle();
+        report001.setReportMonth(reportMonth);
+        report001.setReportYear(reportYear);
     }
 
     @Override
@@ -629,10 +537,10 @@ public class FormReport001Controller extends BaseFormReportController {
      */
     private boolean checkDuppActivity() {
 
-        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), reportMonth,reportYear);
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), getReportMonth(),reportYear);
 
         if (!(isDupp == null || isDupp.isEmpty())) {
-            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+dropdownFactory.getMonthName(reportMonth));
+            JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+dropdownFactory.getMonthName(getReportMonth()));
             return false;
         }
 
@@ -647,7 +555,7 @@ public class FormReport001Controller extends BaseFormReportController {
             
             for(Report001 report001 : isDupp){
             
-                if(report001.getReportId().intValue() == paramReportId.intValue()){
+                if(report001.getReportId().intValue() == getParamReportId().intValue()){
                     return true;
                 }
                 

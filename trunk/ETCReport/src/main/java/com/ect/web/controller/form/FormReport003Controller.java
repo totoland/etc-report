@@ -9,13 +9,10 @@ import com.ect.db.report.entity.Report003Detail;
 import com.ect.db.report.entity.Report003;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
-import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -64,10 +61,6 @@ public class FormReport003Controller extends BaseFormReportController {
      * For Add Record
      */
     private Report003Detail inputReport003Detail = new Report003Detail();
-    private String paramReportCode;
-    private Integer paramReportId;
-    private String paramMode;
-    private String reportTitle;
 
     @PostConstruct
     public void init() {
@@ -124,7 +117,7 @@ public class FormReport003Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_003");
+            JsfUtil.hidePopupIframe("dialogEdit");
 
         } catch (Exception ex) {
 
@@ -283,16 +276,6 @@ public class FormReport003Controller extends BaseFormReportController {
     }
 
     /**
-     * @return the curYear
-     */
-    public String getCurYear() {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-        return dateFormat.format(new Date()).toString();
-
-    }
-
-    /**
      * @return the report003Details
      */
     public List<Report003Detail> getReport003Details() {
@@ -392,48 +375,6 @@ public class FormReport003Controller extends BaseFormReportController {
         return true;
     }
 
-    /**
-     * @return the paramReportCode
-     */
-    public String getParamReportCode() {
-        return paramReportCode;
-    }
-
-    /**
-     * @param paramReportCode the paramReportCode to set
-     */
-    public void setParamReportCode(String paramReportCode) {
-        this.paramReportCode = paramReportCode;
-    }
-
-    /**
-     * @return the paramReportId
-     */
-    public Integer getParamReportId() {
-        return paramReportId;
-    }
-
-    /**
-     * @param paramReportId the paramReportId to set
-     */
-    public void setParamReportId(Integer paramReportId) {
-        this.paramReportId = paramReportId;
-    }
-
-    /**
-     * @return the paramMode
-     */
-    public String getParamMode() {
-        return paramMode;
-    }
-
-    /**
-     * @param paramMode the paramMode to set
-     */
-    public void setParamMode(String paramMode) {
-        this.paramMode = paramMode;
-    }
-
     private void initViewMode() {
 
         logger.trace("initViewMode...");
@@ -462,33 +403,13 @@ public class FormReport003Controller extends BaseFormReportController {
 
     private void initEditMode() {
         initViewMode();
-    }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_003 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
-    private void initParam() {
-        paramMode = getParameter("mode");
-        paramReportCode = getParameter("reportCode");
-        paramReportId = NumberUtils.toInteger(getParameter("reportId"));
-
-        logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
-        logger.trace("paramReportCode : {}", paramReportCode);
-        logger.trace("paramReportId : {}", paramReportId);
+        
+        if(paramMode.equalsIgnoreCase(REPORT_MODE_EDIT)){
+        
+            reportMonth = report003.getReportMonth();
+            reportYear = report003.getReportYear();
+            
+        }
     }
 
     /**
@@ -505,26 +426,10 @@ public class FormReport003Controller extends BaseFormReportController {
         this.reportGennericService = reportGennericService;
     }
 
-    /**
-     * @return the reportTitle
-     */
-    public String getReportTitle() {
-        return reportTitle;
-    }
-
-    /**
-     * @param reportTitle the reportTitle to set
-     */
-    public void setReportTitle(String reportTitle) {
-        this.reportTitle = reportTitle;
-    }
-
     private void initForm() {
 
-        Date curDate = new Date();
-
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
-
+        initTitle();
+        
         report003Details = new ArrayList<>();
 
         Report003Detail report003Detail1 = new Report003Detail();
@@ -581,6 +486,9 @@ public class FormReport003Controller extends BaseFormReportController {
         report003Details.add(report003Detail6);
         report003Details.add(report003Detail7);
         
+        report003.setReport003DetailList(report003Details);
+        report003.setReportMonth(reportMonth);
+        report003.setReportYear(reportYear);
     }
 
     @Override

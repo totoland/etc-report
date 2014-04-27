@@ -323,6 +323,7 @@ public class FormReportMainController extends BaseFormReportController {
     /**
      * *
      * AddReportDetail to Grid
+     * @throws java.lang.Exception
      */
     public void addReportDetail() throws Exception {
 
