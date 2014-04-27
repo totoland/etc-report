@@ -20,16 +20,14 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
+    <h:body id="body010">
         <h:form>
 
-            <p:panel id="REPORT_010" header="#{msg.report_010_header} #{formReport010Controller.reportTitle}">
+            <p:panel id="REPORT_010" header="#{msg.report_010_header}">
 
-                <p:panel style="width: 100%;">
+                <p:panel style="width: 100%;" header="#{formReport010Controller.reportTitle}">
                     <p:messages id="REPORT_010msgFrmDetails"></p:messages>
-                    <f:facet name="header"  class="txtLeft">
-                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_010dlgAddReportDetail.show()" update="REPORT_010pn_addReportDetail" actionListener="#{formReport010Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode=='edit'}"/>
-                    </f:facet>  
+                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_010dlgAddReportDetail.show()" update="REPORT_010pn_addReportDetail" actionListener="#{formReport010Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
 
                     <div style="width: 1000px;overflow-x: scroll">
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_010pnlFrm"> 
@@ -122,15 +120,15 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                <p:column rendered="#{formReport002Controller.paramMode!='view'}">  
                                     <p:rowEditor />  
                                 </p:column> 
-                                <p:column rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                <p:column rendered="#{formReport002Controller.paramMode!='view'}">  
                                     <p:commandLink action="#{formReport010Controller.onDelete(item)}" update="REPORT_010Grid">
                                         <span class="ui-icon ui-icon-trash"></span>
                                         <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
                                     </p:commandLink>
-                                </p:column> 
+                                </p:column>
                             </p:dataTable>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
                                 <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
@@ -140,9 +138,10 @@ and open the template in the editor.
                     </div>
                     <h:panelGroup id="REPORT_010pnlCmd" rendered="#{formReport010Controller.report010.flowStatusId!=200}">
                         <div align="center">
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport010Controller.save()}" id="REPORT_010btnSave" rendered="#{formReport010Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport010Controller.goToEdit()}" id="REPORT_010btnEdit" rendered="#{formReport010Controller.paramMode=='view' and formReport010Controller.canEdit(formReport010Controller.report010.createdUserGroup)}"/>
-                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport010Controller.goToClose()}" id="REPORT_010btnClose" rendered="#{formReport010Controller.paramMode=='view'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport010Controller.edit()}" id="REPORT_010btnSave" rendered="#{formReport010Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport010Controller.goToClose()}" id="REPORT_010btnClose" rendered="#{formReport010Controller.paramMode=='view' || formReport010Controller.paramMode=='create'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport010Controller.edit()}" id="REPORT_010btnSaveEdit" rendered="#{formReport010Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_010btnCancel" actionListener="#{formReport010Controller.goToCancel()}" rendered="#{formReport010Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>
@@ -188,5 +187,10 @@ and open the template in the editor.
             </p:panel>
 
         </h:form>
+        <p:blockUI block="body010"  widgetVar="blogui010">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui010.show()" oncomplete="blogui010.hide()"/>
     </h:body>
 </html>
