@@ -41,10 +41,10 @@ public class FormSelectReport extends BaseFormReportController {
         Date curDate = new Date();
 
         reportCode = "";
-        reportMonth = DateTimeUtils.getInstance().thDate(curDate, "MM");
+        setReportMonth(DateTimeUtils.getInstance().thDate(curDate, "MM"));
         reportYear = DateTimeUtils.getInstance().thDate(curDate, "yyyy");
 
-        logger.trace("reportMonth : {} reportYear : {}", reportMonth, reportYear);
+        logger.trace("reportMonth : {} reportYear : {}", getReportMonth(), reportYear);
     }
 
     /**
@@ -74,8 +74,11 @@ public class FormSelectReport extends BaseFormReportController {
      * Init for ViewEdit Report
      *
      * @param reportCode
+     * @param reportId
+     * @param reportMonth
+     * @param reportYear
      */
-    public void initViewEditReport(String reportCode, Integer reportId,String reportMonth,String reportYear) {
+    public void initViewEditReport(String reportCode, Integer reportId, String reportMonth, String reportYear) {
 
         logger.trace("Select report by view mode : {} reportId : {}", reportCode, reportId);
 
@@ -104,7 +107,7 @@ public class FormSelectReport extends BaseFormReportController {
             isValidate = false;
         }
 
-        if (StringUtils.isBlank(reportMonth)) {
+        if (StringUtils.isBlank(getReportMonth())) {
 
             addError(MessageUtils.getResourceBundleString("require_select_message", "เดือน"));
             isValidate = false;
@@ -124,17 +127,27 @@ public class FormSelectReport extends BaseFormReportController {
 
         clearAllMessage();
 
-        if (reportCode.equalsIgnoreCase(REPORT_001)) {
+        if (reportCode.equalsIgnoreCase(REPORT_001) || 
+                reportCode.equalsIgnoreCase(REPORT_002) || 
+                reportCode.equalsIgnoreCase(REPORT_003) || 
+                reportCode.equalsIgnoreCase(REPORT_004) || 
+                reportCode.equalsIgnoreCase(REPORT_005) ||
+                reportCode.equalsIgnoreCase(REPORT_006) ||
+                reportCode.equalsIgnoreCase(REPORT_007) ||
+                reportCode.equalsIgnoreCase(REPORT_008) ||
+                reportCode.equalsIgnoreCase(REPORT_009) ||
+                reportCode.equalsIgnoreCase(REPORT_010)) {
 
             String url = ectConfManager.getReportObj(reportCode).getReportUrl();
 
             this.reportMode = REPORT_MODE_CREATE;
 
-            url = "edit/" + url + "?mode=" + reportMode + "&reportCode=" + reportCode + "&reportMonth=" + reportMonth + "&reportYear=" + reportYear;
+            url = "edit/" + url + "?mode=" + reportMode + "&reportCode=" + reportCode + "&reportMonth=" + getReportMonth() + "&reportYear=" + reportYear;
 
             logger.trace("Open iframe URL : {}", url);
 
             openIframe(url);
+        
         } else {
             openDialog("REPORT_MainDialog_" + reportCode);
         }

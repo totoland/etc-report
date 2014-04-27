@@ -64,10 +64,6 @@ public class FormReport004Controller extends BaseFormReportController {
      * For Add Record
      */
     private Report004Detail inputReport004Detail = new Report004Detail();
-    private String paramReportCode;
-    private Integer paramReportId;
-    private String paramMode;
-    private String reportTitle;
 
     @PostConstruct
     public void init() {
@@ -124,7 +120,7 @@ public class FormReport004Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_004");
+            JsfUtil.hidePopupIframe("dialogEdit");
 
         } catch (Exception ex) {
 
@@ -281,17 +277,7 @@ public class FormReport004Controller extends BaseFormReportController {
         JsfUtil.addSuccessMessage("ยกเลิก!!");
 
     }
-
-    /**
-     * @return the curYear
-     */
-    public String getCurYear() {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-        return dateFormat.format(new Date()).toString();
-
-    }
-
+    
     /**
      * @return the report004Details
      */
@@ -392,48 +378,6 @@ public class FormReport004Controller extends BaseFormReportController {
         return true;
     }
 
-    /**
-     * @return the paramReportCode
-     */
-    public String getParamReportCode() {
-        return paramReportCode;
-    }
-
-    /**
-     * @param paramReportCode the paramReportCode to set
-     */
-    public void setParamReportCode(String paramReportCode) {
-        this.paramReportCode = paramReportCode;
-    }
-
-    /**
-     * @return the paramReportId
-     */
-    public Integer getParamReportId() {
-        return paramReportId;
-    }
-
-    /**
-     * @param paramReportId the paramReportId to set
-     */
-    public void setParamReportId(Integer paramReportId) {
-        this.paramReportId = paramReportId;
-    }
-
-    /**
-     * @return the paramMode
-     */
-    public String getParamMode() {
-        return paramMode;
-    }
-
-    /**
-     * @param paramMode the paramMode to set
-     */
-    public void setParamMode(String paramMode) {
-        this.paramMode = paramMode;
-    }
-
     private void initViewMode() {
 
         logger.trace("initViewMode...");
@@ -465,33 +409,6 @@ public class FormReport004Controller extends BaseFormReportController {
         cal();
     }
 
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_004 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
-    private void initParam() {
-        paramMode = getParameter("mode");
-        paramReportCode = getParameter("reportCode");
-        paramReportId = NumberUtils.toInteger(getParameter("reportId"));
-
-        logger.trace("paramMode : {}", StringUtils.isBlank(paramMode) ? REPORT_MODE_CREATE : paramMode);
-        logger.trace("paramReportCode : {}", paramReportCode);
-        logger.trace("paramReportId : {}", paramReportId);
-    }
-
     /**
      * @return the reportGennericService
      */
@@ -506,25 +423,9 @@ public class FormReport004Controller extends BaseFormReportController {
         this.reportGennericService = reportGennericService;
     }
 
-    /**
-     * @return the reportTitle
-     */
-    public String getReportTitle() {
-        return reportTitle;
-    }
-
-    /**
-     * @param reportTitle the reportTitle to set
-     */
-    public void setReportTitle(String reportTitle) {
-        this.reportTitle = reportTitle;
-    }
-
     private void initForm() {
 
-        Date curDate = new Date();
-
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title_dep", DateTimeUtils.getInstance().thDate(curDate, "MMMM"), DateTimeUtils.getInstance().thDate(curDate, "yyyy"), getUserAuthen().getProvinceName(), "");
+        initTitle();
 
         report004Details = new ArrayList<>();
 
@@ -579,6 +480,10 @@ public class FormReport004Controller extends BaseFormReportController {
         getFooter().setElectionEarlierLastMonthSTh(0);
         getFooter().setElectionFillVacancy(0);
         getFooter().setFullTerm(0);
+        
+        report004.setReport004DetailList(report004Details);
+        report004.setReportMonth(reportMonth);
+        report004.setReportYear(reportYear);
     }
 
     @Override

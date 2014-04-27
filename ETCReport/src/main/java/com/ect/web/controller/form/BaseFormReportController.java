@@ -11,6 +11,12 @@ import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportService;
+import com.ect.web.utils.JsfUtil;
+import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
+import com.ect.web.utils.StringUtils;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
@@ -65,6 +71,10 @@ public abstract class BaseFormReportController extends BaseController {
     
     protected String reportMonth;
     protected String reportYear;
+    protected String reportTitle;
+    protected String paramReportCode;
+    protected Integer paramReportId;
+    protected String paramMode;
     
     @Override
     public void resetForm() {
@@ -73,10 +83,45 @@ public abstract class BaseFormReportController extends BaseController {
     public abstract void save();
 
     public abstract void edit();
+    
+    protected void initTitle(){
+        reportTitle = MessageUtils.getResourceBundleString("report_header_title", dropdownFactory.getMonthName(getReportMonth()), reportYear, getUserAuthen().getProvinceName());
+    }
 
+    protected void initParam() {
+        setParamMode(getParameter("mode"));
+        setParamReportCode(getParameter("reportCode"));
+        setParamReportId(NumberUtils.toInteger(getParameter("reportId")));
+        setReportMonth(getParameter("reportMonth"));
+        reportYear = getParameter("reportYear");
+        
+        logger.trace("paramMode : {}", StringUtils.isBlank(getParamMode()) ? REPORT_MODE_CREATE : getParamMode());
+        logger.trace("paramReportCode : {}", getParamReportCode());
+        logger.trace("paramReportId : {}", getParamReportId());
+        logger.trace("reportMonth : {}", getReportMonth());
+        logger.trace("reportYear : {}", reportYear);
+    }
+    
+    public void goToEdit() {
+        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode + "&reportMonth=" +reportMonth +"&reportYear="+reportYear;
+        redirectPage(url);
+    }
+
+    public void goToClose() {
+        JsfUtil.hidePopupIframe("dialogEdit");
+    }
+
+    public void goToCancel() {
+
+        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode + "&reportMonth=" +reportMonth +"&reportYear="+reportYear;
+        redirectPage(url);
+
+    }
+    
     /**
      * *
      * AddReportDetail to Grid
+     * @param actionEvent
      */
     public abstract void addReportDetail(ActionEvent actionEvent);
 
@@ -210,6 +255,12 @@ public abstract class BaseFormReportController extends BaseController {
     public boolean canEdit(Integer createdUserGroup) {
 
         ViewUser user = getUserAuthen();
+        
+        if(user.getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel()){
+        
+            return true;
+            
+        }
 
 //        logger.trace("Login UserGroup {} Created UserGroup {}", user.getUserGroupId(), createdUserGroup);
 
@@ -266,6 +317,15 @@ public abstract class BaseFormReportController extends BaseController {
         executeJavaScript("$('#form1\\\\:tabView ul li a[href=\"#form1:tabView:"+tabId+"\"]').click();");
     }
     
+    /**
+     * @return the curYear
+     */
+    public String getCurYear() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+        return dateFormat.format(new Date());
+
+    }
     
 
     /**
@@ -294,5 +354,61 @@ public abstract class BaseFormReportController extends BaseController {
      */
     public void setReportYear(String reportYear) {
         this.reportYear = reportYear;
+    }
+
+    /**
+     * @return the reportTitle
+     */
+    public String getReportTitle() {
+        return reportTitle;
+    }
+
+    /**
+     * @param reportTitle the reportTitle to set
+     */
+    public void setReportTitle(String reportTitle) {
+        this.reportTitle = reportTitle;
+    }
+
+    /**
+     * @return the paramReportCode
+     */
+    public String getParamReportCode() {
+        return paramReportCode;
+    }
+
+    /**
+     * @param paramReportCode the paramReportCode to set
+     */
+    public void setParamReportCode(String paramReportCode) {
+        this.paramReportCode = paramReportCode;
+    }
+
+    /**
+     * @return the paramReportId
+     */
+    public Integer getParamReportId() {
+        return paramReportId;
+    }
+
+    /**
+     * @param paramReportId the paramReportId to set
+     */
+    public void setParamReportId(Integer paramReportId) {
+        this.paramReportId = paramReportId;
+    }
+
+    /**
+     * @return the paramMode
+     */
+    public String getParamMode() {
+        return paramMode;
+    }
+
+    /**
+     * @param paramMode the paramMode to set
+     */
+    public void setParamMode(String paramMode) {
+        this.paramMode = paramMode;
     }
 }
