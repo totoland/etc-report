@@ -9,13 +9,11 @@ import com.ect.db.report.entity.Report021Detail;
 import com.ect.db.report.entity.Report021;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -123,7 +121,7 @@ public class FormReport021Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_021");
+            goToClose();
 
         } catch (Exception ex) {
 
@@ -401,23 +399,6 @@ public class FormReport021Controller extends BaseFormReportController {
         initViewMode();
     }
 
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_021 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
     /**
      * @return the reportGennericService
      */
@@ -436,6 +417,9 @@ public class FormReport021Controller extends BaseFormReportController {
 
         initTitle();
 
+        report021.setReport021DetailList(report021Details);
+        report021.setReportMonth(reportMonth);
+        report021.setReportYear(reportYear);
     }
 
     @Override

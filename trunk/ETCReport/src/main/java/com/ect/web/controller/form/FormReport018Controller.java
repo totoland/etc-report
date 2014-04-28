@@ -9,13 +9,11 @@ import com.ect.db.report.entity.Report018Detail;
 import com.ect.db.report.entity.Report018;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -101,7 +99,7 @@ public class FormReport018Controller extends BaseFormReportController {
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Save Report : {}", REPORT_018 + MessageUtils.PRINT_LINE_STAR());
 
         calSum();
-        
+
         report018.setReport018DetailList(report018Details);
         report018.setCreatedDate(new Date());
         report018.setCreatedUser(super.getUserAuthen().getUserId());
@@ -122,12 +120,12 @@ public class FormReport018Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_018");
+            goToClose();
 
             resetForm();
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -144,7 +142,7 @@ public class FormReport018Controller extends BaseFormReportController {
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_018 + MessageUtils.PRINT_LINE_STAR());
 
         calSum();
-        
+
         //report018.setReport018DetailList(report018Details);
         report018.setUpdatedDate(new Date());
         report018.setUpdatedUser(super.getUserAuthen().getUserId());
@@ -169,7 +167,7 @@ public class FormReport018Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -349,7 +347,6 @@ public class FormReport018Controller extends BaseFormReportController {
 //        if (StringUtils.isBlank(inputReport018Detail.getBuggetSource())) {
 //            msg += "กรุณาระบุที่มาของงบประมาณbr/>";
 //        }
-
         if (!StringUtils.isBlank(msg)) {
             addError(msg);
             return false;
@@ -379,7 +376,6 @@ public class FormReport018Controller extends BaseFormReportController {
 //            JsfUtil.alertJavaScript(msg.toString().trim());
 //            return false;
 //        }
-
         return true;
     }
 
@@ -413,23 +409,6 @@ public class FormReport018Controller extends BaseFormReportController {
         initViewMode();
     }
 
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_018 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
     /**
      * @return the reportGennericService
      */
@@ -447,13 +426,13 @@ public class FormReport018Controller extends BaseFormReportController {
     private void initForm() {
 
         initTitle();
-        
+
         report018Details = new ArrayList<>();
 
         Report018Detail report018Detail1 = new Report018Detail();
         report018Detail1.setLaas("กรุงเทพมหานคร");
         report018Detail1.setReportId(report018);
-        
+
         Report018Detail report018Detail2 = new Report018Detail();
         report018Detail2.setLaas("องค์การบริหารส่วนจังหวัด");
         report018Detail2.setReportId(report018);
@@ -461,19 +440,19 @@ public class FormReport018Controller extends BaseFormReportController {
         Report018Detail report018Detail3 = new Report018Detail();
         report018Detail3.setLaas("เมืองพัทยา");
         report018Detail3.setReportId(report018);
-        
+
         Report018Detail report018Detail4 = new Report018Detail();
         report018Detail4.setLaas("เทศบาลนคร");
         report018Detail4.setReportId(report018);
-        
+
         Report018Detail report018Detail5 = new Report018Detail();
         report018Detail5.setLaas("เทศบาลเมือง");
         report018Detail5.setReportId(report018);
-        
+
         Report018Detail report018Detail6 = new Report018Detail();
         report018Detail6.setLaas("เทศบาลตพบล");
         report018Detail6.setReportId(report018);
-        
+
         Report018Detail report018Detail7 = new Report018Detail();
         report018Detail7.setLaas("องค์การบริหารส่วนตำบล");
         report018Detail7.setReportId(report018);
@@ -485,7 +464,12 @@ public class FormReport018Controller extends BaseFormReportController {
         report018Details.add(report018Detail5);
         report018Details.add(report018Detail6);
         report018Details.add(report018Detail7);
+
+        report018.setReport018DetailList(report018Details);
+        report018.setReportMonth(reportMonth);
+        report018.setReportYear(reportYear);
         
+        sumReport018Details();
     }
 
     @Override
@@ -498,5 +482,37 @@ public class FormReport018Controller extends BaseFormReportController {
 //        for (int i = 0; i < report018Details.size(); i++) {
 //            report018Details.get(i).setSumAmount(report018Details.get(i).getStAmount()+report018Details.get(i).getPtAmount());
 //        }
+    }
+
+    private Report018Detail sumDetail = new Report018Detail();
+
+    public void sumReport018Details() {
+
+        sumDetail.setEctDepProvince(0);
+        sumDetail.setOocAmount(0);
+        sumDetail.setLaasAmount(0);
+        sumDetail.setFullTerm(0);
+        sumDetail.setBudgetFullTerm(0);
+        sumDetail.setNewElection(0);
+        sumDetail.setBudgetElection(0);
+        sumDetail.setReplaceEmplyPosition(0);
+        sumDetail.setReplaceBudget(0);
+
+        for (Report018Detail rd : report018Details) {
+
+            sumDetail.setEctDepProvince(sumDetail.getEctDepProvince()+NumberUtils.convertNUllToZero(rd.getEctDepProvince()));
+            sumDetail.setOocAmount(sumDetail.getOocAmount()+NumberUtils.convertNUllToZero(rd.getOocAmount()));
+            sumDetail.setLaasAmount(sumDetail.getLaasAmount()+NumberUtils.convertNUllToZero(rd.getLaasAmount()));
+            sumDetail.setFullTerm(sumDetail.getFullTerm()+NumberUtils.convertNUllToZero(rd.getFullTerm()));
+            sumDetail.setBudgetFullTerm(sumDetail.getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
+            sumDetail.setNewElection(sumDetail.getNewElection()+NumberUtils.convertNUllToZero(rd.getNewElection()));
+            sumDetail.setBudgetElection(sumDetail.getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
+            sumDetail.setReplaceEmplyPosition(sumDetail.getReplaceEmplyPosition()+NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
+            sumDetail.setReplaceBudget(sumDetail.getReplaceBudget()+NumberUtils.convertNUllToZero(rd.getReplaceBudget()));
+
+        }
+
+        logger.trace("sumDetail : {}", sumDetail);
+
     }
 }

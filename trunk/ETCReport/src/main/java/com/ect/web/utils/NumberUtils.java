@@ -53,4 +53,11 @@ public class NumberUtils {
         }
         return null;
     }
+    public static Integer convertNUllToZero(Integer nvl){
+        if(nvl==null){
+            return 0;
+        }
+        
+        return nvl;
+    }
 }

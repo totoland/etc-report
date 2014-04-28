@@ -122,7 +122,7 @@ public class FormReport017Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_017");
+            goToClose();
 
             resetForm();
         } catch (Exception ex) {
@@ -413,23 +413,6 @@ public class FormReport017Controller extends BaseFormReportController {
         initViewMode();
     }
 
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_017 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
     /**
      * @return the reportGennericService
      */
@@ -476,6 +459,9 @@ public class FormReport017Controller extends BaseFormReportController {
         report017Details.add(report017Detail4);
         report017Details.add(report017Detail5);
         
+        report017.setReport017DetailList(report017Details);
+        report017.setReportMonth(reportMonth);
+        report017.setReportYear(reportYear);
     }
 
     @Override
