@@ -20,10 +20,15 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
+    <h:body id="body020">
+        <p:blockUI block="body020"  widgetVar="blogui020">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui020.show()" oncomplete="blogui020.hide()"/>
         <h:form>
 
-            <p:panel id="REPORT_020">
+            <p:panel id="REPORT_020" header="#{msg.report_020_header}">
 
                 <p:panel header="#{formReport020Controller.reportTitle}" style="width: 710px;">
                     <p:messages id="REPORT_020msgFrmDetails"></p:messages>                   
@@ -44,39 +49,45 @@ and open the template in the editor.
                                 </f:facet>                          
                                 <p:row>
                                     <p:column><h:outputText value="#{formReport020Controller.report020Details[0].list}"/></p:column>  
-                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[0].project}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[0].support}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[0].approve}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[0].project}" disabled="#{formReport020Controller.paramMode=='view'}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[0].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[0].approve}"/></p:column>  
                                 </p:row>  
                                 <p:row>
                                     <p:column><h:outputText value="#{formReport020Controller.report020Details[1].list}"/></p:column>  
-                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[1].project}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[1].support}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[1].approve}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[1].project}" disabled="#{formReport020Controller.paramMode=='view'}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[1].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[1].approve}"/></p:column>  
                                 </p:row>
                                 <p:row>
                                     <p:column><h:outputText value="#{formReport020Controller.report020Details[2].list}"/></p:column>  
-                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[2].project}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[2].support}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[2].approve}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[2].project}" disabled="#{formReport020Controller.paramMode=='view'}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[2].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[2].approve}"/></p:column>  
                                 </p:row>
                                 <p:row>
                                     <p:column><h:outputText value="#{formReport020Controller.report020Details[3].list}"/></p:column>  
-                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[3].project}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[3].support}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[3].approve}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[3].project}" disabled="#{formReport020Controller.paramMode=='view'}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[3].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[3].approve}"/></p:column>  
                                 </p:row>
                                 <p:row>
                                     <p:column><h:outputText value="#{formReport020Controller.report020Details[4].list}"/></p:column>  
-                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[4].project}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[4].support}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[4].approve}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[4].project}" disabled="#{formReport020Controller.paramMode=='view'}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[4].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[4].approve}"/></p:column>  
                                 </p:row>
                                 <p:row>
                                     <p:column><h:outputText value="#{formReport020Controller.report020Details[5].list}"/></p:column>  
-                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[5].project}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[5].support}"/></p:column>  
-                                    <p:column><totoland:inputNumber value="#{formReport020Controller.report020Details[5].approve}"/></p:column>  
+                                    <p:column><p:inputText value="#{formReport020Controller.report020Details[5].project}" disabled="#{formReport020Controller.paramMode=='view'}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[5].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[5].approve}"/></p:column>  
+                                </p:row>
+                                <p:row>
+                                    <p:column><p:commandButton value="รวม" action="#{formReport020Controller.sumReport020Details()}" update="REPORT_020pnlFrm"/></p:column>  
+                                    <p:column></p:column>  
+                                    <p:column><h:outputLabel value="#{formReport020Controller.sumDetail.support}"/></p:column>  
+                                    <p:column><h:outputLabel value="#{formReport020Controller.sumDetail.approve}"/></p:column>  
                                 </p:row>
                             </p:panelGrid>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
@@ -87,9 +98,10 @@ and open the template in the editor.
                     </div>
                     <h:panelGroup id="REPORT_020pnlCmd" rendered="#{formReport020Controller.report020.flowStatusId!=200}">
                         <div align="center">
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport020Controller.save()}" id="REPORT_020btnSave" rendered="#{formReport020Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport020Controller.goToEdit()}" id="REPORT_020btnEdit" rendered="#{formReport020Controller.paramMode=='view' and formReport020Controller.canEdit(formReport020Controller.report020.createdUserGroup)}"/>
-                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport020Controller.goToClose()}" id="REPORT_020btnClose" rendered="#{formReport020Controller.paramMode=='view'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport020Controller.edit()}" id="REPORT_020btnSave" rendered="#{formReport020Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport020Controller.goToClose()}" id="REPORT_020btnClose" rendered="#{formReport020Controller.paramMode=='view' || formReport020Controller.paramMode=='create'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport020Controller.edit()}" id="REPORT_020btnSaveEdit" rendered="#{formReport020Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_020btnCancel" actionListener="#{formReport020Controller.goToCancel()}" rendered="#{formReport020Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>

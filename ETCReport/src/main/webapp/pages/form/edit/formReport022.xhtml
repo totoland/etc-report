@@ -20,10 +20,15 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
+    <h:body id="body022">
+        <p:blockUI block="body022"  widgetVar="blogui022">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui022.show()" oncomplete="blogui022.hide()"/>
         <h:form>
 
-            <p:panel id="REPORT_022">
+            <p:panel id="REPORT_022" header="#{msg.report_022_header}">
 
                 <p:panel header="#{formReport022Controller.reportTitle}" style="width: 100%;">
                     <p:messages id="REPORT_022msgFrmDetails"></p:messages>
@@ -116,9 +121,10 @@ and open the template in the editor.
                     </div>
                     <h:panelGroup id="REPORT_022pnlCmd" rendered="#{formReport022Controller.report022.flowStatusId!=200}">
                         <div align="center">
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport022Controller.save()}" id="REPORT_022btnSave" rendered="#{formReport022Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport022Controller.goToEdit()}" id="REPORT_022btnEdit" rendered="#{formReport022Controller.paramMode=='view' and formReport022Controller.canEdit(formReport022Controller.report022.createdUserGroup)}"/>
-                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport022Controller.goToClose()}" id="REPORT_022btnClose" rendered="#{formReport022Controller.paramMode=='view'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport022Controller.edit()}" id="REPORT_022btnSave" rendered="#{formReport022Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport022Controller.goToClose()}" id="REPORT_022btnClose" rendered="#{formReport022Controller.paramMode=='view' || formReport022Controller.paramMode=='create'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport022Controller.edit()}" id="REPORT_022btnSaveEdit" rendered="#{formReport022Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_022btnCancel" actionListener="#{formReport022Controller.goToCancel()}" rendered="#{formReport022Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>
