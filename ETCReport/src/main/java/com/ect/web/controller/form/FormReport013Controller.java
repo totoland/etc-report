@@ -9,13 +9,10 @@ import com.ect.db.report.entity.Report013Detail;
 import com.ect.db.report.entity.Report013;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
-import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -125,7 +122,7 @@ public class FormReport013Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_013");
+            goToClose();
 
         } catch (Exception ex) {
 
@@ -397,23 +394,6 @@ public class FormReport013Controller extends BaseFormReportController {
         initViewMode();
     }
 
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_013 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
     /**
      * @return the reportGennericService
      */
@@ -494,6 +474,10 @@ public class FormReport013Controller extends BaseFormReportController {
         report013Details.add(report013Detail3);
         report013Details.add(report013Detail4);
         report013Details.add(report013Detail5);
+        
+        report013.setReport013DetailList(report013Details);
+        report013.setReportMonth(reportMonth);
+        report013.setReportYear(reportYear);
     }
 
     @Override

@@ -9,13 +9,10 @@ import com.ect.db.report.entity.Report016Detail;
 import com.ect.db.report.entity.Report016;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
-import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -122,7 +119,7 @@ public class FormReport016Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_016");
+            goToClose();
 
         } catch (Exception ex) {
 
@@ -405,28 +402,13 @@ public class FormReport016Controller extends BaseFormReportController {
             }
 
         }
+        
+        calSum();
 
     }
 
     private void initEditMode() {
         initViewMode();
-    }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_016 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
     }
 
     /**
@@ -474,22 +456,25 @@ public class FormReport016Controller extends BaseFormReportController {
         report016Detail5.setConclusionMeeting("");
         report016Detail5.setReportId(report016);
         
-        Report016Detail report016Detail6 = new Report016Detail();
-        report016Detail6.setInstitution("");
-        report016Detail6.setReportId(report016);
-        
-        Report016Detail report016Detail7 = new Report016Detail();
-        report016Detail7.setInstitution("");
-        report016Detail7.setReportId(report016);
+//        Report016Detail report016Detail6 = new Report016Detail();
+//        report016Detail6.setInstitution("");
+//        report016Detail6.setReportId(report016);
+//        
+//        Report016Detail report016Detail7 = new Report016Detail();
+//        report016Detail7.setInstitution(""); 
+//        report016Detail7.setReportId(report016);
 
         report016Details.add(report016Detail1);
         report016Details.add(report016Detail2);
         report016Details.add(report016Detail3);
         report016Details.add(report016Detail4);
         report016Details.add(report016Detail5);
-        report016Details.add(report016Detail6);
-        report016Details.add(report016Detail7);
+//        report016Details.add(report016Detail6);
+//        report016Details.add(report016Detail7);
         
+        report016.setReport016DetailList(report016Details);
+        report016.setReportMonth(reportMonth);
+        report016.setReportYear(reportYear);
     }
 
     @Override
@@ -499,8 +484,30 @@ public class FormReport016Controller extends BaseFormReportController {
 
     public void calSum() {
 
+        sumDetail.setStAmount(0);
+        sumDetail.setPtAmount(0);
+        
         for (int i = 0; i < report016Details.size(); i++) {
             report016Details.get(i).setSumAmount(report016Details.get(i).getStAmount()+report016Details.get(i).getPtAmount());
+            sumDetail.setStAmount(sumDetail.getStAmount()+report016Details.get(i).getStAmount());
+            sumDetail.setPtAmount(sumDetail.getPtAmount()+report016Details.get(i).getPtAmount());
         }
     }
+    
+    private Report016Detail sumDetail = new Report016Detail();
+
+    /**
+     * @return the sumDetail
+     */
+    public Report016Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    /**
+     * @param sumDetail the sumDetail to set
+     */
+    public void setSumDetail(Report016Detail sumDetail) {
+        this.sumDetail = sumDetail;
+    }
+
 }

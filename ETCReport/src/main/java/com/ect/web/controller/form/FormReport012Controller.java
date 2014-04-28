@@ -9,13 +9,10 @@ import com.ect.db.report.entity.Report012Detail;
 import com.ect.db.report.entity.Report012;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
-import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -125,7 +122,7 @@ public class FormReport012Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_012");
+            goToClose();
 
         } catch (Exception ex) {
 
@@ -395,24 +392,7 @@ public class FormReport012Controller extends BaseFormReportController {
     private void initEditMode() {
         initViewMode();
     }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_012 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
-    }
-
+    
     /**
      * @return the reportGennericService
      */
@@ -493,6 +473,10 @@ public class FormReport012Controller extends BaseFormReportController {
         report012Details.add(report012Detail3);
         report012Details.add(report012Detail4);
         report012Details.add(report012Detail5);
+        
+        report012.setReport012DetailList(report012Details);
+        report012.setReportMonth(reportMonth);
+        report012.setReportYear(reportYear);
     }
 
     @Override

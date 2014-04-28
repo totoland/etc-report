@@ -9,13 +9,11 @@ import com.ect.db.report.entity.Report019Detail;
 import com.ect.db.report.entity.Report019;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -101,7 +99,7 @@ public class FormReport019Controller extends BaseFormReportController {
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Save Report : {}", REPORT_019 + MessageUtils.PRINT_LINE_STAR());
 
         calSum();
-        
+
         report019.setReport019DetailList(report019Details);
         report019.setCreatedDate(new Date());
         report019.setCreatedUser(super.getUserAuthen().getUserId());
@@ -122,12 +120,12 @@ public class FormReport019Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_019");
+            goToClose();
 
             resetForm();
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -144,7 +142,7 @@ public class FormReport019Controller extends BaseFormReportController {
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_019 + MessageUtils.PRINT_LINE_STAR());
 
         calSum();
-        
+
         //report019.setReport019DetailList(report019Details);
         report019.setUpdatedDate(new Date());
         report019.setUpdatedUser(super.getUserAuthen().getUserId());
@@ -169,7 +167,7 @@ public class FormReport019Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -349,7 +347,6 @@ public class FormReport019Controller extends BaseFormReportController {
 //        if (StringUtils.isBlank(inputReport019Detail.getBuggetSource())) {
 //            msg += "กรุณาระบุที่มาของงบประมาณbr/>";
 //        }
-
         if (!StringUtils.isBlank(msg)) {
             addError(msg);
             return false;
@@ -379,7 +376,6 @@ public class FormReport019Controller extends BaseFormReportController {
 //            JsfUtil.alertJavaScript(msg.toString().trim());
 //            return false;
 //        }
-
         return true;
     }
 
@@ -405,29 +401,14 @@ public class FormReport019Controller extends BaseFormReportController {
 
             }
 
+            sumReport019Details();
+
         }
 
     }
 
     private void initEditMode() {
         initViewMode();
-    }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_019 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
     }
 
     /**
@@ -447,13 +428,13 @@ public class FormReport019Controller extends BaseFormReportController {
     private void initForm() {
 
         initTitle();
-        
+
         report019Details = new ArrayList<>();
 
         Report019Detail report019Detail1 = new Report019Detail();
         report019Detail1.setVerifyElection("1. กรุงเทพมหานคร");
         report019Detail1.setReportId(report019);
-        
+
         Report019Detail report019Detail2 = new Report019Detail();
         report019Detail2.setVerifyElection("2. องค์การบริหารส่วนจังหวัด");
         report019Detail2.setReportId(report019);
@@ -461,23 +442,23 @@ public class FormReport019Controller extends BaseFormReportController {
         Report019Detail report019Detail3 = new Report019Detail();
         report019Detail3.setVerifyElection("3. เมืองพัทยา");
         report019Detail3.setReportId(report019);
-        
+
         Report019Detail report019Detail4 = new Report019Detail();
         report019Detail4.setVerifyElection("4. เทศบาล");
         report019Detail4.setReportId(report019);
-        
+
         Report019Detail report019Detail5 = new Report019Detail();
         report019Detail5.setVerifyElection("4.1 เทศบาลนคร");
         report019Detail5.setReportId(report019);
-        
+
         Report019Detail report019Detail6 = new Report019Detail();
         report019Detail6.setVerifyElection("4.2 เทศบาลเมือง");
         report019Detail6.setReportId(report019);
-        
+
         Report019Detail report019Detail7 = new Report019Detail();
         report019Detail7.setVerifyElection("4.3 เทศบาลตำบล");
         report019Detail7.setReportId(report019);
-        
+
         Report019Detail report019Detail8 = new Report019Detail();
         report019Detail8.setVerifyElection("5. องค์การบริหารส่วนตำบล");
         report019Detail8.setReportId(report019);
@@ -490,7 +471,42 @@ public class FormReport019Controller extends BaseFormReportController {
         report019Details.add(report019Detail6);
         report019Details.add(report019Detail7);
         report019Details.add(report019Detail8);
-        
+
+        report019.setReport019DetailList(report019Details);
+        report019.setReportMonth(reportMonth);
+        report019.setReportYear(reportYear);
+
+        sumReport019Details();
+    }
+
+    private Report019Detail sumDetail = new Report019Detail();
+
+    public void sumReport019Details() {
+
+        sumDetail.setVerifyElectionAmount(0);
+        sumDetail.setFullTerm(0);
+        sumDetail.setNewElection(0);
+        sumDetail.setReplaceEmplyPosition(0);
+        sumDetail.setReportLaas(0);
+        sumDetail.setNoReportLaas(0);
+        sumDetail.setExtendResult(0);
+        sumDetail.setNoExtendResult(0);
+
+        for (Report019Detail rd : report019Details) {
+
+            sumDetail.setVerifyElectionAmount(getSumDetail().getVerifyElectionAmount() + NumberUtils.convertNUllToZero(rd.getVerifyElectionAmount()));
+            sumDetail.setFullTerm(getSumDetail().getFullTerm() + NumberUtils.convertNUllToZero(rd.getFullTerm()));
+            sumDetail.setNewElection(getSumDetail().getNewElection() + NumberUtils.convertNUllToZero(rd.getNewElection()));
+            sumDetail.setReplaceEmplyPosition(getSumDetail().getReplaceEmplyPosition() + NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
+            sumDetail.setReportLaas(getSumDetail().getReportLaas() + NumberUtils.convertNUllToZero(rd.getReportLaas()));
+            sumDetail.setNoReportLaas(getSumDetail().getNoReportLaas() + NumberUtils.convertNUllToZero(rd.getNoReportLaas()));
+            sumDetail.setExtendResult(getSumDetail().getExtendResult() + NumberUtils.convertNUllToZero(rd.getExtendResult()));
+            sumDetail.setNoExtendResult(getSumDetail().getNoExtendResult() + NumberUtils.convertNUllToZero(rd.getNoExtendResult()));
+
+        }
+
+        logger.trace("sumDetail : {}", getSumDetail());
+
     }
 
     @Override
@@ -503,5 +519,19 @@ public class FormReport019Controller extends BaseFormReportController {
 //        for (int i = 0; i < report019Details.size(); i++) {
 //            report019Details.get(i).setSumAmount(report019Details.get(i).getStAmount()+report019Details.get(i).getPtAmount());
 //        }
+    }
+
+    /**
+     * @return the sumDetail
+     */
+    public Report019Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    /**
+     * @param sumDetail the sumDetail to set
+     */
+    public void setSumDetail(Report019Detail sumDetail) {
+        this.sumDetail = sumDetail;
     }
 }

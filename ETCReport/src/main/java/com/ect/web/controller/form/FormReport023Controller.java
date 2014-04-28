@@ -121,7 +121,7 @@ public class FormReport023Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_023");
+            goToClose();
 
         } catch (Exception ex) {
 
@@ -373,48 +373,6 @@ public class FormReport023Controller extends BaseFormReportController {
         return true;
     }
 
-    /**
-     * @return the paramReportCode
-     */
-    public String getParamReportCode() {
-        return paramReportCode;
-    }
-
-    /**
-     * @param paramReportCode the paramReportCode to set
-     */
-    public void setParamReportCode(String paramReportCode) {
-        this.paramReportCode = paramReportCode;
-    }
-
-    /**
-     * @return the paramReportId
-     */
-    public Integer getParamReportId() {
-        return paramReportId;
-    }
-
-    /**
-     * @param paramReportId the paramReportId to set
-     */
-    public void setParamReportId(Integer paramReportId) {
-        this.paramReportId = paramReportId;
-    }
-
-    /**
-     * @return the paramMode
-     */
-    public String getParamMode() {
-        return paramMode;
-    }
-
-    /**
-     * @param paramMode the paramMode to set
-     */
-    public void setParamMode(String paramMode) {
-        this.paramMode = paramMode;
-    }
-
     private void initViewMode() {
 
         logger.trace("initViewMode...");
@@ -443,23 +401,6 @@ public class FormReport023Controller extends BaseFormReportController {
 
     private void initEditMode() {
         initViewMode();
-    }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_023 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
     }
 
     /**
@@ -690,6 +631,10 @@ public class FormReport023Controller extends BaseFormReportController {
         for (int i = 0; i < report023Details.size(); i++) {
             report023Details.get(i).setReportId(report023);
         }
+        
+        report023.setReport023DetailList(report023Details);
+        report023.setReportMonth(reportMonth);
+        report023.setReportYear(reportYear);
 //        
     }
 

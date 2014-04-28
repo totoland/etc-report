@@ -123,7 +123,7 @@ public class FormReport020Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_020");
+            goToClose();
 
         } catch (Exception ex) {
 
@@ -401,29 +401,13 @@ public class FormReport020Controller extends BaseFormReportController {
 
             }
 
+            sumReport020Details();
         }
 
     }
 
     private void initEditMode() {
         initViewMode();
-    }
-
-    public void goToEdit() {
-        String url = "?mode=" + REPORT_MODE_EDIT + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-    }
-
-    public void goToClose() {
-        JsfUtil.hidePopupIframe("dialogEdit");
-    }
-
-    public void goToCancel() {
-
-        logger.trace(MessageUtils.PRINT_LINE_STAR() + "resetForm Report : {}", REPORT_020 + MessageUtils.PRINT_LINE_STAR());
-        String url = "?mode=" + REPORT_MODE_VIEW + "&reportId=" + paramReportId + "&reportCode=" + paramReportCode;
-        redirectPage(url);
-
     }
 
     /**
@@ -467,8 +451,32 @@ public class FormReport020Controller extends BaseFormReportController {
         for (int i = 0; i < report020Details.size(); i++) {
             report020Details.get(i).setReportId(report020);
         }
+        
+        report020.setReport020DetailList(report020Details);
+        report020.setReportMonth(reportMonth);
+        report020.setReportYear(reportYear);
+        
+        sumReport020Details();
     }
 
+    private Report020Detail sumDetail = new Report020Detail();
+
+    public void sumReport020Details() {
+
+        getSumDetail().setSupport(0);
+        getSumDetail().setApprove(0);
+
+        for (Report020Detail rd : report020Details) {
+
+            getSumDetail().setSupport(getSumDetail().getSupport()+NumberUtils.convertNUllToZero(rd.getSupport()));
+            getSumDetail().setApprove(getSumDetail().getApprove()+NumberUtils.convertNUllToZero(rd.getApprove()));
+
+        }
+
+        logger.trace("sumDetail : {}", getSumDetail());
+
+    }
+    
     @Override
     public void onDelete(Object object) {
 
@@ -478,5 +486,19 @@ public class FormReport020Controller extends BaseFormReportController {
 
         report020Details.remove(rowDelete);
 
+    }
+
+    /**
+     * @return the sumDetail
+     */
+    public Report020Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    /**
+     * @param sumDetail the sumDetail to set
+     */
+    public void setSumDetail(Report020Detail sumDetail) {
+        this.sumDetail = sumDetail;
     }
 }
