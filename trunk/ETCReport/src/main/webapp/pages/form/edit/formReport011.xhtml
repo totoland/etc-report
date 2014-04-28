@@ -20,10 +20,15 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
+    <h:body id="body011">
+        <p:blockUI block="body011"  widgetVar="blogui011">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui011.show()" oncomplete="blogui011.hide()"/>
         <h:form>
 
-            <p:panel id="REPORT_011">
+            <p:panel id="REPORT_011" header="#{msg.report_011_header}">
 
                 <p:panel header="#{formReport011Controller.reportTitle}">
 
@@ -48,7 +53,7 @@ and open the template in the editor.
                     <p:panelGrid styleClass="frmDetail" id="REPORT_011pnlFrm" style="text-align: center;vertical-align: middle">
                         <f:facet name="header">
                             <p:row>  
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 150px">สำนัก</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 200px">สำนัก</p:column>
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">สำนวนทังหมด (เรื่อง)</p:column>
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ส่วนกลาง (เรื่อง)</p:column>
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ที่ สนง. กกต.จว. (เรื่อง)</p:column>
@@ -271,9 +276,10 @@ and open the template in the editor.
                     </p:panelGrid>
                     <h:panelGroup id="REPORT_011pnlCmd" rendered="#{formReport011Controller.report011.flowStatusId!=200}">
                         <div align="center">
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport011Controller.save()}" id="REPORT_011btnSave" rendered="#{formReport011Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport011Controller.goToEdit()}" id="REPORT_011btnEdit" rendered="#{formReport011Controller.paramMode=='view' and formReport011Controller.canEdit(formReport011Controller.report011.createdUserGroup)}"/>
-                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport011Controller.goToClose()}" id="REPORT_011btnClose" rendered="#{formReport011Controller.paramMode=='view'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport011Controller.edit()}" id="REPORT_011btnSave" rendered="#{formReport011Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport011Controller.goToClose()}" id="REPORT_011btnClose" rendered="#{formReport011Controller.paramMode=='view' || formReport011Controller.paramMode=='create'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport011Controller.edit()}" id="REPORT_011btnSaveEdit" rendered="#{formReport011Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_011btnCancel" actionListener="#{formReport011Controller.goToCancel()}" rendered="#{formReport011Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>

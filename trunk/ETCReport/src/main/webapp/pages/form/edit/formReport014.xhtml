@@ -20,7 +20,12 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
+    <h:body id="body014">
+        <p:blockUI block="body014"  widgetVar="blogui014">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui014.show()" oncomplete="blogui014.hide()"/>
         <h:form>
 
             <p:panel id="REPORT_014">
@@ -41,7 +46,7 @@ and open the template in the editor.
                         //]]>
                     </script>
 
-                    <p:remoteCommand name="calSum" update="REPORT_014pnlFrm" onstart="blogui14.show()" oncomplete="blogui14.hide()" actionListener="#{formReport014Controller.calSum()}">
+                    <p:remoteCommand name="calSum" update="REPORT_014pnlFrm" onstart="blogui014.show()" oncomplete="blogui014.hide()" actionListener="#{formReport014Controller.calSum()}">
                     </p:remoteCommand>
 
                     <p:panelGrid styleClass="frmDetail" id="REPORT_014pnlFrm" style="text-align: center;vertical-align: middle">
@@ -296,19 +301,16 @@ and open the template in the editor.
                     </p:panelGrid>
                     <h:panelGroup id="REPORT_014pnlCmd" rendered="#{formReport014Controller.report014.flowStatusId!=200}">
                         <div align="center">
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport014Controller.save()}" id="REPORT_014btnSave" rendered="#{formReport014Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport014Controller.goToEdit()}" id="REPORT_014btnEdit" rendered="#{formReport014Controller.paramMode=='view' and formReport014Controller.canEdit(formReport014Controller.report014.createdUserGroup)}"/>
-                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport014Controller.goToClose()}" id="REPORT_014btnClose" rendered="#{formReport014Controller.paramMode=='view'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport014Controller.edit()}" id="REPORT_014btnSave" rendered="#{formReport014Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport014Controller.goToClose()}" id="REPORT_014btnClose" rendered="#{formReport014Controller.paramMode=='view' || formReport014Controller.paramMode=='create'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport014Controller.edit()}" id="REPORT_014btnSaveEdit" rendered="#{formReport014Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_014btnCancel" actionListener="#{formReport014Controller.goToCancel()}" rendered="#{formReport014Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>
                 </p:panel>
 
             </p:panel>
-            <p:blockUI  block="REPORT_REPORT_014" widgetVar="blogui14">
-                LOADING<br />
-                <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
-            </p:blockUI>
         </h:form>
     </h:body>
 </html>

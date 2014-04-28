@@ -20,11 +20,14 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
+    <h:body id="body017">
+        <p:blockUI block="body017"  widgetVar="blogui017">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui017.show()" oncomplete="blogui017.hide()"/>
         <h:form>
-
-
-            <p:panel id="REPORT_017">
+            <p:panel id="REPORT_017" header="#{msg.report_017_header}">
                 <div style="width: 1150px;overflow-x: scroll">
                     <p:panel id="REPORT_REPORT_017" header="#{formReport017Controller.reportTitle}" style="width: 1550px">
                         <p:messages id="REPORT_017msgFrmDetails"></p:messages>
@@ -240,17 +243,14 @@ and open the template in the editor.
 
                         <h:panelGroup id="REPORT_017pnlCmd" rendered="#{formReport017Controller.report017.flowStatusId!=200}">
                             <div align="center">
-                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport017Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport017Controller.paramMode=='view' and formReport017Controller.canEdit(formReport017Controller.report017.createdUserGroup)}"/>
-                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport017Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport017Controller.paramMode=='view'}"/>
-                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport017Controller.edit()}" id="REPORT_017btnSave" rendered="#{formReport017Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport017Controller.save()}" id="REPORT_017btnSave" rendered="#{formReport017Controller.paramMode=='create'}"/>
+                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport017Controller.goToEdit()}" id="REPORT_017btnEdit" rendered="#{formReport017Controller.paramMode=='view' and formReport017Controller.canEdit(formReport017Controller.report017.createdUserGroup)}"/>
+                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport017Controller.goToClose()}" id="REPORT_017btnClose" rendered="#{formReport017Controller.paramMode=='view' || formReport017Controller.paramMode=='create'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport017Controller.edit()}" id="REPORT_017btnSaveEdit" rendered="#{formReport017Controller.paramMode=='edit'}"/>
                                 <p:commandButton value="#{msg.btn_cancel}" id="REPORT_017btnCancel" actionListener="#{formReport017Controller.goToCancel()}" rendered="#{formReport017Controller.paramMode=='edit'}"/>
                             </div>
                         </h:panelGroup>
                     </p:panel>
-                    <p:blockUI  block="REPORT_REPORT_017" widgetVar="blogui017" trigger="REPORT_017btnSave,REPORT_017btnCancel">
-                        LOADING<br />
-                        <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
-                    </p:blockUI>
                 </div>
 
 

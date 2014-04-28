@@ -20,11 +20,14 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
-    <h:body>
+    <h:body id="body018">
+        <p:blockUI block="body018"  widgetVar="blogui018">
+            LOADING<br />
+            <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+        </p:blockUI>
+        <p:ajaxStatus onstart="blogui018.show()" oncomplete="blogui018.hide()"/>
         <h:form>
-
-            <p:panel id="REPORT_018">
-
+            <p:panel id="REPORT_018" header="#{msg.report_018_header}">
                 <div style="width: 1150px;overflow-x: scroll">
                     <p:panel id="REPORT_REPORT_018" header="#{formReport018Controller.reportTitle}" style="width: 1450px">
                         <p:messages id="REPORT_018msgFrmDetails"></p:messages>
@@ -300,13 +303,50 @@ and open the template in the editor.
                                     <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].replaceBudget}"/>
                                 </p:column>
                             </p:row>
+                            
+                            <p:row>
+                                <p:column>
+                                    <p:commandButton value="รวม" action="#{formReport018Controller.sumReport018Details()}" update="REPORT_018pnlFrm"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.ectDepProvince}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.oocAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.laasAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.fullTerm}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.budgetFullTerm}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.newElection}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.budgetElection}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.replaceEmplyPosition}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.replaceBudget}"/>
+                                </p:column>
+                            </p:row>
                         </p:panelGrid>
 
                         <h:panelGroup id="REPORT_018pnlCmd" rendered="#{formReport018Controller.report018.flowStatusId!=200}">
                             <div align="center">
-                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport018Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport018Controller.paramMode=='view' and formReport018Controller.canEdit(formReport018Controller.report018.createdUserGroup)}"/>
-                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport018Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport018Controller.paramMode=='view'}"/>
-                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport018Controller.edit()}" id="REPORT_018btnSave" rendered="#{formReport018Controller.paramMode=='edit'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport018Controller.save()}" id="REPORT_018btnSave" rendered="#{formReport018Controller.paramMode=='create'}"/>
+                                <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport018Controller.goToEdit()}" id="REPORT_018btnEdit" rendered="#{formReport018Controller.paramMode=='view' and formReport018Controller.canEdit(formReport018Controller.report018.createdUserGroup)}"/>
+                                <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport018Controller.goToClose()}" id="REPORT_018btnClose" rendered="#{formReport018Controller.paramMode=='view' || formReport018Controller.paramMode=='create'}"/>
+                                <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport018Controller.edit()}" id="REPORT_018btnSaveEdit" rendered="#{formReport018Controller.paramMode=='edit'}"/>
                                 <p:commandButton value="#{msg.btn_cancel}" id="REPORT_018btnCancel" actionListener="#{formReport018Controller.goToCancel()}" rendered="#{formReport018Controller.paramMode=='edit'}"/>
                             </div>
                         </h:panelGroup>
