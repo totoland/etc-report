@@ -39,7 +39,7 @@ import org.slf4j.MDC;
 @ManagedBean
 public class FormReport006Controller extends BaseFormReportController {
 
-    private static Logger logger = LoggerFactory.getLogger(FormReport006Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(FormReport006Controller.class);
     private static final long serialVersionUID = 1764749403349238850L;
     /**
      * *
@@ -251,8 +251,7 @@ public class FormReport006Controller extends BaseFormReportController {
 
             if (report006Details.get(i).getKey() == editRow.getKey()) {
 
-                report006Details.remove(i);
-                report006Details.add(i, editRow);
+                report006Details.set(i, editRow);
 
                 logger.trace("After Edit Row : {}", editRow);
 

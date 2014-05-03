@@ -339,16 +339,13 @@ public class FormReport010Controller extends BaseFormReportController {
         if (inputReport010Detail.getAcceptedDate() == null) {
             msg += "กรุณาระบุวันเดือนปีที่ นายทะเบียนตอบรับ<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport010Detail.getCaseIn()) || inputReport010Detail.getCaseIn().intValue() == 0) {
+        if (!NumberUtils.isNumber(inputReport010Detail.getCaseIn())) {
             msg += "กรุณาระบุกรณีย้ายเข้า (ราย)<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport010Detail.getCaseOut()) || inputReport010Detail.getCaseOut().intValue() == 0) {
+        if (!NumberUtils.isNumber(inputReport010Detail.getCaseOut())) {
             msg += "กรุณาระบุกรณีพ้นฯ (ราย)<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport010Detail.getCaseOut()) || inputReport010Detail.getCaseOut().intValue() == 0) {
-            msg += "กรุณาระบุกรณีพ้นฯ (ราย)<br/>";
-        }
-        if (!NumberUtils.isNumber(inputReport010Detail.getCaseDissolveParliament()) || inputReport010Detail.getCaseDissolveParliament() == 0) {
+        if (!NumberUtils.isNumber(inputReport010Detail.getCaseDissolveParliament())) {
             msg += "กรุณาระบุกรณียุบสภา<br/>";
         }
 

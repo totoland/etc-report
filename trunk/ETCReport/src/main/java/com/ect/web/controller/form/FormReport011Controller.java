@@ -88,7 +88,7 @@ public class FormReport011Controller extends BaseFormReportController {
 
         }
 
-
+        calSum();
     }
 
     @Override
@@ -285,15 +285,43 @@ public class FormReport011Controller extends BaseFormReportController {
         JsfUtil.addSuccessMessage("ยกเลิก!!");
 
     }
+    
+    private Report011Detail sumDetail = new Report011Detail();
 
     public void calSum() {
-
+        
+        sumDetail.setAccessCommittee(0);
+        sumDetail.setAllamount(0);
+        sumDetail.setAnalystRemain(0);
+        sumDetail.setAtCenter(0);
+        sumDetail.setAtEctProvince(0);
+        sumDetail.setEctResolve(0);
+        sumDetail.setOfferEct(0);
+        sumDetail.setOnAgenda(0);
+        
         for (int i = 0; i < report011Details.size(); i++) {
-            report011Details.get(i).setAtCenter(report011Details.get(i).getOnAgenda() + report011Details.get(i).getAccessCommittee() + report011Details.get(i).getOfferEct() + report011Details.get(i).getAnalystRemain());
-            report011Details.get(i).setAllamount(report011Details.get(i).getAtCenter() + report011Details.get(i).getAtEctProvince() + report011Details.get(i).getEctResolve());
+            report011Details.get(i).setAtCenter(NumberUtils.convertNUllToZero(report011Details.get(i).getOnAgenda()) + NumberUtils.convertNUllToZero(report011Details.get(i).getAccessCommittee()) + NumberUtils.convertNUllToZero(report011Details.get(i).getOfferEct()) + NumberUtils.convertNUllToZero(report011Details.get(i).getAnalystRemain()));
+            report011Details.get(i).setAllamount(NumberUtils.convertNUllToZero(report011Details.get(i).getAtCenter()) + NumberUtils.convertNUllToZero(report011Details.get(i).getAtEctProvince()) + NumberUtils.convertNUllToZero(report011Details.get(i).getEctResolve()));
+            
+            sumDetail.setAccessCommittee(sumDetail.getAccessCommittee()+NumberUtils.convertNUllToZero(report011Details.get(i).getAccessCommittee()));
+            sumDetail.setAllamount(sumDetail.getAllamount()+NumberUtils.convertNUllToZero(report011Details.get(i).getAllamount()));
+            sumDetail.setAnalystRemain(sumDetail.getAnalystRemain()+NumberUtils.convertNUllToZero(report011Details.get(i).getAnalystRemain()));
+            sumDetail.setAtCenter(sumDetail.getAtCenter()+NumberUtils.convertNUllToZero(report011Details.get(i).getAtCenter()));
+            sumDetail.setAtEctProvince(sumDetail.getAtEctProvince()+NumberUtils.convertNUllToZero(report011Details.get(i).getAtEctProvince()));
+            sumDetail.setEctResolve(sumDetail.getEctResolve()+NumberUtils.convertNUllToZero(report011Details.get(i).getEctResolve()));
+            sumDetail.setOfferEct(sumDetail.getOfferEct()+NumberUtils.convertNUllToZero(report011Details.get(i).getOfferEct()));
+            sumDetail.setOnAgenda(sumDetail.getOnAgenda()+NumberUtils.convertNUllToZero(report011Details.get(i).getOnAgenda()));
         }
     }
 
+    public Report011Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    public void setSumDetail(Report011Detail sumDetail) {
+        this.sumDetail = sumDetail;
+    }
+    
     /**
      * @return the report011Details
      */
@@ -417,58 +445,58 @@ public class FormReport011Controller extends BaseFormReportController {
         report011Details = new ArrayList<>();
 
         Report011Detail report011Detail1 = new Report011Detail();
-        report011Detail1.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 1");
-        report011Detail1.setAtCenter(0);
-        report011Detail1.setAtEctProvince(0);
-        report011Detail1.setEctResolve(0);
-        report011Detail1.setAnalystRemain(0);
-        report011Detail1.setOfferEct(0);
-        report011Detail1.setAccessCommittee(0);
-        report011Detail1.setOnAgenda(0);
+        report011Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
+//        report011Detail1.setAtCenter(0);
+//        report011Detail1.setAtEctProvince(0);
+//        report011Detail1.setEctResolve(0);
+//        report011Detail1.setAnalystRemain(0);
+//        report011Detail1.setOfferEct(0);
+//        report011Detail1.setAccessCommittee(0);
+//        report011Detail1.setOnAgenda(0);
         report011Detail1.setReportId(report011);
 
         Report011Detail report011Detail2 = new Report011Detail();
-        report011Detail2.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 2");
-        report011Detail2.setAtCenter(0);
-        report011Detail2.setAtEctProvince(0);
-        report011Detail2.setEctResolve(0);
-        report011Detail2.setAnalystRemain(0);
-        report011Detail2.setOfferEct(0);
-        report011Detail2.setAccessCommittee(0);
-        report011Detail2.setOnAgenda(0);
+        report011Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
+//        report011Detail2.setAtCenter(0);
+//        report011Detail2.setAtEctProvince(0);
+//        report011Detail2.setEctResolve(0);
+//        report011Detail2.setAnalystRemain(0);
+//        report011Detail2.setOfferEct(0);
+//        report011Detail2.setAccessCommittee(0);
+//        report011Detail2.setOnAgenda(0);
         report011Detail2.setReportId(report011);
 
         Report011Detail report011Detail3 = new Report011Detail();
-        report011Detail3.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 3");
-        report011Detail3.setAtCenter(0);
-        report011Detail3.setAtEctProvince(0);
-        report011Detail3.setEctResolve(0);
-        report011Detail3.setAnalystRemain(0);
-        report011Detail3.setOfferEct(0);
-        report011Detail3.setAccessCommittee(0);
-        report011Detail3.setOnAgenda(0);
+        report011Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+//        report011Detail3.setAtCenter(0);
+//        report011Detail3.setAtEctProvince(0);
+//        report011Detail3.setEctResolve(0);
+//        report011Detail3.setAnalystRemain(0);
+//        report011Detail3.setOfferEct(0);
+//        report011Detail3.setAccessCommittee(0);
+//        report011Detail3.setOnAgenda(0);
         report011Detail3.setReportId(report011);
 
         Report011Detail report011Detail4 = new Report011Detail();
-        report011Detail4.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 4");
-        report011Detail4.setAtCenter(0);
-        report011Detail4.setAtEctProvince(0);
-        report011Detail4.setEctResolve(0);
-        report011Detail4.setAnalystRemain(0);
-        report011Detail4.setOfferEct(0);
-        report011Detail4.setAccessCommittee(0);
-        report011Detail4.setOnAgenda(0);
+        report011Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+//        report011Detail4.setAtCenter(0);
+//        report011Detail4.setAtEctProvince(0);
+//        report011Detail4.setEctResolve(0);
+//        report011Detail4.setAnalystRemain(0);
+//        report011Detail4.setOfferEct(0);
+//        report011Detail4.setAccessCommittee(0);
+//        report011Detail4.setOnAgenda(0);
         report011Detail4.setReportId(report011);
 
         Report011Detail report011Detail5 = new Report011Detail();
-        report011Detail5.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 5");
-        report011Detail5.setAtCenter(0);
-        report011Detail5.setAtEctProvince(0);
-        report011Detail5.setEctResolve(0);
-        report011Detail5.setAnalystRemain(0);
-        report011Detail5.setOfferEct(0);
-        report011Detail5.setAccessCommittee(0);
-        report011Detail5.setOnAgenda(0);
+        report011Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
+//        report011Detail5.setAtCenter(0);
+//        report011Detail5.setAtEctProvince(0);
+//        report011Detail5.setEctResolve(0);
+//        report011Detail5.setAnalystRemain(0);
+//        report011Detail5.setOfferEct(0);
+//        report011Detail5.setAccessCommittee(0);
+//        report011Detail5.setOnAgenda(0);
         report011Detail5.setReportId(report011);
 
         report011Details.add(report011Detail1);

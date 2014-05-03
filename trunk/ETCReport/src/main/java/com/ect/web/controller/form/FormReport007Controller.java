@@ -467,6 +467,27 @@ public class FormReport007Controller extends BaseFormReportController {
         report007Detail6.setStoryAmount(0);
         report007Detail6.setBranchAmount(0);
         report007Detail6.setReportId(report007);
+        
+        Report007Detail report007Detail7 = new Report007Detail();
+        report007Detail7.setTitle("");
+        report007Detail7.setPoliticalPartyAmount(0);
+        report007Detail7.setStoryAmount(0);
+        report007Detail7.setBranchAmount(0);
+        report007Detail7.setReportId(report007);
+        
+        Report007Detail report007Detail8 = new Report007Detail();
+        report007Detail8.setTitle("");
+        report007Detail8.setPoliticalPartyAmount(0);
+        report007Detail8.setStoryAmount(0);
+        report007Detail8.setBranchAmount(0);
+        report007Detail8.setReportId(report007);
+        
+        Report007Detail report007Detail9 = new Report007Detail();
+        report007Detail9.setTitle("");
+        report007Detail9.setPoliticalPartyAmount(0);
+        report007Detail9.setStoryAmount(0);
+        report007Detail9.setBranchAmount(0);
+        report007Detail9.setReportId(report007);
 
         report007Details.add(report007Detail1);
         report007Details.add(report007Detail2);
@@ -474,6 +495,9 @@ public class FormReport007Controller extends BaseFormReportController {
         report007Details.add(report007Detail4);
         report007Details.add(report007Detail5);
         report007Details.add(report007Detail6);
+        report007Details.add(report007Detail7);
+        report007Details.add(report007Detail8);
+        report007Details.add(report007Detail9);
         
         report007.setReport007DetailList(report007Details);
         report007.setReportMonth(reportMonth);

@@ -433,27 +433,27 @@ public class FormReport015Controller extends BaseFormReportController {
         report015Details = new ArrayList<>();
 
         Report015Detail report015Detail1 = new Report015Detail();
-        report015Detail1.setInstitution("สำนักสืบสวนและวินิจฉัย 1");
+        report015Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
         report015Detail1.setConclusionMeeting("1.สั่งเพิกถอนสิทธิเลือกตั้ง ก่อนวันเลือกตั้ง");
         report015Detail1.setReportId(report015);
         
         Report015Detail report015Detail2 = new Report015Detail();
-        report015Detail2.setInstitution("สำนักสืบสวนและวินิจฉัย 2");
+        report015Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
         report015Detail2.setConclusionMeeting("2.สั่งเพิกถอนสิทธิเลือกตั้ง ก่อนประกาศผลการเลือกตั้ง");
         report015Detail2.setReportId(report015);
 
         Report015Detail report015Detail3 = new Report015Detail();
-        report015Detail3.setInstitution("สำนักสืบสวนและวินิจฉัย 3");
-        report015Detail3.setConclusionMeeting("2.1 คะแนนอยู่ในเกณฑ์ไดเรับเลือกตั้ง");
+        report015Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+        report015Detail3.setConclusionMeeting("2.1 คะแนนอยู่ในเกณฑ์ได้รับเลือกตั้ง");
         report015Detail3.setReportId(report015);
         
         Report015Detail report015Detail4 = new Report015Detail();
-        report015Detail4.setInstitution("สำนักสืบสวนและวินิจฉัย 4");
-        report015Detail4.setConclusionMeeting("2.2 คะแนนอยู่ไม่ในเกณฑ์ไดเรับเลือกตั้ง");
+        report015Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+        report015Detail4.setConclusionMeeting("2.2 คะแนนอยู่ไม่ในเกณฑ์ได้รับเลือกตั้ง");
         report015Detail4.setReportId(report015);
         
         Report015Detail report015Detail5 = new Report015Detail();
-        report015Detail5.setInstitution("สำนักสืบสวนและวินิจฉัย 5");
+        report015Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
         report015Detail5.setConclusionMeeting("3. สั่งเพิกถอนสิทธิเลือกตั้งหลังประกาศผลการเลือกตั้ง");
         report015Detail5.setReportId(report015);
         
@@ -478,15 +478,34 @@ public class FormReport015Controller extends BaseFormReportController {
         report015.setReportYear(reportYear);
     }
 
+    private Report015Detail sumDetail = new Report015Detail();
+    
     @Override
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void calSum() {
-
+        sumDetail.setMeetingTime(0);
+        sumDetail.setPtAmount(0);
+        sumDetail.setSumAmount(0);
+        sumDetail.setStAmount(0);
+        
         for (int i = 0; i < report015Details.size(); i++) {
             report015Details.get(i).setSumAmount(report015Details.get(i).getStAmount()+report015Details.get(i).getPtAmount());
+            
+            sumDetail.setMeetingTime(sumDetail.getMeetingTime()+NumberUtils.convertNUllToZero(report015Details.get(i).getMeetingTime()));
+            sumDetail.setPtAmount(sumDetail.getPtAmount()+NumberUtils.convertNUllToZero(report015Details.get(i).getPtAmount()));
+            sumDetail.setSumAmount(sumDetail.getSumAmount()+NumberUtils.convertNUllToZero(report015Details.get(i).getSumAmount()));
+            sumDetail.setStAmount(sumDetail.getStAmount()+NumberUtils.convertNUllToZero(report015Details.get(i).getStAmount()));
         }
+    }
+
+    public Report015Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    public void setSumDetail(Report015Detail sumDetail) {
+        this.sumDetail = sumDetail;
     }
 }

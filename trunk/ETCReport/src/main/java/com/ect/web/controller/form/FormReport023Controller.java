@@ -648,4 +648,48 @@ public class FormReport023Controller extends BaseFormReportController {
         report023Details.remove(rowDelete);
 
     }
+    
+    private Report023Detail sumDetail = new Report023Detail();
+
+    public void sumReport023Details() {
+
+        sumDetail.setAdminCourt(0);
+        sumDetail.setAppeals(0);
+        sumDetail.setAppeals2(0);
+        sumDetail.setAttorney(0);
+        sumDetail.setAttorney2(0);
+        sumDetail.setCivilCases(0);
+        sumDetail.setCivil_cases2(0);
+        sumDetail.setConsidering(0);
+        sumDetail.setCriminalCases(0);
+        sumDetail.setExecution(0);
+        sumDetail.setInvestigator(0);
+        sumDetail.setNacc(0);
+        sumDetail.setNewCasesQuoted(0);
+        sumDetail.setOldCasesQuoted(0);
+        sumDetail.setPending(0);
+        sumDetail.setProgress(0);
+        sumDetail.setProgress2(0);
+        sumDetail.setProsecutors(0);
+        sumDetail.setProsecutors2(0);
+        sumDetail.setRhetoricWaiting(0);
+        sumDetail.setRulingCases(0);
+        sumDetail.setSumCases(0);
+        sumDetail.setTerminates(0);
+        sumDetail.setTerminates2(0);
+        sumDetail.setTerminates3(0);
+        sumDetail.setTerminates4(0);
+        sumDetail.setThessaloniki(0);
+        sumDetail.setThessaloniki2(0);
+
+        for (Report023Detail rd : report023Details) {
+
+            //1+2 = 3
+            rd.setSumCases(NumberUtils.convertNUllToZero(rd.getOldCasesQuoted()) + NumberUtils.convertNUllToZero(rd.getNewCasesQuoted()));
+
+        }
+
+        logger.trace("sumDetail : {}", sumDetail);
+
+    }
 }

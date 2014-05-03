@@ -6,6 +6,7 @@ package com.ect.web.controller.form;
 
 import com.ect.db.entity.EctFlowStatus;
 import com.ect.db.report.entity.Report017Detail;
+import com.ect.db.report.entity.Report017Detail;
 import com.ect.db.report.entity.Report017;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
@@ -434,23 +435,23 @@ public class FormReport017Controller extends BaseFormReportController {
         report017Details = new ArrayList<>();
 
         Report017Detail report017Detail1 = new Report017Detail();
-        report017Detail1.setInstitution("สำนักสืบสวนและวินิจฉัย 1");
+        report017Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  1");
         report017Detail1.setReportId(report017);
         
         Report017Detail report017Detail2 = new Report017Detail();
-        report017Detail2.setInstitution("สำนักสืบสวนและวินิจฉัย 2");
+        report017Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  2");
         report017Detail2.setReportId(report017);
 
         Report017Detail report017Detail3 = new Report017Detail();
-        report017Detail3.setInstitution("สำนักสืบสวนและวินิจฉัย 3");
+        report017Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  3");
         report017Detail3.setReportId(report017);
         
         Report017Detail report017Detail4 = new Report017Detail();
-        report017Detail4.setInstitution("สำนักสืบสวนและวินิจฉัย 4");
+        report017Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  4");
         report017Detail4.setReportId(report017);
         
         Report017Detail report017Detail5 = new Report017Detail();
-        report017Detail5.setInstitution("สำนักสืบสวนและวินิจฉัย 5");
+        report017Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  5");
         report017Detail5.setReportId(report017);
 
         report017Details.add(report017Detail1);
@@ -464,15 +465,61 @@ public class FormReport017Controller extends BaseFormReportController {
         report017.setReportYear(reportYear);
     }
 
+    public void calSum() {
+
+        sumDetail.setAdding(0);
+        sumDetail.setAllStory(0);
+        sumDetail.setCriminalCase(0);
+        sumDetail.setEct(0);
+        sumDetail.setRedCard(0);
+        sumDetail.setRequestNoReceived(0);
+        sumDetail.setRequestReceived(0);
+        sumDetail.setResetCounter(0);
+        sumDetail.setWithdrawnRequest(0);
+        sumDetail.setYellowCard(0);
+        sumDetail.setYellowCardCriminalCase(0);
+        
+        for (int i = 0; i < report017Details.size(); i++) {
+            report017Details.get(i).setAdding(report017Details.get(i).getAdding()+report017Details.get(i).getAdding());
+            getSumDetail().setAllStory(getSumDetail().getAllStory()+report017Details.get(i).getAllStory());
+            getSumDetail().setCriminalCase(getSumDetail().getCriminalCase()+report017Details.get(i).getCriminalCase());
+            
+            getSumDetail().setEct(getSumDetail().getEct()+report017Details.get(i).getEct());
+            getSumDetail().setRedCard(getSumDetail().getRedCard()+report017Details.get(i).getRedCard());
+            getSumDetail().setRequestNoReceived(getSumDetail().getRequestNoReceived()+report017Details.get(i).getRequestNoReceived());
+            getSumDetail().setRequestReceived(getSumDetail().getRequestReceived()+report017Details.get(i).getRequestReceived());
+            getSumDetail().setResetCounter(getSumDetail().getResetCounter()+report017Details.get(i).getResetCounter());
+            getSumDetail().setWithdrawnRequest(getSumDetail().getWithdrawnRequest()+report017Details.get(i).getWithdrawnRequest());
+            getSumDetail().setYellowCard(getSumDetail().getYellowCard()+report017Details.get(i).getYellowCard());
+            getSumDetail().setYellowCardCriminalCase(getSumDetail().getYellowCardCriminalCase()+report017Details.get(i).getYellowCardCriminalCase());
+        }
+    }
+    
+    private Report017Detail sumDetail = new Report017Detail();
+    
     @Override
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void calSum() {
+//    public void calSum() {
+//
+////        for (int i = 0; i < report017Details.size(); i++) {
+////            report017Details.get(i).setSumAmount(report017Details.get(i).getStAmount()+report017Details.get(i).getPtAmount());
+////        }
+//    }
 
-//        for (int i = 0; i < report017Details.size(); i++) {
-//            report017Details.get(i).setSumAmount(report017Details.get(i).getStAmount()+report017Details.get(i).getPtAmount());
-//        }
+    /**
+     * @return the sumDetail
+     */
+    public Report017Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    /**
+     * @param sumDetail the sumDetail to set
+     */
+    public void setSumDetail(Report017Detail sumDetail) {
+        this.sumDetail = sumDetail;
     }
 }

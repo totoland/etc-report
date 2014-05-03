@@ -430,17 +430,17 @@ public class FormReport020Controller extends BaseFormReportController {
 
         report020Details = new ArrayList<>();
         Report020Detail rpt023dtl1 = new Report020Detail();
-        rpt023dtl1.setList("แจ้งอนุมัติโครงการ");
+        rpt023dtl1.setList("1.แจ้งอนุมัติโครงการ");
         Report020Detail rpt023dtl2 = new Report020Detail();
-        rpt023dtl2.setList("แจ้งอนุมัติปรับปรุงสำนักงาน");
+        rpt023dtl2.setList("2.แจ้งอนุมัติปรับปรุงสำนักงาน");
         Report020Detail rpt023dtl3 = new Report020Detail();
-        rpt023dtl3.setList("แจ้งอนุมัติจักซื้อครุภัณฑ์");
+        rpt023dtl3.setList("3.แจ้งอนุมัติจักซื้อครุภัณฑ์");
         Report020Detail rpt023dtl4 = new Report020Detail();
-        rpt023dtl4.setList("แจ้งอนุมัติงบประมาณ");
+        rpt023dtl4.setList("4.แจ้งอนุมัติงบประมาณ");
         Report020Detail rpt023dtl5 = new Report020Detail();
-        rpt023dtl5.setList("อื่นๆ (โปรดระบุ)");
+        rpt023dtl5.setList("");
         Report020Detail rpt023dtl6 = new Report020Detail();
-        rpt023dtl6.setList("อื่นๆ (โปรดระบุ)");
+        rpt023dtl6.setList("");
         report020Details.add(rpt023dtl1);
         report020Details.add(rpt023dtl2);
         report020Details.add(rpt023dtl3);

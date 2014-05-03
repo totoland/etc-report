@@ -39,7 +39,7 @@ import org.slf4j.MDC;
 @ManagedBean
 public class FormReport021Controller extends BaseFormReportController {
 
-    private static Logger logger = LoggerFactory.getLogger(FormReport021Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(FormReport021Controller.class);
     private static final long serialVersionUID = 1764749403349238850L;
     /**
      * *
