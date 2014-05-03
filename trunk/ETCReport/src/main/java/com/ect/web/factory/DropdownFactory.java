@@ -376,7 +376,7 @@ public class DropdownFactory implements Serializable {
 
     public EctProvince findProvinceById(Integer id) {
 
-        for (DropDownList ddl : ectProvinces) {
+        for (DropDownList ddl : ddlProvince()) {
 
             if (id.intValue() == Integer.valueOf(ddl.getValue())) {
                 EctProvince ectProvince = new EctProvince();
