@@ -488,31 +488,45 @@ public class FormReport018Controller extends BaseFormReportController {
 
     public void sumReport018Details() {
 
-        sumDetail.setEctDepProvince(0);
-        sumDetail.setOocAmount(0);
-        sumDetail.setLaasAmount(0);
-        sumDetail.setFullTerm(0);
-        sumDetail.setBudgetFullTerm(0);
-        sumDetail.setNewElection(0);
-        sumDetail.setBudgetElection(0);
-        sumDetail.setReplaceEmplyPosition(0);
-        sumDetail.setReplaceBudget(0);
+        getSumDetail().setEctDepProvince(0);
+        getSumDetail().setOocAmount(0);
+        getSumDetail().setLaasAmount(0);
+        getSumDetail().setFullTerm(0);
+        getSumDetail().setBudgetFullTerm(0);
+        getSumDetail().setNewElection(0);
+        getSumDetail().setBudgetElection(0);
+        getSumDetail().setReplaceEmplyPosition(0);
+        getSumDetail().setReplaceBudget(0);
 
         for (Report018Detail rd : report018Details) {
 
-            sumDetail.setEctDepProvince(sumDetail.getEctDepProvince()+NumberUtils.convertNUllToZero(rd.getEctDepProvince()));
-            sumDetail.setOocAmount(sumDetail.getOocAmount()+NumberUtils.convertNUllToZero(rd.getOocAmount()));
-            sumDetail.setLaasAmount(sumDetail.getLaasAmount()+NumberUtils.convertNUllToZero(rd.getLaasAmount()));
-            sumDetail.setFullTerm(sumDetail.getFullTerm()+NumberUtils.convertNUllToZero(rd.getFullTerm()));
-            sumDetail.setBudgetFullTerm(sumDetail.getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
-            sumDetail.setNewElection(sumDetail.getNewElection()+NumberUtils.convertNUllToZero(rd.getNewElection()));
-            sumDetail.setBudgetElection(sumDetail.getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
-            sumDetail.setReplaceEmplyPosition(sumDetail.getReplaceEmplyPosition()+NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
-            sumDetail.setReplaceBudget(sumDetail.getReplaceBudget()+NumberUtils.convertNUllToZero(rd.getReplaceBudget()));
+            getSumDetail().setEctDepProvince(getSumDetail().getEctDepProvince()+NumberUtils.convertNUllToZero(rd.getEctDepProvince()));
+            getSumDetail().setOocAmount(getSumDetail().getOocAmount()+NumberUtils.convertNUllToZero(rd.getOocAmount()));
+            getSumDetail().setLaasAmount(getSumDetail().getLaasAmount()+NumberUtils.convertNUllToZero(rd.getLaasAmount()));
+            getSumDetail().setFullTerm(getSumDetail().getFullTerm()+NumberUtils.convertNUllToZero(rd.getFullTerm()));
+            getSumDetail().setBudgetFullTerm(getSumDetail().getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
+            getSumDetail().setNewElection(getSumDetail().getNewElection()+NumberUtils.convertNUllToZero(rd.getNewElection()));
+            getSumDetail().setBudgetElection(getSumDetail().getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
+            getSumDetail().setReplaceEmplyPosition(getSumDetail().getReplaceEmplyPosition()+NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
+            getSumDetail().setReplaceBudget(getSumDetail().getReplaceBudget()+NumberUtils.convertNUllToZero(rd.getReplaceBudget()));
 
         }
 
-        logger.trace("sumDetail : {}", sumDetail);
+        logger.trace("sumDetail : {}", getSumDetail());
 
+    }
+
+    /**
+     * @return the sumDetail
+     */
+    public Report018Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    /**
+     * @param sumDetail the sumDetail to set
+     */
+    public void setSumDetail(Report018Detail sumDetail) {
+        this.sumDetail = sumDetail;
     }
 }
