@@ -27,7 +27,7 @@ and open the template in the editor.
 
                 <p:panel style="width: 100%;" header="#{formReport010Controller.reportTitle}">
                     <p:messages id="REPORT_010msgFrmDetails"></p:messages>
-                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_010dlgAddReportDetail.show()" update="REPORT_010pn_addReportDetail" actionListener="#{formReport010Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
+                    <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_010dlgAddReportDetail.show()" update="REPORT_010pn_addReportDetail" actionListener="#{formReport010Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
 
                     <div style="width: 1000px;overflow-x: scroll">
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_010pnlFrm"> 
@@ -152,22 +152,26 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_010pn_addReportDetail">
 
                         <h:outputLabel value="พรรค *" />  
-                <p:inputText id="REPORT_010lb01" value="#{formReport010Controller.inputReport010Detail.politicalParty}"/>  
+                        <p:selectOneMenu id="REPORT_010lb01" value="#{formReport010Controller.inputReport010Detail.politicalParty}"
+                                         effect="fade" var="p" filter="true" filterMatchMode="contains">  
+                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                            <f:selectItems value="#{formReport010Controller.dropdownFactory.ddlPoliticalParty()}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}"/> 
+                        </p:selectOneMenu>
 
-                <h:outputLabel value="ตำแหน่ง *"/>
-                <p:inputText id="REPORT_010lb02" value="#{formReport010Controller.inputReport010Detail.position}"/>  
+                        <h:outputLabel value="ตำแหน่ง *"/>
+                        <p:inputText id="REPORT_010lb02" value="#{formReport010Controller.inputReport010Detail.position}"/>  
 
-                <h:outputLabel value="วันเดือนปีที่ *"/>
-                <p:calendar pattern="dd/MM/yyyy" id="REPORT_010lb03" locale="th" value="#{formReport010Controller.inputReport010Detail.acceptedDate}"/>  
-                
-                <h:outputLabel value="กรณีย้ายเข้า *"/>
-                <totoland:inputNumber id="REPORT_010lb04" value="#{formReport010Controller.inputReport010Detail.caseIn}"/>  
+                        <h:outputLabel value="วันเดือนปีที่ *"/>
+                        <p:calendar pattern="dd/MM/yyyy" id="REPORT_010lb03" locale="th" value="#{formReport010Controller.inputReport010Detail.acceptedDate}"/>  
 
-                <h:outputLabel value="กรณีพ้น *"/>
-                <totoland:inputNumber id="REPORT_010lb05" value="#{formReport010Controller.inputReport010Detail.caseOut}"/>  
+                        <h:outputLabel value="กรณีย้ายเข้า"/>
+                        <totoland:inputNumber id="REPORT_010lb04" value="#{formReport010Controller.inputReport010Detail.caseIn}"/>  
 
-                <h:outputLabel value="กรณียุสภา *"/>
-                <totoland:inputNumber id="REPORT_010lb06" value="#{formReport010Controller.inputReport010Detail.caseDissolveParliament}"/>  
+                        <h:outputLabel value="กรณีพ้น"/>
+                        <totoland:inputNumber id="REPORT_010lb05" value="#{formReport010Controller.inputReport010Detail.caseOut}"/>  
+
+                        <h:outputLabel value="กรณียุบสภา"/>
+                        <totoland:inputNumber id="REPORT_010lb06" value="#{formReport010Controller.inputReport010Detail.caseDissolveParliament}"/>  
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport010Controller.addReportDetail(actionEvent)}" update="REPORT_010msgAddReportDetail,REPORT_010Grid" icon="ui-icon-check" style="margin:0"/>  
@@ -192,5 +196,6 @@ and open the template in the editor.
             <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
         </p:blockUI>
         <p:ajaxStatus onstart="blogui010.show()" oncomplete="blogui010.hide()"/>
+        <h:outputScript library="js" name="i18N.js" target="head" />
     </h:body>
 </html>

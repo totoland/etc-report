@@ -32,10 +32,8 @@ and open the template in the editor.
 
                 <p:panel header="#{formReport022Controller.reportTitle}" style="width: 100%;">
                     <p:messages id="REPORT_022msgFrmDetails"></p:messages>
-                    <f:facet name="header"  class="txtLeft">
-                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_022dlgAddReportDetail.show()" update="REPORT_022pn_addReportDetail" actionListener="#{formReport022Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
-                    </f:facet>  
-
+                    <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_022dlgAddReportDetail.show()" update="REPORT_022pn_addReportDetail" actionListener="#{formReport022Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
+                    
                     <div style="width: 1000px;overflow-x: scroll">
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_022pnlFrm"> 
                             <p:dataTable var="item" value="#{formReport022Controller.report022Details}" id="REPORT_022Grid" 

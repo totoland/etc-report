@@ -28,7 +28,7 @@ and open the template in the editor.
         <p:ajaxStatus onstart="blogui014.show()" oncomplete="blogui014.hide()"/>
         <h:form>
 
-            <p:panel id="REPORT_014">
+            <p:panel id="REPORT_014" header="#{msg.report_014_header}">
 
                 <p:panel id="REPORT_REPORT_014" header="#{formReport014Controller.reportTitle}">
 
@@ -53,18 +53,18 @@ and open the template in the editor.
                         <f:facet name="header">
                             <p:row>  
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 180px">สำนัก</p:column>
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">สำนวนทังหมด (เรื่อง)</p:column>
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ส่วนกลาง (เรื่อง)</p:column>
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ที่ สนง. กกต.จว. (เรื่อง)</p:column>
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">กกต. มีมติ (เรื่อง)</p:column>
-                                <p:column colspan="5" style="text-align: center;">สถานะเรื่องค้างที่ส่วนกลาง</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">สำนวนทั้งหมด (เรื่อง) (1)</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ที่ส่วนกลาง (เรื่อง) (2)</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ที่ สนง. กกต.จว. (เรื่อง) (3)</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">กกต. มีมติแล้ว (เรื่อง) (4)</p:column>
+                                <p:column colspan="5" style="text-align: center;">สถานะเรื่องค้างที่ส่วนกลาง (เรื่อง)</p:column>
                             </p:row>
                             <p:row>
-                                <p:column colspan="1" style="text-align: center;width: 90px">จนท. วิเคราะห์</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">เสนอ ลธ.กกต.</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">เข้าคณะอนุฯ</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">อยู่ในวาระ</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">ส่ง สวค. ทำ ควฉ.</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">จนท. วิเคราะห์ (5)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">เสนอ ลธ.กกต. (6)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">เข้าคณะอนุฯ (7)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">อยู่ในวาระ กกต. (8)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">ส่ง สวค. ทำ ควฉ. (9)</p:column>
                             </p:row>
                         </f:facet>
                         <p:row>
@@ -78,225 +78,42 @@ and open the template in the editor.
                                 <h:outputText value="#{formReport014Controller.report014Details[0].atCenter}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].atEctProvince}">
+                                <totoland:inputNumber onchange="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].atEctProvince}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].ectResolve}">
+                                <totoland:inputNumber onchange="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].ectResolve}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].analystRemain}">
+                                <totoland:inputNumber onchange="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].analystRemain}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].offerEct}">
+                                <totoland:inputNumber onchange="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].offerEct}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].accessCommittee}">
+                                <totoland:inputNumber onchange="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].accessCommittee}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].onAgenda}">
+                                <totoland:inputNumber onchange="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[0].onAgenda}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport014Controller.report014Details[0].sendRequest}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[1].institution}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[1].allAmount}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[1].atCenter}"/>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[1].atEctProvince}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[1].ectResolve}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[1].analystRemain}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[1].offerEct}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[1].accessCommittee}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[1].onAgenda}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport014Controller.report014Details[1].sendRequest}">
+                                <totoland:inputNumber onchange="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport014Controller.report014Details[0].sendRequest}">
 
                                 </totoland:inputNumber>
                             </p:column>
                         </p:row>
-                        <p:row>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[2].institution}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[2].allAmount}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[2].atCenter}"/>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[2].atEctProvince}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[2].ectResolve}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[2].analystRemain}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[2].offerEct}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[2].accessCommittee}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[2].onAgenda}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport014Controller.report014Details[2].sendRequest}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[3].institution}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[3].allAmount}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[3].atCenter}"/>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[3].atEctProvince}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[3].ectResolve}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[3].analystRemain}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[3].offerEct}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[3].accessCommittee}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[3].onAgenda}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport014Controller.report014Details[3].sendRequest}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                        </p:row>
-                        <p:row>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[4].institution}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[4].allAmount}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{formReport014Controller.report014Details[4].atCenter}"/>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[4].atEctProvince}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[4].ectResolve}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[4].analystRemain}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[4].offerEct}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[4].accessCommittee}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}"  value="#{formReport014Controller.report014Details[4].onAgenda}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                            <p:column>
-                                <totoland:inputNumber onblur="sum(this)" disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport014Controller.report014Details[4].sendRequest}">
-
-                                </totoland:inputNumber>
-                            </p:column>
-                        </p:row>
+                        
 
                     </p:panelGrid>
                     <h:panelGroup id="REPORT_014pnlCmd" rendered="#{formReport014Controller.report014.flowStatusId!=200}">

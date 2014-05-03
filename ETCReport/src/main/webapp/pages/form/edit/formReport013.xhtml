@@ -28,7 +28,7 @@ and open the template in the editor.
         <p:ajaxStatus onstart="blogui013.show()" oncomplete="blogui013.hide()"/>
         <h:form>
 
-            <p:panel id="REPORT_013">
+            <p:panel id="REPORT_013" header="#{msg.report_013_header}">
 
                 <p:panel id="REPORT_REPORT_013" header="#{formReport013Controller.reportTitle}">
 
@@ -52,35 +52,35 @@ and open the template in the editor.
                     <p:panelGrid styleClass="frmDetail" id="REPORT_013pnlFrm" style="text-align: center;vertical-align: middle">
                         <f:facet name="header">
                             <p:row>  
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 150px">สำนัก</p:column>
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">คำวินิจฉัยที่ต้องจัดทำ (เรื่อง)</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 170px">สำนัก</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">คำวินิจฉัยที่ต้องจัดทำ (เรื่อง) (1)</p:column>
                                 <p:column colspan="4" style="text-align: center;vertical-align: middle;">การดำเนินการ (เรื่อง)</p:column>
                                 <p:column colspan="2" style="text-align: center;vertical-align: middle;">ส่งคำวินิจฉัยให้ ผอ. กกต.จว. (เรื่อง)</p:column>
                             </p:row>
                             <p:row>
-                                <p:column colspan="1" style="text-align: center;width: 90px">กำลังจัดทำ</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">จัดทำเสร็จ</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">อยู่ระหว่างเสนอ กกต. ลงนาม</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">กกต. ลงนามครบถ้วน</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">ส่งแล้ว</p:column>
-                                <p:column colspan="1" style="text-align: center;width: 90px">ค้างส่ง</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">กำลังจัดทำ (2)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">จัดทำเสร็จ (3)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">อยู่ระหว่างเสนอ กกต. ลงนาม (4)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">กกต. ลงนามครบถ้วน (5)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">ส่งแล้ว (6)</p:column>
+                                <p:column colspan="1" style="text-align: center;width: 90px">ค้างส่ง (7)</p:column>
                             </p:row>
                         </f:facet>
                         <p:row>
-                            <p:column>
+                            <p:column style="text-align: left">
                                 <h:outputText value="#{formReport013Controller.report013Details[0].institution}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[0].decisionToPrepare}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport013Controller.report013Details[0].onProcess}"/>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport013Controller.report013Details[0].onProcess}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[0].complete}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[0].ectSignedOnprocess}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[0].ectSignedOnprocess}">
 
                                 </totoland:inputNumber>
                             </p:column>
@@ -90,31 +90,31 @@ and open the template in the editor.
                                 </h:outputText>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[0].sended}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[0].sended}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[0].noSend}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[0].noSend}">
 
                                 </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
-                            <p:column>
+                            <p:column style="text-align: left">
                                 <h:outputText value="#{formReport013Controller.report013Details[1].institution}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[1].decisionToPrepare}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport013Controller.report013Details[1].onProcess}"/>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport013Controller.report013Details[1].onProcess}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[1].complete}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[1].ectSignedOnprocess}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[1].ectSignedOnprocess}">
 
                                 </totoland:inputNumber>
                             </p:column>
@@ -124,31 +124,31 @@ and open the template in the editor.
                                 </h:outputText>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[1].sended}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[1].sended}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[1].noSend}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[1].noSend}">
 
                                 </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
-                            <p:column>
+                            <p:column style="text-align: left">
                                 <h:outputText value="#{formReport013Controller.report013Details[2].institution}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[2].decisionToPrepare}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport013Controller.report013Details[2].onProcess}"/>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport013Controller.report013Details[2].onProcess}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[2].complete}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[2].ectSignedOnprocess}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[2].ectSignedOnprocess}">
 
                                 </totoland:inputNumber>
                             </p:column>
@@ -158,31 +158,31 @@ and open the template in the editor.
                                 </h:outputText>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[2].sended}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[2].sended}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[2].noSend}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[2].noSend}">
 
                                 </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
-                            <p:column>
+                            <p:column style="text-align: left">
                                 <h:outputText value="#{formReport013Controller.report013Details[3].institution}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[3].decisionToPrepare}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport013Controller.report013Details[3].onProcess}"/>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport013Controller.report013Details[3].onProcess}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[3].complete}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport013Controller.report013Details[3].ectSignedOnprocess}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport013Controller.report013Details[3].ectSignedOnprocess}">
 
                                 </totoland:inputNumber>
                             </p:column>
@@ -192,31 +192,31 @@ and open the template in the editor.
                                 </h:outputText>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[3].sended}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[3].sended}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[3].noSend}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[3].noSend}">
 
                                 </totoland:inputNumber>
                             </p:column>
                         </p:row>
                         <p:row>
-                            <p:column>
+                            <p:column style="text-align: left">
                                 <h:outputText value="#{formReport013Controller.report013Details[4].institution}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[4].decisionToPrepare}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport013Controller.report013Details[4].onProcess}"/>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport013Controller.report013Details[4].onProcess}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport013Controller.report013Details[4].complete}"/>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[4].ectSignedOnprocess}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[4].ectSignedOnprocess}">
 
                                 </totoland:inputNumber>
                             </p:column>
@@ -226,14 +226,82 @@ and open the template in the editor.
                                 </h:outputText>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[4].sended}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[4].sended}">
 
                                 </totoland:inputNumber>
                             </p:column>
                             <p:column>
-                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onblur="sum(this)"  value="#{formReport013Controller.report013Details[4].noSend}">
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[4].noSend}">
 
                                 </totoland:inputNumber>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column style="text-align: left">
+                                <h:outputText value="#{formReport013Controller.report013Details[5].institution}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{formReport013Controller.report013Details[5].decisionToPrepare}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport013Controller.report013Details[5].onProcess}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{formReport013Controller.report013Details[5].complete}"/>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[5].ectSignedOnprocess}">
+
+                                </totoland:inputNumber>
+                            </p:column>
+                            <p:column>
+                                <h:outputText  value="#{formReport013Controller.report013Details[5].ectSignedComplee}">
+
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[5].sended}">
+
+                                </totoland:inputNumber>
+                            </p:column>
+                            <p:column>
+                                <totoland:inputNumber disabled="#{formReport013Controller.paramMode=='view'}" onchange="sum(this)"  value="#{formReport013Controller.report013Details[5].noSend}">
+
+                                </totoland:inputNumber>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="รวม"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{formReport013Controller.sumDetail.decisionToPrepare}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText  value="#{formReport013Controller.sumDetail.onProcess}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{formReport013Controller.sumDetail.complete}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText   value="#{formReport013Controller.sumDetail.ectSignedOnprocess}">
+
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <h:outputText  value="#{formReport013Controller.sumDetail.ectSignedComplee}">
+
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <h:outputText   value="#{formReport013Controller.sumDetail.sended}">
+
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <h:outputText   value="#{formReport013Controller.sumDetail.noSend}">
+
+                                </h:outputText>
                             </p:column>
                         </p:row>
 

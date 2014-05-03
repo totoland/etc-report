@@ -51,9 +51,9 @@ and open the template in the editor.
                         <p:panelGrid styleClass="frmDetail" id="REPORT_015pnlFrm">
                             <f:facet name="header">
                                 <p:row>  
-                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 130px">สำนัก</p:column>
+                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 180px">สำนัก</p:column>
                                     <p:column rowspan="2" style="text-align: center;">จังหวัด/อำเภอ/เทศบาล/อบต./เขต</p:column>
-                                    <p:column rowspan="2" style="text-align: center;width: 220px">วันที่เลือกตั้ง/วันที่ประกาศผล</p:column>
+                                    <p:column rowspan="2" style="text-align: center;width: 220px">วันเลือกตั้ง/วันประกาศผล</p:column>
                                     <p:column rowspan="2" style="text-align: center;">การประชุม กกต.ครั้งที่/วันที่</p:column>
                                     <p:column rowspan="2" style="text-align: center;">มติที่ประชุม</p:column>
                                     <p:column rowspan="2" style="text-align: center;">ชื่อ-สกุล</p:column>
@@ -89,10 +89,10 @@ and open the template in the editor.
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[0].fullName}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[0].stAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[0].stAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[0].ptAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[0].ptAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText value="#{formReport015Controller.report015Details[0].sumAmount}"/>
@@ -122,10 +122,10 @@ and open the template in the editor.
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[1].fullName}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[1].stAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[1].stAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[1].ptAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[1].ptAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText value="#{formReport015Controller.report015Details[1].sumAmount}"/>
@@ -155,10 +155,10 @@ and open the template in the editor.
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[2].fullName}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[2].stAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[2].stAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[2].ptAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[2].ptAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText value="#{formReport015Controller.report015Details[2].sumAmount}"/>
@@ -188,10 +188,10 @@ and open the template in the editor.
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[3].fullName}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[3].stAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[3].stAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[3].ptAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[3].ptAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText value="#{formReport015Controller.report015Details[3].sumAmount}"/>
@@ -221,79 +221,43 @@ and open the template in the editor.
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[4].fullName}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[4].stAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[4].stAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[4].ptAmount}"/>
+                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onchange="sum(this)" value="#{formReport015Controller.report015Details[4].ptAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText value="#{formReport015Controller.report015Details[4].sumAmount}"/>
                                 </p:column>
                             </p:row>
+               
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[5].institution}"/>
+                                    
                                 </p:column>
                                 <p:column>
-                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[5].depName}"/>
+                                    
                                 </p:column>
                                 <p:column>
-                                    <h:panelGroup style="width: 200px">
-                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[5].electionDay}"/>
-                                    </h:panelGroup>
+                                    
                                 </p:column>
                                 <p:column>
-                                    <h:panelGroup style="width: 200px">
-                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[5].meetingDate}"/>
-                                    </h:panelGroup>
+                                    
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[5].conclusionMeeting}"/>
+                                    <h:outputText value="รวม"/>
                                 </p:column>
                                 <p:column>
-                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[5].fullName}"/>
+                                    
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[5].stAmount}"/>
+                                    <h:outputText value="#{formReport015Controller.sumDetail.stAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[5].ptAmount}"/>
+                                    <h:outputText value="#{formReport015Controller.sumDetail.ptAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[5].sumAmount}"/>
-                                </p:column>
-                            </p:row>
-                            <p:row>
-                                <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[6].institution}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[6].depName}"/>
-                                </p:column>
-                                <p:column>
-                                    <h:panelGroup style="width: 200px">
-                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[6].electionDay}"/>
-                                    </h:panelGroup>
-                                </p:column>
-                                <p:column>
-                                    <h:panelGroup style="width: 200px">
-                                        <p:calendar disabled="#{formReport014Controller.paramMode=='view'}"  lang="th" locale="th" value="#{formReport015Controller.report015Details[6].meetingDate}"/>
-                                    </h:panelGroup>
-                                </p:column>
-                                <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[6].conclusionMeeting}"/>
-                                </p:column>
-                                <p:column>
-                                    <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[6].fullName}"/>
-                                </p:column>
-                                <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[6].stAmount}"/>
-                                </p:column>
-                                <p:column>
-                                    <totoland:inputNumber disabled="#{formReport014Controller.paramMode=='view'}" onblur="sum(this)" value="#{formReport015Controller.report015Details[6].ptAmount}"/>
-                                </p:column>
-                                <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[6].sumAmount}"/>
+                                    <h:outputText value="#{formReport015Controller.sumDetail.sumAmount}"/>
                                 </p:column>
                             </p:row>
                         </p:panelGrid>

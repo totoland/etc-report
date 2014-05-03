@@ -103,6 +103,13 @@ and open the template in the editor.
                                 <h:outputText value="#{item.documentNo}" />
                             </p:column>
 
+                            <p:column sortBy="user_Group_Name">
+                                <f:facet name="header">
+                                    <h:outputText value="หน่วยงาน" />
+                                </f:facet>
+                                <h:outputText value="#{item.userGroupName}" />
+                            </p:column>
+                            
                             <p:column sortBy="report_Desc">
                                 <f:facet name="header">
                                     <h:outputText value="ชื่อรายงาน" />
