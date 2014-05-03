@@ -35,9 +35,9 @@ public class Report001Detail extends DomainEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REPORT_DETAIL_ID", nullable = true)
-    private Integer reportDetailId;
+    private Long reportDetailId;
     @Column(name = "DEP_ID")
-    private Integer depId;
+    private Long depId;
     @Column(name = "DEP_NAME")
     private String depName;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -48,22 +48,22 @@ public class Report001Detail extends DomainEntity implements Serializable {
     @Column(name = "ACTIVITY_TYPE")
     private String activityType;
     @Column(name = "ACTIVITY_AMOUNT")
-    private Integer activityAmount;
+    private Long activityAmount;
     @Column(name = "WORK_DETAIL")
     private String workDetail;
     @Column(name = "GOAL_TYPE")
     private String goalType;
     @Basic(optional = false)
     @Column(name = "GOAL_AMOUNT")
-    private Integer goalAmount;
+    private Long goalAmount;
     @Column(name = "GOAL_RESULT")
-    private Integer goalResult;
+    private Long goalResult;
     @Column(name = "RESULT_TYPE")
     private String resultType;
     @Column(name = "RESULT_AMOUNT")
-    private Integer resultAmount;
+    private Long resultAmount;
     @Column(name = "PRACTICE_RESULT")
-    private Integer practiceResult;
+    private Long practiceResult;
     @Column(name = "IS_PASS")
     private Boolean isPass;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
@@ -75,23 +75,23 @@ public class Report001Detail extends DomainEntity implements Serializable {
     public Report001Detail() {
     }
 
-    public Report001Detail(Integer reportDetailId) {
+    public Report001Detail(Long reportDetailId) {
         this.reportDetailId = reportDetailId;
     }
 
-    public Integer getReportDetailId() {
+    public Long getReportDetailId() {
         return reportDetailId;
     }
 
-    public void setReportDetailId(Integer reportDetailId) {
+    public void setReportDetailId(Long reportDetailId) {
         this.reportDetailId = reportDetailId;
     }
 
-    public Integer getDepId() {
+    public Long getDepId() {
         return depId;
     }
 
-    public void setDepId(Integer depId) {
+    public void setDepId(Long depId) {
         this.depId = depId;
     }
 
@@ -111,11 +111,11 @@ public class Report001Detail extends DomainEntity implements Serializable {
         this.activityType = activityType;
     }
 
-    public Integer getActivityAmount() {
+    public Long getActivityAmount() {
         return activityAmount;
     }
 
-    public void setActivityAmount(Integer activityAmount) {
+    public void setActivityAmount(Long activityAmount) {
         this.activityAmount = activityAmount;
     }
 
@@ -187,11 +187,11 @@ public class Report001Detail extends DomainEntity implements Serializable {
         this.goalType = goalType;
     }
 
-    public Integer getGoalAmount() {
+    public Long getGoalAmount() {
         return goalAmount;
     }
 
-    public void setGoalAmount(Integer goalAmount) {
+    public void setGoalAmount(Long goalAmount) {
         this.goalAmount = goalAmount;
     }
 
@@ -203,39 +203,39 @@ public class Report001Detail extends DomainEntity implements Serializable {
         this.resultType = resultType;
     }
 
-    public Integer getResultAmount() {
+    public Long getResultAmount() {
         return resultAmount;
     }
 
-    public void setResultAmount(Integer resultAmount) {
+    public void setResultAmount(Long resultAmount) {
         this.resultAmount = resultAmount;
     }
 
     /**
      * @return the goalResult
      */
-    public Integer getGoalResult() {
+    public Long getGoalResult() {
         return goalResult;
     }
 
     /**
      * @param goalResult the goalResult to set
      */
-    public void setGoalResult(Integer goalResult) {
+    public void setGoalResult(Long goalResult) {
         this.goalResult = goalResult;
     }
 
     /**
      * @return the practiceResult
      */
-    public Integer getPracticeResult() {
+    public Long getPracticeResult() {
         return practiceResult;
     }
 
     /**
      * @param practiceResult the practiceResult to set
      */
-    public void setPracticeResult(Integer practiceResult) {
+    public void setPracticeResult(Long practiceResult) {
         this.practiceResult = practiceResult;
     }
 

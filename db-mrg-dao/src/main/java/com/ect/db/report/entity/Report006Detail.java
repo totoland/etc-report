@@ -50,6 +50,8 @@ public class Report006Detail extends DomainEntity implements Serializable {
     private Integer conclusion;
     @Column(name = "COMMENT")
     private Integer comment;
+    @Column(name ="remark")
+    private String remark;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
     @ManyToOne
     private Report006 reportId;
@@ -133,6 +135,14 @@ public class Report006Detail extends DomainEntity implements Serializable {
         this.reportId = reportId;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -155,7 +165,7 @@ public class Report006Detail extends DomainEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Report006Detail{" + "reportDetailId=" + reportDetailId + ", title=" + title + ", amount=" + amount + ", submitManager=" + submitManager + ", submitPresidentEct=" + submitPresidentEct + ", submited=" + submited + ", conclusion=" + conclusion + ", comment=" + comment + '}';
+        return "Report006Detail{" + "reportDetailId=" + reportDetailId + ", title=" + title + ", amount=" + amount + ", submitManager=" + submitManager + ", submitPresidentEct=" + submitPresidentEct + ", submited=" + submited + ", conclusion=" + conclusion + ", comment=" + comment + ", remark=" + remark + '}';
     }
     
 }

@@ -79,6 +79,8 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
     private Integer reportStatus;
     @Column(name ="USER_GROUP_ID")
     private Integer userGroupId;
+    @Column(name ="USER_GROUP_NAME")
+    private String userGroupName;
     @Column(name = "USER_GROUP_LVL")
     private Integer userGroupLvl;
     @Column(name = "REPORT_MONTH",updatable = false)
@@ -328,7 +330,7 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
      * @return the documentNo
      */
     public String getDocumentNo() {
-        this.documentNo = this.reportCode.replace("REPORT_", "")+"-"+this.reportId;
+        this.documentNo = this.reportCode.replace("REPORT_", "")+"-"+this.userGroupId+"-"+this.reportMonth+"/"+this.reportYear;
         return documentNo;
     }
 
@@ -514,9 +516,23 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
         this.reportYear = reportYear;
     }
 
+    /**
+     * @return the userGroupName
+     */
+    public String getUserGroupName() {
+        return userGroupName;
+    }
+
+    /**
+     * @param userGroupName the userGroupName to set
+     */
+    public void setUserGroupName(String userGroupName) {
+        this.userGroupName = userGroupName;
+    }
+
     @Override
     public String toString() {
-        return "ViewReportStatus{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", reportStatus=" + reportStatus + ", userGroupId=" + userGroupId + ", userGroupLvl=" + userGroupLvl + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", documentNo=" + documentNo + '}';
+        return "ViewReportStatus{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", reportStatus=" + reportStatus + ", userGroupId=" + userGroupId + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", documentNo=" + documentNo + '}';
     }
     
 }
