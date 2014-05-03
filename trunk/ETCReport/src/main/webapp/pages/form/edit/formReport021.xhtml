@@ -33,7 +33,7 @@ and open the template in the editor.
                 <p:panel header="#{formReport021Controller.reportTitle}" style="width: 100%;">
                     <p:messages id="REPORT_021msgFrmDetails"></p:messages>
                     <f:facet name="header"  class="txtLeft">
-                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_021dlgAddReportDetail.show()" update="REPORT_021pn_addReportDetail" actionListener="#{formReport021Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode=='edit'}"/>
+                        <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_021dlgAddReportDetail.show()" update="REPORT_021pn_addReportDetail" actionListener="#{formReport021Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
                     </f:facet>  
 
                     <div style="width: 1000px;overflow-x: scroll">
