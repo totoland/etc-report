@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 public abstract class BaseFormReportController extends BaseController {
 
     private static final long serialVersionUID = -7864668711794526812L;
-    private static Logger logger = LoggerFactory.getLogger(BaseFormReportController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BaseFormReportController.class);
     /**
      * *
      * Service
@@ -85,7 +85,7 @@ public abstract class BaseFormReportController extends BaseController {
     public abstract void edit();
     
     protected void initTitle(){
-        reportTitle = MessageUtils.getResourceBundleString("report_header_title", dropdownFactory.getMonthName(getReportMonth()), reportYear, getUserAuthen().getProvinceName());
+        reportTitle = MessageUtils.getResourceBundleString("report_header_title", dropdownFactory.getMonthName(getReportMonth()), reportYear, getUserAuthen().getUserGroupName());
     }
 
     protected void initParam() {
