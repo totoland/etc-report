@@ -57,6 +57,10 @@ public class Report005Detail extends DomainEntity implements Serializable {
     private Integer voidedBallotPaper;
     @Column(name = "VOIDED_BALLOT_PAPER_PERCEN")
     private Integer voidedBallotPaperPercen;
+    @Column(name = "VOIDED_GOOD_PAPER")
+    private Integer voidedGoodPaper;
+    @Column(name = "VOIDED_GOOD_PAPER_PERCEN")
+    private Integer voidedGoodPaperPercen;
     @Column(name = "VOTE_NO")
     private Integer voteNo;
     @Column(name = "VOTE_NO_PERCEN")
@@ -242,11 +246,6 @@ public class Report005Detail extends DomainEntity implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Report005Detail{" + "reportDetailId=" + reportDetailId + ", electedDay=" + electedDay + ", provinceId=" + provinceId + ", electedZone=" + electedZone + ", voterAmount=" + voterAmount + ", votedAmount=" + votedAmount + ", votePercen=" + votePercen + ", voidedBallotPaper=" + voidedBallotPaper + ", voidedBallotPaperPercen=" + voidedBallotPaperPercen + ", voteNo=" + voteNo + ", voteNoPercen=" + voteNoPercen + ", electedType=" + electedType + ", nominationPeriod=" + nominationPeriod + ", election=" + election + ", corporateAmount=" + corporateAmount + ", senatorNominationAmount=" + senatorNominationAmount + '}';
-    }
-
     /**
      * @return the province
      */
@@ -259,5 +258,38 @@ public class Report005Detail extends DomainEntity implements Serializable {
      */
     public void setProvince(EctProvince province) {
         this.province = province;
+    }
+
+    /**
+     * @return the voidedGoodPaper
+     */
+    public Integer getVoidedGoodPaper() {
+        return voidedGoodPaper;
+    }
+
+    /**
+     * @param voidedGoodPaper the voidedGoodPaper to set
+     */
+    public void setVoidedGoodPaper(Integer voidedGoodPaper) {
+        this.voidedGoodPaper = voidedGoodPaper;
+    }
+
+    /**
+     * @return the voidedGoodPaperPercen
+     */
+    public Integer getVoidedGoodPaperPercen() {
+        return voidedGoodPaperPercen;
+    }
+
+    /**
+     * @param voidedGoodPaperPercen the voidedGoodPaperPercen to set
+     */
+    public void setVoidedGoodPaperPercen(Integer voidedGoodPaperPercen) {
+        this.voidedGoodPaperPercen = voidedGoodPaperPercen;
+    }
+
+    @Override
+    public String toString() {
+        return "Report005Detail{" + "reportDetailId=" + reportDetailId + ", electedDay=" + electedDay + ", provinceId=" + provinceId + ", electedZone=" + electedZone + ", voterAmount=" + voterAmount + ", votedAmount=" + votedAmount + ", votePercen=" + votePercen + ", voidedBallotPaper=" + voidedBallotPaper + ", voidedBallotPaperPercen=" + voidedBallotPaperPercen + ", voidedGoodPaper=" + voidedGoodPaper + ", voidedGoodPaperPercen=" + voidedGoodPaperPercen + ", voteNo=" + voteNo + ", voteNoPercen=" + voteNoPercen + ", electedType=" + electedType + ", nominationPeriod=" + nominationPeriod + ", election=" + election + ", corporateAmount=" + corporateAmount + ", senatorNominationAmount=" + senatorNominationAmount + ", province=" + province + '}';
     }
 }

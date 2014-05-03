@@ -43,7 +43,7 @@ public class Report002Detail extends DomainEntity implements Serializable {
     @Column(name = "OBJECTIVE")
     private String objective;
     @Column(name = "GOAL_AMOUNT")
-    private Integer goalAmount;
+    private String goalAmount;
     @Column(name = "RESULT")
     private String result;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -86,11 +86,11 @@ public class Report002Detail extends DomainEntity implements Serializable {
         this.objective = objective;
     }
 
-    public Integer getGoalAmount() {
+    public String getGoalAmount() {
         return goalAmount;
     }
 
-    public void setGoalAmount(Integer goalAmount) {
+    public void setGoalAmount(String goalAmount) {
         this.goalAmount = goalAmount;
     }
 

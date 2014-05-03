@@ -287,11 +287,11 @@ public class Test {
         //report001.setReportId(1);
 
         Report001Detail report001Detail = new Report001Detail();
-        report001Detail.setActivityAmount(Integer.MIN_VALUE);;
+        report001Detail.setActivityAmount(Long.MIN_VALUE);;
         report001Detail.setActivityType("2342");
         report001Detail.setBudgetReal(BigDecimal.ZERO);
         report001Detail.setBudgetSet(BigDecimal.ZERO);
-        report001Detail.setDepId(Integer.SIZE);
+        report001Detail.setDepId(Long.MAX_VALUE);
         report001Detail.setDepName("2423432");
         report001Detail.setIsPass(Boolean.TRUE);
         //report001Detail.setReportDetailId(Integer.MIN_VALUE);
