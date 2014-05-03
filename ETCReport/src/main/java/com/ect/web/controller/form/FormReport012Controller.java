@@ -11,6 +11,7 @@ import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_V
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class FormReport012Controller extends BaseFormReportController {
 
         }
 
+        calSum();
 
     }
 
@@ -283,14 +285,42 @@ public class FormReport012Controller extends BaseFormReportController {
 
     }
 
+    private Report012Detail sumDetail = new Report012Detail();
+    
     public void calSum() {
 
+        sumDetail.setAccessCommittee(0);
+        sumDetail.setAllamount(0);
+        sumDetail.setAnalystRemain(0);
+        sumDetail.setAtCenter(0);
+        sumDetail.setAtEctProvince(0);
+        sumDetail.setEctResolve(0);
+        sumDetail.setOfferEct(0);
+        sumDetail.setOnAgenda(0);
+        
         for (int i = 0; i < report012Details.size(); i++) {
-            report012Details.get(i).setAtCenter(report012Details.get(i).getOnAgenda() + report012Details.get(i).getAccessCommittee() + report012Details.get(i).getOfferEct() + report012Details.get(i).getAnalystRemain());
-            report012Details.get(i).setAllamount(report012Details.get(i).getAtCenter() + report012Details.get(i).getAtEctProvince() + report012Details.get(i).getEctResolve());
+            report012Details.get(i).setAtCenter(NumberUtils.convertNUllToZero(report012Details.get(i).getOnAgenda()) + NumberUtils.convertNUllToZero(report012Details.get(i).getAccessCommittee()) + NumberUtils.convertNUllToZero(report012Details.get(i).getOfferEct()) + NumberUtils.convertNUllToZero(report012Details.get(i).getAnalystRemain()));
+            report012Details.get(i).setAllamount(NumberUtils.convertNUllToZero(report012Details.get(i).getAtCenter()) + NumberUtils.convertNUllToZero(report012Details.get(i).getAtEctProvince()) + NumberUtils.convertNUllToZero(report012Details.get(i).getEctResolve()));
+            
+            sumDetail.setAccessCommittee(sumDetail.getAccessCommittee()+NumberUtils.convertNUllToZero(report012Details.get(i).getAccessCommittee()));
+            sumDetail.setAllamount(sumDetail.getAllamount()+NumberUtils.convertNUllToZero(report012Details.get(i).getAllamount()));
+            sumDetail.setAnalystRemain(sumDetail.getAnalystRemain()+NumberUtils.convertNUllToZero(report012Details.get(i).getAnalystRemain()));
+            sumDetail.setAtCenter(sumDetail.getAtCenter()+NumberUtils.convertNUllToZero(report012Details.get(i).getAtCenter()));
+            sumDetail.setAtEctProvince(sumDetail.getAtEctProvince()+NumberUtils.convertNUllToZero(report012Details.get(i).getAtEctProvince()));
+            sumDetail.setEctResolve(sumDetail.getEctResolve()+NumberUtils.convertNUllToZero(report012Details.get(i).getEctResolve()));
+            sumDetail.setOfferEct(sumDetail.getOfferEct()+NumberUtils.convertNUllToZero(report012Details.get(i).getOfferEct()));
+            sumDetail.setOnAgenda(sumDetail.getOnAgenda()+NumberUtils.convertNUllToZero(report012Details.get(i).getOnAgenda()));
         }
     }
 
+    public Report012Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    public void setSumDetail(Report012Detail sumDetail) {
+        this.sumDetail = sumDetail;
+    }
+    
     /**
      * @return the report012Details
      */
@@ -414,58 +444,58 @@ public class FormReport012Controller extends BaseFormReportController {
         report012Details = new ArrayList<>();
 
         Report012Detail report012Detail1 = new Report012Detail();
-        report012Detail1.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 1");
-        report012Detail1.setAtCenter(0);
-        report012Detail1.setAtEctProvince(0);
-        report012Detail1.setEctResolve(0);
-        report012Detail1.setAnalystRemain(0);
-        report012Detail1.setOfferEct(0);
-        report012Detail1.setAccessCommittee(0);
-        report012Detail1.setOnAgenda(0);
+        report012Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
+//        report012Detail1.setAtCenter(0);
+//        report012Detail1.setAtEctProvince(0);
+//        report012Detail1.setEctResolve(0);
+//        report012Detail1.setAnalystRemain(0);
+//        report012Detail1.setOfferEct(0);
+//        report012Detail1.setAccessCommittee(0);
+//        report012Detail1.setOnAgenda(0);
         report012Detail1.setReportId(report012);
 
         Report012Detail report012Detail2 = new Report012Detail();
-        report012Detail2.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 2");
-        report012Detail2.setAtCenter(0);
-        report012Detail2.setAtEctProvince(0);
-        report012Detail2.setEctResolve(0);
-        report012Detail2.setAnalystRemain(0);
-        report012Detail2.setOfferEct(0);
-        report012Detail2.setAccessCommittee(0);
-        report012Detail2.setOnAgenda(0);
+        report012Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
+//        report012Detail2.setAtCenter(0);
+//        report012Detail2.setAtEctProvince(0);
+//        report012Detail2.setEctResolve(0);
+//        report012Detail2.setAnalystRemain(0);
+//        report012Detail2.setOfferEct(0);
+//        report012Detail2.setAccessCommittee(0);
+//        report012Detail2.setOnAgenda(0);
         report012Detail2.setReportId(report012);
 
         Report012Detail report012Detail3 = new Report012Detail();
-        report012Detail3.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 3");
-        report012Detail3.setAtCenter(0);
-        report012Detail3.setAtEctProvince(0);
-        report012Detail3.setEctResolve(0);
-        report012Detail3.setAnalystRemain(0);
-        report012Detail3.setOfferEct(0);
-        report012Detail3.setAccessCommittee(0);
-        report012Detail3.setOnAgenda(0);
+        report012Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+//        report012Detail3.setAtCenter(0);
+//        report012Detail3.setAtEctProvince(0);
+//        report012Detail3.setEctResolve(0);
+//        report012Detail3.setAnalystRemain(0);
+//        report012Detail3.setOfferEct(0);
+//        report012Detail3.setAccessCommittee(0);
+//        report012Detail3.setOnAgenda(0);
         report012Detail3.setReportId(report012);
 
         Report012Detail report012Detail4 = new Report012Detail();
-        report012Detail4.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 4");
-        report012Detail4.setAtCenter(0);
-        report012Detail4.setAtEctProvince(0);
-        report012Detail4.setEctResolve(0);
-        report012Detail4.setAnalystRemain(0);
-        report012Detail4.setOfferEct(0);
-        report012Detail4.setAccessCommittee(0);
-        report012Detail4.setOnAgenda(0);
+        report012Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+//        report012Detail4.setAtCenter(0);
+//        report012Detail4.setAtEctProvince(0);
+//        report012Detail4.setEctResolve(0);
+//        report012Detail4.setAnalystRemain(0);
+//        report012Detail4.setOfferEct(0);
+//        report012Detail4.setAccessCommittee(0);
+//        report012Detail4.setOnAgenda(0);
         report012Detail4.setReportId(report012);
 
         Report012Detail report012Detail5 = new Report012Detail();
-        report012Detail5.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 5");
-        report012Detail5.setAtCenter(0);
-        report012Detail5.setAtEctProvince(0);
-        report012Detail5.setEctResolve(0);
-        report012Detail5.setAnalystRemain(0);
-        report012Detail5.setOfferEct(0);
-        report012Detail5.setAccessCommittee(0);
-        report012Detail5.setOnAgenda(0);
+        report012Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
+//        report012Detail5.setAtCenter(0);
+//        report012Detail5.setAtEctProvince(0);
+//        report012Detail5.setEctResolve(0);
+//        report012Detail5.setAnalystRemain(0);
+//        report012Detail5.setOfferEct(0);
+//        report012Detail5.setAccessCommittee(0);
+//        report012Detail5.setOnAgenda(0);
         report012Detail5.setReportId(report012);
 
         report012Details.add(report012Detail1);

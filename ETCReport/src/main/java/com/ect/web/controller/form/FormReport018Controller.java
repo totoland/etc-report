@@ -499,6 +499,8 @@ public class FormReport018Controller extends BaseFormReportController {
         getSumDetail().setReplaceBudget(0);
 
         for (Report018Detail rd : report018Details) {
+            
+            rd.setLaasAmount(NumberUtils.convertNUllToZero(rd.getFullTerm()) + NumberUtils.convertNUllToZero(rd.getNewElection()) + NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
 
             getSumDetail().setEctDepProvince(getSumDetail().getEctDepProvince()+NumberUtils.convertNUllToZero(rd.getEctDepProvince()));
             getSumDetail().setOocAmount(getSumDetail().getOocAmount()+NumberUtils.convertNUllToZero(rd.getOocAmount()));

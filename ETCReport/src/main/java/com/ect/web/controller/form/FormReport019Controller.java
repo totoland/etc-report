@@ -494,6 +494,9 @@ public class FormReport019Controller extends BaseFormReportController {
 
         for (Report019Detail rd : report019Details) {
 
+            rd.setVerifyElectionAmount(NumberUtils.convertNUllToZero(rd.getFullTerm()) + NumberUtils.convertNUllToZero(rd.getNewElection()) + NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
+            rd.setReportLaas(NumberUtils.convertNUllToZero(rd.getExtendResult()) + NumberUtils.convertNUllToZero(rd.getNoExtendResult()));
+            
             sumDetail.setVerifyElectionAmount(getSumDetail().getVerifyElectionAmount() + NumberUtils.convertNUllToZero(rd.getVerifyElectionAmount()));
             sumDetail.setFullTerm(getSumDetail().getFullTerm() + NumberUtils.convertNUllToZero(rd.getFullTerm()));
             sumDetail.setNewElection(getSumDetail().getNewElection() + NumberUtils.convertNUllToZero(rd.getNewElection()));

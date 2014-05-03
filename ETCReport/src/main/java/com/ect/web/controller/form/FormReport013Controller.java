@@ -11,6 +11,7 @@ import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_V
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -85,7 +86,8 @@ public class FormReport013Controller extends BaseFormReportController {
 
         }
 
-
+        calSum();
+        
     }
 
     @Override
@@ -282,16 +284,42 @@ public class FormReport013Controller extends BaseFormReportController {
         JsfUtil.addSuccessMessage("ยกเลิก!!");
 
     }
+    
+    private Report013Detail sumDetail = new Report013Detail();
 
     public void calSum() {
 
+        sumDetail.setComplete(0);
+        sumDetail.setDecisionToPrepare(0);
+        sumDetail.setEctSignedComplee(0);
+        sumDetail.setEctSignedOnprocess(0);
+        sumDetail.setNoSend(0);
+        sumDetail.setOnProcess(0);
+        sumDetail.setSended(0);
+        
         for (int i = 0; i < report013Details.size(); i++) {
-            report013Details.get(i).setEctSignedComplee(report013Details.get(i).getSended()+report013Details.get(i).getNoSend());
-            report013Details.get(i).setComplete(report013Details.get(i).getEctSignedComplee() + report013Details.get(i).getEctSignedOnprocess());
-            report013Details.get(i).setDecisionToPrepare(report013Details.get(i).getOnProcess()+report013Details.get(i).getComplete());
+            report013Details.get(i).setEctSignedComplee(NumberUtils.convertNUllToZero(report013Details.get(i).getSended()) + NumberUtils.convertNUllToZero(report013Details.get(i).getNoSend()));
+            report013Details.get(i).setComplete(NumberUtils.convertNUllToZero(report013Details.get(i).getEctSignedComplee()) + NumberUtils.convertNUllToZero(report013Details.get(i).getEctSignedOnprocess()));
+            report013Details.get(i).setDecisionToPrepare(NumberUtils.convertNUllToZero(report013Details.get(i).getOnProcess()) + NumberUtils.convertNUllToZero(report013Details.get(i).getComplete()));
+            
+            sumDetail.setComplete(sumDetail.getComplete()+NumberUtils.convertNUllToZero(report013Details.get(i).getComplete()));
+            sumDetail.setDecisionToPrepare(sumDetail.getDecisionToPrepare()+NumberUtils.convertNUllToZero(report013Details.get(i).getDecisionToPrepare()));
+            sumDetail.setEctSignedComplee(sumDetail.getEctSignedComplee()+NumberUtils.convertNUllToZero(report013Details.get(i).getEctSignedComplee()));
+            sumDetail.setEctSignedOnprocess(sumDetail.getEctSignedOnprocess()+NumberUtils.convertNUllToZero(report013Details.get(i).getEctSignedOnprocess()));
+            sumDetail.setNoSend(sumDetail.getNoSend()+NumberUtils.convertNUllToZero(report013Details.get(i).getNoSend()));
+            sumDetail.setOnProcess(sumDetail.getOnProcess()+NumberUtils.convertNUllToZero(report013Details.get(i).getOnProcess()));
+            sumDetail.setSended(sumDetail.getSended()+NumberUtils.convertNUllToZero(report013Details.get(i).getSended()));
         }
     }
 
+    public Report013Detail getSumDetail() {
+        return sumDetail;
+    }
+
+    public void setSumDetail(Report013Detail sumDetail) {
+        this.sumDetail = sumDetail;
+    }
+    
     /**
      * @return the report013Details
      */
@@ -415,65 +443,70 @@ public class FormReport013Controller extends BaseFormReportController {
         report013Details = new ArrayList<>();
 
         Report013Detail report013Detail1 = new Report013Detail();
-        report013Detail1.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 1");
-        report013Detail1.setDecisionToPrepare(0);
-        report013Detail1.setOnProcess(0);
-        report013Detail1.setComplete(0);
-        report013Detail1.setEctSignedOnprocess(0);
-        report013Detail1.setEctSignedComplee(0);
-        report013Detail1.setSended(0);
-        report013Detail1.setNoSend(0);
+        report013Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
+//        report013Detail1.setDecisionToPrepare(0);
+//        report013Detail1.setOnProcess(0);
+//        report013Detail1.setComplete(0);
+//        report013Detail1.setEctSignedOnprocess(0);
+//        report013Detail1.setEctSignedComplee(0);
+//        report013Detail1.setSended(0);
+//        report013Detail1.setNoSend(0);
         report013Detail1.setReportId(report013);
 
         Report013Detail report013Detail2 = new Report013Detail();
-        report013Detail2.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 2");
-        report013Detail2.setDecisionToPrepare(0);
-        report013Detail2.setOnProcess(0);
-        report013Detail2.setComplete(0);
-        report013Detail2.setEctSignedOnprocess(0);
-        report013Detail2.setEctSignedComplee(0);
-        report013Detail2.setSended(0);
-        report013Detail2.setNoSend(0);
+        report013Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
+//        report013Detail2.setDecisionToPrepare(0);
+//        report013Detail2.setOnProcess(0);
+//        report013Detail2.setComplete(0);
+//        report013Detail2.setEctSignedOnprocess(0);
+//        report013Detail2.setEctSignedComplee(0);
+//        report013Detail2.setSended(0);
+//        report013Detail2.setNoSend(0);
         report013Detail2.setReportId(report013);
 
         Report013Detail report013Detail3 = new Report013Detail();
-        report013Detail3.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 3");
-        report013Detail3.setDecisionToPrepare(0);
-        report013Detail3.setOnProcess(0);
-        report013Detail3.setComplete(0);
-        report013Detail3.setEctSignedOnprocess(0);
-        report013Detail3.setEctSignedComplee(0);
-        report013Detail3.setSended(0);
-        report013Detail3.setNoSend(0);
+        report013Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+//        report013Detail3.setDecisionToPrepare(0);
+//        report013Detail3.setOnProcess(0);
+//        report013Detail3.setComplete(0);
+//        report013Detail3.setEctSignedOnprocess(0);
+//        report013Detail3.setEctSignedComplee(0);
+//        report013Detail3.setSended(0);
+//        report013Detail3.setNoSend(0);
         report013Detail3.setReportId(report013);
 
         Report013Detail report013Detail4 = new Report013Detail();
-        report013Detail4.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 4");
-        report013Detail4.setDecisionToPrepare(0);
-        report013Detail4.setOnProcess(0);
-        report013Detail4.setComplete(0);
-        report013Detail4.setEctSignedOnprocess(0);
-        report013Detail4.setEctSignedComplee(0);
-        report013Detail4.setSended(0);
-        report013Detail4.setNoSend(0);
+        report013Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+//        report013Detail4.setDecisionToPrepare(0);
+//        report013Detail4.setOnProcess(0);
+//        report013Detail4.setComplete(0);
+//        report013Detail4.setEctSignedOnprocess(0);
+//        report013Detail4.setEctSignedComplee(0);
+//        report013Detail4.setSended(0);
+//        report013Detail4.setNoSend(0);
         report013Detail4.setReportId(report013);
 
         Report013Detail report013Detail5 = new Report013Detail();
-        report013Detail5.setInstitution("สำนักสืบสวนสอบสวนและวิจัย 5");
-        report013Detail5.setDecisionToPrepare(0);
-        report013Detail5.setOnProcess(0);
-        report013Detail5.setComplete(0);
-        report013Detail5.setEctSignedOnprocess(0);
-        report013Detail5.setEctSignedComplee(0);
-        report013Detail5.setSended(0);
-        report013Detail5.setNoSend(0);
+        report013Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
+//        report013Detail5.setDecisionToPrepare(0);
+//        report013Detail5.setOnProcess(0);
+//        report013Detail5.setComplete(0);
+//        report013Detail5.setEctSignedOnprocess(0);
+//        report013Detail5.setEctSignedComplee(0);
+//        report013Detail5.setSended(0);
+//        report013Detail5.setNoSend(0);
         report013Detail5.setReportId(report013);
+        
+        Report013Detail report013Detail6 = new Report013Detail();
+        report013Detail6.setInstitution("สำนักวินิจฉัยและคดี");
+        report013Detail6.setReportId(report013);
 
         report013Details.add(report013Detail1);
         report013Details.add(report013Detail2);
         report013Details.add(report013Detail3);
         report013Details.add(report013Detail4);
         report013Details.add(report013Detail5);
+        report013Details.add(report013Detail6);
         
         report013.setReport013DetailList(report013Details);
         report013.setReportMonth(reportMonth);
