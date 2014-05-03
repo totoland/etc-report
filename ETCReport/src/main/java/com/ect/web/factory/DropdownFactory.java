@@ -378,6 +378,13 @@ public class DropdownFactory implements Serializable {
 
         for (DropDownList ddl : ddlProvince()) {
 
+            if(id == 99){
+                EctProvince ectProvince = new EctProvince();
+                ectProvince.setProvinceId(id);
+                ectProvince.setProvinceName("ทุกจังหวัด");
+                return ectProvince;
+            }
+            
             if (id.intValue() == Integer.valueOf(ddl.getValue())) {
                 EctProvince ectProvince = new EctProvince();
                 ectProvince.setProvinceId(id);

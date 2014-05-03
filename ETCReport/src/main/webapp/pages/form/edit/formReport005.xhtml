@@ -19,7 +19,7 @@ and open the template in the editor.
     <h:body>
         <h:form>
 
-            <p:panel id="REPORT_005">
+            <p:panel id="REPORT_005" header="#{msg.report_005_header}">
 
                 <div id="div_REPORT_005" style="width: 1050px;height: 450px;overflow-x: scroll;overflow-y: scroll;">
                     <p:panel header="#{formReport005Controller.reportTitle}" style="width: 100%">
@@ -32,7 +32,7 @@ and open the template in the editor.
 
                             <p:row>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isVote}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isVote}"/>
                                     <h:outputText value="1.การเลือกตั้ง"/>
                                 </p:column>
                                 <p:column colspan="3">
@@ -43,15 +43,15 @@ and open the template in the editor.
                                 <p:column>
                                 </p:column>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElected}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElected}"/>
                                     <h:outputText value="การเลือกตั้ง ส.ส."/>
                                 </p:column>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElectedNormal}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElectedNormal}"/>
                                     <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
                                 </p:column>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElectedVacancy}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isElectedVacancy}"/>
                                     <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
                                 </p:column>
                             </p:row>
@@ -59,15 +59,15 @@ and open the template in the editor.
                                 <p:column>
                                 </p:column>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElected}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElected}"/>
                                     <h:outputText value="การเลือกตั้ง ส.ว."/>
                                 </p:column>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElectedNormal}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElectedNormal}"/>
                                     <h:outputText value="กรณีการเลือกตั้งทั่วไป"/>
                                 </p:column>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElectedVacancy}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isSenElectedVacancy}"/>
                                     <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
                                 </p:column>
                             </p:row>
@@ -152,6 +152,23 @@ and open the template in the editor.
                                     </h:outputText>%
                                 </p:column>
 
+                                <p:column headerText="บัตรดี">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.voidedGoodPaper}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.voidedGoodPaper}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+                                
+                                <p:column headerText="ร้อยละ">
+                                    <h:outputText value="#{(item.voidedGoodPaper*100)/item.voterAmount}">
+                                        <f:convertNumber pattern="#0.00"/>
+                                    </h:outputText>%
+                                </p:column>
+                                
                                 <p:column headerText="บัตรเสีย">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
@@ -186,7 +203,7 @@ and open the template in the editor.
                                     </h:outputText>%
                                 </p:column>
 
-                                <p:column style="width:6%" rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                <p:column style="width:6%" rendered="#{formReport005Controller.paramMode=='edit'}">  
                                     <p:rowEditor />  
                                 </p:column>  
 
@@ -197,7 +214,7 @@ and open the template in the editor.
                         <p:panelGrid columns="1" styleClass="frmDetail2" id="REPORT_005pnlFrm2" style="width: 100%">
                             <p:row>
                                 <p:column>
-                                    <p:selectBooleanCheckbox disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isNomination}"/>
+                                    <p:selectBooleanCheckbox disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.report005.isNomination}"/>
                                     <h:outputText value="2.การสรรหา"/>
                                 </p:column>
                             </p:row>
@@ -259,7 +276,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column style="width:6%" rendered="#{formReport005Controller.paramMode=='edit'}">  
+                                <p:column style="width:6%" rendered="#{formReport005Controller.paramMode!='view'}">  
                                     <p:rowEditor />  
                                 </p:column>  
 
@@ -284,28 +301,32 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail">
 
                         <h:outputLabel value="วันที่เลือกตั้ง *"/>  
-                        <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
+                        <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
 
                         <h:outputLabel value="จังหวัด *" />  
-                        <p:selectOneMenu id="ectProvince" style="width: 220px" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.provinceId}">  
-                            <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                        <p:selectOneMenu id="ectProvince" style="width: 220px" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.provinceId}">  
+                            <f:selectItem itemLabel="-เลือก-" itemValue="" /> 
+                            <f:selectItem itemLabel="ทุกจังหวัด" itemValue="99" /> 
                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlProvince()}"/>
                         </p:selectOneMenu>  
 
                         <h:outputLabel value="เขตเลือกตั้ง *" />  
-                        <p:inputText id="REPORT_005lb03" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedZone}"/>  
+                        <p:inputText id="REPORT_005lb03" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedZone}"/>  
 
                         <h:outputLabel value="ผู้มีสิทธิ์เลือกตั้ง *" />  
-                        <totoland:inputNumber id="REPORT_005lb04" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voterAmount}"/>
+                        <totoland:inputNumber id="REPORT_005lb04" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voterAmount}"/>
 
                         <h:outputLabel value="ผู้มาใช้สิทธิ์เลือกตั้ง *" />  
-                        <totoland:inputNumber id="REPORT_005lb05" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.votedAmount}"/>  
+                        <totoland:inputNumber id="REPORT_005lb05" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.votedAmount}"/>  
 
                         <h:outputLabel value="บัตรเสีย *" />  
-                        <totoland:inputNumber id="REPORT_005lb07" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
+                        <totoland:inputNumber id="REPORT_005lb07" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
 
+                        <h:outputLabel value="บัตรดี *" />  
+                        <totoland:inputNumber id="REPORT_005lb071" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedGoodPaper}"/>
+                        
                         <h:outputLabel value="บัตรไม่ประสงค์จะลงคะแนน *" />  
-                        <totoland:inputNumber id="REPORT_005lb08" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
+                        <totoland:inputNumber id="REPORT_005lb08" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport005Controller.addReportDetail(actionEvent)}" update="REPORT_005msgAddReportDetail,REPORT_005Grid" icon="ui-icon-check" style="margin:0"/>  
@@ -330,16 +351,16 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail2">
 
                         <h:outputLabel value="ระยะเวลาสรรหา ส.ว. *" />  
-                        <p:inputText id="REPORT_005lb01" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.nominationPeriod}"/>  
+                        <p:inputText id="REPORT_005lb01" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.nominationPeriod}"/>  
 
                         <h:outputLabel value="การเลือกตั้ง *" />  
-                        <p:inputText id="REPORT_005lb3" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.election}"/>  
+                        <p:inputText id="REPORT_005lb3" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.election}"/>  
 
                         <h:outputLabel value="จำนวนองค์/รายชื่อที่เสนอ *" />  
-                        <totoland:inputNumber id="REPORT_005lb4" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.corporateAmount}"/>
+                        <totoland:inputNumber id="REPORT_005lb4" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.corporateAmount}"/>
 
                         <h:outputLabel value="จำนวน ส.ว. สรรหา *" />  
-                        <totoland:inputNumber id="REPORT_005lb5" disabled="#{formReport002Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.senatorNominationAmount}"/>  
+                        <totoland:inputNumber id="REPORT_005lb5" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.senatorNominationAmount}"/>  
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport005Controller.addReportDetail2(actionEvent)}" update="REPORT_005msgAddReportDetail2,REPORT_005Grid2" icon="ui-icon-check" style="margin:0"/>  

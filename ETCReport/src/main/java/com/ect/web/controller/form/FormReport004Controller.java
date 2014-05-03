@@ -9,13 +9,11 @@ import com.ect.db.report.entity.Report004Detail;
 import com.ect.db.report.entity.Report004;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -86,6 +84,7 @@ public class FormReport004Controller extends BaseFormReportController {
 
         }
 
+        cal();
     }
 
     @Override
@@ -406,7 +405,6 @@ public class FormReport004Controller extends BaseFormReportController {
 
     private void initEditMode() {
         initViewMode();
-        cal();
     }
 
     /**
@@ -511,17 +509,17 @@ public class FormReport004Controller extends BaseFormReportController {
         
         for (Report004Detail rwDetail : report004Details) {
 
-            getFooter().setAmountPhTh(getFooter().getAmountPhTh() + rwDetail.getAmountPhTh());
-            getFooter().setAmountSTh(getFooter().getAmountSTh() + rwDetail.getAmountSTh());
-            getFooter().setElectionBeforeAnnouncement(getFooter().getElectionBeforeAnnouncement() + rwDetail.getElectionBeforeAnnouncement());
-            getFooter().setElectionEarlierAmountPhTh(getFooter().getElectionEarlierAmountPhTh() + rwDetail.getElectionEarlierAmountPhTh());
-            getFooter().setElectionEarlierAmountSTh(getFooter().getElectionEarlierAmountSTh() + rwDetail.getElectionEarlierAmountSTh());
-            getFooter().setElectionEarlierCurMonthPhTh(getFooter().getElectionEarlierCurMonthPhTh() + rwDetail.getElectionEarlierAmountPhTh());
-            getFooter().setElectionEarlierCurMonthSTh(getFooter().getElectionEarlierCurMonthSTh() + rwDetail.getElectionEarlierCurMonthSTh());
-            getFooter().setElectionEarlierLastMonthPhTh(getFooter().getElectionEarlierLastMonthPhTh() + rwDetail.getElectionEarlierLastMonthPhTh());
-            getFooter().setElectionEarlierLastMonthSTh(getFooter().getElectionEarlierLastMonthSTh() + rwDetail.getElectionEarlierLastMonthSTh());
-            getFooter().setElectionFillVacancy(getFooter().getElectionFillVacancy() + rwDetail.getElectionFillVacancy());
-            getFooter().setFullTerm(getFooter().getFullTerm() + rwDetail.getFullTerm());
+            getFooter().setAmountPhTh(getFooter().getAmountPhTh() + NumberUtils.convertNUllToZero(rwDetail.getAmountPhTh()));
+            getFooter().setAmountSTh(getFooter().getAmountSTh() + NumberUtils.convertNUllToZero(rwDetail.getAmountSTh()));
+            getFooter().setElectionBeforeAnnouncement(getFooter().getElectionBeforeAnnouncement() + NumberUtils.convertNUllToZero(rwDetail.getElectionBeforeAnnouncement()));
+            getFooter().setElectionEarlierAmountPhTh(getFooter().getElectionEarlierAmountPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
+            getFooter().setElectionEarlierAmountSTh(getFooter().getElectionEarlierAmountSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountSTh()));
+            getFooter().setElectionEarlierCurMonthPhTh(getFooter().getElectionEarlierCurMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
+            getFooter().setElectionEarlierCurMonthSTh(getFooter().getElectionEarlierCurMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthSTh()));
+            getFooter().setElectionEarlierLastMonthPhTh(getFooter().getElectionEarlierLastMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthPhTh()));
+            getFooter().setElectionEarlierLastMonthSTh(getFooter().getElectionEarlierLastMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthSTh()));
+            getFooter().setElectionFillVacancy(getFooter().getElectionFillVacancy() + NumberUtils.convertNUllToZero(rwDetail.getElectionFillVacancy()));
+            getFooter().setFullTerm(getFooter().getFullTerm() + NumberUtils.convertNUllToZero(rwDetail.getFullTerm()));
 
         }
 

@@ -38,7 +38,7 @@ import org.slf4j.MDC;
 @ManagedBean
 public class FormReport003Controller extends BaseFormReportController {
 
-    private static Logger logger = LoggerFactory.getLogger(FormReport003Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(FormReport003Controller.class);
     private static final long serialVersionUID = 1764749403349238850L;
     /**
      * *
@@ -157,7 +157,7 @@ public class FormReport003Controller extends BaseFormReportController {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopupIframe("dialogEdit");
+            goToClose();
 
         } catch (Exception ex) {
 
@@ -435,47 +435,47 @@ public class FormReport003Controller extends BaseFormReportController {
         Report003Detail report003Detail1 = new Report003Detail();
         report003Detail1.setDocReceive("หนังสือรับภายใน");
         report003Detail1.setDocSend("หนังสือส่งภายใน");
-        report003Detail1.setDocSendAmount(0);
-        report003Detail1.setDocReceiveAmount(0);
+        //report003Detail1.setDocSendAmount(0);
+        //report003Detail1.setDocReceiveAmount(0);
         report003Detail1.setReportId(report003);
         
         Report003Detail report003Detail2 = new Report003Detail();
         report003Detail2.setDocReceive("หนังสือรับภายใน (ชั้นความลับ)");
         report003Detail2.setDocSend("หนังสือส่งภายใน (ชั้นความลับ)");
-        report003Detail2.setDocSendAmount(0);
-        report003Detail2.setDocReceiveAmount(0);
+        //report003Detail2.setDocSendAmount(0);
+        //report003Detail2.setDocReceiveAmount(0);
         report003Detail2.setReportId(report003);
 
         Report003Detail report003Detail3 = new Report003Detail();
         report003Detail3.setDocReceive("หนังสือรับภายนอก");
         report003Detail3.setDocSend("หนังสือส่งภายนอก");
-        report003Detail3.setDocSendAmount(0);
-        report003Detail3.setDocReceiveAmount(0);
+        //report003Detail3.setDocSendAmount(0);
+        //report003Detail3.setDocReceiveAmount(0);
         report003Detail3.setReportId(report003);
         
         Report003Detail report003Detail4 = new Report003Detail();
         report003Detail4.setDocReceive("หนังสือรับภายนอก (ชั้นความลับ)");
         report003Detail4.setDocSend("หนังสือส่งภายนอก (ชั้นความลับ)");
-        report003Detail4.setDocSendAmount(0);
-        report003Detail4.setDocReceiveAmount(0);
+        //report003Detail4.setDocSendAmount(0);
+        //report003Detail4.setDocReceiveAmount(0);
         report003Detail4.setReportId(report003);
         
         Report003Detail report003Detail5 = new Report003Detail();
         report003Detail5.setDocReceive("เรื่องร้องเรียน ร้องขอความเป็นธรรม");
-        report003Detail5.setDocSendAmount(0);
-        report003Detail5.setDocReceiveAmount(0);
+        //report003Detail5.setDocSendAmount(0);
+        //report003Detail5.setDocReceiveAmount(0);
         report003Detail5.setReportId(report003);
         
         Report003Detail report003Detail6 = new Report003Detail();
         report003Detail6.setDocReceive("สำนวนร้องคัดค้าน");
-        report003Detail6.setDocSendAmount(0);
-        report003Detail6.setDocReceiveAmount(0);
+        //report003Detail6.setDocSendAmount(0);
+        //report003Detail6.setDocReceiveAmount(0);
         report003Detail6.setReportId(report003);
         
         Report003Detail report003Detail7 = new Report003Detail();
         report003Detail7.setDocReceive("อื่นๆ");
-        report003Detail7.setDocSendAmount(0);
-        report003Detail7.setDocReceiveAmount(0);
+        //report003Detail7.setDocSendAmount(0);
+        //report003Detail7.setDocReceiveAmount(0);
         report003Detail7.setReportId(report003);
 
         report003Details.add(report003Detail1);
