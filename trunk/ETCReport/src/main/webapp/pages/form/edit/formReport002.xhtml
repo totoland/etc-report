@@ -166,7 +166,7 @@ and open the template in the editor.
                                         </p:cellEditor>
                                     </p:column>
 
-                                    <p:column style="width:6%" rendered="#{formReport002Controller.paramMode=='edit'}">  
+                                    <p:column style="width:6%" rendered="#{formReport002Controller.paramMode!='view'}">  
                                         <p:rowEditor />  
                                     </p:column>  
 
@@ -197,7 +197,7 @@ and open the template in the editor.
                         <p:inputText id="REPORT_002lb2" value="#{formReport002Controller.inputReport002Detail.objective}" />  
 
                         <h:outputLabel value="เป้าหมายจำนวน *" />  
-                        <totoland:inputNumber id="REPORT_002lb3" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
+                        <p:inputText id="REPORT_002lb3" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
 
                         <h:outputLabel value="ผลการดำเนินงาน *" />  
                         <p:inputText id="REPORT_002lb4" value="#{formReport002Controller.inputReport002Detail.result}" />  
@@ -206,7 +206,7 @@ and open the template in the editor.
                         <totoland:inputNumber id="REPORT_002lb6" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
 
                         <h:outputLabel value="แหล่งที่มางบประมาณ *" />  
-                        <totoland:inputNumber id="REPORT_002lb7" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
+                        <p:inputText id="REPORT_002lb7" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport002Controller.addReportDetail(actionEvent)}" update="REPORT_002msgAddReportDetail,REPORT_002Grid" icon="ui-icon-check" style="margin:0"/>  

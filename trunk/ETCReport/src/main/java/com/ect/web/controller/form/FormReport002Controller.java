@@ -12,10 +12,8 @@ import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
-import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -342,13 +340,13 @@ public class FormReport002Controller extends BaseFormReportController{
         if (StringUtils.isBlank(inputReport002Detail.getObjective())) {
             msg += "กรุณาระบุวัตถุประสงค์<br/>";
         }
-        if (inputReport002Detail.getGoalAmount().intValue() == 0) {
+        if (inputReport002Detail.getGoalAmount() == null || inputReport002Detail.getGoalAmount().isEmpty()) {
             msg += "กรุณาระบุจำนวนเป้าหมาย<br/>";
         }
         if (StringUtils.isBlank(inputReport002Detail.getResult())) {
             msg += "กรุณาระบุผลการปฏิบัติงาน<br/>";
         }
-        if (inputReport002Detail.getBudget().intValue() == 0) {
+        if (inputReport002Detail.getBudget() == null) {
             msg += "กรุณาระบุงบประมาณ<br/>";
         }
         if (StringUtils.isBlank(inputReport002Detail.getBuggetSource())) {

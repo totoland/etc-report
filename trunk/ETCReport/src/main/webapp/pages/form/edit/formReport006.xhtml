@@ -26,10 +26,8 @@ and open the template in the editor.
 
                 <p:panel header="#{formReport006Controller.reportTitle}" style="width: 100%;">
                     <p:messages id="REPORT_006msgFrmDetails"></p:messages>
-                    <f:facet name="header"  class="txtLeft">
-                        <p:commandButton value="เพิ่มข้อมูล" rendered="#{formReport006Controller.paramMode=='edit' or formReport006Controller.paramMode=='create'}" oncomplete="REPORT_006dlgAddReportDetail.show()" update="REPORT_006pn_addReportDetail" actionListener="#{formReport006Controller.initReportDetail()}"/>
-                    </f:facet>
-
+                    <p:commandButton value="เพิ่มข้อมูล" rendered="#{formReport006Controller.paramMode=='edit' or formReport006Controller.paramMode=='create'}" oncomplete="REPORT_006dlgAddReportDetail.show()" update="REPORT_006pn_addReportDetail" action="#{formReport006Controller.initReportDetail()}"/>
+             
                     <div style="width: 1000px;overflow-x: scroll">
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_006pnlFrm">
                             <p:dataTable var="item" value="#{formReport006Controller.report006Details}" id="REPORT_006Grid" 
@@ -56,6 +54,7 @@ and open the template in the editor.
                                         <p:column style="text-align: center" headerText="บรรจุวาระแล้ว (เรื่อง)"></p:column>
                                         <p:column style="text-align: center" headerText="เป็นมติ (เรื่อง)"></p:column>
                                         <p:column style="text-align: center" headerText="เป็นความเห็น (เรื่อง)"></p:column>
+                                        <p:column style="text-align: center" headerText="หมายเหตุ (มติครั้งที่)"></p:column>
                                     </p:row>
                                 </p:columnGroup>
 
@@ -132,6 +131,16 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
+                                <p:column style="text-align: right">
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{item.remark}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:inputText value="#{item.remark}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
                                 <p:column rendered="#{formReport006Controller.paramMode!='view'}">  
                                     <p:rowEditor />  
                                 </p:column> 
@@ -197,6 +206,9 @@ and open the template in the editor.
 
                         <h:outputLabel value="เป็นความเห็น (เรื่อง) *" />  
                         <totoland:inputNumber id="REPORT_006lb8" value="#{formReport006Controller.inputReport006Detail.comment}" />
+                        
+                        <h:outputLabel value="หมายเหตุ (มติครั้งที่) *" />  
+                        <totoland:inputNumber id="REPORT_006lb88" value="#{formReport006Controller.inputReport006Detail.remark}" />
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport006Controller.addReportDetail(actionEvent)}" update="REPORT_006msgAddReportDetail,REPORT_006Grid" icon="ui-icon-check" style="margin:0"/>  
