@@ -35,7 +35,7 @@ and open the template in the editor.
                                          rowIndexVar="index" editable="true" paginator="true" rows="10" emptyMessage="#{msg.no_data_found}"  
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                          rowsPerPageTemplate="5,10,15"> 
-                                <p:ajax event="rowEdit" listener="#{formReport006Controller.onEdit}" oncomplete="updateFooter()"/>  
+                                <p:ajax event="rowEdit" listener="#{formReport006Controller.onEdit}" update=":form1:REPORT_006Grid"/>  
                                 <p:ajax event="rowEditCancel" listener="#{formReport006Controller.onCancel}"/>
 
                                 <p:columnGroup type="header"> 
@@ -45,8 +45,9 @@ and open the template in the editor.
                                         <p:column rowspan="2" style="text-align: center;vertical-align: middle" headerText="จำนวน (เรื่อง)"></p:column>
                                         <p:column colspan="3" style="text-align: center" headerText="สถานะของเรื่องที่ยังไม่ได้พิจารณา"></p:column>
                                         <p:column colspan="2" style="text-align: center" headerText="จำนวนเรื่องที่ผ่านการพิจารณาแล้ว"></p:column>
-                                        <p:column rowspan="2" headerText="แก้ไข" rendered="#{formReport006Controller.paramMode=='edit'}"></p:column>
-                                        <p:column rowspan="2" headerText="ลบ" rendered="#{formReport006Controller.paramMode=='edit'}"></p:column>
+                                        <p:column rowspan="2" style="text-align: center" headerText="หมายเหตุ (มติครั้งที่)"></p:column>
+                                        <p:column rowspan="2" headerText="แก้ไข" rendered="#{formReport006Controller.paramMode!='view'}"></p:column>
+                                        <p:column rowspan="2" headerText="ลบ" rendered="#{formReport006Controller.paramMode!='view'}"></p:column>
                                     </p:row>
                                     <p:row>  
                                         <p:column style="text-align: center" headerText="เสนอผู้บริหาร สนง. (เรื่อง)"></p:column>
@@ -54,7 +55,6 @@ and open the template in the editor.
                                         <p:column style="text-align: center" headerText="บรรจุวาระแล้ว (เรื่อง)"></p:column>
                                         <p:column style="text-align: center" headerText="เป็นมติ (เรื่อง)"></p:column>
                                         <p:column style="text-align: center" headerText="เป็นความเห็น (เรื่อง)"></p:column>
-                                        <p:column style="text-align: center" headerText="หมายเหตุ (มติครั้งที่)"></p:column>
                                     </p:row>
                                 </p:columnGroup>
 
@@ -161,11 +161,12 @@ and open the template in the editor.
                                         <p:column style="text-align: right" footerText="${formReport006Controller.sumDetail.submited}"></p:column>
                                         <p:column style="text-align: right" footerText="${formReport006Controller.sumDetail.conclusion}"></p:column>
                                         <p:column style="text-align: right" footerText="${formReport006Controller.sumDetail.comment}"></p:column>
+                                        <p:column colspan="3" style="text-align: center" footerText=""></p:column>
                                     </p:row>
                                 </p:columnGroup>
 
                             </p:dataTable>
-                            <p:remoteCommand name="updateFooter" update=":form1:REPORT_006Grid"></p:remoteCommand>
+                            <p:remoteCommand name="updateFooter" update=":form1:REPORT_006Grid" action="#{formReport006Controller.sumReport006Details()}"></p:remoteCommand>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
                                 <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
                                 <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       

@@ -34,8 +34,17 @@ and open the template in the editor.
 
                         <script>
                             //<![CDATA[
+                            function sum(obj) {
+                                if (obj.value != 0) {
+                                    calSum();
+                                }
+                                return false;
+                            }
                             //]]>
                         </script>
+
+                        <p:remoteCommand name="calSum" update="REPORT_018pnlFrm" onstart="blogui018.show()" oncomplete="blogui018.hide()" actionListener="#{formReport018Controller.sumReport018Details()}">
+                        </p:remoteCommand>
 
 
                         <p:panelGrid styleClass="frmDetail" id="REPORT_018pnlFrm">
@@ -43,19 +52,19 @@ and open the template in the editor.
                                 <p:row>  
                                     <p:column rowspan="2" style="text-align: center;">ลำดับ</p:column>
                                     <p:column colspan="4" style="text-align: center;">รายละเอียดการแจ้งอนุมัติ</p:column>
-                                    <p:column colspan="6" style="text-align: center;">เลือกตั้ง/งบประมาณ</p:column>
+                                    <p:column colspan="6" style="text-align: center;">การเลือกตั้ง/งบประมาณ</p:column>
                                 </p:row>
                                 <p:row>
                                     <p:column style="text-align: center;">สนง.กกต.จว (แห่ง)</p:column>
                                     <p:column style="text-align: center;">จำนวนออช./โครงการ</p:column>
                                     <p:column style="text-align: center;">อปท.</p:column>
-                                    <p:column style="text-align: center;">จำนวน (แห่ง)</p:column>
-                                    <p:column style="text-align: center;">ครบวาระ (แห่ง)</p:column>
-                                    <p:column style="text-align: center;">งบประมาณ (บาท)</p:column>
-                                    <p:column style="text-align: center;">เลือกตั้งใหม่ (แห่ง)</p:column>
-                                    <p:column style="text-align: center;">งบประมาณ (บาท)</p:column>
-                                    <p:column style="text-align: center;">แทนตำแหน่งที่ว่าง (แห่ง)</p:column>
-                                    <p:column style="text-align: center;">งบประมาณ (บาท)</p:column>
+                                    <p:column style="text-align: center;">จำนวน (แห่ง) (1)</p:column>
+                                    <p:column style="text-align: center;">ครบวาระ (แห่ง) (2)</p:column>
+                                    <p:column style="text-align: center;">งบประมาณ (บาท) (3)</p:column>
+                                    <p:column style="text-align: center;">เลือกตั้งใหม่ (แห่ง) (4)</p:column>
+                                    <p:column style="text-align: center;">งบประมาณ (บาท) (5)</p:column>
+                                    <p:column style="text-align: center;">แทนตำแหน่งที่ว่าง (แห่ง) (6)</p:column>
+                                    <p:column style="text-align: center;">งบประมาณ (บาท) (7)</p:column>
                                 </p:row>
                             </f:facet>
                             <p:row>
@@ -63,34 +72,34 @@ and open the template in the editor.
                                     <h:outputText value="1"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].ectDepProvince}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].ectDepProvince}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].oocAmount}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].oocAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[0].laas}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].laasAmount}"/>
+                                    <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[0].laasAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].fullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].budgetFullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].budgetFullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].newElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].newElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].budgetElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].budgetElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].replaceEmplyPosition}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].replaceEmplyPosition}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].replaceBudget}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].replaceBudget}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -98,34 +107,34 @@ and open the template in the editor.
                                     <h:outputText value="2"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].ectDepProvince}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].ectDepProvince}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].oocAmount}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].oocAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[1].laas}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].laasAmount}"/>
+                                    <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[1].laasAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].fullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].budgetFullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].budgetFullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].newElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].newElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].budgetElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].budgetElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].replaceEmplyPosition}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].replaceEmplyPosition}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].replaceBudget}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].replaceBudget}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -133,34 +142,34 @@ and open the template in the editor.
                                     <h:outputText value="3"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].ectDepProvince}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].ectDepProvince}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].oocAmount}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].oocAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[2].laas}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].laasAmount}"/>
+                                    <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[2].laasAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].fullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].budgetFullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].budgetFullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].newElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].newElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].budgetElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].budgetElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].replaceEmplyPosition}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].replaceEmplyPosition}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].replaceBudget}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].replaceBudget}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -168,34 +177,34 @@ and open the template in the editor.
                                     <h:outputText value="4"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].ectDepProvince}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].ectDepProvince}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].oocAmount}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].oocAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[3].laas}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].laasAmount}"/>
+                                    <h:outputText value="#{formReport018Controller.report018Details[3].laasAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].fullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].budgetFullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].budgetFullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].newElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].newElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].budgetElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].budgetElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].replaceEmplyPosition}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].replaceEmplyPosition}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].replaceBudget}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].replaceBudget}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -203,34 +212,34 @@ and open the template in the editor.
                                     <h:outputText value="5"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].ectDepProvince}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].ectDepProvince}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].oocAmount}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].oocAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[4].laas}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].laasAmount}"/>
+                                    <h:outputText value="#{formReport018Controller.report018Details[4].laasAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].fullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].budgetFullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].budgetFullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].newElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].newElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].budgetElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].budgetElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].replaceEmplyPosition}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].replaceEmplyPosition}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].replaceBudget}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].replaceBudget}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -238,34 +247,34 @@ and open the template in the editor.
                                     <h:outputText value="6"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].ectDepProvince}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].ectDepProvince}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].oocAmount}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].oocAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[5].laas}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].laasAmount}"/>
+                                    <h:outputText value="#{formReport018Controller.report018Details[5].laasAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].fullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].budgetFullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].budgetFullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].newElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].newElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].budgetElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].budgetElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].replaceEmplyPosition}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].replaceEmplyPosition}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].replaceBudget}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].replaceBudget}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -273,40 +282,40 @@ and open the template in the editor.
                                     <h:outputText value="7"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].ectDepProvince}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].ectDepProvince}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].oocAmount}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].oocAmount}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[6].laas}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].laasAmount}"/>
+                                    <h:outputText value="#{formReport018Controller.report018Details[6].laasAmount}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].fullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].fullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].budgetFullTerm}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].budgetFullTerm}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].newElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].newElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].budgetElection}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].budgetElection}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].replaceEmplyPosition}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].replaceEmplyPosition}"/>
                                 </p:column>
                                 <p:column>
-                                    <totoland:inputNumber disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].replaceBudget}"/>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].replaceBudget}"/>
                                 </p:column>
                             </p:row>
                             
                             <p:row>
                                 <p:column>
-                                    <p:commandButton value="รวม" action="#{formReport018Controller.sumReport018Details()}" update="REPORT_018pnlFrm"/>
+                                    <h:outputLabel value="รวม"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputLabel value="#{formReport018Controller.sumDetail.ectDepProvince}"/>
