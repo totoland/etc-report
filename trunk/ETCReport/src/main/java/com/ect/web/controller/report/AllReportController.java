@@ -48,6 +48,7 @@ import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +64,7 @@ import javax.faces.event.ActionEvent;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jxls.exception.ParsePropertyException;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.primefaces.component.datatable.DataTable;
@@ -100,12 +102,12 @@ public class AllReportController extends BaseFormReportController {
 
         logger.trace("Search!!");
         logger.trace("Criteria : {}", reportCriteria);
-        
-        if(!StringUtils.isBlank(reportCriteria.getMonth())){
+
+        if (!StringUtils.isBlank(reportCriteria.getMonth())) {
             reportCriteria.setMonth(reportCriteria.getMonth());
         }
-        if(!StringUtils.isBlank(reportCriteria.getYear())){
-            reportCriteria.setYear(Integer.parseInt(reportCriteria.getYear())-543+"");
+        if (!StringUtils.isBlank(reportCriteria.getYear())) {
+            reportCriteria.setYear(Integer.parseInt(reportCriteria.getYear()) - 543 + "");
         }
 
         final Integer count = reportService.countByCriteria(reportCriteria);
@@ -169,63 +171,63 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report001Detail>());
 
             } else {
-                
-                for(DropDownList ddl : dropdownFactory.ddlStrategic()){
-                    
-                    if(ddl.getValue().equals(report001.getStrategicId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlStrategic()) {
+
+                    if (ddl.getValue().equals(report001.getStrategicId() + "")) {
+
                         beans.put("strategic", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlSubStrategic()){
-                    
-                    if(ddl.getValue().equals(report001.getSubStrategicId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlSubStrategic()) {
+
+                    if (ddl.getValue().equals(report001.getSubStrategicId() + "")) {
+
                         beans.put("subStrategic", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlPlan()){
-                    
-                    if(ddl.getValue().equals(report001.getPlanId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlPlan()) {
+
+                    if (ddl.getValue().equals(report001.getPlanId() + "")) {
+
                         beans.put("plan", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlProject()){
-                    
-                    if(ddl.getValue().equals(report001.getProjectId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlProject()) {
+
+                    if (ddl.getValue().equals(report001.getProjectId() + "")) {
+
                         beans.put("project", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlActivity()){
-                    
-                    if(ddl.getValue().equals(report001.getActivityId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlActivity()) {
+
+                    if (ddl.getValue().equals(report001.getActivityId() + "")) {
+
                         beans.put("activity", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(int i=0;i<report001.getReport001DetailList().size();i++){
-                    report001.getReport001DetailList().get(i).setKey(i+1);
+
+                for (int i = 0; i < report001.getReport001DetailList().size(); i++) {
+                    report001.getReport001DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report001.getReport001DetailList());
-                
+
             }
         } else if (viewReportStatus.getReportCode().equals(REPORT_002)) {
 
@@ -240,56 +242,60 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
-                for(DropDownList ddl : dropdownFactory.ddlStrategic()){
-                    
-                    if(ddl.getValue().equals(report002.getStrategicId()+"")){
-                        
+                for (DropDownList ddl : dropdownFactory.ddlStrategic()) {
+
+                    if (ddl.getValue().equals(report002.getStrategicId() + "")) {
+
                         beans.put("strategic", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlSubStrategic()){
-                    
-                    if(ddl.getValue().equals(report002.getSubStrategicId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlSubStrategic()) {
+
+                    if (ddl.getValue().equals(report002.getSubStrategicId() + "")) {
+
                         beans.put("subStrategic", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlPlan()){
-                    
-                    if(ddl.getValue().equals(report002.getPlanId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlPlan()) {
+
+                    if (ddl.getValue().equals(report002.getPlanId() + "")) {
+
                         beans.put("plan", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlProject()){
-                    
-                    if(ddl.getValue().equals(report002.getProjectId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlProject()) {
+
+                    if (ddl.getValue().equals(report002.getProjectId() + "")) {
+
                         beans.put("project", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
-                for(DropDownList ddl : dropdownFactory.ddlActivity()){
-                    
-                    if(ddl.getValue().equals(report002.getActivityId()+"")){
-                        
+
+                for (DropDownList ddl : dropdownFactory.ddlActivity()) {
+
+                    if (ddl.getValue().equals(report002.getActivityId() + "")) {
+
                         beans.put("activity", ddl.getName());
-                        
+
                     }
-                    
+
                 }
-                
+
+                for (int i = 0; i < report002.getReport002DetailList().size(); i++) {
+                    report002.getReport002DetailList().get(i).setKey(i + 1);
+                }
+
                 beans.put("details", report002.getReport002DetailList());
 
             }
@@ -306,6 +312,10 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report003Detail>());
 
             } else {
+
+                for (int i = 0; i < report003.getReport003DetailList().size(); i++) {
+                    report003.getReport003DetailList().get(i).setKey(i + 1);
+                }
 
                 beans.put("details", report003.getReport003DetailList());
 
@@ -324,6 +334,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report004.getReport004DetailList().size(); i++) {
+                    report004.getReport004DetailList().get(i).setKey(i + 1);
+                }
+
                 beans.put("details", report004.getReport004DetailList());
 
             }
@@ -339,6 +353,7 @@ public class AllReportController extends BaseFormReportController {
             if (report005 == null || report005.getReport005DetailList() == null || report005.getReport005DetailList().isEmpty()) {
 
                 logger.warn("Cannot find Report004 by Id : {}", viewReportStatus.getReportId());
+
                 beans.put("details", new ArrayList<Report004Detail>());
                 beans.put("details2", new ArrayList<Report004Detail>());
 
@@ -347,11 +362,18 @@ public class AllReportController extends BaseFormReportController {
                 List<Report005Detail> report005Details = new ArrayList<>();
                 List<Report005Detail> report005Details2 = new ArrayList<>();
 
+                int key1 = 1;
+                int key2 = 1;
+                
                 for (Report005Detail report005Detail : report005.getReport005DetailList()) {
 
-                    if (report005Detail.getElectedType() != null && report005Detail.getElectedType().intValue() == 1) {
+                    if (report005Detail.getElectedType() != null && report005Detail.getElectedType() == 1) {
+                        report005Detail.setKey(key1);
+                        key1++;
                         report005Details.add(report005Detail);
                     } else {
+                        report005Detail.setKey(key2);
+                        key2++;
                         report005Details2.add(report005Detail);
                     }
 
@@ -375,6 +397,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report006.getReport006DetailList().size(); i++) {
+                    report006.getReport006DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report006.getReport006DetailList());
 
             }
@@ -392,6 +418,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report007.getReport007DetailList().size(); i++) {
+                    report007.getReport007DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report007.getReport007DetailList());
 
             }
@@ -409,6 +439,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report008.getReport008DetailList().size(); i++) {
+                    report008.getReport008DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report008.getReport008DetailList());
 
             }
@@ -426,6 +460,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report009.getReport009DetailList().size(); i++) {
+                    report009.getReport009DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report009.getReport009DetailList());
 
             }
@@ -443,6 +481,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report010.getReport010DetailList().size(); i++) {
+                    report010.getReport010DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report010.getReport010DetailList());
 
             }
@@ -460,6 +502,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report011.getReport011DetailList().size(); i++) {
+                    report011.getReport011DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report011.getReport011DetailList());
 
             }
@@ -477,6 +523,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report012.getReport012DetailList().size(); i++) {
+                    report012.getReport012DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report012.getReport012DetailList());
 
             }
@@ -494,6 +544,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report013.getReport013DetailList().size(); i++) {
+                    report013.getReport013DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report013.getReport013DetailList());
 
             }
@@ -511,6 +565,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report014.getReport014DetailList().size(); i++) {
+                    report014.getReport014DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report014.getReport014DetailList());
 
             }
@@ -528,6 +586,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report015.getReport015DetailList().size(); i++) {
+                    report015.getReport015DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report015.getReport015DetailList());
 
             }
@@ -545,6 +607,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report016.getReport016DetailList().size(); i++) {
+                    report016.getReport016DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report016.getReport016DetailList());
 
             }
@@ -562,6 +628,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report017.getReport017DetailList().size(); i++) {
+                    report017.getReport017DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report017.getReport017DetailList());
 
             }
@@ -596,6 +666,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report019.getReport019DetailList().size(); i++) {
+                    report019.getReport019DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report019.getReport019DetailList());
 
             }
@@ -613,6 +687,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report020.getReport020DetailList().size(); i++) {
+                    report020.getReport020DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report020.getReport020DetailList());
 
             }
@@ -630,6 +708,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report021.getReport021DetailList().size(); i++) {
+                    report021.getReport021DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report021.getReport021DetailList());
 
             }
@@ -647,6 +729,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report022.getReport022DetailList().size(); i++) {
+                    report022.getReport022DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report022.getReport022DetailList());
 
             }
@@ -664,6 +750,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report023.getReport023DetailList().size(); i++) {
+                    report023.getReport023DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report023.getReport023DetailList());
 
             }
@@ -685,13 +775,13 @@ public class AllReportController extends BaseFormReportController {
             response.setContentType("application/vnd.ms-excel");
             response.setHeader("Content-Disposition", "attachment; filename=\"" + reportName + "" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
 
-            ServletOutputStream out = response.getOutputStream();
-            wb.write(out);
-            out.flush();
-            out.close();
+            try (ServletOutputStream out = response.getOutputStream()) {
+                wb.write(out);
+                out.flush();
+            }
 
             ctx.responseComplete();
-        } catch (Exception ex) {
+        } catch (ParsePropertyException | IOException ex) {
 
             JsfUtil.alertJavaScript(MessageUtils.getString("error", ex.getMessage()));
             logger.error("cannot export report", ex);

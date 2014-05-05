@@ -468,7 +468,7 @@ public class FormReport006Controller extends BaseFormReportController {
         report006Detail4.setSubmitManager(0);
         report006Detail4.setSubmitPresidentEct(0);
         report006Detail4.setSubmited(0);
-        report006Detail4.setTitle("ตอบข้อหารือเรื่อง");
+        report006Detail4.setTitle("ตอบข้อหารือ");
         report006Detail4.setReportId(report006);
 
         report006Details.add(report006Detail1);
