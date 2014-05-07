@@ -9,13 +9,11 @@ import com.ect.db.report.entity.Report020Detail;
 import com.ect.db.report.entity.Report020;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.service.ReportGennericService;
-import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -441,12 +439,18 @@ public class FormReport020Controller extends BaseFormReportController {
         rpt023dtl5.setList("");
         Report020Detail rpt023dtl6 = new Report020Detail();
         rpt023dtl6.setList("");
+        Report020Detail rpt023dtl7 = new Report020Detail();
+        rpt023dtl7.setList("");
+        Report020Detail rpt023dtl8 = new Report020Detail();
+        rpt023dtl8.setList("");
         report020Details.add(rpt023dtl1);
         report020Details.add(rpt023dtl2);
         report020Details.add(rpt023dtl3);
         report020Details.add(rpt023dtl4);
         report020Details.add(rpt023dtl5);
         report020Details.add(rpt023dtl6);
+        report020Details.add(rpt023dtl7);
+        report020Details.add(rpt023dtl8);
 
         for (int i = 0; i < report020Details.size(); i++) {
             report020Details.get(i).setReportId(report020);

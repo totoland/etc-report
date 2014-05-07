@@ -119,6 +119,13 @@ public abstract class BaseFormReportController extends BaseController {
     }
     
     /**
+     * Close dialogEdit
+     */
+    protected void closeIframePopup(){
+        JsfUtil.hidePopupIframe("dialogEdit");
+    }
+    
+    /**
      * *
      * AddReportDetail to Grid
      * @param actionEvent
@@ -270,7 +277,7 @@ public abstract class BaseFormReportController extends BaseController {
 
         return false;
     }
-
+    
     /**
      * @return the ectConfManager
      */

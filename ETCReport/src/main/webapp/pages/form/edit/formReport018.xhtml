@@ -51,12 +51,13 @@ and open the template in the editor.
                             <f:facet name="header">
                                 <p:row>  
                                     <p:column rowspan="2" style="text-align: center;">ลำดับ</p:column>
-                                    <p:column colspan="4" style="text-align: center;">รายละเอียดการแจ้งอนุมัติ</p:column>
+                                    <p:column colspan="5" style="text-align: center;">รายละเอียดการแจ้งอนุมัติ</p:column>
                                     <p:column colspan="6" style="text-align: center;">การเลือกตั้ง/งบประมาณ</p:column>
                                 </p:row>
                                 <p:row>
                                     <p:column style="text-align: center;">สนง.กกต.จว (แห่ง)</p:column>
-                                    <p:column style="text-align: center;">จำนวนออช./โครงการ</p:column>
+                                    <p:column style="text-align: center;">จำนวนออช.</p:column>
+                                    <p:column style="text-align: center;">โครงการ</p:column>
                                     <p:column style="text-align: center;">อปท.</p:column>
                                     <p:column style="text-align: center;">จำนวน (แห่ง) (1)</p:column>
                                     <p:column style="text-align: center;">ครบวาระ (แห่ง) (2)</p:column>
@@ -76,6 +77,9 @@ and open the template in the editor.
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].oocAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[0].project}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[0].laas}"/>
@@ -113,6 +117,9 @@ and open the template in the editor.
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].oocAmount}"/>
                                 </p:column>
                                 <p:column>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[1].project}"/>
+                                </p:column>
+                                <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[1].laas}"/>
                                 </p:column>
                                 <p:column>
@@ -146,6 +153,9 @@ and open the template in the editor.
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].oocAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[2].project}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[2].laas}"/>
@@ -183,6 +193,9 @@ and open the template in the editor.
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].oocAmount}"/>
                                 </p:column>
                                 <p:column>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[3].project}"/>
+                                </p:column>
+                                <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[3].laas}"/>
                                 </p:column>
                                 <p:column>
@@ -216,6 +229,9 @@ and open the template in the editor.
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].oocAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[4].project}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[4].laas}"/>
@@ -253,6 +269,9 @@ and open the template in the editor.
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].oocAmount}"/>
                                 </p:column>
                                 <p:column>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[5].project}"/>
+                                </p:column>
+                                <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[5].laas}"/>
                                 </p:column>
                                 <p:column>
@@ -286,6 +305,9 @@ and open the template in the editor.
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].oocAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <totoland:inputNumber onchange="calSum()" disabled="#{formReport018Controller.paramMode=='view'}" style="width:80px" value="#{formReport018Controller.report018Details[6].project}"/>
                                 </p:column>
                                 <p:column>
                                     <h:outputText style="width:80px" value="#{formReport018Controller.report018Details[6].laas}"/>
@@ -322,6 +344,9 @@ and open the template in the editor.
                                 </p:column>
                                 <p:column>
                                     <h:outputLabel value="#{formReport018Controller.sumDetail.oocAmount}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputLabel value="#{formReport018Controller.sumDetail.project}"/>
                                 </p:column>
                                 <p:column>
                                     

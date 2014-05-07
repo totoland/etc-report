@@ -108,6 +108,28 @@ and open the template in the editor.
                                     <p:column><totoland:inputNumber onchange="calSum()" disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[5].approve}"/></p:column>  
                                 </p:row>
                                 <p:row>
+                                    <p:column>
+                                        <p:inputText id="project6" value="#{formReport020Controller.report020Details[6].list}"/>
+                                        <p:watermark for="project6" value="อื่นๆโปรดระบุ.." />  
+                                    </p:column>  
+                                    <p:column>
+                                        <p:inputText value="#{formReport020Controller.report020Details[6].project}" disabled="#{formReport020Controller.paramMode=='view'}"/>
+                                    </p:column>  
+                                    <p:column><totoland:inputNumber onchange="calSum()" disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[6].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber onchange="calSum()" disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[6].approve}"/></p:column>  
+                                </p:row>
+                                <p:row>
+                                    <p:column>
+                                        <p:inputText id="project7" value="#{formReport020Controller.report020Details[7].list}"/>
+                                        <p:watermark for="project7" value="อื่นๆโปรดระบุ.." />  
+                                    </p:column>  
+                                    <p:column>
+                                        <p:inputText value="#{formReport020Controller.report020Details[7].project}" disabled="#{formReport020Controller.paramMode=='view'}"/>
+                                    </p:column>  
+                                    <p:column><totoland:inputNumber onchange="calSum()" disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[7].support}"/></p:column>  
+                                    <p:column><totoland:inputNumber onchange="calSum()" disabled="#{formReport020Controller.paramMode=='view'}" value="#{formReport020Controller.report020Details[7].approve}"/></p:column>  
+                                </p:row>
+                                <p:row>
                                     <p:column><h:outputLabel value="รวม"/></p:column>  
                                     <p:column></p:column>  
                                     <p:column><h:outputLabel value="#{formReport020Controller.sumDetail.support}"/></p:column>  

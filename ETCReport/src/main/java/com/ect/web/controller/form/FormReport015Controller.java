@@ -492,7 +492,7 @@ public class FormReport015Controller extends BaseFormReportController {
         sumDetail.setStAmount(0);
         
         for (int i = 0; i < report015Details.size(); i++) {
-            report015Details.get(i).setSumAmount(report015Details.get(i).getStAmount()+report015Details.get(i).getPtAmount());
+            report015Details.get(i).setSumAmount(NumberUtils.convertNUllToZero(report015Details.get(i).getStAmount())+NumberUtils.convertNUllToZero(report015Details.get(i).getPtAmount()));
             
             sumDetail.setMeetingTime(sumDetail.getMeetingTime()+NumberUtils.convertNUllToZero(report015Details.get(i).getMeetingTime()));
             sumDetail.setPtAmount(sumDetail.getPtAmount()+NumberUtils.convertNUllToZero(report015Details.get(i).getPtAmount()));
