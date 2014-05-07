@@ -46,6 +46,9 @@ public class Report021Detail extends DomainEntity implements Serializable {
     @Column(name = "OPERATION_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date operationDate;
+    @Column(name = "OPERATION_DATE_UNTIL")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date operationDateUntil;
     @Column(name = "OBTAINED")
     private Integer obtained;
     @Column(name = "RESULT")
@@ -147,8 +150,22 @@ public class Report021Detail extends DomainEntity implements Serializable {
         return true;
     }
 
+    /**
+     * @return the operationDateUntil
+     */
+    public Date getOperationDateUntil() {
+        return operationDateUntil;
+    }
+
+    /**
+     * @param operationDateUntil the operationDateUntil to set
+     */
+    public void setOperationDateUntil(Date operationDateUntil) {
+        this.operationDateUntil = operationDateUntil;
+    }
+
     @Override
     public String toString() {
-        return "Report021Detail{" + "reportDetailId=" + reportDetailId + ", orderNo=" + orderNo + ", inspector=" + inspector + ", operationDate=" + operationDate + ", obtained=" + obtained + ", result=" + result + ", advice=" + advice + '}';
+        return "Report021Detail{" + "reportDetailId=" + reportDetailId + ", orderNo=" + orderNo + ", inspector=" + inspector + ", operationDate=" + operationDate + ", operationDateUntil=" + operationDateUntil + ", obtained=" + obtained + ", result=" + result + ", advice=" + advice + '}';
     }
 }

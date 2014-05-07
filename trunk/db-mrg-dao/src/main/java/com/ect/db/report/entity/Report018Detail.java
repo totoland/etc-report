@@ -40,6 +40,8 @@ public class Report018Detail extends DomainEntity implements Serializable {
     private Integer ectDepProvince;
     @Column(name = "OOC_AMOUNT")
     private Integer oocAmount;
+    @Column(name = "PROJECT")
+    private Integer project;
     @Column(name = "LAAS")
     private String laas;
     @Column(name = "LAAS_AMOUNT")
@@ -183,9 +185,22 @@ public class Report018Detail extends DomainEntity implements Serializable {
         return true;
     }
 
+    /**
+     * @return the project
+     */
+    public Integer getProject() {
+        return project;
+    }
+
+    /**
+     * @param project the project to set
+     */
+    public void setProject(Integer project) {
+        this.project = project;
+    }
+
     @Override
     public String toString() {
-        return "Report018Detail{" + "reportDetailId=" + reportDetailId + ", ectDepProvince=" + ectDepProvince + ", oocAmount=" + oocAmount + ", laas=" + laas + ", laasAmount=" + laasAmount + ", fullTerm=" + fullTerm + ", budgetFullTerm=" + budgetFullTerm + ", newElection=" + newElection + ", budgetElection=" + budgetElection + ", replaceEmplyPosition=" + replaceEmplyPosition + ", replaceBudget=" + replaceBudget + '}';
+        return "Report018Detail{" + "reportDetailId=" + reportDetailId + ", ectDepProvince=" + ectDepProvince + ", oocAmount=" + oocAmount + ", project=" + project + ", laas=" + laas + ", laasAmount=" + laasAmount + ", fullTerm=" + fullTerm + ", budgetFullTerm=" + budgetFullTerm + ", newElection=" + newElection + ", budgetElection=" + budgetElection + ", replaceEmplyPosition=" + replaceEmplyPosition + ", replaceBudget=" + replaceBudget + '}';
     }
-    
 }

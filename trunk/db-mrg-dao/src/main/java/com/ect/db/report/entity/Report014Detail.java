@@ -56,6 +56,8 @@ public class Report014Detail extends DomainEntity implements Serializable {
     private Integer onAgenda;
     @Column(name = "SEND_REQUEST")
     private Integer sendRequest;
+    @Column(name = "REMARK")
+    private String remark;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
     @ManyToOne
     private Report014 reportId;
@@ -183,9 +185,22 @@ public class Report014Detail extends DomainEntity implements Serializable {
         return true;
     }
 
+    /**
+     * @return the remark
+     */
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * @param remark the remark to set
+     */
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
-        return "Report014Detail{" + "reportDetailId=" + reportDetailId + ", institution=" + institution + ", allAmount=" + allAmount + ", atCenter=" + atCenter + ", atEctProvince=" + atEctProvince + ", ectResolve=" + ectResolve + ", analystRemain=" + analystRemain + ", offerEct=" + offerEct + ", accessCommittee=" + accessCommittee + ", onAgenda=" + onAgenda + ", sendRequest=" + sendRequest + '}';
+        return "Report014Detail{" + "reportDetailId=" + reportDetailId + ", institution=" + institution + ", allAmount=" + allAmount + ", atCenter=" + atCenter + ", atEctProvince=" + atEctProvince + ", ectResolve=" + ectResolve + ", analystRemain=" + analystRemain + ", offerEct=" + offerEct + ", accessCommittee=" + accessCommittee + ", onAgenda=" + onAgenda + ", sendRequest=" + sendRequest + ", remark=" + remark + '}';
     }
-    
 }

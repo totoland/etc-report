@@ -48,7 +48,7 @@ public class Report002Detail extends DomainEntity implements Serializable {
     private String result;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "BUDGET")
-    private BigDecimal budget;
+    private String budget;
     @Column(name = "BUGGET_SOURCE")
     private String buggetSource;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
@@ -102,11 +102,11 @@ public class Report002Detail extends DomainEntity implements Serializable {
         this.result = result;
     }
 
-    public BigDecimal getBudget() {
+    public String getBudget() {
         return budget;
     }
 
-    public void setBudget(BigDecimal budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 
