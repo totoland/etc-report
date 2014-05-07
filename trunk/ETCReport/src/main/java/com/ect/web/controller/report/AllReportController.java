@@ -378,7 +378,16 @@ public class AllReportController extends BaseFormReportController {
                     }
 
                 }
-
+                
+                String prefix = "x ";
+                String blank = "  ";
+                beans.put("isElected", report005.getIsElected()?prefix:blank);
+                beans.put("isElectedNormal", report005.getIsElectedNormal()?prefix:blank);
+                beans.put("isElectedVacancy", report005.getIsElectedVacancy()?prefix:blank);
+                beans.put("isSenElected", report005.getIsSenElected()?prefix:blank);
+                beans.put("isSenElectedNormal", report005.getIsSenElectedNormal()?prefix:blank);
+                beans.put("isSenElectedVacancy",report005.getIsSenElectedVacancy()?prefix:blank);
+                
                 beans.put("details", report005Details);
                 beans.put("details2", report005Details2);
 
@@ -649,6 +658,10 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                for (int i = 0; i < report018.getReport018DetailList().size(); i++) {
+                    report018.getReport018DetailList().get(i).setKey(i + 1);
+                }
+                
                 beans.put("details", report018.getReport018DetailList());
 
             }

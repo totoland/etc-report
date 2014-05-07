@@ -428,65 +428,65 @@ public class FormReport007Controller extends BaseFormReportController {
 
         Report007Detail report007Detail1 = new Report007Detail();
         report007Detail1.setTitle("1.รับรองการจัดตั้งพรรคการเมือง");
-        report007Detail1.setPoliticalPartyAmount(0);
-        report007Detail1.setStoryAmount(0);
-        report007Detail1.setBranchAmount(0);
+//        report007Detail1.setPoliticalPartyAmount(0);
+//        report007Detail1.setStoryAmount(0);
+//        report007Detail1.setBranchAmount(0);
         report007Detail1.setReportId(report007);
         
         Report007Detail report007Detail2 = new Report007Detail();
         report007Detail2.setTitle("2.รับรองการจัดตั้งสาขาพรรคการเมือง");
-        report007Detail2.setPoliticalPartyAmount(0);
-        report007Detail2.setStoryAmount(0);
-        report007Detail2.setBranchAmount(0);
+//        report007Detail2.setPoliticalPartyAmount(0);
+//        report007Detail2.setStoryAmount(0);
+//        report007Detail2.setBranchAmount(0);
         report007Detail2.setReportId(report007);
 
         Report007Detail report007Detail3 = new Report007Detail();
         report007Detail3.setTitle("3.ไม่รับรองการจัดตั้งพรรคการเมือง");
-        report007Detail3.setPoliticalPartyAmount(0);
-        report007Detail3.setStoryAmount(0);
-        report007Detail3.setBranchAmount(0);
+//        report007Detail3.setPoliticalPartyAmount(0);
+//        report007Detail3.setStoryAmount(0);
+//        report007Detail3.setBranchAmount(0);
         report007Detail3.setReportId(report007);
         
         Report007Detail report007Detail4 = new Report007Detail();
         report007Detail4.setTitle("4.ยกเลิกรับรองการจัดตั้งสาขาพรรคการเมือง");
-        report007Detail4.setPoliticalPartyAmount(0);
-        report007Detail4.setStoryAmount(0);
-        report007Detail4.setBranchAmount(0);
+//        report007Detail4.setPoliticalPartyAmount(0);
+//        report007Detail4.setStoryAmount(0);
+//        report007Detail4.setBranchAmount(0);
         report007Detail4.setReportId(report007);
         
         Report007Detail report007Detail5 = new Report007Detail();
         report007Detail5.setTitle("5.ตอบรับการเปลี่ยนแปลงตามมาตรา 41 ของ พระราชบัญญัติประกอบรัฐธรรมนูญว่าด้วย พรรคการเมือง พ.ศ. 2550");
-        report007Detail5.setPoliticalPartyAmount(0);
-        report007Detail5.setStoryAmount(0);
-        report007Detail5.setBranchAmount(0);
+//        report007Detail5.setPoliticalPartyAmount(0);
+//        report007Detail5.setStoryAmount(0);
+//        report007Detail5.setBranchAmount(0);
         report007Detail5.setReportId(report007);
         
         Report007Detail report007Detail6 = new Report007Detail();
         report007Detail6.setTitle("6.ดำเนินกิจการของพรรคการเมืองตามมาตรา 69 ของ พระราชบัญญัติประกอบรัฐธรรมนูญว่าด้วย พรรคการเมือง พ.ศ. 2550");
-        report007Detail6.setPoliticalPartyAmount(0);
-        report007Detail6.setStoryAmount(0);
-        report007Detail6.setBranchAmount(0);
+//        report007Detail6.setPoliticalPartyAmount(0);
+//        report007Detail6.setStoryAmount(0);
+//        report007Detail6.setBranchAmount(0);
         report007Detail6.setReportId(report007);
         
         Report007Detail report007Detail7 = new Report007Detail();
         report007Detail7.setTitle("");
-        report007Detail7.setPoliticalPartyAmount(0);
-        report007Detail7.setStoryAmount(0);
-        report007Detail7.setBranchAmount(0);
+//        report007Detail7.setPoliticalPartyAmount(0);
+//        report007Detail7.setStoryAmount(0);
+//        report007Detail7.setBranchAmount(0);
         report007Detail7.setReportId(report007);
         
         Report007Detail report007Detail8 = new Report007Detail();
         report007Detail8.setTitle("");
-        report007Detail8.setPoliticalPartyAmount(0);
-        report007Detail8.setStoryAmount(0);
-        report007Detail8.setBranchAmount(0);
+//        report007Detail8.setPoliticalPartyAmount(0);
+//        report007Detail8.setStoryAmount(0);
+//        report007Detail8.setBranchAmount(0);
         report007Detail8.setReportId(report007);
         
         Report007Detail report007Detail9 = new Report007Detail();
         report007Detail9.setTitle("");
-        report007Detail9.setPoliticalPartyAmount(0);
-        report007Detail9.setStoryAmount(0);
-        report007Detail9.setBranchAmount(0);
+//        report007Detail9.setPoliticalPartyAmount(0);
+//        report007Detail9.setStoryAmount(0);
+//        report007Detail9.setBranchAmount(0);
         report007Detail9.setReportId(report007);
 
         report007Details.add(report007Detail1);

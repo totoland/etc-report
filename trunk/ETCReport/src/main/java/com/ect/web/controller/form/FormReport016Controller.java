@@ -11,6 +11,7 @@ import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_V
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -489,9 +490,9 @@ public class FormReport016Controller extends BaseFormReportController {
         sumDetail.setPtAmount(0);
         
         for (int i = 0; i < report016Details.size(); i++) {
-            report016Details.get(i).setSumAmount(report016Details.get(i).getStAmount()+report016Details.get(i).getPtAmount());
-            sumDetail.setStAmount(sumDetail.getStAmount()+report016Details.get(i).getStAmount());
-            sumDetail.setPtAmount(sumDetail.getPtAmount()+report016Details.get(i).getPtAmount());
+            report016Details.get(i).setSumAmount(NumberUtils.convertNUllToZero(report016Details.get(i).getStAmount())+NumberUtils.convertNUllToZero(report016Details.get(i).getPtAmount()));
+            sumDetail.setStAmount(NumberUtils.convertNUllToZero(sumDetail.getStAmount())+NumberUtils.convertNUllToZero(report016Details.get(i).getStAmount()));
+            sumDetail.setPtAmount(NumberUtils.convertNUllToZero(sumDetail.getPtAmount())+NumberUtils.convertNUllToZero(report016Details.get(i).getPtAmount()));
         }
     }
     

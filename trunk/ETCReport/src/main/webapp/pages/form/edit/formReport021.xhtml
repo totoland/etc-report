@@ -18,6 +18,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
         <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
+        <ui:include src="../../../template/headScript.xhtml"/>
 
     </h:head>
     <h:body id="body021">
@@ -50,6 +51,7 @@ and open the template in the editor.
                                         <p:column style="text-align: center;vertical-align: middle" headerText="ลำดับ"></p:column>
                                         <p:column style="text-align: center;vertical-align: middle" headerText="ทีมตรวจการตรวจสอบฯ/นิเทศ"></p:column>  
                                         <p:column style="text-align: center;vertical-align: middle" headerText="ว.ด.ป.ที่ปฎิบัติ"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="ถึง ว.ด.ป.ที่ปฎิบัติ"></p:column>
                                         <p:column style="text-align: center;vertical-align: middle" headerText="หน่วยรับการตรวจฯ/จำนวน(แห่ง)"></p:column>
                                         <p:column style="text-align: center;vertical-align: middle" headerText="ข้อสังเกต/ผลการตรวจพบที่สำคัญ"></p:column>
                                         <p:column style="text-align: center;vertical-align: middle" headerText="ข้อแนะนำของทีมตรวจการ/ตรวจสอบภายใน/นิเทศ"></p:column>
@@ -76,6 +78,16 @@ and open the template in the editor.
                                         </f:facet>
                                         <f:facet name="input">  
                                             <p:calendar pattern="dd/MM/yyyy" value="#{item.operationDate}" />  
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+                                <p:column>
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <totoland:convertDateTime value="#{item.operationDateUntil}" />  
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:calendar pattern="dd/MM/yyyy" value="#{item.operationDateUntil}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -144,7 +156,10 @@ and open the template in the editor.
                         <p:inputText id="REPORT_021lb01" value="#{formReport021Controller.inputReport021Detail.inspector}"/>  
 
                         <h:outputLabel value="ว.ด.ป.ที่ปฎิบัติ *"/>
-                        <p:calendar pattern="dd/MM/yyyy"  id="REPORT_021lb02" value="#{formReport021Controller.inputReport021Detail.operationDate}"/>  
+                        <p:calendar pattern="dd/MM/yyyy"   locale="th" id="REPORT_021lb02" value="#{formReport021Controller.inputReport021Detail.operationDate}"/>
+                        
+                        <h:outputLabel value="ถึง ว.ด.ป. *"/>
+                        <p:calendar pattern="dd/MM/yyyy"  locale="th" id="REPORT_021lb022" value="#{formReport021Controller.inputReport021Detail.operationDateUntil}"/>
 
                         <h:outputLabel value="หน่วยรับการตรวจฯ/จำนวน(แห่ง) *"/>
                         <totoland:inputNumber id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  

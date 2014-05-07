@@ -124,7 +124,7 @@ public class FormReport002Controller extends BaseFormReportController{
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_SUCCESS());
 
-            JsfUtil.hidePopup("REPORT_MainDialog_REPORT_002");
+            closeIframePopup();
 
         } catch (Exception ex) {
 
@@ -365,15 +365,16 @@ public class FormReport002Controller extends BaseFormReportController{
 
         String msg = "";
 
-        if (report002.getStrategicId().intValue() == -1) {
-            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
-        }
-        if (report002.getSubStrategicId().intValue() == -1) {
-            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
-        }
-        if (report002.getPlanId().intValue() == -1) {
-            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
-        }
+        //Todo Comment for request from ning 7/5/2557
+//        if (report002.getStrategicId().intValue() == -1) {
+//            msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
+//        }
+//        if (report002.getSubStrategicId().intValue() == -1) {
+//            msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
+//        }
+//        if (report002.getPlanId().intValue() == -1) {
+//            msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
+//        }
         if (report002.getReport002DetailList() == null || report002.getReport002DetailList().isEmpty()) {
             msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
         }

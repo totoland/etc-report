@@ -334,6 +334,9 @@ public class FormReport021Controller extends BaseFormReportController {
         if (null == inputReport021Detail.getOperationDate()) {
             msg += "กรุณาระบุว.ด.ป.ที่ปฎิบัติ<br/>";
         }
+        if (null == inputReport021Detail.getOperationDateUntil()) {
+            msg += "กรุณาระบุถึงว.ด.ป.<br/>";
+        }
         if (!NumberUtils.isNumber(inputReport021Detail.getObtained()) || inputReport021Detail.getObtained().intValue() == 0) {
             msg += "กรุณาระบุหน่วยรับการตรวจฯ/จำนวน(แห่ง)<br/>";
         }
