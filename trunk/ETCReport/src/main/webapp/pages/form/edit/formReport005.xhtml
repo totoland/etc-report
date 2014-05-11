@@ -164,7 +164,7 @@ and open the template in the editor.
                                 </p:column>
                                 
                                 <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voidedGoodPaper*100)/item.voterAmount}">
+                                    <h:outputText value="#{(item.voidedGoodPaper*100)/item.votedAmount}">
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>%
                                 </p:column>
@@ -181,7 +181,7 @@ and open the template in the editor.
                                 </p:column>
 
                                 <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}">
+                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.votedAmount}">
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>%
                                 </p:column>
@@ -198,7 +198,7 @@ and open the template in the editor.
                                 </p:column>
 
                                 <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.voterAmount}" >
+                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.votedAmount}" >
                                         <f:convertNumber pattern="#0.00 "/>
                                     </h:outputText>%
                                 </p:column>
@@ -221,7 +221,7 @@ and open the template in the editor.
                         </p:panelGrid>
                         <p:panelGrid columns="1" styleClass="frmDetail3" id="REPORT_005pnlFrm3" style="width: 100%">
                             <f:facet name="header"  class="txtLeft">
-                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport005Controller.paramMode=='edit' or formReport005Controller.paramMode=='create'}"/>
+                                <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_005pn_addReportDetail2.show()" update="REPORT_005pn_addReportDetail2" actionListener="#{formReport005Controller.initReportDetail()}" rendered="#{formReport005Controller.paramMode=='edit' or formReport005Controller.paramMode=='create'}"/>
                             </f:facet>
 
                             <p:dataTable var="item" value="#{formReport005Controller.report005Details2}" id="REPORT_005Grid2" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  

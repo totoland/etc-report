@@ -509,6 +509,12 @@ public class FormReport004Controller extends BaseFormReportController {
         
         for (Report004Detail rwDetail : report004Details) {
 
+            
+            //electionEarlierLastMonthSTh+electionEarlierCurMonthSTh = electionEarlierAmountSTh
+            //electionEarlierLastMonthPhTh+electionEarlierCurMonthPhTh = electionEarlierAmountPhTh
+            rwDetail.setElectionEarlierAmountSTh(NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthSTh())+NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthSTh()));
+            rwDetail.setElectionEarlierAmountPhTh(NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthPhTh())+NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthPhTh()));
+            
             getFooter().setAmountPhTh(getFooter().getAmountPhTh() + NumberUtils.convertNUllToZero(rwDetail.getAmountPhTh()));
             getFooter().setAmountSTh(getFooter().getAmountSTh() + NumberUtils.convertNUllToZero(rwDetail.getAmountSTh()));
             getFooter().setElectionBeforeAnnouncement(getFooter().getElectionBeforeAnnouncement() + NumberUtils.convertNUllToZero(rwDetail.getElectionBeforeAnnouncement()));
@@ -522,7 +528,6 @@ public class FormReport004Controller extends BaseFormReportController {
             getFooter().setFullTerm(getFooter().getFullTerm() + NumberUtils.convertNUllToZero(rwDetail.getFullTerm()));
 
         }
-
     }
 
     /**

@@ -6,6 +6,7 @@ package com.ect.web.controller.report;
 
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.common.entity.DropDownList;
+import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.entity.ViewUser;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report001Detail;
@@ -101,7 +102,6 @@ public class AllReportController extends BaseFormReportController {
     public void search() {
 
         logger.trace("Search!!");
-        logger.trace("Criteria : {}", reportCriteria);
 
         if (!StringUtils.isBlank(reportCriteria.getMonth())) {
             reportCriteria.setMonth(reportCriteria.getMonth());
@@ -109,6 +109,16 @@ public class AllReportController extends BaseFormReportController {
         if (!StringUtils.isBlank(reportCriteria.getYear())) {
             reportCriteria.setYear(Integer.parseInt(reportCriteria.getYear()) - 543 + "");
         }
+
+        ViewUser user = getUserAuthen();
+
+        if (user.getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
+
+            reportCriteria.setUserGroupId(user.getUserGroupId()+"");
+            
+        }
+
+        logger.trace("Criteria : {}", reportCriteria);
 
         final Integer count = reportService.countByCriteria(reportCriteria);
 
@@ -364,7 +374,7 @@ public class AllReportController extends BaseFormReportController {
 
                 int key1 = 1;
                 int key2 = 1;
-                
+
                 for (Report005Detail report005Detail : report005.getReport005DetailList()) {
 
                     if (report005Detail.getElectedType() != null && report005Detail.getElectedType() == 1) {
@@ -378,16 +388,16 @@ public class AllReportController extends BaseFormReportController {
                     }
 
                 }
-                
+
                 String prefix = "x ";
                 String blank = "  ";
-                beans.put("isElected", report005.getIsElected()?prefix:blank);
-                beans.put("isElectedNormal", report005.getIsElectedNormal()?prefix:blank);
-                beans.put("isElectedVacancy", report005.getIsElectedVacancy()?prefix:blank);
-                beans.put("isSenElected", report005.getIsSenElected()?prefix:blank);
-                beans.put("isSenElectedNormal", report005.getIsSenElectedNormal()?prefix:blank);
-                beans.put("isSenElectedVacancy",report005.getIsSenElectedVacancy()?prefix:blank);
-                
+                beans.put("isElected", report005.getIsElected() ? prefix : blank);
+                beans.put("isElectedNormal", report005.getIsElectedNormal() ? prefix : blank);
+                beans.put("isElectedVacancy", report005.getIsElectedVacancy() ? prefix : blank);
+                beans.put("isSenElected", report005.getIsSenElected() ? prefix : blank);
+                beans.put("isSenElectedNormal", report005.getIsSenElectedNormal() ? prefix : blank);
+                beans.put("isSenElectedVacancy", report005.getIsSenElectedVacancy() ? prefix : blank);
+
                 beans.put("details", report005Details);
                 beans.put("details2", report005Details2);
 
@@ -409,7 +419,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report006.getReport006DetailList().size(); i++) {
                     report006.getReport006DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report006.getReport006DetailList());
 
             }
@@ -430,7 +440,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report007.getReport007DetailList().size(); i++) {
                     report007.getReport007DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report007.getReport007DetailList());
 
             }
@@ -451,7 +461,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report008.getReport008DetailList().size(); i++) {
                     report008.getReport008DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report008.getReport008DetailList());
 
             }
@@ -472,7 +482,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report009.getReport009DetailList().size(); i++) {
                     report009.getReport009DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report009.getReport009DetailList());
 
             }
@@ -493,7 +503,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report010.getReport010DetailList().size(); i++) {
                     report010.getReport010DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report010.getReport010DetailList());
 
             }
@@ -514,7 +524,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report011.getReport011DetailList().size(); i++) {
                     report011.getReport011DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report011.getReport011DetailList());
 
             }
@@ -535,7 +545,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report012.getReport012DetailList().size(); i++) {
                     report012.getReport012DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report012.getReport012DetailList());
 
             }
@@ -556,7 +566,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report013.getReport013DetailList().size(); i++) {
                     report013.getReport013DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report013.getReport013DetailList());
 
             }
@@ -577,7 +587,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report014.getReport014DetailList().size(); i++) {
                     report014.getReport014DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report014.getReport014DetailList());
 
             }
@@ -598,7 +608,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report015.getReport015DetailList().size(); i++) {
                     report015.getReport015DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report015.getReport015DetailList());
 
             }
@@ -619,7 +629,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report016.getReport016DetailList().size(); i++) {
                     report016.getReport016DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report016.getReport016DetailList());
 
             }
@@ -640,7 +650,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report017.getReport017DetailList().size(); i++) {
                     report017.getReport017DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report017.getReport017DetailList());
 
             }
@@ -661,7 +671,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report018.getReport018DetailList().size(); i++) {
                     report018.getReport018DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report018.getReport018DetailList());
 
             }
@@ -682,7 +692,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report019.getReport019DetailList().size(); i++) {
                     report019.getReport019DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report019.getReport019DetailList());
 
             }
@@ -703,7 +713,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report020.getReport020DetailList().size(); i++) {
                     report020.getReport020DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report020.getReport020DetailList());
 
             }
@@ -724,7 +734,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report021.getReport021DetailList().size(); i++) {
                     report021.getReport021DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report021.getReport021DetailList());
 
             }
@@ -745,7 +755,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report022.getReport022DetailList().size(); i++) {
                     report022.getReport022DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report022.getReport022DetailList());
 
             }
@@ -766,7 +776,7 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report023.getReport023DetailList().size(); i++) {
                     report023.getReport023DetailList().get(i).setKey(i + 1);
                 }
-                
+
                 beans.put("details", report023.getReport023DetailList());
 
             }

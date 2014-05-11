@@ -48,6 +48,16 @@ public class LazyViewReportImpl extends LazyDataModel<ViewReportStatus> {
                 getReportCriteria().setSortOrder("DESC");
             }
 
+        }else{
+        
+            /***
+             * Default Order by ACTION_DATE DESC
+             */
+            logger.trace("Default Order by ACTION_DATE DESC");
+            
+            getReportCriteria().setSortField("ACTION_DATE");
+            getReportCriteria().setSortOrder("DESC");
+            
         }
 
 
