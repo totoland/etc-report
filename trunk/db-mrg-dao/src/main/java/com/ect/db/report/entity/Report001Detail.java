@@ -61,9 +61,9 @@ public class Report001Detail extends DomainEntity implements Serializable {
     @Column(name = "RESULT_TYPE")
     private String resultType;
     @Column(name = "RESULT_AMOUNT")
-    private Long resultAmount;
+    private String resultAmount;
     @Column(name = "PRACTICE_RESULT")
-    private Long practiceResult;
+    private String practiceResult;
     @Column(name = "IS_PASS")
     private Boolean isPass;
     @JoinColumn(name = "REPORT_ID", referencedColumnName = "REPORT_ID")
@@ -203,11 +203,11 @@ public class Report001Detail extends DomainEntity implements Serializable {
         this.resultType = resultType;
     }
 
-    public Long getResultAmount() {
+    public String getResultAmount() {
         return resultAmount;
     }
 
-    public void setResultAmount(Long resultAmount) {
+    public void setResultAmount(String resultAmount) {
         this.resultAmount = resultAmount;
     }
 
@@ -228,20 +228,20 @@ public class Report001Detail extends DomainEntity implements Serializable {
     /**
      * @return the practiceResult
      */
-    public Long getPracticeResult() {
+    public String getPracticeResult() {
         return practiceResult;
     }
 
     /**
      * @param practiceResult the practiceResult to set
      */
-    public void setPracticeResult(Long practiceResult) {
+    public void setPracticeResult(String practiceResult) {
         this.practiceResult = practiceResult;
     }
 
     @Override
     public String toString() {
-        return "Report001Detail{" + "reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", goalResult=" + goalResult + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", practiceResult=" + practiceResult + ", isPass=" + isPass + '}';
+        return "Report001Detail{ " + "reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", goalResult=" + goalResult + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", practiceResult=" + practiceResult + ", isPass=" + isPass + '}';
     }
 
     /**
