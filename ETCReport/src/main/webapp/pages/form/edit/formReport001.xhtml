@@ -110,9 +110,8 @@ and open the template in the editor.
                                         <p:column headerText="หน่วยนับ" />  
                                         <p:column headerText="แผน" />
                                         <p:column headerText="ผล" />
-                                        <p:column headerText="ตัวชี้วัด"/>
-                                        <p:column headerText="แผน" />
-                                        <p:column headerText="ผล" />
+                                        <p:column headerText="ตัวชี้วัด (แผน)" />
+                                        <p:column headerText="ตัวชี้วัด (ผล)" />
                                         <p:column headerText="ตั้งไว้" />
                                         <p:column headerText="จ่ายจริง" />
                                         <p:column colspan="2" headerText="ผ่าน/ไม่ผ่าน" />
@@ -167,7 +166,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column style="width:250px">  
+<!--                                <p:column style="width:250px">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.resultType}" />  
@@ -176,7 +175,7 @@ and open the template in the editor.
                                             <p:inputText value="#{item.resultType}" />  
                                         </f:facet>  
                                     </p:cellEditor>
-                                </p:column>
+                                </p:column>-->
 
                                 <p:column>  
                                     <p:cellEditor>  
@@ -258,7 +257,7 @@ and open the template in the editor.
                 </p:panel>
 
                 <p:dialog id="REPORT_001AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_001dlgAddReportDetail" modal="true" draggable="true">
-                    <p:panel style="height:400px;overflow: auto;">
+                    <p:panel style="height:400px;width: 370px;overflow: auto;">
                         <p:messages id="REPORT_001msgAddReportDetail" escape="false" closable="true"></p:messages>
                         <p:panelGrid columns="2" id="REPORT_001pn_addReportDetail">
 
@@ -274,14 +273,11 @@ and open the template in the editor.
                             <h:outputLabel value="ผล (เป้าหมาย)*" />  
                             <totoland:inputNumber id="REPORT_001lb3b" value="#{formReport001Controller.inputReport001Detail.goalResult}" />  
 
-                            <h:outputLabel value="ตัวชี้วัด (ผลการปฏิบัติงาน) *" />  
-                            <p:inputTextarea id="REPORT_001lb4" value="#{formReport001Controller.inputReport001Detail.resultType}" />  
+                            <h:outputLabel value="ตัวชี้วัด (แผน) *" />  
+                            <p:inputText id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
 
-                            <h:outputLabel value="แผน (ผลการปฏิบัติงาน) *" />  
-                            <totoland:inputNumber id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
-
-                            <h:outputLabel value="ผล (ผลการปฏิบัติงาน)*" />  
-                            <totoland:inputNumber id="REPORT_001lb5b" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
+                            <h:outputLabel value="ตัวชี้วัด (ผล) *" />  
+                            <p:inputText id="REPORT_001lb5b" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
 
                             <h:outputLabel value="งบประมาณตั้งไว้ *" />  
                             <totoland:inputNumber id="REPORT_001lb6" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 

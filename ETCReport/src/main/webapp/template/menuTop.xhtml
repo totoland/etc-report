@@ -30,8 +30,9 @@
                     </p:submenu>
                     
                     <f:facet name="options">
-                        <h:panelGrid columns="2">
-                            <p:button value="ยินดีต้อนรับ #{loginController.userAuthen.fname}" icon="ui-icon-person"/>
+                        <h:panelGrid columns="3">
+                            <p:button value="หน่วยงาน #{loginController.userAuthen.userGroupName}" icon="ui-icon-contact"/>
+                            <p:button value="ยินดีต้อนรับ #{loginController.userAuthen.fname} #{loginController.userAuthen.lname}" icon="ui-icon-person"/>
                             <p:button value="ออกจากระบบ" icon="ui-icon-extlink" onclick="return logout()"/>  
                         </h:panelGrid>
                     </f:facet>

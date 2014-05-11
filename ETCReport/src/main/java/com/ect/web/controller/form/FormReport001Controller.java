@@ -427,9 +427,9 @@ public class FormReport001Controller extends BaseFormReportController {
         if (inputReport001Detail.getGoalAmount().intValue() == 0) {
             msg += "กรุณาระบุจำนวน<br/>";
         }
-        if (StringUtils.isBlank(inputReport001Detail.getResultType())) {
-            msg += "กรุณาระบุผลการปฏิบัติงานประเภท<br/>";
-        }
+//        if (StringUtils.isBlank(inputReport001Detail.getResultType())) {
+//            msg += "กรุณาระบุผลการปฏิบัติงานประเภท<br/>";
+//        }
         if (inputReport001Detail.getBudgetSet().intValue() == 0) {
             msg += "กรุณาระบุงบประมาณตั้งไว้<br/>";
         }

@@ -278,6 +278,29 @@ public abstract class BaseFormReportController extends BaseController {
         return false;
     }
     
+    public boolean canEdit(Integer createdUserGroup,Integer status) {
+
+        ViewUser user = getUserAuthen();
+        
+        if(user.getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel()){
+        
+            return true;
+            
+        }
+
+        if(status==401){
+            
+            return false;
+            
+        }
+        
+        if (user.getUserGroupId() != null && createdUserGroup == user.getUserGroupId()) {
+            return true;
+        }
+
+        return false;
+    }
+    
     /**
      * @return the ectConfManager
      */

@@ -194,6 +194,7 @@ public class FormReport005Controller extends BaseFormReportController {
         clearAllMessage();
 
         inputReport005Detail = new Report005Detail();
+        inputReport005Detail2 = new Report005Detail();
     }
 
     /**
@@ -412,14 +413,20 @@ public class FormReport005Controller extends BaseFormReportController {
         if (StringUtils.isBlank(inputReport005Detail.getElectedZone())) {
             msg += "กรุณาระบุเขตเลือกตั้ง<br/>";
         }
+        if (inputReport005Detail.getVotedAmount() == null){
+            msg += "กรุณาระบุผู้มาใช้สิทธิ์เลือกตั้ง<br/>";
+        }
         if (inputReport005Detail.getVoterAmount() == null) {
             msg += "กรุณาระบุผู้มีสิทธิ์เลือกตั้ง<br/>";
         }
         if (inputReport005Detail.getVoidedBallotPaper() == null) {
             msg += "กรุณาระบุบัตรเสีย<br/>";
         }
+        if (inputReport005Detail.getVoidedGoodPaper() == null) {
+            msg += "กรุณาระบุบัตรดี<br/>";
+        }
         if (inputReport005Detail.getVoteNo() == null) {
-            msg += "กรุณาระบุบัตรไม่ประสงค์จะลงคะแนนbr/>";
+            msg += "กรุณาระบุบัตรไม่ประสงค์จะลงคะแนน<br/>";
         }
 
         if (!StringUtils.isBlank(msg)) {
@@ -427,6 +434,12 @@ public class FormReport005Controller extends BaseFormReportController {
             return false;
         }
 
+        if((inputReport005Detail.getVoidedBallotPaper()+inputReport005Detail.getVoidedGoodPaper()+inputReport005Detail.getVoteNo())!= inputReport005Detail.getVotedAmount()){
+            msg += "กรุณาตรวจสอบข้อมูลอีกครั้ง</br>ผลรวมของ บัตรเสีย บัตรดี และบัตรไม่ประสงค์จะลงคะแนน</br>ไม่เท่ากันกับจำนวน ผู้มาใช้สิทธิ์เลือกตั้ง ";
+            addError(msg);
+            return false;
+        }
+        
         return true;
     }
 
