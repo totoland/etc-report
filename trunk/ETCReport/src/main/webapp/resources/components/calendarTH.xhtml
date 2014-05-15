@@ -17,13 +17,47 @@
         <composite:attribute name="id" />
         <composite:attribute name="showOn" />
         <composite:attribute name="pattern" />
-        
+        <composite:attribute name="styleClass" />
+        <composite:attribute name="locale" />
+        <composite:attribute name="disabled" />
+
     </composite:interface>
 
-    <composite:implementation>
 
-        <p:calendar id="#{cc.attrs.id}" size="10" pattern="#{cc.attrs.pattern==null?'dd/MM/yyyy':cc.attrs.pattern}" styleClass="cal" locale="th" showOn="#{cc.attrs.showOn==null?'button':cc.attrs.showOn}" value="#{cc.attrs.value}" lang="th" style="#{cc.attrs.style}">  
-        </p:calendar>
+
+    <composite:implementation>
+        <script type="text/javascript" src="${request.contextPath}/resources/js/jquery.ui.datepicker-th.js"/>
+        <script type="text/javascript" src="${request.contextPath}/resources/js/jquery.ui.datepicker.ext.be.js"/>
+
+        <input type="hidden" class="datepickerH"/>
+        <p:inputText id="#{cc.attrs.id}" size="10" disabled="#{cc.attrs.disabled}" styleClass="cal" value="#{cc.attrs.value}" style="#{cc.attrs.style}"/>
+
+        <script type="text/javascript">
+
+
+
+
+            try {
+                $(".datepickerH").datetimepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    showButtonPanel: true,
+                    dateFormat: 'dd/mm/yy',
+                    isBE: true,
+                    autoConversionField: true
+                });
+
+                $(".datepickerH").datepicker("option", "yearRange", '1950:2050');
+
+
+                $('.cal').datepicker({
+                    isBE: true
+                });
+            } catch (err) {
+            }
+
+        </script>
     </composite:implementation>
+
 
 </html>
