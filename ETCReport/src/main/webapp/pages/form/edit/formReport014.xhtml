@@ -116,7 +116,7 @@ and open the template in the editor.
                     </p:panelGrid>
                     
                     <p:panel header="หมายเหตุ" style="width:450px">
-                        <p:inputTextarea maxlength="255" value="#{formReport014Controller.report014Details[0].remark}"/>
+                        <p:inputTextarea maxlength="255" value="#{formReport014Controller.report014Details[0].remark}" disabled="#{formReport014Controller.paramMode=='view'}"/>
                     </p:panel>
                     <h:panelGroup id="REPORT_014pnlCmd" rendered="#{formReport014Controller.report014.flowStatusId!=200}">
                         <div align="center">
