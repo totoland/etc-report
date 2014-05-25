@@ -12,7 +12,7 @@ and open the template in the editor.
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:totoland="http://java.sun.com/jsf/composite/components">
     <h:head>
-        
+
         <ui:include src="../../../template/headScript.xhtml"/>
 
     </h:head>
@@ -39,7 +39,7 @@ and open the template in the editor.
                                     <h:outputText value="(ให้เลือกประเภทการเลือกตั้งหรือการสรรหา ประเภทการเลือกตั้ง แบ่งการเลือกตั้ง ส.ว. หรือ ส.ส.)"/>
                                 </p:column>
                             </p:row>
-                            <p:row>
+                            <p:row rendered="false">
                                 <p:column>
                                 </p:column>
                                 <p:column>
@@ -55,7 +55,7 @@ and open the template in the editor.
                                     <h:outputText value="กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง"/>
                                 </p:column>
                             </p:row>
-                            <p:row>
+                            <p:row rendered="false">
                                 <p:column>
                                 </p:column>
                                 <p:column>
@@ -82,7 +82,7 @@ and open the template in the editor.
 
                             <p:dataTable var="item" value="#{formReport005Controller.report005Details}" id="REPORT_005Grid" editable="true" paginator="true" rows="5" emptyMessage="#{msg.no_data_found}"  
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         style="width:1200px"
+                                         style="width:1300px"
                                          rowsPerPageTemplate="5,10,15">  
 
                                 <p:ajax event="rowEdit" listener="#{formReport005Controller.onEdit}"/>  
@@ -95,6 +95,32 @@ and open the template in the editor.
                                         </f:facet>
                                         <f:facet name="input">
                                             <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" value="#{item.electedDay}" lang="th" style="width: 180px"/>
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="การเลือกตั้ง">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{formReport005Controller.dropdownFactory.getElectedName(item.ssElected)}" /> 
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:selectOneMenu value="#{item.ssElected}" style="width: 220px">
+                                                <f:selectItems value="#{dropDownController.dropdownFactory.ddlElected()}" var="items" itemLabel="#{items.name}" itemValue="#{items.value}"></f:selectItems>
+                                            </p:selectOneMenu> 
+                                        </f:facet>  
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="ประเภทเลือกตั้ง">  
+                                    <p:cellEditor>  
+                                        <f:facet name="output">  
+                                            <h:outputText value="#{formReport005Controller.dropdownFactory.getElectedName(item.ssElectedType)}" /> 
+                                        </f:facet>
+                                        <f:facet name="input">  
+                                            <p:selectOneMenu value="#{item.ssElectedType}" style="width: 220px">
+                                                <f:selectItems value="#{dropDownController.dropdownFactory.ddlTypeElected()}" var="items" itemLabel="#{items.name}" itemValue="#{items.value}"></f:selectItems>
+                                            </p:selectOneMenu> 
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -162,13 +188,13 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
-                                
+
                                 <p:column headerText="ร้อยละ">
                                     <h:outputText value="#{(item.voidedGoodPaper*100)/item.votedAmount}">
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>%
                                 </p:column>
-                                
+
                                 <p:column headerText="บัตรเสีย">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
@@ -203,7 +229,7 @@ and open the template in the editor.
                                     </h:outputText>%
                                 </p:column>
 
-                                <p:column style="width:6%" rendered="#{formReport005Controller.paramMode=='edit'}">  
+                                <p:column style="width:6%" rendered="#{formReport005Controller.paramMode!='view'}">  
                                     <p:rowEditor />  
                                 </p:column>  
 
@@ -308,7 +334,17 @@ and open the template in the editor.
                             <f:selectItem itemLabel="-เลือก-" itemValue="" /> 
                             <f:selectItem itemLabel="ทุกจังหวัด" itemValue="99" /> 
                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{welcomeController.dropdownFactory.ddlProvince()}"/>
-                        </p:selectOneMenu>  
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="การเลือกตั้ง *" />
+                        <p:selectOneMenu value="#{formReport005Controller.inputReport005Detail.ssElected}" style="width: 220px">
+                            <f:selectItems value="#{dropDownController.dropdownFactory.ddlElected()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="ประเภทเลือกตั้ง *" />
+                        <p:selectOneMenu value="#{formReport005Controller.inputReport005Detail.ssElectedType}" style="width: 220px">
+                            <f:selectItems value="#{dropDownController.dropdownFactory.ddlTypeElected()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
+                        </p:selectOneMenu>
 
                         <h:outputLabel value="เขตเลือกตั้ง *" />  
                         <p:inputText id="REPORT_005lb03" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedZone}"/>  
@@ -324,7 +360,7 @@ and open the template in the editor.
 
                         <h:outputLabel value="บัตรดี *" />  
                         <totoland:inputNumber id="REPORT_005lb071" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedGoodPaper}"/>
-                        
+
                         <h:outputLabel value="บัตรไม่ประสงค์จะลงคะแนน *" />  
                         <totoland:inputNumber id="REPORT_005lb08" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
 
