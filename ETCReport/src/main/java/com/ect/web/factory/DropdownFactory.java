@@ -35,11 +35,11 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlFiscalYear() {
 
-        List<DropDownList> dropDownLists = new ArrayList<DropDownList>();
+        List<DropDownList> dropDownLists = new ArrayList<>();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 
-        int curYear = Integer.parseInt(dateFormat.format(new Date()).toString());
+        int curYear = Integer.parseInt(dateFormat.format(new Date()));
 
         for (int i = 0; i < 10; i++) {
             dropDownLists.add(new DropDownList(String.valueOf(curYear - i), String.valueOf(curYear - i)));
@@ -51,21 +51,21 @@ public class DropdownFactory implements Serializable {
     /**
      * *
      *
+     * @param id
      * @return get All Months
      */
     public String getMonthName(String id) {
 
-        for(DropDownList month : ddlMonth()){
-            
-            if(month.getValue().equals(id)){
-                
+        for (DropDownList month : ddlMonth()) {
+
+            if (month.getValue().equals(id)) {
+
                 return month.getName();
-                
+
             }
-            
+
         }
-        
-        
+
         return null;
     }
     private static List<DropDownList> month;
@@ -89,7 +89,7 @@ public class DropdownFactory implements Serializable {
             month = commonService.getDropdownList(criteria);
 
         }
-        
+
         return month;
     }
 
@@ -173,6 +173,7 @@ public class DropdownFactory implements Serializable {
      * *
      * กลยุทธ์
      *
+     * @param strateGicId
      * @return All SubStrategic
      */
     public List<DropDownList> ddlSubStrategic(Integer strateGicId) {
@@ -195,6 +196,7 @@ public class DropdownFactory implements Serializable {
      * *
      * แผนงาน
      *
+     * @param subStrateGicId
      * @return All Plan
      */
     public List<DropDownList> ddlPlan(Integer subStrateGicId) {
@@ -234,6 +236,7 @@ public class DropdownFactory implements Serializable {
      * *
      * โครงการ
      *
+     * @param planId
      * @return All Project
      */
     public List<DropDownList> ddlProject(Integer planId) {
@@ -271,6 +274,7 @@ public class DropdownFactory implements Serializable {
      * *
      * กิจกรรม
      *
+     * @param projectId
      * @return All Activity
      */
     public List<DropDownList> ddlActivity(Integer projectId) {
@@ -378,13 +382,13 @@ public class DropdownFactory implements Serializable {
 
         for (DropDownList ddl : ddlProvince()) {
 
-            if(id == 99){
+            if (id == 99) {
                 EctProvince ectProvince = new EctProvince();
                 ectProvince.setProvinceId(id);
                 ectProvince.setProvinceName("ทุกจังหวัด");
                 return ectProvince;
             }
-            
+
             if (id.intValue() == Integer.valueOf(ddl.getValue())) {
                 EctProvince ectProvince = new EctProvince();
                 ectProvince.setProvinceId(id);
@@ -454,5 +458,49 @@ public class DropdownFactory implements Serializable {
         criteria.setSortName("ASC");
 
         return commonService.getDropdownList(criteria);
+    }
+
+    public List<DropDownList> ddlElected() {
+        List<DropDownList> dropDownLists = new ArrayList<>();
+
+        dropDownLists.add(new DropDownList("การเลือกตั้ง ส.ส.", "1"));
+        dropDownLists.add(new DropDownList("การเลือกตั้ง ส.ว.", "2"));
+
+        return dropDownLists;
+    }
+
+    public List<DropDownList> ddlTypeElected() {
+        List<DropDownList> dropDownLists = new ArrayList<>();
+
+        dropDownLists.add(new DropDownList("กรณีการเลือกตั้งทั่วไป", "1"));
+        dropDownLists.add(new DropDownList("กรณีการเลือกตั้งแทนตำแหน่งที่ว่าง", "2"));
+
+        return dropDownLists;
+    }
+
+    public String getElectedName(Integer id) {
+
+        for (DropDownList s : ddlElected()) {
+
+            if (s.getValue().equals(id+"")) {
+                return s.getName();
+            }
+
+        }
+
+        return null;
+    }
+    
+    public String getTypeElectedName(Integer id) {
+
+        for (DropDownList s : ddlTypeElected()) {
+
+            if (s.getValue().equals(id+"")) {
+                return s.getName();
+            }
+
+        }
+
+        return null;
     }
 }
