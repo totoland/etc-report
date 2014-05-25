@@ -79,6 +79,18 @@ public class Report005Detail extends DomainEntity implements Serializable {
     @ManyToOne
     private Report005 reportId;
     
+    //TODO : Add Field 26/05/2557
+    @Column(name = "IS_VOTE")
+    private Boolean isVote;
+    @Column(name = "IS_NOMINATION")
+    private Boolean isNomination;
+    
+    //SS_ELECTED
+    @Column(name = "SS_ELECTED")
+    private Integer ssElected;
+    @Column(name = "SS_ELECTED_TYPE")
+    private Integer ssElectedType;
+    
     @OneToOne(targetEntity = EctProvince.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "PROVINCE_ID",insertable = false,updatable = false)
     private EctProvince province;
@@ -288,8 +300,40 @@ public class Report005Detail extends DomainEntity implements Serializable {
         this.voidedGoodPaperPercen = voidedGoodPaperPercen;
     }
 
+    public Boolean getIsVote() {
+        return isVote;
+    }
+
+    public void setIsVote(Boolean isVote) {
+        this.isVote = isVote;
+    }
+
+    public Boolean getIsNomination() {
+        return isNomination;
+    }
+
+    public void setIsNomination(Boolean isNomination) {
+        this.isNomination = isNomination;
+    }
+
+    public Integer getSsElected() {
+        return ssElected;
+    }
+
+    public void setSsElected(Integer ssElected) {
+        this.ssElected = ssElected;
+    }
+
+    public Integer getSsElectedType() {
+        return ssElectedType;
+    }
+
+    public void setSsElectedType(Integer ssElectedType) {
+        this.ssElectedType = ssElectedType;
+    }
+
     @Override
     public String toString() {
-        return "Report005Detail{" + "reportDetailId=" + reportDetailId + ", electedDay=" + electedDay + ", provinceId=" + provinceId + ", electedZone=" + electedZone + ", voterAmount=" + voterAmount + ", votedAmount=" + votedAmount + ", votePercen=" + votePercen + ", voidedBallotPaper=" + voidedBallotPaper + ", voidedBallotPaperPercen=" + voidedBallotPaperPercen + ", voidedGoodPaper=" + voidedGoodPaper + ", voidedGoodPaperPercen=" + voidedGoodPaperPercen + ", voteNo=" + voteNo + ", voteNoPercen=" + voteNoPercen + ", electedType=" + electedType + ", nominationPeriod=" + nominationPeriod + ", election=" + election + ", corporateAmount=" + corporateAmount + ", senatorNominationAmount=" + senatorNominationAmount + ", province=" + province + '}';
+        return "Report005Detail{" + "reportDetailId=" + reportDetailId + ", electedDay=" + electedDay + ", provinceId=" + provinceId + ", electedZone=" + electedZone + ", voterAmount=" + voterAmount + ", votedAmount=" + votedAmount + ", votePercen=" + votePercen + ", voidedBallotPaper=" + voidedBallotPaper + ", voidedBallotPaperPercen=" + voidedBallotPaperPercen + ", voidedGoodPaper=" + voidedGoodPaper + ", voidedGoodPaperPercen=" + voidedGoodPaperPercen + ", voteNo=" + voteNo + ", voteNoPercen=" + voteNoPercen + ", electedType=" + electedType + ", nominationPeriod=" + nominationPeriod + ", election=" + election + ", corporateAmount=" + corporateAmount + ", senatorNominationAmount=" + senatorNominationAmount + ", isVote=" + isVote + ", isNomination=" + isNomination + ", ssElected=" + ssElected + ", ssElectedType=" + ssElectedType + ", province=" + province + '}';
     }
 }

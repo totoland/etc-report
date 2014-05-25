@@ -69,9 +69,28 @@ public class App {
                 + "UPDATE REPORT_? SET REPORT_MONTH = right('0'+ rtrim(DATEPART(month,CREATED_DATE)), 2),REPORT_YEAR = DATEPART(year,CREATED_DATE)+543\n"
                 + "UPDATE REPORT_?_HIS SET REPORT_MONTH = right('0'+ rtrim(DATEPART(month,CREATED_DATE)), 2),REPORT_YEAR = DATEPART(year,CREATED_DATE)+543");
 
+        for (int i = 1; i < 10; i++) {
+            System.out.println(sql.toString().replaceAll("\\?", "00"+i));
+        }
+        
         for (int i = 10; i <= 23; i++) {
-//            System.out.println(sql.toString().replaceAll("\\?", "0"+i));
+            System.out.println(sql.toString().replaceAll("\\?", "0"+i));
+        }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("UPDATE [REPORT_00"+i+"] SET [REPORT_YEAR] = 2557");
         }
 
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("UPDATE [REPORT_0"+i+"] SET [REPORT_YEAR] = 2557");
+        }
+
+        for (int i = 1; i < 10; i++) {
+            System.out.println("UPDATE [REPORT_00"+i+"_HIS] SET [REPORT_YEAR] = 2557");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("UPDATE [REPORT_0"+i+"_HIS] SET [REPORT_YEAR] = 2557");
+        }
     }
 }
