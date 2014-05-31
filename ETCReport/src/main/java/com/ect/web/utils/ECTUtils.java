@@ -22,17 +22,17 @@ public class ECTUtils {
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
-    public static void main(String args[]) throws Exception {
-        
-        String passWord = "password";
-        
-        String nPassWord = ECTUtils.encrypt(passWord);
-        
-        System.out.println("nPassWord : "+nPassWord);
-        
-        System.out.println(ECTUtils.decrypt(nPassWord));
-        
-    }
+//    public static void main(String args[]) throws Exception {
+//        
+//        String passWord = "password";
+//        
+//        String nPassWord = ECTUtils.encrypt(passWord);
+//        
+//        System.out.println("nPassWord : "+nPassWord);
+//        
+//        System.out.println(ECTUtils.decrypt(nPassWord));
+//        
+//    }
     
     private static final String ALGO = "AES";
     private static final byte[] keyValue =

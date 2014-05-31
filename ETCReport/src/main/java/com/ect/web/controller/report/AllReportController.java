@@ -67,6 +67,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jxls.exception.ParsePropertyException;
 import net.sf.jxls.transformer.XLSTransformer;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
@@ -380,6 +381,8 @@ public class AllReportController extends BaseFormReportController {
                     if (report005Detail.getElectedType() != null && report005Detail.getElectedType() == 1) {
                         report005Detail.setKey(key1);
                         key1++;
+                        report005Detail.setSsElectedName(dropdownFactory.getElectedName(report005Detail.getSsElected()));
+                        report005Detail.setSsElectedTypeName(dropdownFactory.getTypeElectedName(report005Detail.getSsElectedType()));
                         report005Details.add(report005Detail);
                     } else {
                         report005Detail.setKey(key2);
@@ -391,12 +394,12 @@ public class AllReportController extends BaseFormReportController {
 
                 String prefix = "x ";
                 String blank = "  ";
-                beans.put("isElected", report005.getIsElected() ? prefix : blank);
-                beans.put("isElectedNormal", report005.getIsElectedNormal() ? prefix : blank);
-                beans.put("isElectedVacancy", report005.getIsElectedVacancy() ? prefix : blank);
-                beans.put("isSenElected", report005.getIsSenElected() ? prefix : blank);
-                beans.put("isSenElectedNormal", report005.getIsSenElectedNormal() ? prefix : blank);
-                beans.put("isSenElectedVacancy", report005.getIsSenElectedVacancy() ? prefix : blank);
+                beans.put("isElected", BooleanUtils.isTrue(report005.getIsElected()) ? prefix : blank);
+                beans.put("isElectedNormal", BooleanUtils.isTrue(report005.getIsElectedNormal()) ? prefix : blank);
+                beans.put("isElectedVacancy", BooleanUtils.isTrue(report005.getIsElectedVacancy()) ? prefix : blank);
+                beans.put("isSenElected", BooleanUtils.isTrue(report005.getIsSenElected()) ? prefix : blank);
+                beans.put("isSenElectedNormal", BooleanUtils.isTrue(report005.getIsSenElectedNormal()) ? prefix : blank);
+                beans.put("isSenElectedVacancy", BooleanUtils.isTrue(report005.getIsSenElectedVacancy()) ? prefix : blank);
 
                 beans.put("details", report005Details);
                 beans.put("details2", report005Details2);

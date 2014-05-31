@@ -94,7 +94,7 @@ and open the template in the editor.
                                             <totoland:convertDateTime format="dd/MM/yyyy" value="#{item.electedDay}" />  
                                         </f:facet>
                                         <f:facet name="input">
-                                            <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" value="#{item.electedDay}" lang="th" style="width: 180px"/>
+                                            <totoland:calendarTH id="calElectedDay" styleClass="cal" locale="th" showOn="button" value="#{item.electedDay}" lang="th" style="width: 180px"/>
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -115,7 +115,7 @@ and open the template in the editor.
                                 <p:column headerText="ประเภทเลือกตั้ง">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
-                                            <h:outputText value="#{formReport005Controller.dropdownFactory.getElectedName(item.ssElectedType)}" /> 
+                                            <h:outputText value="#{formReport005Controller.dropdownFactory.getTypeElectedName(item.ssElectedType)}" /> 
                                         </f:facet>
                                         <f:facet name="input">  
                                             <p:selectOneMenu value="#{item.ssElectedType}" style="width: 220px">
@@ -327,7 +327,7 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail">
 
                         <h:outputLabel value="วันที่เลือกตั้ง *"/>  
-                        <p:calendar id="calElectedDay" styleClass="cal" locale="th" showOn="button" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
+                        <totoland:calendarTH id="calElectedDay" styleClass="cal" locale="th" showOn="button" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
 
                         <h:outputLabel value="จังหวัด *" />  
                         <p:selectOneMenu id="ectProvince" style="width: 220px" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.provinceId}">  

@@ -480,6 +480,8 @@ public class DropdownFactory implements Serializable {
 
     public String getElectedName(Integer id) {
 
+        if(id==null)return "";
+        
         for (DropDownList s : ddlElected()) {
 
             if (s.getValue().equals(id+"")) {
@@ -493,6 +495,8 @@ public class DropdownFactory implements Serializable {
     
     public String getTypeElectedName(Integer id) {
 
+        if(id==null)return "";
+        
         for (DropDownList s : ddlTypeElected()) {
 
             if (s.getValue().equals(id+"")) {

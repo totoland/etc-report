@@ -86,7 +86,7 @@ and open the template in the editor.
                                             <totoland:convertDateTime value="#{item.acceptedDate}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:calendar pattern="dd/MM/yyyy" value="#{item.acceptedDate}" />  
+                                            <totoland:calendarTH pattern="dd/MM/yyyy" value="#{item.acceptedDate}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -162,7 +162,7 @@ and open the template in the editor.
                         <p:inputText id="REPORT_010lb02" value="#{formReport010Controller.inputReport010Detail.position}"/>  
 
                         <h:outputLabel value="วันเดือนปีที่ *"/>
-                        <p:calendar pattern="dd/MM/yyyy" id="REPORT_010lb03" locale="th" value="#{formReport010Controller.inputReport010Detail.acceptedDate}"/>  
+                        <totoland:calendarTH pattern="dd/MM/yyyy" id="REPORT_010lb03" locale="th" value="#{formReport010Controller.inputReport010Detail.acceptedDate}"/>  
 
                         <h:outputLabel value="กรณีย้ายเข้า"/>
                         <totoland:inputNumber id="REPORT_010lb04" value="#{formReport010Controller.inputReport010Detail.caseIn}"/>  
