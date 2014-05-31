@@ -22,6 +22,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -90,6 +91,12 @@ public class Report005Detail extends DomainEntity implements Serializable {
     private Integer ssElected;
     @Column(name = "SS_ELECTED_TYPE")
     private Integer ssElectedType;
+    
+    //TODO : Add Field For DisplayName
+    @Transient
+    private String ssElectedName;
+    @Transient
+    private String ssElectedTypeName;
     
     @OneToOne(targetEntity = EctProvince.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "PROVINCE_ID",insertable = false,updatable = false)
@@ -335,5 +342,33 @@ public class Report005Detail extends DomainEntity implements Serializable {
     @Override
     public String toString() {
         return "Report005Detail{" + "reportDetailId=" + reportDetailId + ", electedDay=" + electedDay + ", provinceId=" + provinceId + ", electedZone=" + electedZone + ", voterAmount=" + voterAmount + ", votedAmount=" + votedAmount + ", votePercen=" + votePercen + ", voidedBallotPaper=" + voidedBallotPaper + ", voidedBallotPaperPercen=" + voidedBallotPaperPercen + ", voidedGoodPaper=" + voidedGoodPaper + ", voidedGoodPaperPercen=" + voidedGoodPaperPercen + ", voteNo=" + voteNo + ", voteNoPercen=" + voteNoPercen + ", electedType=" + electedType + ", nominationPeriod=" + nominationPeriod + ", election=" + election + ", corporateAmount=" + corporateAmount + ", senatorNominationAmount=" + senatorNominationAmount + ", isVote=" + isVote + ", isNomination=" + isNomination + ", ssElected=" + ssElected + ", ssElectedType=" + ssElectedType + ", province=" + province + '}';
+    }
+
+    /**
+     * @return the ssElectedName
+     */
+    public String getSsElectedName() {
+        return ssElectedName;
+    }
+
+    /**
+     * @param ssElectedName the ssElectedName to set
+     */
+    public void setSsElectedName(String ssElectedName) {
+        this.ssElectedName = ssElectedName;
+    }
+
+    /**
+     * @return the ssElectedTypeName
+     */
+    public String getSsElectedTypeName() {
+        return ssElectedTypeName;
+    }
+
+    /**
+     * @param ssElectedTypeName the ssElectedTypeName to set
+     */
+    public void setSsElectedTypeName(String ssElectedTypeName) {
+        this.ssElectedTypeName = ssElectedTypeName;
     }
 }
