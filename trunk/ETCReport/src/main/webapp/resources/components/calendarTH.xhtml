@@ -17,47 +17,26 @@
         <composite:attribute name="id" />
         <composite:attribute name="showOn" />
         <composite:attribute name="pattern" />
-        <composite:attribute name="styleClass" />
+        <composite:attribute name="lang" />
         <composite:attribute name="locale" />
         <composite:attribute name="disabled" />
+        <composite:attribute name="rendered" />
 
     </composite:interface>
 
-
-
     <composite:implementation>
-        <script type="text/javascript" src="${request.contextPath}/resources/js/jquery.ui.datepicker-th.js"/>
-        <script type="text/javascript" src="${request.contextPath}/resources/js/jquery.ui.datepicker.ext.be.js"/>
-
-        <input type="hidden" class="datepickerH"/>
-        <p:inputText id="#{cc.attrs.id}" size="10" disabled="#{cc.attrs.disabled}" styleClass="cal" value="#{cc.attrs.value}" style="#{cc.attrs.style}"/>
-
-        <script type="text/javascript">
-
-
-
-
-            try {
-                $(".datepickerH").datetimepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    showButtonPanel: true,
-                    dateFormat: 'dd/mm/yy',
-                    isBE: true,
-                    autoConversionField: true
-                });
-
-                $(".datepickerH").datepicker("option", "yearRange", '1950:2050');
-
-
-                $('.cal').datepicker({
-                    isBE: true
-                });
-            } catch (err) {
-            }
-
-        </script>
+        <h:outputScript library="js" name="main-datepicker.js" target="head"/>
+        <p:inputMask mask="99/99/9999"
+                     autocomplete="false"
+                     id="#{cc.attrs.id}" size="10"
+                     value="#{cc.attrs.value}"
+                     styleClass="datepicker_th"
+                     onfocus="calendarTH.datePick('th', '');" 
+                     onclick="calendarTH.datePick('th', '');" 
+                     style="#{cc.attrs.style}"
+                     disabled="#{cc.attrs.disabled==null?false:disabled}">
+            <f:convertDateTime pattern="#{cc.attrs.pattern==null?'dd/MM/yyyy':cc.attrs.pattern}" timeZone="GMT+7" locale="th_TH" />
+        </p:inputMask>
     </composite:implementation>
-
 
 </html>

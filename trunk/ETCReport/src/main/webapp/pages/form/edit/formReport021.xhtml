@@ -77,7 +77,7 @@ and open the template in the editor.
                                             <totoland:convertDateTime value="#{item.operationDate}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:calendar pattern="dd/MM/yyyy" value="#{item.operationDate}" />  
+                                            <totoland:calendarTH pattern="dd/MM/yyyy" value="#{item.operationDate}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -87,7 +87,7 @@ and open the template in the editor.
                                             <totoland:convertDateTime value="#{item.operationDateUntil}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:calendar pattern="dd/MM/yyyy" value="#{item.operationDateUntil}" />  
+                                            <totoland:calendarTH pattern="dd/MM/yyyy" value="#{item.operationDateUntil}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -156,10 +156,10 @@ and open the template in the editor.
                         <p:inputText id="REPORT_021lb01" value="#{formReport021Controller.inputReport021Detail.inspector}"/>  
 
                         <h:outputLabel value="ว.ด.ป.ที่ปฎิบัติ *"/>
-                        <p:calendar pattern="dd/MM/yyyy"   locale="th" id="REPORT_021lb02" value="#{formReport021Controller.inputReport021Detail.operationDate}"/>
+                        <totoland:calendarTH pattern="dd/MM/yyyy"   locale="th" id="REPORT_021lb02" value="#{formReport021Controller.inputReport021Detail.operationDate}"/>
                         
                         <h:outputLabel value="ถึง ว.ด.ป. *"/>
-                        <p:calendar pattern="dd/MM/yyyy"  locale="th" id="REPORT_021lb022" value="#{formReport021Controller.inputReport021Detail.operationDateUntil}"/>
+                        <totoland:calendarTH pattern="dd/MM/yyyy"  locale="th" id="REPORT_021lb022" value="#{formReport021Controller.inputReport021Detail.operationDateUntil}"/>
 
                         <h:outputLabel value="หน่วยรับการตรวจฯ/จำนวน(แห่ง) *"/>
                         <totoland:inputNumber id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  
