@@ -520,7 +520,7 @@ public class FormReport004Controller extends BaseFormReportController {
             getFooter().setElectionBeforeAnnouncement(getFooter().getElectionBeforeAnnouncement() + NumberUtils.convertNUllToZero(rwDetail.getElectionBeforeAnnouncement()));
             getFooter().setElectionEarlierAmountPhTh(getFooter().getElectionEarlierAmountPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
             getFooter().setElectionEarlierAmountSTh(getFooter().getElectionEarlierAmountSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountSTh()));
-            getFooter().setElectionEarlierCurMonthPhTh(getFooter().getElectionEarlierCurMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
+            getFooter().setElectionEarlierCurMonthPhTh(getFooter().getElectionEarlierCurMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthPhTh()));
             getFooter().setElectionEarlierCurMonthSTh(getFooter().getElectionEarlierCurMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthSTh()));
             getFooter().setElectionEarlierLastMonthPhTh(getFooter().getElectionEarlierLastMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthPhTh()));
             getFooter().setElectionEarlierLastMonthSTh(getFooter().getElectionEarlierLastMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthSTh()));
