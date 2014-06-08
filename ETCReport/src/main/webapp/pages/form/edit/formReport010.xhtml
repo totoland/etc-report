@@ -50,10 +50,10 @@ and open the template in the editor.
                                     <p:row>
                                         <p:column style="text-align: center;vertical-align: middle" headerText="พรรค"></p:column>
                                         <p:column style="text-align: center;vertical-align: middle" headerText="ตำแหน่ง"></p:column>
-                                        <p:column style="text-align: center;vertical-align: middle" headerText="วันเดือนปีที่ นายทะเบียนฯตอบรับ"></p:column>  
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="วันเดือนปีที่ นายทะเบียนตอบรับ"></p:column>  
                                         <p:column style="text-align: center;vertical-align: middle" headerText="กรณีย้ายเข้า (ราย)"></p:column>
-                                        <p:column style="text-align: center;vertical-align: middle" headerText="กรณีพ้น"></p:column>  
-                                        <p:column style="text-align: center;vertical-align: middle" headerText="กรณียุบสภา"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="กรณีพ้น (ราย)"></p:column>  
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="กรณียุบสภา (ราย)"></p:column>
                                     </p:row>
                                 </p:columnGroup>
 
@@ -161,10 +161,10 @@ and open the template in the editor.
                         <h:outputLabel value="ตำแหน่ง *"/>
                         <p:inputText id="REPORT_010lb02" value="#{formReport010Controller.inputReport010Detail.position}"/>  
 
-                        <h:outputLabel value="วันเดือนปีที่ *"/>
+                        <h:outputLabel value="ว.ด.ป. ที่นายทะเบียนตอบรับ *"/>
                         <totoland:calendarTH pattern="dd/MM/yyyy" id="REPORT_010lb03" locale="th" value="#{formReport010Controller.inputReport010Detail.acceptedDate}"/>  
 
-                        <h:outputLabel value="กรณีย้ายเข้า"/>
+                        <h:outputLabel value="กรณีย้ายเข้า (ราย)"/>
                         <totoland:inputNumber id="REPORT_010lb04" value="#{formReport010Controller.inputReport010Detail.caseIn}"/>  
 
                         <h:outputLabel value="กรณีพ้น (ราย)"/>

@@ -7,6 +7,7 @@ package com.ect.web.controller.form;
 import com.ect.db.report.entity.ReportName;
 import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_VIEW;
 import com.ect.web.utils.DateTimeUtils;
+import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
 import java.util.Date;
@@ -127,6 +128,17 @@ public class FormSelectReport extends BaseFormReportController {
 
         clearAllMessage();
 
+        if (!reportCode.equalsIgnoreCase(REPORT_001)
+                && !reportCode.equalsIgnoreCase(REPORT_002)) {
+            if (reportService.checkDuppReportInMonth(getUserAuthen().getUserGroupId(), reportCode, reportMonth, reportYear)) {
+                JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน " + dropdownFactory.getMonthName(reportMonth) + " ปี " + reportYear);
+                
+                logger.trace("dupp report "+reportCode+" reportMonth {} reportYear {}!!",reportMonth, reportYear);
+                
+                return;
+            };
+        }
+
 //        if (reportCode.equalsIgnoreCase(REPORT_001) || 
 //                reportCode.equalsIgnoreCase(REPORT_002) || 
 //                reportCode.equalsIgnoreCase(REPORT_003) || 
@@ -137,17 +149,16 @@ public class FormSelectReport extends BaseFormReportController {
 //                reportCode.equalsIgnoreCase(REPORT_008) ||
 //                reportCode.equalsIgnoreCase(REPORT_009) ||
 //                reportCode.equalsIgnoreCase(REPORT_010)) {
+        String url = ectConfManager.getReportObj(reportCode).getReportUrl();
 
-            String url = ectConfManager.getReportObj(reportCode).getReportUrl();
+        this.reportMode = REPORT_MODE_CREATE;
 
-            this.reportMode = REPORT_MODE_CREATE;
+        url = "edit/" + url + "?mode=" + reportMode + "&reportCode=" + reportCode + "&reportMonth=" + getReportMonth() + "&reportYear=" + reportYear;
 
-            url = "edit/" + url + "?mode=" + reportMode + "&reportCode=" + reportCode + "&reportMonth=" + getReportMonth() + "&reportYear=" + reportYear;
+        logger.trace("Open iframe URL : {}", url);
 
-            logger.trace("Open iframe URL : {}", url);
+        openIframe(url);
 
-            openIframe(url);
-        
 //        } else {
 //            openDialog("REPORT_MainDialog_" + reportCode);
 //        }

@@ -508,7 +508,8 @@ public class FormReport018Controller extends BaseFormReportController {
             getSumDetail().setProject(getSumDetail().getProject()+NumberUtils.convertNUllToZero(rd.getProject()));
             getSumDetail().setLaasAmount(getSumDetail().getLaasAmount()+NumberUtils.convertNUllToZero(rd.getLaasAmount()));
             getSumDetail().setFullTerm(getSumDetail().getFullTerm()+NumberUtils.convertNUllToZero(rd.getFullTerm()));
-            getSumDetail().setBudgetFullTerm(getSumDetail().getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
+            getSumDetail().setLaasAmount(getSumDetail().getLaasAmount()+NumberUtils.convertNUllToZero(rd.getLaasAmount()));
+            getSumDetail().setBudgetFullTerm(getSumDetail().getBudgetFullTerm()+NumberUtils.convertNUllToZero(rd.getBudgetFullTerm()));
             getSumDetail().setNewElection(getSumDetail().getNewElection()+NumberUtils.convertNUllToZero(rd.getNewElection()));
             getSumDetail().setBudgetElection(getSumDetail().getBudgetElection()+NumberUtils.convertNUllToZero(rd.getBudgetElection()));
             getSumDetail().setReplaceEmplyPosition(getSumDetail().getReplaceEmplyPosition()+NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
