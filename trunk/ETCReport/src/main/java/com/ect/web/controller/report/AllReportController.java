@@ -58,11 +58,11 @@ import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -76,7 +76,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.jxls.exception.ParsePropertyException;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.commons.lang3.BooleanUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.primefaces.component.datatable.DataTable;
@@ -380,7 +379,7 @@ public class AllReportController extends BaseFormReportController {
                     sum.setElectionBeforeAnnouncement(sum.getElectionBeforeAnnouncement() + NumberUtils.convertNUllToZero(rwDetail.getElectionBeforeAnnouncement()));
                     sum.setElectionEarlierAmountPhTh(sum.getElectionEarlierAmountPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
                     sum.setElectionEarlierAmountSTh(sum.getElectionEarlierAmountSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountSTh()));
-                    sum.setElectionEarlierCurMonthPhTh(sum.getElectionEarlierCurMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
+                    sum.setElectionEarlierCurMonthPhTh(sum.getElectionEarlierCurMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthPhTh()));
                     sum.setElectionEarlierCurMonthSTh(sum.getElectionEarlierCurMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthSTh()));
                     sum.setElectionEarlierLastMonthPhTh(sum.getElectionEarlierLastMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthPhTh()));
                     sum.setElectionEarlierLastMonthSTh(sum.getElectionEarlierLastMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthSTh()));
@@ -458,17 +457,17 @@ public class AllReportController extends BaseFormReportController {
             } else {
 
                 Report006Detail sumDetail = new Report006Detail();
-                
+
                 sumDetail.setAmount(0);
                 sumDetail.setComment(0);
                 sumDetail.setConclusion(0);
                 sumDetail.setSubmitManager(0);
                 sumDetail.setSubmitPresidentEct(0);
                 sumDetail.setSubmited(0);
-                
+
                 for (int i = 0; i < report006.getReport006DetailList().size(); i++) {
                     report006.getReport006DetailList().get(i).setKey(i + 1);
-                    
+
                     sumDetail.setAmount(sumDetail.getAmount() + report006.getReport006DetailList().get(i).getAmount());
                     sumDetail.setComment(sumDetail.getComment() + report006.getReport006DetailList().get(i).getComment());
                     sumDetail.setConclusion(sumDetail.getConclusion() + report006.getReport006DetailList().get(i).getConclusion());
@@ -536,12 +535,18 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report009Detail>());
 
             } else {
-
+                
+                Report009Detail sumDetail = new Report009Detail();
+                sumDetail.setDonate(BigDecimal.ZERO);
+                
                 for (int i = 0; i < report009.getReport009DetailList().size(); i++) {
                     report009.getReport009DetailList().get(i).setKey(i + 1);
+
+                    sumDetail.setDonate(sumDetail.getDonate().add(report009.getReport009DetailList().get(i).getDonate()));
                 }
 
                 beans.put("details", report009.getReport009DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
