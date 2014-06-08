@@ -3168,4 +3168,6 @@ blockquote p,
     border-width: 1px;
     padding: 4px 10px;
 }
+.ui-datepicker-trigger {
+}
 /* End Additional CSS Styles */

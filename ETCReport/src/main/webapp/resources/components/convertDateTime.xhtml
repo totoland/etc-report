@@ -19,8 +19,9 @@
 
     <composite:implementation>
 
-        <h:outputText value="#{allReportController.dateTH(cc.attrs.value,cc.attrs.format)}"/>
-
+        <h:outputText value="#{cc.attrs.value}">
+            <f:convertDateTime pattern="#{cc.attrs.format==null?'dd/MM/yyyy':cc.attrs.format}" timeZone="GMT+7" locale="th_TH" />
+        </h:outputText>
     </composite:implementation>
 
 </html>

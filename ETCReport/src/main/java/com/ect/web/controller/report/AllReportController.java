@@ -29,15 +29,21 @@ import com.ect.db.report.entity.Report009Detail;
 import com.ect.db.report.entity.Report010;
 import com.ect.db.report.entity.Report010Detail;
 import com.ect.db.report.entity.Report011;
+import com.ect.db.report.entity.Report011Detail;
 import com.ect.db.report.entity.Report012;
+import com.ect.db.report.entity.Report012Detail;
 import com.ect.db.report.entity.Report013;
+import com.ect.db.report.entity.Report013Detail;
 import com.ect.db.report.entity.Report014;
 import com.ect.db.report.entity.Report015;
+import com.ect.db.report.entity.Report015Detail;
 import com.ect.db.report.entity.Report016;
 import com.ect.db.report.entity.Report017;
 import com.ect.db.report.entity.Report018;
+import com.ect.db.report.entity.Report018Detail;
 import com.ect.db.report.entity.Report019;
 import com.ect.db.report.entity.Report020;
+import com.ect.db.report.entity.Report020Detail;
 import com.ect.db.report.entity.Report021;
 import com.ect.db.report.entity.Report022;
 import com.ect.db.report.entity.Report023;
@@ -48,6 +54,7 @@ import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,6 +62,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -69,6 +77,8 @@ import net.sf.jxls.exception.ParsePropertyException;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -115,8 +125,8 @@ public class AllReportController extends BaseFormReportController {
 
         if (user.getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
 
-            reportCriteria.setUserGroupId(user.getUserGroupId()+"");
-            
+            reportCriteria.setUserGroupId(user.getUserGroupId() + "");
+
         }
 
         logger.trace("Criteria : {}", reportCriteria);
@@ -344,12 +354,42 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report004Detail>());
 
             } else {
+                int i = 1;
 
-                for (int i = 0; i < report004.getReport004DetailList().size(); i++) {
-                    report004.getReport004DetailList().get(i).setKey(i + 1);
+                Report004Detail sum = new Report004Detail();
+                sum.setAmountPhTh(0);
+                sum.setAmountSTh(0);
+                sum.setElectionBeforeAnnouncement(0);
+                sum.setElectionEarlierAmountPhTh(0);
+                sum.setElectionEarlierAmountSTh(0);
+                sum.setElectionEarlierCurMonthPhTh(0);
+                sum.setElectionEarlierCurMonthSTh(0);
+                sum.setElectionEarlierLastMonthPhTh(0);
+                sum.setElectionEarlierLastMonthSTh(0);
+                sum.setElectionFillVacancy(0);
+                sum.setFullTerm(0);
+
+                for (Report004Detail rwDetail : report004.getReport004DetailList()) {
+                    rwDetail.setKey(i++);
+
+                    rwDetail.setElectionEarlierAmountSTh(NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthSTh()) + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthSTh()));
+                    rwDetail.setElectionEarlierAmountPhTh(NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthPhTh()) + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthPhTh()));
+
+                    sum.setAmountPhTh(sum.getAmountPhTh() + NumberUtils.convertNUllToZero(rwDetail.getAmountPhTh()));
+                    sum.setAmountSTh(sum.getAmountSTh() + NumberUtils.convertNUllToZero(rwDetail.getAmountSTh()));
+                    sum.setElectionBeforeAnnouncement(sum.getElectionBeforeAnnouncement() + NumberUtils.convertNUllToZero(rwDetail.getElectionBeforeAnnouncement()));
+                    sum.setElectionEarlierAmountPhTh(sum.getElectionEarlierAmountPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
+                    sum.setElectionEarlierAmountSTh(sum.getElectionEarlierAmountSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountSTh()));
+                    sum.setElectionEarlierCurMonthPhTh(sum.getElectionEarlierCurMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierAmountPhTh()));
+                    sum.setElectionEarlierCurMonthSTh(sum.getElectionEarlierCurMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierCurMonthSTh()));
+                    sum.setElectionEarlierLastMonthPhTh(sum.getElectionEarlierLastMonthPhTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthPhTh()));
+                    sum.setElectionEarlierLastMonthSTh(sum.getElectionEarlierLastMonthSTh() + NumberUtils.convertNUllToZero(rwDetail.getElectionEarlierLastMonthSTh()));
+                    sum.setElectionFillVacancy(sum.getElectionFillVacancy() + NumberUtils.convertNUllToZero(rwDetail.getElectionFillVacancy()));
+                    sum.setFullTerm(sum.getFullTerm() + NumberUtils.convertNUllToZero(rwDetail.getFullTerm()));
                 }
 
                 beans.put("details", report004.getReport004DetailList());
+                beans.put("sum", sum);
 
             }
 
@@ -379,14 +419,12 @@ public class AllReportController extends BaseFormReportController {
                 for (Report005Detail report005Detail : report005.getReport005DetailList()) {
 
                     if (report005Detail.getElectedType() != null && report005Detail.getElectedType() == 1) {
-                        report005Detail.setKey(key1);
-                        key1++;
+                        report005Detail.setKey(key1++);
                         report005Detail.setSsElectedName(dropdownFactory.getElectedName(report005Detail.getSsElected()));
                         report005Detail.setSsElectedTypeName(dropdownFactory.getTypeElectedName(report005Detail.getSsElectedType()));
                         report005Details.add(report005Detail);
                     } else {
-                        report005Detail.setKey(key2);
-                        key2++;
+                        report005Detail.setKey(key2++);
                         report005Details2.add(report005Detail);
                     }
 
@@ -419,11 +457,28 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                Report006Detail sumDetail = new Report006Detail();
+                
+                sumDetail.setAmount(0);
+                sumDetail.setComment(0);
+                sumDetail.setConclusion(0);
+                sumDetail.setSubmitManager(0);
+                sumDetail.setSubmitPresidentEct(0);
+                sumDetail.setSubmited(0);
+                
                 for (int i = 0; i < report006.getReport006DetailList().size(); i++) {
                     report006.getReport006DetailList().get(i).setKey(i + 1);
+                    
+                    sumDetail.setAmount(sumDetail.getAmount() + report006.getReport006DetailList().get(i).getAmount());
+                    sumDetail.setComment(sumDetail.getComment() + report006.getReport006DetailList().get(i).getComment());
+                    sumDetail.setConclusion(sumDetail.getConclusion() + report006.getReport006DetailList().get(i).getConclusion());
+                    sumDetail.setSubmitManager(sumDetail.getSubmitManager() + report006.getReport006DetailList().get(i).getSubmitManager());
+                    sumDetail.setSubmitPresidentEct(sumDetail.getSubmitPresidentEct() + report006.getReport006DetailList().get(i).getSubmitPresidentEct());
+                    sumDetail.setSubmited(sumDetail.getSubmited() + report006.getReport006DetailList().get(i).getSubmited());
                 }
 
                 beans.put("details", report006.getReport006DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
@@ -524,12 +579,35 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                Report011Detail sumDetail = new Report011Detail();
+
+                sumDetail.setAccessCommittee(0);
+                sumDetail.setAllamount(0);
+                sumDetail.setAnalystRemain(0);
+                sumDetail.setAtCenter(0);
+                sumDetail.setAtEctProvince(0);
+                sumDetail.setEctResolve(0);
+                sumDetail.setOfferEct(0);
+                sumDetail.setOnAgenda(0);
+
                 for (int i = 0; i < report011.getReport011DetailList().size(); i++) {
                     report011.getReport011DetailList().get(i).setKey(i + 1);
+
+                    report011.getReport011DetailList().get(i).setAtCenter(NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getOnAgenda()) + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAccessCommittee()) + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getOfferEct()) + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAnalystRemain()));
+                    report011.getReport011DetailList().get(i).setAllamount(NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAtCenter()) + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAtEctProvince()) + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getEctResolve()));
+
+                    sumDetail.setAccessCommittee(sumDetail.getAccessCommittee() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAccessCommittee()));
+                    sumDetail.setAllamount(sumDetail.getAllamount() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAllamount()));
+                    sumDetail.setAnalystRemain(sumDetail.getAnalystRemain() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAnalystRemain()));
+                    sumDetail.setAtCenter(sumDetail.getAtCenter() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAtCenter()));
+                    sumDetail.setAtEctProvince(sumDetail.getAtEctProvince() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getAtEctProvince()));
+                    sumDetail.setEctResolve(sumDetail.getEctResolve() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getEctResolve()));
+                    sumDetail.setOfferEct(sumDetail.getOfferEct() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getOfferEct()));
+                    sumDetail.setOnAgenda(sumDetail.getOnAgenda() + NumberUtils.convertNUllToZero(report011.getReport011DetailList().get(i).getOnAgenda()));
                 }
 
                 beans.put("details", report011.getReport011DetailList());
-
+                beans.put("sum", sumDetail);
             }
 
         } else if (viewReportStatus.getReportCode().equals(REPORT_012)) {
@@ -544,12 +622,34 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report010Detail>());
 
             } else {
+                Report012Detail sumDetail = new Report012Detail();
+
+                sumDetail.setAccessCommittee(0);
+                sumDetail.setAllamount(0);
+                sumDetail.setAnalystRemain(0);
+                sumDetail.setAtCenter(0);
+                sumDetail.setAtEctProvince(0);
+                sumDetail.setEctResolve(0);
+                sumDetail.setOfferEct(0);
+                sumDetail.setOnAgenda(0);
 
                 for (int i = 0; i < report012.getReport012DetailList().size(); i++) {
                     report012.getReport012DetailList().get(i).setKey(i + 1);
+                    report012.getReport012DetailList().get(i).setAtCenter(NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getOnAgenda()) + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAccessCommittee()) + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getOfferEct()) + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAnalystRemain()));
+                    report012.getReport012DetailList().get(i).setAllamount(NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAtCenter()) + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAtEctProvince()) + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getEctResolve()));
+
+                    sumDetail.setAccessCommittee(sumDetail.getAccessCommittee() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAccessCommittee()));
+                    sumDetail.setAllamount(sumDetail.getAllamount() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAllamount()));
+                    sumDetail.setAnalystRemain(sumDetail.getAnalystRemain() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAnalystRemain()));
+                    sumDetail.setAtCenter(sumDetail.getAtCenter() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAtCenter()));
+                    sumDetail.setAtEctProvince(sumDetail.getAtEctProvince() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getAtEctProvince()));
+                    sumDetail.setEctResolve(sumDetail.getEctResolve() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getEctResolve()));
+                    sumDetail.setOfferEct(sumDetail.getOfferEct() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getOfferEct()));
+                    sumDetail.setOnAgenda(sumDetail.getOnAgenda() + NumberUtils.convertNUllToZero(report012.getReport012DetailList().get(i).getOnAgenda()));
                 }
 
                 beans.put("details", report012.getReport012DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
@@ -566,11 +666,32 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                Report013Detail sumDetail = new Report013Detail();
+                sumDetail.setComplete(0);
+                sumDetail.setDecisionToPrepare(0);
+                sumDetail.setEctSignedComplee(0);
+                sumDetail.setEctSignedOnprocess(0);
+                sumDetail.setNoSend(0);
+                sumDetail.setOnProcess(0);
+                sumDetail.setSended(0);
+
                 for (int i = 0; i < report013.getReport013DetailList().size(); i++) {
                     report013.getReport013DetailList().get(i).setKey(i + 1);
+                    report013.getReport013DetailList().get(i).setEctSignedComplee(NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getSended()) + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getNoSend()));
+                    report013.getReport013DetailList().get(i).setComplete(NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getEctSignedComplee()) + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getEctSignedOnprocess()));
+                    report013.getReport013DetailList().get(i).setDecisionToPrepare(NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getOnProcess()) + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getComplete()));
+
+                    sumDetail.setComplete(sumDetail.getComplete() + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getComplete()));
+                    sumDetail.setDecisionToPrepare(sumDetail.getDecisionToPrepare() + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getDecisionToPrepare()));
+                    sumDetail.setEctSignedComplee(sumDetail.getEctSignedComplee() + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getEctSignedComplee()));
+                    sumDetail.setEctSignedOnprocess(sumDetail.getEctSignedOnprocess() + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getEctSignedOnprocess()));
+                    sumDetail.setNoSend(sumDetail.getNoSend() + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getNoSend()));
+                    sumDetail.setOnProcess(sumDetail.getOnProcess() + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getOnProcess()));
+                    sumDetail.setSended(sumDetail.getSended() + NumberUtils.convertNUllToZero(report013.getReport013DetailList().get(i).getSended()));
                 }
 
                 beans.put("details", report013.getReport013DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
@@ -608,11 +729,24 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                Report015Detail sumDetail = new Report015Detail();
+                sumDetail.setMeetingTime(0);
+                sumDetail.setPtAmount(0);
+                sumDetail.setSumAmount(0);
+                sumDetail.setStAmount(0);
+
                 for (int i = 0; i < report015.getReport015DetailList().size(); i++) {
                     report015.getReport015DetailList().get(i).setKey(i + 1);
+                    report015.getReport015DetailList().get(i).setSumAmount(NumberUtils.convertNUllToZero(report015.getReport015DetailList().get(i).getStAmount()) + NumberUtils.convertNUllToZero(report015.getReport015DetailList().get(i).getPtAmount()));
+
+                    sumDetail.setMeetingTime(sumDetail.getMeetingTime() + NumberUtils.convertNUllToZero(report015.getReport015DetailList().get(i).getMeetingTime()));
+                    sumDetail.setPtAmount(sumDetail.getPtAmount() + NumberUtils.convertNUllToZero(report015.getReport015DetailList().get(i).getPtAmount()));
+                    sumDetail.setSumAmount(sumDetail.getSumAmount() + NumberUtils.convertNUllToZero(report015.getReport015DetailList().get(i).getSumAmount()));
+                    sumDetail.setStAmount(sumDetail.getStAmount() + NumberUtils.convertNUllToZero(report015.getReport015DetailList().get(i).getStAmount()));
                 }
 
                 beans.put("details", report015.getReport015DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
@@ -671,11 +805,37 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                Report018Detail sumDetail = new Report018Detail();
+
+                sumDetail.setEctDepProvince(0);
+                sumDetail.setOocAmount(0);
+                sumDetail.setProject(0);
+                sumDetail.setLaasAmount(0);
+                sumDetail.setFullTerm(0);
+                sumDetail.setBudgetFullTerm(0);
+                sumDetail.setNewElection(0);
+                sumDetail.setBudgetElection(0);
+                sumDetail.setReplaceEmplyPosition(0);
+                sumDetail.setReplaceBudget(0);
+
                 for (int i = 0; i < report018.getReport018DetailList().size(); i++) {
                     report018.getReport018DetailList().get(i).setKey(i + 1);
+                    report018.getReport018DetailList().get(i).setLaasAmount(NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getFullTerm()) + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getNewElection()) + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getReplaceEmplyPosition()));
+
+                    sumDetail.setEctDepProvince(sumDetail.getEctDepProvince() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getEctDepProvince()));
+                    sumDetail.setOocAmount(sumDetail.getOocAmount() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getOocAmount()));
+                    sumDetail.setProject(sumDetail.getProject() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getProject()));
+                    sumDetail.setLaasAmount(sumDetail.getLaasAmount() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getLaasAmount()));
+                    sumDetail.setFullTerm(sumDetail.getFullTerm() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getFullTerm()));
+                    sumDetail.setBudgetFullTerm(sumDetail.getBudgetElection() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getBudgetElection()));
+                    sumDetail.setNewElection(sumDetail.getNewElection() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getNewElection()));
+                    sumDetail.setBudgetElection(sumDetail.getBudgetElection() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getBudgetElection()));
+                    sumDetail.setReplaceEmplyPosition(sumDetail.getReplaceEmplyPosition() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getReplaceEmplyPosition()));
+                    sumDetail.setReplaceBudget(sumDetail.getReplaceBudget() + NumberUtils.convertNUllToZero(report018.getReport018DetailList().get(i).getReplaceBudget()));
                 }
 
                 beans.put("details", report018.getReport018DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
@@ -713,11 +873,20 @@ public class AllReportController extends BaseFormReportController {
 
             } else {
 
+                Report020Detail sumDetail = new Report020Detail();
+                sumDetail.setSupport(0);
+                sumDetail.setApprove(0);
+
                 for (int i = 0; i < report020.getReport020DetailList().size(); i++) {
                     report020.getReport020DetailList().get(i).setKey(i + 1);
+
+                    sumDetail.setSupport(sumDetail.getSupport() + NumberUtils.convertNUllToZero(report020.getReport020DetailList().get(i).getSupport()));
+                    sumDetail.setApprove(sumDetail.getApprove() + NumberUtils.convertNUllToZero(report020.getReport020DetailList().get(i).getApprove()));
+
                 }
 
                 beans.put("details", report020.getReport020DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
@@ -786,7 +955,7 @@ public class AllReportController extends BaseFormReportController {
 
         }
 
-        HSSFWorkbook wb = null;
+        Workbook wb = null;
         InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/" + reportName + ".xls");
         XLSTransformer transformer = new XLSTransformer();
 
@@ -807,7 +976,7 @@ public class AllReportController extends BaseFormReportController {
             }
 
             ctx.responseComplete();
-        } catch (ParsePropertyException | IOException ex) {
+        } catch (ParsePropertyException | IOException | InvalidFormatException ex) {
 
             JsfUtil.alertJavaScript(MessageUtils.getString("error", ex.getMessage()));
             logger.error("cannot export report", ex);

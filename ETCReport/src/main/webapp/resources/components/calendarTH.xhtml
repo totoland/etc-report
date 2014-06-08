@@ -31,10 +31,13 @@
                      id="#{cc.attrs.id}" size="10"
                      value="#{cc.attrs.value}"
                      styleClass="datepicker_th"
-                     onfocus="calendarTH.datePick('th', '');" 
-                     onclick="calendarTH.datePick('th', '');" 
-                     style="#{cc.attrs.style}"
+                     style="width:150px;#{cc.attrs.style}"
                      disabled="#{cc.attrs.disabled==null?false:disabled}">
+                <script>
+                    $(function(){
+                        calendarTH.datePick('th', '');
+                    });
+                </script>
             <f:convertDateTime pattern="#{cc.attrs.pattern==null?'dd/MM/yyyy':cc.attrs.pattern}" timeZone="GMT+7" locale="th_TH" />
         </p:inputMask>
     </composite:implementation>

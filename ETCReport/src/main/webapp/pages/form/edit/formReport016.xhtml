@@ -54,7 +54,7 @@ and open the template in the editor.
                                     <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 180px">สำนัก</p:column>
                                     <p:column rowspan="2" style="text-align: center;">จังหวัด/อำเภอ/เทศบาล/อบต./เขต</p:column>
                                     <p:column rowspan="2" style="text-align: center;width: 220px">วันเลือกตั้ง/วันประกาศผล</p:column>
-                                    <p:column rowspan="2" style="text-align: center;">การประชุม กกต.ครั้งที่/วันที่</p:column>
+                                    <p:column rowspan="2" style="text-align: center;width: 220px">การประชุม กกต.ครั้งที่/วันที่</p:column>
                                     <p:column rowspan="2" style="text-align: center;">มติที่ประชุม</p:column>
                                     <p:column rowspan="2" style="text-align: center;">ชื่อ-สกุล</p:column>
                                     <p:column colspan="2" rowspan="1" style="text-align: center;">ประเภทตำแหน่ง</p:column>
@@ -149,7 +149,7 @@ and open the template in the editor.
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value="#{formReport016Controller.report016Details[2].conclusionMeeting}"/>
+                                    <p:inputText value="#{formReport016Controller.report016Details[2].conclusionMeeting}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[2].fullName}"/>
@@ -182,7 +182,7 @@ and open the template in the editor.
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value="#{formReport016Controller.report016Details[3].conclusionMeeting}"/>
+                                    <p:inputText value="#{formReport016Controller.report016Details[3].conclusionMeeting}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[3].fullName}"/>
@@ -215,7 +215,7 @@ and open the template in the editor.
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
-                                    <h:outputText value="#{formReport016Controller.report016Details[4].conclusionMeeting}"/>
+                                    <p:inputText value="#{formReport016Controller.report016Details[4].conclusionMeeting}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[4].fullName}"/>

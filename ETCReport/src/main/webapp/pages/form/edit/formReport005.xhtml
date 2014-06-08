@@ -173,7 +173,7 @@ and open the template in the editor.
                                 </p:column>
 
                                 <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.votedAmount*100)/item.voterAmount}" >
+                                    <h:outputText value="#{formReport005Controller.cal(item.votedAmount,item.voterAmount)}" >
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>%
                                 </p:column>
@@ -190,7 +190,7 @@ and open the template in the editor.
                                 </p:column>
 
                                 <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voidedGoodPaper*100)/item.votedAmount}">
+                                    <h:outputText value="#{formReport005Controller.cal(item.voidedGoodPaper,item.voterAmount)}">
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>%
                                 </p:column>
@@ -207,7 +207,7 @@ and open the template in the editor.
                                 </p:column>
 
                                 <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.votedAmount}">
+                                    <h:outputText value="#{formReport005Controller.cal(item.voidedBallotPaper,item.voterAmount)}">
                                         <f:convertNumber pattern="#0.00"/>
                                     </h:outputText>%
                                 </p:column>
@@ -224,7 +224,7 @@ and open the template in the editor.
                                 </p:column>
 
                                 <p:column headerText="ร้อยละ">
-                                    <h:outputText value="#{(item.voidedBallotPaper*100)/item.votedAmount}" >
+                                    <h:outputText value="#{formReport005Controller.cal(item.voteNo,item.voterAmount)}" >
                                         <f:convertNumber pattern="#0.00 "/>
                                     </h:outputText>%
                                 </p:column>
@@ -355,11 +355,11 @@ and open the template in the editor.
                         <h:outputLabel value="ผู้มาใช้สิทธิ์เลือกตั้ง *" />  
                         <totoland:inputNumber id="REPORT_005lb05" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.votedAmount}"/>  
 
-                        <h:outputLabel value="บัตรเสีย *" />  
-                        <totoland:inputNumber id="REPORT_005lb07" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
-
                         <h:outputLabel value="บัตรดี *" />  
                         <totoland:inputNumber id="REPORT_005lb071" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedGoodPaper}"/>
+
+                        <h:outputLabel value="บัตรเสีย *" />  
+                        <totoland:inputNumber id="REPORT_005lb07" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
 
                         <h:outputLabel value="บัตรไม่ประสงค์จะลงคะแนน *" />  
                         <totoland:inputNumber id="REPORT_005lb08" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
