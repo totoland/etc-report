@@ -46,7 +46,7 @@ and open the template in the editor.
                                     <p:row>  
                                         <p:column style="text-align: center;vertical-align: middle" headerText="ลำดับ"></p:column>
                                         <p:column style="text-align: center;vertical-align: middle" headerText="พรรค"></p:column>  
-                                        <p:column style="text-align: center;vertical-align: middle" headerText="งบประมาณที่ได้รับสนับสนุน"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle" headerText="งบประมาณที่ได้รับสนับสนุน"></p:column>                                        
                                     </p:row>
                                 </p:columnGroup>
 
@@ -73,7 +73,7 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column rendered="#{formReport002Controller.paramMode!='view'}">  
+                                <p:column rendered="#{formReport002Controller.paramMode!='view'}" headerText="แก้ใข">  
                                     <p:rowEditor />  
                                 </p:column> 
                                 <p:column rendered="#{formReport002Controller.paramMode!='view'}">  
@@ -88,7 +88,8 @@ and open the template in the editor.
                                         <p:column style="text-align: center" footerText=""></p:column>
                                         <p:column style="text-align: center" footerText="รวม"></p:column>
                                         <p:column style="text-align: right" footerText="${formReport009Controller.sumDetail.donate}"></p:column>
-                                        <p:column style="text-align: right" footerText=""></p:column>
+                                        <p:column style="text-align: right" footerText="" rendered="#{formReport002Controller.paramMode!='view'}"></p:column>
+                                        <p:column style="text-align: right" footerText="" rendered="#{formReport002Controller.paramMode!='view'}"></p:column>
                                     </p:row>
                                 </p:columnGroup>
                             </p:dataTable>
@@ -116,8 +117,12 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_009pn_addReportDetail">
 
                         <h:outputLabel value="พรรค *" />  
-                        <p:inputText id="REPORT_009lb01" value="#{formReport009Controller.inputReport009Detail.politicalParty}"/>  
-
+                        <p:selectOneMenu id="REPORT_009lb01" value="#{formReport009Controller.inputReport009Detail.politicalParty}"
+                                         effect="fade" var="p" filter="true" filterMatchMode="contains">  
+                            <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                            <f:selectItems value="#{formReport009Controller.dropdownFactory.ddlPoliticalParty()}" var="item" itemLabel="#{item.name}" itemValue="#{item.name}"/> 
+                        </p:selectOneMenu>
+                        
                         <h:outputLabel value="จำนวนเงินที่ได้รับบริจาค *"/>
                         <totoland:inputNumber id="REPORT_009lb02" value="#{formReport009Controller.inputReport009Detail.donate}"/>  
 

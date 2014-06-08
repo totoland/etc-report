@@ -11,6 +11,7 @@ import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportService;
+import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
@@ -22,6 +23,7 @@ import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  *

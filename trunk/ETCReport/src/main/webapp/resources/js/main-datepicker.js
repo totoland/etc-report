@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-try{
-    calendarTH == undefined
-}catch(e){
-    
-    if(e.toString().indexOf('defined')>-1){
-        
-        calendarTH =
+
+
+function getContextPath() {
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+}
+
+var calendarTH =
         {
             datePick: function(locale, dateId) {
 
@@ -33,6 +33,10 @@ try{
 //            ,minDate:'2013-09-10'
                         , yearRange: yearRangeVal
                                 //,maxDate: maxDate
+                        , showOn: 'button',
+                        //you can use your local path also eg. buttonImage: 'images/x_office_calendar.png'
+                        buttonImage: getContextPath() + '/resources/images/calendar.png',
+                        buttonImageOnly: true,
                     });
                 });
             },
@@ -60,12 +64,6 @@ try{
                 return dateString;
             }
         };
-        
-    }
-    
-}
-
-
 
 
 

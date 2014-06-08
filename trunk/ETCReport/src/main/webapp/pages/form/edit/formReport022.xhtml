@@ -33,7 +33,7 @@ and open the template in the editor.
                 <p:panel header="#{formReport022Controller.reportTitle}" style="width: 100%;">
                     <p:messages id="REPORT_022msgFrmDetails"></p:messages>
                     <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_022dlgAddReportDetail.show()" update="REPORT_022pn_addReportDetail" actionListener="#{formReport022Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
-                    
+
                     <div style="width: 1000px;overflow-x: scroll">
                         <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_022pnlFrm"> 
                             <p:dataTable var="item" value="#{formReport022Controller.report022Details}" id="REPORT_022Grid" 
@@ -122,8 +122,8 @@ and open the template in the editor.
                             <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport022Controller.save()}" id="REPORT_022btnSave" rendered="#{formReport022Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport022Controller.goToEdit()}" id="REPORT_022btnEdit" rendered="#{formReport022Controller.paramMode=='view' and formReport022Controller.canEdit(formReport022Controller.report022.createdUserGroup)}"/>
                             <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport022Controller.goToClose()}" id="REPORT_022btnClose" rendered="#{formReport022Controller.paramMode=='view' || formReport022Controller.paramMode=='create'}"/>
-                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport022Controller.edit()}" id="REPORT_022btnSaveEdit" rendered="#{formReport022Controller.paramMode!='view'}"/>
-                            <p:commandButton value="#{msg.btn_cancel}" id="REPORT_022btnCancel" actionListener="#{formReport022Controller.goToCancel()}" rendered="#{formReport022Controller.paramMode!='view'}"/>
+                            <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport022Controller.edit()}" id="REPORT_022btnSaveEdit" rendered="#{formReport022Controller.paramMode=='edit'}"/>
+                            <p:commandButton value="#{msg.btn_cancel}" id="REPORT_022btnCancel" actionListener="#{formReport022Controller.goToCancel()}" rendered="#{formReport022Controller.paramMode=='edit'}"/>
                         </div>
                     </h:panelGroup>
                 </p:panel>

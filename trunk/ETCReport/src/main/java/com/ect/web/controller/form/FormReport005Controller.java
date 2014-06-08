@@ -592,4 +592,16 @@ public class FormReport005Controller extends BaseFormReportController {
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public int cal(Integer a, Integer b){
+        
+        a = a==null?0:a;
+        b = b==null?0:b;
+        
+        if(b==0){
+            return 0;
+        }
+        
+        return (a*100)/b;
+    }
 }

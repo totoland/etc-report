@@ -432,7 +432,7 @@ public class FormReport004Controller extends BaseFormReportController {
         report004Detail1.setReportId(report004);
 
         Report004Detail report004Detail2 = new Report004Detail();
-        report004Detail2.setDlaType("องค์การบริหารส่วนตำบล");
+        report004Detail2.setDlaType("องค์การบริหารส่วนจังหวัด");
         report004Detail2.setReportId(report004);
 
         Report004Detail report004Detail3 = new Report004Detail();

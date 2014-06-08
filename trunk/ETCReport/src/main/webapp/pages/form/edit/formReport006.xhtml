@@ -209,7 +209,7 @@ and open the template in the editor.
                         <totoland:inputNumber id="REPORT_006lb8" value="#{formReport006Controller.inputReport006Detail.comment}" />
                         
                         <h:outputLabel value="หมายเหตุ (มติครั้งที่) *" />  
-                        <totoland:inputNumber id="REPORT_006lb88" value="#{formReport006Controller.inputReport006Detail.remark}" />
+                        <p:inputText id="REPORT_006lb88" value="#{formReport006Controller.inputReport006Detail.remark}" />
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport006Controller.addReportDetail(actionEvent)}" update="REPORT_006msgAddReportDetail,REPORT_006Grid" icon="ui-icon-check" style="margin:0"/>  

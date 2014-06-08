@@ -450,7 +450,7 @@ public class FormReport018Controller extends BaseFormReportController {
         report018Detail5.setReportId(report018);
 
         Report018Detail report018Detail6 = new Report018Detail();
-        report018Detail6.setLaas("เทศบาลตพบล");
+        report018Detail6.setLaas("เทศบาลตำบล");
         report018Detail6.setReportId(report018);
 
         Report018Detail report018Detail7 = new Report018Detail();
