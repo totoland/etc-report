@@ -553,9 +553,9 @@ public class FormReport001Controller extends BaseFormReportController {
 
         if (!(isDupp == null || isDupp.isEmpty())) {
             
-            for(Report001 report001 : isDupp){
+            for(Report001 _report001 : isDupp){
             
-                if(report001.getReportId().intValue() == getParamReportId().intValue()){
+                if(_report001.getReportId() == getParamReportId().intValue()){
                     return true;
                 }
                 
