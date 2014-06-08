@@ -341,16 +341,19 @@ public class FormReport002Controller extends BaseFormReportController{
             msg += "กรุณาระบุวัตถุประสงค์<br/>";
         }
         if (inputReport002Detail.getGoalAmount() == null || inputReport002Detail.getGoalAmount().isEmpty()) {
-            msg += "กรุณาระบุจำนวนเป้าหมาย<br/>";
+            msg += "กรุณาระบุเป้าหมายจำนวน<br/>";
         }
-        if (StringUtils.isBlank(inputReport002Detail.getResult())) {
+        if (inputReport002Detail.getResult()== null || inputReport002Detail.getResult().isEmpty()) {
             msg += "กรุณาระบุผลการปฏิบัติงาน<br/>";
         }
-        if (inputReport002Detail.getBudget() == null) {
+        if (StringUtils.isBlank(inputReport002Detail.getResult())) {
+            msg += "กรุณาเป้าหมายจำนวน<br/>";
+        }
+        if (inputReport002Detail.getBudget() == null || inputReport002Detail.getBudget().isEmpty()) {
             msg += "กรุณาระบุงบประมาณ<br/>";
         }
         if (StringUtils.isBlank(inputReport002Detail.getBuggetSource())) {
-            msg += "กรุณาระบุที่มาของงบประมาณ<br/>";
+            msg += "กรุณาระบุแหล่งที่มางบประมาณ<br/>";
         }
 
         if (!StringUtils.isBlank(msg)) {

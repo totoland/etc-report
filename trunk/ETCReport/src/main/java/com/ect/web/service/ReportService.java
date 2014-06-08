@@ -107,4 +107,6 @@ public interface ReportService {
     
     List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, String month,String year);
     
+    boolean checkDuppReportInMonth(int userGroupId, String reportName, String month,String year);
+    
 }

@@ -285,5 +285,10 @@ public class ReportServiceImpl implements ReportService {
     public List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, String month,String year) {
         return report001Dao.checkDuppActivityInMonth(userGroupId, activityId, month,year);
     }
+
+    @Override
+    public boolean checkDuppReportInMonth(int userGroupId, String reportName, String month,String year) {
+        return viewReportByStatusDao.checkDuppReportInMonth(userGroupId, reportName, month,year);
+    }
     
 }
