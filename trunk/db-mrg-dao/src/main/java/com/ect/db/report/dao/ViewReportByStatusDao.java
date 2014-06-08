@@ -27,4 +27,6 @@ public interface ViewReportByStatusDao {
     Integer countByCriteria(ReportCriteria reportCriteria);
     
     Integer deleteReport(String reportName, Integer reportId);
+    
+    boolean checkDuppReportInMonth(int userGroupId, String reportName, String month,String year);
 }

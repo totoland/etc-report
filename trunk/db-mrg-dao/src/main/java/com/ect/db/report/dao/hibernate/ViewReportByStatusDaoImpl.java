@@ -210,4 +210,9 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
         return res;
 
     }
+
+    @Override
+    public boolean checkDuppReportInMonth(int userGroupId, String reportName, String month,String year) {
+        return super.countNativeQuery("SELECT COUNT(*) FROM "+reportName+ " WHERE CREATED_USER_GROUP = ? AND REPORT_MONTH = ? AND REPORT_YEAR = ?", userGroupId,month,year)>0;
+    }
 }

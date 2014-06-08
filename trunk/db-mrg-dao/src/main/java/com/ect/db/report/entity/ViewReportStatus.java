@@ -330,7 +330,7 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
      * @return the documentNo
      */
     public String getDocumentNo() {
-        this.documentNo = this.reportCode.replace("REPORT_", "")+"-"+this.userGroupId+"-"+this.reportMonth+"/"+this.reportYear;
+        this.documentNo = this.reportCode.replace("REPORT_", "")+"-"+reportId+"-"+this.userGroupId+"-"+this.reportMonth+"/"+this.reportYear;
         return documentNo;
     }
 
