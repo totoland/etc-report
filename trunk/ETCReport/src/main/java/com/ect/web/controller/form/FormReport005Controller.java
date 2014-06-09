@@ -103,7 +103,7 @@ public class FormReport005Controller extends BaseFormReportController {
         if (report005Details2 != null && !report005Details2.isEmpty()) {
 
             report005Details.addAll(report005Details2);
-
+            
         }
         report005.setReport005DetailList(report005Details);
         report005.setCreatedDate(new Date());
@@ -146,6 +146,12 @@ public class FormReport005Controller extends BaseFormReportController {
 
         logger.trace(MessageUtils.PRINT_LINE_STAR() + "Edit Report : {}", REPORT_005 + MessageUtils.PRINT_LINE_STAR());
 
+        if (report005Details2 != null && !report005Details2.isEmpty()) {
+
+            report005Details.addAll(report005Details2);
+         
+        }
+        
         report005.setReport005DetailList(report005Details);
         report005.setUpdatedDate(new Date());
         report005.setUpdatedUser(super.getUserAuthen().getUserId());

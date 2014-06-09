@@ -523,8 +523,9 @@ public class FormReport006Controller extends BaseFormReportController {
 
         }
 
-        logger.trace("sumDetail : {}", sumDetail);
+        logger.trace("sumDetail1 : {}", sumDetail);
 
+        JsfUtil.executeJavaScript("updateFooter();");
     }
 
     /**
