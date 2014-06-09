@@ -39,7 +39,7 @@ and open the template in the editor.
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                          rowsPerPageTemplate="5,10,15">  
 
-                                <p:ajax event="rowEdit" listener="#{formReport009Controller.onEdit}"/>  
+                                <p:ajax event="rowEdit" listener="#{formReport009Controller.onEdit}" oncomplete="updateFooter()"/>  
                                 <p:ajax event="rowEditCancel" listener="#{formReport009Controller.onCancel}"/>
 
                                 <p:columnGroup type="header"> 
