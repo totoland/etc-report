@@ -221,7 +221,7 @@ public class FormReport009Controller extends BaseFormReportController {
         inputReport009Detail.setReportId(report009);
 
         report009Details.add(inputReport009Detail);
-        
+
         sumReport009Details();
 
         JsfUtil.hidePopup("REPORT_009dlgAddReportDetail");
@@ -257,14 +257,13 @@ public class FormReport009Controller extends BaseFormReportController {
 
             if (report009Details.get(i).getKey() == editRow.getKey()) {
 
-                report009Details.remove(i);
-                report009Details.add(i, editRow);
+                report009Details.set(i, editRow);
 
                 logger.trace("After Edit Row : {}", editRow);
-            }
 
-            sumReport009Details();
-            break;
+                sumReport009Details();
+                break;
+            }
 
         }
 
@@ -428,11 +427,11 @@ public class FormReport009Controller extends BaseFormReportController {
         logger.trace("delete item : {}", rowDelete);
 
         report009Details.remove(rowDelete);
-        
+
         sumReport009Details();
 
     }
-    
+
     private Report009Detail sumDetail = new Report009Detail();
 
     public void sumReport009Details() {
@@ -441,12 +440,19 @@ public class FormReport009Controller extends BaseFormReportController {
 
         for (Report009Detail rd : report009Details) {
 
-            getSumDetail().setDonate(getSumDetail().getDonate().add(rd.getDonate()));
+            sumDetail.setDonate(getSumDetail().getDonate().add(rd.getDonate()));
 
         }
 
-        logger.trace("sumDetail : {}", sumDetail);
+        logger.trace("sumDetail : {} report009Details : {}", sumDetail,report009Details);
 
+        //JsfUtil.executeJavaScript("updateFooter();");
+    }
+
+    public void refresh(){
+        logger.trace("refresh!!");
+        
+        sumReport009Details();
     }
     
     /**
