@@ -292,7 +292,7 @@ and open the template in the editor.
                             </p:selectOneRadio>
 
                             <f:facet name="footer">  
-                                <p:commandButton value="เพิ่ม" actionListener="#{formReport001Controller.addReportDetail(actionEvent)}" update="REPORT_001msgAddReportDetail,REPORT_001Grid" icon="ui-icon-check" style="margin:0"/>  
+                                <p:commandButton value="เพิ่ม" id="BT_ADD_REPORT_001" actionListener="#{formReport001Controller.addReportDetail(actionEvent)}" update="REPORT_001msgAddReportDetail,REPORT_001Grid" icon="ui-icon-check" style="margin:0"/>  
                             </f:facet>
                         </p:panelGrid>
                         <style>
@@ -304,7 +304,7 @@ and open the template in the editor.
                             }
                         </style>
                     </p:panel>
-                    <p:blockUI  block="REPORT_REPORT_001" widgetVar="blogui001" trigger="REPORT_001_BT_ADD,REPORT_001btnSave,REPORT_001btnCancel">
+                    <p:blockUI  block="REPORT_REPORT_001" widgetVar="blogui001" trigger="BT_ADD_REPORT_001,REPORT_001_BT_ADD,REPORT_001btnSave,REPORT_001btnCancel">
                         LOADING<br />
                         <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
                     </p:blockUI>
