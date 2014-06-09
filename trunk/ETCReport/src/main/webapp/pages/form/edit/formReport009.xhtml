@@ -39,7 +39,7 @@ and open the template in the editor.
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                          rowsPerPageTemplate="5,10,15">  
 
-                                <p:ajax event="rowEdit" listener="#{formReport009Controller.onEdit}" oncomplete="updateFooter()"/>  
+                                <p:ajax event="rowEdit" listener="#{formReport009Controller.onEdit}"/>  
                                 <p:ajax event="rowEditCancel" listener="#{formReport009Controller.onCancel}"/>
 
                                 <p:columnGroup type="header"> 
@@ -73,10 +73,10 @@ and open the template in the editor.
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column rendered="#{formReport002Controller.paramMode!='view'}" headerText="แก้ใข">  
+                                <p:column rendered="#{formReport009Controller.paramMode!='view'}" headerText="แก้ใข">  
                                     <p:rowEditor />  
                                 </p:column> 
-                                <p:column rendered="#{formReport002Controller.paramMode!='view'}">  
+                                <p:column rendered="#{formReport009Controller.paramMode!='view'}">  
                                     <p:commandLink action="#{formReport009Controller.onDelete(item)}" update="REPORT_009Grid">
                                         <span class="ui-icon ui-icon-trash"></span>
                                         <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
@@ -87,13 +87,13 @@ and open the template in the editor.
                                     <p:row>  
                                         <p:column style="text-align: center" footerText=""></p:column>
                                         <p:column style="text-align: center" footerText="รวม"></p:column>
-                                        <p:column style="text-align: right" footerText="${formReport009Controller.sumDetail.donate}"></p:column>
-                                        <p:column style="text-align: right" footerText="" rendered="#{formReport002Controller.paramMode!='view'}"></p:column>
-                                        <p:column style="text-align: right" footerText="" rendered="#{formReport002Controller.paramMode!='view'}"></p:column>
+                                        <p:column style="text-align: right"  footerText="${formReport009Controller.sumDetail.donate}"></p:column>
+                                        <p:column style="text-align: right" footerText="" rendered="#{formReport009Controller.paramMode!='view'}"></p:column>
+                                        <p:column style="text-align: right" footerText="" rendered="#{formReport009Controller.paramMode!='view'}"></p:column>
                                     </p:row>
                                 </p:columnGroup>
                             </p:dataTable>
-                            <p:remoteCommand name="updateFooter" update=":form1:REPORT_009Grid"></p:remoteCommand>
+                            <p:remoteCommand name="updateFooter" update="REPORT_009msgAddReportDetail,REPORT_009Grid" actionListener="#{formReport009Controller.refresh()}"></p:remoteCommand>
                             
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
                                 <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
