@@ -154,7 +154,8 @@ public class FormReportMainController extends BaseFormReportController {
 
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
-
+        reportCriteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+"");
+        
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null && count > 0) {
