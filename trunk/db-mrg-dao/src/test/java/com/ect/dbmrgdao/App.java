@@ -92,5 +92,37 @@ public class App {
         for (int i = 10; i <= 23; i++) {
             System.out.println("UPDATE [REPORT_0"+i+"_HIS] SET [REPORT_YEAR] = 2557");
         }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DELETE [REPORT_00"+i+"_DETAIL]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DELETE [REPORT_0"+i+"_DETAIL]");
+        }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DELETE [REPORT_00"+i+"_DETAIL_HIS]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DELETE [REPORT_0"+i+"_DETAIL_HIS]");
+        }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DELETE [REPORT_00"+i+"]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DELETE [REPORT_0"+i+"]");
+        }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DELETE [REPORT_00"+i+"_HIS]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DELETE [REPORT_0"+i+"_HIS]");
+        }
     }
 }
