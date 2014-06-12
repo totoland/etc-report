@@ -188,7 +188,7 @@ public class FormReportMainController extends BaseFormReportController {
 
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
-
+        reportCriteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+"");
         reportCriteria.setFlowStatus(FlowStatus.STEP_1.getStatus() + "");
 
         final Integer count = reportService.countByCriteria(reportCriteria);
@@ -224,7 +224,8 @@ public class FormReportMainController extends BaseFormReportController {
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.STEP_2.getStatus() + "");
         reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
-
+        reportCriteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+"");
+        
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -251,7 +252,8 @@ public class FormReportMainController extends BaseFormReportController {
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.STEP_3.getStatus() + "");
         reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
-
+        reportCriteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+"");
+        
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -278,7 +280,8 @@ public class FormReportMainController extends BaseFormReportController {
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.APPROVED.getStatus() + "");
         reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
-
+        reportCriteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+"");
+        
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
@@ -305,7 +308,8 @@ public class FormReportMainController extends BaseFormReportController {
         ReportCriteria reportCriteria = new ReportCriteria();
         reportCriteria.setFlowStatus(FlowStatus.DRAFF.getStatus() + "");
         reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
-
+        reportCriteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+"");
+        
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null || count > 0) {
