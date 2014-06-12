@@ -111,13 +111,13 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
             if (reportCriteria.getUserGroupId() != null) {
 
-                sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" OR USER_GROUP_LVL = ").append(reportCriteria.getUserGroupId()).append(" ) ");
+                sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
 
             }
 
             if (reportCriteria.getUserGroupLvl() != null) {
 
-                sql.append(" AND ( USER_GROUP_LVL = ").append(reportCriteria.getUserGroupLvl()).append(" OR USER_GROUP_LVL <= ").append(reportCriteria.getUserGroupLvl()).append(" )");
+                sql.append(" AND USER_GROUP_LVL <= ").append(reportCriteria.getUserGroupLvl()).append(" ");
 
             }
 
@@ -169,13 +169,13 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
             if (reportCriteria.getUserGroupId() != null) {
 
-                sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" OR USER_GROUP_LVL = ").append(reportCriteria.getUserGroupId()).append(" ) ");
+                sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
 
             }
 
             if (reportCriteria.getUserGroupLvl() != null) {
 
-                sql.append(" AND ( USER_GROUP_LVL = ").append(reportCriteria.getUserGroupLvl()).append(" OR USER_GROUP_LVL <= ").append(reportCriteria.getUserGroupLvl()).append(" )");
+                sql.append(" AND USER_GROUP_LVL <= ").append(reportCriteria.getUserGroupLvl()).append(" ");
 
             }
 
