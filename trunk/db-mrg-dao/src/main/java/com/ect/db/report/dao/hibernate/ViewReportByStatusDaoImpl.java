@@ -125,15 +125,17 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         if (reportCriteria.getMonth() != null && !reportCriteria.getMonth().isEmpty()) {
 
-            sql.append(" AND MONTH(CREATED_DATE) = ").append(reportCriteria.getMonth());
+            sql.append(" AND REPORT_MONTH = ").append(reportCriteria.getMonth());
 
         }
 
         if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
 
-            sql.append(" AND YEAR(CREATED_DATE) = ").append(reportCriteria.getYear());
+            sql.append(" AND REPORT_YEAR= ").append(reportCriteria.getYear());
 
         }
+        
+        logger.trace("sql : {}",sql);
 
         return super.findNativePagginQuery(sql.toString(), reportCriteria.getStartRow(), reportCriteria.getMaxRow(), ViewReportStatus.class);
     }
@@ -178,6 +180,20 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             }
 
         }
+        
+        if (reportCriteria.getMonth() != null && !reportCriteria.getMonth().isEmpty()) {
+
+            sql.append(" AND REPORT_MONTH = ").append(reportCriteria.getMonth());
+
+        }
+
+        if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
+
+            sql.append(" AND REPORT_YEAR= ").append(reportCriteria.getYear());
+
+        }
+        
+        logger.trace("sql : {}",sql);
 
         return super.countNativeQuery(sql.toString());
     }
