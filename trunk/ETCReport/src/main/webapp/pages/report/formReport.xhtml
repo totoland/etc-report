@@ -125,9 +125,9 @@ and open the template in the editor.
                             </p:column>
                             <p:column sortBy="created_Date">
                                 <f:facet name="header">
-                                    <h:outputText value="วันที่สร้าง" />
+                                    <h:outputText value="ประจำเดือน/ปี" />
                                 </f:facet>
-                                <totoland:convertDateTime value="#{item.createdDate}" format="dd/MM/yyyy"/>
+                                <h:outputText value="#{allReportController.dropdownFactory.getMonthName(item.reportMonth)} #{item.reportYear}"/>
                             </p:column>
                             <p:column sortBy="created_User_Full_Name">
                                 <f:facet name="header">
