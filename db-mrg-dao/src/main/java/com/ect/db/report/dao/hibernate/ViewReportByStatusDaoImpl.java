@@ -7,7 +7,6 @@ package com.ect.db.report.dao.hibernate;
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.dao.BaseDao;
 import com.ect.db.entity.EctGroupLvl;
-import com.ect.db.entity.EctUserGroup;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.ViewReportStatus;
 import java.text.MessageFormat;

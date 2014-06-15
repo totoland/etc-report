@@ -43,7 +43,7 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
         Calendar calendar = new GregorianCalendar(Locale.ENGLISH);
         sdf.setCalendar(calendar);
-        String date = sdf.format(new Date());
+        String date = sdf.format(month);
                 
         if(date.startsWith("0")){
             date = date.replaceFirst("0", "");
