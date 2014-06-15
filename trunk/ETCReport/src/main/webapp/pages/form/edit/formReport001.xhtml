@@ -128,7 +128,7 @@ and open the template in the editor.
                                             <h:outputText value="#{item.workDetail}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:inputText value="#{item.workDetail}" />  
+                                            <p:inputTextarea value="#{item.workDetail}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -183,7 +183,7 @@ and open the template in the editor.
                                             <h:outputText value="#{item.resultAmount}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:inputText value="#{item.resultAmount}" />  
+                                            <p:inputTextarea value="#{item.resultAmount}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -194,7 +194,7 @@ and open the template in the editor.
                                             <h:outputText value="#{item.practiceResult}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <p:inputText value="#{item.practiceResult}" />  
+                                            <p:inputTextarea value="#{item.practiceResult}" />  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -274,10 +274,10 @@ and open the template in the editor.
                             <totoland:inputNumber id="REPORT_001lb3b" value="#{formReport001Controller.inputReport001Detail.goalResult}" />  
 
                             <h:outputLabel value="ตัวชี้วัด (แผน) *" />  
-                            <p:inputText id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
+                            <p:inputTextarea id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
 
                             <h:outputLabel value="ตัวชี้วัด (ผล) *" />  
-                            <p:inputText id="REPORT_001lb5b" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
+                            <p:inputTextarea id="REPORT_001lb5b" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
 
                             <h:outputLabel value="งบประมาณตั้งไว้ *" />  
                             <totoland:inputNumber id="REPORT_001lb6" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
