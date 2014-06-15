@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseController implements Serializable {
 
-    private static Logger logger = LoggerFactory.getLogger(BaseController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BaseController.class);
     private static final long serialVersionUID = -3424239608725799082L;
     protected RequestContext context = RequestContext.getCurrentInstance();
 
@@ -166,7 +166,7 @@ public abstract class BaseController implements Serializable {
 
     public void openIframe(String url) {
 
-        if (url.indexOf("?") == -1) {
+        if (!url.contains("?")) {
             url += "?q=q";
         }
 
@@ -187,7 +187,7 @@ public abstract class BaseController implements Serializable {
     }
     
     protected void checkRoleAdmin() {
-        if(getUserAuthen().getUserGroupLvl().intValue()!=EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()){
+        if(getUserAuthen().getUserGroupLvl()!=EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()){
             sendError(401, "Cannot Access This Page ,You are not Admin.");
             //throw new AccessDenieException("Cannot Access User Management Page ,You are not Admin.");
         };
