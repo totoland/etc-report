@@ -7,6 +7,8 @@ package com.ect.db.report.entity;
 import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -330,10 +332,46 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
      * @return the documentNo
      */
     public String getDocumentNo() {
-        this.documentNo = this.reportCode.replace("REPORT_", "")+"-"+reportId+"-"+this.userGroupId+"-"+this.reportMonth+"/"+this.reportYear;
+        this.documentNo = getMap().get(this.reportCode)+"-"+userGroupId+"-"+this.reportId+"-"+this.reportMonth+"-"+this.reportYear;
         return documentNo;
     }
 
+    
+    private Map<String,String> map;
+    
+    private Map<String,String> getMap(){
+        
+        if(map == null){
+            map = new HashMap();
+        }
+        
+        map.put("REPORT_001", "1.1");
+        map.put("REPORT_002", "1.2");
+        map.put("REPORT_003", "1.3");
+        map.put("REPORT_004", "2.1");
+        map.put("REPORT_005", "2.2");
+        map.put("REPORT_006", "2.3");
+        map.put("REPORT_007", "3.1");
+        map.put("REPORT_008", "3.2");
+        map.put("REPORT_009", "3.3");
+        map.put("REPORT_010", "3.4");
+        map.put("REPORT_011", "4.1");
+        map.put("REPORT_012", "4.2");
+        map.put("REPORT_013", "4.3");
+        map.put("REPORT_014", "4.4");
+        map.put("REPORT_015", "4.5");
+        map.put("REPORT_016", "4.6");
+        map.put("REPORT_017", "4.7");
+        map.put("REPORT_018", "5.1");
+        map.put("REPORT_019", "5.2");
+        map.put("REPORT_020", "6");
+        map.put("REPORT_021", "7");
+        map.put("REPORT_022", "8");
+        map.put("REPORT_023", "9");
+        
+        return map;
+    }
+    
     /**
      * @return the approvedDate
      */
