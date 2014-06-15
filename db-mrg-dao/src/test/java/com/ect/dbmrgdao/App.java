@@ -124,5 +124,43 @@ public class App {
         for (int i = 10; i <= 23; i++) {
             System.out.println("DELETE [REPORT_0"+i+"_HIS]");
         }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DROP TABLE [REPORT_00"+i+"_DETAIL]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DROP TABLE [REPORT_0"+i+"_DETAIL]");
+        }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DROP TABLE [REPORT_00"+i+"_DETAIL_HIS]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DROP TABLE [REPORT_0"+i+"_DETAIL_HIS]");
+        }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DROP TABLE [REPORT_00"+i+"]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DROP TABLE [REPORT_0"+i+"]");
+        }
+        
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DROP TABLE [REPORT_00"+i+"_HIS]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DROP TABLE [REPORT_0"+i+"_HIS]");
+        }
+        
+        int a = 10;
+        int b = 3;
+        
+        
+        System.out.println((double)(a*100)/b);
     }
 }
