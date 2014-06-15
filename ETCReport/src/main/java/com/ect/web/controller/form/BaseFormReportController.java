@@ -11,7 +11,6 @@ import com.ect.db.entity.ViewUser;
 import com.ect.web.controller.BaseController;
 import com.ect.web.factory.DropdownFactory;
 import com.ect.web.service.ReportService;
-import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
@@ -23,7 +22,6 @@ import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 /**
  *
@@ -180,14 +178,14 @@ public abstract class BaseFormReportController extends BaseController {
         if (getUserAuthen() == null) {
             return false;
         }
-        return getUserAuthen().getUserGroupLvl().intValue() == GroupLevel.OPERATOR.getLevel() || getUserAuthen().getUserGroupLvl().intValue() == GroupLevel.SYSTEM_ADMIN.getLevel();
+        return getUserAuthen().getUserGroupLvl() == GroupLevel.OPERATOR.getLevel() || getUserAuthen().getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel();
     }
 
     public boolean canApprove(Integer flowStatusId) {
 
         ViewUser user = getUserAuthen();
 
-//        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
+        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
 
         if(user.getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel()){
         
@@ -201,15 +199,15 @@ public abstract class BaseFormReportController extends BaseController {
 
         } else if (EctFlowStatus.FlowStatus.STEP_1.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < GroupLevel.OPERATOR.getLevel();
+            return user.getUserGroupLvl() == GroupLevel.HEAD.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.STEP_2.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < GroupLevel.HEAD.getLevel();
+            return user.getUserGroupLvl() == GroupLevel.LEAD.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.STEP_3.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < GroupLevel.LEAD.getLevel();
+            return user.getUserGroupLvl() == GroupLevel.CENTER.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.APPROVED.getStatus() == flowStatusId) {
 
@@ -233,19 +231,19 @@ public abstract class BaseFormReportController extends BaseController {
 
         if (EctFlowStatus.FlowStatus.STEP_1.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < 4;
+            return user.getUserGroupLvl() == GroupLevel.HEAD.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.STEP_2.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < 3;
+            return user.getUserGroupLvl() == GroupLevel.LEAD.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.STEP_3.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() < 2;
+            return user.getUserGroupLvl() == GroupLevel.CENTER.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.APPROVED.getStatus() == flowStatusId) {
 
-            return user.getUserGroupLvl() == 0;
+            return user.getUserGroupLvl() == GroupLevel.CENTER.getLevel();
 
         } else if (EctFlowStatus.FlowStatus.REJECT.getStatus() == flowStatusId) {
 

@@ -1,0 +1,33 @@
+[ectDao][INFO] 2557-01-05 16:51:31.046 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 16:51:32.309 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 16:54:35.424 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 16:54:36.631 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:08:17.685 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:08:18.861 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:10:04.120 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:10:05.235 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:10:56.055 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:10:57.231 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:12:17.567 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:12:18.744 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 17:58:45.638 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][DEBUG] 2557-01-05 17:58:46.774 main [org.springframework.orm.hibernate3.SessionFactoryUtils:322]Opening Hibernate Session
+[ectDao][WARN] 2557-01-05 17:58:46.956 main [org.hibernate.util.JDBCExceptionReporter:77]SQL Error: 102, SQLState: S0001
+[ectDao][ERROR] 2557-01-05 17:58:46.956 main [org.hibernate.util.JDBCExceptionReporter:78]Incorrect syntax near 'CONS_SORT'.
+[ectDao][DEBUG] 2557-01-05 17:58:46.958 main [org.springframework.orm.hibernate3.SessionFactoryUtils:800]Closing Hibernate Session
+[ectDao][INFO] 2557-01-05 17:58:46.976 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 18:00:22.074 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][DEBUG] 2557-01-05 18:00:23.243 main [org.springframework.orm.hibernate3.SessionFactoryUtils:322]Opening Hibernate Session
+[ectDao][DEBUG] 2557-01-05 18:00:23.433 main [org.springframework.orm.hibernate3.HibernateTemplate:389]Eagerly flushing Hibernate session
+[ectDao][DEBUG] 2557-01-05 18:00:23.433 main [org.springframework.orm.hibernate3.SessionFactoryUtils:800]Closing Hibernate Session
+[ectDao][INFO] 2557-01-05 18:00:23.447 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 18:01:26.762 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][DEBUG] 2557-01-05 18:01:27.890 main [org.springframework.orm.hibernate3.SessionFactoryUtils:322]Opening Hibernate Session
+[ectDao][DEBUG] 2557-01-05 18:01:28.095 main [org.springframework.orm.hibernate3.HibernateTemplate:389]Eagerly flushing Hibernate session
+[ectDao][DEBUG] 2557-01-05 18:01:28.102 main [org.springframework.orm.hibernate3.SessionFactoryUtils:800]Closing Hibernate Session
+[ectDao][INFO] 2557-01-05 18:01:28.121 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory
+[ectDao][INFO] 2557-01-05 18:05:36.412 main [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:780]Building new Hibernate SessionFactory
+[ectDao][DEBUG] 2557-01-05 18:05:37.535 main [org.springframework.orm.hibernate3.SessionFactoryUtils:322]Opening Hibernate Session
+[ectDao][DEBUG] 2557-01-05 18:05:37.730 main [org.springframework.orm.hibernate3.HibernateTemplate:389]Eagerly flushing Hibernate session
+[ectDao][DEBUG] 2557-01-05 18:05:37.737 main [org.springframework.orm.hibernate3.SessionFactoryUtils:800]Closing Hibernate Session
+[ectDao][INFO] 2557-01-05 18:05:37.756 Thread-1 [org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean:223]Closing Hibernate SessionFactory

@@ -599,7 +599,7 @@ public class FormReport005Controller extends BaseFormReportController {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public int cal(Integer a, Integer b){
+    public double cal(Integer a, Integer b){
         
         a = a==null?0:a;
         b = b==null?0:b;
@@ -608,6 +608,6 @@ public class FormReport005Controller extends BaseFormReportController {
             return 0;
         }
         
-        return (a*100)/b;
+        return (double)(a*100)/b;
     }
 }

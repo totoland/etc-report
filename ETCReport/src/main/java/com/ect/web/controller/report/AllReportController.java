@@ -96,7 +96,8 @@ import org.slf4j.LoggerFactory;
 public class AllReportController extends BaseFormReportController {
 
     private static final long serialVersionUID = 8451238753520170431L;
-    private static Logger logger = LoggerFactory.getLogger(AllReportController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AllReportController.class);
+    
     @ManagedProperty(value = "#{userService}")
     private UserService userService;
     private List<ViewReportStatus> viewReportResult;
@@ -118,16 +119,11 @@ public class AllReportController extends BaseFormReportController {
             reportCriteria.setMonth(reportCriteria.getMonth());
         }
         if (!StringUtils.isBlank(reportCriteria.getYear())) {
-            reportCriteria.setYear(Integer.parseInt(reportCriteria.getYear()) - 543 + "");
+            reportCriteria.setYear(reportCriteria.getYear());
         }
 
-        ViewUser user = getUserAuthen();
-
-        if (user.getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
-
-            reportCriteria.setUserGroupId(user.getUserGroupId() + "");
-
-        }
+        reportCriteria.setUserGroupId(getUserAuthen().getUserGroupId() + "");
+        reportCriteria.setUserGroupLvl(getUserAuthen().getUserGroupLvl()+"");
 
         logger.trace("Criteria : {}", reportCriteria);
 

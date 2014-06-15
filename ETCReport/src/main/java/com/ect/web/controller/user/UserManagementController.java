@@ -45,6 +45,7 @@ public class UserManagementController extends BaseController {
     @ManagedProperty("#{reportGennericService}")
     private ReportGennericService<EctUser> reportGennericService;
     private String rePassword;
+    private String oldUserName;
 
     @PostConstruct
     public void init() {
@@ -94,6 +95,8 @@ public class UserManagementController extends BaseController {
             this.ectUser.setProvinceId(selectUser.getProvinceId());
             this.ectUser.setUserGroupLvl(selectUser.getUserGroupLvl());
 
+            this.oldUserName = this.ectUser.getUsername();
+            
         } catch (Exception ex) {
 
             logger.error("cannot initEdit :", ex);
@@ -113,7 +116,7 @@ public class UserManagementController extends BaseController {
         try {
 
             ectUser.setPassword(ECTUtils.encrypt(ectUser.getPassword()));
-
+            
             reportGennericService.create(ectUser);
 
             logger.trace("Save Success !! ");
@@ -271,6 +274,12 @@ public class UserManagementController extends BaseController {
     private boolean validateBeforeEdit() {
         String msg = "";
                 
+        if(!oldUserName.equals(ectUser.getUsername()) && userService.findByUserName(ectUser.getUsername())!=null){
+            
+            JsfUtil.alertJavaScript(MessageUtils.getResourceBundleString("dupp_username",ectUser.getUsername()));
+            return false;
+        };
+        
         if (StringUtils.isBlank(ectUser.getUsername())) {
             msg += (MessageUtils.getResourceBundleString("require_message", "ชื่อผู้ใช้")) + ("\\n");
         }
@@ -368,6 +377,20 @@ public class UserManagementController extends BaseController {
      */
     public void setRePassword(String rePassword) {
         this.rePassword = rePassword;
+    }
+
+    /**
+     * @return the oldUserName
+     */
+    public String getOldUserName() {
+        return oldUserName;
+    }
+
+    /**
+     * @param oldUserName the oldUserName to set
+     */
+    public void setOldUserName(String oldUserName) {
+        this.oldUserName = oldUserName;
     }
     
 }

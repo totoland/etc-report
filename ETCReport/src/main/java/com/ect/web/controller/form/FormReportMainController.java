@@ -156,6 +156,8 @@ public class FormReportMainController extends BaseFormReportController {
         reportCriteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
         reportCriteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+"");
         
+        logger.trace("reportCriteria : {}",reportCriteria);
+                
         final Integer count = reportService.countByCriteria(reportCriteria);
 
         if (count != null && count > 0) {
@@ -826,16 +828,20 @@ public class FormReportMainController extends BaseFormReportController {
     public Integer getFollowUpNewTask() {
         ReportCriteria criteria = new ReportCriteria();
         criteria.setUserGroupId(super.getUserAuthen().getUserGroupId() + "");
-
-        if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.OPERATOR.getLevel()) {
+        criteria.setUserGroupLvl(super.getUserAuthen().getUserGroupLvl()+ "");
+        
+        if (super.getUserAuthen().getUserGroupLvl() == EctGroupLvl.GroupLevel.OPERATOR.getLevel()) {
             criteria.setFlowStatus(EctFlowStatus.FlowStatus.DRAFF.getStatus() + "");
-        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.HEAD.getLevel()) {
+        } else if (super.getUserAuthen().getUserGroupLvl() == EctGroupLvl.GroupLevel.HEAD.getLevel()) {
             criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_1.getStatus() + "");
-        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
+        } else if (super.getUserAuthen().getUserGroupLvl() == EctGroupLvl.GroupLevel.LEAD.getLevel()) {
             criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_2.getStatus() + "");
-        } else if (super.getUserAuthen().getUserGroupLvl().intValue() == EctGroupLvl.GroupLevel.CENTER.getLevel()) {
+        } else if (super.getUserAuthen().getUserGroupLvl() == EctGroupLvl.GroupLevel.CENTER.getLevel()) {
             criteria.setFlowStatus(EctFlowStatus.FlowStatus.STEP_3.getStatus() + "");
         }
+        
+        logger.trace("criteria : {}",criteria);
+        
         return reportService.countByCriteria(criteria);
     }
 
