@@ -88,7 +88,7 @@ and open the template in the editor.
                                 <p:ajax event="rowEdit" listener="#{formReport005Controller.onEdit}"/>  
                                 <p:ajax event="rowEditCancel" listener="#{formReport005Controller.onCancel}"/>
 
-                                <p:column headerText="วันที่เลือกตั้ง">  
+                                <p:column headerText="วันเลือกตั้ง">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <totoland:convertDateTime format="dd/MM/yyyy" value="#{item.electedDay}" />  
@@ -112,7 +112,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="ประเภทเลือกตั้ง">  
+                                <p:column headerText="ประเภทการสรรหา">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{formReport005Controller.dropdownFactory.getTypeElectedName(item.ssElectedType)}" /> 
@@ -212,7 +212,7 @@ and open the template in the editor.
                                     </h:outputText>%
                                 </p:column>
 
-                                <p:column headerText="บัตรไม่ประสงค์จะลงคะแนน">  
+                                <p:column headerText="บัตรไม่ประสงค์ลงคะแนน">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.voteNo}" />  
@@ -258,7 +258,7 @@ and open the template in the editor.
                                 <p:ajax event="rowEdit" listener="#{formReport005Controller.onEdit2}"/>  
                                 <p:ajax event="rowEditCancel" listener="#{formReport005Controller.onCancel}"/>
 
-                                <p:column headerText="ระยะเวลาสรรหา ส.ว.">  
+                                <p:column headerText="ระยะเวลาการสรรหา ส.ว.">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.nominationPeriod}" />  
@@ -269,7 +269,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="การเลือกตั้ง">  
+                                <p:column headerText="ประเภทการสรรหา">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.election}" />  
@@ -280,7 +280,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="จำนวนองค์/รายชื่อที่เสนอ">  
+                                <p:column headerText="จำนวนองค์กร/รายชื่อที่เสนอ">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.corporateAmount}" />  
@@ -326,8 +326,8 @@ and open the template in the editor.
                     <p:messages id="REPORT_005msgAddReportDetail" escape="false" closable="true"></p:messages>
                     <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail">
 
-                        <h:outputLabel value="วันที่เลือกตั้ง *"/>  
-                        <totoland:calendarTH id="calElectedDay" styleClass="cal" locale="th" showOn="button" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
+                        <h:outputLabel value="วันเลือกตั้ง *"/>  
+                        <totoland:calendarTH id="calElectedDay" locale="th" showOn="button" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.electedDay}" lang="th" style="width: 180px"/>  
 
                         <h:outputLabel value="จังหวัด *" />  
                         <p:selectOneMenu id="ectProvince" style="width: 220px" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.provinceId}">  
@@ -341,7 +341,7 @@ and open the template in the editor.
                             <f:selectItems value="#{dropDownController.dropdownFactory.ddlElected()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
                         </p:selectOneMenu>
 
-                        <h:outputLabel value="ประเภทเลือกตั้ง *" />
+                        <h:outputLabel value="ประเภทการสรรหา *" />
                         <p:selectOneMenu value="#{formReport005Controller.inputReport005Detail.ssElectedType}" style="width: 220px">
                             <f:selectItems value="#{dropDownController.dropdownFactory.ddlTypeElected()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
                         </p:selectOneMenu>
@@ -361,7 +361,7 @@ and open the template in the editor.
                         <h:outputLabel value="บัตรเสีย *" />  
                         <totoland:inputNumber id="REPORT_005lb07" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voidedBallotPaper}"/>
 
-                        <h:outputLabel value="บัตรไม่ประสงค์จะลงคะแนน *" />  
+                        <h:outputLabel value="บัตรไม่ประสงค์ลงคะแนน *" />  
                         <totoland:inputNumber id="REPORT_005lb08" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail.voteNo}"/>
 
                         <f:facet name="footer">  
@@ -386,13 +386,13 @@ and open the template in the editor.
                     <p:messages id="REPORT_005msgAddReportDetail2" escape="false" closable="true"></p:messages>
                     <p:panelGrid columns="2" id="REPORT_005pnG_addReportDetail2">
 
-                        <h:outputLabel value="ระยะเวลาสรรหา ส.ว. *" />  
+                        <h:outputLabel value="ระยะเวลาการสรรหา ส.ว. *" />  
                         <p:inputText id="REPORT_005lb01" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.nominationPeriod}"/>  
 
-                        <h:outputLabel value="การเลือกตั้ง *" />  
+                        <h:outputLabel value="ประเภทการสรรหา *" />  
                         <p:inputText id="REPORT_005lb3" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.election}"/>  
 
-                        <h:outputLabel value="จำนวนองค์/รายชื่อที่เสนอ *" />  
+                        <h:outputLabel value="จำนวนองค์กร/รายชื่อที่เสนอ *" />  
                         <totoland:inputNumber id="REPORT_005lb4" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.corporateAmount}"/>
 
                         <h:outputLabel value="จำนวน ส.ว. สรรหา *" />  
