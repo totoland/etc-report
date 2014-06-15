@@ -6,6 +6,8 @@ package com.ect.db.report.dao.hibernate;
 
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.dao.BaseDao;
+import com.ect.db.entity.EctGroupLvl;
+import com.ect.db.entity.EctUserGroup;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.ViewReportStatus;
 import java.text.MessageFormat;
@@ -107,9 +109,11 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         }
 
-        if (reportCriteria.getUserGroupLvl() != null && !reportCriteria.getUserGroupLvl().equals("0")) {
+        //IF is not Admin
+        if (reportCriteria.getUserGroupLvl() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()+"")) {
 
-            if (reportCriteria.getUserGroupId() != null) {
+            //not where user group in case group lvl is center
+            if (reportCriteria.getUserGroupId() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.CENTER.getLevel()+"")) {
 
                 sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
 
@@ -117,7 +121,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
             if (reportCriteria.getUserGroupLvl() != null) {
 
-                sql.append(" AND USER_GROUP_LVL <= ").append(reportCriteria.getUserGroupLvl()).append(" ");
+                sql.append(" AND USER_GROUP_LVL >= ").append(reportCriteria.getUserGroupLvl()).append(" ");
 
             }
 
@@ -143,6 +147,8 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
     @Override
     public Integer countByCriteria(ReportCriteria reportCriteria) {
 
+        logger.trace("reportCriteria : {}",reportCriteria);
+        
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT COUNT(1) FROM VIEW_REPORT_STATUS");
         sql.append(" WHERE 1=1");
@@ -165,9 +171,11 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         }
 
-        if (reportCriteria.getUserGroupLvl() != null && !reportCriteria.getUserGroupLvl().equals("0")) {
+        //IF is not Admin
+        if (reportCriteria.getUserGroupLvl() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()+"")) {
 
-            if (reportCriteria.getUserGroupId() != null) {
+            //not where user group in case group lvl is center
+            if (reportCriteria.getUserGroupId() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.CENTER.getLevel()+"")) {
 
                 sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
 
@@ -175,7 +183,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
             if (reportCriteria.getUserGroupLvl() != null) {
 
-                sql.append(" AND USER_GROUP_LVL <= ").append(reportCriteria.getUserGroupLvl()).append(" ");
+                sql.append(" AND USER_GROUP_LVL >= ").append(reportCriteria.getUserGroupLvl()).append(" ");
 
             }
 
