@@ -119,7 +119,7 @@ public class FormReport001Controller extends BaseFormReportController {
         report001.setCreatedUserGroup(getUserAuthen().getUserGroupId());
         report001.setReportMonth(getReportMonth());
         report001.setReportYear(reportYear);
-
+        
         if (!validateBeforeSave()) {
             return;
         }
@@ -315,16 +315,6 @@ public class FormReport001Controller extends BaseFormReportController {
     public void onCancel(RowEditEvent event) {
 
         JsfUtil.addSuccessMessage("ยกเลิก!!");
-
-    }
-
-    /**
-     * @return the curYear
-     */
-    public String getCurYear() {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-        return dateFormat.format(new Date()).toString();
 
     }
 
@@ -537,7 +527,7 @@ public class FormReport001Controller extends BaseFormReportController {
      */
     private boolean checkDuppActivity() {
 
-        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), getReportMonth(),reportYear);
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getReportMonth(),report001.getReportYear());
 
         if (!(isDupp == null || isDupp.isEmpty())) {
             JsfUtil.alertJavaScript("พบกิจกรรมซ้ำในเดือน"+dropdownFactory.getMonthName(getReportMonth()));
@@ -549,7 +539,7 @@ public class FormReport001Controller extends BaseFormReportController {
     
     private boolean checkDuppEditActivity() {
 
-        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getCreatedDate());
+        List<Report001> isDupp = reportService.checkDuppActivityInMonth(getUserAuthen().getUserGroupId(), report001.getActivityId(), report001.getReportMonth(),report001.getReportYear());
 
         if (!(isDupp == null || isDupp.isEmpty())) {
             
