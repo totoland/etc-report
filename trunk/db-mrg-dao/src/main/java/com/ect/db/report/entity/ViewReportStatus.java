@@ -332,14 +332,14 @@ public class ViewReportStatus extends DomainEntity implements Serializable{
      * @return the documentNo
      */
     public String getDocumentNo() {
-        this.documentNo = getMap().get(this.reportCode)+"-"+userGroupId+"-"+this.reportId+"-"+this.reportMonth+"-"+this.reportYear;
+        this.documentNo = loadMap().get(this.reportCode)+"-"+userGroupId+"-"+this.reportId+"-"+this.reportMonth+"-"+this.reportYear;
         return documentNo;
     }
 
-    
+    @Transient
     private Map<String,String> map;
     
-    private Map<String,String> getMap(){
+    private Map<String,String> loadMap(){
         
         if(map == null){
             map = new HashMap();
