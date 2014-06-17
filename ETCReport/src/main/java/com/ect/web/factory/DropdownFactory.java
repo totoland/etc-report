@@ -319,7 +319,7 @@ public class DropdownFactory implements Serializable {
             DropDownList criteria = new DropDownList();
             criteria.setTableName("REPORT_NAME");
             criteria.setOrderByField("REPORT_CODE");
-            criteria.setName("REPORT_DESC + ' ' + REPORT_NAME");
+            criteria.setName("REPORT_NAME");
             criteria.setValue("REPORT_CODE");
             criteria.setCondition("REPORT_TYPE = 1");
 
