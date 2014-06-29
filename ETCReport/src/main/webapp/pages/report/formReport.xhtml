@@ -80,7 +80,7 @@ and open the template in the editor.
 
                             <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" rendered="#{param.user==null}"/>
                             <p:selectOneMenu  id="ectDll2" style="width: 220px" rendered="#{param.user==null}" value="#{allReportController.reportCriteria.reportCode}">  
-                                <f:selectItem itemLabel="-เลือก-" itemValue="" />  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlDepEct()}"/>  
                             </p:selectOneMenu>
                             <f:facet name="footer">

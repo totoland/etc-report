@@ -80,18 +80,18 @@ and open the template in the editor.
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต." style="width: 350px"/>
                                         <p:selectOneMenu id="ectDll" widgetVar="ectDll" style="width: 350px" value="#{formSelectReport.reportCode}">  
-                                            <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
+                                            <f:selectItem itemLabel="เลือก" itemValue=""/>  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlDepEct()}"/>
                                             <p:ajax event="change" listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
                                         </p:selectOneMenu>
                                         <h:outputLabel value="ประจำเดือน" style="width: 350px"/>
                                         <p:selectOneMenu id="monthDll" widgetVar="monthDll" style="width: 350px" value="#{formSelectReport.reportMonth}">  
-                                            <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
+                                            <f:selectItem itemLabel="เลือก" itemValue=""/>  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlMonth()}"/>
                                         </p:selectOneMenu>
                                         <h:outputLabel value="ปี" style="width: 350px"/>
                                         <p:selectOneMenu id="yearDll" widgetVar="yearDll" style="width: 350px" value="#{formSelectReport.reportYear}">  
-                                            <f:selectItem itemLabel="-เลือก-" itemValue=""/>  
+                                            <f:selectItem itemLabel="เลือก" itemValue=""/>  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlFiscalYear()}"/>
                                         </p:selectOneMenu>
 
