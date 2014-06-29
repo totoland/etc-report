@@ -38,7 +38,7 @@ import org.slf4j.MDC;
 @ManagedBean
 public class FormReport017Controller extends BaseFormReportController {
 
-    private static Logger logger = LoggerFactory.getLogger(FormReport017Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(FormReport017Controller.class);
     private static final long serialVersionUID = 1764749403349238850L;
     /**
      * *
@@ -121,7 +121,7 @@ public class FormReport017Controller extends BaseFormReportController {
 
             goToClose();
 
-            resetForm();
+            //resetForm();
         } catch (Exception ex) {
 
             JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
