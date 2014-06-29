@@ -443,7 +443,7 @@ public class FormReport011Controller extends BaseFormReportController {
         report011Details = new ArrayList<>();
 
         Report011Detail report011Detail1 = new Report011Detail();
-        report011Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
+//        report011Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
 //        report011Detail1.setAtCenter(0);
 //        report011Detail1.setAtEctProvince(0);
 //        report011Detail1.setEctResolve(0);
@@ -454,7 +454,7 @@ public class FormReport011Controller extends BaseFormReportController {
         report011Detail1.setReportId(report011);
 
         Report011Detail report011Detail2 = new Report011Detail();
-        report011Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
+//        report011Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
 //        report011Detail2.setAtCenter(0);
 //        report011Detail2.setAtEctProvince(0);
 //        report011Detail2.setEctResolve(0);
@@ -465,7 +465,7 @@ public class FormReport011Controller extends BaseFormReportController {
         report011Detail2.setReportId(report011);
 
         Report011Detail report011Detail3 = new Report011Detail();
-        report011Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+//        report011Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
 //        report011Detail3.setAtCenter(0);
 //        report011Detail3.setAtEctProvince(0);
 //        report011Detail3.setEctResolve(0);
@@ -476,7 +476,7 @@ public class FormReport011Controller extends BaseFormReportController {
         report011Detail3.setReportId(report011);
 
         Report011Detail report011Detail4 = new Report011Detail();
-        report011Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+//        report011Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
 //        report011Detail4.setAtCenter(0);
 //        report011Detail4.setAtEctProvince(0);
 //        report011Detail4.setEctResolve(0);
@@ -487,7 +487,7 @@ public class FormReport011Controller extends BaseFormReportController {
         report011Detail4.setReportId(report011);
 
         Report011Detail report011Detail5 = new Report011Detail();
-        report011Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
+//        report011Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
 //        report011Detail5.setAtCenter(0);
 //        report011Detail5.setAtEctProvince(0);
 //        report011Detail5.setEctResolve(0);

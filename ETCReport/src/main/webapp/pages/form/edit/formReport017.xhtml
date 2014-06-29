@@ -65,7 +65,8 @@ and open the template in the editor.
                             </f:facet>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport017Controller.report017Details[0].institution}"/>
+                                    <p:autoComplete disabled="#{formReport017Controller.paramMode=='view'}" dropdown="true" value="#{formReport017Controller.report017Details[0].institution}" 
+                                                completeMethod="#{formReport017Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport017Controller.paramMode=='view'}" style="width:80px" value="#{formReport017Controller.report017Details[0].allStory}"/>
@@ -103,7 +104,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport017Controller.report017Details[1].institution}"/>
+                                    <p:autoComplete disabled="#{formReport017Controller.paramMode=='view'}" dropdown="true" value="#{formReport017Controller.report017Details[1].institution}" 
+                                                completeMethod="#{formReport017Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport017Controller.paramMode=='view'}" style="width:80px" value="#{formReport017Controller.report017Details[1].allStory}"/>
@@ -141,7 +143,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport017Controller.report017Details[2].institution}"/>
+                                    <p:autoComplete disabled="#{formReport017Controller.paramMode=='view'}" dropdown="true" value="#{formReport017Controller.report017Details[2].institution}" 
+                                                completeMethod="#{formReport017Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport017Controller.paramMode=='view'}" style="width:80px" value="#{formReport017Controller.report017Details[2].allStory}"/>
@@ -179,7 +182,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport017Controller.report017Details[3].institution}"/>
+                                    <p:autoComplete disabled="#{formReport017Controller.paramMode=='view'}" dropdown="true" value="#{formReport017Controller.report017Details[3].institution}" 
+                                                completeMethod="#{formReport017Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport017Controller.paramMode=='view'}" style="width:80px" value="#{formReport017Controller.report017Details[3].allStory}"/>
@@ -217,7 +221,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport017Controller.report017Details[4].institution}"/>
+                                    <p:autoComplete disabled="#{formReport017Controller.paramMode=='view'}" dropdown="true" value="#{formReport017Controller.report017Details[4].institution}" 
+                                                completeMethod="#{formReport017Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <totoland:inputNumber onchange="calSum()" disabled="#{formReport017Controller.paramMode=='view'}" style="width:80px" value="#{formReport017Controller.report017Details[4].allStory}"/>
@@ -307,6 +312,17 @@ and open the template in the editor.
 
 
             </p:panel>
+            <style>
+            input[type="text"] {
+                clear: left;
+                cursor: text;
+                list-style-type: none;
+                margin: 0;
+                min-height: 1px;
+                overflow: hidden;
+                width: 120px;
+            }
+        </style>
         </h:form>
     </h:body>
 </html>

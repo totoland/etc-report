@@ -65,7 +65,8 @@ and open the template in the editor.
                         </f:facet>
                         <p:row>
                             <p:column>
-                                <h:outputText value="#{formReport012Controller.report012Details[0].institution}"/>
+                                <p:autoComplete disabled="#{formReport012Controller.paramMode=='view'}"   dropdown="true" value="#{formReport012Controller.report012Details[0].institution}" 
+                                                completeMethod="#{formReport012Controller.dropdownFactory.listDntSelection()}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport012Controller.report012Details[0].allamount}"/>
@@ -106,7 +107,8 @@ and open the template in the editor.
                         </p:row>
                         <p:row>
                             <p:column>
-                                <h:outputText value="#{formReport012Controller.report012Details[1].institution}"/>
+                                <p:autoComplete disabled="#{formReport012Controller.paramMode=='view'}"   dropdown="true" value="#{formReport012Controller.report012Details[1].institution}" 
+                                                completeMethod="#{formReport012Controller.dropdownFactory.listDntSelection()}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport012Controller.report012Details[1].allamount}"/>
@@ -147,7 +149,8 @@ and open the template in the editor.
                         </p:row>
                         <p:row>
                             <p:column>
-                                <h:outputText value="#{formReport012Controller.report012Details[2].institution}"/>
+                                <p:autoComplete disabled="#{formReport012Controller.paramMode=='view'}"   dropdown="true" value="#{formReport012Controller.report012Details[2].institution}" 
+                                                completeMethod="#{formReport012Controller.dropdownFactory.listDntSelection()}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport012Controller.report012Details[2].allamount}"/>
@@ -188,7 +191,8 @@ and open the template in the editor.
                         </p:row>
                         <p:row>
                             <p:column>
-                                <h:outputText value="#{formReport012Controller.report012Details[3].institution}"/>
+                                <p:autoComplete disabled="#{formReport012Controller.paramMode=='view'}"   dropdown="true" value="#{formReport012Controller.report012Details[3].institution}" 
+                                                completeMethod="#{formReport012Controller.dropdownFactory.listDntSelection()}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport012Controller.report012Details[3].allamount}"/>
@@ -229,7 +233,8 @@ and open the template in the editor.
                         </p:row>
                         <p:row>
                             <p:column>
-                                <h:outputText value="#{formReport012Controller.report012Details[4].institution}"/>
+                                <p:autoComplete disabled="#{formReport012Controller.paramMode=='view'}"   dropdown="true" value="#{formReport012Controller.report012Details[4].institution}" 
+                                                completeMethod="#{formReport012Controller.dropdownFactory.listDntSelection()}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{formReport012Controller.report012Details[4].allamount}"/>
@@ -325,5 +330,16 @@ and open the template in the editor.
             </p:panel>
             <p:ajaxStatus onstart="blogui012.show()" oncomplete="blogui012.hide()"/>
         </h:form>
+        <style>
+            input[type="text"] {
+                clear: left;
+                cursor: text;
+                list-style-type: none;
+                margin: 0;
+                min-height: 1px;
+                overflow: hidden;
+                width: 90px;
+            }
+        </style>
     </h:body>
 </html>

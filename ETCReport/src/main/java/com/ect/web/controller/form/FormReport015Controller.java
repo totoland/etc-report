@@ -433,27 +433,27 @@ public class FormReport015Controller extends BaseFormReportController {
         report015Details = new ArrayList<>();
 
         Report015Detail report015Detail1 = new Report015Detail();
-        report015Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
+//        report015Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
         report015Detail1.setConclusionMeeting("1.สั่งเพิกถอนสิทธิเลือกตั้ง ก่อนวันเลือกตั้ง");
         report015Detail1.setReportId(report015);
         
         Report015Detail report015Detail2 = new Report015Detail();
-        report015Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
+//        report015Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
         report015Detail2.setConclusionMeeting("2.สั่งเพิกถอนสิทธิเลือกตั้ง ก่อนประกาศผลการเลือกตั้ง");
         report015Detail2.setReportId(report015);
 
         Report015Detail report015Detail3 = new Report015Detail();
-        report015Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+//        report015Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
         report015Detail3.setConclusionMeeting("2.1 คะแนนอยู่ในเกณฑ์ได้รับเลือกตั้ง");
         report015Detail3.setReportId(report015);
         
         Report015Detail report015Detail4 = new Report015Detail();
-        report015Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+//        report015Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
         report015Detail4.setConclusionMeeting("2.2 คะแนนอยู่ไม่ในเกณฑ์ได้รับเลือกตั้ง");
         report015Detail4.setReportId(report015);
         
         Report015Detail report015Detail5 = new Report015Detail();
-        report015Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
+//        report015Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
         report015Detail5.setConclusionMeeting("3. สั่งเพิกถอนสิทธิเลือกตั้งหลังประกาศผลการเลือกตั้ง");
         report015Detail5.setReportId(report015);
         

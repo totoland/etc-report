@@ -185,7 +185,7 @@ public abstract class BaseFormReportController extends BaseController {
 
         ViewUser user = getUserAuthen();
 
-        logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
+        //logger.trace("User LVL {} FlowStatus {}", user.getUserGroupLvl(), flowStatusId);
 
         if(user.getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel()){
         
