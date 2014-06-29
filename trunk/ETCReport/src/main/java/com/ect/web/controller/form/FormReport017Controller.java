@@ -431,23 +431,23 @@ public class FormReport017Controller extends BaseFormReportController {
         report017Details = new ArrayList<>();
 
         Report017Detail report017Detail1 = new Report017Detail();
-        report017Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  1");
+//        report017Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  1");
         report017Detail1.setReportId(report017);
         
         Report017Detail report017Detail2 = new Report017Detail();
-        report017Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  2");
+//        report017Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  2");
         report017Detail2.setReportId(report017);
 
         Report017Detail report017Detail3 = new Report017Detail();
-        report017Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  3");
+//        report017Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  3");
         report017Detail3.setReportId(report017);
         
         Report017Detail report017Detail4 = new Report017Detail();
-        report017Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  4");
+//        report017Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  4");
         report017Detail4.setReportId(report017);
         
         Report017Detail report017Detail5 = new Report017Detail();
-        report017Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  5");
+//        report017Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย  5");
         report017Detail5.setReportId(report017);
 
         report017Details.add(report017Detail1);

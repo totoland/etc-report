@@ -443,7 +443,7 @@ public class FormReport013Controller extends BaseFormReportController {
         report013Details = new ArrayList<>();
 
         Report013Detail report013Detail1 = new Report013Detail();
-        report013Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
+//        report013Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
 //        report013Detail1.setDecisionToPrepare(0);
 //        report013Detail1.setOnProcess(0);
 //        report013Detail1.setComplete(0);
@@ -454,7 +454,7 @@ public class FormReport013Controller extends BaseFormReportController {
         report013Detail1.setReportId(report013);
 
         Report013Detail report013Detail2 = new Report013Detail();
-        report013Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
+//        report013Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
 //        report013Detail2.setDecisionToPrepare(0);
 //        report013Detail2.setOnProcess(0);
 //        report013Detail2.setComplete(0);
@@ -465,7 +465,7 @@ public class FormReport013Controller extends BaseFormReportController {
         report013Detail2.setReportId(report013);
 
         Report013Detail report013Detail3 = new Report013Detail();
-        report013Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+//        report013Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
 //        report013Detail3.setDecisionToPrepare(0);
 //        report013Detail3.setOnProcess(0);
 //        report013Detail3.setComplete(0);
@@ -476,7 +476,7 @@ public class FormReport013Controller extends BaseFormReportController {
         report013Detail3.setReportId(report013);
 
         Report013Detail report013Detail4 = new Report013Detail();
-        report013Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+//        report013Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
 //        report013Detail4.setDecisionToPrepare(0);
 //        report013Detail4.setOnProcess(0);
 //        report013Detail4.setComplete(0);
@@ -487,7 +487,7 @@ public class FormReport013Controller extends BaseFormReportController {
         report013Detail4.setReportId(report013);
 
         Report013Detail report013Detail5 = new Report013Detail();
-        report013Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
+//        report013Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
 //        report013Detail5.setDecisionToPrepare(0);
 //        report013Detail5.setOnProcess(0);
 //        report013Detail5.setComplete(0);
@@ -497,16 +497,16 @@ public class FormReport013Controller extends BaseFormReportController {
 //        report013Detail5.setNoSend(0);
         report013Detail5.setReportId(report013);
         
-        Report013Detail report013Detail6 = new Report013Detail();
-        report013Detail6.setInstitution("สำนักวินิจฉัยและคดี");
-        report013Detail6.setReportId(report013);
+//        Report013Detail report013Detail6 = new Report013Detail();
+//        report013Detail6.setInstitution("สำนักวินิจฉัยและคดี");
+//        report013Detail6.setReportId(report013);
 
         report013Details.add(report013Detail1);
         report013Details.add(report013Detail2);
         report013Details.add(report013Detail3);
         report013Details.add(report013Detail4);
         report013Details.add(report013Detail5);
-        report013Details.add(report013Detail6);
+//        report013Details.add(report013Detail6);
         
         report013.setReport013DetailList(report013Details);
         report013.setReportMonth(reportMonth);

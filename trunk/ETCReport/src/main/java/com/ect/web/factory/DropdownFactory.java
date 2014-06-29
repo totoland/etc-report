@@ -507,4 +507,46 @@ public class DropdownFactory implements Serializable {
 
         return null;
     }
+    
+    private static List<DropDownList> dntSelection;
+
+    /**
+     * *
+     *
+     * @return get All Dnt Selection
+     */
+    public List<DropDownList> ddlDntSelection() {
+
+        if (dntSelection == null) {
+
+            DropDownList criteria = new DropDownList();
+            criteria.setTableName("ECT_CONSTANT");
+            criteria.setOrderByField("CONS_SORT");
+            criteria.setName("CONS_NAME");
+            criteria.setValue("CONS_VALUE");
+            criteria.setCondition("CONS_KEY = 'dnt.selection'");
+
+            dntSelection = commonService.getDropdownList(criteria);
+
+        }
+
+        return dntSelection;
+    }
+    
+    private static List<String>listDntSelection;
+    
+    public List<String> listDntSelection(){
+    
+        if(listDntSelection == null){
+            
+            listDntSelection = new ArrayList<>();
+            
+            for(DropDownList ddl : ddlDntSelection()){
+                listDntSelection.add(ddl.getName());
+            }
+            
+        }
+        
+        return listDntSelection;
+    }
 }

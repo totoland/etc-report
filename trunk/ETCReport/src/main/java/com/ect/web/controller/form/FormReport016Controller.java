@@ -434,27 +434,27 @@ public class FormReport016Controller extends BaseFormReportController {
         report016Details = new ArrayList<>();
 
         Report016Detail report016Detail1 = new Report016Detail();
-        report016Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
+//        report016Detail1.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 1");
         report016Detail1.setConclusionMeeting("1.สั่งให้มีการเลือกตั้งใหม่ ก่อนการประกาศผลการเลือกตั้ง");
         report016Detail1.setReportId(report016);
         
         Report016Detail report016Detail2 = new Report016Detail();
-        report016Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
+//        report016Detail2.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 2");
         report016Detail2.setConclusionMeeting("2.สั่งให้มีการเลือกตั้งใหม่ หลังการประกาศผลการเลือกตั้ง");
         report016Detail2.setReportId(report016);
 
         Report016Detail report016Detail3 = new Report016Detail();
-        report016Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
+//        report016Detail3.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 3");
         report016Detail3.setConclusionMeeting("");
         report016Detail3.setReportId(report016);
         
         Report016Detail report016Detail4 = new Report016Detail();
-        report016Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
+//        report016Detail4.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 4");
         report016Detail4.setConclusionMeeting("");
         report016Detail4.setReportId(report016);
         
         Report016Detail report016Detail5 = new Report016Detail();
-        report016Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
+//        report016Detail5.setInstitution("สำนักสืบสวนสอบสวนและวินิจฉัย 5");
         report016Detail5.setConclusionMeeting("");
         report016Detail5.setReportId(report016);
         

@@ -67,7 +67,8 @@ and open the template in the editor.
                             </f:facet>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[0].institution}"/>
+                                    <p:autoComplete disabled="#{formReport015Controller.paramMode=='view'}" dropdown="true" value="#{formReport015Controller.report015Details[0].institution}" 
+                                                completeMethod="#{formReport015Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[0].depName}"/>
@@ -100,7 +101,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[1].institution}"/>
+                                    <p:autoComplete disabled="#{formReport015Controller.paramMode=='view'}" dropdown="true" value="#{formReport015Controller.report015Details[1].institution}" 
+                                                completeMethod="#{formReport015Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[1].depName}"/>
@@ -133,7 +135,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[2].institution}"/>
+                                    <p:autoComplete disabled="#{formReport015Controller.paramMode=='view'}" dropdown="true" value="#{formReport015Controller.report015Details[2].institution}" 
+                                                completeMethod="#{formReport015Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[2].depName}"/>
@@ -166,7 +169,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[3].institution}"/>
+                                    <p:autoComplete disabled="#{formReport015Controller.paramMode=='view'}" dropdown="true" value="#{formReport015Controller.report015Details[3].institution}" 
+                                                completeMethod="#{formReport015Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[3].depName}"/>
@@ -199,7 +203,8 @@ and open the template in the editor.
                             </p:row>
                             <p:row>
                                 <p:column>
-                                    <h:outputText value="#{formReport015Controller.report015Details[4].institution}"/>
+                                    <p:autoComplete disabled="#{formReport015Controller.paramMode=='view'}" dropdown="true" value="#{formReport015Controller.report015Details[4].institution}" 
+                                                completeMethod="#{formReport015Controller.dropdownFactory.listDntSelection()}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport014Controller.paramMode=='view'}" value="#{formReport015Controller.report015Details[4].depName}"/>
@@ -275,5 +280,16 @@ and open the template in the editor.
                 </div>
             </p:panel>
         </h:form>
+        <style>
+            input[type="text"] {
+                clear: left;
+                cursor: text;
+                list-style-type: none;
+                margin: 0;
+                min-height: 1px;
+                overflow: hidden;
+                width: 120px;
+            }
+        </style>
     </h:body>
 </html>
