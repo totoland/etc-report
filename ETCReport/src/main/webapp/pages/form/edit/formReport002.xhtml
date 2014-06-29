@@ -191,22 +191,22 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_002pn_addReportDetail">
 
                         <h:outputLabel value="รายละเอียดการดำเนินงาน *" />  
-                        <p:inputText id="REPORT_002lb1" value="#{formReport002Controller.inputReport002Detail.workDetail}" />  
+                        <p:inputText id="REPORT_002lb1" style="width:400px" value="#{formReport002Controller.inputReport002Detail.workDetail}" />  
 
                         <h:outputLabel value="วัตถุประสงค์ *" />  
-                        <p:inputText id="REPORT_002lb2" value="#{formReport002Controller.inputReport002Detail.objective}" />  
+                        <p:inputText id="REPORT_002lb2" style="width:400px" value="#{formReport002Controller.inputReport002Detail.objective}" />  
 
                         <h:outputLabel value="เป้าหมายจำนวน *" />  
-                        <p:inputText id="REPORT_002lb3" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
+                        <p:inputText id="REPORT_002lb3" style="width:400px" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
 
                         <h:outputLabel value="ผลการดำเนินงาน *" />  
-                        <p:inputText id="REPORT_002lb4" value="#{formReport002Controller.inputReport002Detail.result}" />  
+                        <p:inputText id="REPORT_002lb4" style="width:400px" value="#{formReport002Controller.inputReport002Detail.result}" />  
 
                         <h:outputLabel value="งบประมาณ *" />  
-                        <p:inputText id="REPORT_002lb6" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
+                        <p:inputText id="REPORT_002lb6" style="width:400px" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
 
                         <h:outputLabel value="แหล่งที่มางบประมาณ *" />  
-                        <p:inputText id="REPORT_002lb7" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
+                        <p:inputText id="REPORT_002lb7" style="width:400px" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport002Controller.addReportDetail(actionEvent)}" update="REPORT_002msgAddReportDetail,REPORT_002Grid" icon="ui-icon-check" style="margin:0"/>  

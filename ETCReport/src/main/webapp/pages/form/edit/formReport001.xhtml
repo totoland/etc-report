@@ -257,33 +257,33 @@ and open the template in the editor.
                 </p:panel>
 
                 <p:dialog id="REPORT_001AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_001dlgAddReportDetail" modal="true" draggable="true">
-                    <p:panel style="height:400px;width: 370px;overflow: auto;">
+                    <p:panel style="height:400px;width: 550px;overflow: auto;">
                         <p:messages id="REPORT_001msgAddReportDetail" escape="false" closable="true"></p:messages>
                         <p:panelGrid columns="2" id="REPORT_001pn_addReportDetail">
 
                             <h:outputLabel value="รายละเอียดกิจกรรม *" />  
-                            <p:inputTextarea id="REPORT_001lb1" value="#{formReport001Controller.inputReport001Detail.workDetail}" />  
+                            <p:inputTextarea id="REPORT_001lb1" style="width:400px" value="#{formReport001Controller.inputReport001Detail.workDetail}" />  
 
                             <h:outputLabel value="หน่วยนับ (เป้าหมาย) *" />  
-                            <p:inputText id="REPORT_001lb2" value="#{formReport001Controller.inputReport001Detail.goalType}" />  
+                            <p:inputText id="REPORT_001lb2" style="width:400px" value="#{formReport001Controller.inputReport001Detail.goalType}" />  
 
                             <h:outputLabel value="แผน (เป้าหมาย)*" />  
-                            <totoland:inputNumber id="REPORT_001lb3" value="#{formReport001Controller.inputReport001Detail.goalAmount}" />  
+                            <totoland:inputNumber id="REPORT_001lb3" style="width:400px" value="#{formReport001Controller.inputReport001Detail.goalAmount}" />  
 
                             <h:outputLabel value="ผล (เป้าหมาย)*" />  
-                            <totoland:inputNumber id="REPORT_001lb3b" value="#{formReport001Controller.inputReport001Detail.goalResult}" />  
+                            <totoland:inputNumber id="REPORT_001lb3b" style="width:400px" value="#{formReport001Controller.inputReport001Detail.goalResult}" />  
 
                             <h:outputLabel value="ตัวชี้วัด (แผน) *" />  
-                            <p:inputTextarea id="REPORT_001lb5" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
+                            <p:inputTextarea id="REPORT_001lb5" style="width:400px" value="#{formReport001Controller.inputReport001Detail.resultAmount}" /> 
 
                             <h:outputLabel value="ตัวชี้วัด (ผล) *" />  
-                            <p:inputTextarea id="REPORT_001lb5b" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
+                            <p:inputTextarea id="REPORT_001lb5b" style="width:400px" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
 
                             <h:outputLabel value="งบประมาณตั้งไว้ *" />  
-                            <totoland:inputNumber id="REPORT_001lb6" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
+                            <totoland:inputNumber id="REPORT_001lb6" style="width:400px" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
 
                             <h:outputLabel value="งบประมาณจ่ายจริง *" />  
-                            <totoland:inputNumber id="REPORT_001lb7" value="#{formReport001Controller.inputReport001Detail.budgetReal}" />
+                            <totoland:inputNumber id="REPORT_001lb7" style="width:400px" value="#{formReport001Controller.inputReport001Detail.budgetReal}" />
 
                             <h:outputLabel value="การบรรลุตัวชี้วัด *" /> 
                             <p:selectOneRadio id="lb7" value="#{formReport001Controller.inputReport001Detail.isPass}" style="border-style:none">  
