@@ -11,6 +11,7 @@ import static com.ect.web.controller.form.BaseFormReportController.REPORT_MODE_V
 import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -477,18 +478,18 @@ public class FormReport017Controller extends BaseFormReportController {
         
         for (int i = 0; i < report017Details.size(); i++) {
 //            report017Details.get(i).setAdding(report017Details.get(i).getAdding()+report017Details.get(i).getAdding());
-            getSumDetail().setAllStory(getSumDetail().getAllStory()+report017Details.get(i).getAllStory());
-            getSumDetail().setCriminalCase(getSumDetail().getCriminalCase()+report017Details.get(i).getCriminalCase());
+            getSumDetail().setAllStory(getSumDetail().getAllStory()+NumberUtils.convertNUllToZero(report017Details.get(i).getAllStory()));
+            getSumDetail().setCriminalCase(getSumDetail().getCriminalCase()+NumberUtils.convertNUllToZero(report017Details.get(i).getCriminalCase()));
             
-            getSumDetail().setEct(getSumDetail().getEct()+report017Details.get(i).getEct());
-            getSumDetail().setRedCard(getSumDetail().getRedCard()+report017Details.get(i).getRedCard());
-            getSumDetail().setRequestNoReceived(getSumDetail().getRequestNoReceived()+report017Details.get(i).getRequestNoReceived());
-            getSumDetail().setRequestReceived(getSumDetail().getRequestReceived()+report017Details.get(i).getRequestReceived());
-            getSumDetail().setAdding(getSumDetail().getAdding()+report017Details.get(i).getAdding());
-            getSumDetail().setResetCounter(getSumDetail().getResetCounter()+report017Details.get(i).getResetCounter());
-            getSumDetail().setWithdrawnRequest(getSumDetail().getWithdrawnRequest()+report017Details.get(i).getWithdrawnRequest());
-            getSumDetail().setYellowCard(getSumDetail().getYellowCard()+report017Details.get(i).getYellowCard());
-            getSumDetail().setYellowCardCriminalCase(getSumDetail().getYellowCardCriminalCase()+report017Details.get(i).getYellowCardCriminalCase());
+            getSumDetail().setEct(getSumDetail().getEct()+NumberUtils.convertNUllToZero(report017Details.get(i).getEct()));
+            getSumDetail().setRedCard(getSumDetail().getRedCard()+NumberUtils.convertNUllToZero(report017Details.get(i).getRedCard()));
+            getSumDetail().setRequestNoReceived(getSumDetail().getRequestNoReceived()+NumberUtils.convertNUllToZero(report017Details.get(i).getRequestNoReceived()));
+            getSumDetail().setRequestReceived(getSumDetail().getRequestReceived()+NumberUtils.convertNUllToZero(report017Details.get(i).getRequestReceived()));
+            getSumDetail().setAdding(getSumDetail().getAdding()+NumberUtils.convertNUllToZero(report017Details.get(i).getAdding()));
+            getSumDetail().setResetCounter(getSumDetail().getResetCounter()+NumberUtils.convertNUllToZero(report017Details.get(i).getResetCounter()));
+            getSumDetail().setWithdrawnRequest(getSumDetail().getWithdrawnRequest()+NumberUtils.convertNUllToZero(report017Details.get(i).getWithdrawnRequest()));
+            getSumDetail().setYellowCard(getSumDetail().getYellowCard()+NumberUtils.convertNUllToZero(report017Details.get(i).getYellowCard()));
+            getSumDetail().setYellowCardCriminalCase(getSumDetail().getYellowCardCriminalCase()+NumberUtils.convertNUllToZero(report017Details.get(i).getYellowCardCriminalCase()));
         }
     }
     
