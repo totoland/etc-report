@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +40,8 @@ public class DropdownFactory implements Serializable {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 
+        Locale.setDefault(new Locale("th", "TH"));
+        
         int curYear = Integer.parseInt(dateFormat.format(new Date()));
 
         for (int i = 0; i < 10; i++) {

@@ -286,9 +286,17 @@ public class FormReport014Controller extends BaseFormReportController {
 
     public void calSum() {
 
-        for (int i = 0; i < report014Details.size(); i++) {
-            report014Details.get(i).setAtCenter(NumberUtils.convertNUllToZero(report014Details.get(i).getOnAgenda()) + NumberUtils.convertNUllToZero(report014Details.get(i).getAccessCommittee()) + NumberUtils.convertNUllToZero(report014Details.get(i).getOfferEct() + report014Details.get(i).getAnalystRemain() + report014Details.get(i).getSendRequest()));
-            report014Details.get(i).setAllAmount(NumberUtils.convertNUllToZero(report014Details.get(i).getAtCenter()) + NumberUtils.convertNUllToZero(report014Details.get(i).getAtEctProvince()) + NumberUtils.convertNUllToZero(report014Details.get(i).getEctResolve()));
+        for (Report014Detail report014Detail : report014Details) {
+            logger.trace("report014Detail : {}",report014Detail);
+            report014Detail.setAtCenter(
+                    NumberUtils.convertNUllToZero(report014Detail.getOnAgenda()) + 
+                    NumberUtils.convertNUllToZero(report014Detail.getAccessCommittee()) +
+                    NumberUtils.convertNUllToZero(report014Detail.getOfferEct()) + 
+                    NumberUtils.convertNUllToZero(report014Detail.getAnalystRemain()) + 
+                    NumberUtils.convertNUllToZero(report014Detail.getSendRequest())
+                    
+            );
+            report014Detail.setAllAmount(NumberUtils.convertNUllToZero(report014Detail.getAtCenter()) + NumberUtils.convertNUllToZero(report014Detail.getAtEctProvince()) + NumberUtils.convertNUllToZero(report014Detail.getEctResolve()));
         }
     }
 
