@@ -51,7 +51,7 @@ and open the template in the editor.
                         <p:panelGrid styleClass="frmDetail" id="REPORT_016pnlFrm">
                             <f:facet name="header">
                                 <p:row>  
-                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 180px">ประเภทการเลืองตั้ง</p:column>
+                                    <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 180px">ประเภทการเลือกตั้ง</p:column>
                                     <p:column rowspan="2" style="text-align: center;">จังหวัด/อำเภอ/เทศบาล/อบต./เขต</p:column>
                                     <p:column rowspan="2" style="text-align: center;width: 220px">วันเลือกตั้ง/วันประกาศผล</p:column>
                                     <p:column rowspan="2" style="text-align: center;width: 220px">การประชุม กกต.ครั้งที่/วันที่</p:column>
@@ -152,7 +152,7 @@ and open the template in the editor.
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
-                                    <p:inputText value="#{formReport016Controller.report016Details[2].conclusionMeeting}"/>
+                                    <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[2].conclusionMeeting}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[2].fullName}"/>
@@ -186,7 +186,7 @@ and open the template in the editor.
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
-                                    <p:inputText value="#{formReport016Controller.report016Details[3].conclusionMeeting}"/>
+                                    <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[3].conclusionMeeting}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[3].fullName}"/>
@@ -220,7 +220,7 @@ and open the template in the editor.
                                     </h:panelGroup>
                                 </p:column>
                                 <p:column>
-                                    <p:inputText value="#{formReport016Controller.report016Details[4].conclusionMeeting}"/>
+                                    <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[4].conclusionMeeting}"/>
                                 </p:column>
                                 <p:column>
                                     <p:inputText disabled="#{formReport016Controller.paramMode=='view'}" value="#{formReport016Controller.report016Details[4].fullName}"/>
