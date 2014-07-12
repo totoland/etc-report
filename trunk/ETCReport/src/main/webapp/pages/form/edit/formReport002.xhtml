@@ -14,9 +14,9 @@ and open the template in the editor.
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-            <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
+            <script src="${request.contextPath}/resources/js/html5.js"></script>
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
-        <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
+        
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
     </h:head>
@@ -178,7 +178,7 @@ and open the template in the editor.
                     <h:panelGroup id="REPORT_002pnlCmd" rendered="#{formReport002Controller.report002.flowStatusId!=200}">
                         <div align="center">
                             <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport002Controller.save()}" id="REPORT_002btnSave" rendered="#{formReport002Controller.paramMode=='create'}"/>
-                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport002Controller.goToEdit()}" id="REPORT_002btnEdit" rendered="#{formReport002Controller.paramMode=='view' and formReport002Controller.canEdit(formReport002Controller.report002.createdUserGroup)}"/>
+                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport002Controller.goToEdit()}" id="REPORT_002btnEdit" rendered="#{formReport002Controller.paramMode=='view' and formReport002Controller.canEdit(formReport002Controller.report002.createdUserGroup,formReport002Controller.report002.reportStatus)}"/>
                             <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport002Controller.goToClose()}" id="REPORT_002btnClose" rendered="#{formReport002Controller.paramMode=='view' || formReport002Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport002Controller.edit()}" id="REPORT_002btnSaveEdit" rendered="#{formReport002Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_002btnCancel" actionListener="#{formReport002Controller.goToCancel()}" rendered="#{formReport002Controller.paramMode=='edit'}"/>

@@ -82,7 +82,7 @@ and open the template in the editor.
                                         <p:selectOneMenu id="ectDll" widgetVar="ectDll" style="width: 350px" value="#{formSelectReport.reportCode}">  
                                             <f:selectItem itemLabel="เลือก" itemValue=""/>  
                                             <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{formSelectReport.dropdownFactory.ddlDepEct()}"/>
-                                            <p:ajax event="change" listener="#{formSelectReport.selectReport()}" update=":form1:include"/>
+                                            <!--<p:ajax event="change" listener="#{formSelectReport.selectReport()}" update=":form1:include"/>-->
                                         </p:selectOneMenu>
                                         <h:outputLabel value="ประจำเดือน" style="width: 350px"/>
                                         <p:selectOneMenu id="monthDll" widgetVar="monthDll" style="width: 350px" value="#{formSelectReport.reportMonth}">  
@@ -134,7 +134,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
-                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.flowStatusId,item.reportStatus)}" />
                                         </p:column>
                                         <p:column style="width: 100px">
                                             <f:facet name="header">
@@ -204,7 +204,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
-                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.flowStatusId,item.reportStatus)}" />
                                         </p:column>
                                         <p:column style="width: 100px">
                                             <f:facet name="header">
@@ -283,7 +283,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
-                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.flowStatusId,item.reportStatus)}" />
                                         </p:column>
                                         <p:column style="width: 100px">
                                             <f:facet name="header">
@@ -357,7 +357,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
-                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.reportStatus)}" />
+                                            <h:outputText value="#{FormReportMainController.reportStatusName(item.flowStatusId,item.reportStatus)}" />
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -398,7 +398,7 @@ and open the template in the editor.
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column style="width: 130px">
+                                        <p:column style="width: 100px">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include">
                                             </p:commandButton>
                                         </p:column>

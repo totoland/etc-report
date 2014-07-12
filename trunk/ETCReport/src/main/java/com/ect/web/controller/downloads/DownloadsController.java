@@ -6,7 +6,6 @@
 package com.ect.web.controller.downloads;
 
 import com.ect.web.controller.BaseController;
-import com.ect.web.utils.JsfUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class DownloadsController extends BaseController {
     
     @PostConstruct
     public void init() {
-        JsfUtil.addSuccessMessage("เพื่อให้การใช้งานและการแสดงผลของเว็บไซต์สมบูรณ์ กรุณา ดาวน์โหลด บราวเซอร์ที่ต้องการได้จากลิงก์ด้านล่าง ดังนี้");
+        
     }
 
     @Override
