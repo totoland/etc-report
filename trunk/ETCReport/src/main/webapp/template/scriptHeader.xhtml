@@ -42,6 +42,19 @@
                 .ie6 .art-post .art-layout-cell {border:none !important; padding:0 !important; }
 
             </style>
+            <script>
+                //<![CDATA[
+                var versionReq = 19;
+                if(get_browser().toString().indexOf("IE")>-1){
+                    var version = (get_browser_version().replace("IE",""));
+                    if(version<versionReq){
+                        var msg = "ระบบรายงานผลการปฏิบัติงาน ไม่สนับสนุนการทำงาน Internet explorer ตำกว่า เวอชั่น "+versionReq +" ระบบกำลังนำคุณไปยังหน้าดาวน์โหลด";
+                        alert(msg);
+                        window.location = "${request.contextPath}/pages/downloads/browser.xhtml";
+                    }
+                }
+                //]]>
+            </script>
         </ui:composition>
     </h:head>
     <body>
