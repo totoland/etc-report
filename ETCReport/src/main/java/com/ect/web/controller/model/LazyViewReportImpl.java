@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public class LazyViewReportImpl extends LazyDataModel<ViewReportStatus> {
 
     private static final long serialVersionUID = -7332140435235556716L;
-    private static Logger logger = LoggerFactory.getLogger(LazyViewReportImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(LazyViewReportImpl.class);
     private List<ViewReportStatus> datasource;
     private int pageSize = 0;
     private int rowIndex = 0;

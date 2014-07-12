@@ -48,7 +48,7 @@ import org.slf4j.MDC;
 @ManagedBean(name = "FormReportMainController")
 public class FormReportMainController extends BaseFormReportController {
 
-    private static Logger logger = LoggerFactory.getLogger(FormReportMainController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FormReportMainController.class);
     private static final long serialVersionUID = 7863151922951862688L;
     /**
      * *
@@ -565,23 +565,41 @@ public class FormReportMainController extends BaseFormReportController {
         }
     }
 
-    public String reportStatusName(Integer reportStatus) {
+    public String reportStatusName(Integer flowStatus,Integer reportStatus) {
 
-        if (reportStatus == null) {
+//        logger.trace("flowStatus : {} , reportStatus : {}",flowStatus,reportStatus);
+        
+        if (flowStatus == null || reportStatus == null) {
             return "";
         }
 
-        if (reportStatus == ReportStatus.APPROVE.getStatus()) {
+        if (reportStatus == ReportStatus.REJECTE.getStatus()) {
 
-            return "อนุมัติ";
+            return "รายงานไม่ผ่านพิจารณา";
 
-        } else if (reportStatus == ReportStatus.REJECTE.getStatus()) {
+        } else if (flowStatus == FlowStatus.DRAFF.getStatus()) {
 
-            return "ไม่ผ่านการอนุมัติ";
+            return "รายงานรอส่งพิจารณา";
 
-        } else if (reportStatus == ReportStatus.WAIT.getStatus()) {
+        }  else if (flowStatus == FlowStatus.STEP_1.getStatus()) {
 
-            return "รอส่งพิจารณา";
+            return "รายงานรอผลพิจารณา (หน.อก.)";
+
+        } else if (flowStatus == FlowStatus.STEP_2.getStatus()) {
+
+            return "รายงานรอผลพิจารณา (หน.ส่วนงาน)";
+
+        } else if (flowStatus == FlowStatus.STEP_3.getStatus()) {
+
+            return "รายงานรอผลพิจารณา (ส่วนกลาง)";
+
+        } else if (flowStatus == FlowStatus.APPROVED.getStatus()) {
+
+            return "รายงานที่อนุมัติแล้ว";
+
+        } else if (flowStatus == FlowStatus.REJECT.getStatus()) {
+
+            return "รายงานที่ไม่ผ่านพิจารณา";
 
         } else {
 
@@ -594,10 +612,11 @@ public class FormReportMainController extends BaseFormReportController {
     /**
      * @return the curYear
      */
+    @Override
     public String getCurYear() {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-        return dateFormat.format(new Date()).toString();
+        return dateFormat.format(new Date());
 
     }
 
