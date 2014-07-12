@@ -25,9 +25,8 @@
                     font-family:THSarabunNewfont;
                 }
             </style>
-           <!--[if lt IE 9]><script src="${request.contextPath}/resources/js/html5.js"></script><![endif]-->
+           <script src="${request.contextPath}/resources/js/html5.js"></script>
             <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
-            <!--[if lte IE 7]><link rel="stylesheet" href="${request.contextPath}/resources/css/style.ie7.css" media="screen" /><![endif]-->
             <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
 
 
@@ -44,7 +43,7 @@
             </style>
             <script>
                 //<![CDATA[
-                var versionReq = 19;
+                var versionReq = 9;
                 if(get_browser().toString().indexOf("IE")>-1){
                     var version = (get_browser_version().replace("IE",""));
                     if(version<versionReq){
