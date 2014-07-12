@@ -44,13 +44,11 @@ public class Report016Detail extends DomainEntity implements Serializable {
     @Column(name = "DEP_NAME")
     private String depName;
     @Column(name = "ELECTION_DAY")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date electionDay;
+    private String electionDay;
     @Column(name = "MEETING_TIME")
     private Integer meetingTime;
     @Column(name = "MEETING_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date meetingDate;
+    private String meetingDate;
     @Column(name = "CONCLUSION_MEETING")
     private String conclusionMeeting;
     @Column(name = "FULL_NAME")
@@ -96,11 +94,11 @@ public class Report016Detail extends DomainEntity implements Serializable {
         this.depName = depName;
     }
 
-    public Date getElectionDay() {
+    public String getElectionDay() {
         return electionDay;
     }
 
-    public void setElectionDay(Date electionDay) {
+    public void setElectionDay(String electionDay) {
         this.electionDay = electionDay;
     }
 
@@ -112,11 +110,11 @@ public class Report016Detail extends DomainEntity implements Serializable {
         this.meetingTime = meetingTime;
     }
 
-    public Date getMeetingDate() {
+    public String getMeetingDate() {
         return meetingDate;
     }
 
-    public void setMeetingDate(Date meetingDate) {
+    public void setMeetingDate(String meetingDate) {
         this.meetingDate = meetingDate;
     }
 
