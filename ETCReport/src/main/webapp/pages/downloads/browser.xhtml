@@ -18,17 +18,31 @@ and open the template in the editor.
         <h:form>
             <p:panel header="ดาวน์โหลด">
 
+                <script type="text/javascript">
+                    function start() {
+                        PF('statusDialog').show();
+                    }
+
+                    function stop() {
+                        PF('statusDialog').hide();
+                    }
+                </script>
+                
                 <p:messages id="msg" showDetail="true" autoUpdate="true" escape="true"/>
                 <div data-redisplay="true" data-severity="all,error" 
                      data-detail="data-detail" data-summary="data-summary" data-global="false" 
                      aria-live="polite" class="ui-messages ui-widget" id="j_idt88:messages">
-                    <div class="ui-messages-info ui-corner-all"><span class="ui-messages-info-icon"></span><ul><li><span class="ui-messages-info-summary">Info</span>เพื่อให้การใช้งานและการแสดงผลของเว็บไซต์สมบูรณ์ กรุณา ดาวน์โหลดและติดตั้ง บราวเซอร์ที่ต้องการได้จากลิงก์ด้านล่าง ดังนี้ และเข้าสู่ระบบอีกครั้งจาก</li></ul></div></div>
+                    <div class="ui-messages-info ui-corner-all"><span class="ui-messages-info-icon"></span><ul><li>เพื่อให้การใช้งานและการแสดงผลของเว็บไซต์สมบูรณ์ กรุณา ดาวน์โหลดและติดตั้ง บราวเซอร์ที่ต้องการได้จากลิงก์ด้านล่าง ดังนี้ และเข้าสู่ระบบอีกครั้งจาก</li></ul></div></div>
 
-                <p:commandButton id="downloadLink1" value="ดาวน์โหลด Firefox" ajax="false"   
+                <p:dialog modal="true" widgetVar="statusDialog" header="Loading" draggable="false" closable="false" resizable="false">
+                    <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
+                </p:dialog>    
+
+                <p:commandButton onclick="PrimeFaces.monitorDownload(start, stop);" id="downloadLink1" value="ดาวน์โหลด Firefox" ajax="false"   
                                  icon="ui-icon-arrowthichk-s">
                     <p:fileDownload value="#{downloadsController.fileFirefox}" />
                 </p:commandButton>
-                <p:commandButton id="downloadLink2" value="ดาวน์โหลด Google Chrome" ajax="false"
+                <p:commandButton onclick="PrimeFaces.monitorDownload(start, stop);" id="downloadLink2" value="ดาวน์โหลด Google Chrome" ajax="false"
                                  icon="ui-icon-arrowthichk-s">
                     <p:fileDownload value="#{downloadsController.fileChrome}" />
                 </p:commandButton>
