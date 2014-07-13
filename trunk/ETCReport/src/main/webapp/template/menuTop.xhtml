@@ -23,7 +23,10 @@
                         </p:menuitem>
                         <p:menuitem value="จัดการกิจกกรม" url="/pages/admin/activityManagement.xhtml" icon="ui-icon-calendar"></p:menuitem>
                     </p:submenu>
-                    <p:submenu label="ดาวน์โหลด" icon="ui-icon-comment">  
+                    <p:submenu label="ดาวน์โหลด" icon="ui-icon-comment">
+                        <p:menuitem value="คู่มือสำหรับผุ้ใช้งานระบบ" ajax="false" icon="ui-icon-document">
+                            <p:fileDownload value="#{downloadsController.fileAdminPdf}" />
+                        </p:menuitem>
                     </p:submenu>
 
                     <p:submenu label="ติดต่อเรา" icon="ui-icon-person">

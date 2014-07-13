@@ -271,14 +271,34 @@ public abstract class BaseFormReportController extends BaseController {
 
 //        logger.trace("Login UserGroup {} Created UserGroup {}", user.getUserGroupId(), createdUserGroup);
 
-        if (user.getUserGroupId() != null && createdUserGroup.intValue() == user.getUserGroupId().intValue()) {
+        if (user.getUserGroupId() != null && createdUserGroup == user.getUserGroupId().intValue()) {
             return true;
         }
 
         return false;
     }
     
+    /***
+     * Check Can Edit 
+     * @param createdUserGroup
+     * @param status
+     * @return 
+     */
     public boolean canEdit(Integer createdUserGroup,Integer status) {
+
+        ViewUser user = getUserAuthen();
+        
+        if(user.getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel()){
+        
+            return true;
+            
+        }
+
+        return status == EctFlowStatus.ReportStatus.REJECTE.getStatus()
+                && user.getUserGroupId() != null && createdUserGroup == user.getUserGroupId().intValue();
+    }
+    
+    public boolean canRemove(Integer createdUserGroup,Integer status) {
 
         ViewUser user = getUserAuthen();
         

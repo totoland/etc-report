@@ -78,177 +78,175 @@ and open the template in the editor.
                         <p:outputLabel value=""/>                            
                     </p:panelGrid>
 
-                    
-                        <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_001pnlFrm">
-                            <f:facet name="header">
-                                <div style="text-align: left">
-                                    <p:commandButton value="เพิ่มข้อมูล" id="REPORT_001_BT_ADD"  oncomplete="REPORT_001dlgAddReportDetail.show()" update="REPORT_001pn_addReportDetail" actionListener="#{formReport001Controller.initReportDetail()}" rendered="#{param.mode!='view'}"/>
-                                </div>
-                            </f:facet>       
 
-                            <p:dataTable var="item" value="#{formReport001Controller.report001Details}" id="REPORT_001Grid" editable="true"
-                                         paginator="true" rows="5" emptyMessage="#{msg.no_data_found}" style="width: 1200px"
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                         rowIndexVar="index"
-                                         rowsPerPageTemplate="5">  
+                    <p:panelGrid columns="2" styleClass="frmDetail" id="REPORT_001pnlFrm">
+                        <f:facet name="header">
+                            <div style="text-align: left">
+                                <p:commandButton value="เพิ่มข้อมูล" id="REPORT_001_BT_ADD"  oncomplete="REPORT_001dlgAddReportDetail.show()" update="REPORT_001pn_addReportDetail" actionListener="#{formReport001Controller.initReportDetail()}" rendered="#{param.mode!='view'}"/>
+                            </div>
+                        </f:facet>       
 
-                                <p:ajax onstart="blogui001.show()" oncomplete="blogui001.hide()" event="rowEdit" listener="#{formReport001Controller.onEdit}"/>  
-                                <p:ajax onstart="blogui001.show()" oncomplete="blogui001.hide()" event="rowEditCancel" listener="#{formReport001Controller.onCancel}"/>
+                        <p:dataTable var="item" value="#{formReport001Controller.report001Details}" id="REPORT_001Grid" editable="true"
+                                     paginator="true" rows="5" emptyMessage="#{msg.no_data_found}" style="width: 1200px"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowIndexVar="index"
+                                     rowsPerPageTemplate="5">  
 
-                                <p:columnGroup type="header">  
-                                    <p:row>  
-                                        <p:column rowspan="2" headerText="ลำดับ" />
-                                        <p:column rowspan="2" headerText="รายละเอียดกิจกรรม" />  
-                                        <p:column rowspan="1" colspan="3" headerText="เป้าหมาย" />
-                                        <p:column rowspan="1" colspan="2" headerText="ตัวชี้วัดโครงการ/กิจกรรม" />
-                                        <p:column rowspan="1" colspan="2" headerText="งบประมาณ" />
-                                        <p:column rowspan="2" headerText="ร้อยละ" />
-                                        <p:column rowspan="1" colspan="2" headerText="การบรรลุตัวชี้วัด" />
-                                    </p:row>  
+                            <p:ajax onstart="blogui001.show()" oncomplete="blogui001.hide()" event="rowEdit" listener="#{formReport001Controller.onEdit}"/>  
+                            <p:ajax onstart="blogui001.show()" oncomplete="blogui001.hide()" event="rowEditCancel" listener="#{formReport001Controller.onCancel}"/>
 
-                                    <p:row>  
-                                        <p:column headerText="หน่วยนับ" />  
-                                        <p:column headerText="แผน" />
-                                        <p:column headerText="ผล" />
-                                        <p:column headerText="ตัวชี้วัด (แผน)" />
-                                        <p:column headerText="ตัวชี้วัด (ผล)" />
-                                        <p:column headerText="ตั้งไว้" />
-                                        <p:column headerText="จ่ายจริง" />
-                                        <p:column colspan="2" headerText="ผ่าน/ไม่ผ่าน" />
-                                    </p:row>
-                                </p:columnGroup>
+                            <p:columnGroup type="header">  
+                                <p:row>  
+                                    <p:column rowspan="2" headerText="ลำดับ" />
+                                    <p:column rowspan="2" headerText="รายละเอียดกิจกรรม" />  
+                                    <p:column rowspan="1" colspan="3" headerText="เป้าหมาย" />
+                                    <p:column rowspan="1" colspan="2" headerText="ตัวชี้วัดโครงการ/กิจกรรม" />
+                                    <p:column rowspan="1" colspan="2" headerText="งบประมาณ" />
+                                    <p:column rowspan="2" headerText="ร้อยละ" />
+                                    <p:column rowspan="1" colspan="3" headerText="การบรรลุตัวชี้วัด" />
+                                </p:row>  
 
-                                <p:column>
-                                    ${index+1} 
-                                </p:column>
+                                <p:row>  
+                                    <p:column headerText="หน่วยนับ" />  
+                                    <p:column headerText="แผน" />
+                                    <p:column headerText="ผล" />
+                                    <p:column headerText="ตัวชี้วัด (แผน)" />
+                                    <p:column headerText="ตัวชี้วัด (ผล)" />
+                                    <p:column headerText="ตั้งไว้" />
+                                    <p:column headerText="จ่ายจริง" />
+                                    <p:column colspan="3" headerText="ผ่าน/ไม่ผ่าน" />
+                                </p:row>
+                            </p:columnGroup>
 
-                                <p:column width="20">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.workDetail}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputTextarea value="#{item.workDetail}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column>
+                                ${index+1} 
+                            </p:column>
 
-                                <p:column>  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.goalType}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.goalType}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column width="20">  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.workDetail}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputTextarea value="#{item.workDetail}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
-                                <p:column>  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.goalAmount}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.goalAmount}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column>  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.goalType}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.goalType}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
-                                <p:column>
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.goalResult}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.goalResult}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column>  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.goalAmount}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.goalAmount}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
-<!--                                <p:column style="width:250px">  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.resultType}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.resultType}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>-->
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.goalResult}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.goalResult}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column>  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.resultAmount}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputTextarea value="#{item.resultAmount}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
-                                <p:column>  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.resultAmount}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputTextarea value="#{item.resultAmount}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column>
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.practiceResult}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputTextarea value="#{item.practiceResult}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
-                                <p:column>
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.practiceResult}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputTextarea value="#{item.practiceResult}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column>  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.budgetSet}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.budgetSet}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
-                                <p:column>  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.budgetSet}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.budgetSet}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column>  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.budgetReal}" />  
+                                    </f:facet>
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{item.budgetReal}" />  
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column> 
+                                <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
+                            </p:column>
 
-                                <p:column>  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.budgetReal}" />  
-                                        </f:facet>
-                                        <f:facet name="input">  
-                                            <p:inputText value="#{item.budgetReal}" />  
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
-                                <p:column> 
-                                    <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
-                                </p:column>
+                            <p:column>  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{item.isPass?'ผ่าน':'ไม่ผ่าน'}" />  
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:selectOneRadio value="#{item.isPass}" style="border-style:none">  
+                                            <f:selectItem itemLabel="ผ่าน" itemValue="true" />  
+                                            <f:selectItem itemLabel="ไม่ผ่าน" itemValue="false" /> 
+                                        </h:selectOneRadio>
+                                    </f:facet>  
+                                </p:cellEditor>
+                            </p:column>
 
-                                <p:column>  
-                                    <p:cellEditor>  
-                                        <f:facet name="output">  
-                                            <h:outputText value="#{item.isPass?'ผ่าน':'ไม่ผ่าน'}" />  
-                                        </f:facet>
-                                        <f:facet name="input">
-                                            <h:selectOneRadio value="#{item.isPass}" style="border-style:none">  
-                                                <f:selectItem itemLabel="ผ่าน" itemValue="true" />  
-                                                <f:selectItem itemLabel="ไม่ผ่าน" itemValue="false" /> 
-                                            </h:selectOneRadio>
-                                        </f:facet>  
-                                    </p:cellEditor>
-                                </p:column>
+                            <p:column style="width:50px" rendered="#{formReport001Controller.paramMode!='view'}">  
+                                <p:rowEditor />  
+                            </p:column>
+                            <p:column rendered="#{formReport001Controller.paramMode!='view'}">  
+                                <p:commandLink action="#{formReport001Controller.onDelete(item)}" update="REPORT_001Grid">
+                                    <span class="ui-icon ui-icon-trash"></span>
+                                    <p:confirm header="#{msg.confirmation_head}" message="#{msg.confirmation_message_delete}" icon="ui-icon-alert" />  
+                                </p:commandLink>
+                            </p:column>
 
-                                <p:column style="width:50px" rendered="#{formReport001Controller.paramMode!='view'}">  
-                                    <p:rowEditor />  
-                                </p:column>  
+                        </p:dataTable>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
+                            <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
+                            <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
+                        </p:confirmDialog>
+                    </p:panelGrid>
 
-                            </p:dataTable>
-                        </p:panelGrid>
-                    
                     <h:panelGroup id="REPORT_001pnlCmd" rendered="#{formReport001Controller.report001.flowStatusId!=200}">
                         <div align="center">
                             <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport001Controller.save()}" id="REPORT_001btnSave" rendered="#{formReport001Controller.paramMode=='create'}"/>
-                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport001Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport001Controller.paramMode=='view' and formReport001Controller.canEdit(formReport001Controller.report001.createdUserGroup)}"/>
+                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport001Controller.goToEdit()}" id="REPORT_001btnEdit" rendered="#{formReport001Controller.paramMode=='view' and formReport001Controller.canEdit(formReport001Controller.report001.createdUserGroup,formReport001Controller.report001.reportStatus)}"/>
                             <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport001Controller.goToClose()}" id="REPORT_001btnClose" rendered="#{formReport001Controller.paramMode=='view' || formReport001Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport001Controller.edit()}" id="REPORT_001btnSaveEdit" rendered="#{formReport001Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_001btnCancel" actionListener="#{formReport001Controller.goToCancel()}" rendered="#{formReport001Controller.paramMode=='edit'}"/>

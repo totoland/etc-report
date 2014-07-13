@@ -441,7 +441,11 @@ public class FormReport002Controller extends BaseFormReportController{
 
     @Override
     public void onDelete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Report002Detail rowDelete = (Report002Detail) object;
+
+        logger.trace("delete item : {}", rowDelete);
+
+        report002Details.remove(rowDelete);
     }
     
     /**
