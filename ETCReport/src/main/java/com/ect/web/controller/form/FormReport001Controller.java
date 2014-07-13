@@ -18,7 +18,6 @@ import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.StringUtils;
 import com.google.gson.Gson;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -436,27 +435,27 @@ public class FormReport001Controller extends BaseFormReportController {
 
         String msg = "";
 
-        if (report001.getStrategicId().intValue() == -1) {
+        if (report001.getStrategicId() == -1) {
             msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
         }
-        if (report001.getSubStrategicId().intValue() == -1) {
+        if (report001.getSubStrategicId() == -1) {
             msg += (MessageUtils.REQUIRE_SELECT_SUBSTRATEGICID()) + ("\\n");
         }
-        if (report001.getPlanId().intValue() == -1) {
+        if (report001.getPlanId() == -1) {
             msg += (MessageUtils.REQUIRE_SELECT_PLAN()) + ("\\n");
         }
-        if (report001.getProjectId().intValue() == -1) {
+        if (report001.getProjectId() == -1) {
             msg += (MessageUtils.REQUIRE_SELECT_PROJECT()) + ("\\n");
         }
-        if (report001.getActivityId().intValue() == -1) {
+        if (report001.getActivityId() == -1) {
             msg += (MessageUtils.REQUIRE_SELECT_ACTIVITY()) + ("\\n");
         }
         if (report001.getReport001DetailList() == null || report001.getReport001DetailList().isEmpty()) {
             msg += (MessageUtils.REQUIRE_ADD_REPORT_DETAIL());
         }
 
-        if (!StringUtils.isBlank(msg.toString())) {
-            JsfUtil.alertJavaScript(msg.toString().trim());
+        if (!StringUtils.isBlank(msg)) {
+            JsfUtil.alertJavaScript(msg.trim());
             return false;
         }
 
@@ -516,7 +515,11 @@ public class FormReport001Controller extends BaseFormReportController {
 
     @Override
     public void onDelete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Report001Detail rowDelete = (Report001Detail) object;
+
+        logger.trace("delete item : {}", rowDelete);
+
+        report001Details.remove(rowDelete);
     }
 
     /**

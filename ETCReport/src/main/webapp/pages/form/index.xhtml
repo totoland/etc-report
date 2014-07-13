@@ -115,7 +115,7 @@ and open the template in the editor.
                                         <p:column width="260">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 101)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
-                                            <p:commandButton value="ลบ" onclick="return confirm('#{msg.confirmation_message_delete}')" action="#{FormReportMainController.delete(item.reportCode, item.reportId)}" update=":form1:tabView" icon="ui-icon-trash" rendered="#{FormReportMainController.canEdit(item.userGroupLvl,item.reportStatus)}"/>
+                                            <p:commandButton value="ลบ" onclick="return confirm('#{msg.confirmation_message_delete}')" action="#{FormReportMainController.delete(item.reportCode, item.reportId)}" update=":form1:tabView" icon="ui-icon-trash" rendered="#{FormReportMainController.canRemove(item.userGroupLvl,item.reportStatus)}"/>
                                         </p:column>
                                         <p:column width="70">
                                             <f:facet name="header">

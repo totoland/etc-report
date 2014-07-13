@@ -32,6 +32,7 @@ public class DownloadsController extends BaseController {
 
     private StreamedContent fileFirefox;
     private StreamedContent fileChrome;
+    private StreamedContent fileAdminPdf;
 
     private final static String PATH_DOWNLOAD = "path.file.download";
     
@@ -87,6 +88,18 @@ public class DownloadsController extends BaseController {
             
         }
         return fileChrome;
+    }
+
+    /**
+     * @return the fileAdminPdf
+     */
+    public StreamedContent getFileAdminPdf() {
+        try {
+            fileAdminPdf = fileDownload("e-Report_Manunal.pdf");
+        } catch (IOException ex) {
+            
+        }
+        return fileAdminPdf;
     }
 
 }
