@@ -46,7 +46,7 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
     @Override
     public Integer updateReportStatusApprove(String reportName, Integer reportId, Integer flowStatusId, Integer approvedUser) {
 
-        String sql = "UPDATE " + reportName + " SET REPORT_STATUS = 200 ,FLOW_STATUS_ID = ?, APPROVED_DATE = ? , APPROVED_USER = ? WHERE REPORT_ID = ? ";
+        String sql = "UPDATE " + reportName + " SET REPORT_STATUS = 200 ,FLOW_STATUS_ID = ?, APPROVED_DATE = ? , APPROVED_USER = ? ,REMARK = '' WHERE REPORT_ID = ? ";
 
         logger.trace("updateReportStatus SQL : {}", sql);
 
