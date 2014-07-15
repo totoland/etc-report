@@ -43,6 +43,7 @@ import com.ect.db.report.entity.Report017Detail;
 import com.ect.db.report.entity.Report018;
 import com.ect.db.report.entity.Report018Detail;
 import com.ect.db.report.entity.Report019;
+import com.ect.db.report.entity.Report019Detail;
 import com.ect.db.report.entity.Report020;
 import com.ect.db.report.entity.Report020Detail;
 import com.ect.db.report.entity.Report021;
@@ -880,12 +881,35 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report010Detail>());
 
             } else {
+                
+                Report019Detail sumDetail = new Report019Detail();
+                sumDetail.setVerifyElectionAmount(0);
+                sumDetail.setFullTerm(0);
+                sumDetail.setNewElection(0);
+                sumDetail.setReplaceEmplyPosition(0);
+                sumDetail.setReportLaas(0);
+                sumDetail.setNoReportLaas(0);
+                sumDetail.setExtendResult(0);
+                sumDetail.setNoExtendResult(0);
 
-                for (int i = 0; i < report019.getReport019DetailList().size(); i++) {
-                    report019.getReport019DetailList().get(i).setKey(i + 1);
+                for (Report019Detail rd : report019.getReport019DetailList()) {
+
+                    rd.setVerifyElectionAmount(NumberUtils.convertNUllToZero(rd.getFullTerm()) + NumberUtils.convertNUllToZero(rd.getNewElection()) + NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
+                    rd.setReportLaas(NumberUtils.convertNUllToZero(rd.getExtendResult()) + NumberUtils.convertNUllToZero(rd.getNoExtendResult()));
+
+                    sumDetail.setVerifyElectionAmount(sumDetail.getVerifyElectionAmount() + NumberUtils.convertNUllToZero(rd.getVerifyElectionAmount()));
+                    sumDetail.setFullTerm(sumDetail.getFullTerm() + NumberUtils.convertNUllToZero(rd.getFullTerm()));
+                    sumDetail.setNewElection(sumDetail.getNewElection() + NumberUtils.convertNUllToZero(rd.getNewElection()));
+                    sumDetail.setReplaceEmplyPosition(sumDetail.getReplaceEmplyPosition() + NumberUtils.convertNUllToZero(rd.getReplaceEmplyPosition()));
+                    sumDetail.setReportLaas(sumDetail.getReportLaas() + NumberUtils.convertNUllToZero(rd.getReportLaas()));
+                    sumDetail.setNoReportLaas(sumDetail.getNoReportLaas() + NumberUtils.convertNUllToZero(rd.getNoReportLaas()));
+                    sumDetail.setExtendResult(sumDetail.getExtendResult() + NumberUtils.convertNUllToZero(rd.getExtendResult()));
+                    sumDetail.setNoExtendResult(sumDetail.getNoExtendResult() + NumberUtils.convertNUllToZero(rd.getNoExtendResult()));
+
                 }
 
                 beans.put("details", report019.getReport019DetailList());
+                beans.put("sum", sumDetail);
 
             }
 
