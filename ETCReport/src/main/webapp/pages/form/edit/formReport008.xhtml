@@ -129,7 +129,8 @@ and open the template in the editor.
                     <h:panelGroup id="REPORT_008pnlCmd" rendered="#{formReport008Controller.report008.flowStatusId!=200}">
                         <div align="center">
                             <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport008Controller.save()}" id="REPORT_008btnSave" rendered="#{formReport008Controller.paramMode=='create'}"/>
-                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport008Controller.goToEdit()}" id="REPORT_008btnEdit" rendered="#{formReport008Controller.paramMode=='view' and formReport008Controller.canEdit(formReport008Controller.report008.createdUserGroup,formReport008Controller.report008.reportStatus)}"/>
+                            <p:commandButton value="#{msg.btn_edit}" actionListener="#{formReport008Controller.goToEdit()}" id="REPORT_008btnEdit" rendered="#{formReport008Controller.paramMode=='view' 
+                                                      and formReport008Controller.canEdit(formReport008Controller.report008.createdUserGroup,formReport008Controller.report008.reportStatus,formReport008Controller.report008.flowStatusId)}"/>
                             <p:commandButton value="#{msg.btn_close}" actionListener="#{formReport008Controller.goToClose()}" id="REPORT_008btnClose" rendered="#{formReport008Controller.paramMode=='view' || formReport008Controller.paramMode=='create'}"/>
                             <p:commandButton value="#{msg.btn_save}" actionListener="#{formReport008Controller.edit()}" id="REPORT_008btnSaveEdit" rendered="#{formReport008Controller.paramMode=='edit'}"/>
                             <p:commandButton value="#{msg.btn_cancel}" id="REPORT_008btnCancel" actionListener="#{formReport008Controller.goToCancel()}" rendered="#{formReport008Controller.paramMode=='edit'}"/>
