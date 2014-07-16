@@ -298,6 +298,23 @@ public abstract class BaseFormReportController extends BaseController {
                 && user.getUserGroupId() != null && createdUserGroup == user.getUserGroupId().intValue();
     }
     
+    public boolean canEdit(Integer createdUserGroup,Integer status,Integer flowStatusId) {
+
+        ViewUser user = getUserAuthen();
+        
+        //If admin or status is draff allow to edit
+        if(user.getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel()
+                || flowStatusId == EctFlowStatus.FlowStatus.DRAFF.getStatus()){
+        
+            return true;
+            
+        }
+
+        //Allow to edit in case report status is reject and user is in gruop
+        return status == EctFlowStatus.ReportStatus.REJECTE.getStatus()
+                && user.getUserGroupId() != null && createdUserGroup == user.getUserGroupId().intValue();
+    }
+    
     public boolean canRemove(Integer createdUserGroup,Integer status) {
 
         ViewUser user = getUserAuthen();
