@@ -713,6 +713,7 @@ public class AllReportController extends BaseFormReportController {
 
                 for (int i = 0; i < report014.getReport014DetailList().size(); i++) {
                     report014.getReport014DetailList().get(i).setKey(i + 1);
+                    beans.put("remark",report014.getReport014DetailList().get(i).getRemark());
                 }
 
                 beans.put("details", report014.getReport014DetailList());
