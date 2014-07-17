@@ -20,6 +20,7 @@
         <db-mrg-dao>1.1-SNAPSHOT</db-mrg-dao>
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+        <omnifaces.version>1.8.1</omnifaces.version>
     </properties>
 
     <repositories>
@@ -183,7 +184,7 @@
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
-            <version>1.7</version> <!-- Or 1.8-SNAPSHOT -->
+            <version>${omnifaces.version}</version> <!-- Or 1.8-SNAPSHOT -->
         </dependency> 
         <dependency>
             <groupId>org.primefaces.extensions</groupId>

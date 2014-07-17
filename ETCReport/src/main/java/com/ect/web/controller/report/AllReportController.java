@@ -98,7 +98,7 @@ public class AllReportController extends BaseFormReportController {
 
     private static final long serialVersionUID = 8451238753520170431L;
     private static final Logger logger = LoggerFactory.getLogger(AllReportController.class);
-    
+
     @ManagedProperty(value = "#{userService}")
     private UserService userService;
     private List<ViewReportStatus> viewReportResult;
@@ -124,7 +124,7 @@ public class AllReportController extends BaseFormReportController {
         }
 
         reportCriteria.setUserGroupId(getUserAuthen().getUserGroupId() + "");
-        reportCriteria.setUserGroupLvl(getUserAuthen().getUserGroupLvl()+"");
+        reportCriteria.setUserGroupLvl(getUserAuthen().getUserGroupLvl() + "");
 
         logger.trace("Criteria : {}", reportCriteria);
 
@@ -713,7 +713,7 @@ public class AllReportController extends BaseFormReportController {
 
                 for (int i = 0; i < report014.getReport014DetailList().size(); i++) {
                     report014.getReport014DetailList().get(i).setKey(i + 1);
-                    beans.put("remark",report014.getReport014DetailList().get(i).getRemark());
+                    beans.put("remark", report014.getReport014DetailList().get(i).getRemark());
                 }
 
                 beans.put("details", report014.getReport014DetailList());
@@ -800,10 +800,10 @@ public class AllReportController extends BaseFormReportController {
                 sumDetail.setWithdrawnRequest(0);
                 sumDetail.setYellowCard(0);
                 sumDetail.setYellowCardCriminalCase(0);
-                
+
                 for (int i = 0; i < report017.getReport017DetailList().size(); i++) {
                     report017.getReport017DetailList().get(i).setKey(i + 1);
-                    
+
                     sumDetail.setAllStory(sumDetail.getAllStory() + report017.getReport017DetailList().get(i).getAllStory());
                     sumDetail.setCriminalCase(sumDetail.getCriminalCase() + report017.getReport017DetailList().get(i).getCriminalCase());
 
@@ -811,7 +811,7 @@ public class AllReportController extends BaseFormReportController {
                     sumDetail.setRedCard(sumDetail.getRedCard() + report017.getReport017DetailList().get(i).getRedCard());
                     sumDetail.setRequestNoReceived(sumDetail.getRequestNoReceived() + report017.getReport017DetailList().get(i).getRequestNoReceived());
                     sumDetail.setRequestReceived(sumDetail.getRequestReceived() + report017.getReport017DetailList().get(i).getRequestReceived());
-                    sumDetail.setAdding(sumDetail.getAdding()+report017.getReport017DetailList().get(i).getAdding());
+                    sumDetail.setAdding(sumDetail.getAdding() + report017.getReport017DetailList().get(i).getAdding());
                     sumDetail.setResetCounter(sumDetail.getResetCounter() + report017.getReport017DetailList().get(i).getResetCounter());
                     sumDetail.setWithdrawnRequest(sumDetail.getWithdrawnRequest() + report017.getReport017DetailList().get(i).getWithdrawnRequest());
                     sumDetail.setYellowCard(sumDetail.getYellowCard() + report017.getReport017DetailList().get(i).getYellowCard());
@@ -882,7 +882,7 @@ public class AllReportController extends BaseFormReportController {
                 beans.put("details", new ArrayList<Report010Detail>());
 
             } else {
-                
+
                 Report019Detail sumDetail = new Report019Detail();
                 sumDetail.setVerifyElectionAmount(0);
                 sumDetail.setFullTerm(0);

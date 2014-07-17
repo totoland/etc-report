@@ -64,7 +64,7 @@
     </filter-mapping>-->
     
     <!-- OmniFaces specific settings. -->
-<!--
+
     <filter>
         <filter-name>facesExceptionFilter</filter-name>
         <filter-class>org.omnifaces.filter.FacesExceptionFilter</filter-class>
@@ -73,7 +73,7 @@
         <filter-name>facesExceptionFilter</filter-name>
         <servlet-name>facesServlet</servlet-name>
     </filter-mapping>
-    -->
+    
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
