@@ -478,4 +478,8 @@ public abstract class BaseFormReportController extends BaseController {
     public void setParamMode(String paramMode) {
         this.paramMode = paramMode;
     }
+    
+    public Date getSysDate(){
+        return new Date();
+    }
 }

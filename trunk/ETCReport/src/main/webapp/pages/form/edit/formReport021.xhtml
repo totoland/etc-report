@@ -18,7 +18,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.css" media="screen"/>
         
         <link rel="stylesheet" href="${request.contextPath}/resources/css/style.responsive.css" media="all"/>
-        <ui:include src="../../../template/headScript.xhtml"/>
+        <ui:include src="/template/headScript.xhtml"/>
 
     </h:head>
     <h:body id="body021">
@@ -163,7 +163,7 @@ and open the template in the editor.
                         <totoland:calendarTH pattern="dd/MM/yyyy"  locale="th" id="REPORT_021lb022" value="#{formReport021Controller.inputReport021Detail.operationDateUntil}"/>
 
                         <h:outputLabel value="หน่วยรับการตรวจฯ/จำนวน(แห่ง) *"/>
-                        <totoland:inputNumber id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  
+                        <p:inputText id="REPORT_021lb03" value="#{formReport021Controller.inputReport021Detail.obtained}"/>  
 
                         <h:outputLabel value="ข้อสังเกต/ผลการตรวจพบที่สำคัญ *"/>
                         <p:inputText id="REPORT_021lb04" value="#{formReport021Controller.inputReport021Detail.result}"/>  

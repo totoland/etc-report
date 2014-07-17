@@ -445,6 +445,7 @@ public class DropdownFactory implements Serializable {
             criteria.setName("USER_GROUP_NAME");
             criteria.setValue("USER_GROUP_ID");
             criteria.setSortName("ASC");
+            criteria.setOrderByField("USER_GROUP_NAME");
 
             ectUserGroup = commonService.getDropdownList(criteria);
         }

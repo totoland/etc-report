@@ -13,7 +13,7 @@ and open the template in the editor.
       xmlns:totoland="http://java.sun.com/jsf/composite/components">
     <h:head>
 
-        <ui:include src="../../../template/headScript.xhtml"/>
+        <ui:include src="/template/headScript.xhtml"/>
 
     </h:head>
     <h:body>
@@ -112,7 +112,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="ประเภทการสรรหา">  
+                                <p:column headerText="ประเภทการเลือกตั้ง">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{formReport005Controller.dropdownFactory.getTypeElectedName(item.ssElectedType)}" /> 
@@ -269,7 +269,7 @@ and open the template in the editor.
                                     </p:cellEditor>
                                 </p:column>
 
-                                <p:column headerText="ประเภทการสรรหา">  
+                                <p:column headerText="ประเภทการเลือกตั้ง">  
                                     <p:cellEditor>  
                                         <f:facet name="output">  
                                             <h:outputText value="#{item.election}" />  
@@ -342,7 +342,7 @@ and open the template in the editor.
                             <f:selectItems value="#{dropDownController.dropdownFactory.ddlElected()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
                         </p:selectOneMenu>
 
-                        <h:outputLabel value="ประเภทการสรรหา *" />
+                        <h:outputLabel value="ประเภทการเลือกตั้ง *" />
                         <p:selectOneMenu value="#{formReport005Controller.inputReport005Detail.ssElectedType}" style="width: 220px">
                             <f:selectItems value="#{dropDownController.dropdownFactory.ddlTypeElected()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
                         </p:selectOneMenu>
@@ -390,7 +390,7 @@ and open the template in the editor.
                         <h:outputLabel value="ระยะเวลาการสรรหา ส.ว. *" />  
                         <p:inputText id="REPORT_005lb01" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.nominationPeriod}"/>  
 
-                        <h:outputLabel value="ประเภทการสรรหา *" />  
+                        <h:outputLabel value="ประเภทการเลือกตั้ง *" />  
                         <p:inputText id="REPORT_005lb3" disabled="#{formReport005Controller.paramMode=='view'}" value="#{formReport005Controller.inputReport005Detail2.election}"/>  
 
                         <h:outputLabel value="จำนวนองค์กร/รายชื่อที่เสนอ *" />  
