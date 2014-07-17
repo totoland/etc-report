@@ -50,7 +50,7 @@ public class Report021Detail extends DomainEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date operationDateUntil;
     @Column(name = "OBTAINED")
-    private Integer obtained;
+    private String obtained;
     @Column(name = "RESULT")
     private String result;
     @Column(name = "ADVICE")
@@ -98,11 +98,11 @@ public class Report021Detail extends DomainEntity implements Serializable {
         this.operationDate = operationDate;
     }
 
-    public Integer getObtained() {
+    public String getObtained() {
         return obtained;
     }
 
-    public void setObtained(Integer obtained) {
+    public void setObtained(String obtained) {
         this.obtained = obtained;
     }
 
