@@ -15,6 +15,7 @@ import com.ect.web.service.ReportGennericService;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import com.google.gson.Gson;
 import java.io.InputStream;
@@ -413,13 +414,13 @@ public class FormReport001Controller extends BaseFormReportController {
         if (StringUtils.isBlank(inputReport001Detail.getGoalType())) {
             msg += "กรุณาระบุเป้าหมายประเภท<br/>";
         }
-        if (inputReport001Detail.getGoalAmount().intValue() == 0) {
+        if (NumberUtils.convertNUllToZero(inputReport001Detail.getGoalAmount()) == 0) {
             msg += "กรุณาระบุจำนวน<br/>";
         }
 //        if (StringUtils.isBlank(inputReport001Detail.getResultType())) {
 //            msg += "กรุณาระบุผลการปฏิบัติงานประเภท<br/>";
 //        }
-        if (inputReport001Detail.getBudgetSet().intValue() == 0) {
+        if (NumberUtils.convertNUllToZero(inputReport001Detail.getBudgetSet()).intValue() == 0) {
             msg += "กรุณาระบุงบประมาณตั้งไว้<br/>";
         }
 
@@ -432,9 +433,9 @@ public class FormReport001Controller extends BaseFormReportController {
     }
 
     private boolean validateBeforeSave() {
-
+        
         String msg = "";
-
+        
         if (report001.getStrategicId() == -1) {
             msg += (MessageUtils.REQUIRE_SELECT_STRATEGICID()) + ("\\n");
         }
