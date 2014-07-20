@@ -12,10 +12,8 @@ and open the template in the editor.
     <h:head>
     </h:head>
     <h:body>
-        <ui:composition template="/template/etcTemplateGreen.xhtml">
-
-            <ui:define name="content">
                 <h3>HTTP : 500 โปรดบันทึกหน้าจอหรือข้อความด้านล่างและทำการ ติดต่อผู้ดูแลระบบ</h3>
+                <a href="#" onclick="window.location=''">กดที่นี่เพื่อเริ่มทำรายการอีกครั้ง</a>
                 <ul>
                     <li>Date/time: #{allReportController.getSysDate()}</li>
                     <li>User agent: #{header['user-agent']}</li>
@@ -27,7 +25,5 @@ and open the template in the editor.
                     <li>Exception message: #{requestScope['javax.servlet.error.message']}</li>
                     <li>Stack trace: <pre><code>#{of:printStackTrace(requestScope['javax.servlet.error.exception'])}</code></pre></li>
                 </ul>
-            </ui:define>
-        </ui:composition>
     </h:body>
 </html>

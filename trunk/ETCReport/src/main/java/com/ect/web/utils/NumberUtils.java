@@ -60,4 +60,20 @@ public class NumberUtils {
         
         return nvl;
     }
+    
+    public static Long convertNUllToZero(Long nvl){
+        if(nvl==null){
+            return (long) 0;
+        }
+        
+        return nvl;
+    }
+    
+    public static BigDecimal convertNUllToZero(BigDecimal nvl){
+        if(nvl==null){
+            return BigDecimal.ZERO;
+        }
+        
+        return nvl;
+    }
 }
