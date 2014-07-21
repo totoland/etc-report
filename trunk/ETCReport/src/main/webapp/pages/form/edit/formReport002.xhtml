@@ -17,9 +17,9 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:panel id="REPORT_002" header="#{msg.report_002_header}">
+            <p:panel id="REPORT_002" header="#{msg.report_002_header}" style="width: 1000px;height: 500px; overflow: scroll">
 
-                <p:panel header="#{formReport002Controller.reportTitle}" style="width: 100%;">
+                <p:panel header="#{formReport002Controller.reportTitle}">
                     <p:messages id="REPORT_002msgFrmDetails"></p:messages>
                     <p:panelGrid columns="4" styleClass="frmSelect">
                         <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
