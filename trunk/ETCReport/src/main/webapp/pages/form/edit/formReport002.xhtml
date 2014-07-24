@@ -17,9 +17,9 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:panel id="REPORT_002" header="#{msg.report_002_header}" style="width: 1000px;height: 500px; overflow: scroll">
+            <p:panel id="REPORT_002" header="#{msg.report_002_header}">
 
-                <p:panel header="#{formReport002Controller.reportTitle}">
+                <p:panel header="#{formReport002Controller.reportTitle}" style="width: 100%;">
                     <p:messages id="REPORT_002msgFrmDetails"></p:messages>
                     <p:panelGrid columns="4" styleClass="frmSelect">
                         <p:outputLabel value="#{msg.label_fiscal_year} :" rendered="false"/>
@@ -106,7 +106,7 @@ and open the template in the editor.
                                         </p:cellEditor>
                                     </p:column>
 
-                                    <p:column headerText="เป้าหมาย">  
+                                    <p:column headerText="วัตถุประสงค์">  
                                         <p:cellEditor>  
                                             <f:facet name="output">  
                                                 <h:outputText value="#{item.objective}" />  
@@ -117,7 +117,7 @@ and open the template in the editor.
                                         </p:cellEditor>
                                     </p:column>
 
-                                    <p:column headerText="เป้าหมาย (จำนวน)">  
+                                    <p:column headerText="เป้าหมาย">  
                                         <p:cellEditor>  
                                             <f:facet name="output">  
                                                 <h:outputText value="#{item.goalAmount}" />  
@@ -197,22 +197,22 @@ and open the template in the editor.
                     <p:panelGrid columns="2" id="REPORT_002pn_addReportDetail">
 
                         <h:outputLabel value="รายละเอียดการดำเนินงาน *" />  
-                        <p:inputText id="REPORT_002lb1" style="width:400px" value="#{formReport002Controller.inputReport002Detail.workDetail}" />  
+                        <p:inputTextarea id="REPORT_002lb1" style="width:400px" value="#{formReport002Controller.inputReport002Detail.workDetail}" />  
 
                         <h:outputLabel value="วัตถุประสงค์ *" />  
-                        <p:inputText id="REPORT_002lb2" style="width:400px" value="#{formReport002Controller.inputReport002Detail.objective}" />  
+                        <p:inputTextarea id="REPORT_002lb2" style="width:400px" value="#{formReport002Controller.inputReport002Detail.objective}" />  
 
                         <h:outputLabel value="เป้าหมายจำนวน *" />  
                         <p:inputText id="REPORT_002lb3" style="width:400px" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
 
                         <h:outputLabel value="ผลการดำเนินงาน *" />  
-                        <p:inputText id="REPORT_002lb4" style="width:400px" value="#{formReport002Controller.inputReport002Detail.result}" />  
+                        <p:inputTextarea id="REPORT_002lb4" style="width:400px" value="#{formReport002Controller.inputReport002Detail.result}" />  
 
                         <h:outputLabel value="งบประมาณ *" />  
                         <p:inputText id="REPORT_002lb6" style="width:400px" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
 
                         <h:outputLabel value="แหล่งที่มางบประมาณ *" />  
-                        <p:inputText id="REPORT_002lb7" style="width:400px" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
+                        <p:inputTextarea id="REPORT_002lb7" style="width:400px" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport002Controller.addReportDetail(actionEvent)}" update="REPORT_002msgAddReportDetail,REPORT_002Grid" icon="ui-icon-check" style="margin:0"/>  

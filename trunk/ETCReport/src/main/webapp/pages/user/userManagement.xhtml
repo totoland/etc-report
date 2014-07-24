@@ -25,7 +25,7 @@ create date : 19/01/2556
                                 <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserLvl()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
                             </p:selectOneMenu>
                             <h:outputLabel for="groupId" value="กลุ่มผู้ใช้" />
-                            <p:selectOneMenu id="groupId" style="width:200px" value="#{userManagementController.userCriteria.groupId}">
+                            <p:selectOneMenu id="groupId" style="width:200px" value="#{userManagementController.userCriteria.groupId}" filter="true">
                                 <f:selectItem itemLabel="" itemValue="-1"></f:selectItem>
                                 <f:selectItems value="#{userManagementController.dropdownFactory.ddlUserGroup()}" var="item" itemLabel="#{item.name}" itemValue="#{item.value}"></f:selectItems>
                             </p:selectOneMenu>
