@@ -75,7 +75,7 @@ and open the template in the editor.
                         <p:outputLabel value=""/>                            
                     </p:panelGrid>
 
-                    <div style="width: 1000px;overflow-x: scroll">
+                    <div>
                         <p:panel style="width: 100%;">
                             <f:facet name="header"  class="txtLeft">
                                 <p:commandButton value="เพิ่มข้อมูล" oncomplete="REPORT_002dlgAddReportDetail.show()" update="REPORT_002AddReportDetail" actionListener="#{formReport002Controller.initReportDetail()}" rendered="#{formReport010Controller.paramMode!='view'}"/>
@@ -193,40 +193,42 @@ and open the template in the editor.
                 </p:panel>
 
                 <p:dialog id="REPORT_002AddReportDetail" header="เพิ่มข้อมูล" widgetVar="REPORT_002dlgAddReportDetail" modal="true" draggable="true">
+                    <p:panel style="height:400px;width: 650px;overflow: auto;">
                     <p:messages id="REPORT_002msgAddReportDetail" escape="false" closable="true"></p:messages>
-                    <p:panelGrid columns="2" id="REPORT_002pn_addReportDetail">
+                        <p:panelGrid columns="2" id="REPORT_002pn_addReportDetail">
 
-                        <h:outputLabel value="รายละเอียดการดำเนินงาน *" />  
-                        <p:inputTextarea id="REPORT_002lb1" style="width:400px" value="#{formReport002Controller.inputReport002Detail.workDetail}" />  
+                            <h:outputLabel value="รายละเอียดการดำเนินงาน *" />  
+                            <p:inputTextarea id="REPORT_002lb1" style="width:400px" value="#{formReport002Controller.inputReport002Detail.workDetail}" />  
 
-                        <h:outputLabel value="วัตถุประสงค์ *" />  
-                        <p:inputTextarea id="REPORT_002lb2" style="width:400px" value="#{formReport002Controller.inputReport002Detail.objective}" />  
+                            <h:outputLabel value="วัตถุประสงค์ *" />  
+                            <p:inputTextarea id="REPORT_002lb2" style="width:400px" value="#{formReport002Controller.inputReport002Detail.objective}" />  
 
-                        <h:outputLabel value="เป้าหมายจำนวน *" />  
-                        <p:inputText id="REPORT_002lb3" style="width:400px" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
+                            <h:outputLabel value="เป้าหมายจำนวน *" />  
+                            <p:inputText id="REPORT_002lb3" style="width:400px" value="#{formReport002Controller.inputReport002Detail.goalAmount}" />  
 
-                        <h:outputLabel value="ผลการดำเนินงาน *" />  
-                        <p:inputTextarea id="REPORT_002lb4" style="width:400px" value="#{formReport002Controller.inputReport002Detail.result}" />  
+                            <h:outputLabel value="ผลการดำเนินงาน *" />  
+                            <p:inputTextarea id="REPORT_002lb4" style="width:400px" value="#{formReport002Controller.inputReport002Detail.result}" />  
 
-                        <h:outputLabel value="งบประมาณ *" />  
-                        <p:inputText id="REPORT_002lb6" style="width:400px" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
+                            <h:outputLabel value="งบประมาณ *" />  
+                            <p:inputText id="REPORT_002lb6" style="width:400px" value="#{formReport002Controller.inputReport002Detail.budget}" /> 
 
-                        <h:outputLabel value="แหล่งที่มางบประมาณ *" />  
-                        <p:inputTextarea id="REPORT_002lb7" style="width:400px" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
+                            <h:outputLabel value="แหล่งที่มางบประมาณ *" />  
+                            <p:inputTextarea id="REPORT_002lb7" style="width:400px" value="#{formReport002Controller.inputReport002Detail.buggetSource}" />
 
-                        <f:facet name="footer">  
-                            <p:commandButton value="เพิ่ม" actionListener="#{formReport002Controller.addReportDetail(actionEvent)}" update="REPORT_002msgAddReportDetail,REPORT_002Grid" icon="ui-icon-check" style="margin:0"/>  
-                        </f:facet>
-                    </p:panelGrid>
+                            <f:facet name="footer">  
+                                <p:commandButton value="เพิ่ม" actionListener="#{formReport002Controller.addReportDetail(actionEvent)}" update="REPORT_002msgAddReportDetail,REPORT_002Grid" icon="ui-icon-check" style="margin:0"/>  
+                            </f:facet>
+                        </p:panelGrid>
 
-                    <style>
-                        .ui-panelgrid td {
-                            border-color: inherit;
-                            border-style: inherit;
-                            border-width: 1px;
-                            padding: 4px 10px;
-                        }
-                    </style>
+                        <style>
+                            .ui-panelgrid td {
+                                border-color: inherit;
+                                border-style: inherit;
+                                border-width: 1px;
+                                padding: 4px 10px;
+                            }
+                        </style>
+                    </p:panel>
                 </p:dialog>
                 <p:blockUI  block="REPORT_002" widgetVar="blogui002" trigger="REPORT_002btnSave,REPORT_002btnCancel">
                     LOADING<br />
