@@ -491,9 +491,10 @@ and open the template in the editor.
 
                     <!-- Include Report Edit-->
                     <h:panelGroup id="includeEdit">
-                        <p:dialog id="dialogEdit" header="แสดงข้อมูล" widgetVar="dialogEdit" resizable="true" height="500" width="1100" modal="true">
-                            <div id="divFrmEdit" style="height: 100%">
-                            </div>    
+                        <p:dialog id="dialogEdit" header="แสดงข้อมูล" widgetVar="dialogEdit" resizable="true" height="500" width="1050" modal="true">
+                            <div id="divFrmEdit" style="width: 150vh; height: 70vh;">
+                            </div> 
+                            
                         </p:dialog>
                     </h:panelGroup>
                     <p:remoteCommand name="loadReportTracking" update="tabView" action="#{FormReportMainController.loadReportTracking()}">
