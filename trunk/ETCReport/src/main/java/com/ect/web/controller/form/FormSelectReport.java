@@ -139,16 +139,6 @@ public class FormSelectReport extends BaseFormReportController {
             };
         }
 
-//        if (reportCode.equalsIgnoreCase(REPORT_001) || 
-//                reportCode.equalsIgnoreCase(REPORT_002) || 
-//                reportCode.equalsIgnoreCase(REPORT_003) || 
-//                reportCode.equalsIgnoreCase(REPORT_004) || 
-//                reportCode.equalsIgnoreCase(REPORT_005) ||
-//                reportCode.equalsIgnoreCase(REPORT_006) ||
-//                reportCode.equalsIgnoreCase(REPORT_007) ||
-//                reportCode.equalsIgnoreCase(REPORT_008) ||
-//                reportCode.equalsIgnoreCase(REPORT_009) ||
-//                reportCode.equalsIgnoreCase(REPORT_010)) {
         String url = ectConfManager.getReportObj(reportCode).getReportUrl();
 
         this.reportMode = REPORT_MODE_CREATE;
@@ -159,9 +149,6 @@ public class FormSelectReport extends BaseFormReportController {
 
         openIframe(url);
 
-//        } else {
-//            openDialog("REPORT_MainDialog_" + reportCode);
-//        }
     }
 
     @Override

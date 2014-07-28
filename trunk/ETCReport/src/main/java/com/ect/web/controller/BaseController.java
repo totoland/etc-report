@@ -171,7 +171,7 @@ public abstract class BaseController implements Serializable {
         }
 
         executeJavaScript("dialogEdit.show();");
-        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='" + url + "&random=\" + Math.random() + \"'  scrolling='no' style='border: none;width: 100%;height:500px'></iframe>\");");
+        executeJavaScript("$(\"#divFrmEdit\").html(\"<iframe src='" + url + "&random=\" + Math.random() + \"'  width='100%' height='100%' scrolling='vertical' frameborder='0'></iframe>\");");
     }
 
     public String getParameter(String param) {
