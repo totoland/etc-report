@@ -36,11 +36,12 @@ public class DropdownFactory implements Serializable {
      */
     public List<DropDownList> ddlFiscalYear() {
 
+        Locale.setDefault(new Locale("th", "TH"));
+        
         List<DropDownList> dropDownLists = new ArrayList<>();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 
-        Locale.setDefault(new Locale("th", "TH"));
         
         int curYear = Integer.parseInt(dateFormat.format(new Date()));
 
