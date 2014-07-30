@@ -27,7 +27,7 @@ and open the template in the editor.
         </p:blockUI>
         <h:form>
 
-            <p:panel id="REPORT_012" header="#{msg.report_012_header}">
+            <p:panel id="REPORT_012" header="#{msg.report_012_header}" style="width: 1050px">
 
                 <p:panel id="REPORT_REPORT_012" header="#{formReport012Controller.reportTitle}">
 
@@ -46,10 +46,10 @@ and open the template in the editor.
                     <p:remoteCommand name="calSum2" update="REPORT_012pnlFrm" onstart="blogui012.show();" oncomplete="blogui012.hide()" action="#{formReport012Controller.calSum()}">
                     </p:remoteCommand>
 
-                    <p:panelGrid styleClass="frmDetail" id="REPORT_012pnlFrm" style="text-align: center;vertical-align: middle">
+                    <p:panelGrid styleClass="frmDetail" id="REPORT_012pnlFrm" style="text-align: center;vertical-align: middle;">
                         <f:facet name="header">
                             <p:row>  
-                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 200px">ประเภทการเลือกตั้ง</p:column>
+                                <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 250px">ประเภทการเลือกตั้ง</p:column>
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">ทั้งหมด (เรื่อง) (1)</p:column>
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ส่วนกลาง (เรื่อง) (2)</p:column>
                                 <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px">อยู่ที่ สนง. กกต.จว. (เรื่อง) (3)</p:column>
