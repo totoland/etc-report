@@ -20,8 +20,9 @@
         </layout>
     </appender>
     <logger name="com.ect">
-        <level value="error"/>
-        <level value="warn"/>
+        <level value="trace"/>
+<!--        <level value="error"/>
+        <level value="warn"/>-->
     </logger>
    <logger name="org.springframework.orm">
         <level value="error"/>

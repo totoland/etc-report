@@ -49,7 +49,7 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
                                         </p:column>
-                                        <p:column style="width: 320px" rendered="#{formSelectReport.userAuthen.userGroupLvl==0}">
+                                        <p:column style="width: 280px" rendered="#{formSelectReport.userAuthen.userGroupLvl==0}">
                                             <f:facet name="header">
                                                 <h:outputText value="กลุ่มผู้ใช้งาน"/>
                                             </f:facet>
@@ -111,17 +111,17 @@ and open the template in the editor.
                                 </p:panel>
                             </p:tab>
                             <p:tab id="tab_DRAFF" title="รอส่งพิจารณา">
-                                <div style="width: 1170px;overflow-x: scroll">
+                                <div style="width: 1200px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}"
                                                  paginator="true" rows="10" style="width: 1680px;" lazy="true" emptyMessage="#{msg.no_data_found}"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column width="260">
+                                        <p:column width="320">
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 101)}" update=":form1:tabView" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
-                                            <p:commandButton value="ลบ" onclick="return confirm('#{msg.confirmation_message_delete}')" action="#{FormReportMainController.delete(item.reportCode, item.reportId)}" update=":form1:tabView" icon="ui-icon-trash" rendered="#{FormReportMainController.canRemove(item.userGroupLvl,item.reportStatus)}"/>
+                                            <p:commandButton value="ลบ" onclick="return confirm('#{msg.confirmation_message_delete}')" action="#{FormReportMainController.delete(item.reportCode, item.reportId)}" update=":form1:tabView" icon="ui-icon-trash" rendered="#{FormReportMainController.canRemove(item.userGroupId,item.reportStatus)}"/>
                                         </p:column>
                                         <p:column width="70">
                                             <f:facet name="header">
@@ -130,25 +130,31 @@ and open the template in the editor.
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
 
-                                        <p:column style="width: 320px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
                                         </p:column>
-                                        <p:column style="width: 100px">
+                                        <p:column  rendered="#{formSelectReport.userAuthen.userGroupLvl==0}">
+                                            <f:facet name="header">
+                                                <h:outputText value="กลุ่มผู้ใช้งาน"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.userGroupName}" />
+                                        </p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
                                             <h:outputText value="#{FormReportMainController.reportStatusName(item.flowStatusId,item.reportStatus)}" />
                                         </p:column>
-                                        <p:column style="width: 100px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="เหตุผล/หมายเหตุ" />
                                             </f:facet>
                                             <h:outputText value="#{item.remark}" />
                                         </p:column>
-                                        <p:column style="width:80px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่สร้าง" />
                                             </f:facet>
@@ -156,13 +162,13 @@ and open the template in the editor.
 
                                             </totoland:convertDateTime>
                                         </p:column>
-                                        <p:column style="width:170px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อผู้สร้าง" />
                                             </f:facet>
                                             <h:outputText value="#{item.createdUserFullName}" />
                                         </p:column>
-                                        <p:column style="width: 80px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่ส่งกลับ" />
                                             </f:facet>
@@ -171,7 +177,7 @@ and open the template in the editor.
 
                                             </totoland:convertDateTime>
                                         </p:column>
-                                        <p:column style="width: 220px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อผู้ส่งกลับ" />
                                             </f:facet>
@@ -181,17 +187,17 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_STEP_1" title="รายงานรอผลพิจารณา (หน.อก.)">
-                                <div style="width: 1170px;overflow-x: scroll">
+                                <div style="width: 1200px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList2" var="item" value="#{FormReportMainController.listReportStatusStep1}"
                                                  paginator="true" rows="10" style="width: 2000px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column style="width: 320px">
+                                        <p:column >
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 102)}" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
-                                            <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,0)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
+                                            <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,0)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="true"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -200,19 +206,25 @@ and open the template in the editor.
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
 
-                                        <p:column style="width: 320px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
                                         </p:column>
-                                        <p:column style="width: 100px">
+                                        <p:column  rendered="#{formSelectReport.userAuthen.userGroupLvl==0}">
+                                            <f:facet name="header">
+                                                <h:outputText value="กลุ่มผู้ใช้งาน"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.userGroupName}" />
+                                        </p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
                                             <h:outputText value="#{FormReportMainController.reportStatusName(item.flowStatusId,item.reportStatus)}" />
                                         </p:column>
-                                        <p:column style="width: 100px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="เหตุผล/หมายเหตุ" />
                                             </f:facet>
@@ -224,7 +236,7 @@ and open the template in the editor.
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.createdDate}"/>
                                         </p:column>
-                                        <p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อผู้สร้าง" />
                                             </f:facet>
@@ -236,13 +248,13 @@ and open the template in the editor.
                                             </f:facet>
                                             <totoland:convertDateTime value="#{item.approvedDate}"/>
                                         </p:column>
-                                        <p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อผู้ส่งพิจารณา" />
                                             </f:facet>
                                             <h:outputText value="#{item.approvedUserFullName}" />
                                         </p:column>
-                                        <p:column style="width: 120px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่ส่งกลับ" />
                                             </f:facet>
@@ -251,7 +263,7 @@ and open the template in the editor.
 
                                             </totoland:convertDateTime>
                                         </p:column>
-                                        <p:column style="width: 220px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อผู้ส่งกลับ" />
                                             </f:facet>
@@ -261,14 +273,14 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_STEP_2" title="รายงานรอผลพิจารณา (หน.ส่วนงาน)">
-                                <div style="width: 1170px;overflow-x: scroll">
+                                <div style="width: 1200px;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList3" var="item" value="#{FormReportMainController.listReportStatusStep2}"
                                                  paginator="true" rows="10" style="width: 1650px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column style="width: 320px">
+                                        <p:column >
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" actionListener="#{FormReportMainController.approve(item.reportCode, item.reportId, 103)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>                                        
                                             <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,101)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
@@ -279,25 +291,31 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
-                                        <p:column style="width: 320px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
                                         </p:column>
-                                        <p:column style="width: 100px">
+                                        <p:column rendered="#{formSelectReport.userAuthen.userGroupLvl==0}">
+                                            <f:facet name="header">
+                                                <h:outputText value="กลุ่มผู้ใช้งาน"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.userGroupName}" />
+                                        </p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
                                             <h:outputText value="#{FormReportMainController.reportStatusName(item.flowStatusId,item.reportStatus)}" />
                                         </p:column>
-                                        <p:column style="width: 100px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="เหตุผล/หมายเหตุ" />
                                             </f:facet>
                                             <h:outputText value="#{item.remark}" />
                                         </p:column>
-                                        <p:column style="width: 80px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่สร้าง" />
                                             </f:facet>
@@ -305,13 +323,13 @@ and open the template in the editor.
 
                                             </totoland:convertDateTime>
                                         </p:column>
-                                        <p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อผู้สร้าง" />
                                             </f:facet>
                                             <h:outputText value="#{item.createdUserFullName}" />
                                         </p:column>
-                                        <p:column style="width: 80px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่ส่งพิจารณา" />
                                             </f:facet>
@@ -319,7 +337,7 @@ and open the template in the editor.
 
                                             </totoland:convertDateTime>
                                         </p:column>
-                                        <p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อผู้ส่งพิจารณา" />
                                             </f:facet>
@@ -329,14 +347,14 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_STEP_3" title="รายงานรอผลพิจารณา (ส่วนกลาง)">
-                                <div style="width: 1170px;overflow-x: scroll">
+                                <div style="width: 1200px;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList4" var="item" value="#{FormReportMainController.listReportStatusStep3}"
                                                  paginator="true" rows="10" style="width: 1550px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column style="width: 290px">
+                                        <p:column >
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include"/>
                                             <p:commandButton value="#{msg.btn_approve}" onclick="return confirm('#{msg.confirmation_message_approve}')" actionListener="#{FormReportMainController.approve(item.reportCode, item.reportId, 200)}" update=":form1:msgFormMain" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>                                        
                                             <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,0)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="#{FormReportMainController.canReject(item.flowStatusId)}"/>
@@ -347,19 +365,25 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
-                                        <p:column style="width: 220px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="หน่วยงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.userGroupName}" />
                                         </p:column>
-                                        <p:column style="width: 320px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
                                         </p:column>
-                                        <p:column style="width: 100px">
+                                        <p:column rendered="#{formSelectReport.userAuthen.userGroupLvl==0}">
+                                            <f:facet name="header">
+                                                <h:outputText value="กลุ่มผู้ใช้งาน"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.userGroupName}" />
+                                        </p:column>
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="สถานะ" />
                                             </f:facet>
@@ -397,14 +421,14 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_APPROVED" title="รายงานที่อนุมัติแล้ว">
-                                <div style="width: 1170px;overflow-x: scroll">
+                                <div style="width: 1200px;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList5" var="item" value="#{FormReportMainController.listReportStatusApprove}"
                                                  paginator="true" rows="10" style="width:1550px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column style="width: 100px">
+                                        <p:column >
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include">
                                             </p:commandButton>
                                         </p:column>
@@ -414,12 +438,18 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{item.documentNo}" />
                                         </p:column>
-                                        <p:column style="width: 320px">
+                                        <p:column >
                                             <f:facet name="header">
                                                 <h:outputText value="ชื่อรายงาน" />
                                             </f:facet>
                                             <h:outputText value="#{item.reportDesc}" />
-                                        </p:column>                                    
+                                        </p:column>
+                                        <p:column rendered="#{formSelectReport.userAuthen.userGroupLvl==0}">
+                                            <f:facet name="header">
+                                                <h:outputText value="กลุ่มผู้ใช้งาน"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.userGroupName}" />
+                                        </p:column>
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="วันที่สร้าง" />

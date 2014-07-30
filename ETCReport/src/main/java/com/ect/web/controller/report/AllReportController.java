@@ -38,6 +38,7 @@ import com.ect.db.report.entity.Report014;
 import com.ect.db.report.entity.Report015;
 import com.ect.db.report.entity.Report015Detail;
 import com.ect.db.report.entity.Report016;
+import com.ect.db.report.entity.Report016Detail;
 import com.ect.db.report.entity.Report017;
 import com.ect.db.report.entity.Report017Detail;
 import com.ect.db.report.entity.Report018;
@@ -123,7 +124,9 @@ public class AllReportController extends BaseFormReportController {
             reportCriteria.setYear(reportCriteria.getYear());
         }
 
-        reportCriteria.setUserGroupId(getUserAuthen().getUserGroupId() + "");
+        if(getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel() && getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
+            reportCriteria.setUserGroupId(getUserAuthen().getUserGroupId() + "");
+        }
         reportCriteria.setUserGroupLvl(getUserAuthen().getUserGroupLvl() + "");
 
         logger.trace("Criteria : {}", reportCriteria);
@@ -773,6 +776,16 @@ public class AllReportController extends BaseFormReportController {
 
                 beans.put("details", report016.getReport016DetailList());
 
+                Report016Detail sumDetail = new Report016Detail();
+                sumDetail.setStAmount(0);
+                sumDetail.setPtAmount(0);
+
+                for (int i = 0; i < report016.getReport016DetailList().size(); i++) {
+                    sumDetail.setStAmount(NumberUtils.convertNUllToZero(sumDetail.getStAmount()) + NumberUtils.convertNUllToZero(report016.getReport016DetailList().get(i).getStAmount()));
+                    sumDetail.setPtAmount(NumberUtils.convertNUllToZero(sumDetail.getPtAmount()) + NumberUtils.convertNUllToZero(report016.getReport016DetailList().get(i).getPtAmount()));
+                }
+
+                beans.put("sum", sumDetail);
             }
 
         } else if (viewReportStatus.getReportCode().equals(REPORT_017)) {
@@ -1046,10 +1059,10 @@ public class AllReportController extends BaseFormReportController {
         return file;
     }
 
-    public boolean canSearchUserGroup(){
+    public boolean canSearchUserGroup() {
         return isAdmin() || isCenter();
     }
-    
+
     /**
      * @return the viewReportResult
      */
