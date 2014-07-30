@@ -17,6 +17,7 @@ import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
@@ -331,11 +332,19 @@ public abstract class BaseFormReportController extends BaseController {
             
         }
         
-        if (user.getUserGroupId() != null && createdUserGroup == user.getUserGroupId()) {
+        if (user.getUserGroupId() != null && Objects.equals(createdUserGroup, user.getUserGroupId())) {
             return true;
         }
 
         return false;
+    }
+    
+    public boolean isAdmin(){
+        return getUserAuthen().getUserGroupLvl() == GroupLevel.SYSTEM_ADMIN.getLevel();
+    }
+    
+    public boolean isCenter(){
+        return getUserAuthen().getUserGroupLvl() == GroupLevel.CENTER.getLevel();
     }
     
     /**

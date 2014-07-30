@@ -78,11 +78,20 @@ and open the template in the editor.
                                 <f:selectItem itemLabel="อนุมัติ" itemValue="200" />
                             </p:selectOneMenu>
 
-                            <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" rendered="#{param.user==null}"/>
-                            <p:selectOneMenu  id="ectDll2" style="width: 220px" rendered="#{param.user==null}" value="#{allReportController.reportCriteria.reportCode}">  
+                            <h:outputLabel value="ระบบรายงานผลการปฏิบัติงาน สนง.กกต. ส่วนกลาง" />
+                            <p:selectOneMenu  id="ectDll2" style="width: 220px"  value="#{allReportController.reportCriteria.reportCode}">  
                                 <f:selectItem itemLabel="เลือก" itemValue="" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlDepEct()}"/>  
                             </p:selectOneMenu>
+                            
+                            <h:outputLabel value="หน่วยงาน" rendered="#{allReportController.canSearchUserGroup()}"/>
+                            <p:selectOneMenu  id="ectDllUserGrp" style="width: 220px"  value="#{allReportController.reportCriteria.userGroupId}" filter="true" filterMatchMode="contains" rendered="#{allReportController.canSearchUserGroup()}">  
+                                <f:selectItem itemLabel="เลือก" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{allReportController.dropdownFactory.ddlUserGroup()}"/>  
+                            </p:selectOneMenu>
+                            <h:panelGroup rendered="#{allReportController.canSearchUserGroup()}"/>
+                            <h:panelGroup rendered="#{allReportController.canSearchUserGroup()}"/>
+                            
                             <f:facet name="footer">
                                 <div align="center">
                                     <p:commandButton id="btnShowRpt" action="#{allReportController.search()}" update="rptPreSendList2" value="แสดงรายงาน"/>

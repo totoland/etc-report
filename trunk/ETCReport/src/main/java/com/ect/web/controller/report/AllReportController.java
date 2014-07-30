@@ -804,18 +804,18 @@ public class AllReportController extends BaseFormReportController {
                 for (int i = 0; i < report017.getReport017DetailList().size(); i++) {
                     report017.getReport017DetailList().get(i).setKey(i + 1);
 
-                    sumDetail.setAllStory(sumDetail.getAllStory() + report017.getReport017DetailList().get(i).getAllStory());
-                    sumDetail.setCriminalCase(sumDetail.getCriminalCase() + report017.getReport017DetailList().get(i).getCriminalCase());
+                    sumDetail.setAllStory(sumDetail.getAllStory() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getAllStory()));
+                    sumDetail.setCriminalCase(sumDetail.getCriminalCase() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getCriminalCase()));
 
-                    sumDetail.setEct(sumDetail.getEct() + report017.getReport017DetailList().get(i).getEct());
-                    sumDetail.setRedCard(sumDetail.getRedCard() + report017.getReport017DetailList().get(i).getRedCard());
-                    sumDetail.setRequestNoReceived(sumDetail.getRequestNoReceived() + report017.getReport017DetailList().get(i).getRequestNoReceived());
-                    sumDetail.setRequestReceived(sumDetail.getRequestReceived() + report017.getReport017DetailList().get(i).getRequestReceived());
-                    sumDetail.setAdding(sumDetail.getAdding() + report017.getReport017DetailList().get(i).getAdding());
-                    sumDetail.setResetCounter(sumDetail.getResetCounter() + report017.getReport017DetailList().get(i).getResetCounter());
-                    sumDetail.setWithdrawnRequest(sumDetail.getWithdrawnRequest() + report017.getReport017DetailList().get(i).getWithdrawnRequest());
-                    sumDetail.setYellowCard(sumDetail.getYellowCard() + report017.getReport017DetailList().get(i).getYellowCard());
-                    sumDetail.setYellowCardCriminalCase(sumDetail.getYellowCardCriminalCase() + report017.getReport017DetailList().get(i).getYellowCardCriminalCase());
+                    sumDetail.setEct(sumDetail.getEct() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getEct()));
+                    sumDetail.setRedCard(sumDetail.getRedCard() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getRedCard()));
+                    sumDetail.setRequestNoReceived(sumDetail.getRequestNoReceived() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getRequestNoReceived()));
+                    sumDetail.setRequestReceived(sumDetail.getRequestReceived() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getRequestReceived()));
+                    sumDetail.setAdding(sumDetail.getAdding() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getAdding()));
+                    sumDetail.setResetCounter(sumDetail.getResetCounter() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getResetCounter()));
+                    sumDetail.setWithdrawnRequest(sumDetail.getWithdrawnRequest() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getWithdrawnRequest()));
+                    sumDetail.setYellowCard(sumDetail.getYellowCard() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getYellowCard()));
+                    sumDetail.setYellowCardCriminalCase(sumDetail.getYellowCardCriminalCase() + NumberUtils.convertNUllToZero(report017.getReport017DetailList().get(i).getYellowCardCriminalCase()));
                 }
 
                 beans.put("details", report017.getReport017DetailList());
@@ -1046,6 +1046,10 @@ public class AllReportController extends BaseFormReportController {
         return file;
     }
 
+    public boolean canSearchUserGroup(){
+        return isAdmin() || isCenter();
+    }
+    
     /**
      * @return the viewReportResult
      */
