@@ -6,7 +6,6 @@ package com.ect.db.report.dao.hibernate;
 
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.dao.BaseDao;
-import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.report.dao.ViewReportByStatusDao;
 import com.ect.db.report.entity.ViewReportStatus;
 import java.text.MessageFormat;
@@ -15,13 +14,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 /**
  *
  * @author totoland
  */
-@Repository("viewReportByStatusDao")
-public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportByStatusDao {
+@Repository("viewReportByStatusCenterDaoImpl")
+public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewReportByStatusDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
     private final String SQL_REPORT = "SELECT ROW_NUMBER() OVER (ORDER BY ACTION_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
@@ -74,16 +74,16 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
         if (reportCriteria.getSortField() == null) {
             reportCriteria.setSortField("ACTION_DATE");
         }
-        
-        if(reportCriteria.getSortOrder() == null){
+
+        if (reportCriteria.getSortOrder() == null) {
             reportCriteria.setSortOrder("DESC");
         }
-        
+
         String sortField = reportCriteria.getSortField();
-        
+
         MessageFormat messageFormat = new MessageFormat(SQL_REPORT);
         sql.append(messageFormat.format(SQL_REPORT_ORDER, reportCriteria.getSortField(), reportCriteria.getSortOrder()));
-        
+
         if (sortField.equals("documentNo")) {
             sortField = "REPORT_CODE+CONVERT(NVARCHAR(4),REPORT_ID)";
         }
@@ -108,21 +108,16 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         }
 
-        //IF is not Admin
-        if (reportCriteria.getUserGroupLvl() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()+"")) {
+        //not where user group in case group lvl is center
+        if (!StringUtils.isEmpty(reportCriteria.getUserGroupId())) {//&& !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.CENTER.getLevel()+"")
 
-            //not where user group in case group lvl is center
-            if (reportCriteria.getUserGroupId() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.CENTER.getLevel()+"")) {
+            sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
 
-                sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
+        }
 
-            }
+        if (reportCriteria.getUserGroupLvl() != null && StringUtils.isEmpty(sql)) {
 
-            if (reportCriteria.getUserGroupLvl() != null) {
-
-                sql.append(" AND USER_GROUP_LVL >= ").append(reportCriteria.getUserGroupLvl()).append(" ");
-
-            }
+            sql.append(" AND USER_GROUP_LVL >= ").append(reportCriteria.getUserGroupLvl()).append(" ");
 
         }
 
@@ -137,8 +132,8 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND REPORT_YEAR= ").append(reportCriteria.getYear());
 
         }
-        
-        logger.trace("sql : {}",sql);
+
+        logger.trace("sql : {}", sql);
 
         return super.findNativePagginQuery(sql.toString(), reportCriteria.getStartRow(), reportCriteria.getMaxRow(), ViewReportStatus.class);
     }
@@ -146,8 +141,8 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
     @Override
     public Integer countByCriteria(ReportCriteria reportCriteria) {
 
-        logger.trace("reportCriteria : {}",reportCriteria);
-        
+        logger.trace("reportCriteria : {}", reportCriteria);
+
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT COUNT(1) FROM VIEW_REPORT_STATUS");
         sql.append(" WHERE 1=1");
@@ -170,24 +165,18 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
 
         }
 
-        //IF is not Admin
-        if (reportCriteria.getUserGroupLvl() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()+"")) {
+        if (!StringUtils.isEmpty(reportCriteria.getUserGroupId())) {//&& !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.CENTER.getLevel()+"")
 
-            //not where user group in case group lvl is center
-            if (reportCriteria.getUserGroupId() != null && !reportCriteria.getUserGroupLvl().equals(EctGroupLvl.GroupLevel.CENTER.getLevel()+"")) {
-
-                sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
-
-            }
-
-            if (reportCriteria.getUserGroupLvl() != null) {
-
-                sql.append(" AND USER_GROUP_LVL >= ").append(reportCriteria.getUserGroupLvl()).append(" ");
-
-            }
+            sql.append(" AND ( USER_GROUP_ID = ").append(reportCriteria.getUserGroupId()).append(" ) ");
 
         }
-        
+
+        if (reportCriteria.getUserGroupLvl() != null) {
+
+            sql.append(" AND USER_GROUP_LVL >= ").append(reportCriteria.getUserGroupLvl()).append(" ");
+
+        }
+
         if (reportCriteria.getMonth() != null && !reportCriteria.getMonth().isEmpty()) {
 
             sql.append(" AND REPORT_MONTH = ").append(reportCriteria.getMonth());
@@ -199,8 +188,8 @@ public class ViewReportByStatusDaoImpl extends BaseDao implements ViewReportBySt
             sql.append(" AND REPORT_YEAR= ").append(reportCriteria.getYear());
 
         }
-        
-        logger.trace("sql : {}",sql);
+
+        logger.trace("sql : {}", sql);
 
         return super.countNativeQuery(sql.toString());
     }
