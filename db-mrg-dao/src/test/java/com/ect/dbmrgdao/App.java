@@ -70,97 +70,181 @@ public class App {
                 + "UPDATE REPORT_?_HIS SET REPORT_MONTH = right('0'+ rtrim(DATEPART(month,CREATED_DATE)), 2),REPORT_YEAR = DATEPART(year,CREATED_DATE)+543");
 
         for (int i = 1; i < 10; i++) {
-            System.out.println(sql.toString().replaceAll("\\?", "00"+i));
-        }
-        
-        for (int i = 10; i <= 23; i++) {
-            System.out.println(sql.toString().replaceAll("\\?", "0"+i));
-        }
-        
-        for (int i = 1; i < 10; i++) {
-            System.out.println("UPDATE [REPORT_00"+i+"] SET [REPORT_YEAR] = 2557");
+            System.out.println(sql.toString().replaceAll("\\?", "00" + i));
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("UPDATE [REPORT_0"+i+"] SET [REPORT_YEAR] = 2557");
+            System.out.println(sql.toString().replaceAll("\\?", "0" + i));
         }
 
         for (int i = 1; i < 10; i++) {
-            System.out.println("UPDATE [REPORT_00"+i+"_HIS] SET [REPORT_YEAR] = 2557");
+            System.out.println("UPDATE [REPORT_00" + i + "] SET [REPORT_YEAR] = 2557");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("UPDATE [REPORT_0"+i+"_HIS] SET [REPORT_YEAR] = 2557");
+            System.out.println("UPDATE [REPORT_0" + i + "] SET [REPORT_YEAR] = 2557");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DELETE [REPORT_00"+i+"_DETAIL]");
+            System.out.println("UPDATE [REPORT_00" + i + "_HIS] SET [REPORT_YEAR] = 2557");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DELETE [REPORT_0"+i+"_DETAIL]");
+            System.out.println("UPDATE [REPORT_0" + i + "_HIS] SET [REPORT_YEAR] = 2557");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DELETE [REPORT_00"+i+"_DETAIL_HIS]");
+            System.out.println("DELETE [REPORT_00" + i + "_DETAIL]");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DELETE [REPORT_0"+i+"_DETAIL_HIS]");
+            System.out.println("DELETE [REPORT_0" + i + "_DETAIL]");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DELETE [REPORT_00"+i+"]");
+            System.out.println("DELETE [REPORT_00" + i + "_DETAIL_HIS]");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DELETE [REPORT_0"+i+"]");
+            System.out.println("DELETE [REPORT_0" + i + "_DETAIL_HIS]");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DELETE [REPORT_00"+i+"_HIS]");
+            System.out.println("DELETE [REPORT_00" + i + "]");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DELETE [REPORT_0"+i+"_HIS]");
+            System.out.println("DELETE [REPORT_0" + i + "]");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DROP TABLE [REPORT_00"+i+"_DETAIL]");
+            System.out.println("DELETE [REPORT_00" + i + "_HIS]");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DROP TABLE [REPORT_0"+i+"_DETAIL]");
+            System.out.println("DELETE [REPORT_0" + i + "_HIS]");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DROP TABLE [REPORT_00"+i+"_DETAIL_HIS]");
+            System.out.println("DROP TABLE [REPORT_00" + i + "_DETAIL]");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DROP TABLE [REPORT_0"+i+"_DETAIL_HIS]");
+            System.out.println("DROP TABLE [REPORT_0" + i + "_DETAIL]");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DROP TABLE [REPORT_00"+i+"]");
+            System.out.println("DROP TABLE [REPORT_00" + i + "_DETAIL_HIS]");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DROP TABLE [REPORT_0"+i+"]");
+            System.out.println("DROP TABLE [REPORT_0" + i + "_DETAIL_HIS]");
         }
-        
+
         for (int i = 1; i < 10; i++) {
-            System.out.println("DROP TABLE [REPORT_00"+i+"_HIS]");
+            System.out.println("DROP TABLE [REPORT_00" + i + "]");
         }
 
         for (int i = 10; i <= 23; i++) {
-            System.out.println("DROP TABLE [REPORT_0"+i+"_HIS]");
+            System.out.println("DROP TABLE [REPORT_0" + i + "]");
         }
-        
+
+        for (int i = 1; i < 10; i++) {
+            System.out.println("DROP TABLE [REPORT_00" + i + "_HIS]");
+        }
+
+        for (int i = 10; i <= 23; i++) {
+            System.out.println("DROP TABLE [REPORT_0" + i + "_HIS]");
+        }
+
         int a = 10;
         int b = 3;
+
+        System.out.println((double) (a * 100) / b);
+
+        System.out.println("###############################################");
+
+        for (int i = 1; i < 10; i++) {
+            String s = "SELECT *, (SELECT STATUS FROM DCS_STEP_0" + i + " WHERE DCS_MASTER_ID = @DCS_MASTER_ID ) AS STATUS FROM DCS_STEP WHERE DCS_STEP.STEP_ID = " + i + "";
+
+            System.out.println(s);
+            System.out.println("UNION ALL");
+        }
+
+        for (int i = 10; i <= 15; i++) {
+            String s = "SELECT *, (SELECT STATUS FROM DCS_STEP_" + i + " WHERE DCS_MASTER_ID = @DCS_MASTER_ID ) AS STATUS FROM DCS_STEP WHERE DCS_STEP.STEP_ID = " + i + "";
+
+            System.out.println(s);
+            System.out.println("UNION ALL");
+        }
+
+        System.out.println("##############################################");
+
+        for (int i = 1; i < 19; i++) {
+            String sqlS = ","
+                    + "	( "
+                    + "	SELECT     COUNT(DCS_MASTER.MASTER_ID) AS COUNT_DEC_" + i + " "
+                    + " FROM  DCS_MASTER_DECISION_TYPE INNER JOIN "
+                    + " DCS_MASTER ON DCS_MASTER_DECISION_TYPE.MASTER_ID = DCS_MASTER.MASTER_ID "
+                    + " WHERE DECISION_TYPE_ID = " + i + " "
+                    + " AND VC.VOTE_CASE_ID = VOTE_CASE "
+                    + " AND VOTE_TYPE_ID in ('+@VOTE_TYPE_ID+') "
+                    + " AND NOTICE = ('+@NOTICE+') AND CREATE_DECISION_DATE BETWEEN '''+@STARTDATE+''' and '''+@ENDDATE+'''\n"
+                    + "	) AS COUNT_DEC_" + i + "";
+            System.out.println(sqlS);
+        }
+
+        System.out.println("##############################################");
+
+        for (int i = 1; i < 22; i++) {
+
+            String sqlS = ",\n"
+                    + "      ( SELECT COUNT(1) FROM  DCS_MASTER_DECISION_TYPE INNER JOIN  DCS_MASTER ON DCS_MASTER_DECISION_TYPE.MASTER_ID = DCS_MASTER.MASTER_ID INNER JOIN\n"
+                    + "DCS_MASTER_MEMBER ON DCS_MASTER.MASTER_ID = DCS_MASTER_MEMBER.MASTER_ID WHERE 1=1 AND (DCS_MASTER_DECISION_TYPE.DECISION_TYPE_ID = " + i + ") AND (DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+'))\n"
+                    + "AND (DCS_MASTER.NOTICE = '+@NOTICE+') 	AND (DCS_MASTER_MEMBER.MEMBER_TYPE_ID = MT.MEMBER_TYPE_ID) '+@where_date+' ) AS COUNT_DEC_" + i + "";
+
+            System.out.println(sqlS);
+        }
+
+        System.out.println("############################################### 3.2");
+
+        for (int i = 1; i < 8; i++) {
+            String sqlS = ",( SELECT COUNT(1) AS COUNT_COURT_"+i+" FROM DCS_MASTER INNER JOIN DCS_MASTER_MEMBER ON DCS_MASTER.MASTER_ID = DCS_MASTER_MEMBER.MASTER_ID WHERE (DCS_MASTER.COURT_B_SUPREME_TYPE_ID = "+i+") AND (DCS_MASTER.NOTICE IN ('+@NOTICE+')) AND (DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+')) AND DCS_MASTER_MEMBER.MEMBER_TYPE_ID = MT.MEMBER_TYPE_ID '+@where_date+') AS COUNT_COURT_"+i+"";
+            
+            System.out.println(sqlS);
+        }
         
+        System.out.println("############################################### 1.2");
+
+        for (int i = 1; i < 8; i++) {
+            String sqlS = ",( SELECT COUNT(1) FROM DCS_MASTER WHERE (DCS_MASTER.NOTICE IN ('+@NOTICE+')) AND (DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+')) AND COURT_TYPE_ID = 2 AND DCS_MASTER.COURT_A_SUPREME_TYPE_ID = "+i+" AND VC.VOTE_CASE_ID = DCS_MASTER.VOTE_CASE '+@where_date+') AS COUNT_COURT_"+i;
+            
+            System.out.println(sqlS);
+        }
         
-        System.out.println((double)(a*100)/b);
+        System.out.println("############################################### 4.1");
+        
+        for (int i = 1; i < 5; i++) {
+            String sqlS = ",(SELECT COUNT(1) FROM DCS_COURT_CONSTITU_TYPE INNER JOIN DCS_MASTER ON DCS_COURT_CONSTITU_TYPE.COURT_CONSTITU_TYPE_ID = DCS_MASTER.COURT_CONSTITU_TYPE WHERE COURT_TYPE_ID = 3 AND COURT_CONSTITU_TYPE_ID = "+i+" AND DCS_MASTER.NOTICE IN ('+@NOTICE+') AND DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+') AND VC.VOTE_CASE_ID = VOTE_CASE_ID '+@where_date+') AS COUNT_CONSTITU_TYPE"+i+" ";
+            
+            System.out.println(sqlS);
+        }
+        
+        //INSERT INTO [ECT_USER]([USERNAME],[PASSWORD],[IS_ACTIVE],[FNAME],[LNAME],[SEX],[USER_GROUP_LVL]) VALUES ('test0','UrqAhTR93pakz8nDqR+qFw==',1,'ทดสอบ0','ทดสอบ0',0,2)
+        
+        System.out.println("############################################### USER");
+        
+        for (int i = 1; i < 10; i++) {
+            String sqlS = "DELETE FROM DCS_STEP_0"+i+"\n" +
+"DBCC CHECKIDENT('DCS_STEP_0"+i+"', RESEED, 0)";
+            
+            System.out.println(sqlS);
+        }
+        
+        for (int i = 11; i < 16; i++) {
+                      String sqlS = "DELETE FROM DCS_STEP_"+i+"\n" +
+"DBCC CHECKIDENT('DCS_STEP_"+i+"', RESEED, 0)";
+            System.out.println(sqlS);
+        }
     }
 }

@@ -31,7 +31,7 @@ public class ReportCriteria implements Serializable{
     private String sortOrder;
     private String userGroupId;
     private String userGroupLvl;
-
+    private boolean centerOrAdmin = false;
     /**
      * @return the year
      */
@@ -287,6 +287,20 @@ public class ReportCriteria implements Serializable{
     @Override
     public String toString() {
         return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", flowStatus=" + flowStatus + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + ", sortField=" + sortField + ", sortOrder=" + sortOrder + ", userGroupId=" + userGroupId + ", userGroupLvl=" + userGroupLvl + '}';
+    }
+
+    /**
+     * @return the centerOrAdmin
+     */
+    public boolean isCenterOrAdmin() {
+        return centerOrAdmin;
+    }
+
+    /**
+     * @param centerOrAdmin the centerOrAdmin to set
+     */
+    public void setCenterOrAdmin(boolean centerOrAdmin) {
+        this.centerOrAdmin = centerOrAdmin;
     }
     
 }

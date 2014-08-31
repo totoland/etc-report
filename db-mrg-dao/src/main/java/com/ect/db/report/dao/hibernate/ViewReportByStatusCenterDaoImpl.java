@@ -14,6 +14,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 /**
@@ -23,7 +24,7 @@ import org.springframework.util.StringUtils;
 @Repository("viewReportByStatusCenterDaoImpl")
 public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewReportByStatusDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ViewReportByStatusDaoImpl.class);
     private final String SQL_REPORT = "SELECT ROW_NUMBER() OVER (ORDER BY ACTION_DATE DESC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
     private final String SQL_REPORT_ORDER = "SELECT ROW_NUMBER() OVER (ORDER BY {0} {1}) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT_STATUS ) X";
 
@@ -48,7 +49,7 @@ public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewRepo
 
         String sql = "UPDATE " + reportName + " SET REPORT_STATUS = 200 ,FLOW_STATUS_ID = ?, APPROVED_DATE = ? , APPROVED_USER = ? ,REMARK = '' WHERE REPORT_ID = ? ";
 
-        logger.trace("updateReportStatus SQL : {}", sql);
+        LOGGER.trace("updateReportStatus SQL : {}", sql);
 
         return updateNativeQuery(sql, flowStatusId, new Date(), approvedUser, reportId);
 
@@ -59,7 +60,7 @@ public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewRepo
 
         String sql = "UPDATE " + reportName + " SET REPORT_STATUS = 401, FLOW_STATUS_ID = ?, REJECTED_DATE = ? , REJECTED_USER = ? ,REMARK = ? WHERE REPORT_ID = ? ";
 
-        logger.trace("updateReportStatus SQL : {}", sql);
+        LOGGER.trace("updateReportStatus SQL : {}", sql);
 
         return updateNativeQuery(sql, flowStatusId, new Date(), approvedUser, remark, reportId);
 
@@ -133,7 +134,7 @@ public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewRepo
 
         }
 
-        logger.trace("sql : {}", sql);
+        LOGGER.trace("sql : {}", sql);
 
         return super.findNativePagginQuery(sql.toString(), reportCriteria.getStartRow(), reportCriteria.getMaxRow(), ViewReportStatus.class);
     }
@@ -141,7 +142,7 @@ public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewRepo
     @Override
     public Integer countByCriteria(ReportCriteria reportCriteria) {
 
-        logger.trace("reportCriteria : {}", reportCriteria);
+        LOGGER.trace("reportCriteria : {}", reportCriteria);
 
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT COUNT(1) FROM VIEW_REPORT_STATUS");
@@ -189,12 +190,13 @@ public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewRepo
 
         }
 
-        logger.trace("sql : {}", sql);
+        LOGGER.trace("sql : {}", sql);
 
         return super.countNativeQuery(sql.toString());
     }
 
     @Override
+    @Transactional
     public Integer deleteReport(String name, Integer reportId) {
 
         Integer res = 0;
@@ -207,25 +209,25 @@ public class ViewReportByStatusCenterDaoImpl extends BaseDao implements ViewRepo
 
         sql.append("DELETE REPORT_").append(reportName).append("_DETAIL WHERE REPORT_ID = ? ");
 
-        logger.trace("deleteReport SQL : {}", sql.toString());
+        LOGGER.trace("deleteReport SQL : {}", sql.toString());
         res += updateNativeQuery(sql.toString(), reportId);
 
         sql = new StringBuilder();
         sql.append("DELETE REPORT_").append(reportName).append("_DETAIL_HIS WHERE REPORT_ID = ? ");
 
-        logger.trace("deleteReport SQL : {}", sql.toString());
+        LOGGER.trace("deleteReport SQL : {}", sql.toString());
         res += updateNativeQuery(sql.toString(), reportId);
 
         sql = new StringBuilder();
         sql.append("DELETE REPORT_").append(reportName).append(" WHERE REPORT_ID = ? ");
 
-        logger.trace("deleteReport SQL : {}", sql.toString());
+        LOGGER.trace("deleteReport SQL : {}", sql.toString());
         res += updateNativeQuery(sql.toString(), reportId);
 
         sql = new StringBuilder();
         sql.append("DELETE REPORT_").append(reportName).append("_HIS WHERE REPORT_ID = ? ");
 
-        logger.trace("deleteReport SQL : {}", sql.toString());
+        LOGGER.trace("deleteReport SQL : {}", sql.toString());
         res += updateNativeQuery(sql.toString(), reportId);
 
         return res;
