@@ -97,8 +97,17 @@ public abstract class BaseController implements Serializable {
     }
 
     public ViewUser getUserAuthen() {
-        ViewUser viewUser = (ViewUser) getSessionBean("userAuthen");
-        return viewUser;
+            ViewUser viewUser = (ViewUser) getSessionBean("userAuthen");
+            return viewUser;
+    }
+
+    public boolean checkLogined() {
+        try {
+            logger.trace("checkLogined!!");
+            return getSessionBean("userAuthen")!=null;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     public void sendError(int code, String message) {
@@ -178,16 +187,16 @@ public abstract class BaseController implements Serializable {
         return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(param);
     }
 
-    public String dateTH(Date date,String format) {
-        if(format == null || format.isEmpty()){
+    public String dateTH(Date date, String format) {
+        if (format == null || format.isEmpty()) {
             return DateTimeUtils.getInstance().thDate(date, DateTimeUtils.DISPLAY_DATE_FORMAT);
         }
         return DateTimeUtils.getInstance().thDate(date, format);
 
     }
-    
+
     protected void checkRoleAdmin() {
-        if(getUserAuthen().getUserGroupLvl()!=EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()){
+        if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
             sendError(401, "Cannot Access This Page ,You are not Admin.");
             //throw new AccessDenieException("Cannot Access User Management Page ,You are not Admin.");
         };

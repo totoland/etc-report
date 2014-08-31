@@ -23,12 +23,12 @@ public class LazyViewReportImpl extends LazyDataModel<ViewReportStatus> {
 
     private static final long serialVersionUID = -7332140435235556716L;
     private static final Logger logger = LoggerFactory.getLogger(LazyViewReportImpl.class);
-    private List<ViewReportStatus> datasource;
-    private int pageSize = 0;
-    private int rowIndex = 0;
-    private int rowCount = 0;
-    private ReportCriteria reportCriteria;
-    private ReportService reportService;
+    protected List<ViewReportStatus> datasource;
+    protected int pageSize = 0;
+    protected int rowIndex = 0;
+    protected int rowCount = 0;
+    protected ReportCriteria reportCriteria;
+    protected ReportService reportService;
 
     @Override
     public List<ViewReportStatus> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
@@ -59,8 +59,6 @@ public class LazyViewReportImpl extends LazyDataModel<ViewReportStatus> {
             getReportCriteria().setSortOrder("DESC");
             
         }
-
-
 
         datasource = reportService.findByCriteria(getReportCriteria());
 

@@ -4,7 +4,7 @@
 
     <groupId>com.ect</groupId>
     <artifactId>ECTReport</artifactId>
-    <version>1.9.1e</version>
+    <version>1.9.2a</version>
     <packaging>war</packaging>
 
     <name>ECTReport</name>

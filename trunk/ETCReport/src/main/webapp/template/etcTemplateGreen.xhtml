@@ -12,8 +12,9 @@
         <ui:insert name="javascript">
             <script>
                 //<![CDATA[
-                secLogin = 6000;
-
+                secLogin = ${session.maxInactiveInterval};
+                var message = "Session ของคุณหมดอายุเนื่องจากคุณไม่ได้ใช้งานโปรแกรมเกิน 2 ชั่วโมง\nกด ตกลงเพื่อเข้าสู่ระบบอีกครั้ง หรือ กด ยกเลิกเพื่อทำการสำรองข้อมูลก่อนออกจากระบบ";
+                
                 var countSession = function() {
 
                     secLogin = secLogin - 1;
@@ -21,8 +22,11 @@
                     //console.log(secLogin);
 
                     if (secLogin < 1) {
-                        alert("Session ของคุณหมดอายุโปรดทำการ Login อีกครั้ง");
-                        window.location = '${request.contextPath}/pages/login/login.xhtml';
+                        if(confirm(message)){
+                            window.location = '${request.contextPath}/pages/login/login.xhtml';
+                        }else{
+                            countSession();
+                        }
                     } else {
                         setTimeout(countSession, 1000);
                     }
@@ -32,13 +36,14 @@
 
 
                 function checkAuthen() {
-                    logger("checkAuthen");
-                    secLogin = 6000;
-                    var user = '${formSelectReport.userAuthen.isActive}';
-
-                    if (user == null || user == '') {
+                    var user = '${formSelectReport.checkLogined()}';
+                    
+                    logger("checkAuthen : "+user);
+                    if (user===false || user==='false') {
                         alert("#{msg.session_timeout}");
                         window.location = '${request.contextPath}/pages/login/login.xhtml';
+                          
+                        return false;
                     }
                 }
                 $(function() {
@@ -57,7 +62,7 @@
             LOADING<br />
             <img src="${request.contextPath}/resources/images/preloader-01.gif"/>
         </p:blockUI>
-        <p:ajaxStatus id="ajaxStatus1" onstart="blogui.show();" oncomplete="blogui.hide()">
+        <p:ajaxStatus id="ajaxStatus1" onstart="checkAuthen();blogui.show();" oncomplete="blogui.hide()">
         </p:ajaxStatus>
         <div id="art-main">
             <header class="art-header">

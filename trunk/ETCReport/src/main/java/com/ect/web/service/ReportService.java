@@ -50,6 +50,8 @@ public interface ReportService {
     Report001 findByReport001ById(Integer reportId);
 
     List<ViewReportStatus> findByCriteria(ReportCriteria reportCriteria);
+    
+    List<ViewReportStatus> findReportByCriteria(ReportCriteria reportCriteria);
 
     Report002 findByReport002ById(Integer paramReportId);
 
@@ -60,6 +62,8 @@ public interface ReportService {
     Report004 findByReport004ById(Integer paramReportId);
 
     Integer countByCriteria(ReportCriteria reportCriteria);
+    
+    Integer countReportByCriteria(ReportCriteria reportCriteria);
 
     Report005 findByReport005ById(Integer paramReportId);
 
