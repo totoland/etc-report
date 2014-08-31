@@ -27,7 +27,7 @@ import org.slf4j.MDC;
 public class LoginController extends BaseController {
 
     private static final long serialVersionUID = 3291979904925054393L;
-    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     private String userName;
     private String passWord;
     @ManagedProperty(value = "#{authenDao}")

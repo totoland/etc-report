@@ -70,6 +70,8 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     ViewReportByStatusDao viewReportByStatusDao;
     @Autowired
+    ViewReportByStatusDao viewReportByStatusCenterDaoImpl;
+    @Autowired
     Report001Dao report001Dao;
     @Autowired
     Report002Dao report002Dao;
@@ -289,6 +291,16 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public boolean checkDuppReportInMonth(int userGroupId, String reportName, String month,String year) {
         return viewReportByStatusDao.checkDuppReportInMonth(userGroupId, reportName, month,year);
+    }
+
+    @Override
+    public List<ViewReportStatus> findReportByCriteria(ReportCriteria reportCriteria) {
+        return viewReportByStatusCenterDaoImpl.findByCriteria(reportCriteria);
+    }
+
+    @Override
+    public Integer countReportByCriteria(ReportCriteria reportCriteria) {
+        return viewReportByStatusCenterDaoImpl.countByCriteria(reportCriteria);
     }
     
 }

@@ -189,12 +189,12 @@ and open the template in the editor.
                             <p:tab id="tab_STEP_1" title="รายงานรอผลพิจารณา (หน.อก.)">
                                 <div style="width: 1200px;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList2" var="item" value="#{FormReportMainController.listReportStatusStep1}"
-                                                 paginator="true" rows="10" style="width: 2000px" lazy="true"
+                                                 paginator="true" rows="10" style="width: 2400px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                  rowsPerPageTemplate="5,10">
 
-                                        <p:column >
+                                        <p:column>
                                             <p:commandButton value="รายละเอียด" icon="ui-icon-search" actionListener="#{formSelectReport.initViewEditReport(item.reportCode,item.reportId,item.reportMonth,item.reportYear)}" update=":form1:include"/>
                                             <p:commandButton value="ส่งพิจารณา" onclick="return confirm('#{msg.confirmation_message_nextflow}')" action="#{FormReportMainController.approve(item.reportCode, item.reportId, 102)}" icon="ui-icon-check" rendered="#{FormReportMainController.canApprove(item.flowStatusId)}"/>
                                             <p:commandButton value="#{msg.btn_reject}" actionListener="#{FormReportMainController.initReject(item,0)}" update=":form1:dialogRemark,:form1:tabView" oncomplete="dialogRemark.show()" icon="ui-icon-closethick" rendered="true"/>
