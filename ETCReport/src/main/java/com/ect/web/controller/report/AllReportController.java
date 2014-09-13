@@ -53,7 +53,6 @@ import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewFormReportImpl;
-import com.ect.web.controller.model.LazyViewReportImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;

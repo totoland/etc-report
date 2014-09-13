@@ -29,6 +29,7 @@ import com.ect.db.report.entity.Report021;
 import com.ect.db.report.entity.Report022;
 import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
+import com.ect.db.report.entity.ViewReport001Summary;
 import com.ect.db.report.entity.ViewReportStatus;
 import java.util.Date;
 import java.util.List;
@@ -113,4 +114,7 @@ public interface ReportService {
     
     boolean checkDuppReportInMonth(int userGroupId, String reportName, String month,String year);
     
+    List<ViewReport001Summary> findReport001ByCriteria(ReportCriteria reportCriteria);
+    
+    Integer countReport001ByCriteria(ReportCriteria reportCriteria);
 }
