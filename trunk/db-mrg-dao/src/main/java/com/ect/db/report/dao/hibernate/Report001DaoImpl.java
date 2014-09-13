@@ -4,11 +4,16 @@
  */
 package com.ect.db.report.dao.hibernate;
 
+import com.ect.db.bean.ReportCriteria;
 import com.ect.db.dao.BaseDao;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.dao.Report001Dao;
 import com.ect.db.report.entity.ViewReport001;
+import com.ect.db.report.entity.ViewReport001Summary;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -86,5 +91,78 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         
         return list;
 
+    }
+
+    @Override
+    public List<ViewReport001Summary> findByCriteria(ReportCriteria reportCriteria) {
+        String SQL_REPORT_ORDER = "SELECT ROW_NUMBER() OVER (ORDER BY USER_GROUP_NAME ASC) AS ROW_NO, X.* FROM ( SELECT * FROM VIEW_REPORT001 {0}) X";
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("WHERE 1 = 1 ");
+        
+        List<Object>listValue = new ArrayList();
+        
+        if(reportCriteria.getMonth() != null && !reportCriteria.getMonth().isEmpty()){
+            listValue.add(reportCriteria.getMonth());
+            sql.append(" AND REPORT_MONTH = ? ");
+        }
+        if(reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()){
+            listValue.add(reportCriteria.getYear());
+            sql.append(" AND REPORT_YEAR = ? ");
+        }
+        if(reportCriteria.getGroupIds()!= null && !reportCriteria.getGroupIds().isEmpty()){
+            listValue.add(reportCriteria.getGroupIds());
+            sql.append(" AND USER_GROUP_ID in (?) ");
+        }
+        if(reportCriteria.getStatus()!= null && !reportCriteria.getStatus().isEmpty()){
+            listValue.add(reportCriteria.getStatus());
+            sql.append(" AND FLOW_STATUS_ID = ? ");
+        }
+        
+        //TODO: not fillter admin
+        sql.append(" AND USER_GROUP_ID <> 109");
+        
+        MessageFormat messageFormat = new MessageFormat(SQL_REPORT_ORDER);
+        String SQL = messageFormat.format(SQL_REPORT_ORDER,sql.toString());
+        SQL = genSQLPaggin(SQL, reportCriteria.getStartRow(), reportCriteria.getMaxRow());
+        
+        System.out.println("messageFormat.toString() : "+SQL);
+        
+        List<ViewReport001Summary> list = findNativeQuery(SQL, ViewReport001Summary.class, listValue);
+        
+        return list;
+    }
+    
+    @Override
+    public Integer countCriteria(ReportCriteria reportCriteria) {        
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT COUNT(1) FROM VIEW_REPORT001 WHERE 1 = 1 ");
+        
+        List<Object>listValue = new ArrayList();
+        
+        if(reportCriteria.getMonth() != null && !reportCriteria.getMonth().isEmpty()){
+            listValue.add(reportCriteria.getMonth());
+            sql.append(" AND REPORT_MONTH = ? ");
+        }
+        if(reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()){
+            listValue.add(reportCriteria.getYear());
+            sql.append(" AND REPORT_YEAR = ? ");
+        }
+        if(reportCriteria.getGroupIds()!= null && !reportCriteria.getGroupIds().isEmpty()){
+            listValue.add(reportCriteria.getGroupIds());
+            sql.append(" AND USER_GROUP_ID in (?) ");
+        }
+        if(reportCriteria.getStatus()!= null && !reportCriteria.getStatus().isEmpty()){
+            listValue.add(reportCriteria.getStatus());
+            sql.append(" AND FLOW_STATUS_ID = ? ");
+        }
+        
+        //TODO: not fillter admin
+        sql.append(" AND USER_GROUP_ID <> 109");
+                
+        System.out.println(sql.toString());
+        System.out.println("listValue : "+listValue);
+        
+        return countNativeQuery(sql.toString(), listValue);
     }
 }

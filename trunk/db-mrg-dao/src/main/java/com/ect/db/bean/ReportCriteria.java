@@ -5,6 +5,7 @@
 package com.ect.db.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -32,6 +33,21 @@ public class ReportCriteria implements Serializable{
     private String userGroupId;
     private String userGroupLvl;
     private boolean centerOrAdmin = false;
+    private List<String> groupIds;
+    
+    public ReportCriteria(){
+    
+    }
+    
+    public ReportCriteria(String month, String year,String status, List<String> groupIds) {
+        this.year = year;
+        this.month = month;
+        this.groupIds = groupIds;
+        this.status = status;
+    }
+    
+    
+    
     /**
      * @return the year
      */
@@ -284,11 +300,6 @@ public class ReportCriteria implements Serializable{
         this.userGroupLvl = userGroupLvl;
     }
 
-    @Override
-    public String toString() {
-        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", flowStatus=" + flowStatus + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + ", sortField=" + sortField + ", sortOrder=" + sortOrder + ", userGroupId=" + userGroupId + ", userGroupLvl=" + userGroupLvl + '}';
-    }
-
     /**
      * @return the centerOrAdmin
      */
@@ -302,5 +313,23 @@ public class ReportCriteria implements Serializable{
     public void setCenterOrAdmin(boolean centerOrAdmin) {
         this.centerOrAdmin = centerOrAdmin;
     }
-    
+
+    /**
+     * @return the groupIds
+     */
+    public List<String> getGroupIds() {
+        return groupIds;
+    }
+
+    /**
+     * @param groupIds the groupIds to set
+     */
+    public void setGroupIds(List<String> groupIds) {
+        this.groupIds = groupIds;
+    }
+
+    @Override
+    public String toString() {
+        return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", flowStatus=" + flowStatus + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + ", sortField=" + sortField + ", sortOrder=" + sortOrder + ", userGroupId=" + userGroupId + ", userGroupLvl=" + userGroupLvl + ", centerOrAdmin=" + centerOrAdmin + ", groupIds=" + groupIds + '}';
+    }
 }
