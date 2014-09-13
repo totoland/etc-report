@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+    <h:head>               
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/etcTemplateGreen.xhtml">
+            <ui:define name="content">
+                <h:form id="form1" prependId="false">
+                    <p:panel header="หน้าออกรายงาน">
+                        <p:panelGrid columns="4" style="width: 100%;" styleClass="frmSelect" id="searchCriteria">
+                            <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
+                            <p:outputLabel value="#{msg.label_fiscal_year} :" />
+                            <p:selectOneMenu style="width: 220px;" value="#{report001SummaryController.reportCriteria.year}">
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกเดือน : " />
+                            <p:selectOneMenu style="width: 220px;" value="#{report001SummaryController.reportCriteria.month}">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlMonth()}"></f:selectItems>
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกยุทธศาสตร์ที่ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001strategicId" value="#{report001SummaryController.reportCriteria.strategic}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
+                                               value="#{report001SummaryController.dropdownFactory.ddlStrategic()}">
+                                </f:selectItems>
+                                <p:ajax update="subStrategicId"/>  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId" rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{report001SummaryController.reportCriteria.subStrategic}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlSubStrategic(report001SummaryController.reportCriteria.strategic)}"></f:selectItems>
+                                <p:ajax update="REPORT_001planId"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกแผนงาน : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{report001SummaryController.reportCriteria.plan}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlPlan(report001SummaryController.reportCriteria.subStrategic)}"></f:selectItems>  
+                                <p:ajax update="REPORT_001projectId"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{report001SummaryController.reportCriteria.project}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlProject(report001SummaryController.reportCriteria.plan)}"></f:selectItems> 
+                                <p:ajax update="REPORT_001Activity"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{report001SummaryController.reportCriteria.activity}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlActivity(report001SummaryController.reportCriteria.project)}"></f:selectItems> 
+                            </p:selectOneMenu>                            
+                            <h:outputLabel value="หน่วยงาน" rendered="#{report001SummaryController.canSearchUserGroup()}"/>
+                            <p:selectCheckboxMenu id="ectDllUserGrp2" value="#{report001SummaryController.selectedGroup}" label="หน่วยงาน"
+                                                  style="width: 220px" filter="true" filterMatchMode="startsWith" panelStyle="width:auto">
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlUserGroup()}"/>  
+                            </p:selectCheckboxMenu>
+                            <h:panelGroup rendered="#{report001SummaryController.canSearchUserGroup()}"/>
+                            <h:panelGroup rendered="#{report001SummaryController.canSearchUserGroup()}"/>
+
+                            <f:facet name="footer">
+                                <div align="center">
+                                    <p:commandButton id="btnShowRpt" action="#{report001SummaryController.search()}" update="pnRptPreSendList2" process="searchCriteria" value="แสดงรายงาน"/>
+                                    <p:commandButton id="btnResetwRpt" action="#{report001SummaryController.resetForm()}" update="searchCriteria,pnRptPreSendList2" value="เริ่มใหม่"/>
+                                </div>
+                            </f:facet>
+                        </p:panelGrid><br/>
+                        <h:panelGroup id="pnRptPreSendList2">
+                            <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" action="#{report001SummaryController.fileXLSDownload()}"   
+                                             icon="ui-icon-arrowthichk-s" rendered="#{report001SummaryController.lazyModel!=null}">
+                            </p:commandButton>
+                            <p:dataTable id="rptPreSendList2" var="item" value="#{report001SummaryController.lazyModel}"
+                                         paginator="true" rows="10" lazy="true" emptyMessage="#{msg.no_data_found}"
+                                         currentPageReportTemplate="#{msg.current_pagereport_template}"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="10,15,20">
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="หน่วยงาน" />
+                                    </f:facet>
+                                    <h:outputText value="#{item.userGroupName}" />
+                                </p:column>
+
+                                <p:column style="width:400px">
+                                    <f:facet name="header">
+                                        <h:outputText value="ชื่อกิจกรรม" />
+                                    </f:facet>
+                                    <h:outputText value="#{item.activityName}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="สถานะ" />
+                                    </f:facet>
+                                    <h:outputText value="#{item.flowStatusName}"/>
+                                </p:column>
+                                <p:column sortBy="created_Date">
+                                    <f:facet name="header">
+                                        <h:outputText value="ประจำเดือน/ปี" />
+                                    </f:facet>
+                                    <h:outputText value="#{report001SummaryController.dropdownFactory.getMonthName(item.reportMonth)} #{item.reportYear}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ชื่อผู้สร้าง" />
+                                    </f:facet>
+                                    <h:outputText value="#{item.createdUserFullName}" />
+                                </p:column>
+                                <f:facet name="footer">
+
+                                </f:facet>
+                            </p:dataTable>
+                        </h:panelGroup>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

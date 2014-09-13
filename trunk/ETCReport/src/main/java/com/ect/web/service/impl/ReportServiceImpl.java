@@ -53,6 +53,7 @@ import com.ect.db.report.entity.Report021;
 import com.ect.db.report.entity.Report022;
 import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
+import com.ect.db.report.entity.ViewReport001Summary;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
 import java.util.Date;
@@ -301,6 +302,16 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Integer countReportByCriteria(ReportCriteria reportCriteria) {
         return viewReportByStatusCenterDaoImpl.countByCriteria(reportCriteria);
+    }
+
+    @Override
+    public List<ViewReport001Summary> findReport001ByCriteria(ReportCriteria reportCriteria) {
+        return report001Dao.findByCriteria(reportCriteria);
+    }
+
+    @Override
+    public Integer countReport001ByCriteria(ReportCriteria reportCriteria) {
+        return report001Dao.countCriteria(reportCriteria);
     }
     
 }
