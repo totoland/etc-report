@@ -4,8 +4,10 @@
  */
 package com.ect.db.report.dao;
 
+import com.ect.db.bean.ReportCriteria;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.ViewReport001;
+import com.ect.db.report.entity.ViewReport001Summary;
 import java.util.Date;
 import java.util.List;
 
@@ -22,5 +24,9 @@ public interface Report001Dao {
     List<Report001> checkDuppActivityInMonth(int userGroupId,int activityId,Date date);
     
     List<Report001> checkDuppActivityInMonth(int userGroupId, int activityId, String month,String year);
+    
+    List<ViewReport001Summary> findByCriteria(ReportCriteria reportCriteria);
+    
+    Integer countCriteria(ReportCriteria reportCriteria);
     
 }

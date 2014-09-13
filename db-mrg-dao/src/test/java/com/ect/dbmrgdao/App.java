@@ -209,42 +209,137 @@ public class App {
         System.out.println("############################################### 3.2");
 
         for (int i = 1; i < 8; i++) {
-            String sqlS = ",( SELECT COUNT(1) AS COUNT_COURT_"+i+" FROM DCS_MASTER INNER JOIN DCS_MASTER_MEMBER ON DCS_MASTER.MASTER_ID = DCS_MASTER_MEMBER.MASTER_ID WHERE (DCS_MASTER.COURT_B_SUPREME_TYPE_ID = "+i+") AND (DCS_MASTER.NOTICE IN ('+@NOTICE+')) AND (DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+')) AND DCS_MASTER_MEMBER.MEMBER_TYPE_ID = MT.MEMBER_TYPE_ID '+@where_date+') AS COUNT_COURT_"+i+"";
-            
+            String sqlS = ",( SELECT COUNT(1) AS COUNT_COURT_" + i + " FROM DCS_MASTER INNER JOIN DCS_MASTER_MEMBER ON DCS_MASTER.MASTER_ID = DCS_MASTER_MEMBER.MASTER_ID WHERE (DCS_MASTER.COURT_B_SUPREME_TYPE_ID = " + i + ") AND (DCS_MASTER.NOTICE IN ('+@NOTICE+')) AND (DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+')) AND DCS_MASTER_MEMBER.MEMBER_TYPE_ID = MT.MEMBER_TYPE_ID '+@where_date+') AS COUNT_COURT_" + i + "";
+
             System.out.println(sqlS);
         }
-        
+
         System.out.println("############################################### 1.2");
 
         for (int i = 1; i < 8; i++) {
-            String sqlS = ",( SELECT COUNT(1) FROM DCS_MASTER WHERE (DCS_MASTER.NOTICE IN ('+@NOTICE+')) AND (DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+')) AND COURT_TYPE_ID = 2 AND DCS_MASTER.COURT_A_SUPREME_TYPE_ID = "+i+" AND VC.VOTE_CASE_ID = DCS_MASTER.VOTE_CASE '+@where_date+') AS COUNT_COURT_"+i;
-            
+            String sqlS = ",( SELECT COUNT(1) FROM DCS_MASTER WHERE (DCS_MASTER.NOTICE IN ('+@NOTICE+')) AND (DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+')) AND COURT_TYPE_ID = 2 AND DCS_MASTER.COURT_A_SUPREME_TYPE_ID = " + i + " AND VC.VOTE_CASE_ID = DCS_MASTER.VOTE_CASE '+@where_date+') AS COUNT_COURT_" + i;
+
             System.out.println(sqlS);
         }
-        
+
         System.out.println("############################################### 4.1");
-        
+
         for (int i = 1; i < 5; i++) {
-            String sqlS = ",(SELECT COUNT(1) FROM DCS_COURT_CONSTITU_TYPE INNER JOIN DCS_MASTER ON DCS_COURT_CONSTITU_TYPE.COURT_CONSTITU_TYPE_ID = DCS_MASTER.COURT_CONSTITU_TYPE WHERE COURT_TYPE_ID = 3 AND COURT_CONSTITU_TYPE_ID = "+i+" AND DCS_MASTER.NOTICE IN ('+@NOTICE+') AND DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+') AND VC.VOTE_CASE_ID = VOTE_CASE_ID '+@where_date+') AS COUNT_CONSTITU_TYPE"+i+" ";
-            
+            String sqlS = ",(SELECT COUNT(1) FROM DCS_COURT_CONSTITU_TYPE INNER JOIN DCS_MASTER ON DCS_COURT_CONSTITU_TYPE.COURT_CONSTITU_TYPE_ID = DCS_MASTER.COURT_CONSTITU_TYPE WHERE COURT_TYPE_ID = 3 AND COURT_CONSTITU_TYPE_ID = " + i + " AND DCS_MASTER.NOTICE IN ('+@NOTICE+') AND DCS_MASTER.VOTE_TYPE_ID IN ('+@VOTE_TYPE_ID+') AND VC.VOTE_CASE_ID = VOTE_CASE_ID '+@where_date+') AS COUNT_CONSTITU_TYPE" + i + " ";
+
             System.out.println(sqlS);
         }
-        
+
         //INSERT INTO [ECT_USER]([USERNAME],[PASSWORD],[IS_ACTIVE],[FNAME],[LNAME],[SEX],[USER_GROUP_LVL]) VALUES ('test0','UrqAhTR93pakz8nDqR+qFw==',1,'ทดสอบ0','ทดสอบ0',0,2)
-        
         System.out.println("############################################### USER");
-        
+
         for (int i = 1; i < 10; i++) {
-            String sqlS = "DELETE FROM DCS_STEP_0"+i+"\n" +
-"DBCC CHECKIDENT('DCS_STEP_0"+i+"', RESEED, 0)";
-            
+            String sqlS = "DELETE FROM DCS_STEP_0" + i + "\n"
+                    + "DBCC CHECKIDENT('DCS_STEP_0" + i + "', RESEED, 0)";
+
             System.out.println(sqlS);
+        }
+
+        for (int i = 11; i < 16; i++) {
+            String sqlS = "DELETE FROM DCS_STEP_" + i + "\n"
+                    + "DBCC CHECKIDENT('DCS_STEP_" + i + "', RESEED, 0)";
+            System.out.println(sqlS);
+        }
+
+        String view = "ref_no,"
+                + "evnkeys,"
+                + "notice_no,"
+                + "claim_no,"
+                + "claim_type,"
+                + "claim_subtype,"
+                + "policy_no,"
+                + "vehicle_no,"
+                + "report_name,"
+                + "report_tel,"
+                + "report_from_id,"
+                + "report_from_desc,"
+                + "report_relation_id,"
+                + "report_relation_desc,"
+                + "driver_name,"
+                + "driver_tel,"
+                + "driver_license,"
+                + "no_party_id,"
+                + "no_party_desc,"
+                + "claim_party_type_id,"
+                + "claim_party_type_desc,"
+                + "party_name,"
+                + "party_regno,"
+                + "loss_date,"
+                + "loss_time,"
+                + "loss_description,"
+                + "loss_place,"
+                + "loss_province_id,"
+                + "loss_amphur_id,"
+                + "loss_tambol_id,"
+                + "loss_check_place_id,"
+                + "loss_check_place_desc,"
+                + "Remark,"
+                + "report_date,"
+                + "report_time,"
+                + "call_center_id,"
+                + "call_center_name,"
+                + "call_center_zone_id,"
+                + "call_center_zone_name,"
+                + "claim_user_id,"
+                + "claim_user_name,"
+                + "claim_user_zone_id,"
+                + "claim_user_zone_name,"
+                + "claim_user_work_zone_id,"
+                + "submit_date,"
+                + "submit_time,"
+                + "row_sync,"
+                + "edit_id,"
+                + "edit_name,"
+                + "edit_date,"
+                + "edit_time,"
+                + "receive_date,"
+                + "receive_time,"
+                + "arrive_date,"
+                + "arrive_time,"
+                + "finish_date,"
+                + "finish_time,"
+                + "send_date,"
+                + "send_time,"
+                + "cancel_user_id,"
+                + "cancel_user_name,"
+                + "cancel_id,"
+                + "cancel_desc,"
+                + "order_user_id,"
+                + "order_user_name,"
+                + "order_zone_id,"
+                + "order_zone_name,"
+                + "order_date,"
+                + "order_time,"
+                + "order_type,"
+                + "cancel_date,"
+                + "cancel_time,"
+                + "IsPolicy,"
+                + "outsource_claim_no,"
+                + "outsource_surveyor_name,"
+                + "outsource_surveyor_tel,"
+                + "outsource_receive,"
+                + "appointment_tam_id,"
+                + "appointment_tam_name,"
+                + "appointment_amp_id,"
+                + "appointment_amp_name,"
+                + "appointment_prov_id,"
+                + "appointment_prov_name,"
+                + "appointment_remark,"
+                + "appointment_date,"
+                + "appointment_time,"
+                + "createDate,"
+                + "createTime";
+        
+        String arr[] = view.split(",");
+        
+        for(String array : arr){
+            System.out.println("arrResult[i]."+array+" = list[i]."+array+";");
         }
         
-        for (int i = 11; i < 16; i++) {
-                      String sqlS = "DELETE FROM DCS_STEP_"+i+"\n" +
-"DBCC CHECKIDENT('DCS_STEP_"+i+"', RESEED, 0)";
-            System.out.println(sqlS);
-        }
     }
 }

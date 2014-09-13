@@ -116,6 +116,10 @@ public abstract class BaseDao extends HibernateDaoSupport {
         return (Integer) t;
     }
     
+    public Integer countNativeQuery(final String SQL, final List<Object> value) {
+        return countNativeQuery(SQL, value.toArray());
+    }
+    
     public Integer countNativeQuery(final String SQL) {
         return countNativeQuery(SQL, new Object[]{});
     }

@@ -87,16 +87,22 @@ public class GennericDaoImpl<T> extends BaseDao implements GennericDao<T>, Seria
     public List<T> findByDynamicField(Class<T> entityClass, Map<String, Object> hasValue) {
 
         StringBuilder sql = new StringBuilder().append(" where 1=1 ");
-        
+
         Iterator it = hasValue.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pairs = (Map.Entry) it.next();
-            System.out.println(pairs.getKey() + " = " + pairs.getValue());
-            sql.append(" and ").append("c.").append(pairs.getKey()).append(" = ").append(pairs.getValue());
-            it.remove(); 
+            
+            if (pairs.getValue() != null && pairs.getValue().toString().split(",").length>1) {
+                System.out.println(pairs.getKey() + " in " + pairs.getValue());
+                sql.append(" and ").append("c.").append(pairs.getKey()).append(" in (").append(pairs.getValue()).append(")");
+            } else {
+                System.out.println(pairs.getKey() + " = " + pairs.getValue());
+                sql.append(" and ").append("c.").append(pairs.getKey()).append(" = ").append(pairs.getValue());
+            }
+            it.remove();
         }
 
-        List t = getHibernateTemplate().find("select c from " + entityClass.getSimpleName() +" c "+ sql.toString());
+        List t = getHibernateTemplate().find("select c from " + entityClass.getSimpleName() + " c " + sql.toString());
 
         return t;
     }
