@@ -19,7 +19,8 @@
                     <p:menuitem value="หน้าหลัก" url="${pageContext.request.contextPath}/pages/form/index.xhtml" icon="ui-icon-contact"/>
                     <p:submenu label="รายงาน" icon="ui-icon-print">
                         <p:menuitem value="รายงานผลการปฏิบัติงาน" url="/pages/report/formReport.xhtml" icon="ui-icon-print" style="width:250px"></p:menuitem>
-                        <p:menuitem value="รายงานรวมสรุปผลการปฏิบัติงาน 1.1" url="/pages/report/report001Summarry.xhtml" icon="ui-icon-print" style="width:250px">
+                        <p:menuitem value="รายงานรวมสรุปผลการปฏิบัติงาน 1.1" url="/pages/report/report001Summarry.xhtml" icon="ui-icon-print" style="width:250px"
+                                    rendered="#{formSelectReport.userAuthen.userGroupLvl == 0 || formSelectReport.userAuthen.userGroupLvl == 1}">
                         </p:menuitem>
                     </p:submenu>
                     <p:submenu label="ผู้ดูแลระบบ" icon="ui-icon-person" rendered="#{formSelectReport.userAuthen.userGroupLvl == 0}">

@@ -21,7 +21,6 @@ and open the template in the editor.
                             <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
                             <p:outputLabel value="#{msg.label_fiscal_year} :" />
                             <p:selectOneMenu style="width: 220px;" value="#{report001SummaryController.reportCriteria.year}">
-                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" /> 
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกเดือน : " />
@@ -90,42 +89,72 @@ and open the template in the editor.
                                              icon="ui-icon-arrowthichk-s" rendered="#{report001SummaryController.lazyModel!=null}">
                             </p:commandButton>
                             <p:dataTable id="rptPreSendList2" var="item" value="#{report001SummaryController.lazyModel}"
-                                         paginator="true" rows="10" lazy="true" emptyMessage="#{msg.no_data_found}"
-                                         currentPageReportTemplate="#{msg.current_pagereport_template}"
+                                         paginator="true" rows="10" lazy="true" emptyMessage="#{msg.no_data_found}" rowIndexVar="index"
+                                         currentPageReportTemplate="#{msg.current_pagereport_template}" resizableColumns="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                          rowsPerPageTemplate="10,15,20">
 
+                                <p:columnGroup type="header">  
+                                    <p:row>  
+                                        <p:column rowspan="2" headerText="หน่วยงาน" /> 
+                                        <p:column rowspan="2" headerText="รายละเอียดกิจกรรม" />  
+                                        <p:column rowspan="1" colspan="3" headerText="เป้าหมาย" />
+                                        <p:column rowspan="1" colspan="2" headerText="ตัวชี้วัดโครงการ/กิจกรรม" />
+                                        <p:column rowspan="1" colspan="2" headerText="งบประมาณ" />
+                                        <p:column rowspan="2" headerText="ร้อยละ" />
+                                        <p:column rowspan="1" colspan="1" headerText="การบรรลุตัวชี้วัด" />
+                                    </p:row>  
+
+                                    <p:row>  
+                                        <p:column headerText="หน่วยนับ" />  
+                                        <p:column headerText="แผน" />
+                                        <p:column headerText="ผล" />
+                                        <p:column headerText="ตัวชี้วัด (แผน)" />
+                                        <p:column headerText="ตัวชี้วัด (ผล)" />
+                                        <p:column headerText="ตั้งไว้" />
+                                        <p:column headerText="จ่ายจริง" />
+                                        <p:column colspan="1" headerText="ผ่าน/ไม่ผ่าน" />
+                                    </p:row>
+                                </p:columnGroup>
                                 <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="หน่วยงาน" />
-                                    </f:facet>
                                     <h:outputText value="#{item.userGroupName}" />
                                 </p:column>
 
-                                <p:column style="width:400px">
-                                    <f:facet name="header">
-                                        <h:outputText value="ชื่อกิจกรรม" />
-                                    </f:facet>
-                                    <h:outputText value="#{item.activityName}" />
+                                <p:column width="20">  
+                                    <h:outputText value="#{item.workDetail}" />
+                                </p:column>
+
+                                <p:column>  
+                                    <h:outputText value="#{item.goalType}" />
                                 </p:column>
 
                                 <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="สถานะ" />
-                                    </f:facet>
-                                    <h:outputText value="#{item.flowStatusName}"/>
+                                    <h:outputText value="#{item.goalAmount}" />
                                 </p:column>
-                                <p:column sortBy="created_Date">
-                                    <f:facet name="header">
-                                        <h:outputText value="ประจำเดือน/ปี" />
-                                    </f:facet>
-                                    <h:outputText value="#{report001SummaryController.dropdownFactory.getMonthName(item.reportMonth)} #{item.reportYear}"/>
+
+                                <p:column>  
+                                    <h:outputText value="#{item.goalResult}" />  
                                 </p:column>
+                                <p:column>  
+                                    <h:outputText value="#{item.resultAmount}" />  
+                                </p:column>
+
                                 <p:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="ชื่อผู้สร้าง" />
-                                    </f:facet>
-                                    <h:outputText value="#{item.createdUserFullName}" />
+                                    <h:outputText value="#{item.practiceResult}" />
+                                </p:column>
+
+                                <p:column>
+                                    <h:outputText value="#{item.budgetSet}" />
+                                </p:column>
+
+                                <p:column>
+                                    <h:outputText value="#{item.budgetReal}" />
+                                </p:column>
+                                <p:column> 
+                                    <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
+                                </p:column>
+                                <p:column>  
+                                    <h:outputText value="#{item.isIsPass()?'ผ่าน':'ไม่ผ่าน'}" />
                                 </p:column>
                                 <f:facet name="footer">
 
