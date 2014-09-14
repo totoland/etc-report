@@ -48,7 +48,6 @@ public class Report001DaoImplTest {
         for(int i=0;i<statusInt.size();i++){
             status.add(String.valueOf(statusInt.get(i)));
         }
-        
         System.out.println(report001Dao.countCriteria(new ReportCriteria(null,null,null,status)));
         
     }

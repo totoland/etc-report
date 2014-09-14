@@ -129,7 +129,7 @@ public abstract class BaseDao extends HibernateDaoSupport {
             @Override
             public Object doInHibernate(Session sn) throws HibernateException, SQLException {
                 SQLQuery query = sn.createSQLQuery(SQL);
-
+                
                 for (int i = 0; i < value.length; i++) {
                     query.setParameter(i, value[i]);
                 }
