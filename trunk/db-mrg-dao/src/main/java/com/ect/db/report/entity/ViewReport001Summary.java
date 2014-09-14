@@ -130,6 +130,10 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
     
     @Transient
     private String result;
+    @Transient
+    private String sumResult;
+    @Transient
+    private BigDecimal percenBudget;
     
     public Integer getId() {
         return id;
@@ -511,11 +515,6 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
         this.activityName = activityName;
     }
 
-    @Override
-    public String toString() {
-        return "ViewReport001Summary{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", reportStatus=" + reportStatus + ", userGroupId=" + userGroupId + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", goalResult=" + goalResult + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", practiceResult=" + practiceResult + ", isPass=" + isPass + ", activityId=" + activityId + ", activityName=" + activityName + '}';
-    }
-
     /**
      * @return the result
      */
@@ -535,5 +534,38 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
      */
     public void setResult(String result) {
         this.result = result;
+    }
+
+    /**
+     * @return the sumResult
+     */
+    public String getSumResult() {
+        return sumResult;
+    }
+
+    /**
+     * @param sumResult the sumResult to set
+     */
+    public void setSumResult(String sumResult) {
+        this.sumResult = sumResult;
+    }
+
+    @Override
+    public String toString() {
+        return "ViewReport001Summary{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", reportStatus=" + reportStatus + ", userGroupId=" + userGroupId + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", goalResult=" + goalResult + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", practiceResult=" + practiceResult + ", isPass=" + isPass + ", activityId=" + activityId + ", activityName=" + activityName + ", result=" + result + ", sumResult=" + sumResult + '}';
+    }
+
+    /**
+     * @return the percenBudget
+     */
+    public BigDecimal getPercenBudget() {
+        return percenBudget;
+    }
+
+    /**
+     * @param percenBudget the percenBudget to set
+     */
+    public void setPercenBudget(BigDecimal percenBudget) {
+        this.percenBudget = percenBudget;
     }
 }

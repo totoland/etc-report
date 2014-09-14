@@ -111,8 +111,8 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
             sql.append(" AND REPORT_YEAR = ? ");
         }
         if(reportCriteria.getGroupIds()!= null && !reportCriteria.getGroupIds().isEmpty()){
-            listValue.add(reportCriteria.getGroupIds());
-            sql.append(" AND USER_GROUP_ID in (?) ");
+            //listValue.add(toStringArray(reportCriteria.getGroupIds()));
+            sql.append(" AND USER_GROUP_ID in (").append(toStringArray(reportCriteria.getGroupIds())).append(") ");
         }
         if(reportCriteria.getStatus()!= null && !reportCriteria.getStatus().isEmpty()){
             listValue.add(reportCriteria.getStatus());
@@ -149,8 +149,8 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
             sql.append(" AND REPORT_YEAR = ? ");
         }
         if(reportCriteria.getGroupIds()!= null && !reportCriteria.getGroupIds().isEmpty()){
-            listValue.add(reportCriteria.getGroupIds());
-            sql.append(" AND USER_GROUP_ID in (?) ");
+            //listValue.add(toStringArray(reportCriteria.getGroupIds()));
+            sql.append(" AND USER_GROUP_ID in (").append(toStringArray(reportCriteria.getGroupIds())).append(") ");
         }
         if(reportCriteria.getStatus()!= null && !reportCriteria.getStatus().isEmpty()){
             listValue.add(reportCriteria.getStatus());
@@ -164,5 +164,16 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         System.out.println("listValue : "+listValue);
         
         return countNativeQuery(sql.toString(), listValue);
+    }
+    
+    protected String toStringArray(List<String>list){
+    
+        String result = "";
+        
+        for(String r : list){
+            result += ","+r;
+        }
+        
+        return result.replaceFirst(",", "");
     }
 }
