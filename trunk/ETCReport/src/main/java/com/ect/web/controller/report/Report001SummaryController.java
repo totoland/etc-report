@@ -6,22 +6,25 @@ package com.ect.web.controller.report;
 
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.common.dao.GennericDao;
-import com.ect.db.common.entity.DropDownList;
 import com.ect.db.entity.EctFlowStatus;
 import com.ect.db.entity.EctGroupLvl;
 import com.ect.db.entity.ViewUser;
 import com.ect.db.report.entity.Report001;
-import com.ect.db.report.entity.Report001Detail;
 import com.ect.db.report.entity.ViewReport001Summary;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewReport001SummaryImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
+import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
+import com.ect.web.utils.NumberUtils;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,6 +42,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jxls.exception.ParsePropertyException;
 import net.sf.jxls.transformer.XLSTransformer;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.primefaces.component.datatable.DataTable;
@@ -120,6 +124,7 @@ public class Report001SummaryController extends BaseFormReportController {
         setLazyModel(null);
     }
 
+    @Override
     public void fileXLSDownload() {
 
         logger.trace("Select report : {}", reportCriteria);
@@ -139,7 +144,7 @@ public class Report001SummaryController extends BaseFormReportController {
         }
 
         Map<String, Object> beans = new HashMap<>();
-        beans.put("month", month);
+        beans.put("month", StringUtils.isBlank(month)?"ทั้งหมด":month);
         beans.put("year", year);
         beans.put("depName", depName);
         beans.put("createdDate", createdDate);
@@ -151,12 +156,13 @@ public class Report001SummaryController extends BaseFormReportController {
         reportCriteria.setGroupIds(selectedGroup);
         reportCriteria.setStatus(EctFlowStatus.FlowStatus.APPROVED.getStatus() + "");
         reportCriteria.setMaxRow(60000);
-        
+
         logger.trace("Criteria : {}", reportCriteria);
 
         List<ViewReport001Summary> report001Summarys = reportService.findReport001ByCriteria(reportCriteria);
 
         beans.put("details", report001Summarys);
+        beans.put("sum", getSummary(report001Summarys));
 
         Workbook wb = null;
         InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/" + reportName + ".xls");
@@ -287,6 +293,7 @@ public class Report001SummaryController extends BaseFormReportController {
     }
 
     private void initCriteria() {
+        selectedGroup.clear();
         reportCriteria = new ReportCriteria();
     }
 
@@ -302,23 +309,6 @@ public class Report001SummaryController extends BaseFormReportController {
         this.selectedGroup = selectedGroup;
     }
 
-    private String arraytoString(List<String> selectedGroup) {
-
-        if (selectedGroup == null) {
-            return null;
-        }
-
-        String arrayString = "";
-
-        for (String s : selectedGroup) {
-            arrayString += "," + s;
-        }
-
-        arrayString = arrayString.replaceFirst(",", "");
-
-        return arrayString;
-    }
-
     /**
      * @return the gennericDao
      */
@@ -331,5 +321,36 @@ public class Report001SummaryController extends BaseFormReportController {
      */
     public void setGennericDao(GennericDao<Report001> gennericDao) {
         this.gennericDao = gennericDao;
+    }
+
+    private ViewReport001Summary getSummary(List<ViewReport001Summary> report001Summarys) {
+        ViewReport001Summary summary = new ViewReport001Summary();
+        summary.setGoalAmount(0L);
+        summary.setGoalResult(0L);
+        summary.setBudgetSet(new BigDecimal(BigInteger.ZERO,2));
+        summary.setBudgetReal(new BigDecimal(BigInteger.ZERO,2));
+        long pass = 0;
+        long notPass = 0;
+
+        for (ViewReport001Summary viewReport001Summary : report001Summarys) {
+            summary.setGoalAmount(summary.getGoalAmount()+NumberUtils.convertNUllToZero(viewReport001Summary.getGoalAmount()));
+            summary.setGoalResult(summary.getGoalResult()+NumberUtils.convertNUllToZero(viewReport001Summary.getGoalResult()));
+            summary.setBudgetSet(summary.getBudgetSet().add(NumberUtils.convertNUllToZero(viewReport001Summary.getBudgetSet())));
+            summary.setBudgetReal(summary.getBudgetReal().add(NumberUtils.convertNUllToZero(viewReport001Summary.getBudgetReal())));
+            summary.setIsPass(viewReport001Summary.isIsPass());
+            
+            if(summary!=null && summary.isIsPass()){
+                pass = pass+1;
+            }else{
+                notPass = notPass+1;
+            }
+        }
+        
+        summary.setPercenBudget(summary.getBudgetReal().multiply(new BigDecimal(100)).divide(summary.getBudgetSet(),2,RoundingMode.HALF_UP));
+        summary.setSumResult("ผ่าน : "+pass + " ไม่ผ่าน : "+notPass);
+
+        logger.trace("summary : {}",summary);
+        
+        return summary;
     }
 }
