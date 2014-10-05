@@ -209,7 +209,7 @@ and open the template in the editor.
                                 </p:cellEditor>
                             </p:column>
                             <p:column> 
-                                <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
+                                <h:outputText value="#{formReport001Controller.devide((item.budgetReal*100),item.budgetSet)}%" />
                             </p:column>
 
                             <p:column>  

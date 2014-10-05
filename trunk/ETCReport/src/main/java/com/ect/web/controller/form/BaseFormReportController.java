@@ -15,6 +15,7 @@ import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -65,6 +66,7 @@ public abstract class BaseFormReportController extends BaseController {
     protected static final String REPORT_021 = "REPORT_021";
     protected static final String REPORT_022 = "REPORT_022";
     protected static final String REPORT_023 = "REPORT_023";
+    protected static final String REPORT_EXPRESSION = "REPORT_EXPRESSION";
     protected static final String REPORT_MODE_EDIT = "edit";
     protected static final String REPORT_MODE_VIEW = "view";
     protected static final String REPORT_MODE_CREATE = "create";
@@ -490,5 +492,13 @@ public abstract class BaseFormReportController extends BaseController {
     
     public Date getSysDate(){
         return new Date();
+    }
+    
+    public BigDecimal devide(BigDecimal a,BigDecimal b){
+        if(NumberUtils.convertNUllToZero(a).intValue() == 0 || NumberUtils.convertNUllToZero(b).intValue() == 0){
+            return BigDecimal.ZERO;
+        }
+        
+        return a.divide(b);
     }
 }

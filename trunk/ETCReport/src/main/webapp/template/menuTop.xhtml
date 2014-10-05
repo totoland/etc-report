@@ -22,6 +22,9 @@
                         <p:menuitem value="รายงานรวมสรุปผลการปฏิบัติงาน 1.1" url="/pages/report/report001Summarry.xhtml" icon="ui-icon-print" style="width:250px"
                                     rendered="#{formSelectReport.userAuthen.userGroupLvl == 0 || formSelectReport.userAuthen.userGroupLvl == 1}">
                         </p:menuitem>
+                        <p:menuitem value="รายงานรวม 4.1 4.2 และ 4.4" url="/pages/report/reportExpression.xhtml" icon="ui-icon-print" style="width:250px"
+                                    rendered="#{formSelectReport.userAuthen.userGroupLvl == 0 || formSelectReport.userAuthen.userGroupLvl == 1}">
+                        </p:menuitem>
                     </p:submenu>
                     <p:submenu label="ผู้ดูแลระบบ" icon="ui-icon-person" rendered="#{formSelectReport.userAuthen.userGroupLvl == 0}">
                         <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/user/userManagement.xhtml" icon="ui-icon-key" style="width:250px">
@@ -29,7 +32,7 @@
                         <p:menuitem value="จัดการกิจกกรม" url="/pages/admin/activityManagement.xhtml" icon="ui-icon-calendar" style="width:250px"></p:menuitem>
                     </p:submenu>
                     <p:submenu label="ดาวน์โหลด" icon="ui-icon-comment">
-                        <p:menuitem value="คู่มือสำหรับผุ้ใช้งานระบบ" ajax="false" icon="ui-icon-document">
+                        <p:menuitem value="คู่มือสำหรับผุ้ใช้งานระบบ" ajax="false" icon="ui-icon-document" style="width:250px">
                             <p:fileDownload value="#{downloadsController.fileAdminPdf}" />
                         </p:menuitem>
                     </p:submenu>
