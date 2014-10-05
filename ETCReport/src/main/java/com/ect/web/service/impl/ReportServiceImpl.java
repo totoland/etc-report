@@ -31,6 +31,7 @@ import com.ect.db.report.dao.Report021Dao;
 import com.ect.db.report.dao.Report022Dao;
 import com.ect.db.report.dao.Report023Dao;
 import com.ect.db.report.dao.ViewReportByStatusDao;
+import com.ect.db.report.dao.ViewReportExpressionDao;
 import com.ect.db.report.entity.Report003;
 import com.ect.db.report.entity.Report004;
 import com.ect.db.report.entity.Report005;
@@ -54,6 +55,7 @@ import com.ect.db.report.entity.Report022;
 import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReport001Summary;
+import com.ect.db.report.entity.ViewReportExpression;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
 import java.util.Date;
@@ -118,6 +120,8 @@ public class ReportServiceImpl implements ReportService {
     Report022Dao report022Dao;
     @Autowired
     Report023Dao report023Dao;
+    @Autowired
+    ViewReportExpressionDao viewReportExpressionDao;
 
     @Override
     public List<ViewReportStatus> findReportByStatus(Integer flowStatusId) {
@@ -314,4 +318,8 @@ public class ReportServiceImpl implements ReportService {
         return report001Dao.countCriteria(reportCriteria);
     }
     
+    @Override
+    public List<ViewReportExpression> findReportExpressionByCriteria(ReportCriteria criteria){
+        return viewReportExpressionDao.findByCriteria(criteria);
+    }
 }

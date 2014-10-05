@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 public class FormSavePrintReportController extends BaseController{
     private static final long serialVersionUID = -5579656927495884037L;
     
-    private static Logger logger = LoggerFactory.getLogger(FormSavePrintReportController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FormSavePrintReportController.class);
     
     @ManagedProperty(value="#{commonService}")
     private CommonService commonService;
