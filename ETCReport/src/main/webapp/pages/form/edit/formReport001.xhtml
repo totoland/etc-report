@@ -279,10 +279,10 @@ and open the template in the editor.
                             <p:inputTextarea id="REPORT_001lb5b" style="width:400px" value="#{formReport001Controller.inputReport001Detail.practiceResult}" />  
 
                             <h:outputLabel value="งบประมาณตั้งไว้ *" />  
-                            <totoland:inputNumber id="REPORT_001lb6" style="width:400px" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
+                            <totoland:inputNumber id="REPORT_001lb6" decimal="true" style="width:400px" value="#{formReport001Controller.inputReport001Detail.budgetSet}" /> 
 
                             <h:outputLabel value="งบประมาณจ่ายจริง *" />  
-                            <totoland:inputNumber id="REPORT_001lb7" style="width:400px" value="#{formReport001Controller.inputReport001Detail.budgetReal}" />
+                            <totoland:inputNumber id="REPORT_001lb7" decimal="true" style="width:400px" value="#{formReport001Controller.inputReport001Detail.budgetReal}" />
 
                             <h:outputLabel value="การบรรลุตัวชี้วัด *" /> 
                             <p:selectOneRadio id="lb7" value="#{formReport001Controller.inputReport001Detail.isPass}" style="border-style:none">  

@@ -26,14 +26,16 @@
         <composite:attribute name="size"/>
         <composite:attribute name="style"/>
         <composite:attribute name="tabindex"/>
+        <composite:attribute name="decimal"/>
 
     </composite:interface>
 
     <composite:implementation>
 
-        <p:inputText id="#{cc.attrs.id}" style="#{cc.attrs.style==null?'':cc.attrs.style}" tabindex="#{cc.attrs.tabindex==''?0:cc.attrs.tabindex}" size="#{cc.attrs.size==null?10:cc.attrs.size}" onkeyup="#{cc.attrs.onkeyup==null?'':cc.attrs.onkeyup}" onblur="#{cc.attrs.onblur==null?'':cc.attrs.onblur}" onchange="#{cc.attrs.onchange==null?'':cc.attrs.onchange}" styleClass="inputNumber" disabled="#{cc.attrs.disabled==null?'false':cc.attrs.disabled}" readonly="#{cc.attrs.readonly==null?'false':cc.attrs.readonly}" rendered="#{cc.attrs.rendered==null?'true':cc.attrs.rendered}"  maxlength="#{cc.attrs.maxlength==null?'10':cc.attrs.maxlength}" value="#{cc.attrs.value}">
+        <p:inputText id="#{cc.attrs.id}" style="#{cc.attrs.style==null?'':cc.attrs.style}" tabindex="#{cc.attrs.tabindex==''?0:cc.attrs.tabindex}" size="#{cc.attrs.size==null?10:cc.attrs.size}" onkeyup="#{cc.attrs.onkeyup==null?'':cc.attrs.onkeyup}" onblur="#{cc.attrs.onblur==null?'':cc.attrs.onblur}" onchange="#{cc.attrs.onchange==null?'':cc.attrs.onchange}" styleClass="inputNumber" disabled="#{cc.attrs.disabled==null?'false':cc.attrs.disabled}" readonly="#{cc.attrs.readonly==null?'false':cc.attrs.readonly}" rendered="#{cc.attrs.rendered==null?'true':cc.attrs.rendered}"  maxlength="#{cc.attrs.maxlength==null?'12':cc.attrs.maxlength}" value="#{cc.attrs.value}">
             <composite:insertChildren/>
-            <pe:keyFilter regEx="/[\d]/"/>
+            <pe:keyFilter regEx="/[\d\.]/" rendered="#{cc.attrs.decimal !=null and cc.attrs.decimal=='true'}"/>
+            <pe:keyFilter regEx="/[\d]/" rendered="#{cc.attrs.decimal==null || cc.attrs.decimal=='false'}"/>
         </p:inputText>
     </composite:implementation>
 

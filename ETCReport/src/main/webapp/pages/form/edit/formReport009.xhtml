@@ -69,7 +69,7 @@ and open the template in the editor.
                                             <h:outputText value="#{item.donate}" />  
                                         </f:facet>
                                         <f:facet name="input">  
-                                            <totoland:inputNumber value="#{item.donate}" />  
+                                            <totoland:inputNumber value="#{item.donate}" decimal="true"/>  
                                         </f:facet>  
                                     </p:cellEditor>
                                 </p:column>
@@ -125,7 +125,7 @@ and open the template in the editor.
                         </p:selectOneMenu>
                         
                         <h:outputLabel value="จำนวนเงินที่ได้รับบริจาค *"/>
-                        <totoland:inputNumber id="REPORT_009lb02" value="#{formReport009Controller.inputReport009Detail.donate}"/>  
+                        <totoland:inputNumber id="REPORT_009lb02" value="#{formReport009Controller.inputReport009Detail.donate}" decimal="true"/>  
 
                         <f:facet name="footer">  
                             <p:commandButton value="เพิ่ม" actionListener="#{formReport009Controller.addReportDetail(actionEvent)}" update="REPORT_009msgAddReportDetail,REPORT_009Grid" icon="ui-icon-check" style="margin:0"/>  
