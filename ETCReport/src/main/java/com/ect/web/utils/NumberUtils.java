@@ -38,7 +38,7 @@ public class NumberUtils {
     }
     public static boolean isNumber(Object object){
         try{
-            Integer.parseInt(object.toString());
+            new BigDecimal(object.toString());
             return true;
         }catch(Exception ex){
             return false;
