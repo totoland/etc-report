@@ -335,7 +335,7 @@ public class FormReport009Controller extends BaseFormReportController {
         if (StringUtils.isBlank(inputReport009Detail.getPoliticalParty())) {
             msg += "กรุณาระบุพรรค<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport009Detail.getDonate()) || inputReport009Detail.getDonate().intValue() == 0) {
+        if (!NumberUtils.isNumber(inputReport009Detail.getDonate())) {
             msg += "กรุณาระบุงบจำนวนเงินที่ได้รับบริจาค<br/>";
         }
 

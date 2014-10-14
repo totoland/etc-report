@@ -332,16 +332,16 @@ public class FormReport008Controller extends BaseFormReportController {
         if (StringUtils.isBlank(inputReport008Detail.getPoliticalParty())) {
             msg += "กรุณาระบุพรรค<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport008Detail.getBudget()) || inputReport008Detail.getBudget().intValue() == 0) {
+        if (!NumberUtils.isNumber(inputReport008Detail.getBudget())) {
             msg += "กรุณาระบุงบประมาณที่ได้รับสนับสนุน<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport008Detail.getDisbursedPrevious()) || inputReport008Detail.getDisbursedPrevious().intValue() == 0) {
+        if (!NumberUtils.isNumber(inputReport008Detail.getDisbursedPrevious())) {
             msg += "กรุณาระบุก่อนหน้านี้<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport008Detail.getDisbursedMonth()) || inputReport008Detail.getDisbursedPrevious().intValue() == 0) {
+        if (!NumberUtils.isNumber(inputReport008Detail.getDisbursedMonth())) {
             msg += "กรุณาระบุเดือนนี้<br/>";
         }
-        if (!NumberUtils.isNumber(inputReport008Detail.getBalance()) || inputReport008Detail.getBalance().intValue() == 0) {
+        if (!NumberUtils.isNumber(inputReport008Detail.getBalance())) {
             msg += "กรุณาระบุคงเหลือ<br/>";
         }
 

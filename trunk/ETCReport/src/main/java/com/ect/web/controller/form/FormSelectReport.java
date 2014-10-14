@@ -42,7 +42,7 @@ public class FormSelectReport extends BaseFormReportController {
         Date curDate = new Date();
 
         reportCode = "";
-        setReportMonth(DateTimeUtils.getInstance().thDate(curDate, "MM"));
+        //setReportMonth(DateTimeUtils.getInstance().thDate(curDate, "MM"));
         reportYear = DateTimeUtils.getInstance().thDate(curDate, "yyyy");
 
         logger.trace("reportMonth : {} reportYear : {}", getReportMonth(), reportYear);

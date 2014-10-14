@@ -16,6 +16,7 @@ import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
 import com.ect.web.utils.StringUtils;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -495,10 +496,10 @@ public abstract class BaseFormReportController extends BaseController {
     }
     
     public BigDecimal devide(BigDecimal a,BigDecimal b){
-        if(NumberUtils.convertNUllToZero(a).intValue() == 0 || NumberUtils.convertNUllToZero(b).intValue() == 0){
+        if(NumberUtils.convertNUllToZero(a).floatValue()== 0 || NumberUtils.convertNUllToZero(b).floatValue() == 0){
             return BigDecimal.ZERO;
         }
         
-        return a.divide(b);
+        return a.divide(b,2,RoundingMode.HALF_UP);
     }
 }
