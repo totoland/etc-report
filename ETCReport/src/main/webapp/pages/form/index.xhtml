@@ -26,7 +26,7 @@ and open the template in the editor.
                             <p:ajax event="tabChange" listener="#{FormReportMainController.onTabChange}" oncomplete="resetDdl()"/>
 
                             <p:tab id="tab_TRACKING" title="ติดตามสถานะงาน" rendered="#{formSelectReport.canCreateReport()}">
-                                <div style="width: 1170px;overflow-x: scroll">
+                                <div style="width: 99%;overflow-x: scroll">
                                     <p:dataTable id="rptTrackerReport" var="item" value="#{FormReportMainController.listReportStatusTracking}"
                                                  paginator="true" rows="10" style="width:1550px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
@@ -111,7 +111,7 @@ and open the template in the editor.
                                 </p:panel>
                             </p:tab>
                             <p:tab id="tab_DRAFF" title="รอส่งพิจารณา">
-                                <div style="width: 1200px;overflow-x: scroll">
+                                <div style="width: 99%;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList1" var="item" value="#{FormReportMainController.listReportStatusReject}"
                                                  paginator="true" rows="10" style="width: 1680px;" lazy="true" emptyMessage="#{msg.no_data_found}"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
@@ -187,7 +187,7 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_STEP_1" title="รายงานรอผลพิจารณา (หน.อก.)">
-                                <div style="width: 1200px;overflow-x: scroll">
+                                <div style="width: 99%;overflow-x: scroll">
                                     <p:dataTable id="rptPreSendList2" var="item" value="#{FormReportMainController.listReportStatusStep1}"
                                                  paginator="true" rows="10" style="width: 2400px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
@@ -273,7 +273,7 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_STEP_2" title="รายงานรอผลพิจารณา (หน.ส่วนงาน)">
-                                <div style="width: 1200px;overflow-x: scroll">
+                                <div style="width: 99%;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList3" var="item" value="#{FormReportMainController.listReportStatusStep2}"
                                                  paginator="true" rows="10" style="width: 1650px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
@@ -347,7 +347,7 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_STEP_3" title="รายงานรอผลพิจารณา (ส่วนกลาง)">
-                                <div style="width: 1200px;overflow-x: scroll">
+                                <div style="width: 99%;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList4" var="item" value="#{FormReportMainController.listReportStatusStep3}"
                                                  paginator="true" rows="10" style="width: 1550px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
@@ -421,7 +421,7 @@ and open the template in the editor.
                                 </div>
                             </p:tab>
                             <p:tab id="tab_APPROVED" title="รายงานที่อนุมัติแล้ว">
-                                <div style="width: 1200px;overflow-x: scroll">
+                                <div style="width: 99%;overflow-x: scroll">
                                     <p:dataTable id="rptCompleteList5" var="item" value="#{FormReportMainController.listReportStatusApprove}"
                                                  paginator="true" rows="10" style="width:1550px" lazy="true"
                                                  currentPageReportTemplate="#{msg.current_pagereport_template}"
@@ -527,8 +527,8 @@ and open the template in the editor.
 
                     <!-- Include Report Edit-->
                     <h:panelGroup id="includeEdit">
-                        <p:dialog id="dialogEdit" header="แสดงข้อมูล" widgetVar="dialogEdit" resizable="true" height="500" width="1050" modal="true">
-                            <div id="divFrmEdit" style="width: 150vh; height: 70vh;">
+                        <p:dialog id="dialogEdit" header="แสดงข้อมูล" widgetVar="dialogEdit" resizable="true" height="500" width="1100" modal="true">
+                            <div id="divFrmEdit" style="width: 99%; height: 70vh;">
                             </div> 
                             
                         </p:dialog>
