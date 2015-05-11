@@ -26,7 +26,7 @@ public class EctConfDaoImpl extends BaseDao implements EctConfDao, Serializable{
     public EctConfManager allConf;
 
     public EctConfDaoImpl() {
-        logger.info("Init Class IslConf...");
+        logger.info("Init Class EctConf...");
     }
 
     @Override

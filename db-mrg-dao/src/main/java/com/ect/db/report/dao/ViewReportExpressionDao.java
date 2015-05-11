@@ -15,5 +15,7 @@ import java.util.List;
  * @author Totoland
  */
 public interface ViewReportExpressionDao {
-    public List<ViewReportExpression>findByCriteria(ReportCriteria criteria);
+    List<ViewReportExpression>findByCriteria(ReportCriteria criteria);
+    
+    List<ViewReportExpression> findReport011ByCriteria(ReportCriteria criteria);
 }
