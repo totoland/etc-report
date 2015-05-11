@@ -43,10 +43,11 @@ import org.slf4j.LoggerFactory;
  */
 @ManagedBean
 @ViewScoped
-public class ReportExpressionController extends BaseFormReportController {
-
-    private static final long serialVersionUID = 8451238753520170431L;
-    private static final Logger logger = LoggerFactory.getLogger(ReportExpressionController.class);
+public class Report011SummaryController extends BaseFormReportController {
+    
+    private static final long serialVersionUID = 7267052556829828496L;
+    
+    private static final Logger logger = LoggerFactory.getLogger(Report011SummaryController.class);
 
     private List<ViewReportExpression> viewReportResult;
     private ReportCriteria reportCriteria;
@@ -64,7 +65,7 @@ public class ReportExpressionController extends BaseFormReportController {
 
         logger.trace("Search by : {}",reportCriteria);
         
-        viewReportResult = reportService.findReportExpressionByCriteria(reportCriteria);
+        viewReportResult = reportService.findReportExpression011ByCriteria(reportCriteria);
         
         logger.trace("viewReportResult : {}",viewReportResult);
     }
@@ -76,7 +77,8 @@ public class ReportExpressionController extends BaseFormReportController {
     private StreamedContent file;
 
     public StreamedContent getFile() {
-        InputStream is = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/pages/xls/report.xlsx");
+        InputStream is = ((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext())
+                .getResourceAsStream("/pages/xls/report.xlsx");
         file = new DefaultStreamedContent(is, "application/vnd.ms-excel ", "report.xlsx");
         return file;
     }
@@ -166,7 +168,7 @@ public class ReportExpressionController extends BaseFormReportController {
         String month = dropdownFactory.getMonthName(reportCriteria.getMonth());
         String year = reportCriteria.getYear();
         String createdDate = DateTimeUtils.getInstance().thDate(new Date(), DateTimeUtils.DISPLAY_DATETIME_FORMAT);
-        String reportName = REPORT_EXPRESSION;
+        String reportName = REPORT_EXPRESSION_011;
         
         Map<String, Object> beans = new HashMap<>();
         beans.put("month", month);

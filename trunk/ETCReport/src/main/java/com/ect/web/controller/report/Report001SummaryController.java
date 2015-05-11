@@ -16,7 +16,6 @@ import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.controller.model.LazyViewReport001SummaryImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
-import com.ect.web.utils.ECTUtils;
 import com.ect.web.utils.JsfUtil;
 import com.ect.web.utils.MessageUtils;
 import com.ect.web.utils.NumberUtils;
@@ -87,7 +86,8 @@ public class Report001SummaryController extends BaseFormReportController {
 
         logger.trace("Search!!");
 
-        if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel() && getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
+        if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel() && 
+                getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
             reportCriteria.setUserGroupId(String.valueOf(getUserAuthen().getUserGroupId()));
         }
 
@@ -103,9 +103,9 @@ public class Report001SummaryController extends BaseFormReportController {
 
         if (count != null || count > 0) {
 
-            final DataTable d = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
+            final DataTable dataTable = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
                     .findComponent(":form1:rptPreSendList2");
-            d.setFirst(0);
+            dataTable.setFirst(0);
 
             LazyViewReport001SummaryImpl reportModel = new LazyViewReport001SummaryImpl();
             reportModel.setRowCount(count);

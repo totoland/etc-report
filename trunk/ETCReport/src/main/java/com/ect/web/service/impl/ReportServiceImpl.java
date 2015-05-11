@@ -322,4 +322,9 @@ public class ReportServiceImpl implements ReportService {
     public List<ViewReportExpression> findReportExpressionByCriteria(ReportCriteria criteria){
         return viewReportExpressionDao.findByCriteria(criteria);
     }
+
+    @Override
+    public List<ViewReportExpression> findReportExpression011ByCriteria(ReportCriteria criteria) {
+        return viewReportExpressionDao.findReport011ByCriteria(criteria);
+    }
 }

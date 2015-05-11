@@ -120,4 +120,6 @@ public interface ReportService {
     Integer countReport001ByCriteria(ReportCriteria reportCriteria);
     
     List<ViewReportExpression> findReportExpressionByCriteria(ReportCriteria criteria);
+    
+    List<ViewReportExpression> findReportExpression011ByCriteria(ReportCriteria criteria);
 }
