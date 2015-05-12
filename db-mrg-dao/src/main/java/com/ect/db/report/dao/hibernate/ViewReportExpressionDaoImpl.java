@@ -9,6 +9,7 @@ import com.ect.db.bean.ReportCriteria;
 import com.ect.db.dao.BaseDao;
 import com.ect.db.report.dao.ViewReportExpressionDao;
 import com.ect.db.report.entity.ViewReportExpression;
+import com.ect.db.report.entity.ViewReportExpression014;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
@@ -86,6 +87,54 @@ public class ViewReportExpressionDaoImpl extends BaseDao implements ViewReportEx
         SQL.append("                GROUP BY REPORT_011_DETAIL.INSTITUTION ");
 
         return findNativeQuery(SQL.toString(), ViewReportExpression.class, param);
+    }
+
+    @Override
+    public List<ViewReportExpression> findReport012ByCriteria(ReportCriteria criteria) {
+        List param = new ArrayList();
+        StringBuilder SQL = new StringBuilder();
+        SQL.append("SELECT REPORT_012_DETAIL.INSTITUTION, ISNULL(SUM(REPORT_012_DETAIL.ALL_AMOUNT), 0) AS ALL_AMOUNT, ISNULL(SUM(REPORT_012_DETAIL.AT_CENTER),   ");
+        SQL.append("                0) AS AT_CENTER, ISNULL(SUM(REPORT_012_DETAIL.AT_ECT_PROVINCE), 0) AS AT_ECT_PROVINCE,   ");
+        SQL.append("                ISNULL(SUM(REPORT_012_DETAIL.ECT_RESOLVE), 0) AS ECT_RESOLVE, ISNULL(SUM(REPORT_012_DETAIL.ANALYST_REMAIN), 0)   ");
+        SQL.append("                AS ANALYST_REMAIN, ISNULL(SUM(REPORT_012_DETAIL.OFFER_ECT), 0) AS OFFER_ECT, ISNULL(SUM(REPORT_012_DETAIL.ACCESS_COMMITTEE), 0)   ");
+        SQL.append("                AS ACCESS_COMMITTEE, ISNULL(SUM(REPORT_012_DETAIL.ON_AGENDA), 0) AS ON_AGENDA  ");
+        SQL.append("                FROM REPORT_012_DETAIL INNER JOIN REPORT_012 ON REPORT_012_DETAIL.REPORT_ID = REPORT_012.REPORT_ID  ");
+        SQL.append("                WHERE 1=1 ");
+        if (criteria.getYear() != null) {
+            SQL.append("                AND REPORT_012.REPORT_YEAR = ? ");
+            param.add(criteria.getYear());
+        }
+        if (criteria.getMonth()!= null) {
+            SQL.append("                AND REPORT_012.REPORT_MONTH = ?  ");
+            param.add(criteria.getMonth());
+        }
+        SQL.append("                GROUP BY REPORT_012_DETAIL.INSTITUTION ");
+
+        return findNativeQuery(SQL.toString(), ViewReportExpression.class, param);
+    }
+
+    @Override
+    public List<ViewReportExpression014> findReport014ByCriteria(ReportCriteria criteria) {
+        List param = new ArrayList();
+        StringBuilder SQL = new StringBuilder();
+        SQL.append("SELECT REPORT_014_DETAIL.INSTITUTION, ISNULL(SUM(REPORT_014_DETAIL.ALL_AMOUNT), 0) AS ALL_AMOUNT, ISNULL(SUM(REPORT_014_DETAIL.AT_CENTER),   ");
+        SQL.append("                0) AS AT_CENTER, ISNULL(SUM(REPORT_014_DETAIL.AT_ECT_PROVINCE), 0) AS AT_ECT_PROVINCE,   ");
+        SQL.append("                ISNULL(SUM(REPORT_014_DETAIL.ECT_RESOLVE), 0) AS ECT_RESOLVE, ISNULL(SUM(REPORT_014_DETAIL.ANALYST_REMAIN), 0)   ");
+        SQL.append("                AS ANALYST_REMAIN, ISNULL(SUM(REPORT_014_DETAIL.OFFER_ECT), 0) AS OFFER_ECT, ISNULL(SUM(REPORT_014_DETAIL.ACCESS_COMMITTEE), 0)   ");
+        SQL.append("                AS ACCESS_COMMITTEE, ISNULL(SUM(REPORT_014_DETAIL.ON_AGENDA), 0) AS ON_AGENDA , ISNULL(SUM(REPORT_014_DETAIL.SEND_REQUEST), 0) AS SEND_REQUEST ");
+        SQL.append("                FROM REPORT_014_DETAIL INNER JOIN REPORT_014 ON REPORT_014_DETAIL.REPORT_ID = REPORT_014.REPORT_ID  ");
+        SQL.append("                WHERE 1=1 ");
+        if (criteria.getYear() != null) {
+            SQL.append("                AND REPORT_014.REPORT_YEAR = ? ");
+            param.add(criteria.getYear());
+        }
+        if (criteria.getMonth()!= null) {
+            SQL.append("                AND REPORT_014.REPORT_MONTH = ?  ");
+            param.add(criteria.getMonth());
+        }
+        SQL.append("                GROUP BY REPORT_014_DETAIL.INSTITUTION ");
+
+        return findNativeQuery(SQL.toString(), ViewReportExpression014.class, param);
     }
 
 }
