@@ -25,6 +25,12 @@
                         <p:menuitem value="รายงานรวม 4.1" url="/pages/report/report011Summarry.xhtml" icon="ui-icon-print" style="width:250px"
                                     rendered="#{formSelectReport.userAuthen.userGroupLvl == 0 || formSelectReport.userAuthen.userGroupLvl == 1}">
                         </p:menuitem>
+                        <p:menuitem value="รายงานรวม 4.2" url="/pages/report/report012Summarry.xhtml" icon="ui-icon-print" style="width:250px"
+                                    rendered="#{formSelectReport.userAuthen.userGroupLvl == 0 || formSelectReport.userAuthen.userGroupLvl == 1}">
+                        </p:menuitem>
+                        <p:menuitem value="รายงานรวม 4.4" url="/pages/report/report014Summarry.xhtml" icon="ui-icon-print" style="width:250px"
+                                    rendered="#{formSelectReport.userAuthen.userGroupLvl == 0 || formSelectReport.userAuthen.userGroupLvl == 1}">
+                        </p:menuitem>
                     </p:submenu>
                     <p:submenu label="ผู้ดูแลระบบ" icon="ui-icon-person" rendered="#{formSelectReport.userAuthen.userGroupLvl == 0}">
                         <p:menuitem value="จัดการสิทธิ์ผู้ใช้งาน" url="/pages/user/userManagement.xhtml" icon="ui-icon-key" style="width:250px">
