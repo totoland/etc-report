@@ -32,6 +32,7 @@ import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReport001Summary;
 import com.ect.db.report.entity.ViewReportExpression;
 import com.ect.db.report.entity.ViewReportExpression014;
+import com.ect.db.report.entity.ViewReportExpression017;
 import com.ect.db.report.entity.ViewReportStatus;
 import java.util.Date;
 import java.util.List;
@@ -127,4 +128,6 @@ public interface ReportService {
     List<ViewReportExpression> findReportExpression012ByCriteria(ReportCriteria reportCriteria);
 
     List<ViewReportExpression014> findReportExpression014ByCriteria(ReportCriteria reportCriteria);
+
+    List<ViewReportExpression017> findReportExpression017ByCriteria(ReportCriteria reportCriteria);
 }

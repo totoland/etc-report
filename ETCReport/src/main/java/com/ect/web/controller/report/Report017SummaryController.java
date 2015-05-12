@@ -5,7 +5,7 @@
 package com.ect.web.controller.report;
 
 import com.ect.db.bean.ReportCriteria;
-import com.ect.db.report.entity.ViewReportExpression014;
+import com.ect.db.report.entity.ViewReportExpression017;
 import com.ect.web.controller.form.BaseFormReportController;
 import com.ect.web.utils.DateTimeUtils;
 import com.ect.web.utils.JsfUtil;
@@ -43,13 +43,13 @@ import org.slf4j.LoggerFactory;
  */
 @ManagedBean
 @ViewScoped
-public class Report014SummaryController extends BaseFormReportController {
+public class Report017SummaryController extends BaseFormReportController {
     
-    private static final long serialVersionUID = 7267052556829828496L;
+    private static final long serialVersionUID = -1582274513103355961L;
     
-    private static final Logger logger = LoggerFactory.getLogger(Report014SummaryController.class);
+    private static final Logger logger = LoggerFactory.getLogger(Report017SummaryController.class);
 
-    private List<ViewReportExpression014> viewReportResult;
+    private List<ViewReportExpression017> viewReportResult;
     private ReportCriteria reportCriteria;
 
     private List<String> selectedGroup = new ArrayList<>();
@@ -65,7 +65,7 @@ public class Report014SummaryController extends BaseFormReportController {
 
         logger.trace("Search by : {}",reportCriteria);
         
-        viewReportResult = reportService.findReportExpression014ByCriteria(reportCriteria);
+        viewReportResult = reportService.findReportExpression017ByCriteria(reportCriteria);
         
         logger.trace("viewReportResult : {}",viewReportResult);
     }
@@ -90,14 +90,14 @@ public class Report014SummaryController extends BaseFormReportController {
     /**
      * @return the viewReportResult
      */
-    public List<ViewReportExpression014> getViewReportResult() {
+    public List<ViewReportExpression017> getViewReportResult() {
         return viewReportResult;
     }
 
     /**
      * @param viewReportResult the viewReportResult to set
      */
-    public void setViewReportResult(List<ViewReportExpression014> viewReportResult) {
+    public void setViewReportResult(List<ViewReportExpression017> viewReportResult) {
         this.viewReportResult = viewReportResult;
     }
 
@@ -168,7 +168,7 @@ public class Report014SummaryController extends BaseFormReportController {
         String month = dropdownFactory.getMonthName(reportCriteria.getMonth());
         String year = reportCriteria.getYear();
         String createdDate = DateTimeUtils.getInstance().thDate(new Date(), DateTimeUtils.DISPLAY_DATETIME_FORMAT);
-        String reportName = REPORT_EXPRESSION_014;
+        String reportName = REPORT_EXPRESSION_017;
         
         Map<String, Object> beans = new HashMap<>();
         beans.put("month", month);
@@ -178,7 +178,7 @@ public class Report014SummaryController extends BaseFormReportController {
         
         beans.put("details", viewReportResult);
         
-        ViewReportExpression014 sumDetail = getSum();
+        ViewReportExpression017 sumDetail = getSum();
         
         beans.put("sum", sumDetail);
         
@@ -214,34 +214,35 @@ public class Report014SummaryController extends BaseFormReportController {
         }
     }
 
-    private ViewReportExpression014 getSum() {
-        ViewReportExpression014 sumDetail = new ViewReportExpression014();
+    private ViewReportExpression017 getSum() {
+        ViewReportExpression017 sumDetail = new ViewReportExpression017();
 
-        sumDetail.setAccessCommittee(0);
-        sumDetail.setAllamount(0);
-        sumDetail.setAnalystRemain(0);
-        sumDetail.setAtCenter(0);
-        sumDetail.setAtEctProvince(0);
-        sumDetail.setEctResolve(0);
-        sumDetail.setOfferEct(0);
-        sumDetail.setOnAgenda(0);
-        sumDetail.setSendRequest(0);
+        sumDetail.setAllStory(0);
+        sumDetail.setRedCard(0);
+        sumDetail.setYellowCard(0);
+        sumDetail.setYellowCardCriminalCase(0);
+        sumDetail.setResetCounter(0);
+        sumDetail.setCriminalCase(0);
+        sumDetail.setAdding(0);
+        sumDetail.setRequestReceived(0);
+        sumDetail.setRequestNoReceived(0);
+        sumDetail.setWithdrawnRequest(0);
+        sumDetail.setEct(0);
 
         for (int i = 0; i < viewReportResult.size(); i++) {
             viewReportResult.get(i).setKey(i + 1);
 
-            viewReportResult.get(i).setAtCenter(NumberUtils.convertNUllToZero(viewReportResult.get(i).getOnAgenda()) + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAccessCommittee()) + NumberUtils.convertNUllToZero(viewReportResult.get(i).getOfferEct()) + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAnalystRemain()));
-            viewReportResult.get(i).setAllamount(NumberUtils.convertNUllToZero(viewReportResult.get(i).getAtCenter()) + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAtEctProvince()) + NumberUtils.convertNUllToZero(viewReportResult.get(i).getEctResolve()));
-
-            sumDetail.setAccessCommittee(sumDetail.getAccessCommittee() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAccessCommittee()));
-            sumDetail.setAllamount(sumDetail.getAllamount() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAllamount()));
-            sumDetail.setAnalystRemain(sumDetail.getAnalystRemain() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAnalystRemain()));
-            sumDetail.setAtCenter(sumDetail.getAtCenter() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAtCenter()));
-            sumDetail.setAtEctProvince(sumDetail.getAtEctProvince() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAtEctProvince()));
-            sumDetail.setEctResolve(sumDetail.getEctResolve() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getEctResolve()));
-            sumDetail.setOfferEct(sumDetail.getOfferEct() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getOfferEct()));
-            sumDetail.setOnAgenda(sumDetail.getOnAgenda() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getOnAgenda()));
-            sumDetail.setSendRequest(sumDetail.getSendRequest() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getSendRequest()));
+            sumDetail.setAllStory(sumDetail.getAllStory() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAllStory()));
+            sumDetail.setRedCard(sumDetail.getRedCard() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getRedCard()));
+            sumDetail.setYellowCard(sumDetail.getYellowCard() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getYellowCard()));
+            sumDetail.setYellowCardCriminalCase(sumDetail.getYellowCardCriminalCase() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getYellowCardCriminalCase()));
+            sumDetail.setResetCounter(sumDetail.getResetCounter() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getResetCounter()));
+            sumDetail.setCriminalCase(sumDetail.getCriminalCase() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getCriminalCase()));
+            sumDetail.setAdding(sumDetail.getAdding() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getAdding()));
+            sumDetail.setRequestReceived(sumDetail.getRequestReceived() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getRequestReceived()));
+            sumDetail.setRequestNoReceived(sumDetail.getRequestNoReceived() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getRequestNoReceived()));
+            sumDetail.setWithdrawnRequest(sumDetail.getWithdrawnRequest() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getWithdrawnRequest()));
+            sumDetail.setEct(sumDetail.getEct() + NumberUtils.convertNUllToZero(viewReportResult.get(i).getEct()));
         }
         
         return sumDetail;
