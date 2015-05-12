@@ -56,6 +56,7 @@ import com.ect.db.report.entity.Report023;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReport001Summary;
 import com.ect.db.report.entity.ViewReportExpression;
+import com.ect.db.report.entity.ViewReportExpression014;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.service.ReportService;
 import java.util.Date;
@@ -326,5 +327,15 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<ViewReportExpression> findReportExpression011ByCriteria(ReportCriteria criteria) {
         return viewReportExpressionDao.findReport011ByCriteria(criteria);
+    }
+
+    @Override
+    public List<ViewReportExpression> findReportExpression012ByCriteria(ReportCriteria reportCriteria) {
+        return viewReportExpressionDao.findReport012ByCriteria(reportCriteria);
+    }
+
+    @Override
+    public List<ViewReportExpression014> findReportExpression014ByCriteria(ReportCriteria reportCriteria) {
+        return viewReportExpressionDao.findReport014ByCriteria(reportCriteria);
     }
 }
