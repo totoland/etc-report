@@ -8,6 +8,7 @@ package com.ect.db.report.dao;
 
 import com.ect.db.bean.ReportCriteria;
 import com.ect.db.report.entity.ViewReportExpression;
+import com.ect.db.report.entity.ViewReportExpression014;
 import java.util.List;
 
 /**
@@ -18,4 +19,8 @@ public interface ViewReportExpressionDao {
     List<ViewReportExpression>findByCriteria(ReportCriteria criteria);
     
     List<ViewReportExpression> findReport011ByCriteria(ReportCriteria criteria);
+
+    List<ViewReportExpression> findReport012ByCriteria(ReportCriteria reportCriteria);
+
+    List<ViewReportExpression014> findReport014ByCriteria(ReportCriteria reportCriteria);
 }
