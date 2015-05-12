@@ -16,75 +16,75 @@ and open the template in the editor.
         <ui:composition template="/template/etcTemplateGreen.xhtml">
             <ui:define name="content">
                 <h:form id="form1" prependId="false">
-                    <p:panel header="หน้าออกรายงาน 4.1">
+                    <p:panel header="หน้าออกรายงาน 4.2">
                         <p:panelGrid columns="4" style="width: 100%;" styleClass="frmSelect" id="searchCriteria">
                             <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
                             <p:outputLabel value="#{msg.label_fiscal_year} :" />
-                            <p:selectOneMenu style="width: 220px;" value="#{report011SummaryController.reportCriteria.year}">
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                            <p:selectOneMenu style="width: 220px;" value="#{report012SummaryController.reportCriteria.year}">
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกเดือน : " />
-                            <p:selectOneMenu style="width: 220px;" value="#{report011SummaryController.reportCriteria.month}">  
+                            <p:selectOneMenu style="width: 220px;" value="#{report012SummaryController.reportCriteria.month}">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlMonth()}"></f:selectItems>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlMonth()}"></f:selectItems>
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
                             <p:selectOneMenu style="width: 220px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
                             <p:selectOneMenu style="width: 220px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกยุทธศาสตร์ที่ : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001strategicId" value="#{report011SummaryController.reportCriteria.strategic}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_012strategicId" value="#{report012SummaryController.reportCriteria.strategic}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
-                                               value="#{report011SummaryController.dropdownFactory.ddlStrategic()}">
+                                               value="#{report012SummaryController.dropdownFactory.ddlStrategic()}">
                                 </f:selectItems>
                                 <p:ajax update="subStrategicId"/>  
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId" rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{report011SummaryController.reportCriteria.subStrategic}" rendered="false">  
+                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_012subStrategicId" rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{report012SummaryController.reportCriteria.subStrategic}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlSubStrategic(report011SummaryController.reportCriteria.strategic)}"></f:selectItems>
-                                <p:ajax update="REPORT_001planId"/>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlSubStrategic(report012SummaryController.reportCriteria.strategic)}"></f:selectItems>
+                                <p:ajax update="REPORT_012planId"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกแผนงาน : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{report011SummaryController.reportCriteria.plan}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_012planId" value="#{report012SummaryController.reportCriteria.plan}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlPlan(report011SummaryController.reportCriteria.subStrategic)}"></f:selectItems>  
-                                <p:ajax update="REPORT_001projectId"/>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlPlan(report012SummaryController.reportCriteria.subStrategic)}"></f:selectItems>  
+                                <p:ajax update="REPORT_012projectId"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{report011SummaryController.reportCriteria.project}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_012projectId"  value="#{report012SummaryController.reportCriteria.project}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlProject(report011SummaryController.reportCriteria.plan)}"></f:selectItems> 
-                                <p:ajax update="REPORT_001Activity"/>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlProject(report012SummaryController.reportCriteria.plan)}"></f:selectItems> 
+                                <p:ajax update="REPORT_012Activity"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{report011SummaryController.reportCriteria.activity}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_012Activity" value="#{report012SummaryController.reportCriteria.activity}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlActivity(report011SummaryController.reportCriteria.project)}"></f:selectItems> 
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report012SummaryController.dropdownFactory.ddlActivity(report012SummaryController.reportCriteria.project)}"></f:selectItems> 
                             </p:selectOneMenu>     
-                            <h:panelGroup rendered="#{report011SummaryController.canSearchUserGroup()}"/>
-                            <h:panelGroup rendered="#{report011SummaryController.canSearchUserGroup()}"/>
+                            <h:panelGroup rendered="#{report012SummaryController.canSearchUserGroup()}"/>
+                            <h:panelGroup rendered="#{report012SummaryController.canSearchUserGroup()}"/>
 
                             <f:facet name="footer">
                                 <div align="center">
-                                    <p:commandButton id="btnShowRpt" action="#{report011SummaryController.search()}" update="pnRptPreSendList2" process="searchCriteria" value="แสดงรายงาน"/>
-                                    <p:commandButton id="btnResetwRpt" action="#{report011SummaryController.resetForm()}" update="searchCriteria,pnRptPreSendList2" value="เริ่มใหม่"/>
+                                    <p:commandButton id="btnShowRpt" action="#{report012SummaryController.search()}" update="pnRptPreSendList2" process="searchCriteria" value="แสดงรายงาน"/>
+                                    <p:commandButton id="btnResetwRpt" action="#{report012SummaryController.resetForm()}" update="searchCriteria,pnRptPreSendList2" value="เริ่มใหม่"/>
                                 </div>
                             </f:facet>
                         </p:panelGrid><br/>
                         <h:panelGroup id="pnRptPreSendList2">
-                            <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" action="#{report011SummaryController.fileXLSDownload()}"   
-                                             icon="ui-icon-arrowthichk-s" rendered="#{report011SummaryController.viewReportResult!=null}">
+                            <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" action="#{report012SummaryController.fileXLSDownload()}"   
+                                             icon="ui-icon-arrowthichk-s" rendered="#{report012SummaryController.viewReportResult!=null}">
                             </p:commandButton>
 
-                            <p:dataTable id="rptPreSendList2" var="item" value="#{report011SummaryController.viewReportResult}" rendered="#{report011SummaryController.viewReportResult!=null}"
+                            <p:dataTable id="rptPreSendList2" var="item" value="#{report012SummaryController.viewReportResult}" rendered="#{report012SummaryController.viewReportResult!=null}"
                                          emptyMessage="#{msg.no_data_found}" rowIndexVar="index" resizableColumns="true">
                                 <p:columnGroup type="header">
                                     <p:row>  

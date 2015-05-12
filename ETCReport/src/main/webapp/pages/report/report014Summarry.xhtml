@@ -16,75 +16,75 @@ and open the template in the editor.
         <ui:composition template="/template/etcTemplateGreen.xhtml">
             <ui:define name="content">
                 <h:form id="form1" prependId="false">
-                    <p:panel header="หน้าออกรายงาน 4.1">
+                    <p:panel header="หน้าออกรายงาน 4.4">
                         <p:panelGrid columns="4" style="width: 100%;" styleClass="frmSelect" id="searchCriteria">
                             <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
                             <p:outputLabel value="#{msg.label_fiscal_year} :" />
-                            <p:selectOneMenu style="width: 220px;" value="#{report011SummaryController.reportCriteria.year}">
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                            <p:selectOneMenu style="width: 220px;" value="#{report014SummaryController.reportCriteria.year}">
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกเดือน : " />
-                            <p:selectOneMenu style="width: 220px;" value="#{report011SummaryController.reportCriteria.month}">  
+                            <p:selectOneMenu style="width: 220px;" value="#{report014SummaryController.reportCriteria.month}">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlMonth()}"></f:selectItems>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlMonth()}"></f:selectItems>
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
                             <p:selectOneMenu style="width: 220px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
                             <p:selectOneMenu style="width: 220px;" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
                             </p:selectOneMenu>  
                             <p:outputLabel value="เลือกยุทธศาสตร์ที่ : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001strategicId" value="#{report011SummaryController.reportCriteria.strategic}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_014strategicId" value="#{report014SummaryController.reportCriteria.strategic}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
-                                               value="#{report011SummaryController.dropdownFactory.ddlStrategic()}">
+                                               value="#{report014SummaryController.dropdownFactory.ddlStrategic()}">
                                 </f:selectItems>
                                 <p:ajax update="subStrategicId"/>  
                             </p:selectOneMenu>
-                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId" rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{report011SummaryController.reportCriteria.subStrategic}" rendered="false">  
+                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_014subStrategicId" rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{report014SummaryController.reportCriteria.subStrategic}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlSubStrategic(report011SummaryController.reportCriteria.strategic)}"></f:selectItems>
-                                <p:ajax update="REPORT_001planId"/>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlSubStrategic(report014SummaryController.reportCriteria.strategic)}"></f:selectItems>
+                                <p:ajax update="REPORT_014planId"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกแผนงาน : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{report011SummaryController.reportCriteria.plan}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_014planId" value="#{report014SummaryController.reportCriteria.plan}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlPlan(report011SummaryController.reportCriteria.subStrategic)}"></f:selectItems>  
-                                <p:ajax update="REPORT_001projectId"/>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlPlan(report014SummaryController.reportCriteria.subStrategic)}"></f:selectItems>  
+                                <p:ajax update="REPORT_014projectId"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{report011SummaryController.reportCriteria.project}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_014projectId"  value="#{report014SummaryController.reportCriteria.project}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlProject(report011SummaryController.reportCriteria.plan)}"></f:selectItems> 
-                                <p:ajax update="REPORT_001Activity"/>
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlProject(report014SummaryController.reportCriteria.plan)}"></f:selectItems> 
+                                <p:ajax update="REPORT_014Activity"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{report011SummaryController.reportCriteria.activity}" rendered="false">  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_014Activity" value="#{report014SummaryController.reportCriteria.activity}" rendered="false">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
-                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report011SummaryController.dropdownFactory.ddlActivity(report011SummaryController.reportCriteria.project)}"></f:selectItems> 
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report014SummaryController.dropdownFactory.ddlActivity(report014SummaryController.reportCriteria.project)}"></f:selectItems> 
                             </p:selectOneMenu>     
-                            <h:panelGroup rendered="#{report011SummaryController.canSearchUserGroup()}"/>
-                            <h:panelGroup rendered="#{report011SummaryController.canSearchUserGroup()}"/>
+                            <h:panelGroup rendered="#{report014SummaryController.canSearchUserGroup()}"/>
+                            <h:panelGroup rendered="#{report014SummaryController.canSearchUserGroup()}"/>
 
                             <f:facet name="footer">
                                 <div align="center">
-                                    <p:commandButton id="btnShowRpt" action="#{report011SummaryController.search()}" update="pnRptPreSendList2" process="searchCriteria" value="แสดงรายงาน"/>
-                                    <p:commandButton id="btnResetwRpt" action="#{report011SummaryController.resetForm()}" update="searchCriteria,pnRptPreSendList2" value="เริ่มใหม่"/>
+                                    <p:commandButton id="btnShowRpt" action="#{report014SummaryController.search()}" update="pnRptPreSendList2" process="searchCriteria" value="แสดงรายงาน"/>
+                                    <p:commandButton id="btnResetwRpt" action="#{report014SummaryController.resetForm()}" update="searchCriteria,pnRptPreSendList2" value="เริ่มใหม่"/>
                                 </div>
                             </f:facet>
                         </p:panelGrid><br/>
                         <h:panelGroup id="pnRptPreSendList2">
-                            <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" action="#{report011SummaryController.fileXLSDownload()}"   
-                                             icon="ui-icon-arrowthichk-s" rendered="#{report011SummaryController.viewReportResult!=null}">
+                            <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" action="#{report014SummaryController.fileXLSDownload()}"   
+                                             icon="ui-icon-arrowthichk-s" rendered="#{report014SummaryController.viewReportResult!=null}">
                             </p:commandButton>
 
-                            <p:dataTable id="rptPreSendList2" var="item" value="#{report011SummaryController.viewReportResult}" rendered="#{report011SummaryController.viewReportResult!=null}"
+                            <p:dataTable id="rptPreSendList2" var="item" value="#{report014SummaryController.viewReportResult}" rendered="#{report014SummaryController.viewReportResult!=null}"
                                          emptyMessage="#{msg.no_data_found}" rowIndexVar="index" resizableColumns="true">
                                 <p:columnGroup type="header">
                                     <p:row>  
@@ -93,13 +93,14 @@ and open the template in the editor.
                                         <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px" headerText="อยู่ส่วนกลาง (เรื่อง) (2)"></p:column>
                                         <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px" headerText="อยู่ที่ สนง. กกต.จว. (เรื่อง) (3)"></p:column>
                                         <p:column rowspan="2" style="text-align: center;vertical-align: middle;width: 90px" headerText="กกต. มีมติแล้ว (เรื่อง) (4)"></p:column>
-                                        <p:column colspan="4" style="text-align: center;" headerText="สถานะเรื่องค้างที่ส่วนกลาง (เรื่อง)"></p:column>
+                                        <p:column colspan="5" style="text-align: center;" headerText="สถานะเรื่องค้างที่ส่วนกลาง (เรื่อง)"></p:column>
                                     </p:row>
                                     <p:row>
                                         <p:column colspan="1" style="text-align: center;width: 90px" headerText="จนท. วิเคราะห์ (5)"></p:column>
                                         <p:column colspan="1" style="text-align: center;width: 90px" headerText="เสนอ ลธ.กกต. (6)"></p:column>
                                         <p:column colspan="1" style="text-align: center;width: 90px" headerText="เข้าคณะอนุฯ (7)"></p:column>
                                         <p:column colspan="1" style="text-align: center;width: 90px" headerText="อยู่ในวาระ (8)"></p:column>
+                                        <p:column colspan="1" style="text-align: center;width: 90px" headerText="ส่ง สวค. ทำ ควฉ. (9)"></p:column>
                                     </p:row>
                                 </p:columnGroup>
                                     <p:column>
@@ -128,6 +129,9 @@ and open the template in the editor.
                                     </p:column>
                                     <p:column>
                                         <h:outputText value="#{item.onAgenda}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.sendRequest}"/>
                                     </p:column>
                                 
                             </p:dataTable>
