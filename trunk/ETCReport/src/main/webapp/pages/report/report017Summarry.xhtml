@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:totoland="http://java.sun.com/jsf/composite/components">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/etcTemplateGreen.xhtml">
+            <ui:define name="content">
+                <h:form id="form1" prependId="false">
+                    <p:panel header="หน้าออกรายงาน 4.7 #{msg.report_017_header}">
+                        <p:panelGrid columns="4" style="width: 100%;" styleClass="frmSelect" id="searchCriteria">
+                            <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
+                            <p:outputLabel value="#{msg.label_fiscal_year} :" />
+                            <p:selectOneMenu style="width: 220px;" value="#{report017SummaryController.reportCriteria.year}">
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlFiscalYear()}"></f:selectItems>  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกเดือน : " />
+                            <p:selectOneMenu style="width: 220px;" value="#{report017SummaryController.reportCriteria.month}">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlMonth()}"></f:selectItems>
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกประเภทรายงานผลการปฏิบัติการ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlReportOperating()}"></f:selectItems> 
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกแบบรายงาน : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlReportForm()}"></f:selectItems>  
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="เลือกยุทธศาสตร์ที่ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_017strategicId" value="#{report017SummaryController.reportCriteria.strategic}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
+                                               value="#{report017SummaryController.dropdownFactory.ddlStrategic()}">
+                                </f:selectItems>
+                                <p:ajax update="subStrategicId"/>  
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_017subStrategicId" rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{report017SummaryController.reportCriteria.subStrategic}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlSubStrategic(report017SummaryController.reportCriteria.strategic)}"></f:selectItems>
+                                <p:ajax update="REPORT_017planId"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกแผนงาน : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_017planId" value="#{report017SummaryController.reportCriteria.plan}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlPlan(report017SummaryController.reportCriteria.subStrategic)}"></f:selectItems>  
+                                <p:ajax update="REPORT_017projectId"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกโครงการ : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_017projectId"  value="#{report017SummaryController.reportCriteria.project}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlProject(report017SummaryController.reportCriteria.plan)}"></f:selectItems> 
+                                <p:ajax update="REPORT_017Activity"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="เลือกกิจกรรม : " rendered="false"/>
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_017Activity" value="#{report017SummaryController.reportCriteria.activity}" rendered="false">  
+                                <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="" />  
+                                <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report017SummaryController.dropdownFactory.ddlActivity(report017SummaryController.reportCriteria.project)}"></f:selectItems> 
+                            </p:selectOneMenu>     
+                            <h:panelGroup rendered="#{report017SummaryController.canSearchUserGroup()}"/>
+                            <h:panelGroup rendered="#{report017SummaryController.canSearchUserGroup()}"/>
+
+                            <f:facet name="footer">
+                                <div align="center">
+                                    <p:commandButton id="btnShowRpt" action="#{report017SummaryController.search()}" update="pnRptPreSendList2" process="searchCriteria" value="แสดงรายงาน"/>
+                                    <p:commandButton id="btnResetwRpt" action="#{report017SummaryController.resetForm()}" update="searchCriteria,pnRptPreSendList2" value="เริ่มใหม่"/>
+                                </div>
+                            </f:facet>
+                        </p:panelGrid><br/>
+                        <h:panelGroup id="pnRptPreSendList2">
+                            <p:commandButton id="downloadLink" value="ดาวน์โหลด" ajax="false" action="#{report017SummaryController.fileXLSDownload()}"   
+                                             icon="ui-icon-arrowthichk-s" rendered="#{report017SummaryController.viewReportResult!=null}">
+                            </p:commandButton>
+
+                            <p:dataTable id="rptPreSendList2" var="item" value="#{report017SummaryController.viewReportResult}" rendered="#{report017SummaryController.viewReportResult!=null}"
+                                         emptyMessage="#{msg.no_data_found}" rowIndexVar="index" resizableColumns="true">
+                                <p:columnGroup type="header">
+                                    <p:row>  
+                                        <p:column style="text-align: center;vertical-align: middle;width: 300px" headerText="ประเภทการเลือกตั้ง"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle;width: 90px" headerText="ทั้งหมด (เรื่อง) (1)"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle;width: 90px" headerText="ใบแดง (เรื่อง) (2)"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle;width: 90px" headerText="ใบเหลือง (เรื่อง) (3)"></p:column>
+                                        <p:column style="text-align: center;vertical-align: middle;width: 90px" headerText="ใบเหลือง/ดำเนินคดีอาญา (เรื่อง) (4)"></p:column>
+                                        <p:column style="text-align: center;width: 90px" headerText="นับคะแนนใหม่ (5)"></p:column>
+                                        <p:column style="text-align: center;width: 90px" headerText="ดำเนินคดีอาญา (6)"></p:column>
+                                        <p:column style="text-align: center;width: 90px" headerText="สอบเพิ่ม (7)"></p:column>
+                                        <p:column style="text-align: center;width: 90px" headerText="รับคำร้อง (8)"></p:column>
+                                        <p:column style="text-align: center;width: 90px" headerText="ไม่รับคำร้อง (9)"></p:column>
+                                        <p:column style="text-align: center;width: 90px" headerText="ถอนคำร้อง (10)"></p:column>
+                                        <p:column style="text-align: center;width: 90px" headerText="อื่นๆ (11)"></p:column>
+                                    </p:row>
+                                </p:columnGroup>
+                                    <p:column>
+                                        <h:outputLabel value="#{item.institution}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.allStory}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.redCard}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.yellowCard}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.yellowCardCriminalCase}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.resetCounter}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.criminalCase}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.adding}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.requestReceived}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.requestNoReceived}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.withdrawnRequest}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <h:outputText value="#{item.ect}"/>
+                                    </p:column>
+                                
+                            </p:dataTable>
+                        </h:panelGroup>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

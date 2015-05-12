@@ -16,7 +16,7 @@ and open the template in the editor.
         <ui:composition template="/template/etcTemplateGreen.xhtml">
             <ui:define name="content">
                 <h:form id="form1" prependId="false">
-                    <p:panel header="หน้าออกรายงาน 4.4">
+                    <p:panel header="หน้าออกรายงาน 4.4 #{msg.report_014_header}">
                         <p:panelGrid columns="4" style="width: 100%;" styleClass="frmSelect" id="searchCriteria">
                             <f:facet name="header">เงื่อนไขการแสดงรายงาน</f:facet>     
                             <p:outputLabel value="#{msg.label_fiscal_year} :" />
