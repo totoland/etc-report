@@ -218,14 +218,14 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
 
     @Override
     public List<ViewReport001SummaryDetail> findReport001DetailByCriteria(ReportCriteria reportCriteria) {
-        String REPORT_DETAIL = "SELECT STRATEGIC_ID "
+        String SQL_REPORT_ORDER = "SELECT ROW_NUMBER() OVER (ORDER BY STRATEGIC_ID,PROJECT_ID,ACTIVITY_ID ASC) AS ROW_NO, STRATEGIC_ID "
                 + "      ,PROJECT_ID "
                 + "      ,ACTIVITY_ID "
                 + "      ,STRATEGIC_NAME "
                 + "      ,PROJECT_NAME "
                 + "      ,ACTIVITY_NAME "
-                + "      ,SUM(BUDGET_SET) AS BUDGET_SET "
-                + "      ,SUM(BUDGET_REAL) AS BUDGET_REAL "
+                + "      ,SUM(ISNULL(BUDGET_SET,0)) AS BUDGET_SET "
+                + "      ,SUM(ISNULL(BUDGET_REAL,0)) AS BUDGET_REAL "
                 + "  FROM VIEW_REPORT001 {0} "
                 + "  GROUP BY STRATEGIC_ID "
                 + "      ,PROJECT_ID "
@@ -235,8 +235,6 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
                 + "      ,ACTIVITY_ID "
                 + "      ,ACTIVITY_NAME "
                 + "  ORDER BY STRATEGIC_ID,PROJECT_ID,ACTIVITY_ID ASC";
-
-        String SQL_REPORT_ORDER = "SELECT ROW_NUMBER() OVER (ORDER BY USER_GROUP_NAME ASC) AS ROW_NO, X.* FROM ( "+REPORT_DETAIL+" ) X";
 
         StringBuilder sql = new StringBuilder();
         sql.append("WHERE 1 = 1 ");
@@ -284,7 +282,6 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
 
         MessageFormat messageFormat = new MessageFormat(SQL_REPORT_ORDER);
         String SQL = messageFormat.format(SQL_REPORT_ORDER, sql.toString());
-        SQL = genSQLPaggin(SQL, reportCriteria.getStartRow(), reportCriteria.getMaxRow());
 
         logger.trace("messageFormat.toString() : " + SQL);
 
