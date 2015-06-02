@@ -5,6 +5,7 @@
 package com.ect.web.service.impl;
 
 import com.ect.db.bean.ReportCriteria;
+import com.ect.db.entity.ViewReport001SummaryDetail;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report002;
 import com.ect.db.report.dao.Report001Dao;
@@ -343,5 +344,15 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<ViewReportExpression017> findReportExpression017ByCriteria(ReportCriteria reportCriteria) {
         return viewReportExpressionDao.findReport017ByCriteria(reportCriteria);
+    }
+
+    @Override
+    public List<ViewReport001SummaryDetail> findReport001DetailByCriteria(ReportCriteria reportCriteria) {
+        return report001Dao.findReport001DetailByCriteria(reportCriteria);
+    }
+
+    @Override
+    public Integer countSummaryDetailCriteria(ReportCriteria reportCriteria) {
+        return report001Dao.countSummaryDetailCriteria(reportCriteria);
     }
 }

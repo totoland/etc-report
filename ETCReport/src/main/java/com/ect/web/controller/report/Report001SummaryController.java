@@ -5,14 +5,14 @@
 package com.ect.web.controller.report;
 
 import com.ect.db.bean.ReportCriteria;
-import com.ect.db.common.dao.GennericDao;
 import com.ect.db.entity.EctFlowStatus;
 import com.ect.db.entity.EctGroupLvl;
+import com.ect.db.entity.ViewReport001SummaryDetail;
 import com.ect.db.entity.ViewUser;
-import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.ViewReport001Summary;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
+import com.ect.web.controller.model.LazyViewReport001SummaryDetailImpl;
 import com.ect.web.controller.model.LazyViewReport001SummaryImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
@@ -51,7 +51,6 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -69,11 +68,11 @@ public class Report001SummaryController extends BaseFormReportController {
     private List<ViewReportStatus> viewReportResult;
     private ReportCriteria reportCriteria;
     private LazyDataModel<ViewReport001Summary> lazyModel;
-
-    @Autowired
-    private GennericDao<Report001> gennericDao;
+    private LazyDataModel<ViewReport001SummaryDetail> lazyModelDetail;
 
     private List<String> selectedGroup = new ArrayList<>();
+
+    private boolean viewDetail;
 
     @PostConstruct
     public void init() {
@@ -86,8 +85,8 @@ public class Report001SummaryController extends BaseFormReportController {
 
         logger.trace("Search!!");
 
-        if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel() && 
-                getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
+        if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel()
+                && getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
             reportCriteria.setUserGroupId(String.valueOf(getUserAuthen().getUserGroupId()));
         }
 
@@ -118,6 +117,40 @@ public class Report001SummaryController extends BaseFormReportController {
 
     }
 
+    public void searchDetail() {
+        logger.trace("SearchDetail!!");
+
+        if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel()
+                && getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
+            reportCriteria.setUserGroupId(String.valueOf(getUserAuthen().getUserGroupId()));
+        }
+
+        reportCriteria.setUserGroupLvl(String.valueOf(getUserAuthen().getUserGroupLvl()));
+        reportCriteria.setGroupIds(selectedGroup);
+        reportCriteria.setStatus(EctFlowStatus.FlowStatus.APPROVED.getStatus() + "");
+
+        logger.trace("Criteria : {}", reportCriteria);
+
+        final Integer count = reportService.countSummaryDetailCriteria(reportCriteria);
+
+        logger.trace("count : {}", count);
+
+        if (count != null || count > 0) {
+
+            final DataTable dataTable = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
+                    .findComponent(":form1:rptPreSendListDetail");
+            dataTable.setFirst(0);
+
+            LazyViewReport001SummaryDetailImpl reportModel = new LazyViewReport001SummaryDetailImpl();
+            reportModel.setRowCount(count);
+            reportModel.setReportService(reportService);
+            reportModel.setReportCriteria(reportCriteria);
+
+            lazyModelDetail = reportModel;
+
+        }
+    }
+
     @Override
     public void resetForm() {
         initCriteria();
@@ -144,7 +177,7 @@ public class Report001SummaryController extends BaseFormReportController {
         }
 
         Map<String, Object> beans = new HashMap<>();
-        beans.put("month", StringUtils.isBlank(month)?"ทั้งหมด":month);
+        beans.put("month", StringUtils.isBlank(month) ? "ทั้งหมด" : month);
         beans.put("year", year);
         beans.put("depName", depName);
         beans.put("createdDate", createdDate);
@@ -293,6 +326,7 @@ public class Report001SummaryController extends BaseFormReportController {
     }
 
     private void initCriteria() {
+        viewDetail = false;
         selectedGroup.clear();
         reportCriteria = new ReportCriteria();
     }
@@ -309,48 +343,62 @@ public class Report001SummaryController extends BaseFormReportController {
         this.selectedGroup = selectedGroup;
     }
 
-    /**
-     * @return the gennericDao
-     */
-    public GennericDao<Report001> getGennericDao() {
-        return gennericDao;
-    }
-
-    /**
-     * @param gennericDao the gennericDao to set
-     */
-    public void setGennericDao(GennericDao<Report001> gennericDao) {
-        this.gennericDao = gennericDao;
-    }
-
     private ViewReport001Summary getSummary(List<ViewReport001Summary> report001Summarys) {
         ViewReport001Summary summary = new ViewReport001Summary();
         summary.setGoalAmount(0L);
         summary.setGoalResult(0L);
-        summary.setBudgetSet(new BigDecimal(BigInteger.ZERO,2));
-        summary.setBudgetReal(new BigDecimal(BigInteger.ZERO,2));
+        summary.setBudgetSet(new BigDecimal(BigInteger.ZERO, 2));
+        summary.setBudgetReal(new BigDecimal(BigInteger.ZERO, 2));
         long pass = 0;
         long notPass = 0;
 
         for (ViewReport001Summary viewReport001Summary : report001Summarys) {
-            summary.setGoalAmount(summary.getGoalAmount()+NumberUtils.convertNUllToZero(viewReport001Summary.getGoalAmount()));
-            summary.setGoalResult(summary.getGoalResult()+NumberUtils.convertNUllToZero(viewReport001Summary.getGoalResult()));
+            summary.setGoalAmount(summary.getGoalAmount() + NumberUtils.convertNUllToZero(viewReport001Summary.getGoalAmount()));
+            summary.setGoalResult(summary.getGoalResult() + NumberUtils.convertNUllToZero(viewReport001Summary.getGoalResult()));
             summary.setBudgetSet(summary.getBudgetSet().add(NumberUtils.convertNUllToZero(viewReport001Summary.getBudgetSet())));
             summary.setBudgetReal(summary.getBudgetReal().add(NumberUtils.convertNUllToZero(viewReport001Summary.getBudgetReal())));
             summary.setIsPass(viewReport001Summary.isIsPass());
-            
-            if(summary!=null && summary.isIsPass()){
-                pass = pass+1;
-            }else{
-                notPass = notPass+1;
+
+            if (summary != null && summary.isIsPass()) {
+                pass = pass + 1;
+            } else {
+                notPass = notPass + 1;
             }
         }
-        
-        summary.setPercenBudget(summary.getBudgetReal().multiply(new BigDecimal(100)).divide(summary.getBudgetSet(),2,RoundingMode.HALF_UP));
-        summary.setSumResult("ผ่าน : "+pass + " ไม่ผ่าน : "+notPass);
 
-        logger.trace("summary : {}",summary);
-        
+        summary.setPercenBudget(summary.getBudgetReal().multiply(new BigDecimal(100)).divide(summary.getBudgetSet(), 2, RoundingMode.HALF_UP));
+        summary.setSumResult("ผ่าน : " + pass + " ไม่ผ่าน : " + notPass);
+
+        logger.trace("summary : {}", summary);
+
         return summary;
+    }
+
+    /**
+     * @return the viewDetail
+     */
+    public boolean isViewDetail() {
+        return viewDetail;
+    }
+
+    /**
+     * @param viewDetail the viewDetail to set
+     */
+    public void setViewDetail(boolean viewDetail) {
+        this.viewDetail = viewDetail;
+    }
+
+    /**
+     * @return the lazyModelDetail
+     */
+    public LazyDataModel<ViewReport001SummaryDetail> getLazyModelDetail() {
+        return lazyModelDetail;
+    }
+
+    /**
+     * @param lazyModelDetail the lazyModelDetail to set
+     */
+    public void setLazyModelDetail(LazyDataModel<ViewReport001SummaryDetail> lazyModelDetail) {
+        this.lazyModelDetail = lazyModelDetail;
     }
 }

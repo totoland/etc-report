@@ -5,6 +5,7 @@
 package com.ect.web.service;
 
 import com.ect.db.bean.ReportCriteria;
+import com.ect.db.entity.ViewReport001SummaryDetail;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.Report002;
 import com.ect.db.report.entity.Report003;
@@ -130,4 +131,8 @@ public interface ReportService {
     List<ViewReportExpression014> findReportExpression014ByCriteria(ReportCriteria reportCriteria);
 
     List<ViewReportExpression017> findReportExpression017ByCriteria(ReportCriteria reportCriteria);
+
+    List<ViewReport001SummaryDetail> findReport001DetailByCriteria(ReportCriteria reportCriteria);
+
+    Integer countSummaryDetailCriteria(ReportCriteria reportCriteria);
 }
