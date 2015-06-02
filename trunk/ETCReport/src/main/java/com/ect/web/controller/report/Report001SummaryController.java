@@ -84,7 +84,7 @@ public class Report001SummaryController extends BaseFormReportController {
     public void search() {
 
         logger.trace("Search!!");
-
+        viewDetail = false;
         if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel()
                 && getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
             reportCriteria.setUserGroupId(String.valueOf(getUserAuthen().getUserGroupId()));
@@ -119,7 +119,7 @@ public class Report001SummaryController extends BaseFormReportController {
 
     public void searchDetail() {
         logger.trace("SearchDetail!!");
-
+        viewDetail = true;
         if (getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.CENTER.getLevel()
                 && getUserAuthen().getUserGroupLvl() != EctGroupLvl.GroupLevel.SYSTEM_ADMIN.getLevel()) {
             reportCriteria.setUserGroupId(String.valueOf(getUserAuthen().getUserGroupId()));
