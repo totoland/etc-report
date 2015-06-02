@@ -80,7 +80,7 @@ and open the template in the editor.
                             <f:facet name="footer">
                                 <div align="center">
                                     <p:commandButton id="btnShowRpt" action="#{report001SummaryController.search()}" update="pnRptPreSendList2" process="searchCriteria" value="แสดงรายงาน"/>
-                                    <p:commandButton id="downloadAlldetail" value="#{msg.label_download_all_detail}" icon="ui-icon-arrowthichk-s" action="#{report001SummaryController.searchDetail()}" update="rptPreSendListDetail" process="searchCriteria"/>
+                                    <p:commandButton id="downloadAlldetail" value="#{msg.label_download_all_detail}" icon="ui-icon-arrowthichk-s" action="#{report001SummaryController.searchDetail()}" update="pnRptPreSendList2" process="searchCriteria"/>
                                     <p:commandButton id="btnResetwRpt" action="#{report001SummaryController.resetForm()}" update="searchCriteria,pnRptPreSendList2" value="เริ่มใหม่"/>
                                 </div>
                             </f:facet>
@@ -91,7 +91,7 @@ and open the template in the editor.
                                                  icon="ui-icon-arrowthichk-s" rendered="#{report001SummaryController.lazyModel!=null}">
                                 </p:commandButton>
                             </p:panel>
-                            <p:dataTable id="rptPreSendList2" var="item" value="#{report001SummaryController.lazyModel}" 
+                            <p:dataTable id="rptPreSendList2" var="item" value="#{report001SummaryController.lazyModel}" rendered="#{!report001SummaryController.viewDetail}"
                                          paginator="true" rows="10" lazy="true" emptyMessage="#{msg.no_data_found}" rowIndexVar="index"
                                          currentPageReportTemplate="#{msg.current_pagereport_template}" resizableColumns="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -131,7 +131,7 @@ and open the template in the editor.
                                     <h:outputText value="#{item.goalType}" />
                                 </p:column>
 
-                                <p:column>
+                                <p:column style="text-align: right">
                                     <h:outputText value="#{item.goalAmount}" />
                                 </p:column>
 
@@ -146,14 +146,14 @@ and open the template in the editor.
                                     <h:outputText value="#{item.practiceResult}" />
                                 </p:column>
 
-                                <p:column>
+                                <p:column style="text-align: right">
                                     <h:outputText value="#{item.budgetSet}" />
                                 </p:column>
 
-                                <p:column>
+                                <p:column style="text-align: right">
                                     <h:outputText value="#{item.budgetReal}" />
                                 </p:column>
-                                <p:column> 
+                                <p:column style="text-align: right"> 
                                     <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
                                 </p:column>
                                 <p:column>  
@@ -164,7 +164,7 @@ and open the template in the editor.
                                 </f:facet>
                             </p:dataTable>
 
-                            <p:dataTable id="rptPreSendListDetail" var="item" value="#{report001SummaryController.lazyModelDetail}" 
+                            <p:dataTable id="rptPreSendListDetail" var="item" value="#{report001SummaryController.lazyModelDetail}" rendered="#{report001SummaryController.viewDetail}"
                                          paginator="true" rows="50" emptyMessage="#{msg.no_data_found}" rowIndexVar="index"
                                          currentPageReportTemplate="#{msg.current_pagereport_template}" resizableColumns="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -196,14 +196,14 @@ and open the template in the editor.
                                     <h:outputText value="#{item.activityName}" />
                                 </p:column>
                                 
-                                <p:column>
+                                <p:column style="text-align: right">
                                     <h:outputText value="#{item.budgetSet}" />
                                 </p:column>
 
-                                <p:column>
+                                <p:column style="text-align: right">
                                     <h:outputText value="#{item.budgetReal}" />
                                 </p:column>
-                                <p:column> 
+                                <p:column style="text-align: right"> 
                                     <h:outputText value="#{report001SummaryController.setPercen(item.budgetReal, item.budgetSet)}%" />
                                 </p:column>
                                 <f:facet name="footer">
