@@ -4,7 +4,7 @@
  */
 package com.ect.db.entity;
 
-import com.ect.db.dao.BaseDao;
+import com.ect.db.domain.entity.DomainEntity;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EctActivity.findAll", query = "SELECT e FROM EctActivity e")})
-public class EctActivity extends BaseDao implements Serializable {
+public class EctActivity extends DomainEntity implements Serializable {
     private static final long serialVersionUID = -260629771027284729L;
     
     @Id
