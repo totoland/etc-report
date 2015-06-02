@@ -68,7 +68,7 @@ public class Report001SummaryController extends BaseFormReportController {
     private List<ViewReportStatus> viewReportResult;
     private ReportCriteria reportCriteria;
     private LazyDataModel<ViewReport001Summary> lazyModel;
-    private LazyDataModel<ViewReport001SummaryDetail> lazyModelDetail;
+    private List<ViewReport001SummaryDetail> lazyModelDetail;
 
     private List<String> selectedGroup = new ArrayList<>();
 
@@ -131,24 +131,12 @@ public class Report001SummaryController extends BaseFormReportController {
 
         logger.trace("Criteria : {}", reportCriteria);
 
-        final Integer count = reportService.countSummaryDetailCriteria(reportCriteria);
+        final DataTable dataTable = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
+                .findComponent(":form1:rptPreSendListDetail");
+        dataTable.setFirst(0);
 
-        logger.trace("count : {}", count);
+        lazyModelDetail = reportService.findReport001DetailByCriteria(reportCriteria);
 
-        if (count != null || count > 0) {
-
-            final DataTable dataTable = (DataTable) FacesContext.getCurrentInstance().getViewRoot()
-                    .findComponent(":form1:rptPreSendListDetail");
-            dataTable.setFirst(0);
-
-            LazyViewReport001SummaryDetailImpl reportModel = new LazyViewReport001SummaryDetailImpl();
-            reportModel.setRowCount(count);
-            reportModel.setReportService(reportService);
-            reportModel.setReportCriteria(reportCriteria);
-
-            lazyModelDetail = reportModel;
-
-        }
     }
 
     @Override
@@ -374,6 +362,13 @@ public class Report001SummaryController extends BaseFormReportController {
         return summary;
     }
 
+    public BigDecimal setPercen(BigDecimal a, BigDecimal b) {
+        if (a.intValue() == 0 || b.intValue() == 0) {
+            return BigDecimal.ZERO;
+        }
+        return a.multiply(new BigDecimal(100)).divide(b, 2, RoundingMode.HALF_UP);
+    }
+
     /**
      * @return the viewDetail
      */
@@ -391,14 +386,14 @@ public class Report001SummaryController extends BaseFormReportController {
     /**
      * @return the lazyModelDetail
      */
-    public LazyDataModel<ViewReport001SummaryDetail> getLazyModelDetail() {
+    public List<ViewReport001SummaryDetail> getLazyModelDetail() {
         return lazyModelDetail;
     }
 
     /**
      * @param lazyModelDetail the lazyModelDetail to set
      */
-    public void setLazyModelDetail(LazyDataModel<ViewReport001SummaryDetail> lazyModelDetail) {
+    public void setLazyModelDetail(List<ViewReport001SummaryDetail> lazyModelDetail) {
         this.lazyModelDetail = lazyModelDetail;
     }
 }
