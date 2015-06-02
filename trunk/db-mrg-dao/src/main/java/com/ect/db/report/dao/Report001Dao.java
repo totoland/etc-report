@@ -5,6 +5,7 @@
 package com.ect.db.report.dao;
 
 import com.ect.db.bean.ReportCriteria;
+import com.ect.db.entity.ViewReport001SummaryDetail;
 import com.ect.db.report.entity.Report001;
 import com.ect.db.report.entity.ViewReport001;
 import com.ect.db.report.entity.ViewReport001Summary;
@@ -28,5 +29,9 @@ public interface Report001Dao {
     List<ViewReport001Summary> findByCriteria(ReportCriteria reportCriteria);
     
     Integer countCriteria(ReportCriteria reportCriteria);
+
+    List<ViewReport001SummaryDetail> findReport001DetailByCriteria(ReportCriteria reportCriteria);
+    
+    Integer countSummaryDetailCriteria(ReportCriteria reportCriteria);
     
 }
