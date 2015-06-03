@@ -34,6 +34,7 @@ public class ReportCriteria implements Serializable{
     private String userGroupLvl;
     private boolean centerOrAdmin = false;
     private List<String> groupIds;
+    private boolean fiscalYear = false;
     
     public ReportCriteria(){
     
@@ -331,5 +332,19 @@ public class ReportCriteria implements Serializable{
     @Override
     public String toString() {
         return "ReportCriteria{" + "year=" + year + ", month=" + month + ", resultsOfOperations=" + resultsOfOperations + ", reportTemplat=" + reportTemplat + ", strategic=" + strategic + ", subStrategic=" + subStrategic + ", plan=" + plan + ", project=" + project + ", activity=" + activity + ", status=" + status + ", flowStatus=" + flowStatus + ", reportCode=" + reportCode + ", startRow=" + startRow + ", maxRow=" + maxRow + ", sortField=" + sortField + ", sortOrder=" + sortOrder + ", userGroupId=" + userGroupId + ", userGroupLvl=" + userGroupLvl + ", centerOrAdmin=" + centerOrAdmin + ", groupIds=" + groupIds + '}';
+    }
+
+    /**
+     * @return the fiscalYear
+     */
+    public boolean isFiscalYear() {
+        return fiscalYear;
+    }
+
+    /**
+     * @param fiscalYear the fiscalYear to set
+     */
+    public void setFiscalYear(boolean fiscalYear) {
+        this.fiscalYear = fiscalYear;
     }
 }
