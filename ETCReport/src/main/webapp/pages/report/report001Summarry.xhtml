@@ -44,25 +44,25 @@ and open the template in the editor.
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" 
                                                value="#{report001SummaryController.dropdownFactory.ddlStrategic()}">
                                 </f:selectItems>
-                                <p:ajax update="subStrategicId"/>  
+                                <p:ajax update="searchCriteria"/>  
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกกลยุทธ์ : " id="REPORT_001subStrategicId" />
                             <p:selectOneMenu style="width: 220px;" id="subStrategicId" value="#{report001SummaryController.reportCriteria.subStrategic}" >  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlSubStrategic(report001SummaryController.reportCriteria.strategic)}"></f:selectItems>
-                                <p:ajax update="REPORT_001planId"/>
+                                <p:ajax update="searchCriteria"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกแผนงาน : " />
-                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{report001SummaryController.reportCriteria.plan}" >  
+                            <p:selectOneMenu style="width: 220px;" id="REPORT_001planId" value="#{report001SummaryController.reportCriteria.plan}">  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlPlan(report001SummaryController.reportCriteria.subStrategic)}"></f:selectItems>  
-                                <p:ajax update="REPORT_001projectId"/>
+                                <p:ajax update="searchCriteria"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกโครงการ : " />
                             <p:selectOneMenu style="width: 220px;" id="REPORT_001projectId"  value="#{report001SummaryController.reportCriteria.project}" >  
                                 <f:selectItem itemLabel="#{msg.ddl_select}" itemValue="-1" />  
                                 <f:selectItems itemLabel="#{item.name}" itemValue="#{item.value}" var="item" value="#{report001SummaryController.dropdownFactory.ddlProject(report001SummaryController.reportCriteria.plan)}"></f:selectItems> 
-                                <p:ajax update="REPORT_001Activity"/>
+                                <p:ajax update="searchCriteria"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="เลือกกิจกรรม : " />
                             <p:selectOneMenu style="width: 220px;" id="REPORT_001Activity" value="#{report001SummaryController.reportCriteria.activity}" >  
@@ -88,7 +88,7 @@ and open the template in the editor.
                         <h:panelGroup id="pnRptPreSendList2">
                             <p:panel style="text-align: right">
                                 <p:commandButton id="downloadLink" value="#{msg.label_download}" ajax="false" action="#{report001SummaryController.fileXLSDownload()}"   
-                                                 icon="ui-icon-arrowthichk-s" rendered="#{report001SummaryController.lazyModel!=null}">
+                                                 icon="ui-icon-arrowthichk-s" rendered="#{report001SummaryController.lazyModel!=null || report001SummaryController.lazyModelDetail!=null}">
                                 </p:commandButton>
                             </p:panel>
                             <p:dataTable id="rptPreSendList2" var="item" value="#{report001SummaryController.lazyModel}" rendered="#{!report001SummaryController.viewDetail}"
@@ -147,11 +147,15 @@ and open the template in the editor.
                                 </p:column>
 
                                 <p:column style="text-align: right">
-                                    <h:outputText value="#{item.budgetSet}" />
+                                    <h:outputText value="#{item.budgetSet}">
+                                        <f:convertNumber pattern="###,###" type="currency"/>
+                                    </h:outputText>
                                 </p:column>
 
                                 <p:column style="text-align: right">
-                                    <h:outputText value="#{item.budgetReal}" />
+                                    <h:outputText value="#{item.budgetReal}">
+                                        <f:convertNumber pattern="###,###" type="currency"/>
+                                    </h:outputText>
                                 </p:column>
                                 <p:column style="text-align: right"> 
                                     <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
@@ -172,9 +176,9 @@ and open the template in the editor.
 
                                 <p:columnGroup type="header">  
                                     <p:row>  
-                                        <p:column rowspan="2" headerText="ยุทธศาสตร์" /> 
-                                        <p:column rowspan="2" headerText="โครงการ" />  
-                                        <p:column rowspan="2" headerText="กิจกรรม" />
+                                        <p:column rowspan="2" headerText="ยุทธศาสตร์" width="320"/> 
+                                        <p:column rowspan="2" headerText="โครงการ" width="320"/>  
+                                        <p:column rowspan="2" headerText="กิจกรรม" width="320"/>
                                         <p:column rowspan="1" colspan="2" headerText="งบประมาณ" />
                                         <p:column rowspan="2" headerText="ร้อยละ" />
                                     </p:row>  
@@ -188,7 +192,7 @@ and open the template in the editor.
                                     <h:outputText value="#{item.strategicName}" />
                                 </p:column>
 
-                                <p:column width="20">  
+                                <p:column>  
                                     <h:outputText value="#{item.projectName}" />
                                 </p:column>
 
@@ -197,11 +201,15 @@ and open the template in the editor.
                                 </p:column>
                                 
                                 <p:column style="text-align: right">
-                                    <h:outputText value="#{item.budgetSet}" />
+                                    <h:outputText value="#{item.budgetSet}">
+                                        <f:convertNumber pattern="###,###" type="currency"/>
+                                    </h:outputText>
                                 </p:column>
 
                                 <p:column style="text-align: right">
-                                    <h:outputText value="#{item.budgetReal}" />
+                                    <h:outputText value="#{item.budgetReal}">
+                                        <f:convertNumber pattern="###,###" type="currency"/>
+                                    </h:outputText>
                                 </p:column>
                                 <p:column style="text-align: right"> 
                                     <h:outputText value="#{report001SummaryController.setPercen(item.budgetReal, item.budgetSet)}%" />
