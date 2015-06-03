@@ -106,9 +106,17 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
             listValue.add(reportCriteria.getMonth());
             sql.append(" AND REPORT_MONTH = ? ");
         }
+//        if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
+//            listValue.add(reportCriteria.getYear());
+//            sql.append(" AND REPORT_YEAR = ? ");
+//        }
         if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
-            listValue.add(reportCriteria.getYear());
-            sql.append(" AND REPORT_YEAR = ? ");
+            if (reportCriteria.isFiscalYear()) {
+                sql.append(" AND " + toFiscalYear(reportCriteria.getYear()));
+            } else {
+                listValue.add(reportCriteria.getYear());
+                sql.append(" AND REPORT_YEAR = ? ");
+            }
         }
         if (reportCriteria.getGroupIds() != null && !reportCriteria.getGroupIds().isEmpty()) {
             //listValue.add(toStringArray(reportCriteria.getGroupIds()));
@@ -130,12 +138,12 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         }
         if (reportCriteria.getPlan() != null && !reportCriteria.getPlan().isEmpty()
                 && !reportCriteria.getPlan().equals("-1")) {
-            listValue.add(reportCriteria.getSubStrategic());
+            listValue.add(reportCriteria.getPlan());
             sql.append(" AND PLAN_ID = ? ");
         }
         if (reportCriteria.getProject() != null && !reportCriteria.getProject().isEmpty()
                 && !reportCriteria.getProject().equals("-1")) {
-            listValue.add(reportCriteria.getSubStrategic());
+            listValue.add(reportCriteria.getProject());
             sql.append(" AND PROJECT_ID = ? ");
         }
         //TODO: not fillter admin
@@ -163,9 +171,17 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
             listValue.add(reportCriteria.getMonth());
             sql.append(" AND REPORT_MONTH = ? ");
         }
+//        if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
+//            listValue.add(reportCriteria.getYear());
+//            sql.append(" AND REPORT_YEAR = ? ");
+//        }
         if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
-            listValue.add(reportCriteria.getYear());
-            sql.append(" AND REPORT_YEAR = ? ");
+            if (reportCriteria.isFiscalYear()) {
+                sql.append(" AND " + toFiscalYear(reportCriteria.getYear()));
+            } else {
+                listValue.add(reportCriteria.getYear());
+                sql.append(" AND REPORT_YEAR = ? ");
+            }
         }
         if (reportCriteria.getGroupIds() != null && !reportCriteria.getGroupIds().isEmpty()) {
             //listValue.add(toStringArray(reportCriteria.getGroupIds()));
@@ -187,12 +203,12 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         }
         if (reportCriteria.getPlan() != null && !reportCriteria.getPlan().isEmpty()
                 && !reportCriteria.getPlan().equals("-1")) {
-            listValue.add(reportCriteria.getSubStrategic());
+            listValue.add(reportCriteria.getPlan());
             sql.append(" AND PLAN_ID = ? ");
         }
         if (reportCriteria.getProject() != null && !reportCriteria.getProject().isEmpty()
                 && !reportCriteria.getProject().equals("-1")) {
-            listValue.add(reportCriteria.getSubStrategic());
+            listValue.add(reportCriteria.getProject());
             sql.append(" AND PROJECT_ID = ? ");
         }
 
@@ -246,8 +262,12 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
             sql.append(" AND REPORT_MONTH = ? ");
         }
         if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
-            listValue.add(reportCriteria.getYear());
-            sql.append(" AND REPORT_YEAR = ? ");
+            if (reportCriteria.isFiscalYear()) {
+                sql.append(" AND " + toFiscalYear(reportCriteria.getYear()));
+            } else {
+                listValue.add(reportCriteria.getYear());
+                sql.append(" AND REPORT_YEAR = ? ");
+            }
         }
         if (reportCriteria.getGroupIds() != null && !reportCriteria.getGroupIds().isEmpty()) {
             //listValue.add(toStringArray(reportCriteria.getGroupIds()));
@@ -269,12 +289,12 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         }
         if (reportCriteria.getPlan() != null && !reportCriteria.getPlan().isEmpty()
                 && !reportCriteria.getPlan().equals("-1")) {
-            listValue.add(reportCriteria.getSubStrategic());
+            listValue.add(reportCriteria.getPlan());
             sql.append(" AND PLAN_ID = ? ");
         }
         if (reportCriteria.getProject() != null && !reportCriteria.getProject().isEmpty()
                 && !reportCriteria.getProject().equals("-1")) {
-            listValue.add(reportCriteria.getSubStrategic());
+            listValue.add(reportCriteria.getProject());
             sql.append(" AND PROJECT_ID = ? ");
         }
         //TODO: not fillter admin
@@ -308,7 +328,7 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
                 + "      ,PROJECT_NAME "
                 + "      ,ACTIVITY_ID "
                 + "      ,ACTIVITY_NAME ) X";
-                
+
         StringBuilder sql = new StringBuilder();
         sql.append(" WHERE 1 = 1 ");
 
@@ -356,10 +376,31 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
 
         MessageFormat messageFormat = new MessageFormat(REPORT_DETAIL);
         String SQL = messageFormat.format(REPORT_DETAIL, sql.toString());
-        
+
         logger.trace(SQL.toString());
         logger.trace("listValue : {}" + listValue);
 
         return countNativeQuery(SQL, listValue);
+    }
+
+    private String toFiscalYear(String year) {
+        Integer fyear = Integer.parseInt(year) - 1;
+
+        return " ( CAST( "
+                + "      CAST(REPORT_YEAR AS VARCHAR(4)) + "
+                + "      RIGHT('0' + CAST(REPORT_MONTH AS VARCHAR(2)), 2) + "
+                + "      RIGHT('0' + '1', 2)  "
+                + "   AS DATETIME) BETWEEN  CAST( "
+                + "      '"+fyear+"' + "
+                + "      RIGHT('0' + '10', 2) + "
+                + "      RIGHT('0' + '1', 2)  "
+                + "   AS DATETIME) "
+                + " "
+                + "   AND  "
+                + "   CAST( "
+                + "      '"+year+"' + "
+                + "      RIGHT('0' + '9', 2) + "
+                + "      RIGHT('0' + '30', 2)  "
+                + "   AS DATETIME) )";
     }
 }
