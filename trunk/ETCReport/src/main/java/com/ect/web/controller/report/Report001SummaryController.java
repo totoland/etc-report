@@ -12,7 +12,6 @@ import com.ect.db.entity.ViewUser;
 import com.ect.db.report.entity.ViewReport001Summary;
 import com.ect.db.report.entity.ViewReportStatus;
 import com.ect.web.controller.form.BaseFormReportController;
-import com.ect.web.controller.model.LazyViewReport001SummaryDetailImpl;
 import com.ect.web.controller.model.LazyViewReport001SummaryImpl;
 import com.ect.web.service.UserService;
 import com.ect.web.utils.DateTimeUtils;
@@ -27,8 +26,12 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -137,6 +140,7 @@ public class Report001SummaryController extends BaseFormReportController {
 
         lazyModelDetail = reportService.findReport001DetailByCriteria(reportCriteria);
 
+        groupReportModel(lazyModelDetail);
     }
 
     @Override
@@ -147,7 +151,12 @@ public class Report001SummaryController extends BaseFormReportController {
 
     @Override
     public void fileXLSDownload() {
-
+        
+        if(isViewDetail()){
+            fileXLSDetailDownload();
+            return;
+        }
+        
         logger.trace("Select report : {}", reportCriteria);
 
         String month = dropdownFactory.getMonthName(reportCriteria.getMonth());
@@ -159,9 +168,7 @@ public class Report001SummaryController extends BaseFormReportController {
         ViewUser viewUser = userService.findByUserId(getUserAuthen().getUserId());
 
         if (viewUser != null) {
-
             depName = viewUser.getUserGroupName();
-
         }
 
         Map<String, Object> beans = new HashMap<>();
@@ -171,7 +178,7 @@ public class Report001SummaryController extends BaseFormReportController {
         beans.put("createdDate", createdDate);
         beans.put("createdUser", getUserAuthen().getFname() + " " + getUserAuthen().getLname());
 
-        reportName = "REPORT_001_SUMMARY";
+        reportName = REPORT_001_SUMMARY;
 
         reportCriteria.setUserGroupLvl(String.valueOf(getUserAuthen().getUserGroupLvl()));
         reportCriteria.setGroupIds(selectedGroup);
@@ -185,10 +192,13 @@ public class Report001SummaryController extends BaseFormReportController {
         beans.put("details", report001Summarys);
         beans.put("sum", getSummary(report001Summarys));
 
-        Workbook wb = null;
-        InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/template/" + reportName + ".xls");
+        
+        InputStream is = FacesContext.getCurrentInstance().getExternalContext()
+                .getResourceAsStream("/template/" + reportName + ".xls");
+        
         XLSTransformer transformer = new XLSTransformer();
-
+        
+        Workbook wb = null;
         try {
 
             wb = transformer.transformXLS(is, beans);
@@ -214,6 +224,74 @@ public class Report001SummaryController extends BaseFormReportController {
         } finally {
         }
     }
+    
+    public void fileXLSDetailDownload() {
+        logger.trace("Select report : {}", reportCriteria);
+
+        String month = dropdownFactory.getMonthName(reportCriteria.getMonth());
+        String year = reportCriteria.getYear();
+        String depName = "";
+        String createdDate = DateTimeUtils.getInstance().thDate(new Date(), DateTimeUtils.DISPLAY_DATETIME_FORMAT);
+        String reportName = "";
+
+        ViewUser viewUser = userService.findByUserId(getUserAuthen().getUserId());
+
+        if (viewUser != null) {
+            depName = viewUser.getUserGroupName();
+        }
+
+        Map<String, Object> beans = new HashMap<>();
+        beans.put("month", StringUtils.isBlank(month) ? "ทั้งหมด" : month);
+        beans.put("year", year);
+        beans.put("depName", depName);
+        beans.put("createdDate", createdDate);
+        beans.put("createdUser", getUserAuthen().getFname() + " " + getUserAuthen().getLname());
+
+        reportName = REPORT_001_SUMMARY_DETAIL;
+
+        reportCriteria.setUserGroupLvl(String.valueOf(getUserAuthen().getUserGroupLvl()));
+        reportCriteria.setGroupIds(selectedGroup);
+        reportCriteria.setStatus(EctFlowStatus.FlowStatus.APPROVED.getStatus() + "");
+        reportCriteria.setMaxRow(60000);
+
+        logger.trace("Criteria : {}", reportCriteria);
+
+        beans.put("details", this.lazyModelDetail);
+        beans.put("sum", getSummaryDetail(this.lazyModelDetail));
+
+        
+        InputStream is = FacesContext.getCurrentInstance().getExternalContext()
+                .getResourceAsStream("/template/" + reportName + ".xls");
+        
+        XLSTransformer transformer = new XLSTransformer();
+        
+        Workbook wb = null;
+        try {
+
+            wb = transformer.transformXLS(is, beans);
+
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ExternalContext ectx = ctx.getExternalContext();
+
+            HttpServletResponse response = (HttpServletResponse) ectx.getResponse();
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + reportName + "" + DateTimeUtils.getInstance().thDateNow(DateTimeUtils.DATE_TIME_FORMAT) + ".xls\"");
+
+            try (ServletOutputStream out = response.getOutputStream()) {
+                wb.write(out);
+                out.flush();
+            }
+
+            ctx.responseComplete();
+        } catch (ParsePropertyException | IOException | InvalidFormatException ex) {
+
+            JsfUtil.alertJavaScript(MessageUtils.getString("error", ex.getMessage()));
+            logger.error("cannot export report", ex);
+
+        } finally {
+        }
+    }
+    
     private StreamedContent file;
 
     public StreamedContent getFile() {
@@ -317,6 +395,12 @@ public class Report001SummaryController extends BaseFormReportController {
         viewDetail = false;
         selectedGroup.clear();
         reportCriteria = new ReportCriteria();
+        reportCriteria.setFiscalYear(true);
+        reportCriteria.setStrategic("-1");
+        reportCriteria.setSubStrategic("-1");
+        reportCriteria.setPlan("-1");
+        reportCriteria.setProject("-1");
+        reportCriteria.setActivity("-1");
     }
 
     @Override
@@ -361,6 +445,21 @@ public class Report001SummaryController extends BaseFormReportController {
 
         return summary;
     }
+    
+    private ViewReport001SummaryDetail getSummaryDetail(List<ViewReport001SummaryDetail> report001Summarys) {
+        ViewReport001SummaryDetail summary = new ViewReport001SummaryDetail();
+        summary.setBudgetSet(new BigDecimal(BigInteger.ZERO, 2));
+        summary.setBudgetReal(new BigDecimal(BigInteger.ZERO, 2));
+        long pass = 0;
+        long notPass = 0;
+
+        for (ViewReport001SummaryDetail viewReport001Summary : report001Summarys) {
+            summary.setBudgetSet(summary.getBudgetSet().add(NumberUtils.convertNUllToZero(viewReport001Summary.getBudgetSet())));
+            summary.setBudgetReal(summary.getBudgetReal().add(NumberUtils.convertNUllToZero(viewReport001Summary.getBudgetReal())));
+        }
+
+        return summary;
+    }
 
     public BigDecimal setPercen(BigDecimal a, BigDecimal b) {
         if (a.intValue() == 0 || b.intValue() == 0) {
@@ -395,5 +494,59 @@ public class Report001SummaryController extends BaseFormReportController {
      */
     public void setLazyModelDetail(List<ViewReport001SummaryDetail> lazyModelDetail) {
         this.lazyModelDetail = lazyModelDetail;
+    }
+
+    private void groupReportModel(List<ViewReport001SummaryDetail> lazyModelDetail) {
+
+        Set<Integer> mapStrategicId = new HashSet<>();
+        Set<String> mapStrategicIdProjectId = new HashSet<>();
+
+        for (int i = 0; i < lazyModelDetail.size(); i++) {
+            if (!mapStrategicId.contains(lazyModelDetail.get(i).getStrategicId())) {
+                mapStrategicId.add(lazyModelDetail.get(i).getStrategicId());
+                lazyModelDetail.get(i).setStrategicName(lazyModelDetail.get(i).getStrategicName());
+            } else {
+                lazyModelDetail.get(i).setStrategicName("");
+            }
+
+            String strategicIdProjectId = lazyModelDetail.get(i).getStrategicId() + "_" + lazyModelDetail.get(i).getProjectId();
+
+            if (!mapStrategicIdProjectId.contains(strategicIdProjectId)) {
+                mapStrategicIdProjectId.add(strategicIdProjectId);
+                lazyModelDetail.get(i).setProjectName(lazyModelDetail.get(i).getProjectName());
+            } else {
+                lazyModelDetail.get(i).setProjectName("");
+            }
+        }
+
+        logger.debug("mapStrategicId : {}", mapStrategicId);
+        
+        List<ViewReport001SummaryDetail> newReport = new ArrayList();
+        
+        Iterator<Integer> iter = mapStrategicId.iterator();
+        while (iter.hasNext()) {
+            Integer stractegicId = iter.next();
+            BigDecimal sumBudgetSet = new BigDecimal(0);
+            BigDecimal sumBudgetReal = new BigDecimal(0);
+            
+            for(ViewReport001SummaryDetail detail : this.lazyModelDetail){
+                if(Objects.equals(detail.getStrategicId(), stractegicId)){
+                    sumBudgetSet = sumBudgetSet.add(detail.getBudgetSet());
+                    sumBudgetReal = sumBudgetReal.add(detail.getBudgetReal());
+                    newReport.add(detail);
+                    
+                    logger.debug("sumBudgetSet : {} sumBudgetReal : {}",detail.getBudgetSet(),detail.getBudgetReal());
+                }
+            }
+            
+            ViewReport001SummaryDetail sumOfRec = new ViewReport001SummaryDetail();
+            sumOfRec.setBudgetSet(sumBudgetSet);
+            sumOfRec.setBudgetReal(sumBudgetReal);
+            sumOfRec.setActivityName("รวม");
+            
+            newReport.add(sumOfRec);
+        }
+
+        this.lazyModelDetail = new ArrayList(newReport);
     }
 }
