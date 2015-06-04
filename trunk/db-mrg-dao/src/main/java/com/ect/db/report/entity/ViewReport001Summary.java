@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.ect.db.report.entity;
 
 import com.ect.db.domain.entity.DomainEntity;
@@ -24,13 +23,14 @@ import javax.persistence.Transient;
  * @author Totoland
  */
 @Entity
-public class ViewReport001Summary extends DomainEntity implements Serializable{
+public class ViewReport001Summary extends DomainEntity implements Serializable {
+
     private static final long serialVersionUID = 6808475191469188934L;
-    
+
     @Id
-    @Column(name ="ROW_NO")
+    @Column(name = "ROW_NO")
     protected Integer id;
-    @Column(name = "REPORT_ID",nullable = true)
+    @Column(name = "REPORT_ID", nullable = true)
     protected Integer reportId;
     @Column(name = "REPORT_CODE")
     protected String reportCode;
@@ -52,44 +52,44 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
     @Column(name = "APPROVED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     protected Date approvedDate;
-    @Column(name ="APPROVED_USER")
+    @Column(name = "APPROVED_USER")
     protected Integer approvedUser;
-    @Column(name ="APPROVED_USER_NAME")
+    @Column(name = "APPROVED_USER_NAME")
     protected String approvedUserName;
-    @Column(name ="CREATED_USER_NAME")
+    @Column(name = "CREATED_USER_NAME")
     protected String createdUserName;
-    @Column(name ="UPDATED_USER_NAME")
+    @Column(name = "UPDATED_USER_NAME")
     protected String updatedUserName;
     @Column(name = "FLOW_STATUS_ID")
     protected Integer flowStatusId;
     @Column(name = "FLOW_STATUS_NAME")
     protected String flowStatusName;
-    @Column(name ="REJECTED_DATE")
+    @Column(name = "REJECTED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     protected Date rejectedDate;
-    @Column(name ="REJECTED_USER")
+    @Column(name = "REJECTED_USER")
     protected Integer rejectedUser;
-    @Column(name ="REJECTED_USER_NAME")
+    @Column(name = "REJECTED_USER_NAME")
     protected String rejectedUserName;
-    @Column(name ="CREATED_USER_FULL_NAME")
+    @Column(name = "CREATED_USER_FULL_NAME")
     private String createdUserFullName;
-    @Column(name ="UPDATED_USER_FULL_NAME")
+    @Column(name = "UPDATED_USER_FULL_NAME")
     private String updatedUserFullName;
-    @Column(name ="APPROVED_USER_FULL_NAME")
+    @Column(name = "APPROVED_USER_FULL_NAME")
     private String approvedUserFullName;
-    @Column(name ="REJECTED_USER_FULL_NAME")
+    @Column(name = "REJECTED_USER_FULL_NAME")
     private String rejectedUserFullName;
-    @Column(name ="REPORT_STATUS")
+    @Column(name = "REPORT_STATUS")
     private Integer reportStatus;
-    @Column(name ="USER_GROUP_ID")
+    @Column(name = "USER_GROUP_ID")
     private Integer userGroupId;
-    @Column(name ="USER_GROUP_NAME")
+    @Column(name = "USER_GROUP_NAME")
     private String userGroupName;
     @Column(name = "USER_GROUP_LVL")
     private Integer userGroupLvl;
-    @Column(name = "REPORT_MONTH",updatable = false)
+    @Column(name = "REPORT_MONTH", updatable = false)
     private String reportMonth;
-    @Column(name = "REPORT_YEAR",updatable = false)
+    @Column(name = "REPORT_YEAR", updatable = false)
     private String reportYear;
     @Column(name = "REPORT_DETAIL_ID", nullable = true)
     private Long reportDetailId;
@@ -127,14 +127,30 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
     private Integer activityId;
     @Column(name = "ACTIVITY_NAME")
     private String activityName;
-    
+    @Column(name = "STRATEGIC_ID")
+    private Integer strategicId;
+    @Column(name = "STRATEGIC_NAME")
+    private String strategicName;
+    @Column(name = "PROJECT_ID")
+    private Integer projectId;
+    @Column(name = "PROJECT_NAME")
+    private String projectName;
+    @Column(name = "PLAN_ID")
+    private Integer planId;
+    @Column(name = "PLAN_NAME")
+    private String planName;
+    @Column(name = "SUB_STRATEGIC_ID")
+    private Integer subStrategicId;
+    @Column(name = "SUB_STRATEGIC_NAME")
+    private String subStrategicName;
+
     @Transient
     private String result;
     @Transient
     private String sumResult;
     @Transient
     private BigDecimal percenBudget;
-    
+
     public Integer getId() {
         return id;
     }
@@ -519,13 +535,13 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
      * @return the result
      */
     public String getResult() {
-        
+
         if (isPass) {
             result = "ผ่าน";
         } else {
             result = "ไม่ผ่าน";
         }
-        
+
         return result;
     }
 
@@ -550,11 +566,6 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
         this.sumResult = sumResult;
     }
 
-    @Override
-    public String toString() {
-        return "ViewReport001Summary{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", reportStatus=" + reportStatus + ", userGroupId=" + userGroupId + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", goalResult=" + goalResult + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", practiceResult=" + practiceResult + ", isPass=" + isPass + ", activityId=" + activityId + ", activityName=" + activityName + ", result=" + result + ", sumResult=" + sumResult + '}';
-    }
-
     /**
      * @return the percenBudget
      */
@@ -567,5 +578,74 @@ public class ViewReport001Summary extends DomainEntity implements Serializable{
      */
     public void setPercenBudget(BigDecimal percenBudget) {
         this.percenBudget = percenBudget;
+    }
+
+    public Integer getStrategicId() {
+        return strategicId;
+    }
+
+    public void setStrategicId(Integer strategicId) {
+        this.strategicId = strategicId;
+    }
+
+    public String getStrategicName() {
+        return strategicName;
+    }
+
+    public void setStrategicName(String strategicName) {
+        this.strategicName = strategicName;
+    }
+
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public Integer getSubStrategicId() {
+        return subStrategicId;
+    }
+
+    public void setSubStrategicId(Integer subStrategicId) {
+        this.subStrategicId = subStrategicId;
+    }
+
+    public String getSubStrategicName() {
+        return subStrategicName;
+    }
+
+    public void setSubStrategicName(String subStrategicName) {
+        this.subStrategicName = subStrategicName;
+    }
+
+    public Integer getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
+    }
+
+    public String getPlanName() {
+        return planName;
+    }
+
+    public void setPlanName(String planName) {
+        this.planName = planName;
+    }
+
+    @Override
+    public String toString() {
+        return "ViewReport001Summary{" + "id=" + id + ", reportId=" + reportId + ", reportCode=" + reportCode + ", reportDesc=" + reportDesc + ", createdDate=" + createdDate + ", createdUser=" + createdUser + ", updatedDate=" + updatedDate + ", updatedUser=" + updatedUser + ", remark=" + remark + ", approvedDate=" + approvedDate + ", approvedUser=" + approvedUser + ", approvedUserName=" + approvedUserName + ", createdUserName=" + createdUserName + ", updatedUserName=" + updatedUserName + ", flowStatusId=" + flowStatusId + ", flowStatusName=" + flowStatusName + ", rejectedDate=" + rejectedDate + ", rejectedUser=" + rejectedUser + ", rejectedUserName=" + rejectedUserName + ", createdUserFullName=" + createdUserFullName + ", updatedUserFullName=" + updatedUserFullName + ", approvedUserFullName=" + approvedUserFullName + ", rejectedUserFullName=" + rejectedUserFullName + ", reportStatus=" + reportStatus + ", userGroupId=" + userGroupId + ", userGroupName=" + userGroupName + ", userGroupLvl=" + userGroupLvl + ", reportMonth=" + reportMonth + ", reportYear=" + reportYear + ", reportDetailId=" + reportDetailId + ", depId=" + depId + ", depName=" + depName + ", budgetSet=" + budgetSet + ", budgetReal=" + budgetReal + ", activityType=" + activityType + ", activityAmount=" + activityAmount + ", workDetail=" + workDetail + ", goalType=" + goalType + ", goalAmount=" + goalAmount + ", goalResult=" + goalResult + ", resultType=" + resultType + ", resultAmount=" + resultAmount + ", practiceResult=" + practiceResult + ", isPass=" + isPass + ", activityId=" + activityId + ", activityName=" + activityName + ", strategicId=" + strategicId + ", strategicName=" + strategicName + ", projectId=" + projectId + ", projectName=" + projectName + ", planId=" + planId + ", planName=" + planName + ", subStrategicId=" + subStrategicId + ", subStrategicName=" + subStrategicName + ", result=" + result + ", sumResult=" + sumResult + ", percenBudget=" + percenBudget + '}';
     }
 }
