@@ -39,7 +39,7 @@ public class LazyViewReport001SummaryImpl extends LazyDataModel<ViewReport001Sum
         getReportCriteria().setMaxRow(pageSize);
         
         datasource = reportService.findReport001ByCriteria(reportCriteria);
-
+        
         return datasource;
 
     }
