@@ -100,7 +100,11 @@ and open the template in the editor.
                                 <p:columnGroup type="header">  
                                     <p:row>  
                                         <p:column rowspan="2" headerText="หน่วยงาน" /> 
-                                        <p:column rowspan="2" headerText="รายละเอียดกิจกรรม" />  
+                                        <p:column rowspan="2" headerText="เลือกยุทธศาสตร์" />
+                                        <p:column rowspan="2" headerText="กลยุทธ์" />
+                                        <p:column rowspan="2" headerText="แผนงาน" />
+                                        <p:column rowspan="2" headerText="โครงการ" />
+                                        <p:column rowspan="2" headerText="รายละเอียดกิจกรรม" />
                                         <p:column rowspan="1" colspan="3" headerText="เป้าหมาย" />
                                         <p:column rowspan="1" colspan="2" headerText="ตัวชี้วัดโครงการ/กิจกรรม" />
                                         <p:column rowspan="1" colspan="2" headerText="งบประมาณ" />
@@ -123,6 +127,22 @@ and open the template in the editor.
                                     <h:outputText value="#{item.userGroupName}" />
                                 </p:column>
 
+                                <p:column width="20">  
+                                    <h:outputText value="#{item.strategicName}" />
+                                </p:column>
+                                
+                                <p:column width="20">  
+                                    <h:outputText value="#{item.subStrategicName}" />
+                                </p:column>
+                                
+                                <p:column width="20">  
+                                    <h:outputText value="#{item.planName}" />
+                                </p:column>
+                                
+                                <p:column width="20">  
+                                    <h:outputText value="#{item.projectName}" />
+                                </p:column>
+                                
                                 <p:column width="20">  
                                     <h:outputText value="#{item.workDetail}" />
                                 </p:column>
