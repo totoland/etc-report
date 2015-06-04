@@ -19,7 +19,7 @@
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
         <db-mrg-dao>1.1-SNAPSHOT</db-mrg-dao>
         <timestamp>${maven.build.timestamp}</timestamp>
-        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+        <maven.build.timestamp.format>dd/MM/yyyy hh:mm</maven.build.timestamp.format>
         <omnifaces.version>1.8.1</omnifaces.version>
     </properties>
 
