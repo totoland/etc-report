@@ -234,23 +234,35 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
 
     @Override
     public List<ViewReport001SummaryDetail> findReport001DetailByCriteria(ReportCriteria reportCriteria) {
-        String SQL_REPORT_ORDER = "SELECT ROW_NUMBER() OVER (ORDER BY STRATEGIC_ID,PROJECT_ID,ACTIVITY_ID ASC) AS ROW_NO, STRATEGIC_ID "
-                + "      ,PROJECT_ID "
-                + "      ,ACTIVITY_ID "
-                + "      ,STRATEGIC_NAME "
-                + "      ,PROJECT_NAME "
-                + "      ,ACTIVITY_NAME "
-                + "      ,SUM(ISNULL(BUDGET_SET,0)) AS BUDGET_SET "
-                + "      ,SUM(ISNULL(BUDGET_REAL,0)) AS BUDGET_REAL "
-                + "  FROM VIEW_REPORT001 {0} "
-                + "  GROUP BY STRATEGIC_ID "
-                + "      ,PROJECT_ID "
-                + "      ,STRATEGIC_NAME "
-                + "      ,SUB_STRATEGIC_NAME "
-                + "      ,PROJECT_NAME "
-                + "      ,ACTIVITY_ID "
-                + "      ,ACTIVITY_NAME "
-                + "  ORDER BY STRATEGIC_ID,PROJECT_ID,ACTIVITY_ID ASC";
+        String SQL_REPORT_ORDER = " SELECT X.* "
+                + ",ISNULL(BUDGET_SET,0) AS BUDGET_SET,ISNULL(BUDGET_REAL,0) AS BUDGET_REAL "
+                + "FROM ( "
+                + " "
+                + "SELECT ROW_NUMBER() OVER (ORDER BY STRATEGIC_ID, "
+                + "PROJECT_ID, "
+                + "ACTIVITY_ID ASC) AS ROW_NO, "
+                + "STRATEGIC_ID       , "
+                + "PROJECT_ID       , "
+                + "ACTIVITY_ID       , "
+                + "STRATEGIC_NAME       , "
+                + "PROJECT_NAME       , "
+                + "ACTIVITY_NAME    , "
+                + "MAX(REPORT_MONTH_YEAR) AS REPORT_MONTH_YEAR "
+                + "FROM VIEW_REPORT001 {0} "
+                + "GROUP BY STRATEGIC_ID       , "
+                + "PROJECT_ID       , "
+                + "STRATEGIC_NAME       , "
+                + "SUB_STRATEGIC_NAME       , "
+                + "PROJECT_NAME       , "
+                + "ACTIVITY_ID       , "
+                + "ACTIVITY_NAME	 "
+                + " "
+                + ") X "
+                + "INNER JOIN VIEW_REPORT001 ON X.ACTIVITY_ID = VIEW_REPORT001.ACTIVITY_ID "
+                + "AND X.REPORT_MONTH_YEAR = VIEW_REPORT001.REPORT_MONTH_YEAR "
+                + "ORDER BY STRATEGIC_ID, "
+                + "PROJECT_ID, "
+                + "ACTIVITY_ID ASC ";
 
         StringBuilder sql = new StringBuilder();
         sql.append("WHERE 1 = 1 ");
@@ -263,7 +275,7 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
         }
         if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
             if (reportCriteria.isFiscalYear()) {
-                sql.append(" AND " + toFiscalYear(reportCriteria.getYear()));
+                sql.append(" AND ").append(toFiscalYear(reportCriteria.getYear()));
             } else {
                 listValue.add(reportCriteria.getYear());
                 sql.append(" AND REPORT_YEAR = ? ");
@@ -384,23 +396,13 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
     }
 
     private String toFiscalYear(String year) {
-        Integer fyear = Integer.parseInt(year) - 1;
+        int selectYear = Integer.parseInt(year) - 543;
+        Integer fyear = selectYear - 1;
 
-        return " ( CAST( "
-                + "      CAST(REPORT_YEAR AS VARCHAR(4)) + "
-                + "      RIGHT('0' + CAST(REPORT_MONTH AS VARCHAR(2)), 2) + "
-                + "      RIGHT('0' + '1', 2)  "
-                + "   AS DATETIME) BETWEEN  CAST( "
-                + "      '"+fyear+"' + "
-                + "      RIGHT('0' + '10', 2) + "
-                + "      RIGHT('0' + '1', 2)  "
-                + "   AS DATETIME) "
-                + " "
-                + "   AND  "
-                + "   CAST( "
-                + "      '"+year+"' + "
-                + "      RIGHT('0' + '9', 2) + "
-                + "      RIGHT('0' + '30', 2)  "
-                + "   AS DATETIME) )";
+        return  "( "
+                + " REPORT_MONTH_YEAR "
+                + " BETWEEN   "
+                + "	CAST('"+fyear+"' + RIGHT('0' + '10',2) + RIGHT('0' + '1', 2) AS DATETIME) AND CAST('"+selectYear+"' +RIGHT('0' + '9', 2) + RIGHT('0' + '30', 2)     AS DATETIME)  "
+                + " ) ";
     }
 }
