@@ -534,8 +534,6 @@ public class Report001SummaryController extends BaseFormReportController {
                     sumBudgetSet = sumBudgetSet.add(detail.getBudgetSet());
                     sumBudgetReal = sumBudgetReal.add(detail.getBudgetReal());
                     newReport.add(detail);
-                    
-                    logger.debug("sumBudgetSet : {} sumBudgetReal : {}",detail.getBudgetSet(),detail.getBudgetReal());
                 }
             }
             
