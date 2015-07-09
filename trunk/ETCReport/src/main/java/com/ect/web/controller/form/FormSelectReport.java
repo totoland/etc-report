@@ -44,7 +44,7 @@ public class FormSelectReport extends BaseFormReportController {
         reportCode = "";
         //setReportMonth(DateTimeUtils.getInstance().thDate(curDate, "MM"));
         reportYear = DateTimeUtils.getInstance().thDate(curDate, "yyyy");
-
+        reportMonth = getLastMonth(curDate);
         logger.trace("reportMonth : {} reportYear : {}", getReportMonth(), reportYear);
     }
 
@@ -239,5 +239,9 @@ public class FormSelectReport extends BaseFormReportController {
     @Override
     public void onDelete(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private String getLastMonth(Date curDate) {
+        return String.valueOf(Integer.parseInt(DateTimeUtils.getInstance().thDate(curDate, "MM"))-1);
     }
 }
