@@ -40,6 +40,7 @@ and open the template in the editor.
                                 <h:outputLabel value="#{formReport003Controller.report003.report003DetailList[0].docReceive}" />
                             </p:column>
                             <p:column>
+                                #{formReport003Controller.report003.report003DetailList[0].docReceiveAmount}
                                 <totoland:inputNumber disabled="#{formReport003Controller.paramMode=='view'}" tabindex="1" id="doc1" value="#{formReport003Controller.report003.report003DetailList[0].docReceiveAmount}"/>
                             </p:column>
                             <p:column>
