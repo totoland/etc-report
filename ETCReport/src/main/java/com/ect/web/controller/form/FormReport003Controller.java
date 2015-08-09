@@ -121,7 +121,7 @@ public class FormReport003Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Save Data : ", ex);
 
@@ -140,7 +140,7 @@ public class FormReport003Controller extends BaseFormReportController {
         report003.setReport003DetailList(report003Details);
         report003.setUpdatedDate(new Date());
         report003.setUpdatedUser(super.getUserAuthen().getUserId());
-        report003.setFlowStatusId(EctFlowStatus.FlowStatus.STEP_1.getStatus());
+//        report003.setFlowStatusId(EctFlowStatus.FlowStatus.STEP_1.getStatus());
         report003.setReportDesc(ectConfManager.getReportName(REPORT_003));
         report003.setReportCode(REPORT_003);
         report003.setCreatedUserGroup(getUserAuthen().getUserGroupId());
@@ -161,7 +161,7 @@ public class FormReport003Controller extends BaseFormReportController {
 
         } catch (Exception ex) {
 
-            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS()+" ข้อผิดพลาด :"+ MDC.get("reqId"));
+            JsfUtil.alertJavaScript(MessageUtils.SAVE_NOT_SUCCESS() + " ข้อผิดพลาด :" + MDC.get("reqId"));
 
             logger.error("Cannot Edit Data : ", ex);
 
@@ -341,7 +341,6 @@ public class FormReport003Controller extends BaseFormReportController {
 //        if (StringUtils.isBlank(inputReport003Detail.getBuggetSource())) {
 //            msg += "กรุณาระบุที่มาของงบประมาณbr/>";
 //        }
-
         if (!StringUtils.isBlank(msg)) {
             addError(msg);
             return false;
@@ -371,7 +370,6 @@ public class FormReport003Controller extends BaseFormReportController {
 //            JsfUtil.alertJavaScript(msg.toString().trim());
 //            return false;
 //        }
-
         return true;
     }
 
@@ -385,6 +383,16 @@ public class FormReport003Controller extends BaseFormReportController {
 
             logger.trace("report003 : {}", report003);
 
+            if (report003.getReport003DetailList().isEmpty()) {
+                logger.warn("report003Details is empty set default add new object");
+                for (int i = 0; i < 7; i++) {
+                    Report003Detail details = new Report003Detail();
+                    details.setKey(i);
+                    details.setReportId(report003);
+                    report003.getReport003DetailList().add(details);
+                }
+            }
+            
             /**
              * * Set ReportDetail **
              */
@@ -397,18 +405,23 @@ public class FormReport003Controller extends BaseFormReportController {
 
             }
 
+            logger.trace("details : {}", report003Details);
+
         }
 
     }
 
     private void initEditMode() {
+
+        logger.trace("initEditMode...");
+
         initViewMode();
-        
-        if(paramMode.equalsIgnoreCase(REPORT_MODE_EDIT)){
-        
+
+        if (paramMode.equalsIgnoreCase(REPORT_MODE_EDIT)) {
+
             reportMonth = report003.getReportMonth();
             reportYear = report003.getReportYear();
-            
+
         }
     }
 
@@ -429,7 +442,7 @@ public class FormReport003Controller extends BaseFormReportController {
     private void initForm() {
 
         initTitle();
-        
+
         report003Details = new ArrayList<>();
 
         Report003Detail report003Detail1 = new Report003Detail();
@@ -438,7 +451,7 @@ public class FormReport003Controller extends BaseFormReportController {
         //report003Detail1.setDocSendAmount(0);
         //report003Detail1.setDocReceiveAmount(0);
         report003Detail1.setReportId(report003);
-        
+
         Report003Detail report003Detail2 = new Report003Detail();
         report003Detail2.setDocReceive("หนังสือรับภายใน (ชั้นความลับ)");
         report003Detail2.setDocSend("หนังสือส่งภายใน (ชั้นความลับ)");
@@ -452,26 +465,26 @@ public class FormReport003Controller extends BaseFormReportController {
         //report003Detail3.setDocSendAmount(0);
         //report003Detail3.setDocReceiveAmount(0);
         report003Detail3.setReportId(report003);
-        
+
         Report003Detail report003Detail4 = new Report003Detail();
         report003Detail4.setDocReceive("หนังสือรับภายนอก (ชั้นความลับ)");
         report003Detail4.setDocSend("หนังสือส่งภายนอก (ชั้นความลับ)");
         //report003Detail4.setDocSendAmount(0);
         //report003Detail4.setDocReceiveAmount(0);
         report003Detail4.setReportId(report003);
-        
+
         Report003Detail report003Detail5 = new Report003Detail();
         report003Detail5.setDocReceive("เรื่องร้องเรียน ร้องขอความเป็นธรรม");
         //report003Detail5.setDocSendAmount(0);
         //report003Detail5.setDocReceiveAmount(0);
         report003Detail5.setReportId(report003);
-        
+
         Report003Detail report003Detail6 = new Report003Detail();
         report003Detail6.setDocReceive("สำนวนร้องคัดค้าน");
         //report003Detail6.setDocSendAmount(0);
         //report003Detail6.setDocReceiveAmount(0);
         report003Detail6.setReportId(report003);
-        
+
         Report003Detail report003Detail7 = new Report003Detail();
         report003Detail7.setDocReceive("อื่นๆ");
         //report003Detail7.setDocSendAmount(0);
@@ -485,7 +498,7 @@ public class FormReport003Controller extends BaseFormReportController {
         report003Details.add(report003Detail5);
         report003Details.add(report003Detail6);
         report003Details.add(report003Detail7);
-        
+
         report003.setReport003DetailList(report003Details);
         report003.setReportMonth(reportMonth);
         report003.setReportYear(reportYear);
