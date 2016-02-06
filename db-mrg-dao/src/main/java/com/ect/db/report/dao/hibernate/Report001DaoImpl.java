@@ -177,7 +177,7 @@ public class Report001DaoImpl extends BaseDao implements Report001Dao {
 //        }
         if (reportCriteria.getYear() != null && !reportCriteria.getYear().isEmpty()) {
             if (reportCriteria.isFiscalYear()) {
-                sql.append(" AND " + toFiscalYear(reportCriteria.getYear()));
+                sql.append(" AND ").append(toFiscalYear(reportCriteria.getYear()));
             } else {
                 listValue.add(reportCriteria.getYear());
                 sql.append(" AND REPORT_YEAR = ? ");
