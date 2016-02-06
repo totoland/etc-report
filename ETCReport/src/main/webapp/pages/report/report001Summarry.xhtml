@@ -178,7 +178,7 @@ and open the template in the editor.
                                     </h:outputText>
                                 </p:column>
                                 <p:column style="text-align: right"> 
-                                    <h:outputText value="#{(item.budgetReal*100)/item.budgetSet}%" />
+                                    <h:outputText value="#{report001SummaryController.setPercen(item.budgetReal,item.budgetSet)}%" />
                                 </p:column>
                                 <p:column>  
                                     <h:outputText value="#{item.isIsPass()?'ผ่าน':'ไม่ผ่าน'}" />
