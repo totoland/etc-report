@@ -462,10 +462,20 @@ public class Report001SummaryController extends BaseFormReportController {
     }
 
     public BigDecimal setPercen(BigDecimal a, BigDecimal b) {
+        
+        if(!NumberUtils.isNumber(a) || !NumberUtils.isNumber(b)){
+            return BigDecimal.ZERO;
+        }
+        
         if (a.intValue() == 0 || b.intValue() == 0) {
             return BigDecimal.ZERO;
         }
-        return a.multiply(new BigDecimal(100)).divide(b, 2, RoundingMode.HALF_UP);
+        
+        try{
+            return a.multiply(new BigDecimal(100)).divide(b, 2, RoundingMode.HALF_UP);
+        }catch(Exception ex){
+            return BigDecimal.ZERO;
+        }
     }
 
     /**
