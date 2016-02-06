@@ -91,19 +91,6 @@ public class Test {
         //PropertyConfigurator.configure("src/main/resources/log4j.xml");
     }
     
-    @org.junit.Test
-    public void testQuery(){
-    
-        ReportCriteria reportCriteria = new ReportCriteria();
-        reportCriteria.setYear("2557");
-        reportCriteria.setMonth("5");
-        
-        List list = viewReportByStatusDao.findByCriteria(reportCriteria);
-        
-        System.out.println("count : "+list);
-        
-    }
-    
     @Ignore
     @org.junit.Test
     public void testQueryDynamicField(){
